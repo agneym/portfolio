@@ -1,6 +1,11 @@
 import React from "react";
 import styled from "styled-components";
 
+import Github from "../images/social-media/github.svg";
+import Codepen from "../images/social-media/codepen.svg";
+import LinkedIn from "../images/social-media/linked-in.svg";
+import Twitter from "../images/social-media/twitter.svg";
+
 const SectionContainer = styled.section`
   display: grid;
   height: 100vh;
@@ -26,7 +31,12 @@ const Subtitle = styled.sub`
   font-size: 0.9rem;
 `;
 
-const IconContainer = styled.div``;
+const IconContainer = styled.div`
+  .social-media {
+    height: 1.8rem;
+    margin: 0 1rem;
+  }
+`;
 
 function IntroSection() {
   return (
@@ -35,7 +45,12 @@ function IntroSection() {
         <Subtitle>Developer. Driven by Passion.</Subtitle>
         <Title>Boy with Silver Wings</Title>
       </div>
-      <IconContainer>Icons</IconContainer>
+      <IconContainer>
+        <Github />
+        <Codepen />
+        <Twitter />
+        <LinkedIn />
+      </IconContainer>
     </SectionContainer>
   );
 }
