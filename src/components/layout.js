@@ -8,6 +8,9 @@ const GlobalStyle = createGlobalStyle`
     font-family: 'Quicksand', sans-serif;
     margin: 0;
   }
+  body * {
+    box-sizing: border-box;
+  }
 `;
 
 const Layout = ({ children }) => (

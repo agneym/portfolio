@@ -2,10 +2,12 @@ import React from "react";
 import styled from "styled-components";
 
 const SectionContainer = styled.section`
-  display: flex;
+  display: grid;
   height: 100vh;
   padding: 2rem;
-  align-items: space-around;
+  grid-template-rows: 1fr 8rem;
+  text-align: center;
+  align-items: center;
 `;
 
 const Title = styled.h1`
@@ -17,15 +19,23 @@ const Title = styled.h1`
   margin: 0;
 `;
 
+const Subtitle = styled.sub`
+  margin-bottom: 1rem;
+  display: block;
+  font-weight: 500;
+  font-size: 0.9rem;
+`;
+
+const IconContainer = styled.div``;
+
 function IntroSection() {
   return (
     <SectionContainer>
-      <div />
       <div>
-        <sub>Developer. Driven by Passion.</sub>
+        <Subtitle>Developer. Driven by Passion.</Subtitle>
         <Title>Boy with Silver Wings</Title>
       </div>
-      <div>Icons</div>
+      <IconContainer>Icons</IconContainer>
     </SectionContainer>
   );
 }
