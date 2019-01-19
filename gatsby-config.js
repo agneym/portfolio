@@ -16,17 +16,6 @@ module.exports = {
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
     {
-      resolve: `gatsby-plugin-prefetch-google-fonts`,
-      options: {
-        fonts: [
-          {
-            family: `Aleo`,
-            subsets: [`latin`],
-          },
-        ],
-      },
-    },
-    {
       resolve: `gatsby-plugin-manifest`,
       options: {
         name: `Boy with Silver Wings`,
@@ -42,4 +31,4 @@ module.exports = {
     // To learn more, visit: https://gatsby.app/offline
     // 'gatsby-plugin-offline',
   ],
-}
+};

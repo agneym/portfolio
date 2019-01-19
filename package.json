@@ -1,15 +1,14 @@
 {
-  "name": "gatsby-starter-default",
+  "name": "boy-with-silver-wings",
   "private": true,
-  "description": "A simple starter to get up and developing quickly with Gatsby",
-  "version": "0.1.0",
-  "author": "Kyle Mathews <mathews.kyle@gmail.com>",
+  "description": "Portfolio",
+  "version": "1.0.0",
+  "author": "Boy with Silver Wings <agney@outlook.in>",
   "dependencies": {
     "gatsby": "^2.0.76",
     "gatsby-image": "^2.0.20",
     "gatsby-plugin-manifest": "^2.0.9",
     "gatsby-plugin-offline": "^2.0.16",
-    "gatsby-plugin-prefetch-google-fonts": "^1.1.1",
     "gatsby-plugin-react-helmet": "^3.0.2",
     "gatsby-plugin-sharp": "^2.0.14",
     "gatsby-source-filesystem": "^2.0.8",
@@ -20,18 +19,28 @@
     "react-helmet": "^5.2.0"
   },
   "keywords": [
-    "gatsby"
+    "portfolio"
   ],
   "license": "MIT",
   "scripts": {
     "build": "gatsby build",
     "develop": "gatsby develop",
     "start": "npm run develop",
-    "format": "prettier --write \"src/**/*.js\"",
-    "test": "echo \"Write tests! -> https://gatsby.app/unit-testing\""
+    "format": "prettier --write \"src/**/*.js\""
   },
   "devDependencies": {
     "prettier": "^1.15.2"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{js,json,css,md}": [
+      "prettier --write",
+      "git add"
+    ]
   },
   "repository": {
     "type": "git",
