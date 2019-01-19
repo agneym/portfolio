@@ -1,6 +1,14 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import { StaticQuery, graphql } from 'gatsby'
+import React from "react";
+import PropTypes from "prop-types";
+import { StaticQuery, graphql } from "gatsby";
+import { createGlobalStyle } from "styled-components";
+
+const GlobalStyle = createGlobalStyle`
+  body {
+    font-family: 'Quicksand', sans-serif;
+    margin: 0;
+  }
+`;
 
 const Layout = ({ children }) => (
   <StaticQuery
@@ -16,13 +24,14 @@ const Layout = ({ children }) => (
     render={data => (
       <>
         {children}
+        <GlobalStyle />
       </>
     )}
   />
-)
+);
 
 Layout.propTypes = {
   children: PropTypes.node.isRequired,
-}
+};
 
-export default Layout
+export default Layout;
