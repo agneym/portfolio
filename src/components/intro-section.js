@@ -1,10 +1,12 @@
 import React from "react";
 import styled from "styled-components";
 
+import ExternalLink from "./external-link";
 import Github from "../images/social-media/github.svg";
 import Codepen from "../images/social-media/codepen.svg";
 import LinkedIn from "../images/social-media/linked-in.svg";
 import Twitter from "../images/social-media/twitter.svg";
+import Stackoverflow from "../images/social-media/stackoverflow.svg";
 
 const SectionContainer = styled.section`
   display: grid;
@@ -39,6 +41,28 @@ const IconContainer = styled.div`
 `;
 
 function IntroSection() {
+  const links = [
+    {
+      to: "https://github.com/BoyWithSilverWings",
+      icon: Github,
+    },
+    {
+      to: "https://stackoverflow.com/users/4374566/boy-with-silver-wings",
+      icon: Stackoverflow,
+    },
+    {
+      to: "https://codepen.io/BoyWithSilverWings/",
+      icon: Codepen,
+    },
+    {
+      to: "https://twitter.com/agneymenon",
+      icon: Twitter,
+    },
+    {
+      to: "https://www.linkedin.com/in/agney-menon/",
+      icon: LinkedIn,
+    },
+  ];
   return (
     <SectionContainer>
       <div>
@@ -46,10 +70,14 @@ function IntroSection() {
         <Title>Boy with Silver Wings</Title>
       </div>
       <IconContainer>
-        <Github />
-        <Codepen />
-        <Twitter />
-        <LinkedIn />
+        {links.map(link => {
+          const Icon = link.icon;
+          return (
+            <ExternalLink to={link.to} key={link.to}>
+              <Icon />
+            </ExternalLink>
+          );
+        })}
       </IconContainer>
     </SectionContainer>
   );
