@@ -47,7 +47,7 @@ function IntroSection() {
       icon: Github,
     },
     {
-      to: "https://stackoverflow.com/users/4374566/boy-with-silver-wings",
+      to: "https://stackoverflow.com/users/story/4374566",
       icon: Stackoverflow,
     },
     {
