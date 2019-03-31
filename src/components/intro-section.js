@@ -35,7 +35,7 @@ const Subtitle = styled.sub`
 
 const IconContainer = styled.div`
   .social-media {
-    height: 1.8rem;
+    height: 2rem;
     margin: 0 1rem;
   }
 `;
