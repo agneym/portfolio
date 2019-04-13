@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import styled from "styled-components";
 
 import ExternalLink from "./external-link";
@@ -83,4 +83,4 @@ function IntroSection() {
   );
 }
 
-export default IntroSection;
+export default memo(IntroSection);
