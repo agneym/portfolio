@@ -16,7 +16,7 @@ module.exports = {
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
     `gatsby-plugin-react-svg`,
-    `gatsby-plugin-styled-components`,
+    `gatsby-plugin-linaria`,
     {
       resolve: `gatsby-plugin-manifest`,
       options: {

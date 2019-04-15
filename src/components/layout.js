@@ -1,15 +1,17 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { StaticQuery, graphql } from "gatsby";
-import { createGlobalStyle } from "styled-components";
+import { css } from "linaria";
 
-const GlobalStyle = createGlobalStyle`
-  body {
-    font-family: 'Quicksand', sans-serif;
-    margin: 0;
-  }
-  body * {
-    box-sizing: border-box;
+export const GlobalStyle = css`
+  :global {
+    body {
+      font-family: "Quicksand", sans-serif;
+      margin: 0;
+    }
+    body * {
+      box-sizing: border-box;
+    }
   }
 `;
 
