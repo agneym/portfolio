@@ -15,8 +15,15 @@ const query = graphql`
   }
 `;
 
+const Border = styled.svg`
+  position: absolute;
+  left: 0;
+  top: 0;
+`;
+
 const Container = styled.div`
   place-self: center;
+  position: relative;
 `;
 
 function ImageSection() {
@@ -24,8 +31,32 @@ function ImageSection() {
     <Container>
       <StaticQuery
         query={query}
-        render={data => <Img fixed={data.file.childImageSharp.fixed} />}
+        render={data => (
+          <Img
+            fixed={data.file.childImageSharp.fixed}
+            alt="Me at Silicon Valley talking an entrepreneur I met"
+            style={{ zIndex: 1 }}
+          />
+        )}
       />
+      <Border viewBox="0 0 600 400" height="400" width="600">
+        <rect
+          x="10"
+          y="10"
+          width="550"
+          height="350"
+          fill="transparent"
+          stroke="blue"
+        />
+        <rect
+          x="15"
+          y="15"
+          width="555"
+          height="355"
+          fill="transparent"
+          stroke="red"
+        />
+      </Border>
     </Container>
   );
 }

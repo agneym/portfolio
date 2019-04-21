@@ -21,7 +21,7 @@ const Title = styled.h2`
 function AboutMe() {
   return (
     <Section>
-      <Title>Hey! My name is Agney.</Title>
+      <Title>Hey! I'm Agney.</Title>
       <ImageSection />
       <DescriptionSection />
     </Section>
