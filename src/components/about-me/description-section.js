@@ -3,6 +3,7 @@ import { styled } from "linaria/react";
 
 const Container = styled.div`
   padding: 0 4rem;
+  align-self: center;
 `;
 
 function DescriptionSection() {

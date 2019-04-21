@@ -9,6 +9,7 @@ const Section = styled.section`
   margin: 1rem 2rem;
   grid-template-rows: 4rem auto;
   grid-template-columns: 1fr 1fr;
+  grid-row-gap: 2rem;
 `;
 
 const Title = styled.h2`
