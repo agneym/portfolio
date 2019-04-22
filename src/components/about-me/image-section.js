@@ -9,7 +9,7 @@ const query = graphql`
     file(relativePath: { eq: "771B3565.jpg" }) {
       childImageSharp {
         fixed(width: 550, height: 350) {
-          ...GatsbyImageSharpFixed
+          ...GatsbyImageSharpFixed_tracedSVG
         }
       }
     }
@@ -29,11 +29,29 @@ const Container = styled.div`
   position: relative;
 `;
 
+const calc = (x, y) => [
+  -(y - window.innerHeight / 2) / 40,
+  (x - window.innerWidth / 2) / 40,
+  1.02,
+];
+const trans = (x, y, s) =>
+  `perspective(5000px) rotateX(${x}deg) rotateY(${y}deg) scale(${s})`;
+
 function ImageSection() {
   const drawProps = useSpring({ x: 2000, from: { x: 0 } });
+  const [props, set] = useSpring(() => ({
+    xys: [0, 0, 1],
+    config: { mass: 150, tension: 350, friction: 100 },
+  }));
+
   const AnimatedBorder = animated(Border);
+  const AnimatedContainer = animated(Container);
   return (
-    <Container>
+    <AnimatedContainer
+      onMouseMove={({ clientX: x, clientY: y }) => set({ xys: calc(x, y) })}
+      onMouseLeave={() => set({ xys: [0, 0, 1] })}
+      style={{ transform: props.xys.interpolate(trans) }}
+    >
       <StaticQuery
         query={query}
         render={data => (
@@ -68,7 +86,7 @@ function ImageSection() {
           stroke="red"
         />
       </AnimatedBorder>
-    </Container>
+    </AnimatedContainer>
   );
 }
 
