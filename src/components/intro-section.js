@@ -37,6 +37,10 @@ const IconContainer = styled.div`
   .social-media {
     height: 2rem;
     margin: 0 1rem;
+
+    @media only screen and (max-width: 600px) {
+      height: 1.6rem;
+    }
   }
 `;
 
