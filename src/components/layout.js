@@ -4,14 +4,13 @@ import { StaticQuery, graphql } from "gatsby";
 import { createGlobalStyle } from "styled-components";
 
 export const GlobalStyle = createGlobalStyle`
-  :global {
-    body {
-      font-family: "Quicksand", sans-serif;
-      margin: 0;
-    }
-    body * {
-      box-sizing: border-box;
-    }
+  body {
+    font-family: "Quicksand", sans-serif;
+    margin: 0;
+    width: 100%;
+  }
+  body * {
+    box-sizing: border-box;
   }
 `;
 
