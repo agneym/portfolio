@@ -1,9 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { StaticQuery, graphql } from "gatsby";
-import { css } from "linaria";
+import { createGlobalStyle } from "styled-components";
 
-export const GlobalStyle = css`
+export const GlobalStyle = createGlobalStyle`
   :global {
     body {
       font-family: "Quicksand", sans-serif;

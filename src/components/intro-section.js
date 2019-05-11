@@ -1,5 +1,5 @@
 import React, { memo } from "react";
-import { styled } from "linaria/react";
+import styled from "styled-components";
 
 import ExternalLink from "./external-link";
 import Github from "../images/social-media/github.svg";

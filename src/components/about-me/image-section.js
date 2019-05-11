@@ -1,7 +1,7 @@
 import React from "react";
 import { graphql, StaticQuery } from "gatsby";
 import Img from "gatsby-image";
-import { styled } from "linaria/react";
+import styled from "styled-components";
 import { useSpring, animated } from "react-spring";
 
 const query = graphql`
