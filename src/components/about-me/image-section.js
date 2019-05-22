@@ -36,11 +36,11 @@ const Container = styled.div`
 
   ${media.phone`
     grid-column: 1/3;
-    width: 80%;
+    width: 100%;
 
     &>.gatsby-image-wrapper {
-      width: 100% !important;
-      height: 100% !important;
+      margin-left: calc(50% - 50vw);
+      margin-right: calc(50% - 50vw);
     }
   `}
 `;

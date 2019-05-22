@@ -8,6 +8,7 @@ export const GlobalStyle = createGlobalStyle`
     font-family: "Quicksand", sans-serif;
     margin: 0;
     width: 100%;
+    overflow-x: hidden;
   }
   body * {
     box-sizing: border-box;

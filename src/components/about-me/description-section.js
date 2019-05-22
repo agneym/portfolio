@@ -1,9 +1,16 @@
 import React from "react";
 import styled from "styled-components";
 
+import media from "../../utils/media";
+
 const Container = styled.div`
   padding: 0 4rem;
   align-self: center;
+
+  ${media.phone`
+    grid-column: 1/3;
+    padding: 0 1rem;
+  `}
 `;
 
 function DescriptionSection() {
