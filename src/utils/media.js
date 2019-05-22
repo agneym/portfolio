@@ -1,8 +1,10 @@
-const sizes = {
+import { css } from "styled-components";
+
+const sizes = Object.freeze({
   desktop: 992,
   tablet: 768,
   phone: 576,
-};
+});
 
 // Iterate through the sizes and create a media template
 const media = Object.keys(sizes).reduce((acc, label) => {

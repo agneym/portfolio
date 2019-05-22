@@ -4,6 +4,8 @@ import Img from "gatsby-image";
 import styled from "styled-components";
 import { useSpring, animated } from "react-spring";
 
+import media from "../../utils/media";
+
 const query = graphql`
   query {
     file(relativePath: { eq: "771B3565.jpg" }) {
@@ -22,11 +24,25 @@ const Border = styled.svg`
   top: 0;
   height: 400px;
   width: 600px;
+
+  ${media.phone`
+    display: none;
+  `}
 `;
 
 const Container = styled.div`
   place-self: center;
   position: relative;
+
+  ${media.phone`
+    grid-column: 1/3;
+    width: 80%;
+
+    &>.gatsby-image-wrapper {
+      width: 100% !important;
+      height: 100% !important;
+    }
+  `}
 `;
 
 const calc = (x, y) => [
