@@ -4,7 +4,7 @@ function Fbdevc() {
   useEffect(() => {
     setTimeout(() => {
       if (window) {
-        window.location.href = "https://fdc-kochi-reactjs.netlify.com/";
+        window.location.href = "https://rset-reactjs.netlify.com/";
       }
     }, 1000);
   });
