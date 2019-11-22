@@ -47,7 +47,7 @@ const IconContainer = styled.div`
 function IntroSection() {
   const links = [
     {
-      to: "https://github.com/BoyWithSilverWings",
+      to: "https://github.com/agneym",
       icon: Github,
     },
     {
