@@ -1,6 +1,6 @@
 module.exports = {
   siteMetadata: {
-    title: `Boy with Silver Wings`,
+    title: `Agney Menon`,
     description: `Developer. Driven by Passion.`,
     author: `@agneymenon`,
   },
@@ -20,7 +20,7 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `Boy with Silver Wings`,
+        name: `Agney Menon`,
         short_name: `agney`,
         start_url: `/`,
         background_color: `#CA3C25`,
@@ -29,8 +29,6 @@ module.exports = {
         icon: `src/images/icon.png`,
       },
     },
-    // this (optional) plugin enables Progressive Web App + Offline functionality
-    // To learn more, visit: https://gatsby.app/offline
-    // 'gatsby-plugin-offline',
+    "gatsby-plugin-offline",
   ],
 };
