@@ -32,12 +32,12 @@
   "scripts": {
     "build": "gatsby build",
     "dev": "gatsby develop",
+    "clean": "gatsby clean",
     "start": "npm run dev",
     "format": "prettier --write \"src/**/*.js\""
   },
   "devDependencies": {
     "@babel/plugin-proposal-optional-chaining": "^7.7.4",
-    "babel-preset-gatsby": "^0.2.23",
     "husky": "^3.1.0",
     "prettier": "^1.19.1",
     "pretty-quick": "^2.0.1"
