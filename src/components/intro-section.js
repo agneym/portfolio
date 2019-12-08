@@ -71,7 +71,7 @@ function IntroSection() {
     <SectionContainer>
       <div>
         <Subtitle>Developer. Driven by Passion.</Subtitle>
-        <Title>Boy with Silver Wings</Title>
+        <Title>Agney Menon</Title>
       </div>
       <IconContainer>
         {links.map(link => {
