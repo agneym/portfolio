@@ -1,26 +1,18 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { StaticQuery, graphql } from "gatsby";
+import { ThemeProvider } from "styled-components";
 
-const Layout = ({ children }) => (
-  <StaticQuery
-    query={graphql`
-      query SiteTitleQuery {
-        site {
-          siteMetadata {
-            title
-          }
-        }
-      }
-    `}
-    render={data => (
-      <>
-        {children}
-        <GlobalStyle />
-      </>
-    )}
-  />
-);
+import getTheme from "../utils/theme";
+
+const Layout = ({ children }) => {
+  const theme = getTheme("light");
+  return (
+    <ThemeProvider theme={theme}>
+      {children}
+      <GlobalStyle />
+    </ThemeProvider>
+  );
+};
 
 Layout.propTypes = {
   children: PropTypes.node.isRequired,
