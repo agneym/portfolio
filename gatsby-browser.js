@@ -1,2 +1,1 @@
-require("typeface-aleo");
-require("typeface-quicksand");
+require("typeface-roboto-slab");
