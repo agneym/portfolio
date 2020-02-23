@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { ThemeProvider } from "styled-components";
 
+import GlobalStyle from "../utils/GlobalStyle";
 import getTheme from "../utils/theme";
 
 const Layout = ({ children }) => {

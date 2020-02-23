@@ -1,9 +1,8 @@
 import React from "react";
 
-import Layout from "../components/layout";
+import Layout from "../components/Layout";
 import SEO from "../components/seo";
-import IntroSection from "../components/intro-section";
-import AboutMe from "../components/about-me";
+import IntroSection from "../components/IntroSection";
 
 const IndexPage = () => (
   <Layout>
@@ -12,7 +11,6 @@ const IndexPage = () => (
       keywords={[`portfolio`, `agney`, `boy with silver wings`]}
     />
     <IntroSection />
-    <AboutMe />
   </Layout>
 );
 
