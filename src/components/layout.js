@@ -1,19 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { StaticQuery, graphql } from "gatsby";
-import { createGlobalStyle } from "styled-components";
-
-export const GlobalStyle = createGlobalStyle`
-  body {
-    font-family: "Quicksand", sans-serif;
-    margin: 0;
-    width: 100%;
-    overflow-x: hidden;
-  }
-  body * {
-    box-sizing: border-box;
-  }
-`;
 
 const Layout = ({ children }) => (
   <StaticQuery
