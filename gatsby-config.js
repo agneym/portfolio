@@ -18,6 +18,14 @@ module.exports = {
     `gatsby-plugin-react-svg`,
     `gatsby-plugin-styled-components`,
     {
+      resolve: `gatsby-plugin-mdx`,
+      options: {
+        defaultLayouts: {
+          default: require.resolve(`${__dirname}/src/components/Layout.js`),
+        },
+      },
+    },
+    {
       resolve: `gatsby-plugin-manifest`,
       options: {
         name: `Agney Menon`,
@@ -29,6 +37,6 @@ module.exports = {
         icon: `src/images/icon.png`,
       },
     },
-    "gatsby-plugin-offline",
+    `gatsby-plugin-offline`,
   ],
 };
