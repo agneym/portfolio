@@ -12,6 +12,11 @@ const ExternalLink = styled.a`
   margin: 0 1rem;
   text-decoration: none;
   color: inherit;
+  transition: transform 200ms ease-in;
+
+  &:hover {
+    transform: scale(0.9);
+  }
 `;
 
 function SocialMediaIcons() {
