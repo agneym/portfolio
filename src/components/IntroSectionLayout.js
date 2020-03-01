@@ -1,8 +1,14 @@
 import React from "react";
 import styled from "styled-components";
+import { motion } from "framer-motion";
 
-const Container = styled.section`
-  margin: 30vh 0 0 5rem;
+const item = {
+  visible: { opacity: 1, y: 0 },
+  hidden: { opacity: 0, y: -100 },
+};
+
+const Container = styled(motion.section)`
+  padding: 15vh 0 0 5rem;
   height: 100vh;
 
   h1 {
@@ -21,8 +27,11 @@ const Container = styled.section`
 `;
 
 function IntroSection({ children }) {
-  const childrenArray = React.Children.toArray(children);
-  return <Container>{children}</Container>;
+  return (
+    <Container initial="hidden" animate="visible" variants={item}>
+      {children}
+    </Container>
+  );
 }
 
 export default IntroSection;
