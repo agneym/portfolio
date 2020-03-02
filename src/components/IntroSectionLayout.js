@@ -9,7 +9,6 @@ const item = {
 
 const Container = styled(motion.section)`
   padding: 15vh 0 0 5rem;
-  height: 100vh;
 
   h1 {
     font-weight: 400;
