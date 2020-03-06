@@ -28,7 +28,6 @@ function IntroSection({ children }) {
     opacity: 1,
     from: { y: 50, opacity: 0 },
     config: config.gentle,
-    delay: 800,
   });
   return (
     <Container>

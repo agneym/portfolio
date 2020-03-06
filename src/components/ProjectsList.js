@@ -90,6 +90,12 @@ const projectsConfig = [
     link: `https://www.npmjs.com/package/cra-template-netlify-fns`,
     tags: [`javascript`, `preactjs`, `netlify-fns`],
   },
+  {
+    title: `The Reader`,
+    description: `A JAM Stack Reading Mode PWA with React & Netlify Functions.`,
+    link: `https://competent-nightingale-a5d6b2.netlify.com/`,
+    tags: [`javascript`, `reactjs`, `netlify-fns`, `serverless`],
+  },
 ];
 
 function ProjectsList() {
