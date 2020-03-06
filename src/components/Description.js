@@ -1,7 +1,7 @@
 import React from "react";
 
 function Description() {
-  return <p>Description</p>;
+  return null;
 }
 
 export default Description;
