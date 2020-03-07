@@ -23,6 +23,10 @@ const Heading = styled.h2`
   text-align: center;
 `;
 
+const FooterSection = styled.div`
+  text-align: center;
+`;
+
 const projectsConfig = [
   {
     title: `Electrojet`,
@@ -107,6 +111,12 @@ function ProjectsList() {
           <Project data={projectConfig} key={projectConfig.title} />
         ))}
       </Grid>
+      <FooterSection>
+        <p>
+          <span>and </span>
+          <a href="https://github.com/agneym">more...</a>
+        </p>
+      </FooterSection>
     </section>
   );
 }
