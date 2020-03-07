@@ -13,12 +13,14 @@ const Tags = styled.ul`
   list-style: none;
   padding: 0;
   margin: 0;
+  flex-wrap: wrap;
 `;
 
 const Tag = styled.li`
   padding: 0.3rem 0.8rem;
   border: 1px solid rgba(0, 0, 0, 0.5);
-  margin: 0 0.5rem;
+  margin: 0.5rem;
+  height: min-content;
 
   &:first-child {
     margin-left: 0;

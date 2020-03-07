@@ -5,7 +5,7 @@ import Project from "./Project";
 
 const Grid = styled.ul`
   display: grid;
-  grid-template-columns: repeat(3, minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   max-width: 150ch;
   grid-gap: 2rem 6rem;
   margin: 0 auto;
