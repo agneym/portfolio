@@ -2,8 +2,11 @@ import React from "react";
 import styled from "styled-components";
 import { useTrail, animated, config } from "react-spring";
 
+import media from "../utils/media";
+
 const Container = styled.section`
   padding: 15vh 0 0 8rem;
+  min-height: 100vh;
 
   h1 {
     font-weight: 400;
@@ -19,6 +22,21 @@ const Container = styled.section`
   p {
     font-size: 4rem;
   }
+
+  ${media.phone`
+    padding: 15vh 2rem 0;
+
+    h1 {
+      font-size: 5rem;
+    }
+    h2 {
+      font-size: 4rem;
+      margin-bottom: 4rem;
+    }
+    p {
+      font-size: 2rem;
+    }
+  `}
 `;
 
 function IntroSection({ children }) {
