@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 import Project from "./Project";
+import media from "../utils/media";
 
 const Grid = styled.ul`
   display: grid;
@@ -15,6 +16,11 @@ const Grid = styled.ul`
   & > li::before {
     content: "\\200B";
   }
+
+  ${media.phone`
+    width: 100%;
+    padding: 0 2rem;
+  `}
 `;
 
 const Heading = styled.h2`
