@@ -8,6 +8,7 @@ const GlobalStyle = createGlobalStyle`
     line-height: 1.15;
     -webkit-text-size-adjust: 100%;
     scroll-behavior: smooth;
+    scroll-snap-type: y proximity;
   }
   body {
     font-family: 'Roboto Slab', sans-serif;

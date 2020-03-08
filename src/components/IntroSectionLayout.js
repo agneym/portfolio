@@ -1,12 +1,14 @@
 import React from "react";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import { useTrail, animated, config } from "react-spring";
+import { ArrowDownCircle } from "react-feather";
 
 import media from "../utils/media";
 
 const Container = styled.section`
   padding: 15vh 0 0 8rem;
   min-height: 100vh;
+  position: relative;
 
   h1 {
     font-weight: 400;
@@ -42,6 +44,30 @@ const Container = styled.section`
   `}
 `;
 
+const floating = keyframes`
+  0% {
+    transform: translate(0px);
+  }
+  50% {
+    transform: translateY(8px);
+  }
+  100% {
+    transform: translate(0px);
+  }
+`;
+
+const ScrollButton = styled.button`
+  position: absolute;
+  top: 95%;
+  left: 50%;
+  color: #546e7a;
+  background-color: transparent;
+  appearance: none;
+  border: 0;
+  cursor: pointer;
+  animation: ${floating} 2s 1s infinite;
+`;
+
 function IntroSection({ children }) {
   const childrenArray = React.Children.toArray(children);
   const trail = useTrail(childrenArray.length, {
@@ -63,6 +89,9 @@ function IntroSection({ children }) {
           {childrenArray[index]}
         </animated.div>
       ))}
+      <ScrollButton aria-label="Scroll">
+        <ArrowDownCircle />
+      </ScrollButton>
     </Container>
   );
 }

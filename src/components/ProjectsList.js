@@ -12,6 +12,7 @@ const Grid = styled.ul`
   margin: 0 auto;
   padding: 0;
   list-style: none;
+  scroll-snap-align: start;
 
   & > li::before {
     content: "\\200B";
