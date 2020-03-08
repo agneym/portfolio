@@ -24,7 +24,10 @@ const Container = styled.section`
   }
 
   ${media.phone`
-    padding: 15vh 2rem 0;
+    padding: 0 2rem;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
 
     h1 {
       font-size: 5rem;
