@@ -83,7 +83,7 @@ function IntroSection({ children }) {
           key={index}
           style={{
             opacity,
-            transform: y.interpolate(y => `translate3d(0,${y}px,0)`),
+            transform: y.interpolate((y) => `translate3d(0,${y}px,0)`),
           }}
         >
           {childrenArray[index]}

@@ -34,7 +34,7 @@ function Project({ data }) {
         <h3>{data.title}</h3>
         <p>{data.description}</p>
         <Tags>
-          {data.tags.map(tag => (
+          {data.tags.map((tag) => (
             <Tag>{tag}</Tag>
           ))}
         </Tags>

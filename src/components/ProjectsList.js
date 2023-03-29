@@ -114,7 +114,7 @@ function ProjectsList() {
     <section>
       <Heading>PROJECTS</Heading>
       <Grid>
-        {projectsConfig.map(projectConfig => (
+        {projectsConfig.map((projectConfig) => (
           <Project data={projectConfig} key={projectConfig.title} />
         ))}
       </Grid>

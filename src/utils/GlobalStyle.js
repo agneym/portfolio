@@ -18,7 +18,7 @@ const GlobalStyle = createGlobalStyle`
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     font-size: 1.6rem;
-    color: ${props => props.theme.colors.textColor};
+    color: ${(props) => props.theme.colors.textColor};
   }
   body * {
     box-sizing: border-box;
