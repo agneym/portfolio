@@ -1,4 +1,5 @@
 import "./global.css";
+import { Providers } from "./providers";
 import { Work_Sans } from "next/font/google";
 
 const workSansFont = Work_Sans({
@@ -14,8 +15,14 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className={`${workSansFont.variable} h-full`}>
-      <body className="h-full">{children}</body>
+    <html
+      lang="en"
+      className={`${workSansFont.variable} h-full`}
+      suppressContentEditableWarning
+    >
+      <body className="h-full">
+        <Providers>{children}</Providers>
+      </body>
     </html>
   );
 }
