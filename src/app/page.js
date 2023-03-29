@@ -4,7 +4,7 @@ import { Intro } from "components/Intro";
 
 export default function Home() {
   return (
-    <div>
+    <div className="h-full grid grid-rows-[3rem_1fr_3rem]">
       <HeadNav />
       <Intro />
       <Footer />

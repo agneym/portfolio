@@ -4,7 +4,7 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        heading: ["var(--font-heading)", "sans-serif"],
+        heading: ["var(--font-heading)"],
       },
     },
   },
