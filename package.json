@@ -1,15 +1,15 @@
 {
   "name": "portfolio",
   "private": true,
-  "description": "Portfolio page for Agney Menon",
+  "description": "Portfolio page for Agney",
   "version": "1.0.0",
   "author": "Agney Menon <agney@outlook.in>",
   "dependencies": {
     "next": "13.2.4",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "react-feather": "^2.0.3",
-    "react-helmet": "^5.2.1"
+    "react-feather": "^2.0.10",
+    "react-helmet": "^6.1.0"
   },
   "license": "MIT",
   "scripts": {
@@ -17,19 +17,18 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "format": "prettier --write ."
+    "format": "prettier --write --ignore-unknown .",
+    "prepare": "husky install"
   },
   "devDependencies": {
     "eslint": "8.37.0",
     "eslint-config-next": "13.2.4",
-    "husky": "^4.2.3",
-    "prettier": "^1.19.1",
-    "pretty-quick": "^2.0.1"
+    "husky": "^8.0.3",
+    "lint-staged": "^13.2.0",
+    "prettier": "2.8.7"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "pretty-quick --staged"
-    }
+  "lint-staged": {
+    "**/*": "prettier --write --ignore-unknown"
   },
   "keywords": [
     "portfolio"
