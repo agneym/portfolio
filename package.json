@@ -4,14 +4,6 @@
   "description": "Portfolio page for Agney",
   "version": "1.0.0",
   "author": "Agney Menon <agney@outlook.in>",
-  "dependencies": {
-    "next": "13.2.4",
-    "next-themes": "^0.2.1",
-    "react": "18.2.0",
-    "react-dom": "18.2.0",
-    "react-feather": "^2.0.10",
-    "react-helmet": "^6.1.0"
-  },
   "license": "MIT",
   "scripts": {
     "dev": "next dev",
@@ -20,6 +12,14 @@
     "lint": "next lint",
     "format": "prettier --write --ignore-unknown .",
     "prepare": "husky install"
+  },
+  "dependencies": {
+    "next": "13.2.4",
+    "next-themes": "^0.2.1",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "react-feather": "^2.0.10",
+    "react-helmet": "^6.1.0"
   },
   "devDependencies": {
     "@tailwindcss/forms": "^0.5.3",
