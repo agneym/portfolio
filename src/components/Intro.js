@@ -4,7 +4,7 @@ export const Intro = () => {
       <h1 className="text-4xl tracking-tight">Hey 👋 I'm </h1>
       <div className="flex flex-col gap-y-6">
         <h1 className="text-6xl font font-extrabold">Agney Menon</h1>
-        <p className="text-xl tracking-normal text-slate-400">
+        <p className="text-xl tracking-normal text-slate-300">
           Web Developer. Storyteller.
         </p>
       </div>

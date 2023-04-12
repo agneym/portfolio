@@ -1,4 +1,5 @@
 import GithubIcon from "images/social-media/github.svg";
+import TwitterIcon from "images/social-media/twitter.svg";
 
 const SocialMediaLink = ({ href, iconEl, ariaLabel }) => {
   return (
@@ -15,11 +16,16 @@ const SocialMediaLink = ({ href, iconEl, ariaLabel }) => {
 
 export const Footer = () => {
   return (
-    <footer className="text-center flex gap-x-2 items-center justify-center">
+    <footer className="text-center flex gap-x-8 pointer-fine:gap-x-3 items-center justify-center">
       <SocialMediaLink
         href="https://github.com/agneym"
         iconEl={<GithubIcon />}
         ariaLabel="My Github Profile"
+      />
+      <SocialMediaLink
+        href="https://twitter.com/agneymenon"
+        iconEl={<TwitterIcon />}
+        ariaLabel="My Twitter Profile"
       />
     </footer>
   );
