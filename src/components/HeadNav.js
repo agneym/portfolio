@@ -1,3 +1,11 @@
 export const HeadNav = () => {
-  return <nav>Header Nav</nav>;
+  return (
+    <nav className="flex items-center justify-end text-slate-400 px-8">
+      <div className="inline-flex gap-x-8">
+        <a href="/about">About</a>
+        <a href="https://blog.agney.dev">Projects</a>
+        <a href="https://blog.agney.dev">Blog</a>
+      </div>
+    </nav>
+  );
 };
