@@ -22,6 +22,7 @@
     "react-helmet": "^6.1.0"
   },
   "devDependencies": {
+    "@svgr/webpack": "^7.0.0",
     "@tailwindcss/forms": "^0.5.3",
     "@tailwindcss/typography": "^0.5.9",
     "@trivago/prettier-plugin-sort-imports": "^4.1.1",
