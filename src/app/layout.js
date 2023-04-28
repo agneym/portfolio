@@ -18,7 +18,7 @@ export default function RootLayout({ children }) {
     <html
       lang="en"
       className={`${workSansFont.variable} h-full`}
-      suppressContentEditableWarning
+      suppressHydrationWarning
     >
       <body className="h-full">
         <Providers>{children}</Providers>
