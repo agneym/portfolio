@@ -3,11 +3,11 @@ import Link from "next/link";
 
 export const HeadNav = () => {
   return (
-    <nav className="flex items-center justify-center md:justify-between pt-4 text-slate-600 dark:text-slate-400 px-8">
-      <Link href="/">
+    <nav className="flex gap-x-4 items-center justify-center md:justify-between pt-4 text-slate-600 dark:text-slate-400 px-8">
+      <Link href="/" className="mr-auto">
         <LogoSvg
-          width={200}
-          className="text-slate-900 hidden md:block dark:text-slate-100"
+          width={40}
+          className="text-slate-900 dark:text-slate-100"
           title="Home"
         />
       </Link>
