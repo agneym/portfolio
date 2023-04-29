@@ -14,31 +14,31 @@
     "prepare": "is-ci || husky install"
   },
   "dependencies": {
+    "@tailwindcss/forms": "^0.5.3",
+    "@tailwindcss/typography": "^0.5.9",
+    "@svgr/webpack": "^7.0.0",
+    "autoprefixer": "^10.4.14",
     "framer-motion": "^10.12.4",
     "is-ci": "^3.0.1",
     "next": "^13.2.4",
     "next-themes": "^0.2.1",
+    "postcss": "^8.4.23",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-feather": "^2.0.10",
-    "react-helmet": "^6.1.0"
+    "react-helmet": "^6.1.0",
+    "tailwindcss": "^3.3.2",
+    "tailwindcss-touch": "^1.0.1"
   },
   "devDependencies": {
-    "@svgr/webpack": "^7.0.0",
-    "@tailwindcss/forms": "^0.5.3",
-    "@tailwindcss/typography": "^0.5.9",
     "@trivago/prettier-plugin-sort-imports": "^4.1.1",
-    "autoprefixer": "^10.4.14",
     "eslint": "^8.39.0",
     "eslint-config-next": "^13.3.1",
     "eslint-config-prettier": "^8.8.0",
     "husky": "^8.0.3",
     "lint-staged": "^13.2.2",
-    "postcss": "^8.4.23",
     "prettier": "^2.8.8",
-    "prettier-plugin-tailwindcss": "^0.2.7",
-    "tailwindcss": "^3.3.2",
-    "tailwindcss-touch": "^1.0.1"
+    "prettier-plugin-tailwindcss": "^0.2.7"
   },
   "lint-staged": {
     "**/*": "prettier --write --ignore-unknown"
