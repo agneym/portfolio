@@ -9,8 +9,11 @@ const workSansFont = Work_Sans({
 });
 
 export const metadata = {
-  title: "Agney's Portfolio",
+  title: "Portfolio | Agney",
   description: "A portfolio website",
+  keywords: ["Frontend Developer", "Developer", "Engineer", "Portfolio"],
+  colorScheme: "dark",
+  creator: "Agney",
 };
 
 export default function RootLayout({ children }) {
