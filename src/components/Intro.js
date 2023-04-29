@@ -1,6 +1,8 @@
 "use client";
 
+import avatarPic from "../images/avatar-400x400.jpg";
 import { motion, useReducedMotion } from "framer-motion";
+import Image from "next/image";
 
 const initial = {
   y: 10,
@@ -33,15 +35,27 @@ export const Intro = () => {
         Hey 👋 I'm{" "}
       </motion.h1>
       <div className="flex flex-col gap-y-6">
+        <motion.div
+          {...getAnimateProps({ delay: 0.4, shouldReduceMotion })}
+          className="rounded-full overflow-hidden"
+        >
+          <Image
+            src={avatarPic}
+            alt=""
+            className="rounded-full mx-auto"
+            width={200}
+            priority
+          />
+        </motion.div>
         <motion.h1
-          {...getAnimateProps({ delay: 0.3, shouldReduceMotion })}
+          {...getAnimateProps({ delay: 0.6, shouldReduceMotion })}
           className="text-6xl font font-extrabold"
         >
           Agney Menon
         </motion.h1>
         <motion.p
-          {...getAnimateProps({ delay: 0.8, shouldReduceMotion })}
-          className="text-xl tracking-normal text-slate-300 font-medium"
+          {...getAnimateProps({ delay: 0.9, shouldReduceMotion })}
+          className="text-xl tracking-normal text-slate-700 dark:text-slate-300 font-medium"
         >
           Web Developer. Storyteller.
         </motion.p>

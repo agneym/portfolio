@@ -1,6 +1,6 @@
 export const HeadNav = () => {
   return (
-    <nav className="flex items-center justify-end text-slate-400 px-8">
+    <nav className="flex items-center justify-end text-slate-600 dark:text-slate-400 px-8">
       <div className="inline-flex gap-x-8">
         <a href="/about">About</a>
         <a href="https://github.com/agneym?tab=repositories" target="_blank">
