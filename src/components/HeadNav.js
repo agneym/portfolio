@@ -1,6 +1,16 @@
+import LogoSvg from "images/logo.svg";
+import Link from "next/link";
+
 export const HeadNav = () => {
   return (
-    <nav className="flex items-center justify-end text-slate-600 dark:text-slate-400 px-8">
+    <nav className="flex items-center justify-center md:justify-between pt-4 text-slate-600 dark:text-slate-400 px-8">
+      <Link href="/">
+        <LogoSvg
+          width={200}
+          className="text-slate-900 hidden md:block dark:text-slate-100"
+          title="Home"
+        />
+      </Link>
       <div className="inline-flex gap-x-8">
         <a href="/about">About</a>
         <a href="https://github.com/agneym?tab=repositories" target="_blank">
