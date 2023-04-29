@@ -12,7 +12,12 @@ export const HeadNav = () => {
         />
       </Link>
       <div className="inline-flex gap-x-8">
-        <a href="/about">About</a>
+        <Link
+          href="/about"
+          className="relative before:absolute before:block before:w-full before:h-0.5 before:-bottom-0.5 before:left-0 before:bg-current before:scale-0 before:transition-transform before:duration-300 before:ease-in-out hover:before:scale-100"
+        >
+          About
+        </Link>
         <a href="https://github.com/agneym?tab=repositories" target="_blank">
           Projects
         </a>
