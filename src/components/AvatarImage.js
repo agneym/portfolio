@@ -7,8 +7,7 @@ import Image from "next/image";
 const transitionState = {
   delay: 1,
   type: "spring",
-  duration: 2,
-  repeatDelay: 5,
+  duration: 3,
   repeat: Infinity,
 };
 
@@ -39,13 +38,21 @@ export const AvatarImage = ({ getAnimateProps }) => {
           cy="0"
           r="50"
           fill="none"
-          stroke="red"
           strokeWidth="2"
-          initial={{
-            pathLength: 0,
-          }}
+          strokeDasharray="0 1"
+          initial={
+            shouldReduceMotion
+              ? {
+                  pathLength: 1,
+                }
+              : {
+                  pathLength: 0,
+                  stroke: "hsla(0deg, 86%, 59%, 1)",
+                }
+          }
           animate={{
             pathLength: 1,
+            stroke: "hsla(180deg, 86%, 59%, 1)",
           }}
           transition={transitionState}
         />
