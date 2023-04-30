@@ -1,6 +1,4 @@
-import { Footer } from "components/Footer";
-import { HeadNav } from "components/HeadNav";
-import { Intro } from "components/Intro";
+import { HeadNav, Intro, Footer } from "components/HomePage";
 
 export default function Home() {
   return (
