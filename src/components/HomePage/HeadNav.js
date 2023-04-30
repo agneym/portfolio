@@ -1,3 +1,4 @@
+import { Anchor } from "components/shared";
 import LogoSvg from "images/logo.svg";
 import Link from "next/link";
 
@@ -12,16 +13,15 @@ export const HeadNav = () => {
         />
       </Link>
       <div className="inline-flex gap-x-8">
-        <Link
-          href="/about"
-          className="relative before:absolute before:block before:w-full before:h-0.5 before:-bottom-0.5 before:left-0 before:bg-current before:scale-0 before:transition-transform before:duration-300 before:ease-in-out hover:before:scale-100"
+        <Anchor href="/about">About</Anchor>
+        <Anchor
+          as="a"
+          href="https://github.com/agneym?tab=repositories"
+          target="_blank"
         >
-          About
-        </Link>
-        <a href="https://github.com/agneym?tab=repositories" target="_blank">
           Projects
-        </a>
-        <a href="https://blog.agney.dev">Blog</a>
+        </Anchor>
+        <Anchor href="https://blog.agney.dev">Blog</Anchor>
       </div>
     </nav>
   );
