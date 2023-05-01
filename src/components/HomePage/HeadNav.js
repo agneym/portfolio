@@ -5,7 +5,10 @@ import Link from "next/link";
 export const HeadNav = () => {
   return (
     <nav className="flex gap-x-4 items-center justify-center md:justify-between pt-4 text-slate-600 dark:text-slate-400 px-8">
-      <Link href="/" className="mr-auto">
+      <Link
+        href="/"
+        className="mr-auto -rotate-6 hover:rotate-0 transition-transform"
+      >
         <LogoSvg
           width={40}
           className="text-slate-900 dark:text-slate-100"
