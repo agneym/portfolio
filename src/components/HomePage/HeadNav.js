@@ -24,7 +24,12 @@ export const HeadNav = () => {
         >
           Projects
         </Anchor>
-        <Anchor href="https://blog.agney.dev">Blog</Anchor>
+        <Anchor as="a" href="https://blog.agney.dev">
+          Blog
+        </Anchor>
+        <Anchor as="a" href="https://buttondown.email/agney" target="_blank">
+          Newsletter
+        </Anchor>
       </div>
     </nav>
   );
