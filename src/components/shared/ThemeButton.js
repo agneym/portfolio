@@ -13,7 +13,7 @@ export const ThemeButton = () => {
   return (
     <button
       type="button"
-      className="inline-flex items-center justify-center"
+      className="inline-flex items-center justify-center hover:scale-105 transition-transform duration-150"
       onClick={() => setTheme(isLightTheme ? "dark" : "light")}
       aria-label={label}
       title={label}
