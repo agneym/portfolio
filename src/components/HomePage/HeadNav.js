@@ -1,4 +1,5 @@
 import { Anchor } from "components/shared";
+import { ThemeButton } from "components/shared/ThemeButton";
 import LogoSvg from "images/logo.svg";
 import Link from "next/link";
 
@@ -30,6 +31,7 @@ export const HeadNav = () => {
         <Anchor as="a" href="https://buttondown.email/agney" target="_blank">
           Newsletter
         </Anchor>
+        <ThemeButton />
       </div>
     </nav>
   );

@@ -10,7 +10,7 @@ const workSansFont = Work_Sans({
 
 export const metadata = {
   title: "Portfolio | Agney",
-  description: "A portfolio website",
+  description: "A portfolio for Web Developer - Agney Menon",
   keywords: ["Frontend Developer", "Developer", "Engineer", "Portfolio"],
   colorScheme: "dark",
   creator: "Agney",
