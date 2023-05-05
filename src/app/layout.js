@@ -14,6 +14,7 @@ export const metadata = {
   keywords: ["Frontend Developer", "Developer", "Engineer", "Portfolio"],
   colorScheme: "dark",
   creator: "Agney",
+  metadataBase: new URL("https://agney.dev"),
 };
 
 export default function RootLayout({ children }) {
