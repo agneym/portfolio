@@ -20,7 +20,7 @@ export const WithDescription = () => {
   return (
     <Input.Group hasDescription>
       <Input.Label>Email</Input.Label>
-      <Input.Input type="email" />
+      <Input.Input type="email" placeholder="john@doe.com" />
       <Input.Description>Enter your email address</Input.Description>
     </Input.Group>
   );
