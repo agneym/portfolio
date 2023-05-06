@@ -24,7 +24,7 @@ export default function RootLayout({ children }) {
       className={`${workSansFont.variable} h-full`}
       suppressHydrationWarning
     >
-      <body className="h-full bg-gray-100 selection:bg-gray-200 dark:bg-slate-800 dark:selection:bg-slate-700">
+      <body className="h-full bg-slate-50 selection:bg-indigo-100 dark:bg-slate-800 dark:selection:bg-indigo-600">
         <Providers>{children}</Providers>
       </body>
     </html>

@@ -13,7 +13,10 @@ export const InputDescription = ({ children, className, ...rest }) => {
   );
   return (
     <p
-      className={clsx("mt-1 text-sm text-gray-500", className)}
+      className={clsx(
+        "mt-1 text-sm text-gray-600 dark:text-gray-400",
+        className
+      )}
       id={descriptionId}
       {...rest}
     >
