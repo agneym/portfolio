@@ -1,5 +1,5 @@
 import { Anchor } from "components/shared";
-import { ThemeButton } from "components/shared/ThemeButton";
+import { ThemeButton } from "components/shared";
 import LogoSvg from "images/logo.svg";
 import Link from "next/link";
 
