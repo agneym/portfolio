@@ -5,7 +5,7 @@ import Link from "next/link";
 
 export const HeadNav = () => {
   return (
-    <nav className="flex gap-x-4 items-center justify-center md:justify-between pt-4 text-slate-600 dark:text-slate-400 px-8">
+    <nav className="flex gap-x-4 items-center justify-center md:justify-between pt-4 text-slate-600 dark:text-slate-400 px-8 backdrop-blur-sm backdrop-saturate-200">
       <Link
         href="/"
         className="mr-auto -rotate-6 hover:rotate-0 transition-transform"
@@ -25,7 +25,7 @@ export const HeadNav = () => {
         >
           Projects
         </Anchor>
-        <Anchor as="a" href="https://blog.agney.dev">
+        <Anchor as={Link} href="/blog">
           Blog
         </Anchor>
         <Anchor as="a" href="https://buttondown.email/agney" target="_blank">
