@@ -1,3 +1,6 @@
+import "../src/app/global.css";
+import { withThemeByClassName } from "@storybook/addon-styling";
+
 /** @type { import('@storybook/react').Preview } */
 const preview = {
   parameters: {
@@ -10,5 +13,15 @@ const preview = {
     },
   },
 };
+
+export const decorators = [
+  withThemeByClassName({
+    defaultTheme: "light",
+    themes: {
+      light: "light",
+      dark: "dark",
+    },
+  }),
+];
 
 export default preview;
