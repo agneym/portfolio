@@ -15,3 +15,13 @@ export const Primary = () => {
     </Input.Group>
   );
 };
+
+export const WithDescription = () => {
+  return (
+    <Input.Group hasDescription>
+      <Input.Label>Email</Input.Label>
+      <Input.Input type="email" />
+      <Input.Description>Enter your email address</Input.Description>
+    </Input.Group>
+  );
+};

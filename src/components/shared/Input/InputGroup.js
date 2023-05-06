@@ -16,12 +16,12 @@ export const useInputContext = () => {
   return context;
 };
 
-export function InputGroup({ className, children, ...rest }) {
+export function InputGroup({ className, hasDescription, children, ...rest }) {
   const inputId = useId();
   const descriptionId = useId();
 
   const value = useMemo(
-    () => ({ inputId, descriptionId }),
+    () => ({ inputId, descriptionId, hasDescription }),
     [inputId, descriptionId]
   );
 
