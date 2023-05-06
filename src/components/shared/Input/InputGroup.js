@@ -1,7 +1,7 @@
 "use client";
 
 import clsx from "clsx";
-import { useId, createContext, useContext } from "react";
+import { useId, createContext, useContext, useMemo } from "react";
 import invariant from "tiny-invariant";
 
 const InputContext = createContext(null);
@@ -16,18 +16,18 @@ export const useInputContext = () => {
   return context;
 };
 
-export function InputGroup({
-  inputId: userInputId,
-  className,
-  children,
-  ...rest
-}) {
-  const generatedInputId = useId();
-  const inputId = userInputId ?? generatedInputId;
+export function InputGroup({ className, children, ...rest }) {
+  const inputId = useId();
+  const descriptionId = useId();
+
+  const value = useMemo(
+    () => ({ inputId, descriptionId }),
+    [inputId, descriptionId]
+  );
 
   return (
-    <InputContext.Provider value={{ inputId }}>
-      <div className={clsx("flex flex-col gap-y-2", className)} {...rest}>
+    <InputContext.Provider value={value}>
+      <div className={clsx("flex flex-col gap-y-0.5", className)} {...rest}>
         {children}
       </div>
     </InputContext.Provider>

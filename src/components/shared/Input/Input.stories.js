@@ -9,7 +9,7 @@ export default meta;
 
 export const Primary = () => {
   return (
-    <Input.Group inputId="email">
+    <Input.Group>
       <Input.Label>Email</Input.Label>
       <Input.Input type="email" />
     </Input.Group>

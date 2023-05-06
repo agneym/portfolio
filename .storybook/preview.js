@@ -1,4 +1,5 @@
 import "../src/app/global.css";
+import "./style.css";
 import { withThemeByClassName } from "@storybook/addon-styling";
 
 /** @type { import('@storybook/react').Preview } */
