@@ -1,7 +1,7 @@
 import clsx from "clsx";
 import Link from "next/link";
 
-export const Anchor = ({ className, as: As = Link, ...rest }) => {
+export const NavLink = ({ className, as: As = Link, ...rest }) => {
   return (
     <As
       className={clsx(

@@ -17,7 +17,7 @@ export function Header() {
       </div>
       <p>
         <span>Welcome to Agney's </span>
-        <span className="underline underline-offset-2	decoration-dotted">
+        <span className="underline underline-offset-2	decoration-indigo-300 decoration-dashed">
           Digital Garden
         </span>
       </p>

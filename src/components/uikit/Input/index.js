@@ -5,7 +5,7 @@ import { InputLabel } from "./InputLabel";
 
 export const Input = Object.assign({
   Group: InputGroup,
-  Input: InputBase,
+  InputBase: InputBase,
   Label: InputLabel,
   Description: InputDescription,
 });

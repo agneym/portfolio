@@ -1,2 +1,3 @@
 export { Input } from "./Input";
-export { Anchor } from "./Anchor";
+export { NavLink } from "./Anchor";
+export { Separator } from "./Seperator";

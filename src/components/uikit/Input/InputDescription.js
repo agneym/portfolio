@@ -1,3 +1,5 @@
+"use client";
+
 import { useInputContext } from "./InputGroup";
 import clsx from "clsx";
 import invariant from "tiny-invariant";

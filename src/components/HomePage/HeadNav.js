@@ -1,5 +1,5 @@
 import { ThemeButton } from "components/shared";
-import { Anchor } from "components/uikit";
+import { NavLink } from "components/uikit";
 import LogoSvg from "images/logo.svg";
 import Link from "next/link";
 
@@ -17,20 +17,20 @@ export const HeadNav = () => {
         />
       </Link>
       <div className="inline-flex gap-x-8">
-        <Anchor href="/about">About</Anchor>
-        <Anchor
+        <NavLink href="/about">About</NavLink>
+        <NavLink
           as="a"
           href="https://github.com/agneym?tab=repositories"
           target="_blank"
         >
           Projects
-        </Anchor>
-        <Anchor as={Link} href="/blog">
+        </NavLink>
+        <NavLink as={Link} href="/blog">
           Blog
-        </Anchor>
-        <Anchor as="a" href="https://buttondown.email/agney" target="_blank">
+        </NavLink>
+        <NavLink as="a" href="https://buttondown.email/agney" target="_blank">
           Newsletter
-        </Anchor>
+        </NavLink>
         <ThemeButton />
       </div>
     </nav>
