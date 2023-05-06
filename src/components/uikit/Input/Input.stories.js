@@ -1,4 +1,4 @@
-import { Input } from "./";
+import { Input } from ".";
 
 const meta = {
   title: "UIKit/Input",

@@ -1,5 +1,5 @@
-import { Anchor } from "components/shared";
 import { ThemeButton } from "components/shared";
+import { Anchor } from "components/uikit";
 import LogoSvg from "images/logo.svg";
 import Link from "next/link";
 
