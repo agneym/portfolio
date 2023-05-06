@@ -5,7 +5,7 @@ import Link from "next/link";
 
 export const HeadNav = () => {
   return (
-    <nav className="flex gap-x-4 items-center justify-center md:justify-between pt-4 text-slate-600 dark:text-slate-400 px-8 backdrop-blur-sm backdrop-saturate-200">
+    <nav className="sticky flex gap-x-4 items-center justify-center md:justify-between pt-4 text-slate-600 dark:text-slate-400 px-8 backdrop-blur-sm opacity-80">
       <Link
         href="/"
         className="mr-auto -rotate-6 hover:rotate-0 transition-transform"
