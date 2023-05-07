@@ -6,8 +6,8 @@ export function SubscribeNewsletter() {
       <div className="max-w-md md:basis-1/2 flex flex-col gap-y-3 [text-wrap:balance]">
         <p>
           <span>Stay ahead of the curve in Web Development with my </span>
-          <span className="font-semibold">monthly</span>
-          <span> newsletter.</span>
+          <span className="italic">Javascript Every Month</span>
+          <span> Newsletter.</span>
         </p>
         <p>
           I will deliver a curated selection of articles, tutorials, and
@@ -31,18 +31,27 @@ export function SubscribeNewsletter() {
           <span> Newsletter</span>
         </h2>
         <form>
-          <Input.Group hasDescription>
-            <Input.Label>Email</Input.Label>
-            <Input.InputBase
-              type="email"
-              autoComplete="email"
-              inputMode="email"
-              placeholder="address@example.ext"
-              required
-            />
-            <Input.Description>No spam, unsubscribe anytime.</Input.Description>
-          </Input.Group>
-          <button type="submit"></button>
+          <div className="flex flex-col gap-y-4">
+            <Input.Group hasDescription>
+              <Input.Label>Email</Input.Label>
+              <Input.InputBase
+                type="email"
+                autoComplete="email"
+                inputMode="email"
+                placeholder="address@example.ext"
+                required
+              />
+              <Input.Description>
+                No spam, unsubscribe anytime.
+              </Input.Description>
+            </Input.Group>
+            <button
+              type="submit"
+              className="inline-flex justify-center items-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+            >
+              I want in!
+            </button>
+          </div>
         </form>
       </div>
     </div>
