@@ -6,7 +6,7 @@ export function Header() {
       <div className="flex gap-x-2 items-end justify-center">
         <LogoSvg
           width={40}
-          className="text-slate-900 dark:text-slate-100 -rotate-6 hover:rotate-0 transition-transform"
+          className="text-slate-900 -z-10 dark:text-slate-100 -rotate-6 hover:rotate-0 transition-transform"
           title="Home"
           aria-hidden
         />
