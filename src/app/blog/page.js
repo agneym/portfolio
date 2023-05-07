@@ -1,5 +1,4 @@
-import { Header, SubscribeNewsletter } from "components/BlogHome";
-import { PostList } from "components/BlogHome/PostList";
+import { Header, SubscribeNewsletter, PostList } from "components/BlogHome";
 
 function BlogHome() {
   return (

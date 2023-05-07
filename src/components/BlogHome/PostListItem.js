@@ -2,7 +2,9 @@ export function PostListItem() {
   return (
     <article className="flex flex-col gap-y-3">
       <header className="flex flex-col gap-y-0.5">
-        <h3 className="text-xl">useMemo inside Context API - React</h3>
+        <h3 className="text-xl [text-wrap:balance]">
+          useMemo inside Context API - React
+        </h3>
         <p className="text-sm text-gray-500 dark:text-gray-400">
           March 03, 2017
         </p>
