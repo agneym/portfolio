@@ -1,7 +1,7 @@
 export default function BlogPost({ children }) {
   return (
     <main>
-      <article>{children}</article>
+      <article className="prose lg:prose-xl">{children}</article>
     </main>
   );
 }
