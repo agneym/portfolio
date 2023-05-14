@@ -12,6 +12,7 @@ const nextConfig = withPlugins(
       options: {
         remarkPlugins: [remarkGfm, remarkFrontmatter],
         rehypePlugins: [],
+        // providerImportSource: "@mdx-js/react",
       },
     }),
   ],

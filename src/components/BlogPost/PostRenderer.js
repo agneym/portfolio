@@ -1,18 +1,11 @@
 "use client";
 
-import { run } from "@mdx-js/mdx";
-import { Fragment, useEffect, useState } from "react";
-import * as runtime from "react/jsx-runtime";
+import { MDXProvider } from "@mdx-js/react";
 
-export function PostRenderer({ code }) {
-  const [mdxModule, setMdxModule] = useState();
+const components = {
+  Playground: () => null,
+};
 
-  useEffect(() => {
-    (async () => {
-      setMdxModule(await run(code, runtime));
-    })();
-  }, [code]);
-
-  const Content = mdxModule ? mdxModule.default : Fragment;
-  return <Content />;
+export function PostRenderer({ children }) {
+  return <MDXProvider components={components}>{children}</MDXProvider>;
 }

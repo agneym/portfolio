@@ -7,7 +7,7 @@ function importAll(r) {
       meta: r(fileName).meta,
     }))
     .filter(({ meta }) => {
-      return meta.published !== false;
+      return meta?.published !== false;
     });
 }
 
