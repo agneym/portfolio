@@ -1,15 +1,13 @@
 import Link from "next/link";
 
-export function PostListItem() {
+export function PostListItem({ meta, slug }) {
   return (
-    <Link href="/blog/post-slug">
+    <Link href={`/blog${slug}`}>
       <article className="flex flex-col gap-y-3">
         <header className="flex flex-col gap-y-0.5">
-          <h3 className="text-xl [text-wrap:balance]">
-            useMemo inside Context API - React
-          </h3>
+          <h3 className="text-xl [text-wrap:balance]">{meta.title}</h3>
           <p className="text-sm text-gray-500 dark:text-gray-400">
-            March 03, 2017
+            {meta.date}
           </p>
         </header>
         <p className="text-gray-600 dark:text-gray-300">
