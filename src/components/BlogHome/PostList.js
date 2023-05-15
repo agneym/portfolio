@@ -1,9 +1,9 @@
 import { PostListItem } from "./PostListItem";
 import { getAllPosts } from "./getAllPosts";
 
-const posts = getAllPosts();
-
 export function PostList() {
+  const posts = getAllPosts();
+
   return (
     <>
       <h1 className="text-2xl text-center font-semibold dark:text-gray-300 text-gray-700">

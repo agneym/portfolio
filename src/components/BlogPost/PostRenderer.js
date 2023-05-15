@@ -1,11 +1,10 @@
 "use client";
 
-import { MDXProvider } from "@mdx-js/react";
+import { getMDXComponent } from "mdx-bundler/client";
+import { useMemo } from "react";
 
-const components = {
-  Playground: () => null,
-};
+export function PostRenderer({ code }) {
+  const Component = useMemo(() => getMDXComponent(code), [code]);
 
-export function PostRenderer({ children }) {
-  return <MDXProvider components={components}>{children}</MDXProvider>;
+  return <Component />;
 }
