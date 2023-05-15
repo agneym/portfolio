@@ -1,9 +1,9 @@
 import { PostListItem } from "./PostListItem";
-import { getAllPosts } from "./getAllPosts";
+import { getSortedPostsData } from "./getAllPosts";
+
+const posts = getSortedPostsData();
 
 export function PostList() {
-  const posts = getAllPosts();
-
   return (
     <>
       <h1 className="text-2xl text-center font-semibold dark:text-gray-300 text-gray-700">
@@ -11,9 +11,7 @@ export function PostList() {
       </h1>
       <div className="flex flex-col gap-y-12 mt-8">
         {posts.map((post) => {
-          return (
-            <PostListItem key={post.link} meta={post.meta} slug={post.link} />
-          );
+          return <PostListItem key={post.slug} meta={post} slug={post.slug} />;
         })}
       </div>
     </>
