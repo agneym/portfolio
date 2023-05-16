@@ -1,4 +1,4 @@
-import { getFormattedDate } from "./getFormattedDate";
+import { DateString } from "./DateString";
 import Link from "next/link";
 
 export function PostListItem({ meta, slug }) {
@@ -7,9 +7,9 @@ export function PostListItem({ meta, slug }) {
       <article className="flex flex-col gap-y-3">
         <header className="flex flex-col gap-y-0.5">
           <h3 className="text-xl [text-wrap:balance]">{meta.title}</h3>
-          <p className="text-sm text-gray-500 dark:text-gray-400">
-            Updated on: {getFormattedDate(meta.date)}
-          </p>
+          <DateString className="text-sm text-gray-500 dark:text-gray-400">
+            {meta.date}
+          </DateString>
         </header>
         <p className="text-gray-600 dark:text-gray-300">
           One of the most common places a useMemo is seen (in the wild) is for
