@@ -11,6 +11,7 @@ export function PostList() {
       </h1>
       <div className="flex flex-col gap-y-12 mt-8">
         {posts.map((post) => {
+          console.log({ post });
           return <PostListItem key={post.slug} meta={post} slug={post.slug} />;
         })}
       </div>
