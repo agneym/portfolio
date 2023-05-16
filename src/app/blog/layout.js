@@ -1,4 +1,5 @@
 import { HeadNav } from "components/HomePage";
+import "prismjs/themes/prism-tomorrow.css";
 
 function BlogLayout({ children }) {
   return (

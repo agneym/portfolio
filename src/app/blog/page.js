@@ -9,7 +9,7 @@ function BlogHome() {
           <SubscribeNewsletter />
         </div>
       </header>
-      <main className="px-8 max-w-4xl mx-auto pb-24">
+      <main className="px-8 max-w-4xl mx-auto pb-20">
         <PostList />
       </main>
     </div>
