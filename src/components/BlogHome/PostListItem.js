@@ -1,3 +1,4 @@
+import { getFormattedDate } from "./getFormattedDate";
 import Link from "next/link";
 
 export function PostListItem({ meta, slug }) {
@@ -7,7 +8,7 @@ export function PostListItem({ meta, slug }) {
         <header className="flex flex-col gap-y-0.5">
           <h3 className="text-xl [text-wrap:balance]">{meta.title}</h3>
           <p className="text-sm text-gray-500 dark:text-gray-400">
-            {meta.date}
+            Updated on: {getFormattedDate(meta.date)}
           </p>
         </header>
         <p className="text-gray-600 dark:text-gray-300">
