@@ -12,10 +12,7 @@ export function PostListItem({ meta, slug }) {
           </DateString>
         </header>
         <p className="text-gray-600 dark:text-gray-300">
-          One of the most common places a useMemo is seen (in the wild) is for
-          memoizing React context value. Let's look into what are the advantages
-          of doing this and how we can prevent unnecessary renders using this
-          pattern. Context provides a
+          {meta.excerpt || meta.description}
         </p>
       </article>
     </Link>

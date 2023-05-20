@@ -1,0 +1,301 @@
+---
+title: "Double Equal vs Triple Equal"
+date: "2019-02-04T22:12:03.284Z"
+tags:
+  [
+    "double equal",
+    "triple equal",
+    "must learn javascript concepts",
+    "which to use",
+  ]
+published: true
+---
+
+This is part of a series where I try to explain through each of [33 JS Concepts](https://github.com/leonardomso/33-js-concepts).
+
+This part corresponds to the Double Equal vs Triple Equal.
+
+### Prerequisites
+
+1. [Type Coercion in JavaScript](https://blog.agney.in/type-coercion/)
+
+> That is all you need to know. No, I'm just kidding!
+> But you do need to know that.
+
+`==` is known as loose equality.
+
+`===` is known as strict equality.
+
+### What is difference between loose and strict?
+
+Loose Equality performs Coercion.
+
+Strict Equality _does_ not perform Coercion.
+
+Coercion is defined here follows the rules specified in the Abstract Equality Comparison Algorithm as defined in the ES Spec.
+
+### Case 1 - Both of the operands are of same types
+
+<Playground
+  id="same-types"
+  initialSnippet={{
+    markup: ``,
+    css: ``,
+    javascript: `console.log(
+  undefined == undefined,
+  null == null,
+  NaN == 1,
+  1 == NaN,
+  NaN == NaN,
+  +0 == -0,
+  2 == 2,
+  -2 == 2
+);`,
+  }}
+  defaultResultTab="console"
+  defaultEditorTab="javascript"
+/>
+
+Take Aways from here:
+
+1. `NaN` is **not** equal to itself or anything else.
+2. `+0` is equal to `-0` (_not that anyone uses them_)
+
+### Case 2 - The operands are null and undefined
+
+<Playground
+  id="null-undefined"
+  initialSnippet={{
+    markup: ``,
+    css: ``,
+    javascript: `console.log(
+  undefined == null,
+  null == undefined,
+)`,
+  }}
+  defaultEditorTab="javascript"
+  defaultResultTab="console"
+/>
+
+These people are very special and they are coerced to be equal to each other.
+
+Unlike others this is something that has constant applications. There might be functions that you want others to write and take the result from. You have instructed them to return `null` if the result is falsy but they forget. You have not got `null`, but you have got `undefined` in you hands. Instead of writing these an `||` to compare them you can compare the result with `==` to get the exact result you want.
+
+This also means that they are not equal to anything else. If you try `undefined == false`, you are ought to get `false` out of it.
+
+> Don't believe me? Try it out yourself.
+
+### Case 3 - One is string and the other number
+
+<Playground
+  id="string-number"
+  initialSnippet={{
+    markup: ``,
+    css: ``,
+    javascript: `console.log(
+  12 == "12",
+  "12" == 12
+)`,
+  }}
+  defaultResultTab="console"
+  defaultEditorTab="javascript"
+/>
+
+The string is being converted into a number here. If it is not a number, you will get an `NaN`, which is not equal to anything else anyway (not even itself as we mentioned)
+
+### Case 4 - Boolean and something else
+
+<Playground
+  id="boolean-and-else"
+  initialSnippet={{
+    markup: ``,
+    css: ``,
+    javascript: `console.log(
+  12 == true,
+  true == 12
+)`,
+  }}
+  defaultResultTab="console"
+  defaultEditorTab="javascript"
+/>
+
+> Huh? Where is the coercion I was promised?
+
+Coercion is still happening, we are not just looking at it the way compiler is. If compiler sees a boolean on either side of the `==`, it converts the boolean into a number and repeats the algorithm. So in our case, `true` gets converted to `1` and Is `12 == 1`, No; and hence `false`
+
+You know what would be right though? `1 == true`, try it.
+
+What if the other side is not a number? Say `"12" == true`, let's break it down:
+
+1. Compiler sees a boolean: `"12" == toNumber(true)` --> `"12" == 1`
+2. Compiler sees a string: `toNumber("12") == 1` --> `12 == 1` (Case 3)
+3. `false`
+
+### Case 5 - String/Number vs an Object
+
+<Playground
+  id="object-and-else"
+  initialSnippet={{
+    markup: ``,
+    css: ``,
+    javascript: `console.log(
+  {} == false,
+  [] == false,  // Okay
+  [[]] == false,  // Hmm..
+  [[0]] == false,  // definitely wierd
+);
+ 
+const a = {
+  valueOf: () => 0,
+}
+const b = {
+  toString: () => "string",
+} 
+console.log(
+  a == false,
+  b == "string"
+);
+ 
+const c = {
+  valueOf: () => 0,
+  toString: () => "string",
+}
+console.log(
+  c == 0,
+  c == "string", // What?! I was just getting the hang of this.
+);`,
+  }}
+  defaultResultTab="console"
+  defaultEditorTab="javascript"
+/>
+
+Lots of things here, let's break them down one by one.
+
+If we find an object on either sides of the `==` operator, we try converting it to a primitive.
+
+#### How might we do that?
+
+Objects have two methods defined to do this:
+
+1. `toString()`
+2. `valueOf()`
+
+`valueOf` by default returns the object itself, `toString` says `[object Object]`
+
+> More like I'm Groot. But this time, annoying.
+
+Rule 1: These two methods can only return primitives.
+
+> There are no errors if they return other stuff. It just ignores the value.
+
+> I mean, Common! `valueOf` just broke their only rule with it's default value.
+
+1. Empty object is not a falsy value, no coercion here.
+2.
+
+As we had mentioned in our Coercion article, arrays have a `toString()` function defined by default.
+
+As `==` is a nuetral (default) case, compiler calls upon `toString()` on the array. which is `join(',')`. What happens when we apply that function to an empty array? We get `""`, which is falsy.
+
+Let's recount the step the steps now:
+
+1. `false` gets converted to number (case 4)
+   [] == 0
+2. `[]` toPrimitive called, `toString` is invoked
+   "" == 0
+3. String and number (Case 3)
+   0 == 0 --> `true`
+
+The same explanation explains 3, 4, 5 cases, so we will skip those.
+
+6 asks the important question:
+
+#### What if object has both `valueOf` and `toString`?
+
+The compiler first makes some guesses about it.
+
+Is it someplace a string would make sense? Like say, as an object key? Then prefer `toString()`
+
+Is it somewhere a number would make sense? Like in a mathematical expression? Then `valueOf`
+
+Is it someplace where both could exist? Like `==`? Then `valueOf` anyway.
+
+This is how the last one turns out to be false.
+
+#### Can I get this hint the compiler makes and take a decision on it?
+
+With ES6 and some magic with [Symbols](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol), yes you can.
+
+<Playground
+  id="to-primitives"
+  initialSnippet={{
+    markup: ``,
+    css: ``,
+    javascript: `const object1 = {
+  [Symbol.toPrimitive](hint) {
+    if (hint == 'number') {
+      return 42;
+    }
+    return null;
+  }
+};`,
+  }}
+  defaultEditorTab="javascript"
+  defaultResultTab="console"
+/>
+
+[See how it works](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol/toPrimitive)
+
+### Case 6: Object vs Object
+
+If the two objects compared are of same [reference](https://blog.agney.in/value-vs-reference/), then `true` otherwise `false`.
+
+This is actually same for both `==` and `===`, just making the point.
+
+<Playground
+  id="references"
+  initialSnippet={{
+    markup: ``,
+    css: ``,
+    javascript: `const person = {
+ name: 'john',
+ skills: ['hiking'],
+}
+const developer = person;
+/* == comparison operator for objects just compares references */
+console.log(person === developer) // true
+const anotherPerson = {
+  name: 'john',
+  skills: ['hiking'],
+}
+console.log(anotherPerson == person)`,
+  }}
+  defaultEditorTab="javascript"
+  defaultResultTab="console"
+/>
+
+## Does this change the way I code?
+
+There is a choice to be made here. Stalwarts like Douglas Crockford, recommend that you should always use `===` instead of `==`. There are people like Kyle Simpson who thinks understanding `==` would be a far better option.
+
+There is an interesting conversation between Kyle Simpson and Brendan Eich on twitter about this:
+
+<blockquote className="twitter-tweet" data-lang="en">
+  <p lang="en" dir="ltr">
+    also, defaulting to === could be *slightly* less performant. when the types
+    are different, the behavioral equiv of x == y (allowing coercion) actually
+    requires two or more === usages. one == usage is faster than two === usages.
+  </p>
+  &mdash; getify (@getify)
+  <a href="https://twitter.com/getify/status/1092614585704697856?ref_src=twsrc%5Etfw">
+    <span>February 5, 2019</span>
+  </a>
+</blockquote>
+
+To quote a [Stackoverflow answer](https://stackoverflow.com/a/5447170/4374566) on the topic,
+
+> Douglas Crockford makes a lot of recommendations, but you don't have to take them as gospel. :)
+
+Have your opinion, have a team huddle, decide and code.
+
+That's about it about _=== vs ==_ for now. Is there something I missed? Something wrong? Something good? Ping me on [Twitter](https://twitter.com/agneymenon)
