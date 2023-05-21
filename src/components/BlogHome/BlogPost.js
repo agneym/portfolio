@@ -13,7 +13,13 @@ export function BlogPost({ code }) {
     <Component
       components={{
         Playground: PlaygroundWrapper,
+        pre: (props) => (
+          <div className="text-sm">
+            <pre {...props} />
+          </div>
+        ),
       }}
+      hideHydrateWarning
     />
   );
 }
