@@ -1,0 +1,127 @@
+---
+title: "Call Stack - JavaScript Concepts 1"
+date: "2019-01-22T22:12:03.284Z"
+tags:
+  [
+    "call stack",
+    "execution context",
+    "must learn javascript concepts",
+    "javascript single thread",
+  ]
+published: true
+---
+
+import dev from "./call-stack/devtools.gif";
+
+This is part of a series where I try to explain through each of [33 JS Concepts](https://github.com/leonardomso/33-js-concepts).
+
+This part corresponds to the JavaScript Call Stack.
+
+Let's get started without further ado.
+
+![Memory Model](./call-stack/memory-model.svg)
+
+This is the memory model taken from [MDN here](https://developer.mozilla.org/bm/docs/Web/JavaScript/EventLoop). Also note that this is only a visual representation, javascript engines can optimise the representation for performance reasons.
+
+Let us look at purposes of each of these areas.
+
+### 1. Heap
+
+If you took a Computer Science degree you might remember _Heap_, well barely. Heap is often taught with respect to _Heap Sort_ which is never used or heard about ever again.
+
+If you thought that was bad, for the purposes of our article, we will not be talking about heap at all. The area denoted by heap in our article will be where JavaScript allocates memory for variables, functions et. all.
+
+### 2. Queue
+
+Queue is a First in First Out(FIFO) data structure, which means that it acts just a like real world queue.
+
+The first person to stand in the queue is also the first person who will get served. The second person replaces the first in line.
+
+We will revisit what it holds at a later point in time.
+
+### 3. Stack
+
+[Stack](https://www.geeksforgeeks.org/stack-data-structure/) is a Last in First Out data structure. Stack is something similar to a small bag structure.
+
+![Pringles Packet](./call-stack/stack-example.jpg)
+
+You can think of it like a Bottle for Pringles, the last chips put in there is also the first to come out. The second last then takes it's place and so on.
+
+### The Call Stack
+
+A call stack is a Pringles Bottle (Stack) that holds functions. When given a script, the JavaScript interpreter runs line by line executing the statement it sees. When the interpreter **executes** a line that defines a function (either the `function` keyword or `() => {}`), it enters the function name into its call stack.
+
+Remember that I said executes a function. If the interpreter just finds a function definition, it will just add it to the `Heap`. Someone has to call the function for it to be on the call stack.
+
+So, that is adding onto a call stack, when does the interpreter remove something from the call stack? When the said function **returns**.
+
+### What is the use case for a stack?
+
+Stack is great choice for this operation, as it helps maintain the execution context for each function. On a single threaded language like JavaScript, function calls becomes very easy to track with the Call Stack.
+
+The call stack also stores additional data with variables and the exact line to return to for the interpreter (This is held in stack frame). This is how the interpreter knows where it left off last time.
+
+### Where can I find the current call stack?
+
+To visualise the call stack, all you need is your devtools.
+
+Under the _Source_ panel in devtools, you can find the call stack by setting a breakpoint anywhere.
+
+The call stack is among the tabs on the right.
+
+<div align="center">
+  <img src={dev} width="100%" />
+</div>
+
+Did you know you can click on a call stack function to go to corresponding function?
+
+### Why do I have the feeling I have seen this someplace else?
+
+The call stack also present in the stack trace when you get an error in the console. There the call stack tells you when you ran across the error.
+
+This is what helps you when there is an error in a library inside `node_modules`, going down the stack trace you can figure out which function from your code caused it.
+
+### Does it have a limit?
+
+The call stack has practical limits that are implemented differently on different JavaScript engines. To see the limit on a NodeJS running v8, you can run the following command in the terminal.
+
+```bash
+  node --v8-options | grep stack-size -A 1
+```
+
+If you exceed the stack trace limit, you will run across a Stackoverflow error (not the website) with message _Maximum Stack size exceeded_ Now you know why your recursive function did not work.
+
+Also, stack traces have limits. You can change these limits from your respective browsers. If you use Chrome, your stack trace limit might be set to 10. To see this limit, run following command in console.
+
+```bash
+  Error.stackTraceLimit
+```
+
+### What is TCO I keep hearing about?
+
+You might have heard that JavaScript opted in to use Tail Call Opimisation by default from ES6.
+
+This means that if the tail call (let's put it to last statement for now) of a function is to return result from another function, then we can skip the parent stack frame.
+
+```js
+function fact_h(n, acc) {
+  if (n === 0) return acc;
+  return fact_h(n - 1, acc * n);
+}
+```
+
+You can see the last statement in this function is to return result of another function, so there is no use returning to this function anymore.
+
+> It does not actually skip a stackframe, I'm just oversimplifying here.
+
+But most of JavaScript engines haven't implemented this yet, and there hasn't been much progress. See [V8 tracker](https://bugs.chromium.org/p/v8/issues/detail?id=4698)
+
+To read more about Tail Call Optimisation, read [Axel Rauschmayer blog](http://2ality.com/2015/06/tail-call-optimization.html)
+
+### Does this change the way I write code?
+
+It doesn't have to. Call Stack as we have talked about is a model for single threaded JavaScript to execute functions and manage context of execution. It does not have to change code that you write.
+
+But together with the knowledge of event loop, this concept is a starter to altering the way you think about JavaScript code.
+
+That's about it about call stack for now. Is there something I missed? Something wrong? Something good? Ping me on [Twitter](https://twitter.com/agneymenon)

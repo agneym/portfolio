@@ -1,0 +1,111 @@
+---
+title: "Tailwind CSS & Svelte on Snowpack - Preprocess"
+date: "2020-06-23T22:12:03.284Z"
+tags: ["tailwind", "snowpack", "svelte", "preprocess"]
+published: true
+---
+
+[Snowpack](https://www.snowpack.dev/) is a tool for building web applications with less tooling and 10x faster iteration. [Tailwind CSS](https://tailwindcss.com/) is a utility-first CSS framework for
+rapidly building custom designs. Let's explore how to combine both of them. [Svelte](https://svelte.dev/) is a radical new approach to building user interfaces.
+
+This article talks about how to use them in combination. This will also interest you if you want to add `svelte-preprocess` when using a Snowpack app.
+
+# Template
+
+Premade template is available on [Github](https://github.com/agneym/svelte-tailwind-snowpack). You can use the template with command:
+
+```bash
+npx create-snowpack-app dir-name --template @snowpack/app-template-svelte
+```
+
+## Setup Svelte and Snowpack
+
+Snowpack provides an official template for svelte that can be initialised with:
+
+```bash
+npx create-snowpack-app dir-name --template svelte-tailwind-snowpack
+```
+
+[Template Source](https://github.com/pikapkg/create-snowpack-app/tree/master/templates/app-template-svelte)
+
+## Svelte Preprocess
+
+If you wanted to add PostCSS to your Svelte application, [`svelte-preprocess`](https://github.com/sveltejs/svelte-preprocess) would probably be the plugin you think of. It functions as an automatic processor for PostCSS, SCSS, Less and a lot more.
+
+But since we are using Snowpack's custom plugin, none of the usual loaders would work. Luckily, snowpack plugin has a secret hatch to push in plugins. It's a config file named `svelte.config.js`. You can create one in your root folder and export your pre-processor.
+
+```javascript
+module.exports = {
+  preprocess: () => console.log("Preprocess Script"),
+};
+```
+
+To add `svelte-preprocess`, you would need to install it with:
+
+```bash
+npm i svelte-preprocess
+```
+
+Modify the `svelte-config.js` with:
+
+```javascript
+const sveltePreprocess = require("svelte-preprocess");
+
+const preprocess = sveltePreprocess({
+  // options to preprocess here
+});
+
+module.exports = {
+  preprocess,
+};
+```
+
+## Configuring PostCSS
+
+As [suggested on Tailwind docs](https://tailwindcss.com/docs/installation), we will use Tailwind CSS with PostCSS. To add this to preprocess:
+
+```javascript
+const sveltePreprocess = require("svelte-preprocess");
+
+const preprocess = sveltePreprocess({
+  postcss: {
+    plugins: [
+      // Plugins go in here.
+    ],
+  },
+});
+
+module.exports = {
+  preprocess,
+};
+```
+
+## Adding Tailwind
+
+Tailwind is available as a PostCSS plugin, you can add it with:
+
+```javascript
+const sveltePreprocess = require("svelte-preprocess");
+
+const preprocess = sveltePreprocess({
+  postcss: {
+    plugins: [require("tailwindcss")],
+  },
+});
+
+module.exports = {
+  preprocess,
+};
+```
+
+After installing `tailwindcss` package ofcourse.
+
+---
+
+and you are good to go. You can find the complete template on Github:
+
+https://github.com/agneym/svelte-tailwind-snowpack
+
+It is also listed on the page for community templates on Snowpack website.
+
+Have Fun 🎉

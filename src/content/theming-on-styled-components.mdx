@@ -1,0 +1,203 @@
+---
+title: "Theming with Styled Components"
+date: "2020-03-03T22:12:03.284Z"
+tags: ["styling", "styled-components", "theming"]
+published: true
+---
+
+A guide on theming your web applications with Styled Components.
+
+## Why should you theme?
+
+- Themes help create an identity for your application. Themes can help abstract all usages of a particular color, length or shadow to a single place so that all use cases can follow it.
+- It's easier to change. However solid your current app is, there is surely coming that dreaded moment when designer is going to swap those two colors around. If you have colors spread out all over your application, then you are going to have hell with it. If you think you can search and replace, do consider all ways in which [colors can be represented](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value) in CSS.
+
+## How to Theme?
+
+Styled Components comes in build in with a `ThemeProvider` to help you with this cause. Theme Provider is similar to a [React Context Provider](https://reactjs.org/docs/context.html#contextprovider) (in the sense that it is one). You have to wrap your content with a `ThemeProvider` and you can get started:
+
+```javascript
+import { ThemeProvider } from "styled-components";
+
+function App() {
+  return (
+    <ThemeProvider theme={{}}>
+      <p>All the other stuff goes here...</p>
+    </ThemeProvider>
+  );
+}
+```
+
+Theme can be any simple POJO. Consider:
+
+```javascript
+const theme = {
+  colors: {
+    primary: `yellow`,
+    secondary: `red`,
+  }
+}
+return (
+  <ThemeProvider theme={theme}>
+  </ThemeProvider>
+);
+```
+
+### How to access a theme?
+
+A theme can be accessed in a styled component with `props.theme` usage. The only consideration being that where this `Button` is rendered should be wrapped somewhere in it's parent with `ThemeProvider` that provides it's `theme`.
+
+```javascript
+const Button = styled(Button)`
+  background-color: ${(props) => props.theme.primary};
+`;
+```
+
+But what if it is not wrapped with a `ThemeProvider`? If you believe in creating components that would work even without it's context parent, then you would want to give it some theme as `defaultProps`.
+
+```javascript
+const Button = styled(Button)`
+  background-color: ${(props) => props.theme.colors.primary};
+`;
+
+Button.defaultProps = {
+  theme: {
+    colors: {
+      primary: "transparent",
+    },
+  },
+};
+```
+
+## Nesting Themes
+
+Multiple Theme Providers can be nested within one another. A component will pick up the theme from nearest Theme Provider it is nested within.
+
+```javascript
+const Button = styled.button`
+  background-color: ${props => props.theme.colors.primary};
+`;
+const theme = {
+  colors: {
+    primary: `yellow`,
+  }
+}
+return (
+  <ThemeProvider theme={theme}>
+    <Button>Primary Button</Button>
+    <ThemeProvider theme={specialTheme}>
+      <Button>Special Button</Button>
+    </ThemeProvider>
+  </ThemeProvider>
+);
+```
+
+Styled Components packs another trick in it's sleeve with nested Theme Providers. Styled Components delivers the current theme that it receives from it's parent as an argument which you can use to manipulate or add values to the theme.
+
+```javascript
+import Navbar from "./Navbar";
+
+const theme = (currentTheme) => ({
+  ...currentTheme,
+  navbar: {
+    height: "6rem",
+  },
+});
+
+return (
+  <ThemeProvider theme={theme}>
+    <ThemeProvider theme={specialTheme}>
+      <Navbar />
+    </ThemeProvider>
+  </ThemeProvider>
+);
+```
+
+## Variants
+
+Variants are how we can create components that adapt based on props. You might have seen these in UI libraries:
+
+```javascript
+<Button primary>Primary Button</Button>
+<Button secondary>Secondary Button</Button>
+```
+
+### Traditional Way
+
+With styled-components, you can adapt based on props.
+
+```javascript
+const Button = styled.button`
+  ${(props) =>
+    props.primary &&
+    `
+    background-color: ${props.theme.colors.primary};
+  `}
+  ${(props) =>
+    props.secondary &&
+    `
+    background-color: ${props.theme.colors.secondary};
+  `}
+`;
+```
+
+## Styled Theming
+
+The traditional way of building variants are a pain on scale as you can imagine. Especially if you are building a design system.
+
+Styled Components family has a library called [styled theming](https://github.com/styled-components/styled-theming). It has an easier API for creating and maintaining variant based styles. For eg. To create a button that would be different in light and dark mode:
+
+```javascript
+import styled, { ThemeProvider } from "styled-components";
+import theme from "styled-theming";
+
+const backgroundColor = theme("mode", {
+  light: "#f1c40f",
+  dark: "#f39c12",
+});
+
+const Button = styled.div`
+  background-color: ${backgroundColor};
+`;
+
+export default function App() {
+  return (
+    <ThemeProvider theme={{ mode: "light" }}>
+      <Button>Primary Button</Button>
+    </ThemeProvider>
+  );
+}
+```
+
+Okay, but what if we need to create a secondary variant of this? That's where the `variants` functions comes in to play.
+
+```javascript
+import styled, { ThemeProvider } from "styled-components";
+import theme from "styled-theming";
+
+const backgroundColor = theme("mode", "variant", {
+  primary: {
+    light: "#f1c40f",
+    dark: "#f39c12",
+  },
+  secondary: {
+    light: "#2ecc71",
+    dark: "#27ae60",
+  },
+});
+
+const Button = styled.div`
+  background-color: ${backgroundColor};
+`;
+
+export default function App() {
+  return (
+    <ThemeProvider theme={{ mode: "light" }}>
+      <Button variant="primary">Primary Button</Button>
+      <Button variant="secondary">Secondary Button</Button>
+    </ThemeProvider>
+  );
+}
+```
+
+What are some other styled-component magic ✨ you use? For using styled-components with TypeScript, see my [post on that](https://blog.agney.dev/styled-components-&-typescript/).

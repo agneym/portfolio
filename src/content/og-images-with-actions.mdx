@@ -1,0 +1,87 @@
+---
+title: "OG Images with Github Actions"
+date: "2019-09-20T22:12:03.284Z"
+tags: ["github", "actions", "open graph image", "gatsby"]
+published: true
+ogImage:
+  title: "Generate _OG Images_ with Github Actions"
+  subtitle: "For your blog"
+  background: "linear-gradient(to right, #6a11cb 0%, #2575fc 100%)"
+  imageUrl: "🥳"
+  fontColor: "#ffffff"
+  filename: "github-actions"
+---
+
+import withOg from "./og-image-with-actions/with-og.png";
+import withoutOg from "./og-image-with-actions/without-og.png";
+
+Open graph images are those that show up on your social media card when you share the URL.
+
+Here is how to add one:
+
+```html
+<meta property="og:image" content="http://ia.media-imdb.com/images/rock.jpg" />
+```
+
+Simple, Right?
+
+Now for comparison here are two tweets:
+
+<img
+  src={withoutOg}
+  alt="Without an open graph image - bland"
+  style={{ "object-fit": "contain", width: "80%" }}
+/>
+
+I think we can all agree that this is pretty bland.
+
+Now let's look at another one, but now with the Open Graph Image.
+
+<img
+  src={withOg}
+  alt="With open graph - much better"
+  style={{ "object-fit": "contain", width: "80%" }}
+/>
+
+Much better.
+
+But moving to photoshop for creating this image is pretty hard, it's mostly generic anyway.
+
+# Github Actions to the rescue
+
+[Install from Marketplace](https://github.com/marketplace/actions/generate-og-image)
+
+[Generate OG Image](https://github.com/marketplace/actions/generate-og-image) is a customisable open graph image generator that runs on Github Actions which means it is free for public repositories.
+
+You can add it to your existing workflow by adding the following lines to your `action.yml`:
+
+```yml
+name: "Generate OG Images"
+on: pull_request
+
+jobs:
+  generate_og_job:
+    runs-on: ubuntu-latest
+    name: Generate OG Images
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v1
+      - name: Generate Image
+        uses: agneym/generate-og-image@1.0.3
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_CONTEXT: ${{ toJson(github) }}
+        with:
+          path: static/post-images/
+```
+
+Steps to note here:
+
+1. It needs the `GITHUB_TOKEN` so it can access the markdown files and commit the generated image.
+2. `GITHUB_CONTEXT` gives more information pull request.
+3. `actions/checkout@v1` allows to access the files inside the action.
+4. `path` refers to the required path.
+
+For more properties, customisations and uses, follow the [Readme](https://github.com/marketplace/actions/generate-og-image)
+
+Let me know if you try out.

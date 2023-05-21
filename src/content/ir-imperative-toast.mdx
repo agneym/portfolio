@@ -1,0 +1,113 @@
+---
+title: "Toast with Ionic React"
+date: "2020-03-28T22:12:03.284Z"
+tags: ["ionic", "react", "toast", "ionic-react"]
+published: true
+---
+
+A toast notification is a long standing custom in mobile application used to notify the user of something happening within the system. Sometimes it even has buttons for interaction.
+
+![Toast GIFc](https://www.hkinfosoft.com/wp-content/uploads/2019/05/toast.gif)
+
+Here is how to use one (straight from the docs):
+
+```typescript
+function ToastExample: FC = () => {
+  const [showToast, setShowToast] = useState(false);
+  return (
+    <IonToast
+      isOpen={showToast}
+      onDidDismiss={() => setShowToast(false)}
+      message="Your settings have been saved."
+      duration={200}
+    />
+  )
+}
+```
+
+Well, this is easy 😁I can do that.
+
+But I normally thinks of toasts more imperatively than this. It might be because of libraries like `react-toast` or `ant.design` who have these imperative toast messaging systems, or it could even be that Ionic's own Angular part of design has an imperative toast.
+
+Also, if I needed to a success toast and an error toast, I would need multiple `IonToast` components rendered or have states definining toast state.
+
+In Angular Ionic, you would:
+
+```typescript
+const toast = this.toastController.create({
+  message: "",
+});
+toast.present();
+```
+
+That's pretty cool 😎. What if we could do this?
+
+We could utilise a [React Context](https://reactjs.org/docs/context.html) and a hook to achieve this functionality at with ease. I wrote out a custom package which does exactly that.
+
+```typescript
+import { ToastProvider, useToast } from "@agney/ir-toast";
+
+// Wrap you App.tsx with ToastProvider
+const App: FC = () => {
+  <IonApp>
+    <ToastProvider>
+      // ...rest of your application
+    </ToastProvider>
+  </IonApp>
+}
+
+// In your component
+const RegisterForm: FC () => {
+  const Toast = useToast();
+  // ...
+
+  function validate() {
+    const toast = Toast.warning('Passwords don\'t match');
+  }
+
+  function submit(data) {
+    try {
+      const response = await api.register(data);
+      Toast.success('Registration Successful');
+    } catch() {
+      Toast.error('Request failed');
+    }
+  }
+}
+```
+
+This allows you have to have error messages with a one liner:
+
+```
+Toast.error('Error message');
+```
+
+The `ToastProvider` also takes a `value` property that allows you to define defaults for all toasts created in it's children.
+
+The package also enables creating toast messages with the same Angular API as:
+
+```typescript
+function Component: FC = () => {
+  const Toast = useToast();
+
+  const handleClick = () => {
+    const toast = Toast.create({ message: 'thing' });
+    toast.present();
+    // When you want to.
+    toast.dismiss();
+    ...
+  }
+
+  // ...
+}
+```
+
+To install the package:
+
+```bash
+npm i @agney/ir-toast
+```
+
+Note that it has a dependency on both React and Ionic React.
+
+[Github for Full Source](https://github.com/agneym/ir-toast)
