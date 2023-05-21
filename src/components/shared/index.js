@@ -1,1 +1,1 @@
-export { Anchor } from "./Anchor";
+export { ThemeButton } from "./ThemeButton";

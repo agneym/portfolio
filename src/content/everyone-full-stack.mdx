@@ -1,0 +1,49 @@
+---
+title: "Everyone is a full stack developer"
+date: "2020-06-22T22:12:03.284Z"
+tags: []
+published: true
+---
+
+With the rise of JavaScript as a viable option on both frontend and backend, there has been a steady increase in the number of people who claim to be full stack developers. In fact, everyone resume you find could be of a full stack developer (not to mention 10x developers). This claim usually means one of three things:
+
+1. They are frontend developers.
+2. They are backend developers.
+3. They are neither.
+
+How do we tell who is who and find needle from the haystack?
+
+## A Task to differentiate
+
+1. There is a list of products, when you click on a product more detail is shown in a modal window.
+
+   - Backend developer is the person who has the box open with product details
+   - Frontend developer is the person who has set the focus to the modal box and changed the URL to reflect page change.
+
+2. Change profile picture of user
+   - Frontend developer is the person who deletes the old profile picture, uploads new one and busts the cache.
+   - Backend developer is the person who uploads the new image with a new hash and pushes the deleting part to a low priority queue.
+
+The frontend developer is concerned with how fast the user gets the job done versus the backend developer is concerned with how fast the server responds. Both of the people gets the job done. Both of them are right on their own concerns as well.
+
+### Are you saying frontend developer isn't concerned about speed?
+
+Far from it. The frontend developer likes a 60FPS animation for sure. But if it takes three steps to get to the point where your 60FPS animation is, it's probably not worth it.
+
+> Getting things done in 40FPS in one step > 3 steps in 60FPS
+
+As [MDN says](https://developer.mozilla.org/en-US/docs/Learn/Performance/perceived_performance),
+
+> Perceived performance is how fast a website seems to the user. How a user perceives your performance is as important, or perhaps **more important**, than any objective statistic, but it's subjective, and not as readily measurable. Perceived performance is user perspective, not a metric.
+
+### Backend developer can leave some parts of UI out of date?
+
+When the backend developer is concerned with the output being out fastest possible it is possible that stats in some parts of the application are updating way slower than you thought they would.
+
+You would find some users complaining about it as well, but that is nowhere close to the number of users would complain if the response takes a second more. But far worse is the fact that users who have found your application too slow would leave before they complain about it, while some parts of the application not updating is a bug that people complain about, application being too slow just gets in the way of getting the job done.
+
+## In Retrospect
+
+It's okay to be good at one thing.
+
+PS: I'm not assuming that this is some crime committed by interview candidates. It's probably because companies are setting the wrong expectations from their candidates. If you want a guy who can do Java Spring, Python Machine Learning, some docker, kubernetes, penetration testing, Cypress, Selenium, React, Angular, AngularJS, BackboneJS, AWS, Azure and Google Cloud, you are looking for **an engineering department**.

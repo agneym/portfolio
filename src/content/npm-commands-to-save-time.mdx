@@ -1,0 +1,123 @@
+---
+title: "7 NPM Commands to help you save time."
+date: "2019-12-03T22:12:03.284Z"
+tags: ["npm", "tips and tricks", "commands", "beginner"]
+published: true
+---
+
+As JavaScript developers, NPM is something that we always use and we have a script continously running on the terminal.
+
+What if we could save some time using it?
+
+## 1. Open documentation directly from npm
+
+What if we could directly jump to the documentation of a package from using `npm`?
+
+```bash
+npm home package-name
+
+# for example:
+
+npm home react  # would take you to reactjs.org in the browser/
+```
+
+## 2. Open the bugs 🐛 page
+
+Just in case, we wanted to file a bug on the package.
+
+```bash
+npm bugs package-name
+
+# for example:
+npm bugs @agney/playground
+```
+
+This would open the github issues page (or any issues page) in the browser if linked by the package author.
+
+## 3. See all scripts in your package.
+
+It's hard to remember script names esp. if you did not write them in the first place. Instead of going to `package.json`, you can run the following command to see script names and commands being run.
+
+```bash
+npm run
+```
+
+## 4. Skip all the init questions
+
+When you run `npm init`, it asks you a number of questions. You can go ahead and answer all of them, but it's much better to skip and accept the default for most of the time.
+
+```bash
+npm init -yes
+```
+
+## 5. Updating packages to latest.
+
+The default command for NPM CLI would only update the packages respecting the semver range specified in `package.json`.
+
+```bash
+npm update
+```
+
+However, I don't think we believe in package authors or ourselves to change the semver indicators. `yarn` provides a nice enough utility with `yarn upgrade-interactive --latest`, but it's not available for NPM.
+
+To clone this functionality with NPM, you can use a package named [`npm-check`](https://www.npmjs.com/package/npm-check).
+
+```
+npx npm-check --update
+```
+
+## 6. Faster npm install on CI
+
+`npm install` comes with some baggage (user oriented features) that makes it inherently slow. But we do need these on the CI server, NPM allows us to skip these with a command.
+
+```bash
+npm ci
+```
+
+You can add replace the `npm install` with `npm ci` in your CI servers and do fine if you have a `package-lock.json`.
+
+For example, [Travis CI](https://travis-ci.org/) configuration would be:
+
+```
+# .travis.yml
+install:
+- npm ci
+# keep the npm cache around to speed up installs
+cache:
+  directories:
+  - "$HOME/.npm"
+```
+
+## 7. A Better npm publish
+
+`npm publish`is good, it can update your package version with semver and then push the package onto the registry.
+
+But this does leave out some of the important steps: Building and testing the package. To automate these to be performed, you can use the `prepublish` script.
+
+```json
+"scripts": {
+    "prepublish": "npm run build"
+}
+```
+
+But `prepublish` is executed on each `install` and hence not the best place to create changelogs or run your tests. After taking some criticism on the naming (it's one of the hardest things anyway), NPM introduced some a new automatic hook `prepublishOnly`
+
+```json
+"scripts": {
+    "prepublishOnly": "npm test"
+}
+```
+
+Or, better is the package [`np`](https://github.com/sindresorhus/np).
+
+You can simply run:
+
+```
+npx np
+```
+
+and it will run all the necessary steps including installing packages, build and running the tests. It will also create a tag and release on Github 💌.
+
+>
+
+What tricks do you use to save time?

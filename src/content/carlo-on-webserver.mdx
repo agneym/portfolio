@@ -1,0 +1,87 @@
+---
+title: "Carlo development on a web server"
+date: "2019-01-06T22:12:03.284Z"
+tags:
+  [
+    "carlo",
+    "server",
+    "webpack",
+    "module not found error",
+    "blocked by the client",
+  ]
+published: true
+---
+
+[Carlo](https://github.com/GoogleChromeLabs/carlo) is a headful Node app framework for building desktop applications.
+
+### How is it different from Electron, Proton Native?
+
+While these other frameworks, bring their own runtime into the equation, Carlo uses the Chrome instance already installed on a users computer.
+
+### Why would you want it on a web server?
+
+Using webpack to bundle all your files makes it easier to use the developer ecosystem that the javascript community already provides. Like Babel, SCSS or ESLint.
+
+### What is about to be assumed?
+
+You already know how to setup a normal webpack server.
+
+### Is there a shortcut?
+
+Yes, [Electrojet CLI](https://github.com/agneym/create-electrojet) provides a single command to setup a carlo project using webpack:
+
+```bash
+  npm init electrojet <project-name> --template=carlo
+```
+
+### How do I set Carlo to listen to the webpack dev server?
+
+Carlo has an API [`serveOrigin`](https://github.com/GoogleChromeLabs/carlo/blob/master/API.md#appserveoriginbase-prefix) to listen to a particular web address as origin. You can use that with:
+
+```js
+carlo.launch().then(async (app) => {
+  app.on("exit", () => process.exit());
+  app.serveOrigin("http://localhost:8080"); // Point to webpack url here
+  await app.load("index.html");
+});
+```
+
+But then, you would soon find that your javascript bundle is not loading.
+
+### What is the problem?
+
+Carlo, currently on version 0.9, allows to serve origin contents only when they are from secure origins, which means if you try to setup a normal webpack server to serve the application you would end up with:
+
+```bash
+Blocked by the Client
+```
+
+in the console while serving the application.
+
+Fortunately, if you are using webpack dev server, the solution to this is easy. Inside the configuration object for `devServer` provide:
+
+```js
+{
+  devServer: {
+    ...otherOptions
+    http: true,
+  }
+}
+```
+
+But this would pull up the nasty `Your webpack is not secure` screen for you, when you are not even running it on a webpage.
+
+Luckily, Carlo provides an API to escape this dreaded screen. On launching the carlo server, you can provide `args: ["--allow-insecure-localhost"],` to avoid seeing the screen ever again.
+
+```js
+carlo.launch({
+  ...otherOptions
+  args: ["--allow-insecure-localhost"],
+})
+```
+
+You should have your server up and running now.
+
+Check out [Electrojet Carlo Default](https://github.com/agneym/electrojet-default-carlo)
+
+> Happy Coding!

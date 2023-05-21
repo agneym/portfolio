@@ -1,0 +1,95 @@
+---
+title: "Writing a Snowpack Community Plugin"
+date: "2020-06-24T10:12:03.284Z"
+tags: ["snowpack", "community", "plugin"]
+published: true
+---
+
+[Snowpack](https://www.snowpack.dev/) is a tool for building web applications with less tooling and 10x faster iteration. Snowpack comes with a starter generator called [Create Snowpack App](https://github.com/pikapkg/create-snowpack-app), it has official plugins for most of the frameworks.
+
+But what if we wanted to build a custom community plugin?
+
+# Create Snowpack App (CSA)
+
+You can use `create-snowpack-app` with:
+
+```
+npx create-snowpack-app dir-name --template template-name
+```
+
+You are excused if this feels familiar to [a popular react tool](https://create-react-app.dev/).
+
+# Community Starter
+
+A community starter is a repository that you get to maintain using Snowpack and published to NPM (or any of the other hosted services). You can initialise a new project using your template and CSA.
+
+If your template is called `my-custom-template` and hosted to NPM, you would be able to use it with:
+
+```
+npx create-snowpack-app dir-name --template my-custom-template
+```
+
+First, we will start with a basic template:
+
+```
+npx create-snowpack-app my-custom-template --template @snowpack/app-template-blank
+```
+
+Now CSA will intialise a repository named `my-custom-template` that contains the snowpack template `@snowpack/app-template-blank`. Now you can proceed to make changes you want in the template.
+
+_I'm just choosing to start with `blank`, you can choose to start with any other [template](https://www.snowpack.dev/#official-app-templates)_
+
+## Add required fields
+
+1. It needs a name
+
+Give it a name in `package.json`, this is also your template name.
+
+```json
+{
+  "name": "my-custom-template"
+}
+```
+
+Note that this name needs to be unique in the NPM package registry. You can also scope it to something like `@npmuser@my-custom-template`, these are known as [scoped packages](https://docs.npmjs.com/about-scopes).
+
+2. It needs a version
+
+Give it a version.
+
+```json
+{
+  "version": "0.0.1"
+}
+```
+
+3. Add the keyword.
+
+CSA requires the template to have a specific keyword: `csa-template`.
+
+```json
+{
+  "keywords": ["csa-template"]
+}
+```
+
+## Publishing package to NPM
+
+There are several articles and videos if you are not familar with publishing or haven't done this before. But the basic idea is:
+
+```bash
+npm login
+npm publish
+```
+
+You can also use one of the several tools that help with this process. One of my absolute favorites is [np](https://www.npmjs.com/package/np).
+
+## Using the template
+
+You can now use the template as mentioned with:
+
+```
+npx create-snowpack-app dir-name --template my-custom-template
+```
+
+Have fun 🎉

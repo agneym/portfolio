@@ -1,0 +1,170 @@
+---
+title: "Tailwind CSS on Snowpack"
+date: "2020-04-20T22:12:03.284Z"
+tags: ["tailwind", "snowpack", "css"]
+published: true
+---
+
+> This has changed lots after publication. You are better off following the [official docs on Snowpack](https://www.snowpack.dev/#tailwind-css) now.
+
+[Snowpack](https://www.snowpack.dev/) is a tool for building web applications with less tooling and 10x faster iteration. [Tailwind CSS](https://tailwindcss.com/) is a utility-first CSS framework for
+rapidly building custom designs. Let's explore how to combine both of them.
+
+[First resource we come across is on the site for Snowpack](https://www.snowpack.dev/#tailwind-css):
+
+> Tailwind works as-expected with Snowpack. Just follow the official Tailwind Install Guide. When you get to step #4 (“Process your CSS with Tailwind”) choose the official Tailwind CLI option to generate your CSS. Import that generated CSS file in your HTML application.
+
+But this misses an important part of _Process your CSS with Tailwind_ step on the Tailwind website:
+
+> For simple projects or just giving Tailwind a spin, you can use the Tailwind CLI tool to process your CSS.
+
+So it's only for simpler projects or may be even trying out Tailwind.
+
+## What are we missing with Tailwind CLI?
+
+Tailwind CLI currently does not remove unnecessary classes from Tailwind. This means that without using any of classes required for Tailwind, you would be stuck with a file of size above 1MB.
+
+Tailwind recommends handling this by adding a [PurgeCSS PostCSS Plugin](https://purgecss.com/).
+
+## Steps to add PurgeCSS
+
+### Process
+
+There are several ways/plugins for PostCSS that can be used. For build tool we are using, there is even a Rollup plugin for PostCSS. But the reason we are using Snowpack is to get rid of tooling, not to add more of them. So, it would make sense to add PostCSS as it's CLI tool and also run it in production only.
+
+### Snowpack Init
+
+First, to start of a normal snowpack project:
+
+```bash
+npm init -y
+# Snowpack and a dev server of choice
+npm install --save-dev snowpack servor
+# Tailwind CSS. Because.
+npm i tailwind
+npx snowpack
+```
+
+You can [find full guide for installing snowpack on their site](https://www.snowpack.dev/#installing-snowpack)
+
+Now, for our developer tools:
+
+```bash
+# Our postcss tools
+npm i --save-dev postcss-cli @fullhuman/postcss-purgecss
+# ease of setting env variables and running npm scripts.
+npm i cross-env npm-run-all
+```
+
+### Tailwind Init
+
+Setting up tailwind:
+
+Add a `src/style.css` file with Tailwind necessary CSS:
+
+```css
+@tailwind base;
+
+@tailwind components;
+
+@tailwind utilities;
+```
+
+Create `tailwind.config.js` by running:
+
+```bash
+npx tailwindcss init
+```
+
+You can edit the file to change theme or add plugins to Tailwind CSS.
+
+[Find full guide to installation on Tailwind site](https://tailwindcss.com/docs/installation).
+
+Add an HTML file to connect CSS to the HTML.
+
+In `index.html`:
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Snowpack - Simple Example</title>
+    <link rel="stylesheet" type="text/css" href="/src/output.css" />
+  </head>
+  <body>
+    <div id="app"></div>
+    <script type="module" src="/src/app.js"></script>
+  </body>
+</html>
+```
+
+### NPM Scripts for development
+
+There are two things we want to do on development:
+
+1. Start dev server
+2. Use Tailwind CSS to convert our style file to CSS.
+
+In `package.json`:
+
+```json
+{
+  "scripts": {
+    "dev": "cross-env NODE_ENV=development run-s dev:*",
+    "dev:server": "npx servor --reload",
+    "dev:css": "tailwindcss build src/style.css -o src/output.css"
+  }
+}
+```
+
+This pretty much takes care of the development setup. For development, you can run:
+
+```bash
+npm run dev
+```
+
+### Setup PostCSS
+
+Add a `postcss.config.js` file at root which we will be using as configuration for PostCSS:
+
+```javascript
+const purgecss = require("@fullhuman/postcss-purgecss")({
+  content: ["./index.html", "./src/**/*.js"],
+
+  // Include any special characters you're using in this regular expression
+  defaultExtractor: (content) => content.match(/[\w-/:]+(?<!:)/g) || [],
+});
+
+module.exports = {
+  plugins: [
+    require("tailwindcss"),
+    ...(process.env.NODE_ENV === "production" ? [purgecss] : []),
+  ],
+};
+```
+
+We are adding `tailwind` and `purgeCSS` in our PostCSS configuration and has setup PurgeCSS to run only on Production. (We are using PostCSS only on production so it's not like it's doing anything, simply following Tailwind docs on the same.)
+
+### NPM Scripts for Production
+
+We will run the same processes for production:
+
+```json
+{
+  "scripts": {
+    "build": "cross-env NODE_ENV=production run-p build:*",
+    "build:styles": "npx postcss src/style.css -o src/output.css",
+    "build:module": "npx snowpack --optimize --clean"
+  }
+}
+```
+
+For production, you can run:
+
+```bash
+npm run build
+```
+
+You will find that I'm building source and development version of CSS to the same file. This is intentional. It is possible to add a `dist` folder and move assets and styles and build files into the folder and fix other issues that happen with it. Feel free but remember the reason you chose Snowpack was to lighten tooling.
+
+[Find full repository on Github](https://github.com/agneym/tailwind-snowpack)

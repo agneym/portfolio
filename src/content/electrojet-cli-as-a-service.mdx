@@ -1,0 +1,87 @@
+---
+title: "Electrojet — CLI as a Service"
+date: "2019-01-11T22:12:03.284Z"
+tags: ["javascript", "electrojet", "cli", "starter kit", "boilerplate"]
+published: true
+---
+
+In Javascript world, we are in a chaos of CLIs, using at least two or three on a project basis. Out of the top of my head, there is `create-react-app`, `vue-cli`, `ng-cli`, `express-generator`, `feathers-generator`, `gatsby-cli` and endless possibility of JavaScript frameworks and Pokemon names. So, it is now proven a fact that very few people want to spend their time on configuring things.
+
+All of these CLIs bring many amazing things to the table, say the UI for Vue CLI or automatic upgrades for Angular CLI. But barring some of these amazing features, we can see that most of what these CLIs do are the same things.
+
+- They copy over template files
+- They install packages
+- They initialise git repositories
+- Setup bundler, linting, prettier or any of the common configuration stuff.
+- Provides docs for extending the framework for Babel, Typescript or any other things that might come up.
+
+https://github.com/agneym/create-electrojet
+
+For providing these features, CLIs do not need to be independently managed, because some of these whether dealing with paths or setting up dependencies can run across some weird cross platform inconsistencies. What if, we could take the pain out, at least for the upcoming frameworks to build prototyping/production frameworks with a CLI already made for them. That is what Electrojet intends to be.
+
+## How is it better for the users?
+
+- No need to install/download a new CLI for every framework you want to try, you can have Electrojet good to go.
+- Electrojet brings with it a plugin based system where you can add your favourite dependencies as plugins to a configuration file. You can use the same config across frameworks and projects.
+- It can bring in both default technologies for projects and projects from github repositories, meaning you can create starters yourself.
+
+## How is it better for package authors?
+
+- No need to maintain, issues, pull requests for a CLI yourself
+- Lesser docs for adding new technologies, as it can be covered by Electrojet
+- The ecosystem will have readymade core packages and plugins that you can add to your custom CLI package such that you have an easier time upgrading.
+
+## How do I get it?
+
+Cut to the chase:
+
+```bash
+npm init electrojet <project-name>
+```
+
+The CLI will guide you through a list of templates or an option to bring your own starter. More options available the docs.
+
+Currently, we have [Phaser-CE](https://github.com/photonstorm/phaser-ce), [Electron](https://electronjs.org/), [Carlo](https://github.com/GoogleChromeLabs/carlo/), [SvelteJS](https://svelte.technology/) in the list of options and are looking to expand. Here is how you can [help](https://github.com/agneym/create-electrojet#how-do-i-build-a-cli-for-my-favorite-technology).
+
+## How can I add \***\*\_\_\*\*** ?
+
+This seems like the big question, so big that major CLIs have pages of frameworks regarding adding different things to the generated application. Electrojet Ecosystem comes with its list of plugins that you can add to the system. Adding SASS to your application can be as simple as updating `electrojet.config.js` as:
+
+```js
+const sass = require("@electrojet/sass");
+module.exports = {
+  plugins: [
+    {
+      resolve: sass,
+    },
+  ],
+};
+```
+
+## How do I eject?
+
+_Or, how do I look at all the generated code and wonder what to do?_
+
+Using Electrojet, there is no eject step. We give you plugins and starters out of box, but if we you have grown to a point when you don’t want any of those, you are free to add your own `webpack.config.js`. Yes, that is all that it takes, add your own Webpack config to the root of the application and you are good to go.
+
+## Can I use other stuff that does not use Electrojet Ecosystem?
+
+Sure, the whole plan with Electrojet is to be adaptive to different frameworks. Just because you choose not to extend `@electrojet/core` does not mean you cannot use the CLI.
+
+Use the option:
+
+```bash
+npm init electrojet --starter=<GithubUserName>/<RepoName>
+```
+
+It downloads the github repository and initialises things for you.
+
+## How can I help?
+
+The ecosystem can use bugfixes, better documentation, plugins, more ecosystems and starters.
+
+The repository has features, bug fixes and enhancements ready to be coded.
+
+You can help out at the repo and also, build and host things independently.
+
+https://github.com/agneym/create-electrojet

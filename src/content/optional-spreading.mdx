@@ -1,0 +1,80 @@
+---
+title: "Conditionally spread into Object/Array - Javascript"
+date: "2020-06-11T22:12:03.284Z"
+tags: ["optional", "spread", "object", "array", "condition"]
+published: true
+---
+
+There comes a time when we want to add more fields/elements into an array or object when it satisfies a certain condition. This blog is an exploration of how and why.
+
+## Spreading into an Array
+
+`isWinter` is a boolean variable and you need to add `winterEssentials` if it's true and nothing otherwise.
+
+<Playground
+  defaultEditorTab="javascript"
+  defaultResultTab="console"
+  initialSnippet={{
+    markup: ``,
+    css: ``,
+    javascript: `const essentials = ['phones', 'book', 'cap'];
+const winterEssentials = ['sweater', 'thermals'];
+ 
+const isWinter = true;
+ 
+const tripEssentials = [
+  ...essentials,
+  ...(isWinter ? winterEssentials : [])
+];`,
+  }}
+/>
+
+We need an empty array at end because we cannot spread `undefined` or `null` into an array (they are not iterables). Spreading an empty array into another just keeps the array intact.
+
+```javascript
+const initialArray = ["a", "b", "c"];
+const resultingArray = [...initialArray, ...[]];
+console.log(initialArray, resultingArray); // Have the same elements.
+```
+
+## Spreading into an Object
+
+Rest spread into object is a [Stage 4 ECMA proposal](https://tc39.es/proposal-object-rest-spread) and is [implemented in most browsers](https://caniuse.com/#feat=mdn-javascript_operators_spread_spread_in_object_literals).
+
+It mimics the behavior of existing [Object.assign](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/assign) operator.
+
+<Playground
+  defaultEditorTab="javascript"
+  initialSnippet={{
+    markup: ``,
+    css: ``,
+    javascript: `const hacker = {
+  hoodie: true,
+}
+ 
+const isHacker = true;
+ 
+const person = {
+  firstName: '',
+  lastName: '',
+  ...(isHacker && hacker)
+};
+ 
+console.log(person);`,
+  }}
+/>
+
+You will notice here that resorting to a conditional operator isn't necessary. This is because rest spread for objects tries to wrap any primitive it finds to an object.
+
+```javascript
+console.log(null); // {}
+console.log(undefined); // {}
+console.log(0); // {}
+console.log("abc"); // {0: "a", 1: "b", 2: "c"}, well an array is also an object
+```
+
+> Guide to [Type Coercion in JavaScript](/type-coercion/)
+
+So the expression `(isHacker && hacker)` returns `undefined` which our spread operator converts to `{}` and spreading an empty array into an object results in nothing.
+
+That's conditional spread.

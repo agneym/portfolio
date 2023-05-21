@@ -1,11 +1,11 @@
-import { Anchor } from "components/shared";
-import { ThemeButton } from "components/shared/ThemeButton";
+import { ThemeButton } from "components/shared";
+import { NavLink } from "components/uikit";
 import LogoSvg from "images/logo.svg";
 import Link from "next/link";
 
 export const HeadNav = () => {
   return (
-    <nav className="flex gap-x-4 items-center justify-center md:justify-between pt-4 text-slate-600 dark:text-slate-400 px-8">
+    <nav className="sticky top-0 flex gap-x-4 items-center justify-center md:justify-between pt-4 pb-2 text-gray-800 dark:text-gray-400 bg-inherit px-8 backdrop-blur-sm opacity-90">
       <Link
         href="/"
         className="mr-auto -rotate-6 hover:rotate-0 transition-transform"
@@ -17,20 +17,20 @@ export const HeadNav = () => {
         />
       </Link>
       <div className="inline-flex gap-x-8">
-        <Anchor href="/about">About</Anchor>
-        <Anchor
+        <NavLink href="/about">About</NavLink>
+        <NavLink
           as="a"
           href="https://github.com/agneym?tab=repositories"
           target="_blank"
         >
           Projects
-        </Anchor>
-        <Anchor as="a" href="https://blog.agney.dev">
+        </NavLink>
+        <NavLink as={Link} href="/blog">
           Blog
-        </Anchor>
-        <Anchor as="a" href="https://buttondown.email/agney" target="_blank">
+        </NavLink>
+        <NavLink as="a" href="https://buttondown.email/agney" target="_blank">
           Newsletter
-        </Anchor>
+        </NavLink>
         <ThemeButton />
       </div>
     </nav>

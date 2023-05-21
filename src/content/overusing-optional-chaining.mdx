@@ -1,0 +1,49 @@
+---
+title: "Please don't overuse optional chaining"
+date: "2020-08-10T22:12:03.284Z"
+tags: ["optional", "chaining", "javascript", "usage"]
+published: true
+---
+
+This post is small rant on optional chaining and it's usage.
+
+If you don't know, optional chaining allows you to use shorten your object reference chain by returning `undefined` when it sees a non existent reference in the chain.
+
+Consider a scenario where a person has his country name specified in the chain: `person.location.address.country.name`. Now what if the person doesn't have to specify a whole bunch of this? Location is optional, address is optional if that is present country is optional and so on. You are now either left with shielding your code with lots of `if` or `&&` 🛡 or lodash [`get`](https://lodash.com/docs/4.17.15#get) 🎣 or catch the error yourself 💣.
+
+Optional chaining understands this pain and can shorten it to:
+
+```javascript
+const countryName = person.location?.address?.country?.name;
+```
+
+This will not hit an error and will just return `undefined` if the chain fails. Also, it works with TypeScript 🎩.
+
+[Docs](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Optional_chaining)
+
+This is obviously a welcome feature, I do use it myself a lot. But sometimes, we see that it is overused. I have overused it in the example itself, `country?.name`
+
+Is there a scenario where there would be a `country` but the `name` is not present? A country without a name?
+
+If there is not, then it should be written as:
+
+```javascript
+const countryName = person.location?.address?.country.name;
+```
+
+It's true that you are skipping an error in some case when there would be an error and country name is not present. But then, you might just be delaying the inevitable.
+
+```javascript
+const coordinates = location?.coordinates;
+
+// eternities later
+plotMap(coordinates);
+```
+
+If it is mandatory for location to have coordinates, what you are doing here is to move the impact of the error as far from the origin of it.
+
+When Sentry (error tracking system) says that there is an error in `centerMap` function, you know have to trace back till the roots to figure out there is something wrong with your code. Otherwise, it would have straightforward told you that it cannot get `coordindates` of `undefined`.
+
+If you don't run into an error, the UI is still going to be messed up and you will have the privilege of having to explain to the user that _it works on your system_ because you aren't looking at the cause, just the effect of it somewhere else.
+
+In other words, TypeScript or use Optional Chaining responsibly.
