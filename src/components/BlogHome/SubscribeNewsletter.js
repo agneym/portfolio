@@ -30,7 +30,11 @@ export function SubscribeNewsletter() {
           <span className="font-semibold">JEM</span>
           <span> Newsletter</span>
         </h2>
-        <form>
+        <form
+          action="https://buttondown.email/api/emails/embed-subscribe/agney"
+          method="post"
+          target="popupwindow"
+        >
           <div className="flex flex-col gap-y-4">
             <Input.Group hasDescription>
               <Input.Label>Email</Input.Label>
@@ -40,11 +44,14 @@ export function SubscribeNewsletter() {
                 inputMode="email"
                 placeholder="address@example.ext"
                 required
+                name="email"
               />
               <Input.Description>
                 No spam, unsubscribe anytime.
               </Input.Description>
             </Input.Group>
+            <input type="hidden" value="1" name="embed" />
+            <input type="hidden" name="tag" value="blog" />
             <button
               type="submit"
               className="inline-flex justify-center items-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
