@@ -1,0 +1,63 @@
+---
+title: "A GatsbyJS Advent Blog Posts Theme"
+date: "2019-12-01T22:12:03.284Z"
+tags: ["react", "javascript", "gatsby", "devadvent"]
+published: true
+---
+
+The Advent has officially began and it's time for some advent blog posts.
+
+I made a [GatsbyJS theme](https://www.gatsbyjs.org/docs/themes/what-are-gatsby-themes/) to help you get started on the #Trend.
+
+Source: https://github.com/agneym/gatsby-theme-advent
+
+Demo: https://blog.agney.dev/december
+
+# Installation
+
+```bash
+npm i @agney/gatsby-theme-advent
+
+# OR #
+
+yarn add @agney/gatsby-theme-advent
+```
+
+You can start using it by adding it to the `gatsby-config.js` file:
+
+```javascript
+module.exports = {
+  plugins: [
+    {
+      resolve: `@agney/gatsby-theme-advent`,
+      options: {
+        contentPath: "src/content",
+        assetPath: "src/assets",
+        basePath: "/december", // Tell the theme which URL to render the theme at.
+      },
+    },
+  ],
+};
+```
+
+The `contentPath` defines where your markdown files are hosted, there has to be at least a markdown file when you get started.
+
+Markdown files with following `frontmatter` are supported:
+
+```
+---
+title: "This is the first advent gift"
+date: "2019-12-01T22:12:03.284Z"
+published: true
+---
+```
+
+The `assetPath` refers to the path to directory where the theme can pick up the cover image from. Currently, you can add an image named `cover.jpg` at this directory and it will be passed through `gatsby-plugin-sharp` and appear as your cover image.
+
+The `basePath` is the path to render the advent page on. You can use "" or leave it out to have it render on the main page.
+
+### Have Fun 🎄
+
+Feel free to raise an [issue](https://github.com/agneym/gatsby-theme-advent/issues) or [contribute](https://github.com/agneym/gatsby-theme-advent#contributing).
+
+Do add a comment if you are participating in the #DevAdvent Blogging 💖
