@@ -5,9 +5,12 @@ import path from "node:path";
 const postsDirectory = path.join(process.cwd(), "src/content");
 
 export function getSortedPostsData() {
-  const fileNames = fs.readdirSync(postsDirectory);
+  const fileNames = fs.readdirSync(postsDirectory, {
+    withFileTypes: true,
+  });
   const allPostsData = fileNames
-    .map((fileName) => {
+    .filter((file) => file.isFile())
+    .map(({ name: fileName }) => {
       const slug = fileName.replace(/\.mdx$/, "");
 
       const fullPath = path.join(postsDirectory, fileName);

@@ -3,6 +3,7 @@ import { BlogPost, BlogPostHeader } from "components/BlogHome";
 import { bundleMDX } from "mdx-bundler";
 import path from "node:path";
 import remarkGfm from "remark-gfm";
+import remarkMdxImages from "remark-mdx-images";
 
 export default async function BlogPostPage({ params: { slug } }) {
   const result = await bundleMDX({
@@ -10,15 +11,26 @@ export default async function BlogPostPage({ params: { slug } }) {
       process.cwd(),
       `src/content/${decodeURIComponent(slug)}.mdx`
     ),
+    cwd: path.join(process.cwd(), "src/content"),
     mdxOptions(options) {
       return {
         ...options,
-        remarkPlugins: [...(options.remarkPlugins ?? []), remarkGfm],
+        remarkPlugins: [
+          ...(options.remarkPlugins ?? []),
+          remarkGfm,
+          remarkMdxImages,
+        ],
         rehypePlugins: [...(options.rehypePlugins ?? []), rehypePrism],
       };
     },
-    grayMatterOptions: (options) => {
-      options.excerpt = true;
+    esbuildOptions: (options) => {
+      options.loader = {
+        ...options.loader,
+        ".png": "dataurl",
+        ".jpg": "dataurl",
+        ".gif": "dataurl",
+        ".svg": "dataurl",
+      };
 
       return options;
     },
