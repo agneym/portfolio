@@ -16,7 +16,7 @@ export function Header() {
         <h1 className="font-bold text-3xl">Blog</h1>
       </div>
       <p>
-        <span>Welcome to Agney's </span>
+        <span>Welcome to Agney&apos;s </span>
         <span className="underline underline-offset-2	decoration-indigo-300 decoration-dashed">
           Digital Garden
         </span>

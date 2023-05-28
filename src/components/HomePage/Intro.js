@@ -31,7 +31,7 @@ export const Intro = () => {
         {...getAnimateProps({ shouldReduceMotion })}
         className="text-4xl tracking-tight"
       >
-        Hey 👋 I'm
+        Hey 👋 I&apos;m
       </motion.h1>
       <div className="flex flex-col gap-y-6">
         <AvatarImage getAnimateProps={getAnimateProps} />

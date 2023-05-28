@@ -22,7 +22,7 @@ export function InputGroup({ className, hasDescription, children, ...rest }) {
 
   const value = useMemo(
     () => ({ inputId, descriptionId, hasDescription }),
-    [inputId, descriptionId]
+    [inputId, descriptionId, hasDescription]
   );
 
   return (
