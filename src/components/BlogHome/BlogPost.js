@@ -14,7 +14,7 @@ export function BlogPost({ code }) {
       components={{
         Playground: PlaygroundWrapper,
         pre: (props) => (
-          <div className="text-sm">
+          <div className="text-sm whitespace-pre-wrap">
             <pre {...props} />
           </div>
         ),
