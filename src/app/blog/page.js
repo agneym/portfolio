@@ -1,8 +1,10 @@
+import { SkipNavContent } from "@reach/skip-nav";
 import { Header, SubscribeNewsletter, PostList } from "components/BlogHome";
 
 function BlogHome() {
   return (
     <div className="min-h-full">
+      <SkipNavContent />
       <header className="py-24">
         <div className="flex items-center flex-col gap-y-16 justify-center max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <Header />

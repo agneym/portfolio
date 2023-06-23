@@ -1,5 +1,6 @@
 import "./global.css";
 import { Providers } from "./providers";
+import "@reach/skip-nav/styles.css";
 import { Work_Sans } from "next/font/google";
 
 const workSansFont = Work_Sans({

@@ -1,6 +1,7 @@
 "use client";
 
 import { AvatarImage } from "./AvatarImage";
+import { SkipNavContent } from "@reach/skip-nav";
 import { motion, useReducedMotion } from "framer-motion";
 
 const initial = {
@@ -27,6 +28,7 @@ export const Intro = () => {
 
   return (
     <main className="flex items-center justify-center text-center flex-col gap-y-10">
+      <SkipNavContent />
       <motion.h1
         {...getAnimateProps({ shouldReduceMotion })}
         className="text-4xl tracking-tight"
