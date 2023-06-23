@@ -38,7 +38,7 @@ export default async function BlogPostPage({ params: { slug } }) {
   const { code, frontmatter } = result;
 
   return (
-    <article className="mx-auto prose lg:prose-xl dark:prose-invert px-6 max-w-full">
+    <article className="mx-auto prose lg:prose-xl dark:prose-invert px-6 max-w-[min(65ch,100%)]">
       <BlogPostHeader frontmatter={frontmatter} />
       <BlogPost code={code} />
     </article>
