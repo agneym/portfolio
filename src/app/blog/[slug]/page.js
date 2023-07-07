@@ -1,9 +1,18 @@
 import rehypePrism from "@mapbox/rehype-prism";
 import { BlogPost, BlogPostHeader } from "components/BlogHome";
+import { getPostFrontmatter } from "components/BlogHome/getPostFrontmatter";
 import { bundleMDX } from "mdx-bundler";
 import path from "node:path";
 import remarkGfm from "remark-gfm";
 import remarkMdxImages from "remark-mdx-images";
+
+export async function generateMetadata({ params: { slug } }) {
+  const grayMatter = await getPostFrontmatter(slug);
+  return {
+    title: `${grayMatter.title} | Blog | Agney`,
+    tags: grayMatter.tags,
+  };
+}
 
 export default async function BlogPostPage({ params: { slug } }) {
   const result = await bundleMDX({

@@ -2,7 +2,7 @@ import matter from "gray-matter";
 import fs from "node:fs";
 import path from "node:path";
 
-const postsDirectory = path.join(process.cwd(), "src/content");
+export const postsDirectory = path.join(process.cwd(), "src/content");
 
 export function getSortedPostsData() {
   const fileNames = fs.readdirSync(postsDirectory, {

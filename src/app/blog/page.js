@@ -1,6 +1,10 @@
 import { SkipNavContent } from "@reach/skip-nav";
 import { Header, SubscribeNewsletter, PostList } from "components/BlogHome";
 
+export const metadata = {
+  title: "Blog | Agney",
+};
+
 function BlogHome() {
   return (
     <div className="min-h-full">
