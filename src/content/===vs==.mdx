@@ -17,7 +17,7 @@ This part corresponds to the Double Equal vs Triple Equal.
 
 ### Prerequisites
 
-1. [Type Coercion in JavaScript](https://blog.agney.in/type-coercion/)
+1. [Type Coercion in JavaScript](/blog/type-coercion/)
 
 > That is all you need to know. No, I'm just kidding!
 > But you do need to know that.
@@ -144,29 +144,29 @@ What if the other side is not a number? Say `"12" == true`, let's break it down:
   [[]] == false,  // Hmm..
   [[0]] == false,  // definitely wierd
 );
- 
+
 const a = {
-  valueOf: () => 0,
+valueOf: () => 0,
 }
 const b = {
-  toString: () => "string",
-} 
-console.log(
-  a == false,
-  b == "string"
-);
- 
-const c = {
-  valueOf: () => 0,
-  toString: () => "string",
+toString: () => "string",
 }
 console.log(
-  c == 0,
-  c == "string", // What?! I was just getting the hang of this.
+a == false,
+b == "string"
+);
+
+const c = {
+valueOf: () => 0,
+toString: () => "string",
+}
+console.log(
+c == 0,
+c == "string", // What?! I was just getting the hang of this.
 );`,
-  }}
-  defaultResultTab="console"
-  defaultEditorTab="javascript"
+}}
+defaultResultTab="console"
+defaultEditorTab="javascript"
 />
 
 Lots of things here, let's break them down one by one.
@@ -248,7 +248,7 @@ With ES6 and some magic with [Symbols](https://developer.mozilla.org/en-US/docs/
 
 ### Case 6: Object vs Object
 
-If the two objects compared are of same [reference](https://blog.agney.in/value-vs-reference/), then `true` otherwise `false`.
+If the two objects compared are of same [reference](/blog/value-vs-reference/), then `true` otherwise `false`.
 
 This is actually same for both `==` and `===`, just making the point.
 
