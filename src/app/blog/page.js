@@ -1,4 +1,4 @@
-import { SkipNavContent } from "@reach/skip-nav";
+import { SkipNavContent } from "@agney/skip-nav";
 import { Header, SubscribeNewsletter, PostList } from "components/BlogHome";
 
 export const metadata = {

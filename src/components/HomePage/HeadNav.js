@@ -1,4 +1,4 @@
-import { SkipNavLink } from "@reach/skip-nav";
+import { SkipNavLink } from "@agney/skip-nav";
 import { NavLink } from "components/uikit";
 import { Navbar } from "components/uikit/Navbar";
 import LogoSvg from "images/logo.svg";

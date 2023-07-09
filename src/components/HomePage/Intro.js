@@ -1,7 +1,7 @@
 "use client";
 
 import { AvatarImage } from "./AvatarImage";
-import { SkipNavContent } from "@reach/skip-nav";
+import { SkipNavContent } from "@agney/skip-nav";
 import { motion, useReducedMotion } from "framer-motion";
 
 const initial = {
