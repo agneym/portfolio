@@ -14,5 +14,5 @@ export default withPlugins(
       extension: /\.mdx?$/,
     }),
   ],
-  nextConfig
+  nextConfig,
 );

@@ -10,7 +10,7 @@ export const useInputContext = () => {
   const context = useContext(InputContext);
   invariant(
     context,
-    "Input compound components cannot be rendered outside the Input component"
+    "Input compound components cannot be rendered outside the Input component",
   );
 
   return context;
@@ -22,7 +22,7 @@ export function InputGroup({ className, hasDescription, children, ...rest }) {
 
   const value = useMemo(
     () => ({ inputId, descriptionId, hasDescription }),
-    [inputId, descriptionId, hasDescription]
+    [inputId, descriptionId, hasDescription],
   );
 
   return (

@@ -11,7 +11,7 @@ export function InputLabel({ className, ...rest }) {
       htmlFor={inputId}
       className={clsx(
         "block text-sm font-medium leading-6 text-gray-900 dark:text-gray-300",
-        className
+        className,
       )}
       {...rest}
     />

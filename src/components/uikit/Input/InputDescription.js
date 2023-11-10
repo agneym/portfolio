@@ -9,13 +9,13 @@ export const InputDescription = ({ children, className, ...rest }) => {
 
   invariant(
     hasDescription,
-    "Set hasDescription on InputGroup to true when rendering InputDescription"
+    "Set hasDescription on InputGroup to true when rendering InputDescription",
   );
   return (
     <p
       className={clsx(
         "mt-1 text-sm text-gray-600 dark:text-gray-400",
-        className
+        className,
       )}
       id={descriptionId}
       {...rest}

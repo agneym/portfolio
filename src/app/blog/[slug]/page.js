@@ -18,7 +18,7 @@ export default async function BlogPostPage({ params: { slug } }) {
   const result = await bundleMDX({
     file: path.join(
       process.cwd(),
-      `src/content/${decodeURIComponent(slug)}.mdx`
+      `src/content/${decodeURIComponent(slug)}.mdx`,
     ),
     cwd: path.join(process.cwd(), "src/content"),
     mdxOptions(options) {

@@ -1,6 +1,7 @@
 import "./global.css";
 import { Providers } from "./providers";
 import "@agney/skip-nav/styles.css";
+import { Viewport } from "next";
 import { Work_Sans } from "next/font/google";
 
 const workSansFont = Work_Sans({
@@ -13,9 +14,12 @@ export const metadata = {
   title: "Portfolio | Agney",
   description: "A portfolio for Web Developer - Agney Menon",
   keywords: ["Frontend Developer", "Developer", "Engineer", "Portfolio"],
-  colorScheme: "dark",
   creator: "Agney",
   metadataBase: new URL("https://agney.dev"),
+};
+
+export const viewport = {
+  colorScheme: "dark",
 };
 
 export default function RootLayout({ children }) {

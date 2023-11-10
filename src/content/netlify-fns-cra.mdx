@@ -101,7 +101,7 @@ module.exports = function (app) {
       pathRewrite: {
         "^/\\.netlify/functions": "",
       },
-    })
+    }),
   );
 };
 ```
@@ -139,7 +139,7 @@ const handleSubmit = (event) => {
   event.preventDefault();
   const url = event.target.url.value;
   fetch(`/.netlify/functions/parse?${stringify({ q: reqUrl })}`).then(
-    (response) => response.json()
+    (response) => response.json(),
   );
 };
 ```

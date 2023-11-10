@@ -37,7 +37,7 @@ promise.then(
   },
   (rejectionReason) => {
     // This function is called if promise is rejected.
-  }
+  },
 );
 ```
 
@@ -66,7 +66,7 @@ This is the most widely used among the combinators. Here is how we can use it:
 Promise.all([promiseA, promiseB]).then(
   ([promiseAResponse, promiseBResponse]) => {
     // Do something with it here
-  }
+  },
 );
 ```
 
@@ -78,7 +78,7 @@ Promise.all([promiseA, promiseB]).then(
 Promise.race([promiseA, promiseB]).then(
   ([promiseAResponse, promiseBResponse]) => {
     // Do something with it here
-  }
+  },
 );
 ```
 
@@ -90,7 +90,7 @@ Promise.race([promiseA, promiseB]).then(
 Promise.allSettled([promiseA, promiseB]).then(
   ([promiseAResponse, promiseBResponse]) => {
     // Do something with it here
-  }
+  },
 );
 ```
 
