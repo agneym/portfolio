@@ -1,4 +1,3 @@
-import BlogPostLoading from "./loading";
 import rehypePrism from "@mapbox/rehype-prism";
 import { BlogPost, BlogPostHeader } from "components/BlogHome";
 import { BlogArticleContainer } from "components/BlogHome/BlogArticleContainer";
@@ -50,7 +49,6 @@ export default async function BlogPostPage({ params: { slug } }) {
 
   return (
     <BlogArticleContainer>
-      <BlogPostLoading />
       <BlogPostHeader frontmatter={frontmatter} />
       <BlogPost code={code} />
     </BlogArticleContainer>
