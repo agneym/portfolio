@@ -1,7 +1,6 @@
 import "./global.css";
 import { Providers } from "./providers";
 import "@agney/skip-nav/styles.css";
-import { Viewport } from "next";
 import { Work_Sans } from "next/font/google";
 
 const workSansFont = Work_Sans({
