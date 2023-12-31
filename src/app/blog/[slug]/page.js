@@ -1,5 +1,7 @@
+import BlogPostLoading from "./loading";
 import rehypePrism from "@mapbox/rehype-prism";
 import { BlogPost, BlogPostHeader } from "components/BlogHome";
+import { BlogArticleContainer } from "components/BlogHome/BlogArticleContainer";
 import { getPostFrontmatter } from "components/BlogHome/getPostFrontmatter";
 import { bundleMDX } from "mdx-bundler";
 import path from "node:path";
@@ -47,9 +49,10 @@ export default async function BlogPostPage({ params: { slug } }) {
   const { code, frontmatter } = result;
 
   return (
-    <article className="mx-auto prose lg:prose-xl dark:prose-invert px-6 max-w-[min(65ch,100%)]">
+    <BlogArticleContainer>
+      <BlogPostLoading />
       <BlogPostHeader frontmatter={frontmatter} />
       <BlogPost code={code} />
-    </article>
+    </BlogArticleContainer>
   );
 }
