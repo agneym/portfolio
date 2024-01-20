@@ -3,7 +3,7 @@ import { Input } from "components/uikit";
 export function SubscribeNewsletter() {
   return (
     <div className="flex gap-x-16 gap-y-16 flex-col-reverse px-4 md:flex-row text-gray-800 dark:text-gray-300">
-      <div className="max-w-md md:basis-1/2 flex flex-col gap-y-3 [text-wrap:balance]">
+      <div className="max-w-md md:basis-1/2 flex flex-col gap-y-3 text-balance">
         <p>
           <span>Stay ahead of the curve in Web Development with my </span>
           <span className="italic">Javascript Every Month</span>

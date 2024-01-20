@@ -11,7 +11,7 @@ export function PostListItem({ meta, slug }) {
     >
       <article className="flex flex-col gap-y-3">
         <header className="flex flex-col gap-y-0.5">
-          <h3 className="text-xl [text-wrap:balance]">{meta.title}</h3>
+          <h3 className="text-xl text-balance">{meta.title}</h3>
           <DateString className="text-sm text-gray-500 dark:text-gray-400">
             {meta.date}
           </DateString>
