@@ -1,6 +1,7 @@
 import "./global.css";
 import { Providers } from "./providers";
 import "@agney/skip-nav/styles.css";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Work_Sans } from "next/font/google";
 
 const workSansFont = Work_Sans({
@@ -30,6 +31,7 @@ export default function RootLayout({ children }) {
     >
       <body className="h-full bg-slate-50 selection:bg-indigo-100 dark:bg-slate-800 dark:selection:bg-indigo-600">
         <Providers>{children}</Providers>
+        <SpeedInsights />
       </body>
     </html>
   );
