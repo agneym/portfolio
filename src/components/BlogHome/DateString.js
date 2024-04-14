@@ -5,7 +5,8 @@ import { getFormattedDate } from "./getFormattedDate";
 export function DateString({ children, className }) {
   return (
     <time dateTime={children} className={className} suppressHydrationWarning>
-      Updated on: {getFormattedDate(children)}
+      <span>Updated on: </span>
+      <span className="font-semibold">{getFormattedDate(children)}</span>
     </time>
   );
 }
