@@ -22,7 +22,7 @@ export function Navbar({ className, children }) {
   return (
     <nav
       className={clsx(
-        "sticky top-0 flex gap-x-4 items-center justify-center md:justify-between pt-4 pb-2 text-gray-800 dark:text-gray-400 bg-inherit px-4 md:px-8 backdrop-blur-sm opacity-90",
+        "sticky top-0 flex gap-x-4 items-center justify-center md:justify-between pt-4 pb-2 text-gray-800 dark:text-gray-400 bg-inherit px-4 md:px-8 backdrop-blur-xs opacity-90",
         className,
       )}
     >

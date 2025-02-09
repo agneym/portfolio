@@ -1,6 +1,14 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+@plugin '@tailwindcss/forms';
+@plugin '@tailwindcss/typography';
+@plugin 'tailwindcss-touch';
+
+@custom-variant dark (&:is(.dark *));
+
+@theme {
+  --font-heading: var(--font-heading);
+}
 
 h1,
 h2,
