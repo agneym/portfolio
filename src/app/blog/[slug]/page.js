@@ -7,7 +7,11 @@ import path from "node:path";
 import remarkGfm from "remark-gfm";
 import remarkMdxImages from "remark-mdx-images";
 
-export async function generateMetadata({ params: { slug } }) {
+export async function generateMetadata(props) {
+  const params = await props.params;
+
+  const { slug } = params;
+
   const grayMatter = await getPostFrontmatter(slug);
   return {
     title: `${grayMatter.title} | Blog | Agney`,
@@ -15,7 +19,11 @@ export async function generateMetadata({ params: { slug } }) {
   };
 }
 
-export default async function BlogPostPage({ params: { slug } }) {
+export default async function BlogPostPage(props) {
+  const params = await props.params;
+
+  const { slug } = params;
+
   const result = await bundleMDX({
     file: path.join(
       process.cwd(),
