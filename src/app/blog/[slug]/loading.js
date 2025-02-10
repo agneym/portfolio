@@ -3,7 +3,7 @@
 import { BlogArticleContainer } from "components/BlogHome/BlogArticleContainer";
 import { BlogPostHeader } from "components/BlogHome/BlogPostHeader";
 import { LoadingRow } from "components/shared";
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 import { useSearchParams } from "next/navigation";
 import React from "react";
 

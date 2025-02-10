@@ -1,8 +1,8 @@
 "use client";
 
-import { AnimatePresence, motion } from "framer-motion";
 import MoonIcon from "images/moon.svg";
 import SunIcon from "images/sun.svg";
+import { AnimatePresence, motion } from "motion/react";
 import { useTheme } from "next-themes";
 
 const AnimatedIcon = ({ icon: Icon }) => {
