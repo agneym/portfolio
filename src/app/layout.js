@@ -1,6 +1,5 @@
 import "./global.css";
 import { Providers } from "./providers";
-import "@agney/skip-nav/styles.css";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Work_Sans } from "next/font/google";
 

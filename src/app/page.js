@@ -1,4 +1,3 @@
-import "@agney/skip-nav/styles.css";
 import { HeadNav, Intro, Footer } from "components/HomePage";
 
 export default function Home() {

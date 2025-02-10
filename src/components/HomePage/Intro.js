@@ -1,8 +1,8 @@
 "use client";
 
 import { AvatarImage } from "./AvatarImage";
-import { SkipNavContent } from "@agney/skip-nav";
-import { motion, useReducedMotion } from "framer-motion";
+import { SkipNavContent } from "components/uikit/SkipNav";
+import { motion, useReducedMotion } from "motion/react";
 
 const initial = {
   y: 10,
