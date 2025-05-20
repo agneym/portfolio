@@ -1,0 +1,7 @@
+.subtle-grid-pattern {
+  background-color: #ffffff;
+  background-image:
+    repeating-linear-gradient(to right, rgba(0, 0, 0, 0.1) 1px, transparent 1px, transparent 20px),
+    repeating-linear-gradient(to bottom, rgba(0, 0, 0, 0.1) 1px, transparent 1px, transparent 20px);
+  background-size: 20px 20px;
+}
