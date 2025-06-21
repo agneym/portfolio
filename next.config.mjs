@@ -1,6 +1,5 @@
 import withMdx from "@next/mdx";
 import withPlugins from "next-compose-plugins";
-import withSvgr from "next-plugin-svgr";
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
@@ -14,21 +13,25 @@ const nextConfig = {
       },
     ];
   },
-  experimental: {
-    turbo: {
-      rules: {
-        "*.svg": {
-          loaders: ["@svgr/webpack"],
-          as: "*.js",
-        },
+  turbopack: {
+    rules: {
+      "*.svg": {
+        as: "*.js",
+        loaders: ["@svgr/webpack"],
       },
     },
+  },
+  webpack(config) {
+    config.module.rules.push({
+      test: /\.svg$/i,
+      use: ["@svgr/webpack"],
+    });
+    return config;
   },
 };
 
 export default withPlugins(
   [
-    withSvgr,
     withMdx({
       extension: /\.mdx?$/,
     }),
