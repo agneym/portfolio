@@ -30,9 +30,7 @@ export const HeadNav = () => {
           >
             Projects
           </NavLink>
-          <NavLink as={Link} href="/blog">
-            Blog
-          </NavLink>
+          <NavLink href="/blog">Blog</NavLink>
           <NavLink as="a" href="https://buttondown.email/agney" target="_blank">
             Newsletter
           </NavLink>

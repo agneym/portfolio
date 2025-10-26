@@ -4,6 +4,12 @@ import { PlaygroundWrapper } from "components/uikit/PlaygroundWrapper";
 import { getMDXComponent } from "mdx-bundler/client";
 import { useMemo } from "react";
 
+const PreComponent = (props) => (
+  <div className="text-sm whitespace-pre-wrap">
+    <pre {...props} />
+  </div>
+);
+
 export function BlogPost({ code }) {
   const Component = useMemo(() => {
     return getMDXComponent(code);
@@ -13,11 +19,7 @@ export function BlogPost({ code }) {
     <Component
       components={{
         Playground: PlaygroundWrapper,
-        pre: (props) => (
-          <div className="text-sm whitespace-pre-wrap">
-            <pre {...props} />
-          </div>
-        ),
+        pre: PreComponent,
       }}
       hideHydrateWarning
     />
