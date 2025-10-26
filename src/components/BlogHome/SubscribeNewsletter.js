@@ -1,4 +1,4 @@
-import { Input } from "components/uikit";
+import { Input } from "components/uikit/Input";
 
 export function SubscribeNewsletter() {
   return (

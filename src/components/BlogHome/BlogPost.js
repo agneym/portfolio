@@ -1,6 +1,6 @@
 "use client";
 
-import { PlaygroundWrapper } from "components/uikit";
+import { PlaygroundWrapper } from "components/uikit/PlaygroundWrapper";
 import { getMDXComponent } from "mdx-bundler/client";
 import { useMemo } from "react";
 
