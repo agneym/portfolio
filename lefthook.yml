@@ -1,0 +1,5 @@
+pre-commit:
+  commands:
+    prettier:
+      run: npx prettier --write --ignore-unknown {staged_files}
+      stage_fixed: true

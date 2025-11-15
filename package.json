@@ -11,7 +11,7 @@
     "start": "next start",
     "lint": "eslint .",
     "format": "prettier --write --ignore-unknown .",
-    "prepare": "is-ci || husky"
+    "prepare": "is-ci || lefthook install"
   },
   "dependencies": {
     "@agney/playground": "^0.8.1",
@@ -53,13 +53,9 @@
     "eslint": "^9.39.1",
     "eslint-config-next": "16.0.3",
     "eslint-config-prettier": "^10.1.5",
-    "husky": "^9.1.7",
-    "lint-staged": "^16.1.2",
+    "lefthook": "^2.0.4",
     "prettier": "^3.5.3",
     "prettier-plugin-tailwindcss": "^0.7.1"
-  },
-  "lint-staged": {
-    "**/*": "prettier --write --ignore-unknown"
   },
   "keywords": [
     "portfolio"
