@@ -1,0 +1,38 @@
+---
+title: "Event delegation - The React Way"
+date: "2025-11-15T22:12:03.284Z"
+tags: ["react 16", "react 17", "event delegation", "event bubbling"]
+published: true
+---
+
+import { BubblingVisualizer } from "./event-delegation/BubblingVisualizer";
+
+This article explains how event delegation works in the React DOM. We will first define the terms and show what they do in plain JavaScript; skip ahead if you already know this part.
+
+# Event
+
+An event is a signal sent by the browser (or your environment) to notify you that an action or behavior has occurred. You can then attach listeners to these signals so your code can react to the events.
+
+These events fire in the browser, so their behavior depends on the browser environment rather than on native JavaScript. Fortunately, their behavior has been standardized across browsers for some time.
+
+```javascript
+const button = document.getElementById("#button");
+
+/* On which element do I listen to the event */
+button.addEventListener(
+  /* Type of event to listen to */
+  "click",
+  /* What to do when this event happens */
+  () => {},
+);
+```
+
+<br />
+
+# Event bubbling
+
+In the earlier example, we add a click listener to a button, which makes sense because the button is the element being clicked. But what if we want to detect clicks outside the button? For instance, a popover appears when you click the button, and you want it to disappear when you click anywhere else. You could attach an event listener to every element on the page, but that would quickly become unmanageable. Fortunately, events don't stop at the clicked element—they travel up and down the DOM tree.
+
+<BubblingVisualizer />
+
+#
