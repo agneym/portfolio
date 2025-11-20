@@ -33,6 +33,8 @@ button.addEventListener(
 
 In the earlier example, we add a click listener to a button, which makes sense because the button is the element being clicked. But what if we want to detect clicks outside the button? For instance, a popover appears when you click the button, and you want it to disappear when you click anywhere else. You could attach an event listener to every element on the page, but that would quickly become unmanageable. Fortunately, events don't stop at the clicked element—they travel up and down the DOM tree.
 
+When you act on the page - say, click an element - the click event travels from the top of the window down to the target element, then back up again. The downward journey is the **Capture** phase; the upward return is the **Bubble** phase.
+
 <BubblingVisualizer />
 
 #
