@@ -1,0 +1,265 @@
+---
+title: Creating a JAMStack Reader App with React & Netlify Functions
+date: "2020-01-04T22:12:03.284Z"
+tags:
+  - netlify functions
+  - create-react-app
+  - serverless
+  - reader app
+published: true
+---
+
+import { BlogPostHeader } from "components/BlogHome";
+
+<BlogPostHeader
+  frontmatter={{
+    title: "Creating a JAMStack Reader App with React & Netlify Functions",
+    date: "2020-01-04T22:12:03.284Z",
+  }}
+/>
+
+I'm in 💖 with the [JAMStack](https://jamstack.org/), It gets the work done. One of the very exciting companies in this area is [Netlify](https://www.netlify.com/). Anyone who tested their hosting would tell you it's top class and I would recommend it anyday.
+
+In this post we will explore using their [Serverless functions](https://www.netlify.com/products/functions/) with [create-react-app](https://create-react-app.dev/).
+
+# The What.
+
+What we intend to create a reading application. You give it the URL and allows you to view the simplified content fit for reading.
+
+# The How
+
+We ideally to parse the url string from the backend to avoid getting blocked by [CORS](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS). We will use a Netlify Function to achieve this. We will use Postlight's [Mercury Parser](https://github.com/postlight/mercury-parser) with the function to parse the simplified version from URL.
+
+# The Detail
+
+First let's create a new React application with [create-react-app](https://create-react-app.dev/):
+
+```bash
+npm init react-app the-reader
+```
+
+## The Build step
+
+Now, to setup Netlify functions, create a top level folder, I'm naming it `functions`. We have to update the build step so that the function is also build when we run `yarn build`.
+
+Netlify has published a package [netlify-lambda](https://github.com/netlify/netlify-lambda) to help with the build:
+
+```
+yarn add netlify-lambda npm-run-all --dev
+```
+
+[`npm-run-all`](https://www.npmjs.com/package/npm-run-all) is used to run both tasks in parallel. In `package.json`:
+
+```json
+"scripts": {
+    "build": "run-p build:**",
+    "build:app": "react-scripts build",
+    "build:lambda": "netlify-lambda build functions/",
+}
+```
+
+Create a `netlify.toml` so that `netlify` knows where the build is:
+
+```toml
+[build]
+  command = "yarn build"
+  functions = "build-lambda" # netlify-lambda gets build to this folder
+  publish = "build"  # create-react-app builds to this folder
+```
+
+> Remember to add `build-lambda` to `.gitignore`.
+
+Create your first function by creating a JS file in `functions` folder we created earlier.
+
+> Netlify can recognise JS files in the folder or in nested folders.
+
+In `functions/parse.js`:
+
+```javascript
+export async function handler(event) {
+  return {
+    statusCode: 200,
+    body: JSON.stringify({ data: "hello world" }),
+  };
+}
+```
+
+## Dummy function
+
+From the frontend application you can now use `fetch` to query `.netlify/functions/parse.js` (your folder structure prepended with `.netlify/`) to get the dummy response we put in. But with a twist, it works only when you deploy the application to Netlify. _That's not a good development methodology._ This is because the functions are not build yet and there is `.netlify/` path to get the data from.
+
+`netlify-lambda` has a serve mode for development, so that the functions can be build for any changes and updated to a server.
+
+Add the following to `package.json` and keep it running in the background with `npm start`:
+
+```json
+"scripts": {
+  "serve:lambda": "netlify-lambda serve functions/",
+},
+```
+
+## The Proxy
+
+You will find that the functions is now running on a server with `localhost:9000`. But even if you could add an environment variable to query this server, there is an issue with CORS now. Your frontend and functions are running on different servers. To get around this, you can add a proxy with `create-react-app`. You can find complete instructions in the [docs](https://create-react-app.dev/docs/proxying-api-requests-in-development/#configuring-the-proxy-manually).
+
+What we have to do is to add `src/setupProxy.js`, you don't have to import this file anywhere, just create, add code and ✨ restart your development server.
+
+```javascript
+const proxy = require("http-proxy-middleware");
+
+module.exports = function (app) {
+  app.use(
+    proxy("/.netlify/functions/", {
+      target: "http://localhost:9000/",
+      pathRewrite: {
+        "^/\\.netlify/functions": "",
+      },
+    }),
+  );
+};
+```
+
+What this is essentially doing is to rewrite any API calls to `.netlify/functions` to `localhost:9000` and get response from there. This only works in development, so it works without the server in production.
+
+## The API call
+
+First, let's setup a form where user can enter a URL and request the server.
+
+```jsx
+import React from "react";
+
+const App = () => {
+  const handleSubmit = () => {};
+  return (
+    <main>
+      <form onSubmit={handleSubmit}>
+        <input type="url" placeholder="Enter url here" name="url" label="url" />
+        <button>View</button>
+      </form>
+    </main>
+  );
+};
+```
+
+Filling in the `handleSubmit` function:
+
+```javascript
+import { stringify } from "qs";
+
+// for encoding the URL as a GET parameter
+
+const handleSubmit = (event) => {
+  event.preventDefault();
+  const url = event.target.url.value;
+  fetch(`/.netlify/functions/parse?${stringify({ q: reqUrl })}`).then(
+    (response) => response.json(),
+  );
+};
+```
+
+If you run this function now, it will return the `{ data: "Hello world" }` we added earlier (hopefully).
+
+To return some real data, let's modify the `functions/parse.js` to:
+
+```javascript
+import Mercury from "@postlight/mercury-parser";
+
+export async function handler(event) {
+  const parameters = event.queryStringParameters;
+  const url = parameters.q;
+
+  if (!url) {
+    return {
+      statusCode: 400,
+      body: JSON.stringify({ error: "Invalid/No URL provided" }),
+    };
+  }
+  try {
+    const response = await Mercury.parse(url);
+    return {
+      statusCode: 200,
+      body: JSON.stringify({ data: response }),
+    };
+  } catch (err) {
+    return {
+      statusCode: 500,
+      body: JSON.stringify({ error: err }),
+    };
+  }
+}
+```
+
+The function takes URL as an argument through `queryStringParameters` and uses `Mercury.parse` to get the simplified version and return it to the user.
+
+Now, running the frontend would get you the real response from the serverless function (which underwhelmingly has a server now, but you can always push and get it deployed).
+
+Some changes on the frontend to display the data from backend:
+
+```jsx
+import { stringify } from "qs";
+import React, { useState } from "react";
+
+const App = () => {
+  const [result, setResult] = useState(null);
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const url = event.target.url.value;
+    fetch(`/.netlify/functions/parse?${stringify({ q: reqUrl })}`)
+      .then((response) => response.json())
+      .then((jsonResponse) => setResult(jsonResponse.data));
+  };
+  return (
+    <main>
+      <form onSubmit={handleSubmit}>
+        <input type="url" placeholder="Enter url here" name="url" label="url" />
+        <button>View</button>
+      </form>
+      {result && <article dangerouslySetInnerHTML={{ __html: data.content }} />}
+    </main>
+  );
+};
+```
+
+and we are Done 🥂.
+
+To convert this to a PWA, you can very simply [add the service workers on the `create-react-app`](https://create-react-app.dev/docs/making-a-progressive-web-app/) and adjust the parameters in `manifest.json`.
+
+## Share Target
+
+It's too much of work to actually copy the URL and copy paste into our app, especially on mobile. But for PWAs what we can do is to register the application as a share target. You can do this by specifying the following in `manifest.json`:
+
+```json
+"share_target": {
+  "action": "/",
+  "method": "GET",
+  "params": {
+    "text": "q"
+  }
+}
+```
+
+The important thing here is the `params` object. On the left is what is to be passed, there are different params like `title`, `text` and `url`. For some wierd reason, Chrome sends the URL of the page in the `text` parameter and that is what we are substituting here.
+
+When something is shared to the application, the URL would be:
+
+```
+https://baseurl.com?q=shared-url
+```
+
+To process this, the frontend can:
+
+```javascript
+const location = useLocation();
+
+useEffect(() => {
+  const searchParams = new URLSearchParams(location.search);
+  const url = searchParams.get("q");
+  if (url) {
+    handleView(url);
+  }
+}, [location.search]);
+```
+
+You can find the complete code in the [repository](https://github.com/agneym/the-reader)
+
+[Application Demo](https://competent-nightingale-a5d6b2.netlify.com/)

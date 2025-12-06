@@ -1,0 +1,86 @@
+---
+title: Fastest way to Google Fonts
+date: "2020-05-26T22:12:03.284Z"
+tags:
+  - google fonts
+published: true
+---
+
+import { BlogPostHeader } from "components/BlogHome";
+
+<BlogPostHeader
+  frontmatter={{
+    title: "Fastest way to Google Fonts",
+    date: "2020-05-26T22:12:03.284Z",
+  }}
+/>
+
+Harry Roberts writes about fastest ways of loading Google fonts on [his blog](https://csswizardry.com/2020/05/the-fastest-google-fonts/):
+
+> It’s widely accepted that self-hosted fonts are the fastest option: same origin means reduced network negotiation, predictable URLs mean we can preload, self-hosted means we can set our own cache-control directives, and full ownership mitigates the risks that come with leaving static assets on third-party origins.
+
+> That said, the convenience of a service like Google Fonts cannot be overstated. Their ability to serve the tiniest possible font files tailored to specific user agents and platforms is amazing, and with such a huge, freely-available library served from Google-grade CDNs… I definitely see why people continue to turn to it.
+
+Well, yes. Self hosting fonts is a pain. Can we make it a little faster with the CDN?
+
+Harry dives into a private instance of Webpage test and marks the performance metrics for each attribute that can be used. Here is what he ends up doing:
+
+```html
+<!--
+  - 1. Preemptively warm up the fonts’ origin.
+  -
+  - 2. Initiate a high-priority, asynchronous fetch for the CSS file. Works in
+  -    most modern browsers.
+  -
+  - 3. Initiate a low-priority, asynchronous fetch that gets applied to the page
+  -    only after it’s arrived. Works in all browsers with JavaScript enabled.
+  -
+  - 4. In the unlikely event that a visitor has intentionally disabled
+  -    JavaScript, fall back to the original method. The good news is that,
+  -    although this is a render-blocking request, it can still make use of the
+  -    preconnect which makes it marginally faster than the default.
+  -->
+
+<!-- [1] -->
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+<!-- [2] -->
+<link rel="preload" as="style" href="$CSS&display=swap" />
+
+<!-- [3] -->
+<link
+  rel="stylesheet"
+  href="$CSS&display=swap"
+  media="print"
+  onload="this.media='all'"
+/>
+
+<!-- [4] -->
+<noscript>
+  <link rel="stylesheet" href="$CSS&display=swap" />
+</noscript>
+```
+
+We can find a sample to this on [Harry's site](https://harry.is/):
+
+```html
+<!-- [1] -->
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
+
+<!-- [2] -->
+<link
+  rel="preload"
+  as="style"
+  href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,900;1,900&amp;family=Roboto:ital,wght@0,400;0,700;1,400;1,700&amp;display=swap"
+/>
+
+<!-- [3] -->
+<link
+  rel="stylesheet"
+  href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,900;1,900&amp;family=Roboto:ital,wght@0,400;0,700;1,400;1,700&amp;display=swap"
+  media="all"
+  onload="this.media='all'"
+/>
+```
+
+On to the fast lane! 👏👏

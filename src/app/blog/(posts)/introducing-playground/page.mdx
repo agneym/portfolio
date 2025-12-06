@@ -1,0 +1,84 @@
+---
+title: Introducing Playground - A Frontend Demonstration Component
+date: "2019-11-20T22:10:27.284Z"
+tags:
+  - reactjs
+  - playground
+  - demo
+  - component
+published: true
+ogImage:
+  title: Introducing Playground
+  background: "#ffffff"
+  imageUrl: "\U0001F973"
+  fontColor: "#000000"
+  filename: introducing-playground
+---
+
+import { BlogPostHeader } from "components/BlogHome";
+
+<BlogPostHeader
+  frontmatter={{
+    title: "Introducing Playground - A Frontend Demonstration Component",
+    date: "2019-11-20T22:10:27.284Z",
+  }}
+/>
+
+[Playground](https://github.com/agneym/playground) is a React Component that can be used for demonstrating HTML, CSS and JavaScript code.
+
+<Playground
+  initialSnippet={{
+    markup: `<div id=app />`,
+    css: `h1 {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: dodgerblue;
+    }`,
+    javascript: `import { h, Component, render } from 'preact';
+import htm from 'htm';
+ 
+const html = htm.bind(h);
+ 
+const app = html\`<h1>Hello World from Playground!</h1>\`
+render(app, document.getElementById('app'));`,
+  }}
+  defaultEditorTab="javascript"
+  transformJs
+/>
+
+## Features
+
+1. Allows bare ES package imports. This means you can add imports for any library that supports ES Module resolution and playground will automatically load it into your code.
+1. Load preview for predefined code.
+1. Autoreloading preview.
+1. See console output in the component itself.
+1. Control tab loaded by default for your use-case.
+
+### How does module imports work?
+
+If an NPM package exposes an endpoint for "module", then you can direcly import this package by it's name.
+
+```js
+import { format } from "date-fns";
+
+format(new Date(2014, 1, 11), "yyyy-MM-dd");
+```
+
+Unfortunately, not all packages currently support this feature. You can search through an entire list of packages through [pika.dev](https://pika.dev).
+
+You can use community created packages to replicate the functionality. For eg. React would be:
+
+```js
+import React, { createElement } from "@pika/react";
+import ReactDOM from "@pika/react-dom";
+
+ReactDOM.render(
+  createElement("div", {}, "Hello World"),
+  document.getElementById("app"),
+);
+```
+
+[See Complete Documentation](https://github.com/agneym/playground)

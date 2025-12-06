@@ -1,0 +1,74 @@
+---
+title: Link to any text with Bookmarklet
+date: "2020-06-11T22:12:03.284Z"
+tags:
+  - chrome
+  - scroll
+  - text
+  - highlight
+  - edge
+  - google
+published: true
+---
+
+import { BlogPostHeader } from "components/BlogHome";
+
+<BlogPostHeader
+  frontmatter={{
+    title: "Link to any text with Bookmarklet",
+    date: "2020-06-11T22:12:03.284Z",
+  }}
+/>
+
+If you are using Chrome or the new Edge browser, you might have noticed that opening a page from Google Search highlights and scrolls to the text that had your search query.
+
+![Rick and Morty Suace details at McDonalds highlighted on a CNN page](https://dev-to-uploads.s3.amazonaws.com/i/dbs0gergcmdug95gra4a.png)
+
+The magic ✨ here is in the URL.
+
+> https://www.cnet.com/news/rick-and-morty-szechuan-sauce-is-coming-back-but-theres-a-catch/#:~:text=Rick%20and%20Morty%20fans%2C%20maybe,Adult%20Swim%20comedy%20in%202017.
+
+The `#:~:text=` part of the URL is the part of a [new text fragment specification](https://github.com/WICG/scroll-to-text-fragment). It's currently supported in Chrome, Opera and Edge.
+
+It's mostly useful for search engines to directly link to and highlight text (which might explain why the Chromium browsers have it) but it can also be used by anyone.
+
+There is a lot to unravel from the spec, but let us look at the simplest URL fragment:
+
+```
+URL/#:~:text=some-text
+```
+
+Here `#:~:` is the part that seperates the text fragment from rest of the URL. `text=` would be the query parameter indicating that it is text that is to be scrolled to, it's value indicates the text.
+
+How can we use this knowledge to scroll to a content using JavaScript?
+
+```javascript
+// We use getSelection to get string version of text
+const text = window.getSelection().toString();
+
+// We add the text to current URL and URL encode the text
+const newUrl = window.location.href + "#:~:text=" + c;
+console.log(newUrl);
+```
+
+This makes it very easy to implement it on your blog or website, but how do we create links to other people's pages?
+
+Here is a bookmarklet to help:
+
+```
+javascript:(function()%7Bwindow.location%20%3D%20window.location.href%20%2B%20%22%23%3A~%3Atext%3D%22%20%2B%20encodeURIComponent(window.getSelection().toString())%7D)()
+```
+
+You can copy the above text and add a bookmark in your browser with this as URL. Next time you click on the bookmark with text selected, you will have the URL with text ready.
+
+Adding a bookmarklet to Chrome:
+![Alt Text](https://dev-to-uploads.s3.amazonaws.com/i/3d0jkvwizmsx8hyzmfse.gif)
+
+Using the Bookmarket:
+![Alt Text](https://dev-to-uploads.s3.amazonaws.com/i/tqewr7i29xguw89l8wtz.gif)
+
+There are lots of restrictions to this that you can find on the spec. But an important one being that you can only link to complete words (for some reason), so if you have a half of a word, won't work.
+
+There more to the spec like adding context, and specifying start and end text, I suggest you read through if Mozilla implements it or if you are just bored.
+
+Have fun 😁

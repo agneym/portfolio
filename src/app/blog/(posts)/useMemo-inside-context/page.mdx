@@ -1,0 +1,211 @@
+---
+title: useMemo inside Context API - React
+date: "2021-03-27T22:12:03.284Z"
+tags:
+  - useMemo
+  - context
+  - react
+  - javascript
+published: true
+---
+
+import { BlogPostHeader } from "components/BlogHome";
+
+<BlogPostHeader
+  frontmatter={{
+    title: "useMemo inside Context API - React",
+    date: "2021-03-27T22:12:03.284Z",
+  }}
+/>
+
+One of the most common places a `useMemo` is seen (in the wild) is for memoizing React context value. Let's look into what are the advantages of doing this and how we can prevent unnecessary renders using this pattern.
+
+---
+
+Context provides a way to pass data through the component tree without having to pass props down manually at every level. General use case for a Context is as follows:
+
+```jsx
+const UserContext = React.createContext(); // could have a default value
+
+function UserCtxProvider({ children }) {
+  const [authUser, setAuthUser] = React.useState(null);
+
+  const value = React.useMemo(() => ({
+    authUser, setAuthUser
+  }), [authUser]);
+
+  return (
+    <UserContext.Provider value={value}>
+      {children}
+    <UserContext.Provider>
+  );
+}
+
+function App() {
+  return (
+    <UserCtxProvider>
+       <Login />
+       <Home />
+       {/* Rest of the app */}
+    </UserCtxProvider>
+  );
+}
+```
+
+By adding context provider, we are ensuring that all components rendered from `App` component can access authenticated user object from context without having it to be passed down multiple levels to the bottom. The children can access it with the `useContext` hook.
+
+```jsx
+function Greeting() {
+  const { authUser } = useContext(UserContext);
+  return <p>Hello {authUser?.name}</p>;
+}
+```
+
+Whenever the value in `UserContext` changes, `Greeting` component would automatically be re-rendered by React.
+
+---
+
+If you have used this before, you will notice a common pattern that I used in the example. The context value is passed through a `useMemo` before being provided to the `Provider` component. The most common advice on the Internet is that this prevents unnecessary renders.
+
+Rather than blindly follow the pattern, we will look to analyse how `useMemo` can help and learn more about how React renders components along the way. Let's look at creating an example to play around with.
+
+# Creating a sample context
+
+We will create a context using `useMemo` and then one without it so we can compare what happens with both.
+
+<iframe
+  src="https://codesandbox.io/embed/context-with-and-without-memo-eb8ep?fontsize=14&hidenavigation=1&theme=dark"
+  style={{
+    width: "100%",
+    height: "500px",
+    border: 0,
+    borderRadius: "4px",
+    overflow: "hidden",
+  }}
+  title="context with and without memo"
+  loading="lazy"
+  allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
+  sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
+></iframe>
+
+We have created two `CustomCtx` with providers `ProviderWithMemo` and `ProviderWithoutMemo` (I'm very creative with names, I know). Clicking the `Increment` button increments the count by updating the context value, this will also print logs of rerendering component.
+
+> If you open React DevTools panel on codesandbox, you can check _Highlight updates when components render_ option to visually follow along when a component renders.
+
+From the logs, we can see that
+
+- When context changes, the corresponding child rerenders. Because the child is subscribed to the context, this is aligned with our expectations.
+- When the parent rerenders, both the children rerender.
+
+So adding _just_ `useMemo` has not prevented any unnecessary rerenders so far.
+
+What if there was an extra parent in between? Would the parent rerender when the context is updated? Would the extra parent rerender if main parent state is updated?
+
+```jsx
+<Context.Provider value={value}>
+  <Parent />
+</Context.Provider>
+```
+
+# Memoization and useMemo
+
+To find out why `useMemo` did not prevent any rerenders, let's look at what it does in the first place. React docs describe it as follows:
+
+> Pass a “create” function and an array of dependencies. useMemo will only recompute the memoized value when one of the dependencies has changed. This optimization helps to avoid expensive calculations on every render.
+
+Our usage with context does not seem to align with this definition of `useMemo`. Creating an object is not an expensive operation in any way.
+
+But since it is an object being created, but there is an advantage of using of recreating the object only when one of the fields change.
+
+## Referential Equality
+
+JavaScripts objects follow the rule of referential equality, which means that for them to be equal (`===`, `==` or `Object.is`) they need to be of the same instance.
+
+```jsx
+/* Even when all fields are the same, two objects are not equal */
+{} == {} // false
+{ name: 'Bruce' } == { name: 'Bruce' } // false
+
+/* If both objects share the same instance, they are equal */
+const person1 = { name: 'Wayne' };
+const person2 = person1;
+person1 == person2 // true
+/* Even if you change one of the fields */
+person2.name = 'Batman';
+person1 == person2 // true
+```
+
+---
+
+In our context example, we have used `useMemo` to make sure that the object instance is not changed unless the context value itself has not changed.
+
+In fact, We are already using this very technique to force a render from the `App` component. `useState` compares (`==`) current state with previous state and if they are different, rerenders the component. We are setting the state to `{}` on clicking the button so that React would find a new instance of empty object every time it updates.
+
+```jsx
+function App() {
+  const [, forceRender] = React.useState();
+  return <button onClick={() => forceRender({})}>Re-Render</button>;
+}
+```
+
+But by default, React does not use this comparison mechanism for parent-child rerenders. Instead it rerenders all child components when the parent rerenders. How do we force it to check for equality?
+
+# Memoizing the component
+
+We can use the higher order component `memo` provided by React to check equality before rerendering a component. This works as follows:
+
+> If your component renders the same result given the same props, you can wrap it in a call to React.memo for a performance boost in some cases by memoizing the result. This means that React will skip rendering the component, and reuse the last rendered result.
+
+But what about the context? The child component needs to render when context value changes, right? The docs have an answer for that as well.
+
+> React.memo only checks for prop changes. If your function component wrapped in React.memo has a `useState`, `useReducer` or `**useContext**` Hook in its implementation, it will still rerender when state or context change.
+
+Let's memoize our `Child` component.
+
+<iframe
+  src="https://codesandbox.io/embed/context-with-and-without-usememo-with-memo-xsi8r?fontsize=14&hidenavigation=1&theme=dark"
+  style={{
+    width: "100%",
+    height: "500px",
+    border: "0",
+    borderRadius: "4px",
+    overflow: "hidden",
+  }}
+  title="context with and without useMemo - with Memo"
+  loading="lazy"
+  allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
+  sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
+></iframe>
+
+Now, if we pop open the console, we can see that `Child` with `useMemo` does not rerender when the parent component is updated.
+
+### What if there is an extra parent in between?
+
+<iframe
+  src="https://codesandbox.io/embed/context-with-and-without-usememo-extra-parent-lgisf?fontsize=14&hidenavigation=1&theme=dark"
+  style={{
+    width: "100%",
+    height: "500px",
+    border: "0",
+    borderRadius: "4px",
+    overflow: "hidden",
+  }}
+  title="context with and without useMemo - extra Parent"
+  loading="lazy"
+  allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
+  sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
+></iframe>
+
+- The parent re-renders on `App` updates. But the child in memoized context does not (the Child itself is a memoized component).
+- The parent does not re-render if the context is changed. `Parent` is part of `children` prop in `ContextProvider` but it is not the component's child nor is it subscribed to the context.
+
+---
+
+Opinion: I just leave `useMemo` into most of the context values created. Other developers (or myself) might add `memo` to give the app a performance boost finding something is slow later on. At that point, it's difficult to find all context states and memoize values as changing context value change might not even happen during testing phase. They seem like very unrelated concerns.
+
+But as they say, [Premature optimization is the root of all evil](https://m.xkcd.com/1691/) so please do measure before you optimise. Adding `memo` to all components in the application would just add development time and not help with the performance boost.
+
+There are other ways to optimise your React contexts:
+
+- [How to optimize context value - Kent C Dodds](https://kentcdodds.com/blog/how-to-optimize-your-context-value/) - Kent provides a solution by splitting context setter and state into two different contexts.
+- If you like to optimise how the child rerenders when context value changes, [Dan Abramov has suggestions with examples](https://github.com/facebook/react/issues/15156#issuecomment-474590693).

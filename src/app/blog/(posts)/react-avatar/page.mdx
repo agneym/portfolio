@@ -1,0 +1,75 @@
+---
+title: React - Avatars and Avatar Groups
+date: "2020-03-25T22:12:03.284Z"
+tags:
+  - react
+  - avatar
+  - avatar group
+  - auto contrast
+published: true
+---
+
+import { BlogPostHeader } from "components/BlogHome";
+
+<BlogPostHeader
+  frontmatter={{
+    title: "React - Avatars and Avatar Groups",
+    date: "2020-03-25T22:12:03.284Z",
+  }}
+/>
+
+Avatar components are a huge part of our pages nowadays. From homepages to profile, the proliferation of round avatars everywhere. What would be the challenges of just adding an image in place?
+
+1. Images take time to load, the space would be empty till then. This also means the layout _jumps_ around when the image loads (if size was not explicitly specified beforehand)
+1. There might be faulty links with unprocessed images and these end up with a nasty broken image.
+1. Text based avatars are easy to create but hard to maintain consistency.
+1. When text in avatars is too long, it breaks the design down.
+1. If you are choosing from lots of different colors, then the reading contrast for text fallbacks becomes an issue.
+1. Stacking multiple images together.
+1. Ensuring consistency across many different use cases.
+
+I'm open sourcing a component that I have been using to work around these issues:
+
+```bash
+npm install @agney/react-avatar
+# OR
+yarn add @agney/react-avatar
+```
+
+Currently it requires React 16.8 or above and Styled Components v4 or above.
+
+> Styled Components is a dependency that I'm actively trying to abstract out.
+
+## Features ✨
+
+1. Ability to render image avatar or text avatar as circle or square.
+1. Ability to render text based fallbacks for images for the time they take to load or error.
+1. Renders text based avatars and backgrounds based on text passed in.
+1. Autoscales text if it doesn't fit the container width.
+1. Automatically determines readable text color depending on background.
+1. Exposes a hook to use/generate gravatar for a user.
+1. Exposes a context so you can configure avatar components across your application.
+
+## Usage
+
+```javascript
+import { Avatar } from "@agney/react-avatar";
+import React from "react";
+
+const App = () => {
+  return (
+    <Avatar
+      src="https://gravatar.com/avatar/7c4ff521986b4ff8d29440beec01972d?s=400&d=robohash&r=x"
+      text="CM"
+    />
+  );
+};
+
+export default App;
+```
+
+For full documentation, visit [Github Repository](https://github.com/agneym/react-avatar)
+
+[Storybook for Demos](https://agneym.github.io/react-avatar/?path=/docs/)
+
+> Follow me on [Twitter](https://twitter.com/agneymenon) for updates.

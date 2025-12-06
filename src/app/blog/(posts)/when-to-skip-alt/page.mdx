@@ -1,0 +1,114 @@
+---
+title: When can we skip the alt tag? - Accessibility
+date: "2019-05-05T22:12:03.284Z"
+tags:
+  - image alt tag
+  - html
+  - accessibility
+  - images
+published: true
+---
+
+import calvinHobbes from "./calvin-and-hobbes.gif";
+import { BlogPostHeader } from "components/BlogHome";
+import Image from "next/image";
+
+<BlogPostHeader
+  frontmatter={{
+    title: "When can we skip the alt tag? - Accessibility",
+    date: "2019-05-05T22:12:03.284Z",
+  }}
+/>
+
+Images have `alt` attributes that describe the said image for screen readers. The `alt` tags are also shown by browsers when the image does not load. The question we are looking at today is, When is it okay to skip the alt tag?
+
+## Never.
+
+That was a trick question, you should never skip the alt tag.
+
+But there are times when you can leave it empty and those are the cases I plan to explore in this post.
+
+## How do we leave it empty?
+
+```html
+<img src="{source}" alt="" />
+```
+
+That was simple.
+
+## What are the consequences of leaving it empty?
+
+1. Screen readers will not detect your image.
+2. If it is broken, there will not be an alternative text to determine the context provided by the image.
+
+## When do we use the alt tag?
+
+This depends on the picture and the context it is presented in.
+
+If a user is able to understand the use of the picture in the context it is used in without using any caption, this would be the case for you to use an alt tag to explain it to a non visual user.
+
+For example, consider this image:
+
+<Image src={calvinHobbes} alt="A Boy and his imaginary friend dancing" />
+
+Without any companion text, a person who uses the visual stimulus can tell that this is a boy and a tiger (probably an imaginary friend of the small boy) dancing in joy. This is the context you need to provide to the non visual user using the `alt` tag.
+
+## Decorative Images
+
+These cover the cases when the image is merely used for decoration purposes. For example, the images that could be used to seperate sections in articles.
+
+These can already be indicated in HTML using `section` tags and do not require the presence of these decorative images. Providing an alt text to these images just confuse the non visual user further to their usage. Furthermore, these tend to be repeated across the page in most cases and would be irritating when repeated by reader several times.
+
+It is okay to leave the `alt` tag empty in this case.
+
+## When do we use the caption?
+
+Sometimes just the image is not enough. Even for the visual user,it requires some kind off textual information to make sense of the data.
+
+For example, consider the same image that we used in the earlier example with a different title:
+
+<div style={{ backgroundColor: "#fcfbeb", padding: "1.2rem 1rem" }}>
+  <h3 style={{ margin: 0 }}>Golden Age of Cartoons</h3>
+  <figure>
+    <img src={calvinHobbes} alt="" />
+    <figcaption>
+      Characters from Calvin and Hobbes Cartoon by Bill Watterson
+    </figcaption>
+  </figure>
+</div>
+
+Now, the image is used in a different context from before. Even if the article is about Cartoons in general, there might be audience to your article who are not aware of [Calvin and Hobbes](https://en.wikipedia.org/wiki/Calvin_and_Hobbes) (shame on you!).
+
+For them we introduce the concept of a caption for the image:
+
+```html
+<figure>
+  <img src="source" alt="" />
+  <figcaption>
+    Characters from Calvin and Hobbes Cartoon by Bill Watterson
+  </figcaption>
+</figure>
+```
+
+We associate the caption with the image with help of [`figure`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/figure) tag.
+
+Now, notice that both visual and non visual audience are treated to the same information. Providing the `alt` tag on the image would lead to no more information for the non visual information. Hence, in this situation we leave the `alt` tag as empty.
+
+## When images serve a functionality within the page.
+
+Images/Icons often serve as placeholders inside buttons or links that can be clicked. These are often cases when the `alt` tag should never be missed.
+
+Several examples for this are perhaps Zoom, Print, Search, Download buttons that are present on several webpages. These actions are characterised by distinctive icons rather than text and very often they contain only icons. In this case, it is very important that the `alt` tag spell out the functionality which will be carried out when clicking on the image.
+
+There may also be cases, where image is a decoration.
+
+![Example download button with icon and text](https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSPvRbTTNPUnqQsWvtYHySO7iYRymAgGz_G8dbInXwzhmh_p6pN)
+
+In this case, even though there is an icon representing download, it is accompanied by text. Hence, providing an alt text does not bring anything new to the table that the text has not announced. This is a case where `alt` can be skipped.
+
+## External Resources on the topic:
+
+1. [https://www.w3.org/WAI/tutorials/images](https://www.w3.org/WAI/tutorials/images)
+2. [https://accessibility.psu.edu/images/imageshtml/](https://accessibility.psu.edu/images/imageshtml/)
+
+Is there something I missed? Something wrong? Something good? Ping me on [Twitter](https://twitter.com/agneymenon)

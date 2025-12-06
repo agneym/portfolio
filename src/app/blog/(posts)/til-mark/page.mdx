@@ -1,0 +1,41 @@
+---
+title: TIL - mark
+date: "2019-06-12T22:12:03.284Z"
+tags:
+  - html
+  - concepts
+  - mark tag
+  - til
+published: true
+---
+
+import { BlogPostHeader } from "components/BlogHome";
+
+<BlogPostHeader
+  frontmatter={{
+    title: "TIL - mark",
+    date: "2019-06-12T22:12:03.284Z",
+  }}
+/>
+
+From series - Today I learned. There is a tag in HTML that helps us highlight stuff just using it. And too many times I have used `span`s with a highlight class, Damn it!
+
+Let's look at what the `mark` tag brings in and how to use it.
+
+<Playground
+  id="mark-intro"
+  initialSnippet={{
+    markup: `<p>This is a long text that I want you to look very <mark>closely</mark> at</p>`,
+    css: ``,
+    javascript: ``,
+  }}
+/>
+
+Just embed mark where you want the highlight and you are good to go.
+
+#### Where do we use this?
+
+1. Do you want to highlight the most relevant parts of a paragraph? Use `mark`.
+2. Do you want to highlight the term user searched for? Use `mark`
+3. Want to try syntax highlighting? Don't do `mark`, Use a [library](https://prismjs.com/).
+4. Want to highlight the most important part in a paragraph? Don't use `mark`, use `strong`.

@@ -1,0 +1,339 @@
+---
+title: Type Coercion - JavaScript Concepts 4
+date: "2019-02-03T22:12:03.284Z"
+tags:
+  - type coercion
+  - javascript
+  - types
+  - must learn javascript concepts
+published: true
+---
+
+import { BlogPostHeader } from "components/BlogHome";
+
+<BlogPostHeader
+  frontmatter={{
+    title: "Type Coercion - JavaScript Concepts 4",
+    date: "2019-02-03T22:12:03.284Z",
+  }}
+/>
+
+This is part of a series where I try to explain through each of [33 JS Concepts](https://github.com/leonardomso/33-js-concepts).
+
+This part corresponds to the Type Coercion.
+
+First let us take a quick recap on types in JavaScript.
+
+> There are generally two types: Primitives and Objects.
+
+> Primitives are number, string, null, undefined, boolean and symbols.
+
+> Objects are everything else
+
+Type Conversions are generally of two types: Implicit or Explicit.
+
+1. Implicit conversion means that the compiler is going behind your back to convert something you give it without you explicitly saying it. This is also known as Type Coercion.
+
+2. Explicit coercion happens when you explicitly tell the compiler what type to convert to. This is popularly known as type casting.
+
+## Who decides what is explicit and implicit?
+
+Like in most cases, the spec does. But if you had to figure out rules, it would completely depend on your knowledge whether something is implicit or explicit.
+
+For eg. You might know that unary `+` operator forces anything to convert to an integer. But a junior developer joining the team tomorrow might not. So what is explicit for you just turned implicit for another person.
+
+## Can any type be coerced to any other type?
+
+Of course not. There is no way the compiler converts "three" to 3 whatever conversion tactics you use.
+
+Type coercion always converts types to Primitives or Scalars. There is no conversion that results in the opposite.
+
+> Except may be [boxing], but that is not coercion in the meaning of things.
+
+## Numerical Conversions
+
+Here, we discuss how things can turn into `number` types.
+
+### 1. Unary plus
+
+<Playground
+  id="unary-plus"
+  initialSnippet={{
+    markup: ``,
+    css: ``,
+    javascript: `const numberOfDays = "365";
+const booleanType = true;
+const object = {
+  a: 1,
+}
+const object2 = {
+  a: 1,
+  valueOf: function() {
+    return this.a;
+  }
+}
+const array = [2];
+const array2 = [2,4];
+ 
+console.log(+numberOfDays, +booleanType, +object, +object2, +array, +array2);`,
+  }}
+  defaultEditorTab="javascript"
+  defaultResultTab="console"
+/>
+
+Unary Plus operator before any string/object/boolean converts it into a number (if possible)
+
+### 2. Number()
+
+<Playground
+  id="number()"
+  initialSnippet={{
+    markup: ``,
+    css: ``,
+    javascript: `const numberOfDays = "365";
+const booleanType = true;
+const object = {
+  a: 1,
+}
+const object2 = {
+  a: 1,
+  valueOf: function() {
+    return this.a;
+  }
+}
+const array = [2];
+const array2 = [2,4];
+const date = new Date();
+ 
+console.log(Number(numberOfDays), Number(booleanType), Number(object), Number(object2), Number(array), Number(array2), Number(date));`,
+  }}
+  defaultEditorTab="javascript"
+  defaultResultTab="console"
+/>
+
+**This is as explicit as explicit gets**
+
+If conversion is not possible, it is converted to `NaN`, _which you need to be very vary as it is very inconsistent in it's behavior_
+
+If objects have a `valueOf` function, it is called for conversion to `number`, otherwise `NaN` is returned.
+
+Arrays have a `valueOf` function defined by default, but as you can guess it works only when there is a single element in the array.
+
+One special detail to remember:
+
+- `null` is converted to 0
+- `false` is converted to 0
+- `undefined` is converted to `NaN`
+
+When numerical conversion is used on a `Date()` object, it gives you a timestamp.
+
+## String Conversions
+
+### 1. Plus Operator
+
+> This guy seems to be the culprit here too.
+
+As in most places + in between two operands is either string concatenation or addition. This is pretty simple when both operands are of the same type. But what happens when it is not?
+
+<Playground
+  id="plus-operator"
+  initialSnippet={{
+    markup: ``,
+    css: ``,
+    javascript: `console.log(
+  365 + "",
+  365 + "1",
+  "1" + 365,
+  1000 * 1000 * 10000 * 10000 * 1000 * 1000 * 1000 + ""
+);
+ 
+const obj = {
+  a: 1,
+  toString: function() {
+    return "this string";
+  }
+}
+const array = [1,2];
+console.log(obj + "", array + "");
+`,
+  }}
+  defaultEditorTab="javascript"
+  defaultResultTab="console"
+/>
+
+If we add a string to a number, the string always wins. But if the number gets very large, it takes the form of an exponentiation operator as a string.
+
+If the object implements `toString()` function, that is returned on converting to string. Otherwise, you get the infamous `[object Object]`.
+
+Arrays, by default implement a `toString()` function that is equal to `array.join(",")`.
+
+### 2. String()
+
+Same rules. More explicit.
+
+### 3. toString()
+
+Same rules. Doesn't get more explicit that this.
+
+## Boolean Conversions
+
+Before boolean conversions, we have to talk about falsy values.
+
+ES Spec defines falsy values as:
+
+- null
+- undefined
+- false
+- 0, +0, -0
+- ""
+- NaN
+
+Falsy values are coerced into `false` when applying a boolean type conversion.
+
+#### What about truthy values?
+
+ES Spec defines all values that are not falsy as truthy.
+
+That's it. There is no table of values. Just the ones that aren't falsy.
+
+### Explicit coercion
+
+1. `Boolean()`
+2. `!!`
+
+<Playground
+  id="explicit-boolean"
+  initialSnippet={{
+    markup: ``,
+    css: ``,
+    javascript: `console.log(
+  !!3,
+  !!"a",
+  !!"",
+  !!null,
+  !!undefined,
+  !!{},
+  !![]
+);`,
+  }}
+  defaultEditorTab="javascript"
+  defaultResultTab="console"
+/>
+
+The `!` operator turns `true` to `false` and `false` to `true`. You can guess what two of those can accomplish.
+
+There are two things to remember here, An empty object `{}` and `[]` are not falsy values. If you want to run checks on them, you are better off with `Object.keys({})` and `[].length`.
+
+The same rules apply for Boolean().
+
+3 Bitwise Operator ~
+
+What does this do? This operator takes the [2s compliment](https://en.wikipedia.org/wiki/Two%27s_complement) of a number.
+
+#### I was sleeping in the math class at this point.
+
+Well, just remember if you take 2s compliment of `x`, you get `-(x + 1)`
+
+<Playground
+  id="2s-compliment"
+  initialSnippet={{
+    markup: ``,
+    css: ``,
+    javascript: `console.log(
+~1,
+~100,
+~Infinity,
+~-1
+)`,
+  }}
+  defaultEditorTab="javascript"
+  defaultResultTab="console"
+/>
+
+#### Okay, that's cool. Why is this important?
+
+Well, because of the last one. `~-1 = 0`
+
+-1 is known as the sentinel value. Very famously, `indexOf` function returns -1 to signal that the argument is not present in the string.
+
+To make sense of this we would have to provide:
+
+<Playground
+  id="index-of"
+  initialSnippet={{
+    markup: ``,
+    css: ``,
+    javascript: `const stringValue = "long string";
+ 
+if(stringValue.indexOf("o") !== -1) {
+  console.log("o is present");
+}
+ 
+if(~stringValue.indexOf("o")) {
+  console.log("o is present");
+}
+`,
+  }}
+  defaultEditorTab="javascript"
+  defaultResultTab="console"
+/>
+
+Which one is more readable? Jury is still out.
+
+### Implicit Coercion
+
+Even the most hard coercion haters use this at some point.
+
+Expressions that force coercion are:
+
+1. if
+2. for
+3. while
+4. ternary
+5. || and &&
+
+All of them are conditionals. Whatever you provide inside these (adapt it to logical and ternary) expressions gets converted to a boolean.
+
+The rules are pretty straightforward for the first four. So we will skip them and focus on the last. The logical operator.
+
+The logical operators `||` and `&&` do not convert both the sides of the expression to boolean. In fact, both of them only convert the first operator given to them to a boolean.
+
+The `||` operator converts the first to boolean. If it is a truthy value, it returns the first otherwise the second.
+
+The `&&` operator converts the first to boolean, If it is a truthy value, it returns the second, returns false otherwise.
+
+This leads to some interesting applications:
+
+<Playground
+  id="logical-operators"
+  defaultEditorTab="javascript"
+  defaultResultTab="console"
+  initialSnippet={{
+    markup: ``,
+    css: ``,
+    javascript: `function someFn(ar) {
+  const defaultValue = ar || "this";
+  return defaultValue;
+}
+ 
+console.log(
+  someFn(null),
+  someFn("we have a value")
+);
+ 
+const signedIn = true;
+const userRole = signedIn && "admin";
+console.log(userRole);
+`,
+  }}
+/>
+
+The `&&` operator is very widely used in React for conditional rendering.
+
+## Does this change the way I write code?
+
+After reading this, you should immediately put to test which of these you knew already and which of these your coworkers could know. That is ultimately what decides what is implicit and what is explicit. Implicit conversion, though seemigly evil makes the code easier to read (not always, but when everyone involved knows the rules).
+
+Having an opinion on which of these can be used, or should not be used is very important on maintaining a codebase.
+
+Is there something I missed? Something wrong? Something good? Ping me on [Twitter](https://twitter.com/agneymenon)

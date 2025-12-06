@@ -1,0 +1,76 @@
+---
+title: Dynamic values in Tailwind
+date: "2023-10-22T22:02:03.284Z"
+tags:
+  - tailwind
+  - react
+  - javascript
+  - dynamic
+published: true
+---
+
+import { BlogPostHeader } from "components/BlogHome";
+
+<BlogPostHeader
+  frontmatter={{
+    title: "Dynamic values in Tailwind",
+    date: "2023-10-22T22:02:03.284Z",
+  }}
+/>
+
+When working with Tailwind CSS, there are instances where you may need to use dynamic values, such as data fetched from the backend or calculations performed within your code.
+
+In these scenarios, you might initially consider using arbitrary values:
+
+```javascript
+function Content() {
+  return <main className="h-[calc(100%_-_64px)]"></main>;
+}
+```
+
+In the example above, the `64px` value is arbitrary and stands alone—it isn't tied to any external variable. However, be wary of directly interpolating JavaScript variables within class names, as Tailwind CSS documentation advises against it.
+
+A clearer and more maintainable approach is to utilize CSS variables:
+
+```javascript
+function Content() {
+  return (
+    <main
+      style={{ "--header-height": "64px" }}
+      className="h-[calc(100%_-_var(--header-height))]"
+    ></main>
+  );
+}
+```
+
+For an even more abstracted method:
+
+```javascript
+function Content() {
+  return (
+    <main
+      style={{
+        "--header-height": "64px",
+        "--main-height": "calc(100% - var(--header-height))",
+      }}
+      className="h-[var(--main-height)]"
+    ></main>
+  );
+}
+```
+
+You can also use the same technique to represent values from the backend. This gives us the extra advantage of using modifiers like `md:` or `hover:` which isn't possible using inline styles. Taking an example out of the Tailwind blog:
+
+```javascript
+export function MyComponent({ company }) {
+  return (
+    <div
+      style={{
+        "--brand-color": company.brandColor,
+        "--brand-hover-color": company.brandHoverColor,
+      }}
+      className="bg-[--brand-color] hover:bg-[--brand-hover-color]"
+    />
+  );
+}
+```

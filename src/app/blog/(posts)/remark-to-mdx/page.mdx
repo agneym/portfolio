@@ -1,0 +1,146 @@
+---
+title: Transitioning from Remark to MDX
+date: "2019-01-27T22:12:03.284Z"
+tags:
+  - gatsby
+  - remark to mdx
+  - moving to use mdx
+  - transition from remark to mdx
+published: true
+---
+
+import { BlogPostHeader } from "components/BlogHome";
+
+<BlogPostHeader
+  frontmatter={{
+    title: "Transitioning from Remark to MDX",
+    date: "2019-01-27T22:12:03.284Z",
+  }}
+/>
+
+Moving my blog from Remark to MDX.
+
+## Why?
+
+[MDX](https://github.com/mdx-js/mdx) means that you can use JSX components in your markdown.
+
+This means that blog posts down the road can have any type of content. Embed tweets, iframes without wandering around for a remark plugin, use live, editable snapshots, provide beautiful chart based visualisations, showcase some animations, bounded only by imagination (instead of remark plugins)
+
+## How?
+
+1. Start with installing `mdx` on your project with:
+
+```bash
+npm install @mdx-js/mdx @mdx-js/tag
+```
+
+2. Add to it the `gatsby` plugin for `mdx`:
+
+```
+gatsby-mdx
+```
+
+3. Add the plugin to `gatsby-config.js`
+
+```js
+plugins: [
+  {
+    resolve: `gatsby-mdx`,
+    options: {
+      defaultLayouts: { default: path.resolve("./src/components/layout.js") },
+    },
+  },
+];
+```
+
+4. Change the `gatsby-node` page generation algorithm for `mdx`:
+   1. Redo the query to:
+
+```js
+  {
+-    allMarkdownRemark {
++    allMdx {
+  }
+```
+
+2. Getting the data from query, use:
+
+```js
+result.data.allMdx.edges;
+```
+
+3. Inside the function `onCreateNode`, when checking for `node.internal.type`:
+
+```js
+if (node.internal.type === `Mdx`) {
+```
+
+4. At the places where you get data, (the listing page and blog post page),
+   repeat Step 2.
+
+```js
+  {
+-    allMarkdownRemark {
++    allMdx {
+  }
+```
+
+## What about remark plugins? Can I still use them?
+
+Sure you can. That's the beauty.
+
+Gatsby MDX provides an option for `gatsbyRemarkPlugins` to be included. You can use it like:
+
+```js
+options: {
+  defaultLayouts: {
+    default: path.resolve('./src/templates/blog-post.js'),
+  },
+  gatsbyRemarkPlugins: [
+    {
+      resolve: `gatsby-remark-images`,
+      options: {
+        maxWidth: 590,
+        showCaptions: true,
+      },
+    },
+    {
+      resolve: `gatsby-remark-external-links`,
+    },
+  ]
+}
+```
+
+Caution: It does not work with the \`\` format just yet. So you will always have to use an object with `resolve` key to put it in there.
+
+Now, you can rename all files to `mdx` and restart the server.
+
+### 🎉🎉 We are Done. Just like that.
+
+## Getting syntax errors in the existing blog.
+
+I got lots and lots.
+
+```bash
+SyntaxError: unknown: Expected corresponding JSX closing tag for <img>
+```
+
+If you were using Github flavored markdown before, there are chances that you were embedding some JSX earlier. But the transition to MDX means that all that is going to be treated as JSX from now and rules for JSX applies.
+
+Images are `<img />` and not `<img>`
+
+Once this is fixed, you can restart the server (I had to delete the cache and try too)
+
+## How is the experience so far?
+
+Not so good. But I'm hoping for it to get better.
+
+There were several times during this when I had to stop and start the server to have it working. Worse, there were times when deleting the cache and restarting was the only way to fix the issue.
+
+MDX isn't very good at errors either. If you make an import error, which you will obviously do, MDX throws a cryptic error (with bright red background) and you have to restart the server to make it go away.
+
+The editor support is not very good. Unlike remark, there is no output directly from VS Code. You can install the MDX language support to get more syntax highlighting. But it might stop working when there is a space or tab extra. So barely working! Because of the support, writing articles becomes a pain with editor showing off unnecessary suggestions when typing.
+
+I'm also moving from `remark-prismjs` to `prism-react-renderer` now that I can write JSX components. That has been smooth and hope to have more customisations working on how code is being shown. There has been a bug bothering me, with `prism-react-renderer` and `mdx` renderer not allowing any blank lines in between code. Currently that is hotfixed with spaces on those lines, but that is not going to be pretty to copy. Have to get that fixed.
+
+Is there something I missed? Something wrong? Something good? Ping me on [Twitter](https://twitter.com/agneymenon)

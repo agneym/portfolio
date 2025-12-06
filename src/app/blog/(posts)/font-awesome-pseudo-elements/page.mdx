@@ -1,0 +1,105 @@
+---
+title: Font Awesome Icons with Pseudo-Elements
+date: "2019-09-09T22:12:03.284Z"
+tags:
+  - javascript
+  - font-awesome
+  - pseudo elements
+  - before
+  - after
+published: true
+ogImage:
+  title: Font Awesome Icons with Pseudo-Elements
+  background: "linear-gradient(to right,"
+  filename: font-awesome
+---
+
+import { BlogPostHeader } from "components/BlogHome";
+
+<BlogPostHeader
+  frontmatter={{
+    title: "Font Awesome Icons with Pseudo-Elements",
+    date: "2019-09-09T22:12:03.284Z",
+  }}
+/>
+
+Font Awesome's fifth iteration is huge with the company finally moving to SVG icons from their flagship icon fonts.
+
+With this change, the company has also published packages like [`react-fontawesome`](https://www.npmjs.com/package/@fortawesome/react-fontawesome) and [`@fortawesome/fontawesome-svg-core`](https://fontawesome.com/how-to-use/on-the-web/advanced/svg-javascript-core).
+
+This is great for the consumer, because we no longer have to ship the complete icon font. SVG imports with Package managers like Webpack and Parcel ensure that only the icons we use are present in the bundle.
+
+But lots of earlier code would depend on pseudo elements, sort off like this:
+
+```html
+<button class="button">Thing</button>
+```
+
+```css
+.button {
+  width: 100%;
+  padding-left: 4rem;
+}
+.button::before {
+  content: "\f7e5";
+  font-family: "Font-Awesome";
+}
+```
+
+For comparison, here is how you render an SVG icon when rendering with React FontAwesome library and SVG Core:
+
+```javascript
+import { faCoffee } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import ReactDOM from "react-dom";
+
+const element = <FontAwesomeIcon icon={faCoffee} />;
+
+ReactDOM.render(element, document.body);
+```
+
+So, how do we migrate the psuedo element code to the React one? _There is no easy answer_ to that and it involves some markup changes.
+
+First, we have to introduce the icon into the markup.
+
+```javascript
+import { faCoffee } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import ReactDOM from "react-dom";
+
+function App() {
+  return (
+    <button className="button">
+      <FontAwesomeIcon icon={faCoffee} className="icon" />
+      <span className="button-text">Text</span>
+    </button>
+  );
+}
+
+ReactDOM.render(<App />, document.body);
+```
+
+Now, you can change the css to:
+
+```css
+.button {
+  width: 100%;
+  padding-left: 4rem;
+}
+.icon {
+  // whatever styles you want the color to take.
+  color: red;
+}
+```
+
+> There could be more complicated cases, refer to this [PR on BuffetJS](https://github.com/strapi/buffet/pull/41/files) to see more cases.
+
+### Bonus: How does the SVG change color when you apply `color` to it's parent class?
+
+If you inspect the fontawesome SVGs, you will find their `path` elements have an attribute in common:
+
+```html
+<path fill="currentColor" ...></path>
+```
+
+Read more on the trick at [CSS Tricks](https://css-tricks.com/cascading-svg-fill-color/)

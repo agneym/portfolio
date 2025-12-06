@@ -1,0 +1,101 @@
+---
+title: Counting React Children
+date: "2020-06-24T22:12:03.284Z"
+tags:
+  - react
+  - children
+  - count
+published: true
+---
+
+import { BlogPostHeader } from "components/BlogHome";
+
+<BlogPostHeader
+  frontmatter={{
+    title: "Counting React Children",
+    date: "2020-06-24T22:12:03.284Z",
+  }}
+/>
+
+`Children.count()` and `Children.toArray().length` have different outputs. We are going to explore how and why.
+
+Consider a React component:
+
+```javascript
+import React, { Children } from "react";
+
+function Wrapper({ children }) {
+  const count = Children.count(children);
+  const countArray = Children.toArray(children).length;
+  return (
+    <section>
+      <p>
+        <pre>Children.count:</pre>
+        {count}
+      </p>
+      <p>
+        <pre>Children.toArray:</pre>
+        {countArray}
+      </p>
+      {children}
+    </section>
+  );
+}
+
+export default Wrapper;
+```
+
+Now, to render this component we are giving it:
+
+```javascript
+<Wrapper>
+  <h1>Hello CodeSandbox</h1>
+  <h2>Start editing to see some magic happen!</h2>
+</Wrapper>
+```
+
+Now, both counts listed in the UI would point to 2. What about if we change the Wrapper children to:
+
+```javascript
+<Wrapper>
+  <h1>Hello CodeSandbox</h1>
+  {false && <h2>Start editing to see some magic happen!</h2>}
+</Wrapper>
+```
+
+Now, `Children.count` will report 2 while `Children.toArray().length` will report 1.
+
+This is because `Children.count` is counting the number of slots that children has. Whether it be `false`, `null` or `undefined`, it's still a slot and `Children.count` does a good job of counting it. From the docs:
+
+> number of times that a callback passed to `map` or `forEach` would be invoked.
+
+`Children.toArray` on the other hand, converts Children it receives to an opaque structure containing only the elements that JSX can render. That's how it reports that there is only a single child inside `Wrapper`, the other one is conditionally false.
+
+You often see people try to weed out invalid children using this property. For eg. [Chakra UI](https://github.com/chakra-ui/chakra-ui/blob/master/packages/utils/src/react-helpers.ts#L49-L59)
+
+```javascript
+/**
+ * Gets only the valid children of a component,
+ * and ignores any nullish or falsy child.
+ *
+ * @param children the children
+ */
+export function getValidChildren(children: React.ReactNode) {
+  return React.Children.toArray(children).filter((child) =>
+    React.isValidElement(child),
+  ) as React.ReactElement[]
+}
+```
+
+Here's a `Children.count` usage example from [Ant Design](https://github.com/ant-design/ant-design/blob/7212a9746d9f21933fda26cac21f81604da3738b/components/carousel/index.tsx#L52-L56):
+
+```javascript
+componentDidUpdate(prevProps: CarouselProps) {
+  // If the number of Children (even if something was conditionally rendered) has changed, then go to the first slide.
+  if (React.Children.count(this.props.children) !== React.Children.count(prevProps.children)) {
+    this.goTo(this.props.initialSlide || 0, false);
+  }
+}
+```
+
+Have fun 🎉

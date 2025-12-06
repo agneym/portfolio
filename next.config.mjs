@@ -1,9 +1,18 @@
-import withMdx from "@next/mdx";
-import withPlugins from "next-compose-plugins";
+import createMDX from "@next/mdx";
+
+const withMDX = createMDX({
+  extension: /\.mdx?$/,
+  options: {
+    // For Turbopack compatibility, plugins should be strings
+    // But we need to use the actual imports for webpack
+    remarkPlugins: [["remark-gfm"], ["remark-frontmatter"]],
+    rehypePlugins: [["@mapbox/rehype-prism"]],
+  },
+});
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  pageExtensions: ["js", "jsx", "ts", "tsx", "mdx"],
+  pageExtensions: ["js", "jsx", "ts", "tsx", "md", "mdx"],
   async redirects() {
     return [
       {
@@ -30,11 +39,4 @@ const nextConfig = {
   },
 };
 
-export default withPlugins(
-  [
-    withMdx({
-      extension: /\.mdx?$/,
-    }),
-  ],
-  nextConfig,
-);
+export default withMDX(nextConfig);
