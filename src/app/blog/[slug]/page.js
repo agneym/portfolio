@@ -50,6 +50,14 @@ export default async function BlogPostPage(props) {
         ".svg": "dataurl",
       };
 
+      // Mark npm packages as external so they're resolved at runtime
+      options.external = [
+        ...(options.external ?? []),
+        // These packages for BubblingVisualizer
+        "lucide-react",
+        "next-themes",
+      ];
+
       return options;
     },
   });
