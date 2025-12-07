@@ -5,7 +5,7 @@ export function SubscribeNewsletter() {
     <div className="flex gap-x-16 gap-y-16 flex-col-reverse px-4 md:flex-row text-gray-800 dark:text-gray-300">
       <div className="max-w-md md:basis-1/2 flex flex-col gap-y-3 text-balance">
         <p>
-          <span>Stay ahead of the curve in Web Development with my </span>
+          <span>Stay ahead of the curve in Web Development with </span>
           <span className="italic">Javascript Every Month</span>
           <span> Newsletter.</span>
         </p>
@@ -54,7 +54,7 @@ export function SubscribeNewsletter() {
             <input type="hidden" name="tag" value="blog" />
             <button
               type="submit"
-              className="inline-flex justify-center items-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+              className="inline-flex justify-center items-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
             >
               I want in!
             </button>

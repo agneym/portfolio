@@ -10,7 +10,7 @@ export function PostListItem({ meta, slug }) {
         query: { title: meta.title },
       }}
     >
-      <article className="flex flex-col gap-y-6">
+      <article className="flex flex-col gap-y-4 py-2">
         <header className="flex flex-col gap-y-1">
           <h3 className="text-xl text-balance">{meta.title}</h3>
           <DateString className="text-xs text-gray-500 dark:text-gray-400">
