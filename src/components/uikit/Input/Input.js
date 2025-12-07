@@ -11,7 +11,7 @@ export function Input({ className, ...rest }) {
       <input
         id={inputId}
         className={clsx(
-          "block w-full rounded-md dark:bg-slate-800 border-0 py-2 text-gray-900 dark:text-gray-300 shadow-xs ring-1 ring-inset ring-gray-300 dark:ring-gray-600 placeholder:text-gray-400 dark:placeholder:text-gray-500 focus:ring-2 focus:ring-inset focus:ring-indigo-600 dark:focus:ring-indigo-500 sm:text-sm sm:leading-6",
+          "block w-full rounded-md border-0 py-2 text-gray-900 shadow-xs ring-1 ring-gray-300 ring-inset placeholder:text-gray-400 focus:ring-2 focus:ring-indigo-600 focus:ring-inset sm:text-sm sm:leading-6 dark:bg-slate-800 dark:text-gray-300 dark:ring-gray-600 dark:placeholder:text-gray-500 dark:focus:ring-indigo-500",
           className,
         )}
         aria-describedby={hasDescription ? descriptionId : undefined}

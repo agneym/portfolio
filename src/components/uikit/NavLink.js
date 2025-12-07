@@ -11,8 +11,8 @@ export const NavLink = ({ className, exact, href, as: As = Link, ...rest }) => {
   return (
     <As
       className={clsx(
-        "relative before:absolute before:block before:w-full before:h-0.5 before:-bottom-0.5 before:left-0 before:bg-current before:scale-0 before:transition-transform before:duration-300 before:ease-in-out hover:before:scale-100",
-        isActive && "before:scale-100 text-gray-900 dark:text-gray-300",
+        "relative before:absolute before:-bottom-0.5 before:left-0 before:block before:h-0.5 before:w-full before:scale-0 before:bg-current before:transition-transform before:duration-300 before:ease-in-out hover:before:scale-100",
+        isActive && "text-gray-900 before:scale-100 dark:text-gray-300",
         className,
       )}
       href={href}

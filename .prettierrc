@@ -1,7 +1,17 @@
 {
   "plugins": [
+    "@prettier/plugin-oxc",
     "prettier-plugin-tailwindcss",
-    "@trivago/prettier-plugin-sort-imports",
-    "@prettier/plugin-oxc"
+    "@trivago/prettier-plugin-sort-imports"
+  ],
+  "overrides": [
+    {
+      "files": ["*.js", "*.jsx"],
+      "parser": "oxc"
+    },
+    {
+      "files": ["*.ts", "*.tsx"],
+      "parser": "oxc-ts"
+    }
   ]
 }

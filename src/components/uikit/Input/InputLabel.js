@@ -10,7 +10,7 @@ export function InputLabel({ className, ...rest }) {
     <label
       htmlFor={inputId}
       className={clsx(
-        "block text-sm font-medium leading-6 text-gray-900 dark:text-gray-300",
+        "block text-sm leading-6 font-medium text-gray-900 dark:text-gray-300",
         className,
       )}
       {...rest}

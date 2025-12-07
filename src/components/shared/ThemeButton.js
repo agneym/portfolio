@@ -21,7 +21,7 @@ const AnimatedIcon = ({ icon: Icon }) => {
       layoutId="one-thing"
       className="absolute"
     >
-      <Icon className="w-5 h-5" />
+      <Icon className="h-5 w-5" />
     </motion.span>
   );
 };
@@ -35,7 +35,7 @@ export const ThemeButton = () => {
   return (
     <button
       type="button"
-      className="inline-flex w-6 h-6 items-center justify-center hover:scale-105 transition-transform duration-150"
+      className="inline-flex h-6 w-6 items-center justify-center transition-transform duration-150 hover:scale-105"
       onClick={() => setTheme(isLightTheme ? "dark" : "light")}
       aria-label={label}
       title={label}

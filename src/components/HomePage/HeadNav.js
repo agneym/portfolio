@@ -7,12 +7,12 @@ import Link from "next/link";
 export const HeadNav = () => {
   return (
     <>
-      <SkipNavLink className="text-gray-50 dark:text-gray-700 focus:data-reach-skip-link:bg-slate-600 dark:focus:data-reach-skip-link:bg-slate-200" />
+      <SkipNavLink className="text-gray-50 focus:data-reach-skip-link:bg-slate-600 dark:text-gray-700 dark:focus:data-reach-skip-link:bg-slate-200" />
       <Navbar>
         <Navbar.Logo>
           <Link
             href="/"
-            className="mr-auto -rotate-6 hover:rotate-0 transition-transform"
+            className="mr-auto -rotate-6 transition-transform hover:rotate-0"
           >
             <LogoSvg
               width={40}

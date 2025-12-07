@@ -27,7 +27,7 @@ export const Intro = () => {
   const shouldReduceMotion = useReducedMotion();
 
   return (
-    <main className="flex items-center justify-center text-center flex-col gap-y-10">
+    <main className="flex flex-col items-center justify-center gap-y-10 text-center">
       <SkipNavContent />
       <motion.h1
         {...getAnimateProps({ shouldReduceMotion })}
@@ -39,13 +39,13 @@ export const Intro = () => {
         <AvatarImage getAnimateProps={getAnimateProps} />
         <motion.h1
           {...getAnimateProps({ delay: 0.6, shouldReduceMotion })}
-          className="text-6xl font font-extrabold"
+          className="font text-6xl font-extrabold"
         >
           Agney Menon
         </motion.h1>
         <motion.p
           {...getAnimateProps({ delay: 0.9, shouldReduceMotion })}
-          className="text-xl tracking-normal text-slate-700 dark:text-slate-300 font-medium"
+          className="text-xl font-medium tracking-normal text-slate-700 dark:text-slate-300"
         >
           Web Developer. Storyteller.
         </motion.p>

@@ -7,7 +7,7 @@ const SocialMediaLink = ({ href, iconEl, ariaLabel }) => {
       href={href}
       target="_blank"
       aria-label={ariaLabel}
-      className="w-7 h-7 text-slate-600 hover:text-slate:700 dark:text-slate-400 dark:hover:text-slate-300 transition-transform hover:scale-105"
+      className="hover:text-slate:700 h-7 w-7 text-slate-600 transition-transform hover:scale-105 dark:text-slate-400 dark:hover:text-slate-300"
     >
       {iconEl}
     </a>
@@ -16,7 +16,7 @@ const SocialMediaLink = ({ href, iconEl, ariaLabel }) => {
 
 export const Footer = () => {
   return (
-    <footer className="text-center flex gap-x-8 pointer-fine:gap-x-3 items-center justify-center">
+    <footer className="flex items-center justify-center gap-x-8 text-center pointer-fine:gap-x-3">
       <SocialMediaLink
         href="https://github.com/agneym"
         iconEl={<GithubIcon width="1.75rem" />}

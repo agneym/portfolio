@@ -183,21 +183,21 @@ export const BubblingVisualizer = () => {
   };
 
   return (
-    <div className="p-4 font-sans flex flex-col lg:flex-row gap-6 mx-[calc(50%-40vw)]">
+    <div className="mx-[calc(50%-40vw)] flex flex-col gap-6 p-4 font-sans lg:flex-row">
       {/* --- LEFT PANEL: VISUALIZATION --- */}
-      <div className="flex-1 bg-white dark:bg-slate-900 rounded-xl shadow-lg border border-slate-200 dark:border-slate-700 overflow-hidden flex flex-col">
-        <div className="p-4 border-b border-slate-100 dark:border-slate-800 flex justify-between items-baseline bg-slate-50 dark:bg-slate-800 py-8">
-          <div className="grid grid-cols-[auto_1fr] grid-rows-[auto_auto] gap-y-1 gap-x-2 text-slate-900 dark:text-slate-100 items-center">
-            <MousePointerClick className="w-5 h-5 text-blue-500 dark:text-blue-400" />
-            <h2 className="text-slate-900 dark:text-slate-100 my-0!">
+      <div className="flex flex-1 flex-col overflow-hidden rounded-xl border border-slate-200 bg-white shadow-lg dark:border-slate-700 dark:bg-slate-900">
+        <div className="flex items-baseline justify-between border-b border-slate-100 bg-slate-50 p-4 py-8 dark:border-slate-800 dark:bg-slate-800">
+          <div className="grid grid-cols-[auto_1fr] grid-rows-[auto_auto] items-center gap-x-2 gap-y-1 text-slate-900 dark:text-slate-100">
+            <MousePointerClick className="h-5 w-5 text-blue-500 dark:text-blue-400" />
+            <h2 className="my-0! text-slate-900 dark:text-slate-100">
               DOM Event Visualizer
             </h2>
-            <p className="text-sm text-slate-500 dark:text-slate-400 my-0! col-start-2">
+            <p className="col-start-2 my-0! text-sm text-slate-500 dark:text-slate-400">
               Click a node to trigger an event simulation
             </p>
           </div>
           <div className="flex items-center gap-3">
-            <div className="flex items-center gap-2 px-3 py-1 rounded border border-slate-200 dark:border-transparent text-xs font-medium text-slate-900 dark:text-slate-100">
+            <div className="flex items-center gap-2 rounded border border-slate-200 px-3 py-1 text-xs font-medium text-slate-900 dark:border-transparent dark:text-slate-100">
               <span>Speed:</span>
               <SpeedSelect
                 value={speed}
@@ -208,30 +208,30 @@ export const BubblingVisualizer = () => {
             <button
               onClick={reset}
               disabled={!isAnimating && logs.length === 0}
-              className="p-2 hover:bg-slate-200 dark:hover:bg-slate-700 rounded-full transition-colors disabled:opacity-30 text-slate-700 dark:text-slate-200"
+              className="rounded-full p-2 text-slate-700 transition-colors hover:bg-slate-200 disabled:opacity-30 dark:text-slate-200 dark:hover:bg-slate-700"
               title="Reset"
             >
-              <RotateCcw className="w-5 h-5" />
+              <RotateCcw className="h-5 w-5" />
             </button>
           </div>
         </div>
 
-        <div className="flex-1 relative overflow-auto flex justify-center items-center bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] dark:bg-[radial-gradient(#475569_1px,transparent_1px)] [background-size:16px_16px] p-8">
+        <div className="relative flex flex-1 items-center justify-center overflow-auto bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:16px_16px] p-8 dark:bg-[radial-gradient(#475569_1px,transparent_1px)]">
           {/* LEGEND */}
-          <div className="absolute top-4 left-4 bg-white/90 dark:bg-slate-800/90 backdrop-blur p-3 rounded-lg border border-slate-200 dark:border-slate-700 shadow-sm text-xs space-y-2">
-            <div className="font-semibold text-slate-600 dark:text-slate-300 mb-1">
+          <div className="absolute top-4 left-4 space-y-2 rounded-lg border border-slate-200 bg-white/90 p-3 text-xs shadow-sm backdrop-blur dark:border-slate-700 dark:bg-slate-800/90">
+            <div className="mb-1 font-semibold text-slate-600 dark:text-slate-300">
               Event Phases
             </div>
             <div className="flex items-center gap-2 text-slate-700 dark:text-slate-300">
-              <div className="w-3 h-3 rounded-full bg-rose-500"></div>
+              <div className="h-3 w-3 rounded-full bg-rose-500"></div>
               <span>Capture (Down)</span>
             </div>
             <div className="flex items-center gap-2 text-slate-700 dark:text-slate-300">
-              <div className="w-3 h-3 rounded-full bg-blue-500"></div>
+              <div className="h-3 w-3 rounded-full bg-blue-500"></div>
               <span>Target</span>
             </div>
             <div className="flex items-center gap-2 text-slate-700 dark:text-slate-300">
-              <div className="w-3 h-3 rounded-full bg-emerald-500"></div>
+              <div className="h-3 w-3 rounded-full bg-emerald-500"></div>
               <span>Bubbling (Up)</span>
             </div>
           </div>
@@ -240,7 +240,7 @@ export const BubblingVisualizer = () => {
             width="600"
             height="600"
             viewBox="0 0 800 600"
-            className="max-w-full h-auto drop-shadow-xl"
+            className="h-auto max-w-full drop-shadow-xl"
           >
             <defs>
               <marker
@@ -311,7 +311,7 @@ export const BubblingVisualizer = () => {
                   width="160"
                   height="50"
                   rx="12"
-                  className={`${getNodeColor(node.id)} transition-colors duration-300 stroke-2`}
+                  className={`${getNodeColor(node.id)} stroke-2 transition-colors duration-300`}
                 />
 
                 {/* Node Label */}
@@ -340,20 +340,20 @@ export const BubblingVisualizer = () => {
       </div>
 
       {/* --- RIGHT PANEL: LOGS --- */}
-      <div className="w-full lg:w-80 bg-slate-900 text-slate-300 rounded-xl shadow-lg border border-slate-800 dark:border-slate-600 flex flex-col h-96 lg:h-auto lg:max-h-[calc(100vh-12rem)]">
-        <div className="p-4 border-b border-slate-700 dark:border-slate-600 bg-slate-950 rounded-t-xl">
-          <h3 className="font-mono text-sm font-bold text-slate-300  flex items-center gap-2 my-0!">
-            <span className="w-2 h-2 rounded-full bg-green-500"></span>
+      <div className="flex h-96 w-full flex-col rounded-xl border border-slate-800 bg-slate-900 text-slate-300 shadow-lg lg:h-auto lg:max-h-[calc(100vh-12rem)] lg:w-80 dark:border-slate-600">
+        <div className="rounded-t-xl border-b border-slate-700 bg-slate-950 p-4 dark:border-slate-600">
+          <h3 className="my-0! flex items-center gap-2 font-mono text-sm font-bold text-slate-300">
+            <span className="h-2 w-2 rounded-full bg-green-500"></span>
             Console Output
           </h3>
         </div>
 
         <div
-          className="flex-1 p-4 overflow-y-auto font-mono text-xs space-y-3 custom-scrollbar"
+          className="custom-scrollbar flex-1 space-y-3 overflow-y-auto p-4 font-mono text-xs"
           ref={logContainerRef}
         >
           {logs.length === 0 ? (
-            <div className="text-slate-600 text-center mt-10 italic">
+            <div className="mt-10 text-center text-slate-600 italic">
               Waiting for event...
               <br />
               Click a node in the tree.
@@ -362,7 +362,7 @@ export const BubblingVisualizer = () => {
             logs.map((log, idx) => (
               <div
                 key={log.id}
-                className="flex gap-2 animate-in slide-in-from-left-2 duration-300"
+                className="animate-in slide-in-from-left-2 flex gap-2 duration-300"
               >
                 <span className="text-slate-600">
                   {(idx + 1).toString().padStart(2, "0")}
@@ -386,10 +386,10 @@ export const BubblingVisualizer = () => {
                       {new Date(log.id).toLocaleTimeString().split(" ")[0]}
                     </span>
                   </div>
-                  <div className="text-white dark:text-slate-900 mt-0.5">
+                  <div className="mt-0.5 text-white dark:text-slate-900">
                     <span className="text-slate-400">Node: </span> {log.element}
                   </div>
-                  <div className="text-slate-500 italic pl-2 border-l-2 border-slate-700 mt-1">
+                  <div className="mt-1 border-l-2 border-slate-700 pl-2 text-slate-500 italic">
                     event.currentTarget === {log.element}
                   </div>
                 </div>

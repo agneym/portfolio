@@ -17,12 +17,12 @@ export const AvatarImage = ({ getAnimateProps }) => {
   return (
     <motion.div
       {...getAnimateProps({ delay: 0.4, shouldReduceMotion })}
-      className="rounded-full overflow-hidden relative mx-auto inline"
+      className="relative mx-auto inline overflow-hidden rounded-full"
     >
       <Image
         src={avatarPic}
         alt=""
-        className="rounded-full mx-auto"
+        className="mx-auto rounded-full"
         width={200}
         priority
       />

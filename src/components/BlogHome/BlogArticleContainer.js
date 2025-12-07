@@ -2,8 +2,8 @@ import { SubscribeNewsletter } from "./SubscribeNewsletter";
 
 export function BlogArticleContainer({ children }) {
   return (
-    <div className="flex flex-col gap-y-16 my-32 mx-auto max-w-3xl">
-      <article className="mx-auto prose lg:prose-xl dark:prose-invert px-6 max-w-[min(65ch,100%)]">
+    <div className="mx-auto my-32 flex max-w-3xl flex-col gap-y-16">
+      <article className="prose lg:prose-xl dark:prose-invert mx-auto max-w-[min(65ch,100%)] px-6">
         {children}
       </article>
       <hr className="border-gray-200 dark:border-gray-600/10" />
