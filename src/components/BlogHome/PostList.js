@@ -6,7 +6,7 @@ const posts = getSortedPostsData();
 export function PostList() {
   return (
     <>
-      <h1 className="text-2xl text-center font-semibold dark:text-gray-300 text-gray-700">
+      <h1 className="text-2xl font-semibold dark:text-gray-300 text-gray-700 text-balance">
         Latest Posts
       </h1>
       <div className="flex flex-col gap-y-12 mt-8">

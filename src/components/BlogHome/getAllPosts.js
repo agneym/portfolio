@@ -19,16 +19,11 @@ export function getSortedPostsData() {
 
       const fileContents = fs.readFileSync(fullPath, "utf8");
 
-      const matterResult = matter(fileContents, {
-        excerpt: async (file) => {
-          file.excerpt = file.content.slice(0, 250).replace(`\n`, ` `);
-        },
-      });
+      const matterResult = matter(fileContents);
 
       return {
         slug,
         ...matterResult.data,
-        excerpt: matterResult.excerpt,
       };
     })
     .filter((post) => post && post.published !== false);
