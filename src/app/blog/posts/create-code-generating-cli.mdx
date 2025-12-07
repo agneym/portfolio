@@ -1,0 +1,260 @@
+---
+title: Create a Code Generating CLI
+date: "2018-12-26T22:12:03.284Z"
+tags:
+  - code generating cli
+  - gluegun
+  - creating a cli
+  - tutorial
+published: true
+---
+
+Today I would like to walk through the procedure to create a code generating CLI. This is not a step by step tutorial, although we will be looking at the concepts involved.
+
+What is a _Code generating CLI_, you ask? You might have surely used one in your career, some of the examples being [create-react-app](https://facebook.github.io/create-react-app/docs/getting-started), [express-generator](https://expressjs.com/en/starter/generator.html), [vue-cli](https://cli.vuejs.org/guide/) or the amazing [ng-cli](https://cli.angular.io/).
+
+All of these have a CLI interface that create a fully fledged application with the options passed to it. Today, we look to achieve something similar (but smaller) using the [Gluegun](https://infinitered.github.io/gluegun/) CLI building toolkit.
+
+Gluegun defines itself as a delightful toolkit for building Node-powered CLIs. If this is your first time, then you can read on features and why you might want to use it from their docs [here](https://infinitered.github.io/gluegun/#/?id=gluegun). It is used in production by awesome tools like [AWS Amplify](https://github.com/aws-amplify/amplify-cli) and [Ignite CLI](https://github.com/infinitered/ignite).
+
+## What we are going to build
+
+<blockquote class="twitter-tweet" data-lang="en">
+  <p lang="en" dir="ltr">
+    Updated my business card 😎{" "}
+    <a href="https://t.co/psqZQ9pj4L">pic.twitter.com/psqZQ9pj4L</a>
+  </p>
+  &mdash; Tierney Cyren (@bitandbang){" "}
+  <a href="https://twitter.com/bitandbang/status/1075473070368919552?ref_src=twsrc%5Etfw">
+    December 19, 2018
+  </a>
+</blockquote>
+
+[Tierney Cyren](https://twitter.com/bitandbang) had tweeted this and things went out of control very soon with lots and lots of people creating their own cards. (Even I have my own, with `npx boywithsilverwings`) What we are trying to create today is a CLI to create your own `npx` card, because why the hell not!
+
+I have a ready made CLI [here](https://github.com/agneym/create-profile-card) that you can run with:
+
+```bash
+  npm init profile-card card-name
+```
+
+> Tip: npm allows you to skip the `create` part in your package name with `npm init`. For eg. `npm init react-app`
+
+## Recap on EJS
+
+Before we start on Gluegun, we need to take a quick recap of `ejs` that we will be using for templating.
+
+```html
+<!-- Substitutes h2 contents with user.name value -->
+<h2><%= user.name %></h2>
+
+<!-- Includes user/show.ejs file and supplies user to it -->
+<%- include('user/show', {user: user}); %>
+
+<!-- enters the unescaped value into the tag-->
+<%- JSON.stringify(user) -%> `}
+```
+
+There is a lot [more](https://ejs.co/#docs) to it than that, but that is what we will be using for this tutorial.
+
+`ejs` is not just used for templating HTML strings, it can be used in any environment, it being JSON, Javascript or CSS. This is what we will use to generate our code according to the template.
+
+## Getting started with Gluegun
+
+Gluegun comes with a CLI (which _Surprise!_ uses the Gluegun package) that helps us bootstrap a project really fast.
+
+```bash
+npx gluegun@next new create-card
+cd create-card
+npm link
+create-card
+```
+
+### What's inside
+
+```bash
+├── node_modules
+├── src
+├── .gitignore
+├── bin
+├── docs
+├── __tests__
+├── yarn-lock.json
+├── package.json
+└── readme.md
+```
+
+`src` contains all the code that we are going to edit. `bin` contains the cli file that is the root of the application.
+
+> Tip: This currently adds `yarn.lock` and `package.lock.json` to `.gitignore` by default, you might want to remove them.
+
+Let's looks inside the `src` now.
+
+```bash
+├── commands
+├── extensions
+├── templates
+├── cli.js
+```
+
+### Commands
+
+The `commands` folder contain the commands you want the cli app to run. In our example, we will only have a single command, that also corresponds to the name of the app.
+
+```js
+// src/commands/create-card.js
+module.exports = {
+  name: "create-card",
+  run: async (toolbox) => {
+    const { print } = toolbox;
+    print.info("Welcome to your CLI");
+  },
+};
+```
+
+The `run` function actually contains the code that will execute when you type in `create-card` in the console. Inside, you see that `print` is taken out of something called the toolbox. What all does this toolbox actually have? Well, a lot of things. We will look at some along the way. What `print` command does is to print whatever text you give it to the console. There are variety of formats for use, like `print.info`, `print.warning`, `print.error` etc. (just like `console`, you get the idea)
+
+But you can see that writing all the code inside these `run` functions can get very tricky. This is where extensions helps with.
+
+## Extensions
+
+Extensions are how we can create reusable functions and attach them to the toolbox.
+
+```js
+module.exports = (toolbox) => {
+  // A function to install packages present in package.json
+  function installPackages(props) {
+    const {
+      system: { which, spawn },
+      print: { info },
+    } = toolbox;
+
+    info("Starting package installation");
+    // get the path of npm installation, you can also run `which npm` in terminal to see the output
+    const npmPath = which("npm");
+
+    /*
+      1. Spawn a shell process that will navigate to the folder
+      2. Run npm install
+      3. Run npm run format (which is also defined in package.json)
+    */
+    return spawn(
+      `cd ${props.name} && ${npmPath} install && ${npmPath} run --quiet format`,
+      {
+        shell: true,
+        stdio: "inherit",
+        stderr: "inherit",
+      },
+    );
+  }
+  // Put the function into the toolbox
+  toolbox.installPackages = installPackages;
+};
+```
+
+You can now invoke an extension from inside a `command` like:
+
+```js
+// src/commands/create-card.js
+module.exports = {
+  name: 'create-card',
+  description: 'Create new profile card project',
+  // Create alias new, create, generate and n which will also work with this command
+  alias: ['new', 'create', 'generate', 'n'],
+  run: async toolbox => {
+    const {
+      parameters,
+      template: { generate },
+      print: { info },
+      installPackages,
+      fileSystem,
+      promptDetails,
+    }
+    // Get name of the folder to be created, accessible with parameters.first
+    const name = parameters.first;
+    /*
+      This is a custom extension that prompts for details from the user
+      https://github.com/agneym/create-profile-card/blob/master/src/extensions/prompt-details.js
+    */
+    const details = await promptDetails({ name });
+    const props = { name, config };
+  }
+}
+```
+
+> Not a fan of this technique, but may be it gets better with types.
+
+### Templates
+
+Now, fast forward to the topic. How do we create the files that the user interacts with. That is what the templates folder does. Inside this folder you will find the required files that have an extra extension, `.ejs` This is what helps us inject user provided content into these files.
+
+Now, all these files may not need content injection, for example `.gitignore`, but we include the extension so we can replace it by just iterating over all the files.
+
+Here is an example of a file that needs injection:
+
+```json
+{
+  "name": "<%= props.name %>",
+  "version": "0.0.1",
+  "description": "<%= props.name %> Profile Card",
+  "bin": {
+    "<%= props.name %>": "bin/card.js"
+  },
+  "scripts": {
+    "format": "prettier --write **/*.{js,json} && standard --fix",
+    "lint": "standard"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "boxen": "^2.1.0",
+    "chalk": "^2.4.1"
+  },
+  "devDependencies": {
+    "standard": "^12.0.1",
+    "prettier": "^1.12.1",
+    "jest": "^23.6.0"
+  }
+}
+```
+
+You can see that this files requires us to fill in the name with `props.name` where `props` is supposed to be passed into this function. This is same as the name that the user has already entered with create command. How do we pass this in?
+
+```js
+// Continuing src/commands/create-card.js
+const files = [
+  "bin/card.js.ejs",
+  "package.json.ejs",
+  "README.md.ejs",
+  "config.json.ejs",
+  ".gitignore.ejs",
+];
+
+const filesCopy = files.reduce((acc, file) => {
+  const template = `/${file}`;
+  // Where to copy this file to.
+  const target = `${props.name}/${file.replace(".ejs", "")}`;
+  /*
+    First argument is the template,
+    Second is the target, where to put the file
+    The third is the argument to be passed into the file
+    returns a promise
+  */
+  const gen = generate({ template, target, props });
+  return acc.concat([gen]);
+}, []);
+
+// Wait for all promises to resolve
+await Promise.all(filesCopy);
+// Set permissions for cli to execute
+filesystem.chmodSync(`${props.name}/bin/card.js`, "755");
+// Wait for installing packages, this is the custom extension written above
+await installPackages(props);
+```
+
+Once this is complete, you will have all the files copied to the directory of preference and ready.
+
+[`bin/card.js`](https://github.com/agneym/create-profile-card/blob/master/src/templates/bin/card.js.ejs) contains the javascript that will be suppled to the user. It uses boxen to draw a box and chalk to output text in colors for the console. It reads user details from `config.json` and creates console output.
+
+You can find the complete application [here](https://github.com/agneym/create-profile-card) for reference.
+
+Feel free to ping me at [@agneymenon](https://twitter.com/agneymenon) if you get stuck.

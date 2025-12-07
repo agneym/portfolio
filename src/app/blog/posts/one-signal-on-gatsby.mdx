@@ -1,0 +1,192 @@
+---
+title: One Signal Notifications on Gatsby
+date: "2019-04-04T22:12:03.284Z"
+tags:
+  - one signal
+  - web notifications
+  - gatsby js
+  - notifications for gatsby
+published: true
+---
+
+Notifications are now an integral part of the web ecosystem. It increases the user engagement rate and your site can organically have people coming back day after day with fresh content.
+
+[Gatsby](https://www.gatsbyjs.org/) is the most popular Blog React Framework in town and that is what we will be pairing up with popular free (mostly) notification service [One Signal](https://onesignal.com).
+
+We will be looking at [Web Push](https://documentation.onesignal.com/docs/web-push-overview) in this article.
+
+## 1. Login with OneSignal
+
+[Create an Account](https://app.onesignal.com/login) on OneSignal, it's pretty much [free](https://app.onesignal.com/pricing) to start with.
+
+## 2. Add a new App on OneSignal Dashboard
+
+You can add any (identifiable) name you want and select No Organisation under the organisation dropdown.
+Add the app and select Web Push as the required platform. (Onesignal has docs for almost every platform out there, web push is just the one we will cover).
+
+## 3. Setup Page
+
+![Setup Page](/blog/one-signal-on-gatsby/setup.png)
+
+The Typical Site option is the easiest and but it is not going to have the UX we want, click on the Custom Site option.
+
+Follow the instructions in [official docs](https://documentation.onesignal.com/docs/web-push-custom-code-setup#section--span-class-step-step-2-span-site-setup) to complete the form.
+
+## 4. Site setup
+
+You will now get to [download three files](https://github.com/OneSignal/OneSignal-Website-SDK/releases/download/https-integration-files/OneSignal-Web-SDK-HTTPS-Integration-Files.zip).
+
+These are `manifest.json` file, `OneSignalSDKWorker.js` and `OneSignalSDKUpdaterWorker.js`. What we have to achieve now is to upload these to the top level directory.
+
+If you are using `gatsby`, you probably have [`gatsby-plugin-manifest`](https://www.gatsbyjs.org/packages/gatsby-plugin-manifest/) somewhere in your configuration. If you do, just copy the `gcm_sender_id` from the manifest you downloaded and add it to manifest config.
+
+[Sample](https://github.com/agneym/blog/blob/4d1f1df1bb7b55b1e4718e80e646fb8ee591df21/gatsby-config.js#L77)
+
+Copy the other two files into the static folder of gatsby. All files inside this folder will be copied over to the build folder and hence satisfies the top level directory requirement.
+
+The next step is to include OneSignal SDK URL into HTML head. It is specifically said that it should be from a CDN and not loaded from the local. But we do not normally edit head inside Gatsby applications.
+
+We have instructions for editing the head of HTML doc here: [Customizing html.js](https://www.gatsbyjs.org/docs/custom-html/)
+
+You can copy HTML with:
+
+```bash
+cp .cache/default-html.js src/html.js
+```
+
+In the new HTML file, add:
+
+```html
+<script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async="" />
+```
+
+to the head.
+
+### 5. Trigger it on custom link
+
+Adding a react component with link.
+
+```jsx
+class NotificationsForm extends PureComponent {
+  constructor(props) {
+    super(props);
+    this.state = {
+      permission: "default",
+    };
+  }
+  componentDidMount() {
+    this.OneSignal = window.OneSignal || [];
+    this.setupOneSignal();
+  }
+  /**
+   * Render subscribe button
+   * @param {('default'|'denied'|'granted')} permission - permission level
+   * @returns {import('react').ReactElement} React Node
+   */
+  renderBtn = (permission) => {
+    if (permission === "default") {
+      return (
+        <S.SubmitBtn as="button" onClick={this.onSubscriptionBtnClick}>
+          Subscribe
+        </S.SubmitBtn>
+      );
+    } else if (permission === "granted") {
+      return (
+        <h5>
+          Already part of Notification Squad{" "}
+          <span role="img" aria-label="relieved face">
+            🎉
+          </span>
+        </h5>
+      );
+    } else if (permission === "denied") {
+      return (
+        <h5>
+          Thank You for your time.{" "}
+          <span role="img" aria-label="relieved face">
+            😌
+          </span>
+        </h5>
+      );
+    } else {
+      console.warn("Unrecognised permission", permission);
+    }
+  };
+  render() {
+    const { permission } = this.state;
+    return (
+      <div>
+        <S.SubSection>
+          <S.Subtitle>Notifications</S.Subtitle>
+          <sub>As it Happens.</sub>
+        </S.SubSection>
+        {this.renderBtn(permission)}
+      </div>
+    );
+  }
+  onSubscriptionBtnClick = (event) => {
+    this.getSubscriptionState().then((state) => {
+      if (state.isPushEnabled) {
+        /* Subscribed, opt them out */
+        this.OneSignal.setSubscription(false);
+      } else {
+        if (state.isOptedOut) {
+          /* Opted out, opt them back in */
+          this.OneSignal.setSubscription(true);
+        } else {
+          /* Unsubscribed, subscribe them */
+          this.OneSignal.registerForPushNotifications();
+        }
+      }
+    });
+    event.preventDefault();
+  };
+  setupOneSignal = () => {
+    this.OneSignal.push(() => {
+      if (!this.OneSignal.isPushNotificationsSupported()) {
+        return;
+      }
+      this.OneSignal.init({
+        appId: "1a5a3a21-f5d1-4a88-a3ab-f8219fbbacea",
+        autoResubscribe: true,
+        notifyButton: {
+          enable: false,
+        },
+      });
+      this.updateManageWebPushSubscriptionButton();
+      this.OneSignal.on("subscriptionChange", function () {
+        this.updateMangeWebPushSubscriptionButton();
+      });
+    });
+  };
+  updateManageWebPushSubscriptionButton = async () => {
+    try {
+      const state = await this.OneSignal.getNotificationPermission();
+      this.setState({
+        permission: state,
+      });
+    } catch (error) {
+      console.error("Error getting notification status", error);
+    }
+  };
+  /**
+   * Find current subscription state
+   **/
+  async getSubscriptionState() {
+    const result = await Promise.all([
+      this.OneSignal.isPushNotificationsEnabled(),
+      this.OneSignal.isOptedOut(),
+    ]);
+    const [isPushEnabled, isOptedOut] = result;
+    return {
+      isPushEnabled: isPushEnabled,
+      isOptedOut: isOptedOut,
+    };
+  }
+}
+export default NotificationsForm;
+```
+
+[Find the file here](https://github.com/agneym/blog/blob/master/src/components/subscribe/notifications-form.js)
+
+Feel free to create an [issue](https://github.com/agneym/blog/issues) if you need help.

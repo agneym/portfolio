@@ -1,0 +1,55 @@
+---
+title: Looking ahead in 2024 by peeking into the past
+date: "2024-01-01T22:10:03.284Z"
+tags:
+  - looking ahead
+  - "2024"
+  - javascript
+  - development
+  - web
+published: true
+---
+
+PS: This is extracted from [my monthly newsletter](https://buttondown.email/agney/archive/jem-web-in-december-javascript-every-month/).
+
+This is an endeavour to reflect on the observations made throughout the year and make predictions or manifest expectations for what lies ahead.
+
+## Coming of age of AI
+
+When ChatGPT initially made its debut, one of its early applications beyond being a chatbot was in the realm of coding. GitHub introduced Copilot, a tool trained on vast amounts of open-source code. Now, it seamlessly assists users without requiring explicit instructions on what to do.
+
+Before we say, "obviously!", such applications are quite rare. Presently, many design-oriented applications rely on user-provided text to generate entire designs, which often proves impractical. We have evolved beyond scenarios where designers can articulate their needs in a single sentence. While coders benefit from working with text, and Language Models excel in this regard, there's a need for AI applications that assist users in their existing workflows, rather than requiring exhaustive input for complete output generation. Exciting initiatives like [Visual Electric](https://visualelectric.com/) stand out as they adopt a distinctive approach to image generation, departing from the conventional textbox reliance. We require AIs that augment human productivity rather than attempting to replace humans entirely.
+
+## Microfrontends
+
+Microfrontends, while not new, have historically operated in the shadows of the internet, lacking a comprehensive exploration of their advantages, disadvantages, and real-world applications. This architectural approach, analogous to Microservices but applied to the frontend, awaits a nuanced analysis.
+
+One prominent argument in favor of Microfrontends is their facilitation of team scalability, enabling easier division and management of tasks among smaller teams. Various methodologies, ranging from rendering in iFrames to utilizing web components and embracing module federation, currently exist for implementing microfrontends. However, amid this diversity, a critical question persists: which approach reigns supreme, or how do they compare in addressing specific needs?
+
+It is noteworthy that the module federation advocates predominantly align with the Webpack toolchain. As the landscape evolves, it is anticipated that the coming year will witness the emergence of additional tools dedicated to efficiently managing microfrontends. An exploration of these developments promises a deeper understanding of the optimal strategies for implementing and navigating the intricacies of microfrontend architectures.
+
+## Non JavaScript tool stacks continue to dominate
+
+Nearly every tool within the JavaScript ecosystem is undergoing a transition towards more performant alternatives implemented in lower-level languages.
+
+- [Babel](https://babeljs.io/) 🔜 [SWC](https://swc.rs/) written in Rust.
+- [Webpack](https://webpack.js.org/) 🔜 [esbuild](https://esbuild.github.io/) written in Go / [Turbopack](https://vercel.com/blog/turbopack) written in Rust / [Rspack](https://www.rspack.dev/) written in Rust.
+- [ESLint](https://eslint.org/) 🔜 [Oxlint](https://oxc-project.github.io/docs/guide/usage/linter.html) written in Rust.
+- [Prettier](https://prettier.io/) 🔜 [Biome](https://biomejs.dev/) written in Rust.
+- Node.js 🔜 [Bun](https://bun.sh/) written in Zig.
+
+I don't see any signs that this is slowing down. Who doesn't love faster tooling.
+
+## WebAssembly Component Model
+
+As developers who typically operate on robust systems, the preference for faster tooling in lower-level languages prompts a consideration: should we extend this optimization to benefit users on less powerful devices, such as mobile phones, watches, or smart fridges, as they access the web?
+
+The [WebAssembly component model](https://component-model.bytecodealliance.org/design/why-component-model.html) will make it easier for languages to talk to each other using an agreed interface.
+
+> For Wasm modules to interoperate, therefore, there needs to be an agreed-upon way for defining those richer types, and an agreed-upon way of expressing them at module boundaries.
+
+> The agreement of an interface adds a new dimension to Wasm portability. Not only are components portable across architectures and operating systems, but they are now portable across languages. A Go component can communicate directly and safely with a C or Rust component. It need not even know which language another component was written in - it needs only the component interface, expressed in WIT. Additionally, components can be linked into larger graphs, with one component satisfying another's dependencies, and deployed as units.
+
+If this can create a world where JavaScript can talk to lower level languages faster and easier, we can start to see our frameworks written in lower level languages like Rust or Go and we would be able to communicate to them with JavaScript.
+
+> Here's to an amazing 2024 🥂

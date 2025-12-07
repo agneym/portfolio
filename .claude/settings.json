@@ -11,7 +11,8 @@
       "Bash(tail:*)",
       "Bash(echo:*)",
       "Bash(pwd)",
-      "Bash(ast-grep:*)"
+      "Bash(ast-grep:*)",
+      "Bash(tree:*)"
     ],
     "deny": []
   }

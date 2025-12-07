@@ -1,0 +1,112 @@
+---
+title: Detecting if an element is in the viewport - Javascript
+date: "2018-05-30T22:12:03.284Z"
+tags:
+  - javascript
+  - detecting div
+  - viewport relative
+  - on scroll
+  - intersection observer
+published: true
+---
+
+This method uses the [Intersection Observer](https://w3c.github.io/IntersectionObserver/) which is relatively the new kid in town, so be sure to check out [Browser Support](https://caniuse.com/#feat=intersectionobserver). Also [polyfill](https://github.com/w3c/IntersectionObserver/tree/master/polyfill).
+
+#### Show me the Code!
+
+<iframe
+  height="300"
+  scrolling="no"
+  title="Intersection Observer Demo"
+  src="//codepen.io/BoyWithSilverWings/embed/bKgopr/?height=300&theme-id=32843&default-tab=js,result"
+  frameborder="no"
+  allowtransparency="true"
+  allowfullscreen="true"
+  style={{ width: "100%" }}
+>
+  See the Pen{" "}
+  <a href="https://codepen.io/BoyWithSilverWings/pen/bKgopr/">
+    <span>Intersection Observer Demo</span>
+  </a>
+  <span> by Boy with Silver Wings (</span>
+  <a href="https://codepen.io/BoyWithSilverWings">@BoyWithSilverWings</a>) on{" "}
+  <a href="https://codepen.io">CodePen</a>.
+</iframe>
+
+But let’s go into why first? Why use Intersection Observer and not [getBoundingClientRect](https://developer.mozilla.org/en-US/docs/Web/API/Element/getBoundingClientRect)? I have an article doing that with jQuery [here](https://medium.com/talk-like/detecting-if-an-element-is-in-the-viewport-jquery-a6a4405a3ea2). **So Why?**
+
+`getBoundingClientRect` is something that works on the main thread and hence involves the programmer to write multiple scroll handlers that will at the end of day slow your site down. If working on the main thread is not enough, you have `getBoundingClientRect` [triggering a browser re-layout](https://gist.github.com/paulirish/5d52fb081b3570c81e3a).
+
+Intersection Observer API is newly added to spec to free us from this evil. Let’s look at how to setup one first.
+
+```js
+const observer = new IntersectionObserver(callback);
+const target = document.querySelector('#target');
+
+observer.observe(target);
+
+function callback(entries) {
+  //  Do action here
+}
+`}
+```
+
+Intersection Observer takes two arguments, first one being `callback` function and the second takes an object with different kinds of options. These options are:
+
+- `root`: root element to which the intersection observer compares the visibility to.
+
+- `rootMargin`: This one let’s your choose margins for the root element. This is a CSS type margin string, `10px 20px 30px 40px`.
+
+- `threshold` : This might be the most prominent one among the options. List of threshold(s) at which to trigger callback. callback will be invoked when intersectionRect’s area changes from greater than or equal to any threshold to less than that threshold, and vice versa. This option defaults to 0, which means it fires when a small part of element becomes visible.
+
+In our example, we have used:
+
+```js
+const observer = new IntersectionObserver(callback, {
+  threshold: [0, 0.25, 0.5, 0.75, 1],
+});
+```
+
+This means, the `callback` will fire at junctures 0, 0.25, 0.5, 0.75 and 1 (0 means 0% visibility and 1 means 100% visibility)
+
+The callback gives you an array of elements that you have attached the observer to. You attach an observer to an element as:
+
+`observer.observe(element);`
+
+When the callback fires according to the threshold levels that we have specified in our code. It gets the arguments `changes` which has an array of all observed elements that you have attached to.
+
+Each object comprises of:
+
+```js
+var observer = new IntersectionObserver((changes) => {
+  for (const change of changes) {
+    console.log(change.time); // Timestamp when the change occurred
+    console.log(change.rootBounds); // Unclipped area of root
+    console.log(change.boundingClientRect); // target.boundingClientRect()
+    console.log(change.intersectionRect); // boundingClientRect, clipped by its containing block ancestors, and intersected with rootBounds
+    console.log(change.intersectionRatio); // Ratio of intersectionRect area to boundingClientRect area
+    console.log(change.target); // the Element target
+  }
+}, {});
+```
+
+Finally, inside this callback you can take any action necessary for your visibility. You might be using this for
+
+1.  Ad visibility
+
+2.  Lazy Loading Images
+3.  Executing animations only when it is sure that user is watching
+4.  Infinite Loading
+5.  Limited only by your imagination…
+
+But do take into account that the _Intersection Observer_ is not pixel perfect, so stay away from creating animations that depend on it.
+
+The intersection observer will stop listening if:
+
+1.  `observer.unobserve(target)`
+
+2.  `observer.disconnect() // The difference being unobserve only removes the target from observation, disconnect removes observation all together.`
+3.  Target element is deleted
+4.  Intersection root is deleted
+
+> Happy Coding

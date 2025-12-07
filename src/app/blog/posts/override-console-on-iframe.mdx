@@ -1,0 +1,61 @@
+---
+title: Overriding console in an iFrame
+date: "2019-02-02T08:12:03.284Z"
+tags:
+  - javascript
+  - overriding console in iframe
+  - using srcdoc
+  - override console logs
+published: true
+---
+
+This post talks about overriding your console logs in an iFrame on your own domain where you have access to the code inside the iframe.
+
+This might be because you are building a code editor or just executing user code inside an iframe for security reasons.
+
+Our aim is to take the console logs outside the iframe into the main window and process them.
+
+First inside the iframe,
+
+```html
+<script>
+  // Save the current console log function in case we need it.
+  const _log = console.log;
+  // Override the console
+  console.log = function (...rest) {
+    // window.parent is the parent frame that made this window
+    window.parent.postMessage(
+      {
+        source: "iframe",
+        message: rest,
+      },
+      "*",
+    );
+    // Finally applying the console statements to saved instance earlier
+    _log.apply(console, arguments);
+  };
+</script>
+```
+
+Remember to put this before any other JavaScript being executed.
+
+Now, inside our parent code:
+
+```js
+// Listen for messages
+window.addEventListener("message", function (response) {
+  // Make sure message is from our iframe, extensions like React dev tools might use the same technique and mess up our logs
+  if (response.data && response.data.source === "iframe") {
+    // Do whatever you want here.
+    console.log(response.data.message);
+  }
+});
+```
+
+#### Overriding other methods.
+
+You can override other console methods by changing up `console.log` to other functions like `console.table`
+
+If you want to display the logs, [react-inspector](https://www.npmjs.com/package/react-inspector) is a good place to start.
+
+> Happy Coding.

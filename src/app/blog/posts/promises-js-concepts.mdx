@@ -1,0 +1,125 @@
+---
+title: Promises - JavaScript concepts
+date: "2019-12-10T22:12:03.284Z"
+tags:
+  - javascript
+  - javascript
+  - beginner
+  - concepts
+published: true
+---
+
+This is part of a series where I try to explain through each of [33 JS Concepts](https://github.com/leonardomso/33-js-concepts).
+
+This part corresponds to Promises.
+
+## Background
+
+JavaScript is a single threaded language, which means it can work on only one thing at once.
+
+I'm sure this sounds great, there are no multiple pathways to worry about. But there is another thing we need to be keep in mind. There is a UI thread that is always running in the browser that needs to be responsive at all times. If JavaScript is focused at the UI thread, who would fetch the data from APIs?
+
+I would go into explaining how, but [Philip Roberts does an incredible job in his JSConf Talk](https://www.youtube.com/watch?v=8aGhZQkoFbQ).
+
+So JavaScript needs to process some stuff _asynchronously_, without disturbing the single thread. You want to call an API?
+
+1. Make the API call
+1. Let the API call complete on the browser thread.
+1. Let the browser come back to you with the result.
+1. Process the result.
+
+Promises are one (easy) way for achieving Step 4, writing code that come back to a line and process the result from a given statement.
+
+## What is a Promise?
+
+A promise is essentially a special object (just like functions are objects) that has a `then` method on it which is called when an asynchronous operation completes.
+
+While we can define our own promises, most of the time we will be working with promises that is returned from an inbuild function or a third party library. First, let's look at how this operates.
+
+```javascript
+fetch("https://pokeapi.co/api/v2/pokemon/ditto")
+  .then((response) => console.log(response))
+  .catch((error) => console.error(error));
+console.log("this comes first though");
+```
+
+Here, we are using the in-build [fetch](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API) API to call the PokeAPI and get the results. The implementation would be the same even if you use [axios](https://github.com/axios/axios) or a GraphQL Client.
+
+The fetch API returns a Promise object on which you can call `.then` and `error`, the function passed to `then` is called when the `fetch` is completed, `catch` is called if it errors out. Remember that the `fetch` goes to a microqueue and the next line will be executed afterwards, the `then` or `error` callback is called only when the other things finish executing (and the fetch obviously).
+
+## No, you Promise.
+
+So, how do we create our own functions based on promises?
+
+```javascript
+function serveDish() {
+  return new Promise((resolve) => {
+    // An asynchronous function that gives you the dish back with a callback.
+    createDish(function (error, dish) {
+      if (error) {
+        throw error;
+      }
+      resolve(dish); // completed the operation and resolved the promise.
+    });
+  });
+}
+```
+
+The constructor `new Promise` helps you create new Promises yourself. You might want to do this if you want to convert something that works by callbacks to a Promise. Or even just create one so that it executes asynchronously. If the promise runs into an error, you can just throw a `Error` and then `catch` the same at the other side.
+
+**The other side:**
+
+```javascript
+serveDish()
+  .then((dish) => console.log("Here's your dish", dish))
+  .catch((err) => console.error("Things burned because of ", err));
+```
+
+## What happens then?
+
+You can pass a callback to to `then` that receives the response of `resolve` from the `Promise` creation as we have already seen.
+
+## Let's chain some promises
+
+But the real promise of `Promises` lies in the fact that you can chain them.
+
+```javascript
+learnCooking()
+  .then((recipes) => createDish(recipes))
+  .then((dish) => inviteNeighbours(dish))
+  .then((dish) => serveDish(dish))
+  .then((servedDish) => getFeedback(servedDish))
+  .catch((err) => console.error("Something went wrong! 🔥"));
+```
+
+This is called chaining of promises, you can chain any number of promises you want as long as you return a promise from the then before. This is very easy than it seems because primitives are automatically converted to promises. If you want to convert something to promise explicitly, you can always:
+
+```javascript
+Promise.resolve(41);
+```
+
+## Lots of Promises to keep.
+
+So far, we saw how we can handle a single promise and chain the results from these. But what if there are different promises and you need to wait for all of them to complete before you can execute? This is where `Promise.all` comes into play.
+
+For eg. you have made multiple dishes studying the recipes.
+
+```javascript
+const dishes = ["names", "of", "your", "favorite", "dishes", "go", "here"];
+
+// map returns the promise and forms dishesPromise array
+const dishesPromise = dishes.map((dish) => createDish(dish));
+
+// You want to wait for all dishes to complete cooking before you invite neighbours
+Promise.all(dishesPromise).then((dishes) => inviteNeighbours(dishes));
+```
+
+`Promise.all` takes an array of promises as arguments and the `then` on it, is executed when all of them completes. The argument to `then` callback has an array of results from all the promises.
+
+While `Promise.all` is the most used, there also other methods that help you handle multiple promises and take actions accordingly. [Find all of them at MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise#Methods)
+
+### Note
+
+There is a second argument to `then` that has been neglected for the purpose of this article. It returns the result when a Promise is rejected. It is seen very infrequently, if you would like to reject a promise, it is always better to throw an error as the end user can chain promises and `catch` all the errors with a single catch block. Adding multiple functions to `then` is confusing.
+
+> Find me on [Twitter](https://twitter.com/agneymenon)

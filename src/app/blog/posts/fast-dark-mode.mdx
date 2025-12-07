@@ -1,0 +1,101 @@
+---
+title: Fast Track to Dark Mode with Styled Components
+date: "2020-02-25T22:12:03.284Z"
+tags:
+  - dark mode
+  - styled components
+  - how to
+  - reactjs
+  - javascript
+published: true
+---
+
+This post describes a fast track to dark mode with Styled Components and a couple of other packages which is currently implemented on this blog.
+
+Note that we will not be discussing the implications or concept behind dark mode, there are enough articles on the web that do that already. Let's get straight to business.
+
+We will start with [a ReactJS hook for dark mode](https://github.com/donavon/use-dark-mode). We will also add in the gatsby plugin that helps prevent flashing on load for the same hook.
+
+```bash
+npm i use-dark-mode gatsby-plugin-use-dark-mode
+```
+
+Now, we need a button to change the mode, we could add any button but let's get the pre-made beautiful SVG button:
+
+```bash
+npm i react-dark-mode-toggle
+```
+
+<img
+  src={`https://github.com/cawfree/react-dark-mode-toggle/raw/master/assets/title.gif`}
+  alt="button demo"
+  width="50%"
+  style={{ margin: "2rem 0" }}
+/>
+
+Let's split our theme to colors and others:
+
+```javascript
+const darkColors = {
+  background: `#121212`,
+  textColor: `rgba(255, 255, 255, 0.85)`,
+}
+const lightColors = {
+  background: `#FFFFFF`,
+  textColor: `rgba(0, 0, 0, 0.8)`,
+}
+const theme = {
+  other: {},
+}
+export default getTheme(mode) {
+  return {
+    ...theme,
+    colors: mode === 'light' ? lightColors : darkColors,
+  }
+}
+```
+
+[Guide to using `ThemeProvider` in docs](https://styled-components.com/docs/advanced#theming)
+
+Now, let's wire the button and the hook together:
+
+```javascript
+function Layout({ children }) {
+  const darkMode = useDarkMode(false);
+  const theme = getTheme(darkMode.value ? "dark" : "light");
+  return (
+    <>
+      <header>
+        <DarkModeToggle
+          onChange={darkMode.toggle}
+          checked={darkMode.value}
+          size={50}
+        />
+      </header>
+      {children}
+    </>
+  );
+}
+
+export default App;
+```
+
+and that's it! We have dark mode. You might have to adjust some other variables for hover styles and others, but this is a great start.
+
+Bonus: Global Styles:
+
+```javascript
+const GlobalStyles = createGlobalStyle`
+  body {
+    color: ${(props) => props.theme.colors.textColor};
+    background-color: ${(props) => props.theme.colors.background};
+  }
+  body.dark-mode {
+    img:not([src*=".svg"]) {
+      filter: grayscale(50%);
+    }
+  }
+`;
+
+export default GlobalStyles;
+```

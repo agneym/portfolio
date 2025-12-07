@@ -1,0 +1,195 @@
+---
+title: NextJS on Elastic Beanstalk with Circle CI
+date: "2019-03-08T22:12:03.284Z"
+tags:
+  - how to deploy
+  - nextjs
+  - elastic beanstalk
+  - circleci
+  - aws
+published: true
+---
+
+> It's a dream combination to have. But like all the things, it's hard to get there. But here is a crash course.
+
+PS: This assumes that you already know why you want to use Elastic Beanstalk and CircleCI.
+
+Planned Workflow:
+
+![Flow from Local to CI to EB](/blog/nextjs-on-eb-ci/diagram.png)
+
+1. We create the application locally in different branches.
+2. We merge to `master` branch.
+3. CircleCI runs lint and test on these branches.
+4. CircleCI runs the NextJS build. (Also, run custom server build if you have one)
+5. CircleCI creates a ZIP file with necessary folders and pushed it to Elastic Beanstalk.
+6. Elastic Beanstalk runs the build and application is deployed.
+
+> Thanks to Ryan Simms [Gist](https://gist.github.com/ryansimms/808214137d219be649e010a07af44bad) for the cornerstone.
+
+So, let's start.
+
+## Setup EB Environment
+
+1. Create New Application
+2. Create New Environment
+3. When it asks you over two choices, choose Create a Web Server.
+4. Configure the rest of the server, you would probably want a load balancer in there if you want to [setup HTTPS](https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/configuring-https.html).
+
+## Setup CircleCI
+
+1. Create a CircleCI application
+2. Link it to your repository on Github/Gitlab and select your technology.
+3. We have NodeJS here and our configuration script being:
+
+```
+version: 2
+jobs:
+  test:
+    docker:
+      -
+        image: 'circleci/node:10.8.0'
+    working_directory: ~/app-name-directory
+    steps:
+      - checkout
+      -
+        restore_cache:
+          name: Restore Yarn Package Cache
+          keys:
+            - yarn-packages-{{ checksum "yarn.lock" }}
+      -
+        run: 'yarn install'
+      -
+        save_cache:
+          name: Save Yarn Package Cache
+          key: 'yarn-packages-{{ checksum "yarn.lock" }}'
+          paths:
+            - ~/.cache/yarn
+      -
+        run: 'yarn test'
+  deploy_prod:
+    working_directory: ~/app-name-directory
+    docker:
+      -
+        image: 'circleci/node:10.8.0'
+    steps:
+      - checkout
+      -
+        run:
+          name: 'Build Application'
+          command: yarn install && yarn run build && yarn run generate-zip
+      -
+        run:
+          name: 'Install Python'
+          command: "sudo apt-get -y -qq update\nsudo apt-get -y -qq install python3.4-dev\necho 'export PATH=/root/.local/bin/:$PATH' >> $BASH_ENV\necho 'export PATH=/home/circleci/.local/bin/:$PATH' >> $BASH_ENV\n"
+      -
+        run:
+          name: 'Install pip'
+          command: "curl -O https://bootstrap.pypa.io/get-pip.py\npython3.4 get-pip.py --user\n"
+      -
+        run:
+          name: 'Install AWS EB CLI & S3 CLI'
+          command: "pip install awsebcli --upgrade --user\npip install awscli --upgrade --user\n"
+      -
+        run:
+          name: 'Deploy to Elastic Beanstalk'
+          command: "eb use AppName-env\ntimeout 1m eb deploy -v --staged || true\n"
+workflows:
+  version: 2
+  Test_and_Deploy:
+    jobs:
+      - test
+      -
+        deploy_prod:
+          requires:
+            - test
+          filters:
+            branches:
+              only: master
+```
+
+This configuration runs in `yarn test` on all branches pushed. It runs `deploy_prod` only on the `master` branch, after running `test` successfully.
+
+```
+eb use AppName-env\ntimeout 1m eb deploy -v --staged
+```
+
+In this command, use the name you provided to your environment earlier in Elastic Beanstalk.
+
+## Create IAM user
+
+Now we have to provide permissions for Circle CI to deploy to Elastic Beanstalk. This is done with the help of AWS IAM User.
+
+1. [Add a AWS User from here](https://console.aws.amazon.com/iam/home#/users$new?step=details)
+2. Set a username and select Programmatic access as the Access type
+3. Click 'Create group' on the user permissions page
+4. Set a group name and search for the AWSElasticBeanstalkFullAccess policy type and select it
+5. Create the group so it's assigned to your new user
+6. Review and create the user.
+
+## Add IAM User to CircleCI
+
+Add deployment user environment variables to CircleCi
+
+- Project Settings > Environment Variables
+  - AWS_ACCESS_KEY_ID
+  - AWS_SECRET_ACCESS_KEY
+
+## Deploying NextJS
+
+Now, is the tricky part. You do not want to transfer every part of your application to Elasticbeanstalk. Instead, you might want to transfer the `.next` folder that houses your build and may be a [custom server combination](https://github.com/zeit/next.js/tree/canary/examples/custom-server-express) you are using with it.
+
+Elastic Beanstalk very essentially works with a ZIP file being uploaded to the service. This is what happens when you use the CI with the command `eb deploy`, but here what we want to do is create a custom ZIP file for EB and ask it to deploy the same.
+
+```
+yarn run generate-zip
+```
+
+This is what this line in our CircleCI configuration is doing.
+
+```
+"generate-zip": "sh ./scripts/generate-zip.sh"
+```
+
+`generate-zip` command in our `package.json` points to an `sh` file that is to be executed after taking build of your application.
+
+Here is the `generate-zip.sh` file:
+
+```
+# If the directory, `dist`, doesn't exist, create `dist`
+stat dist || mkdir dist
+# Archive artifacts
+zip dist/$npm_package_name.zip -r dist .next package.json yarn.lock next.config.js assets
+```
+
+This creates a ZIP in the dist folder with `.next`, `package.json`, `lock` files, config scripts and assets. If you have a custom server being build somewhere, add that folder name too. In my case, it is being build to `dist` folder itself.
+
+Now, we need to ask EB to actually use this zip file. We do that with `.elasticbeanstalk/config.yml` file.
+
+```
+branch-defaults:
+  master:
+    environment: AppName-env
+global:
+  application_name: app-name
+  default_ec2_keyname: app-web
+  default_platform: Node.js
+  default_region: ap-south-1
+  include_git_submodules: true
+  instance_profile: null
+  platform_name: null
+  platform_version: null
+  profile: null
+  sc: git
+  workspace_type: Application
+deploy:
+  artifact: dist/appname.zip
+```
+
+Note: Use the same names you used while creating the environment here too.
+
+The last line is the major part to take notice. This is the ZIP we made with the `sh` file in last step.
+
+Now, just push the master branch and it should build the application on EB.
+
+Feel free to create an [issue](https://github.com/agneym/blog/issues) if you need help.

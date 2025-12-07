@@ -1,0 +1,164 @@
+---
+title: Hooks of React Router
+date: "2020-01-18T22:12:03.284Z"
+tags:
+  - hooks
+  - react-router
+  - useRouteMatch
+  - useParams
+published: true
+ogImage:
+  title: Hooks of React Router
+  background: "linear-gradient(to right,"
+  filename: hooks-of-react-router
+---
+
+React Router 5 embraces the power of [hooks](https://reactjs.org/docs/hooks-intro.html) and has introduces four different hooks to help with your routing.
+
+But before we look at hooks themselves, we have to look at a new pattern that the `Route` component exposes and how this changes things.
+
+_Before_:
+
+```javascript
+// When you wanted to render the route and get router props for component
+<Route path="/" component={Home} />
+// Or when you wanted to pass extra props
+<Route path="/" render={({ match }) => <Profile match={match} mine={true} />}>
+```
+
+When using the `component` syntax, route props (match, location and history) are implicitly being passed on to the component. But it has to be changed to `render` once you have extra props to pass to the component. Note that adding a function to the `component` syntax would lead to the component re-mounting on every render.
+
+_After_:
+
+```javascript
+<Route path="/">
+  <Home />
+</Route>
+```
+
+Note that there is no implicit passing of any props to the `Home` component. But without changing anything with the `Route` itself, you can add any extra props to the `Home` component. You can no longer make the mistake of re-mounting the component on every render and that's the best kind of APIs.
+
+But now that implicit passing of route props is not there, how do we access `match`, `history` or `location`? Do we have to wrap all components with `withRouter`? That is where the hooks steps in.
+
+> Note that hooks were introduced in 16.8 version of React, so you need to be above that version to use them.
+
+## `useHistory`
+
+- Provides access to the `history` prop in React Router
+- Refers to [history package](https://github.com/ReactTraining/history) dependency that the router uses
+- Primary use case would be for programmatic routing with functions like `push`, `replace` etc
+
+```javascript
+function Home() {
+  const history = useHistory();
+  return <button onClick={() => history.push("/profile")}>Profile</button>;
+}
+```
+
+## `useLocation`
+
+- Provides access to the `location` prop in React Router
+- It is similar to the `window.location` in the browser itself, but this is accessible everywhere as it represents the Router state and location.
+- Primary use case for this would be to access the query params or the complete route string.
+
+```javascript
+function Profile() {
+  const location = useLocation();
+  useEffect(() => {
+    const currentPath = location.pathname;
+    const searchParams = new URLSearchParams(location.search);
+  }, [location]);
+  return <p>Profile</p>;
+}
+```
+
+> Since location property is immutable, the `useEffect` will call the function everytime the route changes, making it perfect to operate on search parameters or current path.
+
+## `useParams`
+
+- Provides access to search parameters in the URL.
+- This was possible earlier only using `match.params`
+
+```javascript
+function Profile() {
+  const { name } = useParams();
+  return <p>{name}'s Profile</p>;
+}
+
+function Dashboard() {
+  return (
+    <>
+      <nav>
+        <Link to={`/profile/ann`}>Ann's Profile</Link>
+      </nav>
+      <main>
+        <Route path="/profile/:name">
+          <Profile />
+        </Route>
+      </main>
+    </>
+  );
+}
+```
+
+## `useRouteMatch`
+
+- Provides access to the [match](https://reacttraining.com/react-router/web/api/match) object.
+- If provided with no arguments, it returns the closest match in the component or it's parents.
+- Primary use case would be to construct nested paths.
+
+```javascript
+function Auth() {
+  const match = useRouteMatch();
+  return (
+    <>
+      <Route path={`${match.url}/login`}>
+        <Login />
+      </Route>
+      <Route path={`${match.url}/register`}>
+        <Register />
+      </Route>
+    </>
+  );
+}
+```
+
+You can also use `useRouteMatch` to access a match without rendering a `Route`, this is done by passing it the location argument.
+
+For example, consider that you need your own profile to be rendered at `/profile` and somebody else's profile if the URL contains the name of the person `/profile/dan` or `/profile/ann`. Without using the hook, you would either write a [`Switch`](https://reacttraining.com/react-router/web/api/Switch) and list down both routes and customise them with props, now using the hook:
+
+```javascript
+import {
+  Route,
+  BrowserRouter as Router,
+  Link,
+  useRouteMatch,
+} from "react-router-dom";
+
+function Profile() {
+  const match = useRouteMatch("/profile/:name");
+
+  return match ? <p>{match.params.name}'s Profile</p> : <p>My own profile</p>;
+}
+
+export default function App() {
+  return (
+    <Router>
+      <nav>
+        <Link to="/profile">My Profile</Link>
+        <br />
+        <Link to={`/profile/ann`}>Ann's Profile</Link>
+      </nav>
+      <Route path="/profile">
+        <Profile />
+      </Route>
+    </Router>
+  );
+}
+```
+
+> You can also use all the props on `Route` like `exact` or `sensitive` as an object with `useRouteMatch`.
+
+---
+
+Using the hooks and the technique we mentioned in the beginning with `Route` would make it much easier to upgrade to new versions of React Router.

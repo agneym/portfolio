@@ -1,0 +1,144 @@
+---
+title: Let's make a Picture in Picture Countdown timer on the Web
+date: "2020-01-28T22:12:03.284Z"
+tags:
+  - pip
+  - picture in picture
+  - javascript
+  - canvas
+published: true
+---
+
+Caution: This currently works only on Chrome and Safari. Firefox still does not have support for programmatic PiP.
+
+[Can I Use - Picture in Picture](https://caniuse.com/#feat=picture-in-picture)
+
+# The Normal Pomodoro Timer
+
+I'm starting off with a normal countdown pomodoro timer. I will be using [AlpineJS](https://github.com/alpinejs/alpine). For the uninitiated, AlpineJS is a small JavaScript library that uses Vue/Angular like syntax to bring reactivity to the DOM. If you are familiar with Vue or Angular, then you should feel right at home with the syntax.
+
+```html
+<main x-data="timer()" x-init="init()">
+  <div>
+    <p x-text="text"></p>
+  </div>
+  <div class="button-container">
+    <button
+      x-text='interval ? "Pause" : "Start"'
+      @click="interval ? pause() : start()"
+    >
+      Start
+    </button>
+    <button @click="stop()">Reset</button>
+  </div>
+</main>
+```
+
+JavaScript:
+
+```javascript
+const zeroPad = (num, places) => String(num).padStart(places, '0');
+
+const formatTime({minutes, seconds}) = () => `${zeroPad(minutes, 2)} : ${zeroPad(seconds, 2)}`;
+
+function timer() {
+  return {
+    interval: null,
+    text: '',
+    time: {
+      minutes: 25,
+      seconds: 0,
+    },
+    init() {
+      this.text = formatTime(this.time);
+    },
+    start() {
+      this.interval = setInterval(() => {
+        const time = calculateTime(this.time);
+        this.time = time;
+        if(time.minutes === 0 && time.seconds === 0) {
+          this.stop();
+        }
+        this.text = formatTime(time);
+      }, 1000);
+    },
+    stop() {
+      clearInterval(this.interval);
+      this.interval = null;
+      this.time = {
+        minutes: 25,
+        seconds: 0,
+      }
+      this.text = formatTime(this.time);
+    },
+    pause() {
+      clearInterval(this.interval);
+      this.interval = null;
+    }
+  }
+}
+```
+
+> You need AlpineJS needed for this. You can load it from a [CDN](https://cdn.jsdelivr.net/gh/alpinejs/alpine@v1.9.5/dist/alpine.js)
+
+# Picture in Picture
+
+As a sidenote, let us talk about Picture in Picture (This is where we are going at the end, but still).
+
+Google Developers pages have some [great tutorials](https://developers.google.com/web/updates/2018/10/watch-video-using-picture-in-picture) on picture in picture.
+
+But by essence, you can request a video to play picture in picture with:
+
+```javascript
+const videoEl = document.querySelector("#video");
+videoEl.requestPictureInPicture();
+```
+
+You can see if a device supports Picture in Picture with:
+
+```javascript
+if (!("pictureInPictureEnabled" in document)) {
+  console.log("The Picture-in-Picture Web API is not available.");
+} else if (!document.pictureInPictureEnabled) {
+  console.log("The Picture-in-Picture Web API is disabled.");
+}
+```
+
+## Bringing Canvas into the Picture
+
+How do we bring the canvas into this? Well, Chrome allows for any video to play Picture in Picture and luckily for us, Canvas comes with a [captureStream](https://developer.mozilla.org/en-US/docs/Web/API/HTMLCanvasElement/captureStream) API that allows us to capture any stream on a canvas and capture it on video all in real time.
+
+Here is how we would do that:
+
+```javascript
+const canvas = document.createElement("canvas");
+// Draw something to canvas.
+canvas.getContext("2d").fillRect(0, 0, canvas.width, canvas.height);
+
+const video = document.createElement("video");
+video.muted = true;
+video.srcObject = canvas.captureStream();
+video.play();
+```
+
+## All Together now
+
+<iframe
+  height="300"
+  style={{ marginTop: "2rem", width: "100%" }}
+  scrolling="no"
+  title="Pomodoro Clock in PiP"
+  src="https://codepen.io/BoyWithSilverWings/embed/preview/qBEwrbJ?height=300&theme-id=32843&default-tab=result"
+  frameborder="no"
+  allowtransparency="true"
+  allowFullScreen={true}
+>
+  <span>See the Pen </span>
+  <a href="https://codepen.io/BoyWithSilverWings/pen/qBEwrbJ">
+    <span>Pomodoro Clock in PiP</span>
+  </a>
+  <span>by Boy with Silver Wings</span>
+  <a href="https://codepen.io/BoyWithSilverWings">(@BoyWithSilverWings")</a>
+  <span>on </span>
+  <a href="https://codepen.io">CodePen</a>.
+</iframe>

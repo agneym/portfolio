@@ -2,7 +2,6 @@ import { DateString } from "./DateString";
 import Link from "next/link";
 
 export function PostListItem({ meta, slug }) {
-  console.log({ meta });
   return (
     <Link
       href={{
