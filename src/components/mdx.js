@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { MDXRemote } from "next-mdx-remote/rsc";
-import { highlight } from "sugar-high";
+import { codeToHtml } from "shiki";
 import { PlaygroundWrapper } from "components/uikit/PlaygroundWrapper";
 import { BubblingVisualizer } from "components/blog/BubblingVisualizer";
 
@@ -49,9 +49,22 @@ function RoundedImage(props) {
   return <Image alt={props.alt} className="rounded-lg" {...props} />;
 }
 
-function Code({ children, ...props }) {
-  let codeHTML = highlight(children);
-  return <code dangerouslySetInnerHTML={{ __html: codeHTML }} {...props} />;
+async function Code({ children, ...props }) {
+  const lang = props.className?.replace("language-", "");
+
+  if (lang) {
+    const codeHTML = await codeToHtml(children, {
+      themes: {
+        light: "github-light",
+        dark: "tokyo-night",
+      },
+      lang,
+    });
+    // Shiki's HTML already includes <pre><code> structure, so return it directly
+    return <div dangerouslySetInnerHTML={{ __html: codeHTML }} />;
+  }
+
+  return <code {...props}>{children}</code>;
 }
 
 function slugify(str) {
@@ -110,6 +123,10 @@ function createHeading(level) {
   return Heading;
 }
 
+function Pre({ children }) {
+  return children;
+}
+
 let components = {
   h1: createHeading(1),
   h2: createHeading(2),
@@ -120,6 +137,7 @@ let components = {
   Image: RoundedImage,
   a: CustomLink,
   code: Code,
+  pre: Pre,
   Table,
   Playground: PlaygroundWrapper,
   BubblingVisualizer,
