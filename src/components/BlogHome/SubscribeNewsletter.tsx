@@ -2,7 +2,7 @@ import { Input } from "components/uikit/Input";
 
 export function SubscribeNewsletter() {
   return (
-    <div className="flex flex-col-reverse gap-x-16 gap-y-16 px-4 text-gray-800 md:flex-row dark:text-gray-300">
+    <div className="flex flex-col-reverse gap-x-16 gap-y-16 px-8 text-gray-800 md:flex-row lg:px-4 dark:text-gray-300">
       <div className="flex max-w-md flex-col gap-y-3 text-balance md:basis-1/2">
         <p>
           <span>Stay ahead of the curve in Web Development with </span>

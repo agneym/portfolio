@@ -1,6 +1,11 @@
+import type { Frontmatter } from "app/blog/utils";
 import { DateString } from "./DateString";
 
-export function BlogPostHeader({ frontmatter }) {
+interface BlogPostHeaderProps {
+  frontmatter: Frontmatter;
+}
+
+export function BlogPostHeader({ frontmatter }: BlogPostHeaderProps) {
   return (
     <header className="not-prose mx-auto max-w-4xl pt-8 pb-10">
       <h1 className="not-prose text-6xl font-extrabold text-balance text-slate-800 dark:text-slate-100">

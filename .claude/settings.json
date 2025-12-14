@@ -12,7 +12,8 @@
       "Bash(echo:*)",
       "Bash(pwd)",
       "Bash(ast-grep:*)",
-      "Bash(tree:*)"
+      "Bash(tree:*)",
+      "mcp__context7__get-library-docs"
     ],
     "deny": []
   }
