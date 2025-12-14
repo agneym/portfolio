@@ -1,7 +1,13 @@
+import type { Frontmatter } from "app/blog/utils";
 import { DateString } from "./DateString";
 import Link from "next/link";
 
-export function PostListItem({ meta, slug }) {
+interface PostListItemProps {
+  meta: Frontmatter;
+  slug: string;
+}
+
+export function PostListItem({ meta, slug }: PostListItemProps) {
   return (
     <Link
       href={{

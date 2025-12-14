@@ -1,5 +1,7 @@
-import { Header, SubscribeNewsletter, PostList } from "components/BlogHome";
 import { SkipNavContent } from "components/uikit/SkipNav";
+import { PostList } from "components/BlogHome/PostList";
+import { Header } from "components/BlogHome/Header";
+import { SubscribeNewsletter } from "components/BlogHome/SubscribeNewsletter";
 
 export const metadata = {
   title: "Blog | Agney",

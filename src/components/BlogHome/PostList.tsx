@@ -3,9 +3,9 @@ import { getBlogPosts } from "app/blog/utils";
 
 export function PostList() {
   const posts = getBlogPosts().sort((a, b) => {
-    const dateA = new Date(a.metadata.date || a.metadata.publishedAt);
-    const dateB = new Date(b.metadata.date || b.metadata.publishedAt);
-    return dateB - dateA;
+    const dateA = new Date(a.metadata.date ?? a.metadata.publishedAt);
+    const dateB = new Date(b.metadata.date ?? b.metadata.publishedAt);
+    return dateB.getTime() - dateA.getTime();
   });
 
   return (
