@@ -2,6 +2,7 @@ import "./global.css";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Providers } from "./providers";
 import { Work_Sans } from "next/font/google";
+import type { ReactNode } from "react";
 
 const workSansFont = Work_Sans({
   variable: "--font-heading",
@@ -32,7 +33,11 @@ export const viewport = {
   colorScheme: "dark",
 };
 
-export default function RootLayout({ children }) {
+interface RootLayoutProps {
+  children: ReactNode;
+}
+
+export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html
       lang="en"
