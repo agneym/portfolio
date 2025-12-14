@@ -2,7 +2,12 @@
 
 import { getFormattedDate } from "./getFormattedDate";
 
-export function DateString({ children, className }) {
+interface DateStringProps {
+  children: string;
+  className?: string;
+}
+
+export function DateString({ children, className }: DateStringProps) {
   return (
     <time dateTime={children} className={className} suppressHydrationWarning>
       <span className="font-semibold">{getFormattedDate(children)}</span>

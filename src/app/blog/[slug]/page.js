@@ -1,7 +1,8 @@
 import { notFound } from "next/navigation";
 import { CustomMDX } from "components/mdx";
 import { getBlogPosts } from "app/blog/utils";
-import { BlogArticleContainer, BlogPostHeader } from "components/BlogHome";
+import { BlogArticleContainer } from "components/BlogHome/BlogArticleContainer";
+import { BlogPostHeader } from "components/BlogHome/BlogPostHeader";
 
 export async function generateStaticParams() {
   let posts = getBlogPosts();
