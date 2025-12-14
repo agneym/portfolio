@@ -1,7 +1,7 @@
 {
   // Visit https://aka.ms/tsconfig to read more about this file
   "compilerOptions": {
-    "module": "nodenext",
+    "module": "preserve",
     "target": "esnext",
     "types": [],
     // For nodejs:
@@ -39,7 +39,7 @@
     "noEmit": true,
     "incremental": true,
     "esModuleInterop": true,
-    "moduleResolution": "NodeNext",
+    "moduleResolution": "bundler",
     "resolveJsonModule": true,
     "plugins": [
       {

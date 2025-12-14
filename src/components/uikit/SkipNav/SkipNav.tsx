@@ -1,4 +1,13 @@
+import type { ElementType, ReactNode, RefObject } from "react";
+
 let defaultId = "reach-skip-nav";
+
+interface SkipNavLinkProps {
+  as?: ElementType;
+  children: ReactNode;
+  contentId: string;
+  ref?: RefObject<HTMLAnchorElement>;
+}
 
 ////////////////////////////////////////////////////////////////////////////////
 
@@ -15,7 +24,7 @@ function SkipNavLink({
   contentId,
   ref: forwardedRef,
   ...props
-}) {
+}: SkipNavLinkProps) {
   let id = contentId || defaultId;
   return (
     <Comp
@@ -29,6 +38,11 @@ function SkipNavLink({
   );
 }
 
+interface SkipNavContentProps {
+  as?: ElementType;
+  id?: string;
+  ref?: RefObject<HTMLDivElement>;
+}
 ////////////////////////////////////////////////////////////////////////////////
 
 /**
@@ -43,7 +57,7 @@ function SkipNavContent({
   id: idProp,
   ref: forwardedRef,
   ...props
-}) {
+}: SkipNavContentProps) {
   let id = idProp || defaultId;
   return (
     <Comp

@@ -14,12 +14,18 @@ const animate = {
   opacity: 1,
 };
 
-const getAnimateProps = ({ delay, shouldReduceMotion }) => ({
+const getAnimateProps = ({
+  delay,
+  shouldReduceMotion = false,
+}: {
+  delay?: number;
+  shouldReduceMotion?: boolean | null;
+}) => ({
   initial: shouldReduceMotion ? false : initial,
   animate,
   transition: {
-    type: "spring",
-    delay,
+    type: "spring" as const,
+    delay: delay ?? 0,
   },
 });
 
