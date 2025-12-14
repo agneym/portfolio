@@ -1,12 +1,21 @@
 import { NavbarPopover } from "./NavbarPopover";
 import clsx from "clsx";
 import { ThemeButton } from "components/shared";
+import type { ReactNode } from "react";
 
-function NavbarLogo({ children }) {
+interface NavbarLogoProps {
+  children: ReactNode;
+}
+
+function NavbarLogo({ children }: NavbarLogoProps) {
   return children;
 }
 
-function NavbarRight({ children }) {
+interface NavbarRightProps {
+  children: ReactNode;
+}
+
+function NavbarRight({ children }: NavbarRightProps) {
   return (
     <div className="inline-flex items-center gap-x-8">
       <div className="hidden items-center gap-x-8 md:inline-flex">
@@ -18,7 +27,12 @@ function NavbarRight({ children }) {
   );
 }
 
-export function Navbar({ className, children }) {
+interface NavbarProps {
+  className?: string;
+  children: ReactNode;
+}
+
+export function Navbar({ className, children }: NavbarProps) {
   return (
     <nav
       className={clsx(

@@ -1,13 +1,12 @@
-import type { ElementType, ReactNode, RefObject } from "react";
+import type { ComponentPropsWithRef, ElementType, ReactNode } from "react";
 
 let defaultId = "reach-skip-nav";
 
-interface SkipNavLinkProps {
-  as?: ElementType;
-  children: ReactNode;
-  contentId: string;
-  ref?: RefObject<HTMLAnchorElement>;
-}
+type SkipNavLinkProps<T extends ElementType = "a"> = {
+  as?: T;
+  children?: ReactNode;
+  contentId?: string;
+} & Omit<ComponentPropsWithRef<T>, "as" | "children" | "contentId">;
 
 ////////////////////////////////////////////////////////////////////////////////
 
@@ -18,7 +17,7 @@ interface SkipNavLinkProps {
  *
  * @see Docs https://reach.tech/skip-nav#skipnavlink
  */
-function SkipNavLink({
+export function SkipNavLink({
   as: Comp = "a",
   children = "Skip to content",
   contentId,
@@ -38,11 +37,10 @@ function SkipNavLink({
   );
 }
 
-interface SkipNavContentProps {
-  as?: ElementType;
+type SkipNavContentProps<T extends ElementType = "div"> = {
+  as?: T;
   id?: string;
-  ref?: RefObject<HTMLDivElement>;
-}
+} & Omit<ComponentPropsWithRef<T>, "as" | "id">;
 ////////////////////////////////////////////////////////////////////////////////
 
 /**
@@ -52,7 +50,7 @@ interface SkipNavContentProps {
  *
  * @see Docs https://reach.tech/skip-nav#skipnavcontent
  */
-function SkipNavContent({
+export function SkipNavContent({
   as: Comp = "div",
   id: idProp,
   ref: forwardedRef,
@@ -68,5 +66,3 @@ function SkipNavContent({
     />
   );
 }
-
-export { SkipNavLink, SkipNavContent };
