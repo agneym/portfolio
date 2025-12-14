@@ -1,7 +1,14 @@
 import GithubIcon from "images/social-media/github.svg";
 import TwitterIcon from "images/social-media/twitter.svg";
+import type { ReactNode } from "react";
 
-const SocialMediaLink = ({ href, iconEl, ariaLabel }) => {
+interface SocialMediaLinkProps {
+  href: string;
+  iconEl: ReactNode;
+  ariaLabel: string;
+}
+
+const SocialMediaLink = ({ href, iconEl, ariaLabel }: SocialMediaLinkProps) => {
   return (
     <a
       href={href}

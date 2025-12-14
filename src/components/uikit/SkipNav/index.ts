@@ -1,1 +1,1 @@
-export { SkipNavLink, SkipNavContent } from "./SkipNav.js";
+export { SkipNavLink, SkipNavContent } from "./SkipNav";

@@ -2,8 +2,13 @@
 
 import * as Popover from "@radix-ui/react-popover";
 import HamburgerSvg from "images/hamburger.svg";
+import type { ReactNode } from "react";
 
-export function NavbarPopover({ children }) {
+interface NavbarPopoverProps {
+  children: ReactNode;
+}
+
+export function NavbarPopover({ children }: NavbarPopoverProps) {
   return (
     <Popover.Root>
       <Popover.Trigger className="inline-flex md:hidden" title="Menu">

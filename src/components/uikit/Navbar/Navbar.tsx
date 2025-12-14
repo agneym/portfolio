@@ -1,6 +1,6 @@
 import { NavbarPopover } from "./NavbarPopover";
 import clsx from "clsx";
-import { ThemeButton } from "components/shared";
+import { ThemeButton } from "components/shared/ThemeButton";
 import type { ReactNode } from "react";
 
 interface NavbarLogoProps {

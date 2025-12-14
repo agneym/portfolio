@@ -1,4 +1,11 @@
-export function SpeedSelect(props) {
+import type { ComponentProps } from "react";
+
+interface SpeedSelectProps extends Omit<
+  ComponentProps<"select">,
+  "onChange" | "value"
+> {}
+
+export function SpeedSelect(props: SpeedSelectProps) {
   return (
     <select
       className="cursor-pointer border-none bg-transparent text-xs text-slate-900 outline-none dark:text-slate-100"

@@ -4,8 +4,13 @@ import MoonIcon from "images/moon.svg";
 import SunIcon from "images/sun.svg";
 import { AnimatePresence, motion } from "motion/react";
 import { useTheme } from "next-themes";
+import type { ComponentType, SVGProps } from "react";
 
-const AnimatedIcon = ({ icon: Icon }) => {
+interface AnimatedIconProps {
+  icon: ComponentType<SVGProps<SVGSVGElement>>;
+}
+
+const AnimatedIcon = ({ icon: Icon }: AnimatedIconProps) => {
   return (
     <motion.span
       initial={{
