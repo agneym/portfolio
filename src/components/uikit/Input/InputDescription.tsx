@@ -3,8 +3,18 @@
 import { useInputContext } from "./InputGroup";
 import clsx from "clsx";
 import invariant from "tiny-invariant";
+import type { ReactNode } from "react";
 
-export const InputDescription = ({ children, className, ...rest }) => {
+interface InputDescriptionProps extends React.HTMLAttributes<HTMLParagraphElement> {
+  children: ReactNode;
+  className?: string;
+}
+
+export const InputDescription = ({
+  children,
+  className,
+  ...rest
+}: InputDescriptionProps) => {
   const { hasDescription, descriptionId } = useInputContext();
 
   invariant(

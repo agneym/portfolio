@@ -2,11 +2,18 @@
 
 import clsx from "clsx";
 import { useId, createContext, useContext, useMemo } from "react";
+import type { ComponentProps, ReactNode } from "react";
 import invariant from "tiny-invariant";
 
-const InputContext = createContext(null);
+interface InputContextValue {
+  inputId: string;
+  descriptionId: string;
+  hasDescription: boolean;
+}
 
-export const useInputContext = () => {
+const InputContext = createContext<InputContextValue | null>(null);
+
+export const useInputContext = (): InputContextValue => {
   const context = useContext(InputContext);
   invariant(
     context,
@@ -16,7 +23,18 @@ export const useInputContext = () => {
   return context;
 };
 
-export function InputGroup({ className, hasDescription, children, ...rest }) {
+interface InputGroupProps extends ComponentProps<"div"> {
+  className?: string;
+  hasDescription: boolean;
+  children: ReactNode;
+}
+
+export function InputGroup({
+  className,
+  hasDescription,
+  children,
+  ...rest
+}: InputGroupProps) {
   const inputId = useId();
   const descriptionId = useId();
 

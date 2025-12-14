@@ -1,9 +1,14 @@
 "use client";
 
+import type { ComponentProps } from "react";
 import { useInputContext } from "./InputGroup";
 import clsx from "clsx";
 
-export function InputLabel({ className, ...rest }) {
+interface InputLabelProps extends ComponentProps<"label"> {
+  className?: string;
+}
+
+export function InputLabel({ className, ...rest }: InputLabelProps) {
   const { inputId } = useInputContext();
 
   return (

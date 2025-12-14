@@ -1,9 +1,14 @@
 "use client";
 
+import type { ComponentProps } from "react";
 import { useInputContext } from "./InputGroup";
 import { clsx } from "clsx";
 
-export function Input({ className, ...rest }) {
+interface InputProps extends ComponentProps<"input"> {
+  className?: string;
+}
+
+export function Input({ className, ...rest }: InputProps) {
   const { inputId, hasDescription, descriptionId } = useInputContext();
 
   return (

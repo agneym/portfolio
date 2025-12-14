@@ -16,6 +16,7 @@
 - **Components**: Functional components + Hooks. Use Server Components by default in `app/`.
 - **Styling**: Tailwind CSS utility classes.
 - **State**: Use `useId`, `use`, `useOptimistic`, `useTransition` where appropriate (React 19).
+- **TypeScript Props**: When extending native HTML elements, use `ComponentProps<"element">` (e.g., `ComponentProps<"input">`) instead of `React.InputHTMLAttributes<HTMLInputElement>`.
 
 ## Specific Rules (from Copilot Instructions)
 
