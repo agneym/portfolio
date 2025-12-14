@@ -3,15 +3,16 @@
 import avatarPic from "images/avatar-400x400.jpg";
 import { motion, useReducedMotion } from "motion/react";
 import Image from "next/image";
+import { getAnimateProps } from "./getAnimateProps";
 
 const transitionState = {
   delay: 1,
-  type: "spring",
+  type: "spring" as const,
   duration: 3,
   repeat: Infinity,
-};
+} as const;
 
-export const AvatarImage = ({ getAnimateProps }) => {
+export const AvatarImage = () => {
   const shouldReduceMotion = useReducedMotion();
 
   return (

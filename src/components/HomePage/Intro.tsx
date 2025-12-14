@@ -3,31 +3,7 @@
 import { AvatarImage } from "./AvatarImage";
 import { SkipNavContent } from "components/uikit/SkipNav";
 import { motion, useReducedMotion } from "motion/react";
-
-const initial = {
-  y: 10,
-  opacity: 0,
-};
-
-const animate = {
-  y: 0,
-  opacity: 1,
-};
-
-const getAnimateProps = ({
-  delay,
-  shouldReduceMotion = false,
-}: {
-  delay?: number;
-  shouldReduceMotion?: boolean | null;
-}) => ({
-  initial: shouldReduceMotion ? false : initial,
-  animate,
-  transition: {
-    type: "spring" as const,
-    delay: delay ?? 0,
-  },
-});
+import { getAnimateProps } from "./getAnimateProps";
 
 export const Intro = () => {
   const shouldReduceMotion = useReducedMotion();
@@ -42,7 +18,7 @@ export const Intro = () => {
         Hey 👋 I&apos;m
       </motion.h1>
       <div className="flex flex-col gap-y-6">
-        <AvatarImage getAnimateProps={getAnimateProps} />
+        <AvatarImage />
         <motion.h1
           {...getAnimateProps({ delay: 0.6, shouldReduceMotion })}
           className="font text-6xl font-extrabold"

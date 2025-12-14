@@ -73,5 +73,8 @@
   },
   "bugs": {
     "url": "https://github.com/agneym/portfolio/issues"
+  },
+  "engines": {
+    "node": "24.x"
   }
 }
