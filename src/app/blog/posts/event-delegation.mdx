@@ -38,3 +38,9 @@ In the earlier example, we add a click listener to a button, which makes sense b
 When you act on the page - say, click an element - the click event travels from the top of the window down to the target element, then back up again. The downward journey is the **Capture** phase; the upward return is the **Bubble** phase.
 
 <BubblingVisualizer />
+
+## Not every event bubbles
+
+Not all events bubble. For example, the `focus` event does not bubble. This is because the focus event is only triggered on the element that is focused, and not on the elements that are descendants of the focused element.
+
+Scroll events also do not bubble. This is because the scroll event is only triggered when the user scrolls the page, and not on the elements that are descendants of the scrollable element.
