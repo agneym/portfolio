@@ -39,8 +39,44 @@ When you act on the page - say, click an element - the click event travels from 
 
 <BubblingVisualizer />
 
-## Not every event bubbles
+## Not every event will bubble 🧋
 
 Not all events bubble. For example, the `focus` event does not bubble. This is because the focus event is only triggered on the element that is focused, and not on the elements that are descendants of the focused element.
 
 Scroll events also do not bubble. This is because the scroll event is only triggered when the user scrolls the page, and not on the elements that are descendants of the scrollable element.
+
+## Bubbling phase
+
+The bubbling phase is surely is the most used among the two phases. It is bottom-up in nature - meaning it starts from the element that is the target of the event and goes up to the root element.
+
+# Event delegation
+
+Event delegation is a technique of listening to events on a parent element instead of the target element. This is useful when you have a lot of elements that need to listen to the same event. A direct application of the bubbling phase as you can see.
+
+<Playground
+  initialSnippet={{
+    markup: `<div id="parent">
+  <button>Button 1</button>
+  <button>Button 2</button>
+  <button>Button 3</button>
+  <button>Button 4</button>
+  <button>Button 5</button>
+  <button>Button 6</button>
+  <button>Button 7</button>
+  <button>Button 8</button>
+  <button>Button 9</button>
+  <button>Button 10</button>
+</div>`,
+    css: ``,
+    javascript: `const parent = document.getElementById("parent");
+parent.addEventListener("click", (event) => {
+  alert("Button clicked: " + event.target.textContent);
+  console.log("Event target", event.target.textContent);
+  console.log("Event currentTarget", event.currentTarget.id);
+});`,
+  }}
+  defaultEditorTab="javascript"
+  transformJs
+/>
+
+## React & Event delegation

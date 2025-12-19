@@ -4,7 +4,12 @@
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "[mdx]": {
     "editor.wordWrap": "bounded",
-    "editor.wordWrapColumn": 80
+    "editor.wordWrapColumn": 80,
+    "editor.quickSuggestions": {
+      "other": "off",
+      "comments": "off",
+      "strings": "off"
+    }
   },
   // allow autocomplete for ArkType expressions like "string | num"
   "editor.quickSuggestions": {
