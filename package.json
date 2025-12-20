@@ -16,7 +16,7 @@
     "typecheck": "tsgo --noEmit"
   },
   "dependencies": {
-    "@agney/playground": "^1.0.0",
+    "@agney/playground": "^1.1.0",
     "@eslint/js": "^9.39.1",
     "@mdx-js/loader": "^3.1.1",
     "@mdx-js/react": "^3.1.1",
@@ -31,7 +31,7 @@
     "clsx": "^2.1.1",
     "gray-matter": "^4.0.3",
     "is-ci": "^4.1.0",
-    "lucide-react": "^0.553.0",
+    "lucide-react": "^0.562.0",
     "motion": "^12.18.1",
     "next": "^16.0.3",
     "next-mdx-remote": "^5.0.0",
@@ -48,9 +48,11 @@
   "devDependencies": {
     "@prettier/plugin-oxc": "^0.1.3",
     "@trivago/prettier-plugin-sort-imports": "^6.0.0",
+    "@types/react": "^19.2.7",
+    "@types/react-dom": "^19.2.3",
     "@typescript/native-preview": "^7.0.0-dev.20251213.1",
     "eslint": "^9.39.1",
-    "eslint-config-next": "16.0.3",
+    "eslint-config-next": "16.1.0",
     "eslint-config-prettier": "^10.1.5",
     "lefthook": "^2.0.4",
     "prettier": "^3.7.4",
