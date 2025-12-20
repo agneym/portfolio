@@ -1,0 +1,11 @@
+ignoredBuiltDependencies:
+  - core-js
+  - core-js-pure
+  - ejs
+  - fsevents
+  - highlight.js
+  - sharp
+  - unrs-resolver
+
+onlyBuiltDependencies:
+  - lefthook

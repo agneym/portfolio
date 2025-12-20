@@ -16,7 +16,7 @@
     "typecheck": "tsgo --noEmit"
   },
   "dependencies": {
-    "@agney/playground": "^0.8.1",
+    "@agney/playground": "^1.0.0",
     "@eslint/js": "^9.39.1",
     "@mdx-js/loader": "^3.1.1",
     "@mdx-js/react": "^3.1.1",
