@@ -1,8 +1,19 @@
 import mdx from "@astrojs/mdx";
 import react from "@astrojs/react";
-import { defineConfig } from "astro/config";
+import { defineConfig, fontProviders } from "astro/config";
 
 export default defineConfig({
+  experimental: {
+    fonts: [
+      {
+        provider: fontProviders.google(),
+        name: "Google Sans Flex",
+        cssVariable: "--font-heading",
+        weights: ["100 900"],
+        styles: ["normal"],
+      },
+    ],
+  },
   integrations: [react(), mdx()],
   redirects: {
     "/jem": "https://buttondown.email/agney",

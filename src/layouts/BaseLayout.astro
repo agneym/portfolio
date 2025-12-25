@@ -1,5 +1,6 @@
 ---
 import "../styles/global.css";
+import { Font } from "astro:assets";
 
 interface Props {
   title?: string;
@@ -48,19 +49,8 @@ const {
       document.documentElement.classList.toggle("dark", theme === "dark");
     </script>
 
-    <!-- Google Fonts - Work Sans -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700;800&display=swap"
-      rel="stylesheet"
-    />
-
-    <style>
-      :root {
-        --font-heading: "Work Sans", sans-serif;
-      }
-    </style>
+    <!-- Self-hosted Google Sans Flex via Astro experimental fonts -->
+    <Font cssVariable="--font-heading" preload />
   </head>
   <body
     class="h-full bg-slate-50 selection:bg-indigo-100 dark:bg-slate-800 dark:selection:bg-indigo-600"

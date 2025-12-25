@@ -201,5 +201,7 @@ dist
 *.local.json
 *.local.jsonc
 
+# Astro
+.astro/
 
 # End of https://www.toptal.com/developers/gitignore/api/visualstudiocode,node,macos
