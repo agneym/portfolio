@@ -1,14 +1,13 @@
 ---
-description: Review a blog post using the blog assistant
-agent: blog-assistant
+description: Review a blog post using the blog-review skill
 ---
 
-Review the blog post at src/app/blog/posts/$1.mdx
+Review the blog post at src/content/blog/$1.mdx
 
-Please read the post and provide a comprehensive review using the available subagents:
+Load the blog-review skill and perform a comprehensive review covering:
 
-1. Use @grammar-editor to fix any grammar, spelling, and legibility issues inline
-2. Use @story-editor to review the storytelling aspect and provide suggestions
-3. Use @tech-reviewer to check technical accuracy and code correctness
+1. Grammar and readability (with inline edits)
+2. Storytelling and narrative flow (suggestions)
+3. Technical accuracy and code review (findings)
 
-Start by reading the file, then systematically apply each subagent's review process. For each subagent, provide their feedback and make inline edits where appropriate (grammar-editor only).
+Start by reading the file, then systematically apply each review aspect following the skill's workflow.
