@@ -1,0 +1,26 @@
+---
+import DateString from "./DateString.astro";
+
+interface Props {
+  title: string;
+  date: string;
+}
+
+const { title, date } = Astro.props;
+---
+
+<header class="not-prose mx-auto max-w-4xl pt-8 pb-10">
+  <h1
+    class="not-prose text-6xl font-extrabold text-balance text-slate-800 dark:text-slate-100"
+  >
+    {title}
+  </h1>
+  {
+    date && (
+      <DateString
+        date={date}
+        class="mx-2 text-sm font-semibold text-slate-500 dark:text-slate-400"
+      />
+    )
+  }
+</header>

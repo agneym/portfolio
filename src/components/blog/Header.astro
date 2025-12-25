@@ -1,0 +1,27 @@
+---
+import { readFileSync } from "node:fs";
+
+const logoSvg = readFileSync("src/assets/logo.svg", "utf-8");
+---
+
+<div class="flex flex-col justify-center gap-y-5">
+  <div class="flex items-end justify-center gap-x-2">
+    <span
+      class="-z-10 -rotate-6 text-slate-900 transition-transform hover:rotate-0 dark:text-slate-100 [&>svg]:h-10 [&>svg]:w-10"
+      title="Home"
+      aria-hidden="true"
+    >
+      <Fragment set:html={logoSvg} />
+    </span>
+    <p class="text-3xl font-bold" aria-hidden="true">|</p>
+    <h1 class="text-3xl font-bold">Blog</h1>
+  </div>
+  <p>
+    <span>Welcome to Agney's </span>
+    <span
+      class="underline decoration-indigo-300 decoration-dashed underline-offset-2"
+    >
+      Digital Garden
+    </span>
+  </p>
+</div>

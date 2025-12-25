@@ -1,0 +1,85 @@
+---
+title: Event delegation - The React Way
+date: "2025-11-15T22:12:03.284Z"
+tags:
+  - react 16
+  - react 17
+  - event delegation
+  - event bubbling
+published: true
+---
+
+This article explains how event delegation works in the React DOM. We will first define the terms and show what they do in plain JavaScript; skip ahead if you already know this part.
+
+# Event
+
+An event is a signal sent by the browser (or your environment) to notify you that an action or behavior has occurred. You can then attach listeners to these signals so your code can react to the events.
+
+These events fire in the browser, so their behavior depends on the browser environment rather than on native JavaScript. Fortunately, their behavior has been standardized across browsers for some time.
+
+```javascript
+const button = document.getElementById("#button");
+
+/* On which element do I listen to the event */
+button.addEventListener(
+  /* Type of event to listen to */
+  "click",
+  /* What to do when this event happens */
+  () => {},
+);
+```
+
+# Event bubbling
+
+In the earlier example, we add a click listener to a button, which makes sense because the button is the element being clicked. But what if we want to detect clicks outside the button? For instance, a popover appears when you click the button, and you want it to disappear when you click anywhere else. You could attach an event listener to every element on the page, but that would quickly become unmanageable. Fortunately, events don't stop at the clicked element—they travel up and down the DOM tree.
+
+When you act on the page - say, click an element - the click event travels from the top of the window down to the target element, then back up again. The downward journey is the **Capture** phase; the upward return is the **Bubble** phase.
+
+<BubblingVisualizer />
+
+## Not every event will bubble 🧋
+
+Not all events bubble. For example, the `focus` event does not bubble. This is because the focus event is only triggered on the element that is focused, and not on the elements that are descendants of the focused element.
+
+Scroll events also do not bubble. This is because the scroll event is only triggered when the user scrolls the page, and not on the elements that are descendants of the scrollable element.
+
+## Bubbling phase
+
+The bubbling phase is surely is the most used among the two phases. It is bottom-up in nature - meaning it starts from the element that is the target of the event and goes up to the root element.
+
+# Event delegation
+
+Event delegation is a technique of listening to events on a parent element instead of the target element. This is useful when you have a lot of elements that need to listen to the same event. A direct application of the bubbling phase as you can see.
+
+<Playground
+  initialSnippet={{
+    markup: `<div id="parent">
+  <button>Button 1</button>
+  <button>Button 2</button>
+  <button>Button 3</button>
+  <button>Button 4</button>
+  <button>Button 5</button>
+  <button>Button 6</button>
+  <button>Button 7</button>
+  <button>Button 8</button>
+  <button>Button 9</button>
+  <button>Button 10</button>
+</div>`,
+    css: ``,
+    javascript: `const parent = document.getElementById("parent");
+parent.addEventListener("click", (event) => {
+  alert("Button clicked: " + event.target.textContent);
+  console.log("Event target", event.target.textContent);
+  console.log("Event currentTarget", event.currentTarget.id);
+});`,
+  }}
+  defaultEditorTab="javascript"
+/>
+
+<br />
+
+# Synthetic Events - React's Event System
+
+React's synthetic event system is a wrapper around the browser's event system. React creates an event object for the native event and then dispatches it to the target element.
+
+When you listen to an event through a React element, the event object that you see is a synthetic event object. This is a wrapper around the native event object that is created by React.

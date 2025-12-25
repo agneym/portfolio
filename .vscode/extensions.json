@@ -6,7 +6,8 @@
   "recommendations": [
     "esbenp.prettier-vscode",
     "unifiedjs.vscode-mdx",
-    "bradlc.vscode-tailwindcss"
+    "bradlc.vscode-tailwindcss",
+    "astro-build.astro-vscode"
   ],
   // List of extensions recommended by VS Code that should not be recommended for users of this workspace.
   "unwantedRecommendations": []

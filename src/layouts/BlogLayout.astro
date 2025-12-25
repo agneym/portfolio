@@ -1,0 +1,17 @@
+---
+import BaseLayout from "./BaseLayout.astro";
+import HeadNav from "../components/HeadNav.astro";
+
+interface Props {
+  title?: string;
+}
+
+const { title = "Blog | Agney" } = Astro.props;
+---
+
+<BaseLayout title={title}>
+  <div class="grid h-full grid-rows-[3rem_1fr] overflow-y-auto">
+    <HeadNav />
+    <slot />
+  </div>
+</BaseLayout>

@@ -1,0 +1,45 @@
+---
+import { getCollection, render, type CollectionEntry } from "astro:content";
+import BlogLayout from "../../layouts/BlogLayout.astro";
+import BlogArticleContainer from "../../components/blog/BlogArticleContainer.astro";
+import BlogPostHeader from "../../components/blog/BlogPostHeader.astro";
+import SkipNavContent from "../../components/SkipNavContent.astro";
+
+// Import React client components for MDX
+import PlaygroundClient from "../../components/mdx/PlaygroundClient";
+import BubblingVisualizerClient from "../../components/mdx/BubblingVisualizerClient";
+
+export async function getStaticPaths() {
+  const posts = await getCollection(
+    "blog",
+    ({ data }: CollectionEntry<"blog">) => {
+      return data.published !== false && data.published !== "false";
+    },
+  );
+
+  return posts.map((post: CollectionEntry<"blog">) => ({
+    params: { slug: post.id },
+    props: { post },
+  }));
+}
+
+interface Props {
+  post: CollectionEntry<"blog">;
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+---
+
+<BlogLayout title={`${post.data.title} | Blog`}>
+  <SkipNavContent />
+  <BlogArticleContainer>
+    <BlogPostHeader title={post.data.title} date={post.data.date} />
+    <Content
+      components={{
+        Playground: PlaygroundClient,
+        BubblingVisualizer: BubblingVisualizerClient,
+      }}
+    />
+  </BlogArticleContainer>
+</BlogLayout>

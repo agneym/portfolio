@@ -1,0 +1,23 @@
+---
+import DateString from "./DateString.astro";
+
+interface Props {
+  title: string;
+  date: string;
+  slug: string;
+}
+
+const { title, date, slug } = Astro.props;
+---
+
+<a href={`/blog/${slug}`}>
+  <article class="flex flex-col gap-y-4 py-2">
+    <header class="flex flex-col gap-y-1">
+      <h3 class="text-xl text-balance">{title}</h3>
+      <DateString
+        date={date}
+        class="text-xs text-gray-500 dark:text-gray-400"
+      />
+    </header>
+  </article>
+</a>

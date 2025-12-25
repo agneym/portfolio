@@ -1,0 +1,70 @@
+---
+import "../styles/global.css";
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = "Portfolio | Agney",
+  description = "A portfolio for Web Developer - Agney Menon",
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="en" class="h-full">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <meta
+      name="keywords"
+      content="Frontend Developer, Developer, Engineer, Portfolio"
+    />
+    <meta name="creator" content="Agney" />
+    <meta name="robots" content="index, follow" />
+    <meta name="googlebot" content="index, follow" />
+    <meta name="generator" content={Astro.generator} />
+    <link rel="icon" type="image/png" href="/icon.png" />
+
+    <!-- Open Graph -->
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="/opengraph-image.jpg" />
+
+    <title>{title}</title>
+
+    <!-- Dark mode script (must be inline to prevent flash) -->
+    <script is:inline>
+      const theme = (() => {
+        const stored = localStorage.getItem("theme");
+        if (stored === "dark" || stored === "light") return stored;
+        return window.matchMedia("(prefers-color-scheme: dark)").matches
+          ? "dark"
+          : "light";
+      })();
+      document.documentElement.classList.toggle("dark", theme === "dark");
+    </script>
+
+    <!-- Google Fonts - Work Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      :root {
+        --font-heading: "Work Sans", sans-serif;
+      }
+    </style>
+  </head>
+  <body
+    class="h-full bg-slate-50 selection:bg-indigo-100 dark:bg-slate-800 dark:selection:bg-indigo-600"
+  >
+    <slot />
+  </body>
+</html>

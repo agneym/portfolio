@@ -1,10 +1,15 @@
 {
   "plugins": [
+    "prettier-plugin-astro",
     "@prettier/plugin-oxc",
     "prettier-plugin-tailwindcss",
     "@trivago/prettier-plugin-sort-imports"
   ],
   "overrides": [
+    {
+      "files": ["*.astro"],
+      "parser": "astro"
+    },
     {
       "files": ["*.js", "*.jsx"],
       "parser": "oxc"

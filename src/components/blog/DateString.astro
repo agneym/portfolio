@@ -1,0 +1,21 @@
+---
+interface Props {
+  date: string;
+  class?: string;
+}
+
+const { date, class: className } = Astro.props;
+
+function getFormattedDate(dateString: string): string {
+  const date = new Date(dateString);
+  return date.toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
+}
+---
+
+<time datetime={date} class={className}>
+  <span class="font-semibold">{getFormattedDate(date)}</span>
+</time>

@@ -1,0 +1,46 @@
+---
+import { readFileSync } from "node:fs";
+
+const githubIcon = readFileSync("src/assets/social-media/github.svg", "utf-8");
+const twitterIcon = readFileSync(
+  "src/assets/social-media/twitter.svg",
+  "utf-8",
+);
+
+interface SocialLink {
+  href: string;
+  icon: string;
+  label: string;
+}
+
+const socialLinks: SocialLink[] = [
+  {
+    href: "https://github.com/agneym",
+    icon: githubIcon,
+    label: "My Github Profile",
+  },
+  {
+    href: "https://twitter.com/agneymenon",
+    icon: twitterIcon,
+    label: "My Twitter Profile",
+  },
+];
+---
+
+<footer
+  class="flex items-center justify-center gap-x-8 text-center pointer-fine:gap-x-3"
+>
+  {
+    socialLinks.map(({ href, icon, label }) => (
+      <a
+        href={href}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label={label}
+        class="hover:text-slate:700 h-7 w-7 text-slate-600 transition-transform hover:scale-105 dark:text-slate-400 dark:hover:text-slate-300"
+      >
+        <Fragment set:html={icon} />
+      </a>
+    ))
+  }
+</footer>

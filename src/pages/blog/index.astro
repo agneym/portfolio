@@ -1,0 +1,24 @@
+---
+import BlogLayout from "../../layouts/BlogLayout.astro";
+import Header from "../../components/blog/Header.astro";
+import PostList from "../../components/blog/PostList.astro";
+import SubscribeNewsletter from "../../components/blog/SubscribeNewsletter.astro";
+import SkipNavContent from "../../components/SkipNavContent.astro";
+---
+
+<BlogLayout title="Blog | Agney">
+  <div class="min-h-full">
+    <SkipNavContent />
+    <header class="py-24">
+      <div
+        class="mx-auto flex max-w-7xl flex-col items-center justify-center gap-y-16 px-4 sm:px-6 lg:px-8"
+      >
+        <Header />
+        <SubscribeNewsletter />
+      </div>
+    </header>
+    <main class="mx-auto max-w-4xl px-8 pb-20">
+      <PostList />
+    </main>
+  </div>
+</BlogLayout>

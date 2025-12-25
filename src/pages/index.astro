@@ -1,0 +1,14 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import HeadNav from "../components/HeadNav.astro";
+import Intro from "../components/react/Intro";
+import Footer from "../components/Footer.astro";
+---
+
+<BaseLayout>
+  <div class="grid h-full grid-rows-[3rem_1fr_6rem]">
+    <HeadNav />
+    <Intro client:load />
+    <Footer />
+  </div>
+</BaseLayout>
