@@ -6,6 +6,7 @@ import type { ComponentProps } from "react";
 
 export function PlaygroundWrapper(props: ComponentProps<typeof Playground>) {
   const { theme } = useTheme();
+  console.log({ props });
   return (
     <div className="not-prose font-mono text-sm">
       <Playground {...props} mode={theme === "dark" ? "dark" : "light"} />
