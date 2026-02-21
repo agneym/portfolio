@@ -1,7 +1,7 @@
 ---
 description: Helps write and review technical blog posts about JavaScript
 mode: primary
-model: kimi-k2-thinking
+model: moonshot/kimi-k2.5
 tools:
   write: true
   edit: true
