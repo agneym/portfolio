@@ -12,7 +12,9 @@ published: true
 import { BubblingVisualizer } from "components/blog/BubblingVisualizer";
 import { SynEventViewer } from "components/blog/SynEventViewer";
 
-This article explains how event delegation works in the React DOM. We will first define the terms and show what they do in plain JavaScript; skip ahead if you already know this part.
+React events look like DOM events, swim like DOM events, and quack like DOM events - but they're not DOM events. And that difference explains why your `stopPropagation()` calls behave unexpectedly in React.
+
+We will first define the terms and show what they do in plain JavaScript; skip ahead if you already know this part.
 
 # Event
 
@@ -145,3 +147,7 @@ It prints the root-level element's console log, even though the React event list
 As mentioned, React attaches event listeners to the root element. Although the user calls `stopPropagation()` in the React event listener, the native event must still bubble to the root element for React to detect it. By the time the event reaches the root, the native click handler has already executed. However, the document handler has not yet run, so React can prevent it from firing.
 
 Note that this behavior occurs because we mixed event patterns: the root element event listener is in JavaScript, not React.
+
+# The End
+
+React events may look like DOM events and swim like DOM events, but they operate through a sophisticated delegation system that prioritizes performance and consistency. By understanding how React manages events under the hood, you can avoid the confusion when `stopPropagation()` doesn't behave as expected and make informed decisions about when to use React's synthetic events versus native DOM events.
