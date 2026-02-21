@@ -1,13 +1,7 @@
 "use client";
 
-import React, { useState, useEffect, useRef } from "react";
-import {
-  ChevronRight,
-  ChevronDown,
-  Info,
-  MousePointer2,
-  Code2,
-} from "lucide-react";
+import React, { useState, useRef } from "react";
+import { ChevronRight, ChevronDown, Info, MousePointer2 } from "lucide-react";
 
 /**
  * TreeItem Component
@@ -23,7 +17,7 @@ const TreeItem = ({ label, value, depth = 0 }) => {
     if (typeof value === "function")
       return <span className="text-blue-400 italic">ƒ ()</span>;
     if (typeof value === "string")
-      return <span className="text-green-400">"{value}"</span>;
+      return <span className="text-green-400">&quot;{value}&quot;</span>;
     if (typeof value === "number")
       return <span className="text-orange-400">{value}</span>;
     if (typeof value === "boolean")
@@ -103,7 +97,7 @@ export function SynEventViewer() {
           continue;
         }
         eventObj[prop] = val;
-      } catch (err) {
+      } catch {
         eventObj[prop] = "[Unaccessible]";
       }
     }

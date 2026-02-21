@@ -10,11 +10,18 @@ published: true
 ---
 
 import { BubblingVisualizer } from "components/blog/BubblingVisualizer";
+import { EventDelegationCode } from "components/blog/EventDelegationCode";
 import { SynEventViewer } from "components/blog/SynEventViewer";
 
 React events look like DOM events, swim like DOM events, and quack like DOM events - but they're not DOM events. And that difference explains why your `stopPropagation()` calls behave unexpectedly in React.
 
-We will first define the terms and show what they do in plain JavaScript; skip ahead if you already know this part.
+Try to guess which console logs will be printed when you click the button:
+
+<EventDelegationCode />
+
+Did you get all of them right? Do you know why? Let's find out.
+
+We will first define related terms and show what they do in plain JavaScript; skip ahead if you already know this part.
 
 # Event
 
@@ -38,11 +45,15 @@ button.addEventListener(
 
 # Event bubbling
 
-In the earlier example, we add a click listener to a button, which makes sense because the button is the element being clicked. But what if we want to detect clicks outside the button? For instance, a popover appears when you click the button, and you want it to disappear when you click anywhere else. You could attach an event listener to every element on the page, but that would quickly become unmanageable. Fortunately, events don't stop at the clicked element—they travel up and down the DOM tree.
+In the earlier example, we add a click listener to a button, which makes sense because the button is the element being clicked. But what if we want to detect clicks outside the button? For instance, a popover appears when you click the button, and you want it to disappear when you click anywhere else. You could attach an event listener to every element on the page, but that would quickly become unmanageable. Fortunately, events don't stop at the clicked element - they travel up and down the DOM tree.
 
-When you interact with the page—say, by clicking an element—the click event travels from the top of the window down to the target element, then back up again. The downward journey is the **Capture** phase; the upward return is the **Bubble** phase.
+When you interact with the page - say, by clicking an element - the click event travels from the top of the window down to the target element, then back up again. The downward journey is the **Capture** phase; the upward return is the **Bubble** phase.
 
 <BubblingVisualizer />
+
+## Bubbling phase
+
+The bubbling phase is the more commonly used of the two. It flows bottom-up - starting from the target element and traveling up to the root.
 
 ## Not every event will bubble 🧋
 
@@ -50,13 +61,9 @@ Not all events bubble. For example, the `focus` event does not bubble. This is b
 
 Scroll events also do not bubble. This is because the scroll event fires only on the scrollable element itself, not on its descendants.
 
-## Bubbling phase
-
-The bubbling phase is the more commonly used of the two. It flows bottom-up—starting from the target element and traveling up to the root.
-
 # Event delegation
 
-Event delegation is a technique for listening to events on a parent element instead of the target element. This is useful when you have many elements that need to respond to the same event—a direct application of the bubbling phase.
+Event delegation is a technique for listening to events on a parent element instead of the target element. This is useful when you have many elements that need to respond to the same event - a direct application of the bubbling phase.
 
 <Playground
   initialSnippet={{
@@ -100,47 +107,6 @@ React's custom event system started as an effort to normalize browser behavior. 
 If we think about this naively, React should attach an event listener to every DOM element out there. When there are apps around with 10k DOM elements or so, this becomes a bottleneck.
 
 But there's an interesting solution we already discussed: event bubbling. Many events naturally bubble. When React detects that a user has attached an event handler (like onClick), it adds an onClick to the root React element. Once the event bubbles up to the root, React identifies the event and its origin, then passes the same information to the original event handler (our onClick listener). This way, React has far fewer event listeners on the DOM but still handles all of them.
-
-Try to guess the output of the document event click in the following example:
-
-```javascript
-import React, { useEffect } from "react";
-
-function App() {
-  useEffect(() => {
-    const handleDocumentClick = (event) => {
-      console.log("Document clicked", event);
-    };
-    document.addEventListener("click", handleDocumentClick);
-    return () => {
-      document.removeEventListener("click", handleDocumentClick);
-    };
-  }, []);
-  useEffect(() => {
-    const handleRootElClick = (event) => {
-      console.log("Root El clicked", event);
-    };
-    const rootEl = document.getElementById("root");
-    rootEl.addEventListener("click", handleRootElClick);
-    return () => {
-      rootEl.removeEventListener("click", handleRootElClick);
-    };
-  }, []);
-
-  const handleParentClick = (event) => {
-    console.log("Parent clicked", event);
-    event.stopPropagation();
-  };
-
-  return (
-    <div onClick={handleParentClick}>
-      <button>Button</button>
-    </div>
-  );
-}
-
-export default App;
-```
 
 It prints the root-level element's console log, even though the React event listener calls `event.stopPropagation()`. However, it does not print the document console log if you're using React 17 or above. Why is that?
 
