@@ -90,3 +90,58 @@ React's synthetic event system is a wrapper around the browser's event system. R
 When you listen to an event through a React element, the event object that you see is a synthetic event object. This is a wrapper around the native event object that is created by React.
 
 <SynEventViewer />
+
+React's custom event system started as an effort to normalize browser behaviour. By managing events internally, React controls how bubbling works across all events. In fact, as we mentioned before, even if you listen at the parent level, you'll find that the bubbled event is still a React synthetic event (caveat: When using React event handlers)
+
+## How does React achieve this?
+
+If we think about this naively, React should attach an event listener to every DOM element out there. When there are apps around with 10k DOM elements or so, this becomes a bottleneck.
+
+But there's an interesting solution we already discussed: event bubbling. Many events naturally bubble. When React detects that a user has attached an event handler (like onClick), it adds an onClick to the root React element. Once the event bubbles up to the root, React identifies the event and its origin, then passes the same information to the original event handler (our onClick listener). This way, React has much fewer event listerners on the DOM but gets to listen in on all of them.
+
+Try to guess the output of document event click in the following example:
+
+```
+import React, { useEffect } from "react";
+
+function App() {
+    useEffect(() => {
+        const handleDocumentClick = (event) => {
+            console.log("Document clicked", event);
+        }
+        document.addEventListener("click", handleDocumentClick);
+        return () => {
+            document.removeEventListener("click", handleDocumentClick);
+        }
+    }, []);
+    useEffect(() => {
+        const handleRootElClick = (event) => {
+            console.log("Root El clicked", event);
+        }
+        const rootEl = document.getElementById("root");
+        rootEl.addEventListener("click", handleRootElClick);
+        return () => {
+            rootEl.removeEventListener("click", handleRootElClick);
+        }
+    }, []);
+
+    const handleParentClick = (event) => {
+        console.log("Parent clicked", event);
+        event.stopPropagation();
+    }
+
+    return (
+        <div onClick={handleParentClick}>
+            <button>Button</button>
+        </div>
+    )
+}
+
+export default App;
+```
+
+It prints the root-level element's console log, even though the React event listener has `event.stopPropagation()` applied. However, it does not print the document console log if you're using React 17 or above. Why is that?
+
+As mentioned, React attaches event listeners to the root element. The user has added `stopPropagation()` to the React event listener, but the event must travel to the root element for React to recognize that a click event has occurred. By the time it reaches the root element, the click event there has already finished executing. However, the document event has not executed, so React cancels it out.
+
+Note that this is because we mixed event patterns, the root element event listener is in JavaScript and not React.
