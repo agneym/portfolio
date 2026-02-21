@@ -101,40 +101,40 @@ But there's an interesting solution we already discussed: event bubbling. Many e
 
 Try to guess the output of document event click in the following example:
 
-```
+```javascript
 import React, { useEffect } from "react";
 
 function App() {
-    useEffect(() => {
-        const handleDocumentClick = (event) => {
-            console.log("Document clicked", event);
-        }
-        document.addEventListener("click", handleDocumentClick);
-        return () => {
-            document.removeEventListener("click", handleDocumentClick);
-        }
-    }, []);
-    useEffect(() => {
-        const handleRootElClick = (event) => {
-            console.log("Root El clicked", event);
-        }
-        const rootEl = document.getElementById("root");
-        rootEl.addEventListener("click", handleRootElClick);
-        return () => {
-            rootEl.removeEventListener("click", handleRootElClick);
-        }
-    }, []);
+  useEffect(() => {
+    const handleDocumentClick = (event) => {
+      console.log("Document clicked", event);
+    };
+    document.addEventListener("click", handleDocumentClick);
+    return () => {
+      document.removeEventListener("click", handleDocumentClick);
+    };
+  }, []);
+  useEffect(() => {
+    const handleRootElClick = (event) => {
+      console.log("Root El clicked", event);
+    };
+    const rootEl = document.getElementById("root");
+    rootEl.addEventListener("click", handleRootElClick);
+    return () => {
+      rootEl.removeEventListener("click", handleRootElClick);
+    };
+  }, []);
 
-    const handleParentClick = (event) => {
-        console.log("Parent clicked", event);
-        event.stopPropagation();
-    }
+  const handleParentClick = (event) => {
+    console.log("Parent clicked", event);
+    event.stopPropagation();
+  };
 
-    return (
-        <div onClick={handleParentClick}>
-            <button>Button</button>
-        </div>
-    )
+  return (
+    <div onClick={handleParentClick}>
+      <button>Button</button>
+    </div>
+  );
 }
 
 export default App;
