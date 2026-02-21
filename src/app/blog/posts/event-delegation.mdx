@@ -10,6 +10,7 @@ published: true
 ---
 
 import { BubblingVisualizer } from "components/blog/BubblingVisualizer";
+import { SynEventViewer } from "components/blog/SynEventViewer";
 
 This article explains how event delegation works in the React DOM. We will first define the terms and show what they do in plain JavaScript; skip ahead if you already know this part.
 
@@ -30,6 +31,8 @@ button.addEventListener(
   () => {},
 );
 ```
+
+<p />
 
 # Event bubbling
 
@@ -85,3 +88,5 @@ parent.addEventListener("click", (event) => {
 React's synthetic event system is a wrapper around the browser's event system. React creates an event object for the native event and then dispatches it to the target element.
 
 When you listen to an event through a React element, the event object that you see is a synthetic event object. This is a wrapper around the native event object that is created by React.
+
+<SynEventViewer />

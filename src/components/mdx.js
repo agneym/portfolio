@@ -4,6 +4,7 @@ import { MDXRemote } from "next-mdx-remote/rsc";
 import { codeToHtml } from "shiki";
 import { PlaygroundWrapper } from "components/uikit/PlaygroundWrapper";
 import { BubblingVisualizer } from "components/blog/BubblingVisualizer";
+import { SynEventViewer } from "components/blog/SynEventViewer";
 
 function Table({ data }) {
   let headers = data.headers.map((header, index) => (
@@ -141,6 +142,7 @@ let components = {
   Table,
   Playground: PlaygroundWrapper,
   BubblingVisualizer,
+  SynEventViewer,
 };
 
 export function CustomMDX(props) {
