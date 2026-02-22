@@ -6,6 +6,7 @@ import { PlaygroundWrapper } from "components/uikit/PlaygroundWrapper";
 import { BubblingVisualizer } from "components/blog/BubblingVisualizer";
 import { SynEventViewer } from "components/blog/SynEventViewer";
 import { EventDelegationCode } from "components/blog/EventDelegationCode";
+import { PropagationVisualizer } from "components/blog/PropagationVisualizer";
 
 function Table({ data }) {
   let headers = data.headers.map((header, index) => (
@@ -145,6 +146,7 @@ let components = {
   BubblingVisualizer,
   SynEventViewer,
   EventDelegationCode,
+  PropagationVisualizer,
 };
 
 export function CustomMDX(props) {

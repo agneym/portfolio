@@ -2,15 +2,16 @@
 title: Event delegation - The React Way
 date: "2025-11-15T22:12:03.284Z"
 tags:
-  - react 16
   - react 17
   - event delegation
   - event bubbling
+  - synthetic events
 published: true
 ---
 
 import { BubblingVisualizer } from "components/blog/BubblingVisualizer";
 import { EventDelegationCode } from "components/blog/EventDelegationCode";
+import { PropagationVisualizer } from "components/blog/PropagationVisualizer";
 import { SynEventViewer } from "components/blog/SynEventViewer";
 
 React events look like DOM events, swim like DOM events, and quack like DOM events - but they're not DOM events. And that difference explains why your `stopPropagation()` calls behave unexpectedly in React.
@@ -92,6 +93,49 @@ parent.addEventListener("click", (event) => {
 
 <br />
 
+# event stopPropagation
+
+`stopPropagation()` prevents an event from continuing to bubble up the DOM tree. When called on an event, parent elements won't receive the event.
+
+```javascript
+const child = document.getElementById("child");
+const parent = document.getElementById("parent");
+
+child.addEventListener("click", (event) => {
+  event.stopPropagation();
+  console.log("Child clicked"); // This runs
+});
+
+parent.addEventListener("click", () => {
+  console.log("Parent clicked"); // This never runs
+});
+```
+
+This is useful when you want an element to handle an event without triggering parent handlers - like preventing a card click when clicking an internal button.
+
+# event stopImmediatePropagation
+
+`stopImmediatePropagation()` goes further: it stops bubbling **and** prevents other listeners on the same element from executing.
+
+```javascript
+const button = document.getElementById("button");
+
+button.addEventListener("click", (event) => {
+  event.stopImmediatePropagation();
+  console.log("First listener"); // This runs
+});
+
+button.addEventListener("click", () => {
+  console.log("Second listener"); // This never runs
+});
+```
+
+Use this when you need to ensure your handler is the only one that responds to an event on that element.
+
+Here's a visualization of both methods:
+
+<PropagationVisualizer />
+
 # Synthetic Events - React's Event System
 
 React's synthetic event system is a wrapper around the browser's event system. React creates an event object for the native event and then dispatches it to the target element.
@@ -106,7 +150,7 @@ React's custom event system started as an effort to normalize browser behavior. 
 
 If we think about this naively, React should attach an event listener to every DOM element out there. When there are apps around with 10k DOM elements or so, this becomes a bottleneck.
 
-But there's an interesting solution we already discussed: event bubbling. Many events naturally bubble. When React detects that a user has attached an event handler (like onClick), it adds an onClick to the root React element. Once the event bubbles up to the root, React identifies the event and its origin, then passes the same information to the original event handler (our onClick listener). This way, React has far fewer event listeners on the DOM but still handles all of them.
+But there's an interesting solution we already discussed: event bubbling. Many events naturally bubble. When React detects that a user has attached an event handler (like `onClick`), it adds an `onClick` to the root React element. Once the event bubbles up to the root, React identifies the event and its origin, then passes the same information to the original event handler (our `onClick` listener). This way, React has far fewer event listeners on the DOM but still handles all of them.
 
 It prints the root-level element's console log, even though the React event listener calls `event.stopPropagation()`. However, it does not print the document console log if you're using React 17 or above. Why is that?
 
