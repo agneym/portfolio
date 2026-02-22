@@ -174,15 +174,18 @@ export function PropagationVisualizer() {
   }, [mode]);
 
   return (
-    <div className="not-prose mx-[calc(50%-40vw)] bg-slate-50 p-6 font-sans text-slate-800 selection:bg-indigo-200">
+    <div className="not-prose mx-[calc(50%-40vw)] bg-slate-50 p-6 font-sans text-slate-800 selection:bg-indigo-200 dark:bg-slate-950 dark:text-slate-200 dark:selection:bg-indigo-900">
       <div className="mx-auto max-w-6xl space-y-8">
-        <div className="grid grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 gap-8 lg:grid-cols-2">
           {/* LEFT COLUMN: Controls & Interactive Canvas */}
           <div className="space-y-6">
             {/* Mode Controls */}
-            <div className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
-              <h2 className="mb-4 flex items-center gap-2 text-lg font-bold text-slate-800">
-                <Code size={20} className="text-slate-500" />
+            <div className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-700 dark:bg-slate-900">
+              <h2 className="mb-4 flex items-center gap-2 text-lg font-bold text-slate-800 dark:text-slate-100">
+                <Code
+                  size={20}
+                  className="text-slate-500 dark:text-slate-400"
+                />
                 Child Handler 2 Configuration
               </h2>
               <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
@@ -204,12 +207,12 @@ export function PropagationVisualizer() {
                     onClick={() => setMode(opt.id)}
                     className={`rounded-xl border-2 p-4 text-left transition-all ${
                       mode === opt.id
-                        ? "border-indigo-600 bg-indigo-50 ring-2 ring-indigo-200"
-                        : "border-slate-200 hover:border-indigo-300 hover:bg-slate-50"
+                        ? "border-indigo-600 bg-indigo-50 ring-2 ring-indigo-200 dark:border-indigo-500 dark:bg-indigo-950/50 dark:ring-indigo-800"
+                        : "border-slate-200 hover:border-indigo-300 hover:bg-slate-50 dark:border-slate-600 dark:hover:border-indigo-600 dark:hover:bg-slate-800"
                     }`}
                   >
                     <div className="text-sm font-semibold">{opt.label}</div>
-                    <div className="mt-1 text-xs text-slate-500">
+                    <div className="mt-1 text-xs text-slate-500 dark:text-slate-400">
                       {opt.desc}
                     </div>
                   </button>
@@ -218,22 +221,25 @@ export function PropagationVisualizer() {
             </div>
 
             {/* Interactive Canvas */}
-            <div className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
-              <h2 className="flex items-center gap-2 text-lg font-bold">
-                <MousePointer2 size={20} className="text-slate-500" />
+            <div className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-700 dark:bg-slate-900">
+              <h2 className="flex items-center gap-2 text-lg font-bold text-slate-800 dark:text-slate-100">
+                <MousePointer2
+                  size={20}
+                  className="text-slate-500 dark:text-slate-400"
+                />
                 Interactive Canvas (Click Inner Box)
               </h2>
 
               <div
                 ref={wrapperRef}
-                className="relative flex justify-center overflow-hidden rounded-xl bg-slate-100 p-8 select-none"
+                className="relative flex justify-center overflow-hidden rounded-xl bg-slate-100 p-8 select-none dark:bg-slate-800"
               >
                 {/* Parent Node */}
                 <div
                   ref={parentRef}
-                  className={`relative cursor-pointer rounded-2xl border-4 p-12 shadow-lg transition-all duration-300 md:p-16 ${activeHandler === "p1" ? "scale-[1.02] border-violet-500 bg-violet-200" : "border-violet-300 bg-violet-100 hover:bg-violet-200/50"}`}
+                  className={`relative cursor-pointer rounded-2xl border-4 p-12 shadow-lg transition-all duration-300 md:p-16 ${activeHandler === "p1" ? "scale-[1.02] border-violet-500 bg-violet-200 dark:border-violet-400 dark:bg-violet-900" : "border-violet-300 bg-violet-100 hover:bg-violet-200/50 dark:border-violet-600 dark:bg-violet-900/50 dark:hover:bg-violet-800/50"}`}
                 >
-                  <div className="absolute top-4 left-4 flex items-center gap-2 font-bold text-violet-800">
+                  <div className="absolute top-4 left-4 flex items-center gap-2 font-bold text-violet-800 dark:text-violet-200">
                     <div
                       className={`h-3 w-3 rounded-full ${activeHandler === "p1" ? "animate-ping bg-violet-600" : "bg-violet-400"}`}
                     ></div>
@@ -243,16 +249,16 @@ export function PropagationVisualizer() {
                   {/* Child Node */}
                   <div
                     ref={childRef}
-                    className={`relative mt-6 cursor-pointer rounded-xl border-4 p-10 shadow-md transition-all duration-300 md:p-14 ${["c1", "c2", "c3"].includes(activeHandler) ? "scale-105 border-emerald-500 bg-emerald-200 shadow-xl" : "border-emerald-400 bg-emerald-100 hover:bg-emerald-200/70"}`}
+                    className={`relative mt-6 cursor-pointer rounded-xl border-4 p-10 shadow-md transition-all duration-300 md:p-14 ${["c1", "c2", "c3"].includes(activeHandler) ? "scale-105 border-emerald-500 bg-emerald-200 shadow-xl dark:border-emerald-400 dark:bg-emerald-900" : "border-emerald-400 bg-emerald-100 hover:bg-emerald-200/70 dark:border-emerald-600 dark:bg-emerald-900/50 dark:hover:bg-emerald-800/50"}`}
                   >
-                    <div className="absolute top-3 left-3 flex items-center gap-2 font-bold text-emerald-800">
+                    <div className="absolute top-3 left-3 flex items-center gap-2 font-bold text-emerald-800 dark:text-emerald-200">
                       <div
                         className={`h-3 w-3 rounded-full ${["c1", "c2", "c3"].includes(activeHandler) ? "animate-ping bg-emerald-600" : "bg-emerald-400"}`}
                       ></div>
                       Child Node
                     </div>
 
-                    <div className="pointer-events-none mt-4 flex flex-col items-center justify-center font-medium text-emerald-900 opacity-80">
+                    <div className="pointer-events-none mt-4 flex flex-col items-center justify-center font-medium text-emerald-900 opacity-80 dark:text-emerald-200">
                       <MousePointer2
                         className="mb-2 animate-bounce"
                         size={28}
@@ -268,9 +274,12 @@ export function PropagationVisualizer() {
           {/* RIGHT COLUMN: Execution Logic & Logging */}
           <div className="flex flex-col space-y-6">
             {/* Visual Listeners */}
-            <div className="flex-1 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
-              <h2 className="mb-4 flex items-center gap-2 text-lg font-bold text-slate-800">
-                <Volume2 size={20} className="text-slate-500" />
+            <div className="flex-1 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-700 dark:bg-slate-900">
+              <h2 className="mb-4 flex items-center gap-2 text-lg font-bold text-slate-800 dark:text-slate-100">
+                <Volume2
+                  size={20}
+                  className="text-slate-500 dark:text-slate-400"
+                />
                 Attached Listeners
               </h2>
 
@@ -278,7 +287,7 @@ export function PropagationVisualizer() {
                 <HandlerBlock
                   active={activeHandler === "c1"}
                   id="c1"
-                  color="bg-emerald-50 border-emerald-400 ring-2 ring-emerald-200 text-emerald-900"
+                  color="bg-emerald-50 border-emerald-400 ring-2 ring-emerald-200 text-emerald-900 dark:bg-emerald-950/50 dark:border-emerald-500 dark:ring-emerald-800 dark:text-emerald-200"
                   title="Child Listener 1"
                   note="Plays C4 (261.6Hz)"
                   code="child.addEventListener('click', handler1)"
@@ -287,7 +296,7 @@ export function PropagationVisualizer() {
                 <HandlerBlock
                   active={activeHandler === "c2"}
                   id="c2"
-                  color="bg-emerald-50 border-emerald-400 ring-2 ring-emerald-200 text-emerald-900"
+                  color="bg-emerald-50 border-emerald-400 ring-2 ring-emerald-200 text-emerald-900 dark:bg-emerald-950/50 dark:border-emerald-500 dark:ring-emerald-800 dark:text-emerald-200"
                   title="Child Listener 2"
                   note="Plays E4 (329.6Hz)"
                   code={`child.addEventListener('click', (e) => {
@@ -298,18 +307,18 @@ export function PropagationVisualizer() {
                 <HandlerBlock
                   active={activeHandler === "c3"}
                   id="c3"
-                  color="bg-emerald-50 border-emerald-400 ring-2 ring-emerald-200 text-emerald-900"
+                  color="bg-emerald-50 border-emerald-400 ring-2 ring-emerald-200 text-emerald-900 dark:bg-emerald-950/50 dark:border-emerald-500 dark:ring-emerald-800 dark:text-emerald-200"
                   title="Child Listener 3"
                   note="Plays G4 (392.0Hz)"
                   code="child.addEventListener('click', handler3)"
                 />
 
-                <div className="my-4 border-t border-dashed border-slate-200"></div>
+                <div className="my-4 border-t border-dashed border-slate-200 dark:border-slate-600"></div>
 
                 <HandlerBlock
                   active={activeHandler === "p1"}
                   id="p1"
-                  color="bg-violet-50 border-violet-400 ring-2 ring-violet-200 text-violet-900"
+                  color="bg-violet-50 border-violet-400 ring-2 ring-violet-200 text-violet-900 dark:bg-violet-950/50 dark:border-violet-500 dark:ring-violet-800 dark:text-violet-200"
                   title="Parent Listener"
                   note="Plays C5 (523.2Hz)"
                   code="parent.addEventListener('click', handler)"
@@ -318,13 +327,13 @@ export function PropagationVisualizer() {
             </div>
 
             {/* Terminal Log */}
-            <div className="flex h-64 flex-col overflow-hidden rounded-2xl border border-slate-800 bg-slate-900 shadow-lg">
-              <div className="flex items-center gap-2 border-b border-slate-800 bg-slate-950 px-4 py-3 font-mono text-xs tracking-wider text-slate-400 uppercase">
+            <div className="flex h-64 flex-col overflow-hidden rounded-2xl border border-slate-800 bg-slate-900 shadow-lg dark:border-slate-700 dark:bg-slate-950">
+              <div className="flex items-center gap-2 border-b border-slate-800 bg-slate-950 px-4 py-3 font-mono text-xs tracking-wider text-slate-400 uppercase dark:border-slate-800 dark:bg-slate-900">
                 <Play size={14} className="text-indigo-400" /> Execution Log
               </div>
               <div className="flex-1 overflow-y-auto p-4 font-mono text-sm">
                 {executionLog.length === 0 ? (
-                  <div className="flex items-center gap-2 text-slate-600">
+                  <div className="flex items-center gap-2 text-slate-600 dark:text-slate-500">
                     <ShieldAlert size={16} /> Waiting for click event...
                   </div>
                 ) : (
@@ -333,7 +342,9 @@ export function PropagationVisualizer() {
                       key={i}
                       className={`mb-2 flex items-start gap-3 ${log.info ? "text-amber-400" : log.target === "parent" ? "text-violet-400" : "text-emerald-400"}`}
                     >
-                      <span className="shrink-0 text-slate-600">[{i + 1}]</span>
+                      <span className="shrink-0 text-slate-600 dark:text-slate-500">
+                        [{i + 1}]
+                      </span>
                       <span>{log.message}</span>
                     </div>
                   ))
@@ -351,18 +362,18 @@ export function PropagationVisualizer() {
 function HandlerBlock({ active, title, note, code, color }) {
   return (
     <div
-      className={`rounded-xl border-2 p-4 transition-all duration-300 ${active ? `${color} scale-[1.02] shadow-md` : "border-slate-100 bg-white opacity-80"}`}
+      className={`rounded-xl border-2 p-4 transition-all duration-300 ${active ? `${color} scale-[1.02] shadow-md` : "border-slate-100 bg-white opacity-80 dark:border-slate-700 dark:bg-slate-800 dark:opacity-100"}`}
     >
       <div className="mb-2 flex items-center justify-between">
-        <div className="font-bold">{title}</div>
-        <div className="flex items-center gap-2 rounded-full bg-white/50 px-2 py-1 text-xs font-semibold">
+        <div className="font-bold dark:text-slate-200">{title}</div>
+        <div className="flex items-center gap-2 rounded-full bg-white/50 px-2 py-1 text-xs font-semibold dark:bg-slate-900/50 dark:text-slate-300">
           {active && (
             <Volume2 className="animate-pulse text-indigo-600" size={14} />
           )}
           {note}
         </div>
       </div>
-      <pre className="overflow-x-auto rounded-lg border border-slate-800 bg-slate-900 p-2.5 text-xs text-slate-300">
+      <pre className="overflow-x-auto rounded-lg border border-slate-800 bg-slate-900 p-2.5 text-xs text-slate-300 dark:border-slate-950 dark:bg-slate-950">
         <code>{code}</code>
       </pre>
     </div>

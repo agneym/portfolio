@@ -18,11 +18,28 @@ React events look like DOM events, swim like DOM events, and quack like DOM even
 
 Try to guess which console logs will be printed when you click the button:
 
+The radio buttons below are used to configure the behavior of the parent event handler.
+
 <EventDelegationCode />
 
 Did you get all of them right? Do you know why? Let's find out.
 
 We will first define related terms and show what they do in plain JavaScript; skip ahead if you already know this part.
+
+## Table of Contents
+
+- [Event](#event)
+  - [Event propagation](#event-propagation)
+    - [Bubbling phase](#bubbling-phase)
+    - [Not every event will bubble](#not-every-event-will-bubble-)
+  - [Event delegation](#event-delegation)
+  - [event stopPropagation](#event-stoppropagation)
+  - [event stopImmediatePropagation](#event-stopimmediatepropagation)
+- [Synthetic Events - React's Event System](#synthetic-events-reacts-event-system)
+  - [How does React achieve this?](#how-does-react-achieve-this)
+  - [How do we access the native event object?](#how-do-we-access-the-native-event-object)
+  - [What is the difference between `event.stopPropagation()` and `event.nativeEvent.stopPropagation()`?](#what-is-the-difference-between-eventstoppropagation-and-eventnativeeventstoppropagation)
+  - [Explaining the logs](#explaining-the-logs)
 
 # Event
 
@@ -44,7 +61,7 @@ button.addEventListener(
 
 <p />
 
-# Event bubbling
+## Event propagation
 
 In the earlier example, we add a click listener to a button, which makes sense because the button is the element being clicked. But what if we want to detect clicks outside the button? For instance, a popover appears when you click the button, and you want it to disappear when you click anywhere else. You could attach an event listener to every element on the page, but that would quickly become unmanageable. Fortunately, events don't stop at the clicked element - they travel up and down the DOM tree.
 
@@ -52,17 +69,17 @@ When you interact with the page - say, by clicking an element - the click event 
 
 <BubblingVisualizer />
 
-## Bubbling phase
+### Bubbling phase
 
 The bubbling phase is the more commonly used of the two. It flows bottom-up - starting from the target element and traveling up to the root.
 
-## Not every event will bubble 🧋
+### Not every event will bubble 🧋
 
 Not all events bubble. For example, the `focus` event does not bubble. This is because the focus event fires only on the focused element itself, not on its descendants.
 
 Scroll events also do not bubble. This is because the scroll event fires only on the scrollable element itself, not on its descendants.
 
-# Event delegation
+## Event delegation
 
 Event delegation is a technique for listening to events on a parent element instead of the target element. This is useful when you have many elements that need to respond to the same event - a direct application of the bubbling phase.
 
@@ -93,7 +110,7 @@ parent.addEventListener("click", (event) => {
 
 <br />
 
-# event stopPropagation
+## event stopPropagation
 
 `stopPropagation()` prevents an event from continuing to bubble up the DOM tree. When called on an event, parent elements won't receive the event.
 
@@ -113,7 +130,7 @@ parent.addEventListener("click", () => {
 
 This is useful when you want an element to handle an event without triggering parent handlers - like preventing a card click when clicking an internal button.
 
-# event stopImmediatePropagation
+## event stopImmediatePropagation
 
 `stopImmediatePropagation()` goes further: it stops bubbling **and** prevents other listeners on the same element from executing.
 
@@ -132,9 +149,11 @@ button.addEventListener("click", () => {
 
 Use this when you need to ensure your handler is the only one that responds to an event on that element.
 
-Here's a visualization of both methods:
+### Visualization Time ⏲️
 
 <PropagationVisualizer />
+
+<br />
 
 # Synthetic Events - React's Event System
 
@@ -146,17 +165,47 @@ When you listen to an event through a React element, the event object that you s
 
 React's custom event system started as an effort to normalize browser behavior. By managing events internally, React controls how bubbling works across all events. In fact, as mentioned earlier, even if you listen at the parent level, you'll find that the bubbled event is still a React synthetic event. (Caveat: this applies when using React event handlers.)
 
+Modern browsers now handle events consistently, so they behave almost identically across platforms. React's synthetic event system has turned this consistency into a performance advantage: it can batch state updates inside event handlers, catch errors through error boundaries, and more.
+
 ## How does React achieve this?
 
 If we think about this naively, React should attach an event listener to every DOM element out there. When there are apps around with 10k DOM elements or so, this becomes a bottleneck.
 
 But there's an interesting solution we already discussed: event bubbling. Many events naturally bubble. When React detects that a user has attached an event handler (like `onClick`), it adds an `onClick` to the root React element. Once the event bubbles up to the root, React identifies the event and its origin, then passes the same information to the original event handler (our `onClick` listener). This way, React has far fewer event listeners on the DOM but still handles all of them.
 
-It prints the root-level element's console log, even though the React event listener calls `event.stopPropagation()`. However, it does not print the document console log if you're using React 17 or above. Why is that?
+## How do we access the native event object?
 
-As mentioned, React attaches event listeners to the root element. Although the user calls `stopPropagation()` in the React event listener, the native event must still bubble to the root element for React to detect it. By the time the event reaches the root, the native click handler has already executed. However, the document handler has not yet run, so React can prevent it from firing.
+Easy! `event.nativeEvent`
 
-Note that this behavior occurs because we mixed event patterns: the root element event listener is in JavaScript, not React.
+## What is the difference between `event.stopPropagation()` and `event.nativeEvent.stopPropagation()`?
+
+`event.stopPropagation()` stops the **React** event from bubbling up the DOM tree.
+
+`event.nativeEvent.stopPropagation()` stops the **native** event from bubbling up the DOM tree.
+
+However, we discussed how React event listeners are attached to the root element instead of the element itself. So for React to actually know the event is happening, the native event needs to bubble to the root element.
+
+This causes the interesting behaviour that we saw at the beginning.
+
+## Explaining the logs
+
+Case 1: `event.stopPropagation()` is called in the React event listener.
+
+This stops the React event from bubbling up the DOM tree. However, the native event still bubbles to the root element, so the root element's event listener will still run.
+
+Case 2: `event.stopImmediatePropagation()` is called in the React event listener.
+
+This stops the React event from bubbling up the DOM tree and prevents other event listeners on the same element from executing. However, the native event still bubbles to the root element, so the root element's event listener will still run.
+
+Case 3: `event.nativeEvent.stopPropagation()` is called in the React event listener.
+
+This stops the native event from bubbling up the DOM tree. However, note that this is in React event handler. For React to know the event is happening, the native event needs to bubble to the root element. The root element's event listener will still run.
+
+Case 4: `event.nativeEvent.stopImmediatePropagation()` is called in the React event listener.
+
+This stops the native event from bubbling up the DOM tree and prevents other event listeners on the same element from executing. Remember where the native event is attached on React? It's on the root element. If you stopped immediate propagation on root element, the other event handlers on the same root element will not run. Hence - no console logs from root element this time.
+
+Case 5: What if instead of React event handler, you attached a native event handler to the button?
 
 # The End
 
