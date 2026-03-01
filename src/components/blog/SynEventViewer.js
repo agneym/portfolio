@@ -112,7 +112,7 @@ export function SynEventViewer() {
   };
 
   return (
-    <div className="flex min-h-screen flex-col items-center bg-slate-950 p-4 text-slate-100 md:p-8">
+    <div className="flex flex-col items-center bg-slate-950 p-4 text-slate-100 md:p-8 lg:min-h-screen">
       <div className="w-full max-w-4xl space-y-8">
         {/* Interaction Zone */}
         <section className="flex flex-col items-center gap-6 rounded-2xl border border-slate-800 bg-slate-900 p-8 shadow-xl">

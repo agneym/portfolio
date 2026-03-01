@@ -174,7 +174,7 @@ export function PropagationVisualizer() {
   }, [mode]);
 
   return (
-    <div className="not-prose mx-[calc(50%-40vw)] bg-slate-50 p-6 font-sans text-slate-800 selection:bg-indigo-200 dark:bg-slate-950 dark:text-slate-200 dark:selection:bg-indigo-900">
+    <div className="not-prose w-full font-sans text-slate-800 selection:bg-indigo-200 md:p-6 lg:mx-[calc(50%-40vw)] dark:text-slate-200 dark:selection:bg-indigo-900">
       <div className="mx-auto max-w-6xl space-y-8">
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-2">
           {/* LEFT COLUMN: Controls & Interactive Canvas */}
@@ -221,7 +221,7 @@ export function PropagationVisualizer() {
             </div>
 
             {/* Interactive Canvas */}
-            <div className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-700 dark:bg-slate-900">
+            <div className="flex flex-col gap-y-4 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-700 dark:bg-slate-900">
               <h2 className="flex items-center gap-2 text-lg font-bold text-slate-800 dark:text-slate-100">
                 <MousePointer2
                   size={20}

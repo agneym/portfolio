@@ -183,7 +183,7 @@ export const BubblingVisualizer = () => {
   };
 
   return (
-    <div className="mx-[calc(50%-40vw)] flex flex-col gap-6 p-4 font-sans lg:flex-row">
+    <div className="flex w-full flex-col gap-6 font-sans lg:mx-[calc(50%-40vw)] lg:flex-row lg:p-4">
       {/* --- LEFT PANEL: VISUALIZATION --- */}
       <div className="flex flex-1 flex-col overflow-hidden rounded-xl border border-slate-200 bg-white shadow-lg dark:border-slate-700 dark:bg-slate-900">
         <div className="flex items-baseline justify-between border-b border-slate-100 bg-slate-50 p-4 py-8 dark:border-slate-800 dark:bg-slate-800">

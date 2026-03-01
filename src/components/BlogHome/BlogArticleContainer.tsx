@@ -7,7 +7,7 @@ interface BlogArticleContainerProps {
 
 export function BlogArticleContainer({ children }: BlogArticleContainerProps) {
   return (
-    <div className="mx-auto my-32 flex max-w-3xl flex-col gap-y-16">
+    <div className="mx-auto my-12 flex max-w-3xl flex-col gap-y-16 lg:my-32">
       <article className="prose lg:prose-xl dark:prose-invert mx-auto max-w-[min(65ch,100%)] px-6">
         {children}
       </article>
