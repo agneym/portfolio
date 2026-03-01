@@ -115,14 +115,17 @@ export function EventDelegationCode() {
               }
               className="h-4 w-4 accent-blue-600"
             />
-            <code className="rounded bg-slate-100 px-1.5 py-0.5 text-sm dark:bg-slate-800">
+            <code className="rounded bg-slate-100 px-1.5 py-0.5 text-sm break-all dark:bg-slate-800">
               {method.label}
             </code>
           </label>
         ))}
       </div>
       {codeHTML ? (
-        <div dangerouslySetInnerHTML={{ __html: codeHTML }} />
+        <div
+          className="overflow-x-auto"
+          dangerouslySetInnerHTML={{ __html: codeHTML }}
+        />
       ) : (
         <pre className="rounded-lg bg-gray-100 p-4 dark:bg-gray-900">
           Loading...

@@ -9,7 +9,7 @@ function BlogLayout({ children }: BlogLayoutProps) {
   return (
     <div className="grid h-full grid-rows-[3rem_1fr] overflow-y-auto">
       <HeadNav />
-      {children}
+      <main className="min-w-0">{children}</main>
     </div>
   );
 }

@@ -186,7 +186,7 @@ export const BubblingVisualizer = () => {
     <div className="flex w-full flex-col gap-6 font-sans lg:mx-[calc(50%-40vw)] lg:flex-row lg:p-4">
       {/* --- LEFT PANEL: VISUALIZATION --- */}
       <div className="flex flex-1 flex-col overflow-hidden rounded-xl border border-slate-200 bg-white shadow-lg dark:border-slate-700 dark:bg-slate-900">
-        <div className="flex items-baseline justify-between border-b border-slate-100 bg-slate-50 p-4 py-8 dark:border-slate-800 dark:bg-slate-800">
+        <div className="flex flex-wrap items-baseline justify-between gap-4 border-b border-slate-100 bg-slate-50 p-4 py-8 dark:border-slate-800 dark:bg-slate-800">
           <div className="grid grid-cols-[auto_1fr] grid-rows-[auto_auto] items-center gap-x-2 gap-y-1 text-slate-900 dark:text-slate-100">
             <MousePointerClick className="h-5 w-5 text-blue-500 dark:text-blue-400" />
             <h2 className="my-0! text-slate-900 dark:text-slate-100">

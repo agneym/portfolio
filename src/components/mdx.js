@@ -64,7 +64,12 @@ async function Code({ children, ...props }) {
       lang,
     });
     // Shiki's HTML already includes <pre><code> structure, so return it directly
-    return <div dangerouslySetInnerHTML={{ __html: codeHTML }} />;
+    return (
+      <div
+        className="overflow-x-auto"
+        dangerouslySetInnerHTML={{ __html: codeHTML }}
+      />
+    );
   }
 
   return <code {...props}>{children}</code>;
