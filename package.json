@@ -21,7 +21,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint .",
-    "format": "prettier --write --ignore-unknown .",
+    "format": "oxfmt",
+    "format:check": "oxfmt --check",
     "prepare": "is-ci || lefthook install",
     "typecheck": "tsgo --noEmit"
   },

@@ -6,7 +6,7 @@
 - **Install**: `bun install`
 - **Build**: `bun run build` (Next.js build)
 - **Lint**: `bun run lint` (ESLint)
-- **Format**: `bun run format` (Prettier + Import Sorting)
+- **Format**: `bun run format` (Oxfmt)
 - **Type checking**: `bun run typecheck` (TypeScript Go compiler)
 - **Test**: No tests currently exist in the repository.
 
