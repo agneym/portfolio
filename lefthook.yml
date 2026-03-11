@@ -1,5 +1,5 @@
 pre-commit:
   commands:
-    prettier:
-      run: npx prettier --write --ignore-unknown {staged_files}
+    oxfmt:
+      run: bunx oxfmt --no-error-on-unmatched-pattern {staged_files}
       stage_fixed: true

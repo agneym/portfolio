@@ -157,11 +157,11 @@ You can now invoke an extension from inside a `command` like:
 ```js
 // src/commands/create-card.js
 module.exports = {
-  name: 'create-card',
-  description: 'Create new profile card project',
+  name: "create-card",
+  description: "Create new profile card project",
   // Create alias new, create, generate and n which will also work with this command
-  alias: ['new', 'create', 'generate', 'n'],
-  run: async toolbox => {
+  alias: ["new", "create", "generate", "n"],
+  run: async (toolbox) => {
     const {
       parameters,
       template: { generate },
@@ -169,7 +169,7 @@ module.exports = {
       installPackages,
       fileSystem,
       promptDetails,
-    }
+    };
     // Get name of the folder to be created, accessible with parameters.first
     const name = parameters.first;
     /*
@@ -178,8 +178,8 @@ module.exports = {
     */
     const details = await promptDetails({ name });
     const props = { name, config };
-  }
-}
+  },
+};
 ```
 
 > Not a fan of this technique, but may be it gets better with types.

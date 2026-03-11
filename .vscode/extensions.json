@@ -4,7 +4,7 @@
 
   // List of extensions which should be recommended for users of this workspace.
   "recommendations": [
-    "esbenp.prettier-vscode",
+    "oxc.oxc-vscode",
     "unifiedjs.vscode-mdx",
     "bradlc.vscode-tailwindcss"
   ],

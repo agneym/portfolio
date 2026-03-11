@@ -3,9 +3,9 @@
 import { useInputContext } from "./InputGroup";
 import clsx from "clsx";
 import invariant from "tiny-invariant";
-import type { ReactNode } from "react";
+import type { ComponentProps, ReactNode } from "react";
 
-interface InputDescriptionProps extends React.HTMLAttributes<HTMLParagraphElement> {
+interface InputDescriptionProps extends ComponentProps<"p"> {
   children: ReactNode;
   className?: string;
 }
