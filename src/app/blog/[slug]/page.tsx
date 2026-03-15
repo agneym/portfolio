@@ -3,6 +3,7 @@ import { CustomMDX } from "components/mdx";
 import { getBlogPosts } from "app/blog/utils";
 import { BlogArticleContainer } from "components/BlogHome/BlogArticleContainer";
 import { BlogPostHeader } from "components/BlogHome/BlogPostHeader";
+import type { Metadata } from "next";
 
 export async function generateStaticParams() {
   let posts = getBlogPosts();
@@ -16,17 +17,17 @@ export async function generateMetadata({
   params,
 }: {
   params: Promise<{ slug: string }>;
-}) {
+}): Promise<Metadata> {
   const { slug } = await params;
   let post = getBlogPosts().find((post) => post.slug === slug);
   if (!post) {
-    return;
+    return {};
   }
 
   let { title, date, tags } = post.metadata;
 
   return {
-    title: `${title} | Blog`,
+    title,
     description: title,
     keywords: tags,
     openGraph: {

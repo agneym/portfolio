@@ -3,8 +3,10 @@ import { PostList } from "components/BlogHome/PostList";
 import { Header } from "components/BlogHome/Header";
 import { SubscribeNewsletter } from "components/BlogHome/SubscribeNewsletter";
 
-export const metadata = {
-  title: "Blog | Agney",
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Blog",
 };
 
 function BlogHome() {

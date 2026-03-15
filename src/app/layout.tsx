@@ -3,6 +3,7 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Providers } from "./providers";
 import { Work_Sans } from "next/font/google";
 import type { ReactNode } from "react";
+import type { Metadata, Viewport } from "next";
 
 const workSansFont = Work_Sans({
   variable: "--font-heading",
@@ -10,8 +11,8 @@ const workSansFont = Work_Sans({
   subsets: ["latin"],
 });
 
-export const metadata = {
-  title: "Portfolio | Agney",
+export const metadata: Metadata = {
+  title: { default: "Portfolio | Agney", template: "%s | Agney" },
   description: "A portfolio for Web Developer - Agney Menon",
   keywords: ["Frontend Developer", "Developer", "Engineer", "Portfolio"],
   creator: "Agney",
@@ -29,7 +30,7 @@ export const metadata = {
   },
 };
 
-export const viewport = {
+export const viewport: Viewport = {
   colorScheme: "dark",
 };
 
