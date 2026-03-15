@@ -1,5 +1,5 @@
 ---
-title: Using Worktrees on your tools
+title: Making Git Worktrees work with your tools
 date: "2026-03-15T22:12:03.284Z"
 tags:
   - worktrees
@@ -34,3 +34,14 @@ Worktrees are useful, yet a production app usually needs environment variables c
 ## [Worktrunk](https://worktrunk.dev/)
 
 Lots of tools going around that does the same thing, slightly differently. But worktrunk is my favourite.
+
+Here's the command to create a new worktree and start claude code CLI in the new worktree:
+
+```
+wt switch -c -x claude feat
+```
+
+I don't want to repeat the entire docs page here, but I will list some of my favourite features.
+
+1. `wt switch` brings up an interactive list of worktrees, where you can even view the diff.
+2.

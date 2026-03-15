@@ -20,7 +20,7 @@
 - **State**: Use `useId`, `use`, `useOptimistic`, `useTransition` where appropriate (React 19).
 - **TypeScript Props**: When extending native HTML elements, use `ComponentProps<"element">` (e.g., `ComponentProps<"input">`) instead of `React.InputHTMLAttributes<HTMLInputElement>`.
 
-## Specific Rules (from Copilot Instructions)
+## Specific Rules
 
 - Use App Router and Server Components (minimize client-side JS).
 - Use `use` hook for data fetching; Server Actions for mutations.

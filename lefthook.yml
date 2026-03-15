@@ -3,3 +3,8 @@ pre-commit:
     oxfmt:
       run: bunx oxfmt --no-error-on-unmatched-pattern {staged_files}
       stage_fixed: true
+
+post-checkout:
+  scripts:
+    "setup-worktree":
+      runner: sh
