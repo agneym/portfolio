@@ -1,0 +1,36 @@
+---
+title: Using Worktrees on your tools
+date: "2026-03-15T22:12:03.284Z"
+tags:
+  - worktrees
+  - git
+  - tools
+  - productivity
+published: true
+---
+
+Worktrees are a feature of Git that allows you to checkout multiple branches at the same time. To quote the Git documentation example:
+
+> You are in the middle of a refactoring session and your boss comes in and demands that you fix something immediately. You might typically use git-stash[1] to store your changes away temporarily, however, your working tree is in such a state of disarray (with new, moved, and removed files, and other bits and pieces strewn around) that you don't want to risk disturbing any of it. Instead, you create a temporary linked worktree to make the emergency fix, remove it when done, and then resume your earlier refactoring session.
+
+```bash
+$ git worktree add -b emergency-fix ../temp master
+$ pushd ../temp
+# ... hack hack hack ...
+$ git commit -a -m 'emergency fix for boss'
+$ popd
+$ git worktree remove ../temp
+
+```
+
+I won't go into the details of how to use worktrees, but you can find more information in the [Git documentation](https://git-scm.com/docs/git-worktree).
+
+## Why now?
+
+Git worktrees have become popular in the last couple of years because of AI agents. Earlier, you might have had only a couple of worktrees - one for reviewing changes and another for your working branch. AI agents, however, can run in parallel and are not limited by your attention. You can even run the same task through multiple agents and compare the results at the end.
+
+Worktrees are useful, yet a production app usually needs environment variables copied, config files generated, and package managers run. Keep using worktrees, but switch to a tool built on top of them.
+
+## [Worktrunk](https://worktrunk.dev/)
+
+Lots of tools going around that does the same thing, slightly differently. But worktrunk is my favourite.
