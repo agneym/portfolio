@@ -3,10 +3,10 @@ import Image from "next/image";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import { codeToHtml } from "shiki";
 import { PlaygroundWrapper } from "components/uikit/PlaygroundWrapper";
-import { BubblingVisualizer } from "components/blog/BubblingVisualizer";
-import { SynEventViewer } from "components/blog/SynEventViewer";
-import { EventDelegationCode } from "components/blog/EventDelegationCode";
-import { PropagationVisualizer } from "components/blog/PropagationVisualizer";
+import { BubblingVisualizer } from "components/BlogHome/PostComponents/BubblingVisualizer";
+import { SynEventViewer } from "components/BlogHome/PostComponents/SynEventViewer";
+import { EventDelegationCode } from "components/BlogHome/PostComponents/EventDelegationCode";
+import { PropagationVisualizer } from "components/BlogHome/PostComponents/PropagationVisualizer";
 
 function Table({ data }) {
   let headers = data.headers.map((header, index) => (

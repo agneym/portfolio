@@ -3,7 +3,7 @@
 import React, { useRef, useState } from "react";
 import { RotateCcw, MousePointerClick } from "lucide-react";
 import { useTheme } from "next-themes";
-import { SpeedSelect } from "components/blog/SpeedSelect";
+import { SpeedSelect } from "components/BlogHome/PostComponents/SpeedSelect";
 import { flushSync } from "react-dom";
 
 // Node configuration with positions for the SVG tree
