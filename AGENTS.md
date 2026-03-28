@@ -7,16 +7,15 @@
 - **Dependency Management**: Use `mise` to manage Node.js, Ruby, Bun, and other runtime versions. The project uses `mise.toml` for version configuration.
 - **Install**: `bun install`
 - **Build**: `bun run build` (Next.js build)
-- **Lint**: `bun run lint` (ESLint)
+- **Lint**: `bun run lint` (Oxlint with type-aware checking)
 - **Format**: `bun run format` (Oxfmt)
-- **Type checking**: `bun run typecheck` (TypeScript Go compiler)
 - **Test**: No tests currently exist in the repository.
 
 ## Code Style & Conventions
 
 - **Framework**: Next.js 16 (App Router), React 19, Tailwind CSS v4.
 - **Language**: TypeScript. Use `tsconfig.json` paths if applicable.
-- **Formatting**: ALWAYS run `bun run typecheck` before finishing.
+- **Formatting**: ALWAYS run `bun run lint` before finishing.
 - **Components**: Functional components + Hooks. Use Server Components by default in `app/`.
 - **Styling**: Tailwind CSS utility classes.
 - **State**: Use `useId`, `use`, `useOptimistic`, `useTransition` where appropriate (React 19).
