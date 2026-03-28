@@ -1,5 +1,7 @@
 # Agent Instructions
 
+- Use context7 when library/API documentation, code generation, setup or configuration steps without me having to explicitly ask: `bunx ctx7` for cli
+
 ## Commands
 
 - **Dependency Management**: Use `mise` to manage Node.js, Ruby, Bun, and other runtime versions. The project uses `mise.toml` for version configuration.
