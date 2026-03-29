@@ -14,6 +14,7 @@ Worktrees are a feature of Git that allows you to checkout multiple branches at 
 > You are in the middle of a refactoring session and your boss comes in and demands that you fix something immediately. You might typically use git-stash[1] to store your changes away temporarily, however, your working tree is in such a state of disarray (with new, moved, and removed files, and other bits and pieces strewn around) that you don't want to risk disturbing any of it. Instead, you create a temporary linked worktree to make the emergency fix, remove it when done, and then resume your earlier refactoring session.
 
 ```bash
+# New worktree at ../temp on a new branch emergency-fix branched from master.
 $ git worktree add -b emergency-fix ../temp master
 $ pushd ../temp
 # ... hack hack hack ...
@@ -43,5 +44,6 @@ wt switch -c -x claude feat
 
 I don't want to repeat the entire docs page here, but I will list some of my favourite features.
 
-1. `wt switch` brings up an interactive list of worktrees, where you can even view the diff.
-2.
+1. `wt switch` brings up an interactive list of worktrees, where you can even view the diff for each of those.
+2. By adding a `post-start` hook in `.config/wt.toml`, it automatically copies all the gitignored files that you would need - `node_modules` to the `.env`
+3. You can start a `claude` or `pi` agent automatically in the new worktree.
