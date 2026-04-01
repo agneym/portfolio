@@ -93,32 +93,32 @@ function createHeading(level) {
     return (
       <a href={`#${slug}`} className="no-underline">
         {level === 1 && (
-          <h1 id={slug} className="anchor scroll-m-20">
+          <h1 id={slug} className="anchor">
             {children}
           </h1>
         )}
         {level === 2 && (
-          <h2 id={slug} className="anchor scroll-m-14">
+          <h2 id={slug} className="anchor">
             {children}
           </h2>
         )}
         {level === 3 && (
-          <h3 id={slug} className="anchor scroll-m-16">
+          <h3 id={slug} className="anchor">
             {children}
           </h3>
         )}
         {level === 4 && (
-          <h4 id={slug} className="anchor scroll-m-12">
+          <h4 id={slug} className="anchor">
             {children}
           </h4>
         )}
         {level === 5 && (
-          <h5 id={slug} className="anchor scroll-m-8">
+          <h5 id={slug} className="anchor">
             {children}
           </h5>
         )}
         {level === 6 && (
-          <h6 id={slug} className="anchor scroll-m-4">
+          <h6 id={slug} className="anchor">
             {children}
           </h6>
         )}

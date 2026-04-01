@@ -32,9 +32,9 @@ Git worktrees have become popular in the last couple of years because of AI agen
 
 Worktrees are useful, yet a production app usually needs environment variables copied, config files generated, and package managers run. Keep using worktrees, but switch to a tool built on top of them.
 
-## [Worktrunk](https://worktrunk.dev/)
+## Worktrunk
 
-Lots of tools going around that do the same thing, slightly differently. But worktrunk is my favourite.
+Lots of tools going around that do the same thing, slightly differently. But [Worktrunk](https://worktrunk.dev/) is my favourite.
 
 Here's the command to create a new worktree and start claude code CLI in the new worktree:
 
@@ -48,9 +48,9 @@ I don't want to repeat the entire docs page here, but I will list some of my fav
 2. By adding a `post-start` hook in `.config/wt.toml`, it automatically copies all the gitignored files that you would need—from `node_modules` to `.env` files
 3. You can start a `claude` or `pi` agent automatically in the new worktree.
 
-## [Visual Studio Code](https://code.visualstudio.com/docs/sourcecontrol/branches-worktrees#_working-with-git-worktrees)
+## Visual Studio Code
 
-VS Code has built-in support for creating/switching between worktrees. You can manage these through the Git sidebar, Options > Worktrees. You can also use the Command Palette for these operations.
+[VS Code](https://code.visualstudio.com/docs/sourcecontrol/branches-worktrees#_working-with-git-worktrees) has built-in support for creating/switching between worktrees. You can manage these through the Git sidebar, Options > Worktrees. You can also use the Command Palette for these operations.
 
 Try: Ctrl+Shift+P > Git: Create Worktree
 
@@ -58,9 +58,9 @@ It does not have any utils for setting up a worktree though. There are some exte
 
 - [Git Worktrees](https://marketplace.visualstudio.com/items?itemName=GitWorktrees.git-worktrees)
 
-## [Cursor](https://cursor.com/docs/configuration/worktrees)
+## Cursor
 
-Cursor handles worktrees through a feature called Parallel Agents.
+[Cursor](https://cursor.com/docs/configuration/worktrees) handles worktrees through a feature called Parallel Agents.
 
 For every new chat you start through the Cursor sidebar, there's an option to select a worktree to run it on.
 
@@ -84,15 +84,15 @@ There are separate keys for Unix systems vs Windows systems.
 
 Using these script files, you can move configuration files, run package managers etc.
 
-## [Zed](https://zed.dev/)
+## Zed
 
-It does not have built-in support for worktrees; you would have to use complementary extensions.
+[Zed](https://zed.dev/) does not have built-in support for worktrees; you would have to use complementary extensions.
 
 - [Related GitHub discussion](https://github.com/zed-industries/zed/discussions/26084)
 
-## [Claude Code](https://code.claude.com/docs/en/common-workflows)
+## Claude Code
 
-I'll start with the CLI, as that's the most popular option with Claude Code.
+I'll start with the CLI, as that's the most popular option with [Claude Code](https://code.claude.com/docs/en/common-workflows).
 
 You can launch a Claude Code CLI instance in a worktree through CLI arguments.
 
@@ -125,9 +125,9 @@ Claude Code Desktop has a simple checkbox that runs your prompt in a worktree, n
 
 ![Claude Code Workflow selection](/blog/using-worktrees-tools/claude-code-desktop.jpg)
 
-## [Codex](https://openai.com/codex/)
+## Codex
 
-Going with the desktop app first, because it's what comes to mind when I think about Codex.
+Going with the desktop app first, because it's what comes to mind when I think about [Codex](https://openai.com/codex/).
 
 ![Codex worktree selection](/blog/using-worktrees-tools/codex.jpg)
 
