@@ -21,12 +21,7 @@ export default defineConfig({
       },
     }),
     viteReact(),
-    nitro({
-      prerender: {
-        crawlLinks: true,
-        failOnError: true,
-      },
-    }),
+    nitro(),
     svgr(),
   ],
 });
