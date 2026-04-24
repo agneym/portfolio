@@ -32,10 +32,10 @@ Status values: `Todo`, `In Progress`, `Blocked`, `Done`.
 
 ---
 
-## T01 — Dependency and package script migration
+## T01 - Dependency and package script migration
 
-**Status:** Done  
-**Owner:** pi-agent  
+**Status:** Done
+**Owner:** pi-agent
 **Prerequisites:** None
 
 ### Goal
@@ -96,14 +96,14 @@ bun run lint
 - Updated `package.json` scripts: `dev` → `vite dev`, `build` → `vite build`, `start` → `node .output/server/index.mjs`.
 - Removed `postcss.config.mjs`.
 - `bun install` completed cleanly.
-- `bun run lint` shows 33 errors / 4 warnings, all from existing Next.js source files and components pending migration in T06–T11. No errors introduced by T01 itself.
+- `bun run lint` shows 33 errors / 4 warnings, all from existing Next.js source files and components pending migration in T06-T11. No errors introduced by T01 itself.
 
 ---
 
-## T02 — Vite, Nitro, Tailwind, Content Collections, and SVGR configuration
+## T02 - Vite, Nitro, Tailwind, Content Collections, and SVGR configuration
 
-**Status:** Todo  
-**Owner:** Unassigned  
+**Status:** Done
+**Owner:** pi-agent
 **Prerequisites:** T01
 
 ### Goal
@@ -138,14 +138,19 @@ bun run lint
 
 ### Progress notes
 
-- None yet.
+- Created `vite.config.ts` with plugins in recommended order: `tailwindcss()`, `contentCollections()`, `tanstackStart()`, `viteReact()`, `nitro()`, `svgr()`.
+- `tanstackStart()` configured with `srcDirectory: "src"` and `router.routesDirectory: "app"`.
+- Moved `prerender` config to `nitro()` plugin (`crawlLinks: true`, `failOnError: true`) since `tanstackStart()` schema does not expose `prerender`/`sitemap` options directly.
+- Omitted `sitemap` option - not a built-in feature in the installed Nitro/TanStack Start versions; can be added later via a separate package or Nitro module.
+- Omitted `resolve.tsconfigPaths` - Vite 8 resolves `tsconfig.json` path aliases automatically.
+- `bun run lint` reports no errors from `vite.config.ts`; all errors are from existing Next.js source files awaiting migration.
 
 ---
 
-## T03 — TypeScript and generated type cleanup
+## T03 - TypeScript and generated type cleanup
 
-**Status:** Todo  
-**Owner:** Unassigned  
+**Status:** Done
+**Owner:** pi-agent
 **Prerequisites:** T01
 
 ### Goal
@@ -180,14 +185,19 @@ bun run lint
 
 ### Progress notes
 
-- None yet.
+- Removed `next` from `compilerOptions.plugins`.
+- Removed `next-env.d.ts`, `.next/types/**/*.ts`, `.next/dev/types/**/*.ts` from `include`.
+- Added explicit `src/**/*.ts`, `src/**/*.tsx`, `src/**/*.mts` to `include`.
+- Deleted `next-env.d.ts`.
+- Updated `.gitignore`: replaced `.next` with `.output` under build output ignores.
+- `bun run lint` error count unchanged; no TS config errors introduced.
 
 ---
 
-## T04 — TanStack Start router and entry points
+## T04 - TanStack Start router and entry points
 
-**Status:** Todo  
-**Owner:** Unassigned  
+**Status:** Done
+**Owner:** pi-agent
 **Prerequisites:** T01
 
 ### Goal
@@ -215,14 +225,18 @@ bun run lint
 
 ### Progress notes
 
-- None yet.
+- Created `src/router.tsx` with `createRouter({ routeTree, scrollRestoration: true })`.
+- Created `src/app/client.tsx` with `StartClient` and `hydrateRoot`.
+- Created `src/app/server.ts` with `createServerEntry` wrapping the default server handler.
+- Added `src/routeTree.gen.ts` as a temporary stub so lint/type-check passes; it will be overwritten by the TanStack Router Vite plugin during dev/build.
+- `bun run lint` error count unchanged at 22 errors / 4 warnings (all from existing Next.js files).
 
 ---
 
-## T05 — Content Collections setup for blog MDX
+## T05 - Content Collections setup for blog MDX
 
-**Status:** Todo  
-**Owner:** Unassigned  
+**Status:** Done
+**Owner:** pi-agent
 **Prerequisites:** T01, T02
 
 ### Goal
@@ -260,14 +274,20 @@ bun run lint
 
 ### Progress notes
 
-- None yet.
+- Created `content-collections.ts` with a `posts` collection reading `src/app/blog/posts/*.mdx`.
+- Used `arktype` (already in project) for schema validation since Content Collections requires Standard Schema v1 and `arktype` supports it natively.
+- Schema validates: `title` (string), `date` (string), `tags` (optional string[]), `published` (optional boolean | 'true' | 'false'), `content` (string).
+- Omitted `ogImage` from schema because Content Collections requires serializable output types and `unknown` breaks serializability; `ogImage` can be added later with a concrete shape if needed.
+- Transform compiles MDX via `compileMDX(context, post)`, adds `slug`, `excerpt`, and `mdx` fields.
+- Shiki highlighting decision: kept as **runtime** for the initial migration (handled in T08 via the `Code` component). Build-time rehypeShiki can be added later via `compileMDX` options.
+- `bun run lint` error count unchanged at 22 errors / 4 warnings (all from existing Next.js files).
 
 ---
 
-## T06 — Root layout migration to `__root.tsx` and font CSS update
+## T06 - Root layout migration to `__root.tsx` and font CSS update
 
-**Status:** Todo  
-**Owner:** Unassigned  
+**Status:** Done
+**Owner:** pi-agent
 **Prerequisites:** T02, T03, T04
 
 ### Goal
@@ -305,14 +325,20 @@ bun run lint
 
 ### Progress notes
 
-- None yet.
+- Created `src/app/__root.tsx` with `createRootRoute`, `Outlet`, `HeadContent`, `Scripts`, and `Providers`.
+- Added fontsource import and CSS import via `?url` in route `head.links`.
+- Preserved all metadata, `suppressHydrationWarning`, and body classes.
+- Updated `src/app/global.css` `@theme` block to use `@theme inline` with `--font-heading: "Work Sans Variable", sans-serif`.
+- Added `src/types/fontsource.d.ts` to declare the fontsource side-effect module (no built-in types).
+- Kept old `src/app/layout.tsx` in place; it will be removed in T11 cleanup pass.
+- `bun run lint` error count unchanged at 22 errors / 4 warnings (all from existing Next.js files).
 
 ---
 
-## T07 — Home and blog route migration
+## T07 - Home and blog route migration
 
-**Status:** Todo  
-**Owner:** Unassigned  
+**Status:** Done
+**Owner:** pi-agent
 **Prerequisites:** T04, T05, T06
 
 ### Goal
@@ -348,14 +374,20 @@ bun run build
 
 ### Progress notes
 
-- None yet.
+- Created `src/app/index.tsx` (home route), `src/app/blog.tsx` (blog layout), `src/app/blog/index.tsx` (blog list), `src/app/blog/$slug.tsx` (blog detail).
+- Updated `PostList` and `PostListItem` to use `allPosts` from `content-collections` and TanStack Router `Link`.
+- Blog detail route uses `loader` + `notFound()` + `head` metadata + `MDXContent` with `CustomMDXComponents`.
+- Added `src/types/router.d.ts` to augment `FileRoutesByPath` for `createFileRoute` type safety during migration.
+- Added `src/types/content-collections.d.ts` stub for the virtual module.
+- Old Next.js route files kept in place for reference; will be removed in T11 cleanup.
+- `bun run lint` error count down to 21 errors / 5 warnings (all from remaining Next.js files and components).
 
 ---
 
-## T08 — MDX component infrastructure migration
+## T08 - MDX component infrastructure migration
 
-**Status:** Todo  
-**Owner:** Unassigned  
+**Status:** Done
+**Owner:** pi-agent
 **Prerequisites:** T01, T05
 
 ### Goal
@@ -392,14 +424,21 @@ bun run lint
 
 ### Progress notes
 
-- None yet.
+- Converted `src/components/mdx.js` → `src/components/mdx.tsx`.
+- Removed `next-mdx-remote/rsc`, `next/link`, and `next/image` imports.
+- Replaced `next/link` with `@tanstack/react-router` `Link` in `CustomLink`.
+- Replaced `next/image` with standard `<img>` in `RoundedImage`.
+- Converted `Code` from async server component to client component using `useState` + `useEffect` for runtime Shiki highlighting.
+- Exported `CustomMDXComponents` object for use with `MDXContent`.
+- Added temporary backward-compat `CustomMDX` export for old Next.js page during transition.
+- `bun run lint` error count unchanged at 22 errors / 5 warnings (all from existing Next.js files).
 
 ---
 
-## T09 — Shared component migration away from Next APIs
+## T09 - Shared component migration away from Next APIs
 
-**Status:** Todo  
-**Owner:** Unassigned  
+**Status:** Done
+**Owner:** pi-agent
 **Prerequisites:** T01, T04
 
 ### Goal
@@ -435,14 +474,18 @@ bun run lint
 
 ### Progress notes
 
-- None yet.
+- Replaced `next/link` and `next/navigation` in `NavLink.tsx` with `@tanstack/react-router` `Link` and `useRouterState`.
+- Replaced `next/link` in `HeadNav.tsx` with `NavLink` (which now uses TanStack `Link` internally).
+- Replaced `next/image` in `AvatarImage.tsx` with standard `<img>`.
+- `PostList` and `PostListItem` were already migrated to `content-collections` and TanStack `Link` in T07.
+- `bun run lint` error count down to 17 errors / 6 warnings. Remaining errors are SVG component imports (T10) and old Next.js files awaiting cleanup (T11).
 
 ---
 
-## T10 — SVG import migration for Vite SVGR
+## T10 - SVG import migration for Vite SVGR
 
-**Status:** Todo  
-**Owner:** Unassigned  
+**Status:** Done
+**Owner:** pi-agent
 **Prerequisites:** T02
 
 ### Goal
@@ -468,14 +511,20 @@ bun run lint
 
 ### Progress notes
 
-- None yet.
+- Updated all 7 SVG React component imports to use `?react` suffix:
+  - `images/logo.svg?react` (×2 in Header and HeadNav)
+  - `images/moon.svg?react`, `images/sun.svg?react` (ThemeButton)
+  - `images/social-media/github.svg?react`, `images/social-media/twitter.svg?react` (Footer)
+  - `images/hamburger.svg?react` (NavbarPopover)
+- Added `src/types/svg.d.ts` to declare `*.svg?react` modules as React components.
+- `bun run lint` error count down to 11 errors / 6 warnings (all from old Next.js files).
 
 ---
 
-## T11 — Redirect, config, metadata asset, and cleanup pass
+## T11 - Redirect, config, metadata asset, and cleanup pass
 
-**Status:** Todo  
-**Owner:** Unassigned  
+**Status:** Done
+**Owner:** pi-agent
 **Prerequisites:** T07, T09, T10
 
 ### Goal
@@ -518,14 +567,23 @@ bun run lint
 
 ### Progress notes
 
-- None yet.
+- Created `src/app/jem.ts` with a route that throws a 301 redirect Response to `https://buttondown.email/agney`.
+- Deleted `next.config.ts`, `src/app/layout.tsx`, `src/app/page.tsx`, `src/app/blog/page.tsx`, `src/app/blog/[slug]/page.tsx`, `src/app/blog/layout.tsx`, `src/app/blog/utils.ts`.
+- Removed unused packages: `@mdx-js/loader`, `@svgr/webpack`, `gray-matter`.
+- Moved metadata assets to `public/`: `icon.png`, `opengraph-image.jpg`, `blog-opengraph-image.jpg`.
+- Updated `BlogPostHeader.tsx` to use a local interface instead of deleted `app/blog/utils`.
+- Updated `.oxfmtrc.json` ignore patterns from `.next` to `.output`.
+- Removed `.next` build directory.
+- Updated `README.md` with new stack and scripts.
+- Added `/jem` to `src/types/router.d.ts`.
+- `bun run lint`: **0 errors**, 6 warnings (all pre-existing/non-blocking).
 
 ---
 
 ## T12 — End-to-end migration verification
 
-**Status:** Todo  
-**Owner:** Unassigned  
+**Status:** In Progress
+**Owner:** pi-agent
 **Prerequisites:** T01–T11
 
 ### Goal

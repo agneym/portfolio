@@ -1,8 +1,10 @@
-import type { Frontmatter } from "app/blog/utils";
 import { DateString } from "./DateString";
 
 interface BlogPostHeaderProps {
-  frontmatter: Frontmatter;
+  frontmatter: {
+    title: string;
+    date: string;
+  };
 }
 
 export function BlogPostHeader({ frontmatter }: BlogPostHeaderProps) {

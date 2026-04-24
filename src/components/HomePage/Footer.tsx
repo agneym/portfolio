@@ -1,5 +1,5 @@
-import GithubIcon from "images/social-media/github.svg";
-import TwitterIcon from "images/social-media/twitter.svg";
+import GithubIcon from "images/social-media/github.svg?react";
+import TwitterIcon from "images/social-media/twitter.svg?react";
 import type { ReactNode } from "react";
 
 interface SocialMediaLinkProps {

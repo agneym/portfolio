@@ -1,7 +1,7 @@
 "use client";
 
 import * as Popover from "@radix-ui/react-popover";
-import HamburgerSvg from "images/hamburger.svg";
+import HamburgerSvg from "images/hamburger.svg?react";
 import type { ReactNode } from "react";
 
 interface NavbarPopoverProps {

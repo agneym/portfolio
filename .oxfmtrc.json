@@ -3,5 +3,5 @@
   "sortTailwindcss": {},
   "printWidth": 80,
   "sortPackageJson": true,
-  "ignorePatterns": ["build", "coverage", ".next"]
+  "ignorePatterns": ["build", "coverage", ".output"]
 }

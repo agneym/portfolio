@@ -120,9 +120,12 @@ web_modules/
 .cache
 .parcel-cache
 
-# Next.js build output
-.next
+# Nitro / TanStack Start build output
+.output
 out
+
+# Content Collections generated files
+.content-collections
 
 # Nuxt.js build / generate output
 .nuxt
