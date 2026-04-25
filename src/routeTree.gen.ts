@@ -8,140 +8,140 @@
 // You should NOT make any changes in this file as it will be overwritten.
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
-import { Route as rootRouteImport } from "./app/__root";
-import { Route as JemRouteImport } from "./app/jem";
-import { Route as BlogRouteImport } from "./app/blog";
-import { Route as IndexRouteImport } from "./app/index";
-import { Route as BlogIndexRouteImport } from "./app/blog/index";
-import { Route as BlogSlugRouteImport } from "./app/blog/$slug";
+import { Route as rootRouteImport } from './app/__root'
+import { Route as JemRouteImport } from './app/jem'
+import { Route as BlogRouteImport } from './app/blog'
+import { Route as IndexRouteImport } from './app/index'
+import { Route as BlogIndexRouteImport } from './app/blog/index'
+import { Route as BlogSlugRouteImport } from './app/blog/$slug'
 
 const JemRoute = JemRouteImport.update({
-  id: "/jem",
-  path: "/jem",
+  id: '/jem',
+  path: '/jem',
   getParentRoute: () => rootRouteImport,
-} as any);
+} as any)
 const BlogRoute = BlogRouteImport.update({
-  id: "/blog",
-  path: "/blog",
+  id: '/blog',
+  path: '/blog',
   getParentRoute: () => rootRouteImport,
-} as any);
+} as any)
 const IndexRoute = IndexRouteImport.update({
-  id: "/",
-  path: "/",
+  id: '/',
+  path: '/',
   getParentRoute: () => rootRouteImport,
-} as any);
+} as any)
 const BlogIndexRoute = BlogIndexRouteImport.update({
-  id: "/",
-  path: "/",
+  id: '/',
+  path: '/',
   getParentRoute: () => BlogRoute,
-} as any);
+} as any)
 const BlogSlugRoute = BlogSlugRouteImport.update({
-  id: "/$slug",
-  path: "/$slug",
+  id: '/$slug',
+  path: '/$slug',
   getParentRoute: () => BlogRoute,
-} as any);
+} as any)
 
 export interface FileRoutesByFullPath {
-  "/": typeof IndexRoute;
-  "/blog": typeof BlogRouteWithChildren;
-  "/jem": typeof JemRoute;
-  "/blog/$slug": typeof BlogSlugRoute;
-  "/blog/": typeof BlogIndexRoute;
+  '/': typeof IndexRoute
+  '/blog': typeof BlogRouteWithChildren
+  '/jem': typeof JemRoute
+  '/blog/$slug': typeof BlogSlugRoute
+  '/blog/': typeof BlogIndexRoute
 }
 export interface FileRoutesByTo {
-  "/": typeof IndexRoute;
-  "/jem": typeof JemRoute;
-  "/blog/$slug": typeof BlogSlugRoute;
-  "/blog": typeof BlogIndexRoute;
+  '/': typeof IndexRoute
+  '/jem': typeof JemRoute
+  '/blog/$slug': typeof BlogSlugRoute
+  '/blog': typeof BlogIndexRoute
 }
 export interface FileRoutesById {
-  __root__: typeof rootRouteImport;
-  "/": typeof IndexRoute;
-  "/blog": typeof BlogRouteWithChildren;
-  "/jem": typeof JemRoute;
-  "/blog/$slug": typeof BlogSlugRoute;
-  "/blog/": typeof BlogIndexRoute;
+  __root__: typeof rootRouteImport
+  '/': typeof IndexRoute
+  '/blog': typeof BlogRouteWithChildren
+  '/jem': typeof JemRoute
+  '/blog/$slug': typeof BlogSlugRoute
+  '/blog/': typeof BlogIndexRoute
 }
 export interface FileRouteTypes {
-  fileRoutesByFullPath: FileRoutesByFullPath;
-  fullPaths: "/" | "/blog" | "/jem" | "/blog/$slug" | "/blog/";
-  fileRoutesByTo: FileRoutesByTo;
-  to: "/" | "/jem" | "/blog/$slug" | "/blog";
-  id: "__root__" | "/" | "/blog" | "/jem" | "/blog/$slug" | "/blog/";
-  fileRoutesById: FileRoutesById;
+  fileRoutesByFullPath: FileRoutesByFullPath
+  fullPaths: '/' | '/blog' | '/jem' | '/blog/$slug' | '/blog/'
+  fileRoutesByTo: FileRoutesByTo
+  to: '/' | '/jem' | '/blog/$slug' | '/blog'
+  id: '__root__' | '/' | '/blog' | '/jem' | '/blog/$slug' | '/blog/'
+  fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
-  IndexRoute: typeof IndexRoute;
-  BlogRoute: typeof BlogRouteWithChildren;
-  JemRoute: typeof JemRoute;
+  IndexRoute: typeof IndexRoute
+  BlogRoute: typeof BlogRouteWithChildren
+  JemRoute: typeof JemRoute
 }
 
-declare module "@tanstack/react-router" {
+declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    "/jem": {
-      id: "/jem";
-      path: "/jem";
-      fullPath: "/jem";
-      preLoaderRoute: typeof JemRouteImport;
-      parentRoute: typeof rootRouteImport;
-    };
-    "/blog": {
-      id: "/blog";
-      path: "/blog";
-      fullPath: "/blog";
-      preLoaderRoute: typeof BlogRouteImport;
-      parentRoute: typeof rootRouteImport;
-    };
-    "/": {
-      id: "/";
-      path: "/";
-      fullPath: "/";
-      preLoaderRoute: typeof IndexRouteImport;
-      parentRoute: typeof rootRouteImport;
-    };
-    "/blog/": {
-      id: "/blog/";
-      path: "/";
-      fullPath: "/blog/";
-      preLoaderRoute: typeof BlogIndexRouteImport;
-      parentRoute: typeof BlogRoute;
-    };
-    "/blog/$slug": {
-      id: "/blog/$slug";
-      path: "/$slug";
-      fullPath: "/blog/$slug";
-      preLoaderRoute: typeof BlogSlugRouteImport;
-      parentRoute: typeof BlogRoute;
-    };
+    '/jem': {
+      id: '/jem'
+      path: '/jem'
+      fullPath: '/jem'
+      preLoaderRoute: typeof JemRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog': {
+      id: '/blog'
+      path: '/blog'
+      fullPath: '/blog'
+      preLoaderRoute: typeof BlogRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/': {
+      id: '/'
+      path: '/'
+      fullPath: '/'
+      preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog/': {
+      id: '/blog/'
+      path: '/'
+      fullPath: '/blog/'
+      preLoaderRoute: typeof BlogIndexRouteImport
+      parentRoute: typeof BlogRoute
+    }
+    '/blog/$slug': {
+      id: '/blog/$slug'
+      path: '/$slug'
+      fullPath: '/blog/$slug'
+      preLoaderRoute: typeof BlogSlugRouteImport
+      parentRoute: typeof BlogRoute
+    }
   }
 }
 
 interface BlogRouteChildren {
-  BlogSlugRoute: typeof BlogSlugRoute;
-  BlogIndexRoute: typeof BlogIndexRoute;
+  BlogSlugRoute: typeof BlogSlugRoute
+  BlogIndexRoute: typeof BlogIndexRoute
 }
 
 const BlogRouteChildren: BlogRouteChildren = {
   BlogSlugRoute: BlogSlugRoute,
   BlogIndexRoute: BlogIndexRoute,
-};
+}
 
-const BlogRouteWithChildren = BlogRoute._addFileChildren(BlogRouteChildren);
+const BlogRouteWithChildren = BlogRoute._addFileChildren(BlogRouteChildren)
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   BlogRoute: BlogRouteWithChildren,
   JemRoute: JemRoute,
-};
+}
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
-  ._addFileTypes<FileRouteTypes>();
+  ._addFileTypes<FileRouteTypes>()
 
-import type { getRouter } from "./router.tsx";
-import type { createStart } from "@tanstack/react-start";
-declare module "@tanstack/react-start" {
+import type { getRouter } from './router.tsx'
+import type { createStart } from '@tanstack/react-start'
+declare module '@tanstack/react-start' {
   interface Register {
-    ssr: true;
-    router: Awaited<ReturnType<typeof getRouter>>;
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
   }
 }

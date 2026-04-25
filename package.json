@@ -19,7 +19,8 @@
   "scripts": {
     "dev": "vite dev",
     "build": "vite build",
-    "start": "node .output/server/index.mjs",
+    "preview": "vite preview",
+    "test": "vitest run",
     "lint": "oxlint",
     "format": "oxfmt",
     "format:check": "oxfmt --check"
@@ -43,7 +44,6 @@
     "lucide-react": "^1.7.0",
     "motion": "^12.38.0",
     "next-themes": "^0.4.6",
-    "nitro": "^3.0.260415-beta",
     "postcss": "^8.5.6",
     "react": "^19.2.4",
     "react-dom": "^19.2.4",
