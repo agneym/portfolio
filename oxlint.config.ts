@@ -12,6 +12,7 @@ export default defineConfig({
     "out/**",
     "build/**",
     "next-env.d.ts",
+    "src/routeTree.gen.ts",
   ],
   settings: {
     next: {

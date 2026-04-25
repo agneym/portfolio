@@ -18,5 +18,14 @@
   // prioritize ArkType's "type" for autoimports
   "typescript.preferences.autoImportSpecifierExcludeRegexes": ["^(node:)?os$"],
   // use TsGo for type checking
-  "typescript.experimental.useTsgo": true
+  "typescript.experimental.useTsgo": true,
+  "files.readonlyInclude": {
+    "**/routeTree.gen.ts": true
+  },
+  "files.watcherExclude": {
+    "**/routeTree.gen.ts": true
+  },
+  "search.exclude": {
+    "**/routeTree.gen.ts": true
+  }
 }

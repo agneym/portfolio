@@ -3,5 +3,5 @@
   "sortTailwindcss": {},
   "printWidth": 80,
   "sortPackageJson": true,
-  "ignorePatterns": ["build", "coverage", ".output"]
+  "ignorePatterns": ["build", "coverage", ".output", "src/routeTree.gen.ts"]
 }
