@@ -1,5 +1,3 @@
-"use client";
-
 import clsx from "clsx";
 import { Link, useRouterState } from "@tanstack/react-router";
 import type { ComponentProps } from "react";

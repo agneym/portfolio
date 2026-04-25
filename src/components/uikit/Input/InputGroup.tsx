@@ -1,5 +1,3 @@
-"use client";
-
 import clsx from "clsx";
 import { useId, createContext, useContext, useMemo } from "react";
 import type { ComponentProps, ReactNode } from "react";

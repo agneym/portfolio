@@ -1,5 +1,3 @@
-"use client";
-
 import MoonIcon from "images/moon.svg?react";
 import SunIcon from "images/sun.svg?react";
 import { AnimatePresence, motion } from "motion/react";

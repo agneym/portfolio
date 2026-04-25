@@ -1,5 +1,3 @@
-"use client";
-
 import Playground from "@agney/playground";
 import { useTheme } from "next-themes";
 import type { ComponentProps } from "react";
