@@ -1,5 +1,3 @@
-"use client";
-
 import { useState, useEffect, useRef } from "react";
 import { Volume2, MousePointer2, ShieldAlert, Code, Play } from "lucide-react";
 

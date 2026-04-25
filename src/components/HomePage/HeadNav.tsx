@@ -1,8 +1,7 @@
 import { NavLink } from "components/uikit/NavLink";
 import { Navbar } from "components/uikit/Navbar";
 import { SkipNavLink } from "components/uikit/SkipNav";
-import LogoSvg from "images/logo.svg";
-import Link from "next/link";
+import LogoSvg from "images/logo.svg?react";
 
 export const HeadNav = () => {
   return (
@@ -10,28 +9,27 @@ export const HeadNav = () => {
       <SkipNavLink className="text-gray-50 focus:data-reach-skip-link:bg-slate-600 dark:text-gray-700 dark:focus:data-reach-skip-link:bg-slate-200" />
       <Navbar>
         <Navbar.Logo>
-          <Link
+          <NavLink
             href="/"
-            className="mr-auto -rotate-6 transition-transform hover:rotate-0"
+            className="mr-auto -rotate-6 no-underline transition-transform hover:rotate-0"
           >
             <LogoSvg
               width={40}
               className="text-slate-900 dark:text-slate-100"
               title="Home"
             />
-          </Link>
+          </NavLink>
         </Navbar.Logo>
         <Navbar.Right>
           <NavLink href="/about">About</NavLink>
           <NavLink
-            as="a"
             href="https://github.com/agneym?tab=repositories"
             target="_blank"
           >
             Projects
           </NavLink>
           <NavLink href="/blog">Blog</NavLink>
-          <NavLink as="a" href="https://buttondown.email/agney" target="_blank">
+          <NavLink href="https://buttondown.email/agney" target="_blank">
             Newsletter
           </NavLink>
         </Navbar.Right>

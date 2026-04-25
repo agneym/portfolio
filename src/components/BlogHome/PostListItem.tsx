@@ -1,20 +1,17 @@
-import type { Frontmatter } from "app/blog/utils";
+import { Link } from "@tanstack/react-router";
 import { DateString } from "./DateString";
-import Link from "next/link";
 
 interface PostListItemProps {
-  meta: Frontmatter;
+  meta: {
+    title: string;
+    date: string;
+  };
   slug: string;
 }
 
 export function PostListItem({ meta, slug }: PostListItemProps) {
   return (
-    <Link
-      href={{
-        pathname: `/blog/${slug}`,
-        query: { title: meta.title },
-      }}
-    >
+    <Link to="/blog/$slug" params={{ slug }}>
       <article className="flex flex-col gap-y-4 py-2">
         <header className="flex flex-col gap-y-1">
           <h3 className="text-xl text-balance">{meta.title}</h3>

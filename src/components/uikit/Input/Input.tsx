@@ -1,5 +1,3 @@
-"use client";
-
 import type { ComponentProps } from "react";
 import { useInputContext } from "./InputGroup";
 import { clsx } from "clsx";

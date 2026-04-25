@@ -1,38 +1,41 @@
-"use client";
-
 import clsx from "clsx";
-import Link from "next/link";
-import { usePathname } from "next/navigation";
-import type { ComponentPropsWithRef, ElementType } from "react";
+import { Link, useRouterState } from "@tanstack/react-router";
+import type { ComponentProps } from "react";
 
-type NavLinkProps<T extends ElementType = typeof Link> = {
+interface NavLinkProps {
   className?: string;
   exact?: boolean;
   href: string;
-  as?: T;
-} & Omit<ComponentPropsWithRef<T>, "as" | "href" | "className">;
+  children: React.ReactNode;
+}
 
-export function NavLink<T extends ElementType = typeof Link>({
+export function NavLink({
   className,
   exact,
   href,
-  as: As = Link as unknown as T,
-  ...rest
-}: NavLinkProps<T>) {
-  const pathname = usePathname();
+  children,
+  target,
+  rel,
+}: NavLinkProps & Pick<ComponentProps<"a">, "target" | "rel">) {
+  const pathname = useRouterState({ select: (s) => s.location.pathname });
   const isActive = exact ? pathname === href : pathname.startsWith(href);
+  const baseClassName = clsx(
+    "relative before:absolute before:-bottom-0.5 before:left-0 before:block before:h-0.5 before:w-full before:scale-0 before:bg-current before:transition-transform before:duration-300 before:ease-in-out hover:before:scale-100",
+    isActive && "text-gray-900 before:scale-100 dark:text-gray-300",
+    className,
+  );
 
-  const Component = As as ElementType;
+  if (href.startsWith("http") || href.startsWith("mailto:")) {
+    return (
+      <a href={href} className={baseClassName} target={target} rel={rel}>
+        {children}
+      </a>
+    );
+  }
 
   return (
-    <Component
-      className={clsx(
-        "relative before:absolute before:-bottom-0.5 before:left-0 before:block before:h-0.5 before:w-full before:scale-0 before:bg-current before:transition-transform before:duration-300 before:ease-in-out hover:before:scale-100",
-        isActive && "text-gray-900 before:scale-100 dark:text-gray-300",
-        className,
-      )}
-      href={href}
-      {...rest}
-    />
+    <Link to={href} className={baseClassName}>
+      {children}
+    </Link>
   );
 }

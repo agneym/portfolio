@@ -1,5 +1,3 @@
-"use client";
-
 import { getFormattedDate } from "./getFormattedDate";
 
 interface DateStringProps {

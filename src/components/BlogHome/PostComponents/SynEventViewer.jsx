@@ -1,5 +1,3 @@
-"use client";
-
 import React, { useState, useRef } from "react";
 import { ChevronRight, ChevronDown, Info, MousePointer2 } from "lucide-react";
 

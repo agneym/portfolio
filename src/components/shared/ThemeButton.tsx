@@ -1,7 +1,5 @@
-"use client";
-
-import MoonIcon from "images/moon.svg";
-import SunIcon from "images/sun.svg";
+import MoonIcon from "images/moon.svg?react";
+import SunIcon from "images/sun.svg?react";
 import { AnimatePresence, motion } from "motion/react";
 import { useTheme } from "next-themes";
 import type { ComponentType, SVGProps } from "react";

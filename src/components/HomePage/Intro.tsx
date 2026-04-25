@@ -1,5 +1,3 @@
-"use client";
-
 import { AvatarImage } from "./AvatarImage";
 import { SkipNavContent } from "components/uikit/SkipNav";
 import { motion, useReducedMotion } from "motion/react";

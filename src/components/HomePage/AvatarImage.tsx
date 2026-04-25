@@ -2,7 +2,6 @@
 
 import avatarPic from "images/avatar-400x400.jpg";
 import { motion, useReducedMotion } from "motion/react";
-import Image from "next/image";
 import { getAnimateProps } from "./getAnimateProps";
 
 const transitionState = {
@@ -20,12 +19,11 @@ export const AvatarImage = () => {
       {...getAnimateProps({ delay: 0.4, shouldReduceMotion })}
       className="relative mx-auto inline overflow-hidden rounded-full"
     >
-      <Image
+      <img
         src={avatarPic}
         alt=""
         className="mx-auto rounded-full"
         width={200}
-        priority
       />
       <motion.svg
         width={200}

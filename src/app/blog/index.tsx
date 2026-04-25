@@ -1,13 +1,15 @@
+import { createFileRoute } from "@tanstack/react-router";
 import { SkipNavContent } from "components/uikit/SkipNav";
 import { PostList } from "components/BlogHome/PostList";
 import { Header } from "components/BlogHome/Header";
 import { SubscribeNewsletter } from "components/BlogHome/SubscribeNewsletter";
 
-import type { Metadata } from "next";
-
-export const metadata: Metadata = {
-  title: "Blog",
-};
+export const Route = createFileRoute("/blog/")({
+  head: () => ({
+    meta: [{ title: "Blog | Agney" }],
+  }),
+  component: BlogHome,
+});
 
 function BlogHome() {
   return (
@@ -25,5 +27,3 @@ function BlogHome() {
     </div>
   );
 }
-
-export default BlogHome;

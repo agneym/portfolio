@@ -1,12 +1,10 @@
 import { PostListItem } from "./PostListItem";
-import { getBlogPosts } from "app/blog/utils";
+import { allPosts } from "content-collections";
 
 export function PostList() {
-  const posts = getBlogPosts().sort((a, b) => {
-    const dateA = new Date(a.metadata.date ?? a.metadata.publishedAt);
-    const dateB = new Date(b.metadata.date ?? b.metadata.publishedAt);
-    return dateB.getTime() - dateA.getTime();
-  });
+  const posts = allPosts
+    .filter((post) => post.published !== false && post.published !== "false")
+    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 
   return (
     <>
@@ -18,7 +16,7 @@ export function PostList() {
           return (
             <PostListItem
               key={post.slug}
-              meta={{ ...post.metadata, date: post.metadata.date }}
+              meta={{ title: post.title, date: post.date }}
               slug={post.slug}
             />
           );

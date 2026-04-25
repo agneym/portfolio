@@ -1,14 +1,13 @@
-import Link from "next/link";
-import Image from "next/image";
-import { MDXRemote } from "next-mdx-remote/rsc";
+import { Link } from "@tanstack/react-router";
 import { codeToHtml } from "shiki";
+import { useState, useEffect } from "react";
 import { PlaygroundWrapper } from "components/uikit/PlaygroundWrapper";
 import { BubblingVisualizer } from "components/BlogHome/PostComponents/BubblingVisualizer";
 import { SynEventViewer } from "components/BlogHome/PostComponents/SynEventViewer";
 import { EventDelegationCode } from "components/BlogHome/PostComponents/EventDelegationCode";
 import { PropagationVisualizer } from "components/BlogHome/PostComponents/PropagationVisualizer";
 
-function Table({ data }) {
+function Table({ data }: { data: { headers: string[]; rows: string[][] } }) {
   let headers = data.headers.map((header, index) => (
     <th key={index}>{header}</th>
   ));
@@ -30,52 +29,62 @@ function Table({ data }) {
   );
 }
 
-function CustomLink(props) {
-  let href = props.href;
-
+function CustomLink({
+  href = "",
+  children,
+  className,
+}: React.AnchorHTMLAttributes<HTMLAnchorElement>) {
   if (href.startsWith("/")) {
     return (
-      <Link href={href} {...props}>
-        {props.children}
+      <Link to={href} className={className}>
+        {children}
       </Link>
     );
   }
-
   if (href.startsWith("#")) {
-    return <a {...props} />;
+    return (
+      <a href={href} className={className}>
+        {children}
+      </a>
+    );
   }
-
-  return <a target="_blank" rel="noopener noreferrer" {...props} />;
+  return (
+    <a
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      className={className}
+    >
+      {children}
+    </a>
+  );
 }
 
-function RoundedImage(props) {
-  return <Image alt={props.alt} className="rounded-lg" {...props} />;
+function RoundedImage(props: React.ImgHTMLAttributes<HTMLImageElement>) {
+  return <img alt={props.alt} className="rounded-lg" {...props} />;
 }
 
-async function Code({ children, ...props }) {
+function Code({ children, ...props }: React.HTMLAttributes<HTMLElement>) {
   const lang = props.className?.replace("language-", "");
-
   if (lang) {
-    const codeHTML = await codeToHtml(children, {
-      themes: {
-        light: "github-light",
-        dark: "tokyo-night",
-      },
-      lang,
-    });
-    // Shiki's HTML already includes <pre><code> structure, so return it directly
+    const [html, setHtml] = useState("");
+    useEffect(() => {
+      void codeToHtml(String(children), {
+        themes: { light: "github-light", dark: "tokyo-night" },
+        lang,
+      }).then(setHtml);
+    }, [children, lang]);
     return (
       <div
         className="overflow-x-auto"
-        dangerouslySetInnerHTML={{ __html: codeHTML }}
+        dangerouslySetInnerHTML={{ __html: html }}
       />
     );
   }
-
   return <code {...props}>{children}</code>;
 }
 
-function slugify(str) {
+function slugify(str: string) {
   if (!str) return "";
   return str
     .toString()
@@ -87,11 +96,11 @@ function slugify(str) {
     .replace(/--+/g, "-");
 }
 
-function createHeading(level) {
-  const Heading = ({ children }) => {
-    let slug = slugify(children);
-    return (
-      <a href={`#${slug}`} className="no-underline">
+function createHeading(level: number) {
+  const Heading = ({ children }: { children: React.ReactNode }) => {
+    let slug = slugify(String(children ?? ""));
+    const headingContent = (
+      <>
         {level === 1 && (
           <h1 id={slug} className="anchor">
             {children}
@@ -122,6 +131,11 @@ function createHeading(level) {
             {children}
           </h6>
         )}
+      </>
+    );
+    return (
+      <a href={`#${slug}`} className="no-underline">
+        {headingContent}
       </a>
     );
   };
@@ -131,18 +145,29 @@ function createHeading(level) {
   return Heading;
 }
 
-function Pre({ children }) {
+function Pre({ children }: { children: React.ReactNode }) {
   return children;
 }
 
-let components = {
+// Temporary backward-compat export for old Next.js pages during migration.
+// The new routes use MDXContent directly with compiled MDX code.
+export function CustomMDX({ source }: { source: string }) {
+  return (
+    <div>
+      {/* MDXContent requires compiled MDX code; this wrapper is transitional */}
+      <pre>{source}</pre>
+    </div>
+  );
+}
+
+export const CustomMDXComponents = {
   h1: createHeading(1),
   h2: createHeading(2),
   h3: createHeading(3),
   h4: createHeading(4),
   h5: createHeading(5),
   h6: createHeading(6),
-  Image: RoundedImage,
+  img: RoundedImage,
   a: CustomLink,
   code: Code,
   pre: Pre,
@@ -153,15 +178,3 @@ let components = {
   EventDelegationCode,
   PropagationVisualizer,
 };
-
-export function CustomMDX(props) {
-  return (
-    <MDXRemote
-      {...props}
-      components={{ ...components, ...(props.components || {}) }}
-      options={{
-        blockJS: false,
-      }}
-    />
-  );
-}

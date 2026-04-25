@@ -1,5 +1,3 @@
-"use client";
-
 import React, { useRef, useState } from "react";
 import { RotateCcw, MousePointerClick } from "lucide-react";
 import { useTheme } from "next-themes";
