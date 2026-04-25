@@ -13,7 +13,7 @@
 
 ## Code Style & Conventions
 
-- **Framework**: Next.js 16 (App Router), React 19, Tailwind CSS v4.
+- **Framework**: Tanstack Start, React 19, Tailwind CSS v4.
 - **Language**: TypeScript. Use `tsconfig.json` paths if applicable.
 - **Formatting**: ALWAYS run `bun run lint` before finishing.
 - **Components**: Functional components + Hooks. Use Server Components by default in `app/`.
@@ -25,6 +25,5 @@
 
 - Use App Router and Server Components (minimize client-side JS).
 - Use `use` hook for data fetching; Server Actions for mutations.
-- Use `next/image` and `next/link`.
 - Implement Metadata API for SEO.
 - Follow React 19/Next.js best practices for streaming and suspense.
