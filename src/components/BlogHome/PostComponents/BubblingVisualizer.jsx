@@ -1,6 +1,5 @@
 import React, { useRef, useState } from "react";
 import { RotateCcw, MousePointerClick } from "lucide-react";
-import { useTheme } from "next-themes";
 import { SpeedSelect } from "components/BlogHome/PostComponents/SpeedSelect";
 import { flushSync } from "react-dom";
 
@@ -71,8 +70,6 @@ const TREE_NODES = [
 ];
 
 export const BubblingVisualizer = () => {
-  const { theme } = useTheme();
-  const isDark = theme === "dark";
   const [activeNodeId, setActiveNodeId] = useState(null);
   const [phase, setPhase] = useState("idle"); // idle, capture, target, bubble
   const [logs, setLogs] = useState([]);
@@ -258,8 +255,10 @@ export const BubblingVisualizer = () => {
               if (!node.parentId) return null;
               const parent = TREE_NODES.find((p) => p.id === node.parentId);
 
-              // Determine line color based on active path logic
-              let strokeColor = isDark ? "#475569" : "#cbd5e1";
+              // Determine line color based on active path logic.
+              // Use CSS classes instead of theme-derived attributes so the
+              // server and client render the same SVG before hydration.
+              let strokeClass = "stroke-slate-300 dark:stroke-slate-600";
               let strokeWidth = 2;
 
               // Highlights lines during animation
@@ -269,14 +268,10 @@ export const BubblingVisualizer = () => {
                   (activeNodeId === parent.id && phase === "bubble");
 
                 if (isActivePath) {
-                  strokeColor =
+                  strokeClass =
                     phase === "capture"
-                      ? isDark
-                        ? "#fb7185"
-                        : "#f43f5e"
-                      : isDark
-                        ? "#34d399"
-                        : "#10b981";
+                      ? "stroke-rose-500 dark:stroke-rose-400"
+                      : "stroke-emerald-500 dark:stroke-emerald-400";
                   strokeWidth = 4;
                 }
               }
@@ -288,9 +283,8 @@ export const BubblingVisualizer = () => {
                   y1={parent.y + 25}
                   x2={node.x}
                   y2={node.y - 25}
-                  stroke={strokeColor}
                   strokeWidth={strokeWidth}
-                  className="transition-all duration-300"
+                  className={`${strokeClass} transition-all duration-300`}
                 />
               );
             })}

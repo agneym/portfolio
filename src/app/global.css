@@ -1,7 +1,8 @@
 @import "tailwindcss";
+@import "@prose-ui/style/prose-ui.css";
+@import "@prose-ui/style/katex.css";
 
 @plugin "@tailwindcss/forms";
-@plugin "@tailwindcss/typography";
 @plugin "tailwindcss-touch";
 
 @custom-variant dark (&:is(.dark *));
@@ -19,20 +20,13 @@ h6 {
   font-family: var(--font-heading);
 }
 
-/* Long text and inline code stay within viewport on narrow screens */
-.prose {
-  overflow-wrap: break-word;
-  word-break: break-word;
-}
-
-.prose h1,
-.prose h2,
-.prose h3,
-.prose h4,
-.prose h5,
-.prose h6 {
-  overflow-wrap: break-word;
-  word-break: break-word;
+.prose-ui {
+  --p-body-color-bg: "transparent";
+  --p-h2-font-family: var(--font-heading);
+  --p-h3-font-family: var(--font-heading);
+  --p-h4-font-family: var(--font-heading);
+  --p-h5-font-family: var(--font-heading);
+  --p-h6-font-family: var(--font-heading);
 }
 
 [data-reach-skip-nav-link] {
@@ -58,18 +52,16 @@ h6 {
   clip: auto;
 }
 
-html.dark .shiki,
-html.dark .shiki span {
+.custom-snippet .shiki {
+  padding: 0.5rem 1rem;
+}
+
+html.dark .custom-snippet .shiki,
+html.dark .custom-snippet .shiki span {
   color: var(--shiki-dark) !important;
   background-color: var(--shiki-dark-bg) !important;
-
+  /* Optional, if you also want font styles */
   font-style: var(--shiki-dark-font-style) !important;
   font-weight: var(--shiki-dark-font-weight) !important;
   text-decoration: var(--shiki-dark-text-decoration) !important;
-}
-
-/* Override Tailwind Typography styles for Shiki code blocks to remove black bars */
-.prose .shiki,
-.prose pre.shiki {
-  margin: 0 !important;
 }

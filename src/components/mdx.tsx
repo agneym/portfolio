@@ -1,6 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { codeToHtml } from "shiki";
-import { useState, useEffect } from "react";
+import { mdxComponents } from "@prose-ui/react";
 import { PlaygroundWrapper } from "components/uikit/PlaygroundWrapper";
 import { BubblingVisualizer } from "components/BlogHome/PostComponents/BubblingVisualizer";
 import { SynEventViewer } from "components/BlogHome/PostComponents/SynEventViewer";
@@ -60,95 +59,6 @@ function CustomLink({
   );
 }
 
-function RoundedImage(props: React.ImgHTMLAttributes<HTMLImageElement>) {
-  return <img alt={props.alt} className="rounded-lg" {...props} />;
-}
-
-function Code({ children, ...props }: React.HTMLAttributes<HTMLElement>) {
-  const lang = props.className?.replace("language-", "");
-  if (lang) {
-    const [html, setHtml] = useState("");
-    useEffect(() => {
-      void codeToHtml(String(children), {
-        themes: { light: "github-light", dark: "tokyo-night" },
-        lang,
-      }).then(setHtml);
-    }, [children, lang]);
-    return (
-      <div
-        className="overflow-x-auto"
-        dangerouslySetInnerHTML={{ __html: html }}
-      />
-    );
-  }
-  return <code {...props}>{children}</code>;
-}
-
-function slugify(str: string) {
-  if (!str) return "";
-  return str
-    .toString()
-    .toLowerCase()
-    .trim()
-    .replace(/\s+/g, "-")
-    .replace(/&/g, "-and-")
-    .replace(/[^\w-]+/g, "")
-    .replace(/--+/g, "-");
-}
-
-function createHeading(level: number) {
-  const Heading = ({ children }: { children: React.ReactNode }) => {
-    let slug = slugify(String(children ?? ""));
-    const headingContent = (
-      <>
-        {level === 1 && (
-          <h1 id={slug} className="anchor">
-            {children}
-          </h1>
-        )}
-        {level === 2 && (
-          <h2 id={slug} className="anchor">
-            {children}
-          </h2>
-        )}
-        {level === 3 && (
-          <h3 id={slug} className="anchor">
-            {children}
-          </h3>
-        )}
-        {level === 4 && (
-          <h4 id={slug} className="anchor">
-            {children}
-          </h4>
-        )}
-        {level === 5 && (
-          <h5 id={slug} className="anchor">
-            {children}
-          </h5>
-        )}
-        {level === 6 && (
-          <h6 id={slug} className="anchor">
-            {children}
-          </h6>
-        )}
-      </>
-    );
-    return (
-      <a href={`#${slug}`} className="no-underline">
-        {headingContent}
-      </a>
-    );
-  };
-
-  Heading.displayName = `Heading${level}`;
-
-  return Heading;
-}
-
-function Pre({ children }: { children: React.ReactNode }) {
-  return children;
-}
-
 // Temporary backward-compat export for old Next.js pages during migration.
 // The new routes use MDXContent directly with compiled MDX code.
 export function CustomMDX({ source }: { source: string }) {
@@ -161,16 +71,8 @@ export function CustomMDX({ source }: { source: string }) {
 }
 
 export const CustomMDXComponents = {
-  h1: createHeading(1),
-  h2: createHeading(2),
-  h3: createHeading(3),
-  h4: createHeading(4),
-  h5: createHeading(5),
-  h6: createHeading(6),
-  img: RoundedImage,
-  a: CustomLink,
-  code: Code,
-  pre: Pre,
+  ...mdxComponents,
+  Link: CustomLink,
   Table,
   Playground: PlaygroundWrapper,
   BubblingVisualizer,

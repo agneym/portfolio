@@ -1,5 +1,6 @@
 import { defineCollection, defineConfig } from "@content-collections/core";
 import { compileMDX } from "@content-collections/mdx";
+import { remarkPlugins } from "@prose-ui/core";
 import { type } from "arktype";
 
 function createExcerpt(content: string) {
@@ -30,6 +31,7 @@ const posts = defineCollection({
   transform: async (post, context) => {
     const mdx = await compileMDX(context, post, {
       cwd: process.cwd(),
+      remarkPlugins: remarkPlugins(),
     });
 
     return {

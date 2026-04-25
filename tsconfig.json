@@ -32,7 +32,8 @@
     "skipLibCheck": true,
     // Path Mapping (replaces baseUrl for TypeScript 6+)
     "paths": {
-      "*": ["./src/*"]
+      "*": ["./src/*"],
+      "content-collections": ["./.content-collections/generated"]
     },
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,

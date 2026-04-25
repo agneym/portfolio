@@ -121,7 +121,7 @@ export function EventDelegationCode() {
       </div>
       {codeHTML ? (
         <div
-          className="overflow-x-auto"
+          className="custom-snippet overflow-x-auto"
           dangerouslySetInnerHTML={{ __html: codeHTML }}
         />
       ) : (
