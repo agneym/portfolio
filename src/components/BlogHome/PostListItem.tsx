@@ -11,7 +11,7 @@ interface PostListItemProps {
 
 export function PostListItem({ meta, slug }: PostListItemProps) {
   return (
-    <Link to="/blog/$slug" params={{ slug }} search={{ title: meta.title }}>
+    <Link to="/blog/$slug" params={{ slug }}>
       <article className="flex flex-col gap-y-4 py-2">
         <header className="flex flex-col gap-y-1">
           <h3 className="text-xl text-balance">{meta.title}</h3>
