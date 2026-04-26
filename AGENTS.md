@@ -1,6 +1,14 @@
 # Agent Instructions
 
-- Use context7 when library/API documentation, code generation, setup or configuration steps without me having to explicitly ask: `bunx ctx7` for cli
+- Use context7 when library/API documentation, code generation, setup or configuration steps without me having to explicitly ask.
+
+## Context7 Library IDs
+
+- **TanStack Start**: `/websites/tanstack_start_framework_react`
+- **TanStack Router**: `/tanstack/router`
+- **Convex**: `/websites/convex_dev`
+- **React**: `/websites/react_dev`
+- **Tailwind CSS**: `/websites/tailwindcss_com`
 
 ## Commands
 
