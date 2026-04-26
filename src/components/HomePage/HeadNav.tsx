@@ -11,7 +11,7 @@ export const HeadNav = () => {
         <Navbar.Logo>
           <NavLink
             href="/"
-            className="mr-auto -rotate-6 no-underline transition-transform hover:rotate-0"
+            className="mr-auto -rotate-6 transition-transform before:scale-0! hover:rotate-0 hover:before:scale-0!"
           >
             <LogoSvg
               width={40}
