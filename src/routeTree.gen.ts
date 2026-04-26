@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './app/__root'
 import { Route as JemRouteImport } from './app/jem'
 import { Route as BlogRouteImport } from './app/blog'
 import { Route as IndexRouteImport } from './app/index'
+import { Route as BookmarksIndexRouteImport } from './app/bookmarks/index'
 import { Route as BlogIndexRouteImport } from './app/blog/index'
 import { Route as BlogSlugRouteImport } from './app/blog/$slug'
 
@@ -28,6 +29,11 @@ const BlogRoute = BlogRouteImport.update({
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BookmarksIndexRoute = BookmarksIndexRouteImport.update({
+  id: '/bookmarks/',
+  path: '/bookmarks/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const BlogIndexRoute = BlogIndexRouteImport.update({
@@ -47,12 +53,14 @@ export interface FileRoutesByFullPath {
   '/jem': typeof JemRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/blog/': typeof BlogIndexRoute
+  '/bookmarks/': typeof BookmarksIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/jem': typeof JemRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/blog': typeof BlogIndexRoute
+  '/bookmarks': typeof BookmarksIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -61,19 +69,28 @@ export interface FileRoutesById {
   '/jem': typeof JemRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/blog/': typeof BlogIndexRoute
+  '/bookmarks/': typeof BookmarksIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/blog' | '/jem' | '/blog/$slug' | '/blog/'
+  fullPaths: '/' | '/blog' | '/jem' | '/blog/$slug' | '/blog/' | '/bookmarks/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/jem' | '/blog/$slug' | '/blog'
-  id: '__root__' | '/' | '/blog' | '/jem' | '/blog/$slug' | '/blog/'
+  to: '/' | '/jem' | '/blog/$slug' | '/blog' | '/bookmarks'
+  id:
+    | '__root__'
+    | '/'
+    | '/blog'
+    | '/jem'
+    | '/blog/$slug'
+    | '/blog/'
+    | '/bookmarks/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   BlogRoute: typeof BlogRouteWithChildren
   JemRoute: typeof JemRoute
+  BookmarksIndexRoute: typeof BookmarksIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -97,6 +114,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/bookmarks/': {
+      id: '/bookmarks/'
+      path: '/bookmarks'
+      fullPath: '/bookmarks/'
+      preLoaderRoute: typeof BookmarksIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/blog/': {
@@ -132,6 +156,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   BlogRoute: BlogRouteWithChildren,
   JemRoute: JemRoute,
+  BookmarksIndexRoute: BookmarksIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

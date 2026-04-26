@@ -1,14 +1,18 @@
+/// <reference types="vite/client" />
 import {
   Outlet,
-  createRootRoute,
   HeadContent,
   Scripts,
+  createRootRouteWithContext,
 } from "@tanstack/react-router";
 import "@fontsource-variable/work-sans";
 import appCss from "./global.css?url";
 import { Providers } from "./providers";
+import type { QueryClient } from "@tanstack/react-query";
 
-export const Route = createRootRoute({
+export const Route = createRootRouteWithContext<{
+  queryClient: QueryClient;
+}>()({
   head: () => ({
     meta: [
       { charSet: "utf-8" },
