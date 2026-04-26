@@ -21,7 +21,6 @@ export const HeadNav = () => {
           </NavLink>
         </Navbar.Logo>
         <Navbar.Right>
-          <NavLink href="/about">About</NavLink>
           <NavLink
             href="https://github.com/agneym?tab=repositories"
             target="_blank"
