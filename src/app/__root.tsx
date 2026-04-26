@@ -23,7 +23,7 @@ export const Route = createRootRoute({
       },
       {
         name: "keywords",
-        content: "Frontend Developer, Developer, Engineer, Portfolio",
+        content: "Frontend Developerd, Engineer, Portfolio",
       },
       { name: "creator", content: "Agney" },
       { name: "robots", content: "index, follow" },
