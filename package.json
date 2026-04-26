@@ -18,6 +18,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite dev",
+    "convex": "convex dev",
     "build": "vite build",
     "preview": "vite preview",
     "test": "vitest run",
