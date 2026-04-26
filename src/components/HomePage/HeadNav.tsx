@@ -27,6 +27,7 @@ export const HeadNav = () => {
           >
             Projects
           </NavLink>
+          <NavLink href="/webmarks">Webmarks</NavLink>
           <NavLink href="/blog">Blog</NavLink>
           <NavLink href="https://buttondown.email/agney" target="_blank">
             Newsletter

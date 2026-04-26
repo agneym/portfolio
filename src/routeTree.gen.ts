@@ -12,7 +12,7 @@ import { Route as rootRouteImport } from './app/__root'
 import { Route as JemRouteImport } from './app/jem'
 import { Route as BlogRouteImport } from './app/blog'
 import { Route as IndexRouteImport } from './app/index'
-import { Route as BookmarksIndexRouteImport } from './app/bookmarks/index'
+import { Route as WebmarksIndexRouteImport } from './app/webmarks/index'
 import { Route as BlogIndexRouteImport } from './app/blog/index'
 import { Route as BlogSlugRouteImport } from './app/blog/$slug'
 
@@ -31,9 +31,9 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const BookmarksIndexRoute = BookmarksIndexRouteImport.update({
-  id: '/bookmarks/',
-  path: '/bookmarks/',
+const WebmarksIndexRoute = WebmarksIndexRouteImport.update({
+  id: '/webmarks/',
+  path: '/webmarks/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const BlogIndexRoute = BlogIndexRouteImport.update({
@@ -53,14 +53,14 @@ export interface FileRoutesByFullPath {
   '/jem': typeof JemRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/blog/': typeof BlogIndexRoute
-  '/bookmarks/': typeof BookmarksIndexRoute
+  '/webmarks/': typeof WebmarksIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/jem': typeof JemRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/blog': typeof BlogIndexRoute
-  '/bookmarks': typeof BookmarksIndexRoute
+  '/webmarks': typeof WebmarksIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -69,13 +69,13 @@ export interface FileRoutesById {
   '/jem': typeof JemRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/blog/': typeof BlogIndexRoute
-  '/bookmarks/': typeof BookmarksIndexRoute
+  '/webmarks/': typeof WebmarksIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/blog' | '/jem' | '/blog/$slug' | '/blog/' | '/bookmarks/'
+  fullPaths: '/' | '/blog' | '/jem' | '/blog/$slug' | '/blog/' | '/webmarks/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/jem' | '/blog/$slug' | '/blog' | '/bookmarks'
+  to: '/' | '/jem' | '/blog/$slug' | '/blog' | '/webmarks'
   id:
     | '__root__'
     | '/'
@@ -83,14 +83,14 @@ export interface FileRouteTypes {
     | '/jem'
     | '/blog/$slug'
     | '/blog/'
-    | '/bookmarks/'
+    | '/webmarks/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   BlogRoute: typeof BlogRouteWithChildren
   JemRoute: typeof JemRoute
-  BookmarksIndexRoute: typeof BookmarksIndexRoute
+  WebmarksIndexRoute: typeof WebmarksIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -116,11 +116,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/bookmarks/': {
-      id: '/bookmarks/'
-      path: '/bookmarks'
-      fullPath: '/bookmarks/'
-      preLoaderRoute: typeof BookmarksIndexRouteImport
+    '/webmarks/': {
+      id: '/webmarks/'
+      path: '/webmarks'
+      fullPath: '/webmarks/'
+      preLoaderRoute: typeof WebmarksIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/blog/': {
@@ -156,7 +156,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   BlogRoute: BlogRouteWithChildren,
   JemRoute: JemRoute,
-  BookmarksIndexRoute: BookmarksIndexRoute,
+  WebmarksIndexRoute: WebmarksIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
