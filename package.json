@@ -18,7 +18,6 @@
   "type": "module",
   "scripts": {
     "dev": "vite dev",
-    "convex": "convex dev",
     "build": "vite build",
     "preview": "vite preview",
     "test": "vitest run",
@@ -30,7 +29,6 @@
     "@agney/playground": "^2.0.0",
     "@content-collections/core": "^0.15.0",
     "@content-collections/mdx": "^0.2.2",
-    "@convex-dev/react-query": "^0.1.0",
     "@fontsource-variable/work-sans": "^5.2.8",
     "@mdx-js/react": "^3.1.1",
     "@prose-ui/core": "^2.0.8",
@@ -47,7 +45,6 @@
     "@vitejs/plugin-react": "^6.0.1",
     "arktype": "^2.2.0",
     "clsx": "^2.1.1",
-    "convex": "^1.36.1",
     "is-ci": "^4.1.0",
     "lucide-react": "^1.7.0",
     "motion": "^12.38.0",
