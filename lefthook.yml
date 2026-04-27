@@ -7,8 +7,3 @@ pre-commit:
       glob: "*.{js,jsx,ts,tsx}"
       run: bunx oxlint --fix {staged_files}
       stage_fixed: true
-
-post-checkout:
-  scripts:
-    "setup-worktree":
-      runner: sh
