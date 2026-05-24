@@ -138,12 +138,12 @@ const questions: QuizQuestion[] = [
     authorCSS: "h1 { font-size: 3rem; }",
     displayOrder: ["authorCSS", "userAgentCSS", "userCSS"],
     question:
-      "The stylesheets below are shown in a jumbled order. Does the visual display order affect which rule wins?",
-    optionA: "No — origin priority is fixed. Author (3rem) wins regardless.",
-    optionB: "Yes — the stylesheet shown last wins (User, 1.5em).",
+      "Notice the stylesheets are displayed out of their usual order below. What font-size will the h1 end up with?",
+    optionA: "3rem",
+    optionB: "1.5em",
     correct: "A",
     explanation:
-      "Cascade origins have a fixed priority: Author > User > User-Agent. This order is baked into the browser — it doesn't matter how the stylesheets are visually arranged, loaded, or presented. Author declarations always beat User declarations, and User always beats User-Agent. The cascade doesn't care about visual or source order between different origins.",
+      "Cascade origins have a fixed priority: Author > User > User-Agent. This order is baked into the browser — it doesn't matter how the stylesheets are visually arranged on this page, in what order they were loaded, or where they appear in the source. Author declarations always beat User declarations, and User always beats User-Agent. The cascade doesn't care about visual order between different origins. The Author's 3rem wins.",
   },
   {
     element: '<p class="alert">⚠️ Important notice</p>',
@@ -242,7 +242,7 @@ export function CascadeOriginsQuiz() {
   const isLast = current === questions.length - 1;
 
   return (
-    <div className="not-prose my-10 font-sans">
+    <div className="not-prose mt-8">
       {/* Header with progress */}
       <div className="mb-6 flex items-center justify-between">
         <Heading level={3} className="text-xl font-bold tracking-tight">
@@ -341,7 +341,7 @@ export function CascadeOriginsQuiz() {
           </div>
 
           {/* Options */}
-          <div className="mb-5 grid grid-cols-2 gap-3">
+          <div className="grid grid-cols-2 gap-3">
             {(["A", "B"] as const).map((opt) => {
               const label = opt === "A" ? q.optionA : q.optionB;
               const isSelected = selected === opt;
@@ -395,7 +395,7 @@ export function CascadeOriginsQuiz() {
           {/* Explanation */}
           {showResult && (
             <div
-              className={`mb-5 rounded-xl border p-4 ${
+              className={`my-5 rounded-xl border p-4 ${
                 isCorrect
                   ? "border-emerald-200 bg-emerald-50 dark:border-emerald-800 dark:bg-emerald-950/30"
                   : "border-amber-200 bg-amber-50 dark:border-amber-800 dark:bg-amber-950/30"
