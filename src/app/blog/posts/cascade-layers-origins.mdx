@@ -22,3 +22,56 @@ If you are not familiar with cascade origins - read on.
 ## Cascade
 
 Before we get to cascade origins, let's understand the cascade.
+
+Cascade is the process of applying a style to an element. For each style rule applied to an element, an algorithm determines which rules take priority over others.
+
+<Callout variant="info" title="">
+  Cascade determines the style king 👑. <br />
+  Cascade is the kingmaker.
+</Callout>
+
+For each element and each style rule, the browser runs a **7-step cascade algorithm** — a filter that narrows down declarations until exactly one value remains for each property.
+
+Click each step to see description for each step:
+
+<CascadePipeline />
+
+<Callout variant="info">
+  **Key insight:** Specificity is only *step 5*. By the time specificity is
+  considered, the cascade has already filtered by origin, importance, and
+  layers. A single class selector in a higher-priority layer beats a thousand ID
+  selectors in a lower one.
+</Callout>
+
+## Cascade Origins
+
+The one I want to focus on in this article is **Cascade Origins**.
+
+There are three predefined origins in the browser.
+
+<Steps titleSize="base">
+  <Step title="User Agent Stylesheet">Browser default styling</Step>
+  <Step title="User Stylesheet">
+    Any styling that user has added via browser settings, extensions, or
+    accessibility overrides.
+  </Step>
+  <Step title="Author Stylesheet">
+    Any styling that the developer has added via CSS files, inline styles, or
+    inline style attributes.
+  </Step>
+</Steps>
+
+The priority order for these origins is top to bottom. The author stylesheet is the strongest. This means that if there is a rule in the author stylesheet, it will always take precedence over rules from other origins. You don't need to worry about any steps that fall beneath the cascade origins in the cascade pipeline algorithm (with one major exception, which will get to later).
+
+<Frame>
+  <Image
+    src="/blog/cascade-layers-origins/origins-pokemon.png"
+    alt="pokemon sizing for stylesheet priority"
+  />
+</Frame>
+
+<CascadeOriginsQuiz />
+
+### The Caveat
+
+The caveat here is `!important`

@@ -5,6 +5,8 @@ import { BubblingVisualizer } from "components/BlogHome/PostComponents/BubblingV
 import { SynEventViewer } from "components/BlogHome/PostComponents/SynEventViewer";
 import { EventDelegationCode } from "components/BlogHome/PostComponents/EventDelegationCode";
 import { PropagationVisualizer } from "components/BlogHome/PostComponents/PropagationVisualizer";
+import { CascadePipeline } from "components/BlogHome/PostComponents/CascadePipeline";
+import { CascadeOriginsQuiz } from "components/BlogHome/PostComponents/CascadeOriginsQuiz";
 
 function Table({ data }: { data: { headers: string[]; rows: string[][] } }) {
   let headers = data.headers.map((header, index) => (
@@ -79,4 +81,6 @@ export const CustomMDXComponents = {
   SynEventViewer,
   EventDelegationCode,
   PropagationVisualizer,
+  CascadePipeline,
+  CascadeOriginsQuiz,
 };
