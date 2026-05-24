@@ -22,6 +22,12 @@ h6 {
 
 .prose-ui {
   --p-body-color-bg: "transparent";
+
+  /* Fix react-medium-image-zoom ghost positioning: 
+     Without a positioned ancestor, the absolute ghost extends the html scroll. */
+  & .frame {
+    position: relative;
+  }
   --p-h2-font-family: var(--font-heading);
   --p-h3-font-family: var(--font-heading);
   --p-h4-font-family: var(--font-heading);
