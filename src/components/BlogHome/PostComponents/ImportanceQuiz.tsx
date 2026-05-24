@@ -91,11 +91,6 @@ export function ImportanceQuiz() {
     }
   };
 
-  const handleReset = () => {
-    setSelected(null);
-    setShowResult(false);
-  };
-
   return (
     <div className="not-prose mt-8 font-sans">
       {!showResult ? (

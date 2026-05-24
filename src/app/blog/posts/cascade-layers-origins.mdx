@@ -79,3 +79,21 @@ The caveat here is the `!important` keyword. Before I explain why this keyword m
 Given this scenario, which is the origin stylesheet that needs `!important` the most?
 
 <ImportanceQuiz />
+
+So important flips the origin priority order.
+
+<Steps titleSize="base">
+  <Step title="User Agent !important">
+    With !important, the browser's own defaults become the
+    <em>strongest</em> declarations in the cascade — above even the author's
+    !important rules.
+  </Step>
+  <Step title="User !important">
+    User !important sits in the middle. It beats author !important but loses to
+    user-agent !important.
+  </Step>
+  <Step title="Author !important">
+    The author's !important is the <em>weakest</em> of the !important
+    declarations. The exact opposite of normal origin priority.
+  </Step>
+</Steps>
