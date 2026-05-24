@@ -23,6 +23,9 @@ export const Route = createFileRoute("/blog/$slug")({
         { property: "og:title", content: post?.title ?? "" },
         { property: "og:type", content: "article" },
         { property: "og:publishedTime", content: post?.date ?? "" },
+        ...(post?.coverImage
+          ? [{ property: "og:image", content: post.coverImage }]
+          : []),
       ],
     };
   },
@@ -38,6 +41,10 @@ function BlogPostPage() {
         frontmatter={{
           title: post.title,
           date: post.date,
+          ...(post.coverImage != null ? { coverImage: post.coverImage } : {}),
+          ...(post.coverImageAttribution != null
+            ? { coverImageAttribution: post.coverImageAttribution }
+            : {}),
         }}
       />
       <MDXContent code={post.mdx} components={CustomMDXComponents} />

@@ -20,6 +20,8 @@ const postSchema = type({
   date: "string",
   "tags?": "string[]",
   "published?": "boolean | 'true' | 'false'",
+  "coverImage?": "string",
+  "coverImageAttribution?": "string",
   content: "string",
 });
 
@@ -39,6 +41,8 @@ const posts = defineCollection({
       date: post.date,
       tags: post.tags,
       published: post.published,
+      coverImage: post.coverImage,
+      coverImageAttribution: post.coverImageAttribution,
       content: post.content,
       _meta: post._meta,
       slug: post._meta.path,
