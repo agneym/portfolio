@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import { createFileRoute, notFound } from "@tanstack/react-router";
 import { MDXContent } from "@content-collections/mdx/react";
 import { BlogArticleContainer } from "components/BlogHome/BlogArticleContainer";
@@ -47,7 +48,9 @@ function BlogPostPage() {
             : {}),
         }}
       />
-      <MDXContent code={post.mdx} components={CustomMDXComponents} />
+      <Suspense fallback={null}>
+        <MDXContent code={post.mdx} components={CustomMDXComponents} />
+      </Suspense>
     </BlogArticleContainer>
   );
 }

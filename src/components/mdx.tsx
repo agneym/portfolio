@@ -1,13 +1,45 @@
+import { lazy } from "react";
 import { Link } from "@tanstack/react-router";
 import { mdxComponents } from "@prose-ui/react";
 import { PlaygroundWrapper } from "components/uikit/PlaygroundWrapper";
-import { BubblingVisualizer } from "components/BlogHome/PostComponents/BubblingVisualizer";
-import { SynEventViewer } from "components/BlogHome/PostComponents/SynEventViewer";
-import { EventDelegationCode } from "components/BlogHome/PostComponents/EventDelegationCode";
-import { PropagationVisualizer } from "components/BlogHome/PostComponents/PropagationVisualizer";
-import { CascadePipeline } from "components/BlogHome/PostComponents/CascadePipeline";
-import { CascadeOriginsQuiz } from "components/BlogHome/PostComponents/CascadeOriginsQuiz";
-import { ImportanceQuiz } from "components/BlogHome/PostComponents/ImportanceQuiz";
+
+// Post-specific components are lazy-loaded so they only ship to the posts
+// that actually use them, rather than bloating every blog post's bundle.
+const BubblingVisualizer = lazy(() =>
+  import("components/BlogHome/PostComponents/BubblingVisualizer").then((m) => ({
+    default: m.BubblingVisualizer,
+  })),
+);
+const SynEventViewer = lazy(() =>
+  import("components/BlogHome/PostComponents/SynEventViewer").then((m) => ({
+    default: m.SynEventViewer,
+  })),
+);
+const EventDelegationCode = lazy(() =>
+  import("components/BlogHome/PostComponents/EventDelegationCode").then(
+    (m) => ({ default: m.EventDelegationCode }),
+  ),
+);
+const PropagationVisualizer = lazy(() =>
+  import("components/BlogHome/PostComponents/PropagationVisualizer").then(
+    (m) => ({ default: m.PropagationVisualizer }),
+  ),
+);
+const CascadePipeline = lazy(() =>
+  import("components/BlogHome/PostComponents/CascadePipeline").then((m) => ({
+    default: m.CascadePipeline,
+  })),
+);
+const CascadeOriginsQuiz = lazy(() =>
+  import("components/BlogHome/PostComponents/CascadeOriginsQuiz").then((m) => ({
+    default: m.CascadeOriginsQuiz,
+  })),
+);
+const ImportanceQuiz = lazy(() =>
+  import("components/BlogHome/PostComponents/ImportanceQuiz").then((m) => ({
+    default: m.ImportanceQuiz,
+  })),
+);
 
 function Table({ data }: { data: { headers: string[]; rows: string[][] } }) {
   let headers = data.headers.map((header, index) => (
