@@ -11,9 +11,19 @@ interface BlogPostHeaderProps {
 
 export function BlogPostHeader({ frontmatter }: BlogPostHeaderProps) {
   return (
-    <header className="not-prose mx-auto max-w-4xl pt-8 pb-10">
+    <header className="not-prose mx-auto flex max-w-4xl flex-col gap-y-8 pt-8">
+      <div className="flex flex-col gap-y-2">
+        <h1 className="not-prose text-6xl font-extrabold text-balance text-slate-800 dark:text-slate-100">
+          {frontmatter.title}
+        </h1>
+        {frontmatter.date && (
+          <DateString className="mx-2 text-sm font-semibold text-slate-500 dark:text-slate-400">
+            {frontmatter.date}
+          </DateString>
+        )}
+      </div>
       {frontmatter.coverImage && (
-        <figure className="mb-8">
+        <figure>
           <img
             src={frontmatter.coverImage}
             alt={`Cover for ${frontmatter.title}`}
@@ -26,14 +36,6 @@ export function BlogPostHeader({ frontmatter }: BlogPostHeaderProps) {
             </figcaption>
           )}
         </figure>
-      )}
-      <h1 className="not-prose text-6xl font-extrabold text-balance text-slate-800 dark:text-slate-100">
-        {frontmatter.title}
-      </h1>
-      {frontmatter.date && (
-        <DateString className="mx-2 text-sm font-semibold text-slate-500 dark:text-slate-400">
-          {frontmatter.date}
-        </DateString>
       )}
     </header>
   );
