@@ -7,6 +7,7 @@ import { EventDelegationCode } from "components/BlogHome/PostComponents/EventDel
 import { PropagationVisualizer } from "components/BlogHome/PostComponents/PropagationVisualizer";
 import { CascadePipeline } from "components/BlogHome/PostComponents/CascadePipeline";
 import { CascadeOriginsQuiz } from "components/BlogHome/PostComponents/CascadeOriginsQuiz";
+import { ImportanceQuiz } from "components/BlogHome/PostComponents/ImportanceQuiz";
 
 function Table({ data }: { data: { headers: string[]; rows: string[][] } }) {
   let headers = data.headers.map((header, index) => (
@@ -83,4 +84,5 @@ export const CustomMDXComponents = {
   PropagationVisualizer,
   CascadePipeline,
   CascadeOriginsQuiz,
+  ImportanceQuiz,
 };
