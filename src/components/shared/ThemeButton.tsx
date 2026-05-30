@@ -2,7 +2,7 @@ import MoonIcon from "images/moon.svg?react";
 import SunIcon from "images/sun.svg?react";
 import { AnimatePresence, motion } from "motion/react";
 import { useTheme } from "next-themes";
-import type { ComponentType, SVGProps } from "react";
+import { useEffect, useState, type ComponentType, type SVGProps } from "react";
 
 interface AnimatedIconProps {
   icon: ComponentType<SVGProps<SVGSVGElement>>;
@@ -31,6 +31,12 @@ const AnimatedIcon = ({ icon: Icon }: AnimatedIconProps) => {
 
 export const ThemeButton = () => {
   const { theme, setTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
   const isLightTheme = theme === "light";
   const Icon = isLightTheme ? MoonIcon : SunIcon;
   const label = isLightTheme ? "Dark Mode" : "Light Mode";
@@ -40,12 +46,17 @@ export const ThemeButton = () => {
       type="button"
       className="inline-flex h-6 w-6 items-center justify-center transition-transform duration-150 hover:scale-105"
       onClick={() => setTheme(isLightTheme ? "dark" : "light")}
-      aria-label={label}
-      title={label}
+      aria-label={mounted ? label : undefined}
+      title={mounted ? label : undefined}
+      suppressHydrationWarning
     >
-      <AnimatePresence>
-        <AnimatedIcon key={theme} icon={Icon} />
-      </AnimatePresence>
+      {mounted ? (
+        <AnimatePresence>
+          <AnimatedIcon key={theme} icon={Icon} />
+        </AnimatePresence>
+      ) : (
+        <span className="h-5 w-5" />
+      )}
     </button>
   );
 };
