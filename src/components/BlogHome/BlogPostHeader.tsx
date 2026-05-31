@@ -13,7 +13,7 @@ export function BlogPostHeader({ frontmatter }: BlogPostHeaderProps) {
   return (
     <header className="not-prose mx-auto flex max-w-4xl flex-col gap-y-8 pt-8">
       <div className="flex flex-col gap-y-2">
-        <h1 className="not-prose text-6xl font-extrabold text-balance text-slate-800 dark:text-slate-100">
+        <h1 className="not-prose text-4xl font-extrabold text-balance text-slate-800 md:text-6xl dark:text-slate-100">
           {frontmatter.title}
         </h1>
         {frontmatter.date && (
