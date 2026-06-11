@@ -40,6 +40,13 @@ const ImportanceQuiz = lazy(() =>
     default: m.ImportanceQuiz,
   })),
 );
+const NotifyOnChangePropsPlayground = lazy(() =>
+  import("components/BlogHome/PostComponents/NotifyOnChangePropsPlayground").then(
+    (m) => ({
+      default: m.NotifyOnChangePropsPlayground,
+    }),
+  ),
+);
 
 function Table({ data }: { data: { headers: string[]; rows: string[][] } }) {
   let headers = data.headers.map((header, index) => (
@@ -117,4 +124,5 @@ export const CustomMDXComponents = {
   CascadePipeline,
   CascadeOriginsQuiz,
   ImportanceQuiz,
+  NotifyOnChangePropsPlayground,
 };

@@ -1,0 +1,89 @@
+---
+title: notifyOnChangeProps - The middleman who tracks everything
+date: "2026-05-31T22:12:03.284Z"
+tags:
+  - notifyOnChangeProps
+  - tanstack
+  - tanstack query
+  - react
+published: true
+---
+
+`notifyOnChangeProps` in the Tanstack Query API determines when to trigger a React (or the framework you are using) re-render based on the fields you are actually using.
+
+The default value of `notifyOnChangeProps` is `tracked` and that's our topic for the day.
+
+```typescript
+const { data, isLoading } = useQuery();
+```
+
+React Query wraps the result object in a JavaScript Proxy. As you destructure `data` and `isLoading`, the Proxy logs those property names. The library then subscribes to changes **only** for that recorded set. If `error` updates later but you never read it, the component stays put.
+
+> Proxy object allows you to create an object that can be used in place of the original object, but which may redefine fundamental Object operations like getting, setting, and defining properties.
+
+Let's look at a simple proxy.
+
+```js
+const target = {
+  name: "React Query",
+  version: 5,
+};
+
+const handler = {
+  get(target, prop) {
+    console.log(`Accessed property: ${prop}`);
+    return target[prop];
+  },
+};
+
+const proxy = new Proxy(target, handler);
+
+console.log(proxy.name); // Accessed property: name → React Query
+```
+
+Since we are accessing the object through the proxy object, all requests have to first pass through the handler. This is also referred to as a "trap".
+
+React Query uses this trap to build a list of properties that you are actually using.
+
+```typescript
+function useQuery() {
+  const trackedProperties = new Set();
+  // Do operations
+  // ...
+  const result = {};
+  const resultProxy = new Proxy(result, {
+    get(target, prop) {
+      trackedProperties.add(prop);
+      return target[prop];
+    },
+  });
+  return resultProxy;
+}
+```
+
+When you destructure the result object, the proxy object will add the property to the `trackedProperties` set.
+
+```typescript
+const { data, isError } = useQuery();
+```
+
+The proxy object will add `data` and `isError` to the `trackedProperties` set. To decide whether the component has to re-render, whenever one of the values inside the library changes, it also looks up the tracked properties list. It _notifies_ the component **only** if the property is being tracked.
+
+<NotifyOnChangePropsPlayground />
+
+## The Pitfall
+
+You have already run into it on the above illustration. Tracked props will help your performance, but the proxy has to know which properties are being used.
+
+If you destructure the result `..rest` rest parameters, the proxy will track all the properties even if it's not being used.
+
+```typescript
+/* DO NOT do this.*/
+const { data, isLoading, ...rest } = useQuery();
+
+// Track specific properties. Not everything.
+```
+
+### The End
+
+The Proxy trap is the middleman — it watches every property you touch and only notifies React when those specific values change. Destructure what you use, skip the rest spread, and let the tracking do its job. If you ever need the old behavior back, notifyOnChangeProps: 'all' opts out entirely.
