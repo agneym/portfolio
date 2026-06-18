@@ -25,7 +25,7 @@ export const Route = createRootRouteWithContext<{
         name: "description",
         content: "A portfolio for Web Developer - Agney Menon",
       },
-      { property: "og:image", content: "/og.jpg" },
+      { property: "og:image", content: "https://agney.dev/og.jpg" },
       { property: "og:image:width", content: "1200" },
       { property: "og:image:height", content: "630" },
       { property: "og:type", content: "website" },
