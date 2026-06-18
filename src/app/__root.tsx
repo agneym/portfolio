@@ -21,6 +21,7 @@ export const Route = createRootRouteWithContext<{
         content: "width=device-width, initial-scale=1",
       },
       { title: "Portfolio | Agney" },
+      { property: "og:title", content: "Portfolio | Agney" },
       {
         name: "description",
         content: "A portfolio for Web Developer - Agney Menon",
