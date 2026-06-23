@@ -47,6 +47,11 @@ const NotifyOnChangePropsPlayground = lazy(() =>
     }),
   ),
 );
+const RoughBarChart = lazy(() =>
+  import("components/BlogHome/PostComponents/RoughBarChart").then((m) => ({
+    default: m.RoughBarChart,
+  })),
+);
 
 function Table({ data }: { data: { headers: string[]; rows: string[][] } }) {
   let headers = data.headers.map((header, index) => (
@@ -125,4 +130,5 @@ export const CustomMDXComponents = {
   CascadeOriginsQuiz,
   ImportanceQuiz,
   NotifyOnChangePropsPlayground,
+  RoughBarChart,
 };
