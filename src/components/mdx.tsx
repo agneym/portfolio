@@ -52,6 +52,11 @@ const RoughBarChart = lazy(() =>
     default: m.RoughBarChart,
   })),
 );
+const RtkComparison = lazy(() =>
+  import("components/BlogHome/PostComponents/RtkComparison").then((m) => ({
+    default: m.RtkComparison,
+  })),
+);
 
 function Table({ data }: { data: { headers: string[]; rows: string[][] } }) {
   let headers = data.headers.map((header, index) => (
@@ -131,4 +136,5 @@ export const CustomMDXComponents = {
   ImportanceQuiz,
   NotifyOnChangePropsPlayground,
   RoughBarChart,
+  RtkComparison,
 };

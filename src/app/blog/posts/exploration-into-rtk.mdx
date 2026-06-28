@@ -1,0 +1,129 @@
+---
+title: "Exploration into RTK and token saving"
+date: "2026-06-28T12:00:00.000Z"
+tags:
+  - rtk
+  - token-saving
+  - swebench
+  - evaluation
+  - llm
+published: true
+---
+
+RTK is a CLI tool that sits between your terminal commands and the AI's context window. You keep typing normal commands — `find`, `git diff`, `pytest` — and RTK intercepts the output, strips the boilerplate, and hands the model a compact summary instead.
+
+Here's what it looks like in practice. Running `find` on this blog's source tree:
+
+<RtkComparison />
+
+On paper, this is pure upside — smaller output means fewer tokens, lower cost, longer sessions. But compressing output also changes what the model sees. You're replacing raw `find` or `grep` output with RTK's compact summaries. Does that change the model's behavior? Does it make different decisions when it reads RTK's version instead of the real thing? And can you even measure this?
+
+This post walks through what happened when we tried to answer those questions with a paired A/B evaluation on SWE-bench Lite — first naively, then carefully, and finally honestly.
+
+## The naive approach: hide RTK from the model
+
+The first cut was simple: take mini-swe-agent running on SWE-bench Lite, run it twice on each instance — once with normal bash, once with every command piped through `rtk rewrite`. Don't tell the model anything about RTK. Just silently rewrite its commands and see what happens to cost.
+
+23 paired instances later, the answer was: **+33.7% tokens, +23.1% calls.**
+
+<RoughBarChart
+  title="Old eval — 23 instances (unfair)"
+  unit=""
+  off={{ label: "rtk-off", value: 15696536, color: "#64748b" }}
+  on={{ label: "rtk-on", value: 20989751, color: "#ef4444" }}
+/>
+
+That looks like RTK makes everything worse. But the chart is misleading. What actually happened?
+
+One failure mode dominated the numbers. When the model ran `python -m pytest django/test/...`, RTK rewrote it to `rtk pytest django/test/...`. RTK's test runner wrapper returned `Pytest: No tests collected` instead of the normal pytest output. The model, having no idea RTK existed, saw a broken test command and did exactly what you'd want it to do — it started debugging. It tried different invocation styles, checked file paths, verified the test file existed. It burned 40, 50, 70 extra API calls looping on a phantom problem.
+
+It wasn't the case that RTK's compression added overhead. RTK's output was actually _smaller_. The problem was that the output was also _different_ in ways the model couldn't explain, and without knowing RTK was the cause, the model's reasonable next step was "debug the test infrastructure."
+
+This eval was measuring the wrong thing. It wasn't measuring RTK's cost. It was measuring "what happens when you hide a command-rewriting proxy from an LLM that expects normal shell output." The answer: it panics. But no real RTK user would ever experience this — `rtk init -g` injects an `RTK.md` file that tells the model RTK exists and what to expect.
+
+## The fair approach: tell the model what's happening
+
+The fix was straightforward: add RTK awareness. The system prompt told the model:
+
+- RTK auto-rewrites `bash` commands behind the scenes
+- Some commands (like `pytest`) produce different output than the model might expect — that's normal, not an error
+- `RTK_DISABLED=1 <cmd>` is available if the model ever wants raw output
+
+We also dropped the step limit from 250 to 100 — the old eval's limits were generous enough to let the panic-loops run wild.
+
+100 paired instances later, the answer was: **+4.5% cost, +1.7% calls.**
+
+<RoughBarChart
+  title="Fair eval — 100 instances"
+  unit=""
+  off={{ label: "rtk-off", value: 11726800, color: "#64748b" }}
+  on={{ label: "rtk-on", value: 12248900, color: "#3b82f6" }}
+/>
+
+That's essentially break-even. The panic-loops vanished. The model accepted RTK's output as normal behavior and moved on. Across 100 instances, `RTK_DISABLED=1` was used **zero times** — the model was told the escape hatch existed but never reached for it.
+
+<Callout type="info" title="Compression works">
+  RTK successfully rewrote 1,681 commands across 4,361 decisions. Tool output
+  shrank by 3.0% (4.92M → 4.77M characters). The machinery works. The question
+  is whether it matters at this workload scale.
+</Callout>
+
+<Callout type="info" title="The real lever is path length, not output size">
+  If you're trying to save token costs, compressing tool output is squeezing the
+  wrong variable. The dominant cost driver is how many turns the agent takes to
+  reach a solution — model path variance can swing a 33-call instance to 79
+  calls with zero RTK involvement. Shortening the agent's path (better system
+  prompts, clearer instructions, tighter feedback loops) will move the needle
+  far more than compressing the output of each individual call. RTK is a fine
+  optimization, but it's optimizing the smaller term in the equation.
+</Callout>
+
+## But what does +4.5% actually mean?
+
+Here's where it gets uncomfortable. We measured a +4.5% cost delta with RTK on. But can we attribute that to RTK?
+
+Consider the two worst rtk-on outliers:
+
+- `django__django-11910`: +$0.42 (+249.6%), 47 → 99 calls
+- `django__django-14999`: +$0.25 (+402.1%), 33 → 79 calls
+
+These look damning. But when you trace the trajectories, both instances _diverged from the rtk-off arm at step 0_ — before the model had seen any RTK-rewritten output. The agents simply chose different initial strategies. One explored the codebase differently in the first few turns, and that choice cascaded into dramatically different path lengths.
+
+This is **model path variance**, not an RTK effect. The model's first few exploratory commands differ between runs because LLM sampling is nondeterministic. On short tasks, that early divergence can produce wildly different total costs all by itself — no RTK needed.
+
+And look at the distribution:
+
+|           | rtk-off cheaper | rtk-on cheaper |
+| --------- | --------------- | -------------- |
+| Instances | 55              | 43             |
+| Ties      | 2               | —              |
+
+If RTK were systematically causing problems, the distribution would lean. It doesn't. The 55/43 split is consistent with noise across 98 non-tied pairs — a binomial test wouldn't reject 50/50 at any conventional threshold.
+
+The median tells the same story: 32 calls per instance in both arms. The mean is pulled up by a handful of divergent trajectories, but the typical instance looks identical with or without RTK.
+
+## What I actually learned
+
+**Awareness alone fixes the worst failure mode.** Adding one paragraph to the system prompt eliminated the panic-looping entirely. The model accepted RTK's output as normal. The escape hatch (`RTK_DISABLED=1`) went untouched — the model didn't need it because it no longer misinterpreted RTK's output as errors.
+
+**Compression works, but the workload is too short for it to matter.** RTK compresses output. 3.0% across 100 instances, 1,681 successful rewrites. The machinery functions correctly. But on SWE-bench Lite — where the median instance takes 32 API calls and most output is already concise — there's not enough raw tool output for compression to compound into meaningful savings.
+
+**Compression can hide content the model needs.** RTK rewrites `git diff` output, but for code review tasks the model needs to see the full diff — every changed line, every context line. When RTK summarizes the diff, the model reviews the summary instead of the actual changes. It won't know it's working with incomplete information, and you'll get a review that missed problems in the compressed-away lines.
+
+**The escape hatch has a trust problem.** In separate testing with Claude Opus and GPT-5.5, once the model decided RTK output was unreliable and reached for `RTK_DISABLED=1`, it applied it to _every_ subsequent command. One bad experience with RTK's rewritten output broke trust for the entire session — the model stopped using RTK entirely rather than selectively bypassing the one problematic command.
+
+**RTK can break harness-level output management.** Sophisticated harnesses auto-truncate large tool calls and write them to a file — when the model runs `cat big_file.py`, the harness saves the output to `/tmp/agent_output_1.txt` and tells the model where to read it. But RTK rewrites the command and the output. The model believes it's writing raw file contents to disk, but what actually lands there is RTK's compressed version. The model then reads the compressed output, treats it as the real file, and works from incomplete data.
+
+## Where RTK's value proposition could show
+
+SWE-bench Lite was the wrong test bed for this question entirely. Its workloads are too short (median 32 calls) and its tool output too concise for compression to matter one way or the other. The benchmark measures bug-fixing accuracy on 15-line diffs in small codebases — not context management under load.
+
+To measure whether RTK's rewriting helps or hurts, you'd need tasks where output volume is the bottleneck: codebase exploration across large repos, long-horizon debugging with verbose tool output, or review workflows where the model would otherwise hit context limits. But given the failure modes above — hidden content, trust breakdown, harness interference — the bar for "helps more than it hurts" is higher than just raw token savings.
+
+## Footnotes
+
+1. The evaluation harness is at [github.com/agneym/rtk-evaluation](https://github.com/agneym/rtk-evaluation). Configuration: `swebench_rtk.yaml` (RTK awareness + `RTK_DISABLED=1` bypass), step limit 100, model `deepseek/deepseek-v4-flash` at $0.14/$0.28 per 1M tokens. See the repo for run scripts and `measure_paired.py`.
+
+2. No preemptive exclusions were configured — whether the model self-diagnosed and used `RTK_DISABLED=1` was part of the measurement. It never did. A real user encountering RTK output oddities could add `exclude_commands = ["pytest"]` to their config, but in this eval, that wasn't necessary because awareness alone prevented the misinterpretation.
+
+3. One resolution disagreement appeared across 100 instances (`django__django-11630`): resolved rtk-off but not rtk-on, despite nearly identical resource usage. Trajectory comparison showed both arms received identical file contents; the models simply chose different solution strategies. This is model variance, not RTK output corruption.
