@@ -18,8 +18,6 @@ Here's what it looks like in practice. Running `find` on this blog's source tree
 
 On paper, this is pure upside — smaller output means fewer tokens, lower cost, longer sessions. But compressing output also changes what the model sees. You're replacing raw `find` or `grep` output with RTK's compact summaries. Does that change the model's behavior? Does it make different decisions when it reads RTK's version instead of the real thing? And can you even measure this?
 
-This post walks through what happened when we tried to answer those questions with a paired A/B evaluation on SWE-bench Lite — first naively, then carefully, and finally honestly.
-
 ## The naive approach: hide RTK from the model
 
 The first cut was simple: take mini-swe-agent running on SWE-bench Lite, run it twice on each instance — once with normal bash, once with every command piped through `rtk rewrite`. Don't tell the model anything about RTK. Just silently rewrite its commands and see what happens to cost.
@@ -60,7 +58,7 @@ We also dropped the step limit from 250 to 100 — the old eval's limits were ge
   on={{ label: "rtk-on", value: 12248900, color: "#3b82f6" }}
 />
 
-That's essentially break-even. The panic-loops vanished. The model accepted RTK's output as normal behavior and moved on. Across 100 instances, `RTK_DISABLED=1` was used **zero times** — the model was told the escape hatch existed but never reached for it.
+That's essentially break-even. The model accepted RTK's output as normal behavior and moved on. Across 100 instances, `RTK_DISABLED=1` was used **zero times** — the model was told the escape hatch existed but never reached for it.
 
 <Callout type="info" title="Compression works">
   RTK successfully rewrote 1,681 commands across 4,361 decisions. Tool output
