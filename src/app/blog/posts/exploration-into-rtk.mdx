@@ -114,12 +114,6 @@ The median tells the same story: 32 calls per instance in both arms. The mean is
 
 **RTK can break harness-level output management.** Sophisticated harnesses auto-truncate large tool calls and write them to a file — when the model runs `cat big_file.py`, the harness saves the output to `/tmp/agent_output_1.txt` and tells the model where to read it. But RTK rewrites the command and the output. The model believes it's writing raw file contents to disk, but what actually lands there is RTK's compressed version. The model then reads the compressed output, treats it as the real file, and works from incomplete data.
 
-## Where RTK's value proposition could show
-
-SWE-bench Lite was the wrong test bed for this question entirely. Its workloads are too short (median 32 calls) and its tool output too concise for compression to matter one way or the other. The benchmark measures bug-fixing accuracy on 15-line diffs in small codebases — not context management under load.
-
-To measure whether RTK's rewriting helps or hurts, you'd need tasks where output volume is the bottleneck: codebase exploration across large repos, long-horizon debugging with verbose tool output, or review workflows where the model would otherwise hit context limits. But given the failure modes above — hidden content, trust breakdown, harness interference — the bar for "helps more than it hurts" is higher than just raw token savings.
-
 ## Footnotes
 
 1. The evaluation harness is at [github.com/agneym/rtk-evaluation](https://github.com/agneym/rtk-evaluation). Configuration: `swebench_rtk.yaml` (RTK awareness + `RTK_DISABLED=1` bypass), step limit 100, model `deepseek/deepseek-v4-flash` at $0.14/$0.28 per 1M tokens. See the repo for run scripts and `measure_paired.py`.
