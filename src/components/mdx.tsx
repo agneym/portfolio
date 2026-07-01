@@ -62,6 +62,13 @@ const DonutChart = lazy(() =>
     default: m.DonutChart,
   })),
 );
+const HorizontalStackedBarChart = lazy(() =>
+  import("components/BlogHome/PostComponents/HorizontalStackedBarChart").then(
+    (m) => ({
+      default: m.HorizontalStackedBarChart,
+    }),
+  ),
+);
 import { Quote } from "components/BlogHome/PostComponents/Quote";
 
 function Table({ data }: { data: { headers: string[]; rows: string[][] } }) {
@@ -144,5 +151,6 @@ export const CustomMDXComponents = {
   RoughBarChart,
   RtkComparison,
   DonutChart,
+  HorizontalStackedBarChart,
   Quote,
 };

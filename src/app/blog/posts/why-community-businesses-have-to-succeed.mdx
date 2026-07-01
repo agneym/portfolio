@@ -55,7 +55,7 @@ Even the identity categories that remain are splintering. "I'm into sports" coul
   on={{ label: "Fully AI-generated", value: 35, color: "#ec4899" }}
 />
 
-[Ahrefs](https://ahrefs.com/blog/what-percentage-of-new-content-is-ai-generated/) analyzed nearly a million pages: 74.2% had detectable AI content. A [Stanford study](https://ai-on-the-internet.github.io/) found 35% of new websites are entirely AI-generated. [Imperva's Bad Bot Report](https://www.imperva.com/blog/2025-imperva-bad-bot-report-how-ai-is-supercharging-the-bot-threat/): non-human traffic crossed 50%. [Europol](https://www.europol.europa.eu) projects 90% synthetic by 2026.
+[Ahrefs](https://ahrefs.com/blog/what-percentage-of-new-content-is-ai-generated/) analyzed nearly a million pages: 74.2% had detectable AI content. A [Stanford study](https://ai-on-the-internet.github.io/) found 35% of new websites are entirely AI-generated. [Imperva's Bad Bot Report](https://www.imperva.com/blog/2025-imperva-bad-bot-report-how-ai-is-supercharging-the-bot-threat/): non-human traffic crossed 50%.
 
 The "Dead Internet Theory" started as a conspiracy. It's increasingly just what the data looks like.
 
@@ -89,6 +89,44 @@ There's a less philosophical reason money matters: moderation is real work. [Sur
 A group where everyone paid to be there, chose to show up, has skin in the game. That's a tribe. Software features get cloned. Course content gets scraped. Templates get copied. What can't be copied is a room full of people who all chose to be there. When free platforms are drowning in synthetic content, a tribe you pay to belong to might be the only kind where everyone is definitely human.
 
 Free spaces will always exist. Public parks, open source projects, neighborhood groups. But for communities built around niche interests that can't survive on geography or algorithmic luck, money is the only filter that reliably separates real people from the noise.
+
+<HorizontalStackedBarChart
+  title="AI adoption is quickly transforming where we spend our time"
+  rows={[
+    {
+      label: "2000s",
+      segments: [{ label: "Open Web", value: 100, color: "#94a3b8" }],
+    },
+    {
+      label: "2010s",
+      segments: [{ label: "Open Web", value: 100, color: "#94a3b8" }],
+    },
+    {
+      label: "2015-22",
+      segments: [
+        { label: "Open Web", value: 55, color: "#94a3b8" },
+        { label: "Social", value: 45, color: "#3b82f6" },
+      ],
+    },
+    {
+      label: "2024",
+      segments: [
+        { label: "Open Web", value: 25, color: "#94a3b8" },
+        { label: "Social & AI", value: 75, color: "#e2e8f0" },
+      ],
+    },
+    {
+      label: "2026+?",
+      hideValues: true,
+      segments: [
+        { label: "Open Web", value: 33, color: "#94a3b8" },
+        { label: "Social & AI", value: 34, color: "#e2e8f0" },
+        { label: "Micro Communities", value: 33, color: "#f59e0b" },
+      ],
+    },
+  ]}
+  footnote="Illustrative / directional framing, based on Pew Research, DataReportal Digital 2023-2024, SparkToro & Similarweb Zero-Click Search Studies, data.ai"
+/>
 
 This is already happening. Circle's report found 39% of community builders are de-prioritizing member growth for 2026. 12% plan to cap membership outright. A third use pre-vetted membership. The playbook is "get better, and charge accordingly."
 
