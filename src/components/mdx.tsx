@@ -57,6 +57,12 @@ const RtkComparison = lazy(() =>
     default: m.RtkComparison,
   })),
 );
+const DonutChart = lazy(() =>
+  import("components/BlogHome/PostComponents/DonutChart").then((m) => ({
+    default: m.DonutChart,
+  })),
+);
+import { Quote } from "components/BlogHome/PostComponents/Quote";
 
 function Table({ data }: { data: { headers: string[]; rows: string[][] } }) {
   let headers = data.headers.map((header, index) => (
@@ -137,4 +143,6 @@ export const CustomMDXComponents = {
   NotifyOnChangePropsPlayground,
   RoughBarChart,
   RtkComparison,
+  DonutChart,
+  Quote,
 };
