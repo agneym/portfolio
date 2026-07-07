@@ -33,7 +33,9 @@ const posts = defineCollection({
   transform: async (post, context) => {
     const mdx = await compileMDX(context, post, {
       cwd: process.cwd(),
-      remarkPlugins: remarkPlugins(),
+      remarkPlugins: remarkPlugins({
+        math: { singleDollarTextMath: false },
+      }),
     });
 
     return {

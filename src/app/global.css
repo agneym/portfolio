@@ -28,6 +28,14 @@ h6 {
   & .frame {
     position: relative;
   }
+
+  /* Fix KaTeX absolute-positioned .katex-mathml extending html scroll:
+     Without a positioned ancestor on .katex, the screen-reader-only
+     .katex-mathml (position: absolute) positions relative to the viewport,
+     stretching document scrollHeight beyond the custom scroll container. */
+  & .katex {
+    position: relative;
+  }
   --p-h2-font-family: var(--font-heading);
   --p-h3-font-family: var(--font-heading);
   --p-h4-font-family: var(--font-heading);
