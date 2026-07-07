@@ -9,7 +9,7 @@ function BlogLayout() {
   return (
     <div
       data-scroll-restoration-id="blog-scroll"
-      className="grid h-full grid-rows-[3rem_1fr] overflow-y-auto"
+      className="grid h-full grid-rows-[3rem_minmax(0,1fr)] overflow-y-auto"
     >
       <HeadNav />
       <main className="min-w-0">
