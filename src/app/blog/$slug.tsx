@@ -3,6 +3,7 @@ import { createFileRoute, notFound } from "@tanstack/react-router";
 import { MDXContent } from "@content-collections/mdx/react";
 import { BlogArticleContainer } from "components/BlogHome/BlogArticleContainer";
 import { BlogPostHeader } from "components/BlogHome/BlogPostHeader";
+import { ScrollIndicator } from "components/BlogHome/ScrollIndicator";
 import { CustomMDXComponents } from "components/mdx";
 import { allPosts } from "content-collections";
 
@@ -37,20 +38,23 @@ function BlogPostPage() {
   const { post } = Route.useLoaderData();
 
   return (
-    <BlogArticleContainer>
-      <BlogPostHeader
-        frontmatter={{
-          title: post.title,
-          date: post.date,
-          ...(post.coverImage != null ? { coverImage: post.coverImage } : {}),
-          ...(post.coverImageAttribution != null
-            ? { coverImageAttribution: post.coverImageAttribution }
-            : {}),
-        }}
-      />
-      <Suspense fallback={null}>
-        <MDXContent code={post.mdx} components={CustomMDXComponents} />
-      </Suspense>
-    </BlogArticleContainer>
+    <>
+      <BlogArticleContainer>
+        <BlogPostHeader
+          frontmatter={{
+            title: post.title,
+            date: post.date,
+            ...(post.coverImage != null ? { coverImage: post.coverImage } : {}),
+            ...(post.coverImageAttribution != null
+              ? { coverImageAttribution: post.coverImageAttribution }
+              : {}),
+          }}
+        />
+        <Suspense fallback={null}>
+          <MDXContent code={post.mdx} components={CustomMDXComponents} />
+        </Suspense>
+      </BlogArticleContainer>
+      <ScrollIndicator />
+    </>
   );
 }
