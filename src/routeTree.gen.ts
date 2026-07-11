@@ -9,6 +9,7 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './app/__root'
+import { Route as OgRouteImport } from './app/og'
 import { Route as JemRouteImport } from './app/jem'
 import { Route as BlogRouteImport } from './app/blog'
 import { Route as IndexRouteImport } from './app/index'
@@ -16,6 +17,11 @@ import { Route as WebmarksIndexRouteImport } from './app/webmarks/index'
 import { Route as BlogIndexRouteImport } from './app/blog/index'
 import { Route as BlogSlugRouteImport } from './app/blog/$slug'
 
+const OgRoute = OgRouteImport.update({
+  id: '/og',
+  path: '/og',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const JemRoute = JemRouteImport.update({
   id: '/jem',
   path: '/jem',
@@ -51,6 +57,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/blog': typeof BlogRouteWithChildren
   '/jem': typeof JemRoute
+  '/og': typeof OgRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/blog/': typeof BlogIndexRoute
   '/webmarks/': typeof WebmarksIndexRoute
@@ -58,6 +65,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/jem': typeof JemRoute
+  '/og': typeof OgRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/blog': typeof BlogIndexRoute
   '/webmarks': typeof WebmarksIndexRoute
@@ -67,20 +75,29 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/blog': typeof BlogRouteWithChildren
   '/jem': typeof JemRoute
+  '/og': typeof OgRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/blog/': typeof BlogIndexRoute
   '/webmarks/': typeof WebmarksIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/blog' | '/jem' | '/blog/$slug' | '/blog/' | '/webmarks/'
+  fullPaths:
+    | '/'
+    | '/blog'
+    | '/jem'
+    | '/og'
+    | '/blog/$slug'
+    | '/blog/'
+    | '/webmarks/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/jem' | '/blog/$slug' | '/blog' | '/webmarks'
+  to: '/' | '/jem' | '/og' | '/blog/$slug' | '/blog' | '/webmarks'
   id:
     | '__root__'
     | '/'
     | '/blog'
     | '/jem'
+    | '/og'
     | '/blog/$slug'
     | '/blog/'
     | '/webmarks/'
@@ -90,11 +107,19 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   BlogRoute: typeof BlogRouteWithChildren
   JemRoute: typeof JemRoute
+  OgRoute: typeof OgRoute
   WebmarksIndexRoute: typeof WebmarksIndexRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/og': {
+      id: '/og'
+      path: '/og'
+      fullPath: '/og'
+      preLoaderRoute: typeof OgRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/jem': {
       id: '/jem'
       path: '/jem'
@@ -156,6 +181,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   BlogRoute: BlogRouteWithChildren,
   JemRoute: JemRoute,
+  OgRoute: OgRoute,
   WebmarksIndexRoute: WebmarksIndexRoute,
 }
 export const routeTree = rootRouteImport

@@ -16,6 +16,10 @@ export const Route = createFileRoute("/blog/$slug")({
   },
   head: ({ loaderData }) => {
     const post = loaderData?.post;
+    const ogImageUrl = post?.title
+      ? `https://agney.dev/og?title=${encodeURIComponent(post.title)}`
+      : undefined;
+
     return {
       meta: [
         { title: post?.title ? `${post.title} | Agney` : "Blog" },
@@ -24,8 +28,12 @@ export const Route = createFileRoute("/blog/$slug")({
         { property: "og:title", content: post?.title ?? "" },
         { property: "og:type", content: "article" },
         { property: "og:publishedTime", content: post?.date ?? "" },
-        ...(post?.coverImage
-          ? [{ property: "og:image", content: post.coverImage }]
+        ...(ogImageUrl
+          ? [
+              { property: "og:image", content: ogImageUrl },
+              { property: "og:image:width", content: "1200" },
+              { property: "og:image:height", content: "630" },
+            ]
           : []),
       ],
     };
