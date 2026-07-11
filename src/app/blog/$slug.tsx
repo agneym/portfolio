@@ -24,7 +24,6 @@ export const Route = createFileRoute("/blog/$slug")({
       meta: [
         { title: post?.title ? `${post.title} | Agney` : "Blog" },
         { name: "description", content: post?.title ?? "" },
-        { name: "keywords", content: post?.tags?.join(", ") ?? "" },
         { property: "og:title", content: post?.title ?? "" },
         { property: "og:type", content: "article" },
         { property: "og:publishedTime", content: post?.date ?? "" },
@@ -50,6 +49,7 @@ function BlogPostPage() {
         frontmatter={{
           title: post.title,
           date: post.date,
+          ...(post.tags != null ? { tags: post.tags } : {}),
           ...(post.coverImage != null ? { coverImage: post.coverImage } : {}),
           ...(post.coverImageAttribution != null
             ? { coverImageAttribution: post.coverImageAttribution }

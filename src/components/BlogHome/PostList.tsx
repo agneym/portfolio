@@ -16,7 +16,11 @@ export function PostList() {
           return (
             <PostListItem
               key={post.slug}
-              meta={{ title: post.title, date: post.date }}
+              meta={{
+                title: post.title,
+                date: post.date,
+                ...(post.tags != null ? { tags: post.tags } : {}),
+              }}
               slug={post.slug}
             />
           );

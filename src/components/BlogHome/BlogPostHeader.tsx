@@ -1,4 +1,5 @@
 import { DateString } from "./DateString";
+import { TagBadge } from "./TagBadge";
 
 interface BlogPostHeaderProps {
   frontmatter: {
@@ -6,6 +7,7 @@ interface BlogPostHeaderProps {
     date: string;
     coverImage?: string;
     coverImageAttribution?: string;
+    tags?: string[];
   };
 }
 
@@ -20,6 +22,13 @@ export function BlogPostHeader({ frontmatter }: BlogPostHeaderProps) {
           <DateString className="mx-2 text-sm font-semibold text-slate-500 dark:text-slate-400">
             {frontmatter.date}
           </DateString>
+        )}
+        {frontmatter.tags && frontmatter.tags.length > 0 && (
+          <div className="mx-2 mt-3 flex flex-wrap gap-2">
+            {frontmatter.tags.map((tag) => (
+              <TagBadge key={tag} tag={tag} />
+            ))}
+          </div>
         )}
       </div>
       {frontmatter.coverImage && (

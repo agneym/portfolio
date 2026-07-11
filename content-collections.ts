@@ -41,7 +41,7 @@ const posts = defineCollection({
     return {
       title: post.title,
       date: post.date,
-      tags: post.tags,
+      tags: post.tags?.map((t) => t.toLowerCase()),
       published: post.published,
       coverImage: post.coverImage,
       coverImageAttribution: post.coverImageAttribution,
