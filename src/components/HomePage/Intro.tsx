@@ -11,7 +11,7 @@ export const Intro = () => {
       <SkipNavContent />
       <motion.h1
         {...getAnimateProps({ shouldReduceMotion })}
-        className="text-4xl tracking-tight"
+        className="text-primary text-4xl tracking-tight"
       >
         Hey 👋 I&apos;m
       </motion.h1>
@@ -19,7 +19,7 @@ export const Intro = () => {
         <AvatarImage />
         <motion.h1
           {...getAnimateProps({ delay: 0.6, shouldReduceMotion })}
-          className="font text-6xl font-extrabold"
+          className="text-primary font text-6xl font-extrabold"
         >
           Agney Menon
         </motion.h1>

@@ -15,13 +15,15 @@ function BlogHome() {
   return (
     <div className="min-h-full">
       <SkipNavContent />
-      <header className="py-24">
+      <header className="pt-24 pb-28">
         <div className="mx-auto flex max-w-7xl flex-col items-center justify-center gap-y-16 px-4 sm:px-6 lg:px-8">
           <Header />
-          <SubscribeNewsletter />
+          <div className="w-full max-w-3xl px-4">
+            <SubscribeNewsletter />
+          </div>
         </div>
       </header>
-      <main className="mx-auto max-w-4xl px-8 pb-20">
+      <main className="mx-auto max-w-3xl px-8 pb-20">
         <PostList />
       </main>
     </div>

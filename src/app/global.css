@@ -7,7 +7,7 @@
 
 @custom-variant dark (&:is(.dark *));
 
-@theme inline {
+@theme {
   --font-heading: "Work Sans Variable", sans-serif;
 
   /* Colors — DESIGN.md tokens (light mode defaults) */
@@ -52,22 +52,6 @@
   --font-weight-body: 400;
   --font-weight-label-sm: 500;
   --font-weight-caption: 400;
-
-  /* Shapes — DESIGN.md tokens */
-  --radius-sm: 4px;
-  --radius-md: 6px;
-  --radius-lg: 8px;
-  --radius-full: 9999px;
-
-  /* Spacing — DESIGN.md tokens */
-  --spacing-xs: 4px;
-  --spacing-sm: 8px;
-  --spacing-md: 16px;
-  --spacing-lg: 24px;
-  --spacing-xl: 32px;
-  --spacing-2xl: 48px;
-  --spacing-3xl: 64px;
-  --spacing-content-max: 65ch;
 }
 
 /* Dark mode — flip semantic color values via CSS variables */

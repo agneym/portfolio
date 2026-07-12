@@ -8,7 +8,7 @@ interface SpeedSelectProps extends Omit<
 export function SpeedSelect(props: SpeedSelectProps) {
   return (
     <select
-      className="cursor-pointer border-none bg-transparent text-xs text-slate-900 outline-none dark:text-slate-100"
+      className="text-primary cursor-pointer border-none bg-transparent text-xs outline-none"
       {...props}
     >
       <option value={1200}>Slow</option>

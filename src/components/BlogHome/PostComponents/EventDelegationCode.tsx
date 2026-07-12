@@ -113,7 +113,7 @@ export function EventDelegationCode() {
               }
               className="h-4 w-4 accent-blue-600"
             />
-            <code className="rounded bg-slate-100 px-1.5 py-0.5 text-sm break-all dark:bg-slate-800">
+            <code className="bg-muted rounded px-1.5 py-0.5 text-sm break-all">
               {method.label}
             </code>
           </label>
@@ -125,27 +125,23 @@ export function EventDelegationCode() {
           dangerouslySetInnerHTML={{ __html: codeHTML }}
         />
       ) : (
-        <pre className="rounded-lg bg-gray-100 p-4 dark:bg-gray-900">
-          Loading...
-        </pre>
+        <pre className="bg-muted rounded-lg p-4">Loading...</pre>
       )}
       <div className="space-y-2">
         {propagationMethods.map((method) => (
           <details
             key={method.value}
-            className="rounded-lg border border-slate-200 bg-slate-50 p-4 dark:border-slate-700 dark:bg-slate-800/50"
+            className="border-muted bg-muted rounded-lg border p-4"
           >
             <summary className="cursor-pointer select-none">
-              <code className="rounded bg-slate-200 px-1.5 py-0.5 text-sm font-medium text-slate-700 dark:bg-slate-700 dark:text-slate-300">
+              <code className="bg-muted text-secondary rounded px-1.5 py-0.5 text-sm font-medium">
                 {method.label}
               </code>
             </summary>
-            <ul className="mt-3 list-inside list-disc space-y-1 text-sm text-slate-600 dark:text-slate-400">
+            <ul className="text-secondary mt-3 list-inside list-disc space-y-1 text-sm">
               {methodToAnswer[method.value].map((log, i) => (
                 <li key={i}>
-                  <code className="rounded bg-slate-100 px-1.5 py-0.5 dark:bg-slate-800">
-                    {log}
-                  </code>
+                  <code className="bg-muted rounded px-1.5 py-0.5">{log}</code>
                 </li>
               ))}
             </ul>
