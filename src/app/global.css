@@ -25,33 +25,8 @@
   --color-text-on-accent: #ffffff;
   --color-quote-accent: #f59e0b;
 
-  /* Typography — DESIGN.md tokens */
-  --font-display: "Work Sans";
-  --font-h1: "Work Sans";
-  --font-h2: "Work Sans";
-  --font-h3: "Work Sans";
-  --font-body-lg: "Work Sans";
-  --font-body: "Work Sans";
-  --font-label-sm: "Work Sans";
-  --font-caption: "Work Sans";
-  --text-display: 3.75rem;
-  --text-h1: 2.25rem;
-  --text-h2: 1.875rem;
-  --text-h3: 1.25rem;
-  --text-body-lg: 1.25rem;
-  --text-body: 1rem;
-  --text-label-sm: 0.75rem;
-  --text-caption: 0.75rem;
-  --tracking-display: -0.025em;
-  --tracking-h1: -0.02em;
-  --font-weight-display: 800;
-  --font-weight-h1: 800;
-  --font-weight-h2: 700;
-  --font-weight-h3: 700;
-  --font-weight-body-lg: 500;
-  --font-weight-body: 400;
-  --font-weight-label-sm: 500;
-  --font-weight-caption: 400;
+  /* Typography tokens from DESIGN.md are defined but not yet used
+     by any component — add them back when the typography scale is adopted. */
 }
 
 /* Dark mode — flip semantic color values via CSS variables */

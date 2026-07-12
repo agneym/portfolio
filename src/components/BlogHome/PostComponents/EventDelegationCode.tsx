@@ -111,7 +111,7 @@ export function EventDelegationCode() {
               onChange={(e) =>
                 setSelectedMethod(e.target.value as PropagationMethod)
               }
-              className="h-4 w-4 accent-blue-600"
+              className="accent-accent h-4 w-4"
             />
             <code className="bg-muted rounded px-1.5 py-0.5 text-sm break-all">
               {method.label}
