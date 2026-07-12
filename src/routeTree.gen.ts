@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './app/__root'
 import { Route as OgRouteImport } from './app/og'
 import { Route as JemRouteImport } from './app/jem'
+import { Route as DesignRouteImport } from './app/design'
 import { Route as BlogRouteImport } from './app/blog'
 import { Route as IndexRouteImport } from './app/index'
 import { Route as WebmarksIndexRouteImport } from './app/webmarks/index'
@@ -26,6 +27,11 @@ const OgRoute = OgRouteImport.update({
 const JemRoute = JemRouteImport.update({
   id: '/jem',
   path: '/jem',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DesignRoute = DesignRouteImport.update({
+  id: '/design',
+  path: '/design',
   getParentRoute: () => rootRouteImport,
 } as any)
 const BlogRoute = BlogRouteImport.update({
@@ -62,6 +68,7 @@ const BlogTagTagRoute = BlogTagTagRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/blog': typeof BlogRouteWithChildren
+  '/design': typeof DesignRoute
   '/jem': typeof JemRoute
   '/og': typeof OgRoute
   '/blog/$slug': typeof BlogSlugRoute
@@ -71,6 +78,7 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/design': typeof DesignRoute
   '/jem': typeof JemRoute
   '/og': typeof OgRoute
   '/blog/$slug': typeof BlogSlugRoute
@@ -82,6 +90,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/blog': typeof BlogRouteWithChildren
+  '/design': typeof DesignRoute
   '/jem': typeof JemRoute
   '/og': typeof OgRoute
   '/blog/$slug': typeof BlogSlugRoute
@@ -94,6 +103,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/blog'
+    | '/design'
     | '/jem'
     | '/og'
     | '/blog/$slug'
@@ -103,6 +113,7 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/design'
     | '/jem'
     | '/og'
     | '/blog/$slug'
@@ -113,6 +124,7 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/blog'
+    | '/design'
     | '/jem'
     | '/og'
     | '/blog/$slug'
@@ -124,6 +136,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   BlogRoute: typeof BlogRouteWithChildren
+  DesignRoute: typeof DesignRoute
   JemRoute: typeof JemRoute
   OgRoute: typeof OgRoute
   WebmarksIndexRoute: typeof WebmarksIndexRoute
@@ -143,6 +156,13 @@ declare module '@tanstack/react-router' {
       path: '/jem'
       fullPath: '/jem'
       preLoaderRoute: typeof JemRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/design': {
+      id: '/design'
+      path: '/design'
+      fullPath: '/design'
+      preLoaderRoute: typeof DesignRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/blog': {
@@ -207,6 +227,7 @@ const BlogRouteWithChildren = BlogRoute._addFileChildren(BlogRouteChildren)
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   BlogRoute: BlogRouteWithChildren,
+  DesignRoute: DesignRoute,
   JemRoute: JemRoute,
   OgRoute: OgRoute,
   WebmarksIndexRoute: WebmarksIndexRoute,
