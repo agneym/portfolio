@@ -18,7 +18,7 @@ export function PostListItem({ meta, slug }: PostListItemProps) {
         <Link to="/blog/$slug" params={{ slug }}>
           <h3 className="text-xl text-balance">{meta.title}</h3>
         </Link>
-        <DateString className="text-xs text-gray-500 dark:text-gray-400">
+        <DateString className="text-secondary-muted text-xs">
           {meta.date}
         </DateString>
       </header>

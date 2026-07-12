@@ -73,30 +73,28 @@ export function CascadePipeline() {
               onClick={() => setActiveIndex(i)}
               className={`flex w-full items-center gap-4 rounded-lg p-4 text-left transition-colors ${
                 isActive
-                  ? "border-l-[3px] border-l-blue-600 bg-slate-50 dark:border-l-blue-400 dark:bg-slate-800/60"
-                  : "border-l-[3px] border-l-slate-200 hover:bg-slate-50 dark:border-l-slate-700 dark:hover:bg-slate-800/40"
+                  ? "border-l-accent bg-muted border-l-[3px]"
+                  : "border-l-muted hover:bg-muted border-l-[3px]"
               }`}
             >
               <span
                 className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-full border-2 font-mono text-sm font-semibold transition-colors ${
                   isActive
-                    ? "border-blue-600 text-blue-600 dark:border-blue-400 dark:text-blue-400"
-                    : "border-slate-300 bg-slate-100 text-slate-600 dark:border-slate-600 dark:bg-slate-700/50 dark:text-slate-400"
+                    ? "border-accent text-accent"
+                    : "border-muted bg-muted text-secondary"
                 }`}
               >
                 {step.num}
               </span>
               <div>
-                <h4 className="text-base font-semibold text-slate-900 dark:text-slate-100">
+                <h4 className="text-primary text-base font-semibold">
                   {step.title}
                 </h4>
-                <p className="text-sm text-slate-500 dark:text-slate-400">
-                  {step.summary}
-                </p>
+                <p className="text-secondary-muted text-sm">{step.summary}</p>
               </div>
             </button>
             {isActive && (
-              <div className="mx-4 mt-1 mb-2 ml-14 rounded-lg border border-slate-200 bg-slate-50 px-4 py-3 font-mono text-sm leading-relaxed text-slate-600 dark:border-slate-700 dark:bg-slate-800/40 dark:text-slate-400">
+              <div className="border-muted bg-muted text-secondary mx-4 mt-1 mb-2 ml-14 rounded-lg border px-4 py-3 font-mono text-sm leading-relaxed">
                 {step.detail}
               </div>
             )}

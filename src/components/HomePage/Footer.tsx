@@ -14,7 +14,7 @@ const SocialMediaLink = ({ href, iconEl, ariaLabel }: SocialMediaLinkProps) => {
       href={href}
       target="_blank"
       aria-label={ariaLabel}
-      className="hover:text-slate:700 h-7 w-7 text-slate-600 transition-transform hover:scale-105 dark:text-slate-400 dark:hover:text-slate-300"
+      className="hover:text-secondary-strong text-secondary h-7 w-7 transition-transform hover:scale-105"
     >
       {iconEl}
     </a>

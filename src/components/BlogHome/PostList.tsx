@@ -8,7 +8,7 @@ export function PostList() {
 
   return (
     <>
-      <h1 className="text-2xl font-semibold text-balance text-gray-700 dark:text-gray-300">
+      <h1 className="text-secondary text-2xl font-semibold text-balance">
         Latest Posts
       </h1>
       <div className="mt-8 flex flex-col gap-y-12">
