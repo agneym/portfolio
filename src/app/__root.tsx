@@ -58,7 +58,7 @@ function RootComponent() {
       <head>
         <HeadContent />
       </head>
-      <body className="h-full bg-slate-50 selection:bg-indigo-100 dark:bg-slate-800 dark:selection:bg-indigo-600">
+      <body className="bg-surface selection:bg-accent-light h-full">
         <Providers>
           <Outlet />
         </Providers>

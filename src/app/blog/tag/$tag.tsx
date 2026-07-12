@@ -38,19 +38,15 @@ function TagPage() {
     <div className="min-h-full">
       <SkipNavContent />
       <main className="mx-auto max-w-4xl px-8 py-24">
-        <div className="mb-2 flex items-center gap-x-2 text-sm text-slate-500 dark:text-slate-400">
-          <Link
-            to="/blog"
-            className="hover:text-slate-700 dark:hover:text-slate-300"
-          >
+        <div className="text-secondary-muted mb-2 flex items-center gap-x-2 text-sm">
+          <Link to="/blog" className="hover:text-secondary-strong">
             Blog
           </Link>
           <span>/</span>
-          <span className="text-slate-700 dark:text-slate-300">{tag}</span>
+          <span className="text-secondary-strong">{tag}</span>
         </div>
-        <h1 className="mb-8 text-2xl font-semibold text-balance text-gray-700 dark:text-gray-300">
-          Posts tagged{" "}
-          <span className="text-slate-900 dark:text-slate-100">"{tag}"</span>
+        <h1 className="text-secondary-strong mb-8 text-2xl font-semibold text-balance">
+          Posts tagged <span className="text-primary">"{tag}"</span>
         </h1>
         <div className="flex flex-col gap-y-12">
           {posts.map((post) => (

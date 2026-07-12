@@ -6,7 +6,7 @@ export function Header() {
       <div className="flex items-end justify-center gap-x-2">
         <LogoSvg
           width={40}
-          className="-z-10 -rotate-6 text-slate-900 transition-transform hover:rotate-0 dark:text-slate-100"
+          className="text-primary -z-10 -rotate-6 transition-transform hover:rotate-0"
           title="Home"
           aria-hidden
         />
@@ -17,7 +17,7 @@ export function Header() {
       </div>
       <p>
         <span>Welcome to Agney&apos;s </span>
-        <span className="underline decoration-indigo-300 decoration-dashed underline-offset-2">
+        <span className="decoration-accent-muted underline decoration-dashed underline-offset-2">
           Digital Garden
         </span>
       </p>

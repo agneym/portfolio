@@ -9,6 +9,80 @@
 
 @theme inline {
   --font-heading: "Work Sans Variable", sans-serif;
+
+  /* Colors — DESIGN.md tokens (light mode defaults) */
+  --color-primary: #0f172a;
+  --color-secondary: #475569;
+  --color-secondary-strong: #334155;
+  --color-secondary-muted: #64748b;
+  --color-tertiary: #94a3b8;
+  --color-accent: #4f46e5;
+  --color-accent-hover: #6366f1;
+  --color-accent-muted: #a5b4fc;
+  --color-accent-light: #e0e7ff;
+  --color-surface: #f8fafc;
+  --color-muted: #e2e8f0;
+  --color-text-on-accent: #ffffff;
+  --color-quote-accent: #f59e0b;
+
+  /* Typography — DESIGN.md tokens */
+  --font-display: "Work Sans";
+  --font-h1: "Work Sans";
+  --font-h2: "Work Sans";
+  --font-h3: "Work Sans";
+  --font-body-lg: "Work Sans";
+  --font-body: "Work Sans";
+  --font-label-sm: "Work Sans";
+  --font-caption: "Work Sans";
+  --text-display: 3.75rem;
+  --text-h1: 2.25rem;
+  --text-h2: 1.875rem;
+  --text-h3: 1.25rem;
+  --text-body-lg: 1.25rem;
+  --text-body: 1rem;
+  --text-label-sm: 0.75rem;
+  --text-caption: 0.75rem;
+  --tracking-display: -0.025em;
+  --tracking-h1: -0.02em;
+  --font-weight-display: 800;
+  --font-weight-h1: 800;
+  --font-weight-h2: 700;
+  --font-weight-h3: 700;
+  --font-weight-body-lg: 500;
+  --font-weight-body: 400;
+  --font-weight-label-sm: 500;
+  --font-weight-caption: 400;
+
+  /* Shapes — DESIGN.md tokens */
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 8px;
+  --radius-full: 9999px;
+
+  /* Spacing — DESIGN.md tokens */
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 32px;
+  --spacing-2xl: 48px;
+  --spacing-3xl: 64px;
+  --spacing-content-max: 65ch;
+}
+
+/* Dark mode — flip semantic color values via CSS variables */
+.dark {
+  --color-primary: #f1f5f9;
+  --color-secondary: #94a3b8;
+  --color-secondary-strong: #cbd5e1;
+  --color-secondary-muted: #94a3b8;
+  --color-tertiary: #64748b;
+  --color-surface: #1e293b;
+  --color-muted: #334155;
+  --color-accent: #6366f1;
+  --color-accent-hover: #818cf8;
+  --color-accent-muted: #6366f1;
+  --color-accent-light: #4f46e5;
 }
 
 h1,

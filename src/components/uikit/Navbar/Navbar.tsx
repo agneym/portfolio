@@ -36,7 +36,7 @@ export function Navbar({ className, children }: NavbarProps) {
   return (
     <nav
       className={clsx(
-        "sticky top-0 flex items-center justify-center gap-x-4 bg-inherit px-4 pt-4 pb-2 text-gray-800 opacity-90 backdrop-blur-xs md:justify-between md:px-8 dark:text-gray-400",
+        "sticky top-0 flex items-center justify-center gap-x-4 bg-inherit px-4 pt-4 pb-2 text-primary opacity-90 backdrop-blur-xs md:justify-between md:px-8",
         className,
       )}
     >

@@ -21,10 +21,7 @@ export const InputDescription = ({
   );
   return (
     <p
-      className={clsx(
-        "mt-1 text-sm text-gray-600 dark:text-gray-400",
-        className,
-      )}
+      className={clsx("mt-1 text-sm text-secondary", className)}
       id={descriptionId}
       {...rest}
     >

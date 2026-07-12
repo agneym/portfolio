@@ -25,7 +25,7 @@ export const Intro = () => {
         </motion.h1>
         <motion.p
           {...getAnimateProps({ delay: 0.9, shouldReduceMotion })}
-          className="text-xl font-medium tracking-normal text-slate-700 dark:text-slate-300"
+          className="text-secondary-strong text-xl font-medium tracking-normal"
         >
           Web Developer. Storyteller.
         </motion.p>
