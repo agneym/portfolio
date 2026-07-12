@@ -13,7 +13,7 @@ function OgImage({ title }: { title: string }) {
         justifyContent: "center",
         padding: "48px",
         backgroundImage:
-          "linear-gradient(135deg, #f8fafc 0%, #eef2ff 40%, #e0e7ff 100%)",
+          "linear-gradient(135deg, oklch(0.984 0.003 247.858) 0%, oklch(0.962 0.018 272.314) 40%, oklch(0.930 0.033 272.788) 100%)",
         fontFamily: '"Work Sans", sans-serif',
       }}
     >
@@ -25,7 +25,8 @@ function OgImage({ title }: { title: string }) {
           left: 0,
           right: 0,
           height: "6px",
-          backgroundImage: "linear-gradient(90deg, #4f46e5, #818cf8, #6366f1)",
+          backgroundImage:
+            "linear-gradient(90deg, oklch(0.511 0.230 276.966), oklch(0.680 0.158 276.935), oklch(0.585 0.204 277.117))",
         }}
       />
 
@@ -37,7 +38,7 @@ function OgImage({ title }: { title: string }) {
           flex: 1,
           height: "100%",
           padding: "64px 72px",
-          backgroundColor: "#ffffff",
+          backgroundColor: "oklch(1 0 0)",
           borderRadius: "16px",
           boxShadow: "0 4px 24px rgba(0, 0, 0, 0.06)",
         }}
@@ -49,7 +50,7 @@ function OgImage({ title }: { title: string }) {
               fontSize: "72px",
               fontWeight: 800,
               lineHeight: 1.1,
-              color: "#0f172a",
+              color: "oklch(0.208 0.040 265.755)",
               letterSpacing: "-0.025em",
             }}
           >
@@ -69,7 +70,7 @@ function OgImage({ title }: { title: string }) {
             style={{
               fontSize: "28px",
               fontWeight: 600,
-              color: "#4f46e5",
+              color: "oklch(0.511 0.230 276.966)",
             }}
           >
             Agney
@@ -78,7 +79,7 @@ function OgImage({ title }: { title: string }) {
             style={{
               fontSize: "22px",
               fontWeight: 400,
-              color: "#64748b",
+              color: "oklch(0.554 0.041 257.417)",
             }}
           >
             agney.dev

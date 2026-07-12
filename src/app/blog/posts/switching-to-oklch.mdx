@@ -1,0 +1,53 @@
+---
+title: "Switching to OKLCH - On to a new gamut"
+date: "2026-07-13T22:12:03.284Z"
+tags:
+  - css
+  - design-systems
+published: true
+---
+
+Every color in this portfolio is now `oklch()`. Hex, `rgb()`, `rgba()`, `hsl()`, `hsla()`, all gone. 13 design tokens, 11 dark mode overrides, SVG chart labels, OG image gradients, even the animated avatar ring.
+
+## Why
+
+OKLCH fixes three problems that the old color spaces all share:
+
+**Perceptual uniformity.** Equal L steps look equally bright, no matter the hue. `oklch(0.5 ...)` is visually halfway between black and white. HSL's `lightness: 50%` is all over the place. Yellow at `hsl(60, 100%, 50%)` is way brighter than blue at `hsl(240, 100%, 50%)`.
+
+**Stable hue.** In HSL, blue drifts toward purple as you change lightness (about 16° across a typical palette ramp). In OKLCH, hue stays put. You can generate an entire palette by varying L alone and the color family holds.
+
+**Independent chroma.** Chroma in OKLCH is an absolute measure of colorfulness, separate from lightness. HSL saturation changes with lightness, so you can't keep vividness consistent across a scale. Same chroma percentage in OKLCH means equal vividness relative to what each hue can output.
+
+## What changed
+
+| Layer                    | Before                     | After                                         |
+| ------------------------ | -------------------------- | --------------------------------------------- |
+| Design tokens (`@theme`) | 13 hex values              | `oklch(L C H)`                                |
+| Dark mode (`.dark`)      | 11 hardcoded hex overrides | Same tokens, reversed L mapping               |
+| SVG chart labels         | `#0f172a` / `#fff`         | `oklch(0.208 0.040 265.755)` / `oklch(1 0 0)` |
+| OG image generator       | 6 inline hex + gradients   | `oklch()` in gradient stops and fills         |
+| Avatar ring animation    | `hsla(0deg, 86%, 59%, 1)`  | `oklch(0.632 0.216 25.967)`                   |
+
+## What you actually get
+
+**Contrast fixes become a one channel problem.** With hex, fixing contrast means trial and error across R, G, and B. In OKLCH you adjust L only. Chroma barely touches contrast.
+
+**Dark mode is a flip.** Reverse the palette mapping and the lightest step becomes the darkest. Perceptual uniformity means equal L steps work in both directions without hand tuning.
+
+**No hue drift in palettes.** My secondary palette (slate) now has near-constant hue across all 11 steps, `257.2°` to `257.4°`. Well under the 10° drift threshold.
+
+## Beyond sRGB — P3 colors, no extra code
+
+Hex, `rgb()`, and `hsl()` are all bound to the sRGB color space. They literally cannot express a color outside sRGB. Display P3 covers ~50% more colors, especially in cyans, reds, and purples.
+
+OKLCH reaches P3 without any polyfill, media query, or fallback gymnastics. Push chroma past the sRGB ceiling and the browser renders P3 where supported, auto-clamping to the nearest sRGB color otherwise. Same `oklch()` value, progressive enhancement for free.
+
+<P3GamutDemo />
+
+The demo uses three P3 colors — `oklch()` values whose chroma exceeds what sRGB can represent at that hue and lightness. No `color(display-p3 ...)` syntax. No `@media (color-gamut: p3)` wrapper. Just `oklch()`.
+
+## References
+
+- [OKLCH in CSS: why we moved from RGB and HSL](https://evilmartians.com/chronicles/oklch-in-css-why-quit-rgb-hsl) by Evil Martians
+- [better-colors skill](https://github.com/jakubkrehel/skills/tree/main/skills/better-colors), OKLCH conversion, palette generation, and contrast checking guide

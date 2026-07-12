@@ -46,12 +46,12 @@ export const AvatarImage = () => {
                 }
               : {
                   pathLength: 0,
-                  stroke: "hsla(0deg, 86%, 59%, 1)",
+                  stroke: "oklch(0.632 0.216 25.967)",
                 }
           }
           animate={{
             pathLength: 1,
-            stroke: "hsla(180deg, 86%, 59%, 1)",
+            stroke: "oklch(0.871 0.138 194.923)",
           }}
           transition={transitionState}
         />

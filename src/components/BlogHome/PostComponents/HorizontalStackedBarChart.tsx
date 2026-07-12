@@ -118,9 +118,9 @@ export function HorizontalStackedBarChart({
           segLabel.setAttribute("font-size", "15");
           segLabel.setAttribute("font-weight", "800");
           // Dark text with white outline — readable on any bar color, any page theme
-          segLabel.setAttribute("fill", "#0f172a");
+          segLabel.setAttribute("fill", "oklch(0.208 0.040 265.755)");
           segLabel.setAttribute("paint-order", "stroke");
-          segLabel.setAttribute("stroke", "#fff");
+          segLabel.setAttribute("stroke", "oklch(1 0 0)");
           segLabel.setAttribute("stroke-width", "2.5");
           segLabel.setAttribute("stroke-linejoin", "round");
           segLabel.textContent = `${seg.value}${unit}`;

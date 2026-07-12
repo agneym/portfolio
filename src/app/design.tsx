@@ -347,17 +347,17 @@ function DesignPage() {
 
   // Build dark mode color map from the Colors prose (for showing dual swatches)
   const darkColors: Record<string, string> = {
-    primary: "#f1f5f9",
-    secondary: "#94a3b8",
-    "secondary-strong": "#cbd5e1",
-    "secondary-muted": "#94a3b8",
-    tertiary: "#64748b",
-    accent: "#6366f1",
-    "accent-hover": "#818cf8",
-    "accent-muted": "#6366f1",
-    "accent-light": "#4f46e5",
-    surface: "#1e293b",
-    muted: "#334155",
+    primary: "oklch(0.968 0.007 247.896)",
+    secondary: "oklch(0.711 0.035 256.788)",
+    "secondary-strong": "oklch(0.869 0.020 252.894)",
+    "secondary-muted": "oklch(0.711 0.035 256.788)",
+    tertiary: "oklch(0.554 0.041 257.417)",
+    accent: "oklch(0.585 0.204 277.117)",
+    "accent-hover": "oklch(0.680 0.158 276.935)",
+    "accent-muted": "oklch(0.585 0.204 277.117)",
+    "accent-light": "oklch(0.511 0.230 276.966)",
+    surface: "oklch(0.279 0.037 260.031)",
+    muted: "oklch(0.372 0.039 257.287)",
   };
 
   return (

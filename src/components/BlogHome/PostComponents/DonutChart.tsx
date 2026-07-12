@@ -90,7 +90,7 @@ export function DonutChart({ title, segments, caption }: DonutChartProps) {
         label.setAttribute("dominant-baseline", "middle");
         label.setAttribute("font-size", "14");
         label.setAttribute("font-weight", "700");
-        label.setAttribute("fill", "#fff");
+        label.setAttribute("fill", "oklch(1 0 0)");
         label.textContent = `${pct}%`;
         svg.appendChild(label);
       }

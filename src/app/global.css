@@ -11,19 +11,19 @@
   --font-heading: "Work Sans Variable", sans-serif;
 
   /* Colors — DESIGN.md tokens (light mode defaults) */
-  --color-primary: #0f172a;
-  --color-secondary: #475569;
-  --color-secondary-strong: #334155;
-  --color-secondary-muted: #64748b;
-  --color-tertiary: #94a3b8;
-  --color-accent: #4f46e5;
-  --color-accent-hover: #6366f1;
-  --color-accent-muted: #a5b4fc;
-  --color-accent-light: #e0e7ff;
-  --color-surface: #f8fafc;
-  --color-muted: #e2e8f0;
-  --color-text-on-accent: #ffffff;
-  --color-quote-accent: #f59e0b;
+  --color-primary: oklch(0.208 0.04 265.755);
+  --color-secondary: oklch(0.446 0.037 257.281);
+  --color-secondary-strong: oklch(0.372 0.039 257.287);
+  --color-secondary-muted: oklch(0.554 0.041 257.417);
+  --color-tertiary: oklch(0.711 0.035 256.788);
+  --color-accent: oklch(0.511 0.23 276.966);
+  --color-accent-hover: oklch(0.585 0.204 277.117);
+  --color-accent-muted: oklch(0.785 0.104 274.713);
+  --color-accent-light: oklch(0.93 0.033 272.788);
+  --color-surface: oklch(0.984 0.003 247.858);
+  --color-muted: oklch(0.929 0.013 255.508);
+  --color-text-on-accent: oklch(1 0 0);
+  --color-quote-accent: oklch(0.769 0.165 70.08);
 
   /* Typography tokens from DESIGN.md are defined but not yet used
      by any component — add them back when the typography scale is adopted. */
@@ -31,17 +31,17 @@
 
 /* Dark mode — flip semantic color values via CSS variables */
 .dark {
-  --color-primary: #f1f5f9;
-  --color-secondary: #94a3b8;
-  --color-secondary-strong: #cbd5e1;
-  --color-secondary-muted: #94a3b8;
-  --color-tertiary: #64748b;
-  --color-surface: #1e293b;
-  --color-muted: #334155;
-  --color-accent: #6366f1;
-  --color-accent-hover: #818cf8;
-  --color-accent-muted: #6366f1;
-  --color-accent-light: #4f46e5;
+  --color-primary: oklch(0.968 0.007 247.896);
+  --color-secondary: oklch(0.711 0.035 256.788);
+  --color-secondary-strong: oklch(0.869 0.02 252.894);
+  --color-secondary-muted: oklch(0.711 0.035 256.788);
+  --color-tertiary: oklch(0.554 0.041 257.417);
+  --color-surface: oklch(0.279 0.037 260.031);
+  --color-muted: oklch(0.372 0.039 257.287);
+  --color-accent: oklch(0.585 0.204 277.117);
+  --color-accent-hover: oklch(0.68 0.158 276.935);
+  --color-accent-muted: oklch(0.585 0.204 277.117);
+  --color-accent-light: oklch(0.511 0.23 276.966);
 }
 
 h1,
