@@ -53,6 +53,16 @@ h6 {
   font-family: var(--font-heading);
 }
 
+body {
+  font-synthesis: none;
+}
+
+a {
+  text-underline-position: from-font;
+  text-decoration-thickness: from-font;
+  text-decoration-skip-ink: auto;
+}
+
 .prose-ui {
   --p-body-color-bg: "transparent";
 

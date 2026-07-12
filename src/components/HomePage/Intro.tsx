@@ -19,7 +19,7 @@ export const Intro = () => {
         <AvatarImage />
         <motion.h1
           {...getAnimateProps({ delay: 0.6, shouldReduceMotion })}
-          className="text-primary font text-6xl font-extrabold"
+          className="text-primary font text-6xl font-extrabold tracking-tight"
         >
           Agney Menon
         </motion.h1>
