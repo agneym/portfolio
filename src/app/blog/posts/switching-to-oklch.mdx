@@ -7,7 +7,7 @@ tags:
 published: true
 ---
 
-Every color in this portfolio is now `oklch()`. Hex, `rgb()`, `rgba()`, `hsl()`, `hsla()`, all gone. 13 design tokens, 11 dark mode overrides, SVG chart labels, OG image gradients, even the animated avatar ring.
+Every color in this portfolio is now `oklch()`. Hex, `rgb()`, `rgba()`, `hsl()`, `hsla()`, all gone. 13 design tokens, a single dark mode mapping rule replacing 11 hand-tuned overrides, SVG chart labels, OG image gradients, even the animated avatar ring. And as a bonus: the whole site now reaches into the Display P3 color gamut with zero extra code.
 
 ## Why
 
@@ -17,27 +17,19 @@ OKLCH fixes three problems that the old color spaces all share:
 
 **Stable hue.** In HSL, blue drifts toward purple as you change lightness (about 16° across a typical palette ramp). In OKLCH, hue stays put. You can generate an entire palette by varying L alone and the color family holds.
 
-**Independent chroma.** Chroma in OKLCH is an absolute measure of colorfulness, separate from lightness. HSL saturation changes with lightness, so you can't keep vividness consistent across a scale. Same chroma percentage in OKLCH means equal vividness relative to what each hue can output.
+**Independent chroma.** Chroma in OKLCH is an absolute measure of colorfulness, separate from lightness. HSL saturation changes with lightness, so you can't keep vividness consistent across a scale. In OKLCH, equal chroma means equal vividness, independent of lightness, though the maximum achievable chroma varies by hue.
 
-## What changed
-
-| Layer                    | Before                     | After                                         |
-| ------------------------ | -------------------------- | --------------------------------------------- |
-| Design tokens (`@theme`) | 13 hex values              | `oklch(L C H)`                                |
-| Dark mode (`.dark`)      | 11 hardcoded hex overrides | Same tokens, reversed L mapping               |
-| SVG chart labels         | `#0f172a` / `#fff`         | `oklch(0.208 0.040 265.755)` / `oklch(1 0 0)` |
-| OG image generator       | 6 inline hex + gradients   | `oklch()` in gradient stops and fills         |
-| Avatar ring animation    | `hsla(0deg, 86%, 59%, 1)`  | `oklch(0.632 0.216 25.967)`                   |
+Put together, these three properties mean you can reason about color in code the way your eyes actually perceive it. A blue button and a yellow button with the same L value look equally bright, no surprises. A slate palette holds its hue across every step. And your vivid accent color stays vivid whether it's on a light background or a dark one.
 
 ## What you actually get
 
 **Contrast fixes become a one channel problem.** With hex, fixing contrast means trial and error across R, G, and B. In OKLCH you adjust L only. Chroma barely touches contrast.
 
-**Dark mode is a flip.** Reverse the palette mapping and the lightest step becomes the darkest. Perceptual uniformity means equal L steps work in both directions without hand tuning.
+**Dark mode is a flip.** Flip the L values in your palette mapping and the lightest step becomes the darkest. Perceptual uniformity means equal L steps work in both directions without hand tuning.
 
 **No hue drift in palettes.** My secondary palette (slate) now has near-constant hue across all 11 steps, `257.2°` to `257.4°`. Well under the 10° drift threshold.
 
-## Beyond sRGB — P3 colors, no extra code
+## Beyond sRGB: P3 colors, no extra code
 
 Hex, `rgb()`, and `hsl()` are all bound to the sRGB color space. They literally cannot express a color outside sRGB. Display P3 covers ~50% more colors, especially in cyans, reds, and purples.
 
@@ -45,7 +37,11 @@ OKLCH reaches P3 without any polyfill, media query, or fallback gymnastics. Push
 
 <P3GamutDemo />
 
-The demo uses three P3 colors — `oklch()` values whose chroma exceeds what sRGB can represent at that hue and lightness. No `color(display-p3 ...)` syntax. No `@media (color-gamut: p3)` wrapper. Just `oklch()`.
+The demo uses three P3 colors: `oklch()` values whose chroma exceeds what sRGB can represent at that hue and lightness. No `color(display-p3 ...)` syntax. No `@media (color-gamut: p3)` wrapper. Just `oklch()`.
+
+---
+
+The result is a color system that's simpler to reason about, consistent across light and dark modes, and quietly future-proof, rendering richer colors wherever the display allows, with no fallback code to maintain. If your design tokens are still hex, it's worth the switch.
 
 ## References
 
