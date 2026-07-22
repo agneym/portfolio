@@ -7,10 +7,8 @@ interface DateStringProps {
 
 export function DateString({ children, className }: DateStringProps) {
   return (
-    <time dateTime={children} className={className} suppressHydrationWarning>
-      <span className="font-semibold" suppressHydrationWarning>
-        {getFormattedDate(children)}
-      </span>
+    <time dateTime={children} className={className}>
+      <span className="font-semibold">{getFormattedDate(children)}</span>
     </time>
   );
 }
