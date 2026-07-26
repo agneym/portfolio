@@ -42,6 +42,18 @@ export const Route = createFileRoute("/blog/$slug")({
 
 function BlogPostPage() {
   const { post } = Route.useLoaderData();
+  const seriesPosts = post.series
+    ? allPosts
+        .filter(
+          (candidate) =>
+            candidate.slug !== post.slug &&
+            candidate.series === post.series &&
+            candidate.published !== false &&
+            candidate.published !== "false",
+        )
+        .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+        .map(({ slug, title, date }) => ({ slug, title, date }))
+    : [];
 
   return (
     <BlogArticleContainer>
@@ -50,6 +62,8 @@ function BlogPostPage() {
           title: post.title,
           date: post.date,
           ...(post.tags != null ? { tags: post.tags } : {}),
+          ...(post.series != null ? { series: post.series } : {}),
+          ...(seriesPosts.length > 0 ? { seriesPosts } : {}),
           ...(post.coverImage != null ? { coverImage: post.coverImage } : {}),
           ...(post.coverImageAttribution != null
             ? { coverImageAttribution: post.coverImageAttribution }

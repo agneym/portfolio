@@ -22,6 +22,7 @@ const postSchema = type({
   "published?": "boolean | 'true' | 'false'",
   "coverImage?": "string",
   "coverImageAttribution?": "string",
+  "series?": "string",
   content: "string",
 });
 
@@ -45,6 +46,7 @@ const posts = defineCollection({
       published: post.published,
       coverImage: post.coverImage,
       coverImageAttribution: post.coverImageAttribution,
+      series: post.series,
       content: post.content,
       _meta: post._meta,
       slug: post._meta.path,

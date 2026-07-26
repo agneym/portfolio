@@ -6,6 +6,7 @@ declare module "content-collections" {
     published?: boolean | "true" | "false";
     coverImage?: string;
     coverImageAttribution?: string;
+    series?: string;
     content: string;
     _meta: {
       path: string;

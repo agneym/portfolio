@@ -1,5 +1,13 @@
+import { Link } from "@tanstack/react-router";
+import { ChevronDown } from "lucide-react";
 import { DateString } from "./DateString";
 import { TagBadge } from "./TagBadge";
+
+interface SeriesPost {
+  slug: string;
+  title: string;
+  date: string;
+}
 
 interface BlogPostHeaderProps {
   frontmatter: {
@@ -8,6 +16,8 @@ interface BlogPostHeaderProps {
     coverImage?: string;
     coverImageAttribution?: string;
     tags?: string[];
+    series?: string;
+    seriesPosts?: SeriesPost[];
   };
 }
 
@@ -31,6 +41,30 @@ export function BlogPostHeader({ frontmatter }: BlogPostHeaderProps) {
           </div>
         )}
       </div>
+      {frontmatter.seriesPosts && frontmatter.seriesPosts.length > 0 && (
+        <details className="border-muted rounded-lg border px-4 py-3">
+          <summary className="text-secondary flex cursor-pointer list-none items-center justify-between gap-4 text-sm font-semibold [&::-webkit-details-marker]:hidden">
+            Other posts in the series
+            <ChevronDown aria-hidden size={18} />
+          </summary>
+          <ul className="border-muted mt-3 flex flex-col gap-y-2 border-t pt-3">
+            {frontmatter.seriesPosts.map((post) => (
+              <li key={post.slug}>
+                <Link
+                  to="/blog/$slug"
+                  params={{ slug: post.slug }}
+                  className="hover:text-primary flex items-baseline justify-between gap-4 text-sm transition-colors"
+                >
+                  <span className="text-balance">{post.title}</span>
+                  <DateString className="text-secondary-muted shrink-0 text-xs">
+                    {post.date}
+                  </DateString>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </details>
+      )}
       {frontmatter.coverImage && (
         <figure>
           <img
