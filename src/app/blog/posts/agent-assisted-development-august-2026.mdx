@@ -1,0 +1,123 @@
+---
+title: "Agent assisted development update - August 2026"
+date: "2026-08-02T12:00:00.000Z"
+tags:
+  - ai
+  - agents
+  - productivity
+published: true
+---
+
+Agents have been assisting with my personal and professional development for some time now. However, the field is still very new and evolving rapidly, so its tools and practices are also changing at a breakneck pace. This series serves as a journal of the current state of these tools and patterns, along with my attempts to predict the future.
+
+## Harness
+
+Most of my harnesses are CLI-based. No hate to GUIs, but I follow up why in the machines section later.
+
+### [Pi](https://pi.dev)
+
+Pi has long been my favourite harness. It lacks the bells and whistles found in many other popular harnesses, but that is also its advantage. For example, it does not support MCPs or subagents, features that most harnesses now consider table stakes. In practice, I have found that omitting these features saves time, context, tokens and money. It may seem counterintuitive, but a whole [lot](https://x.com/composio/status/2083161881850593660) of [benchmarks](https://www.databricks.com/blog/benchmarking-coding-agents-databricks-multi-million-line-codebase) place Pi at the top among harnesses, even though it was never trained to fit any particular model.
+
+Pi, although bare-bones, is also an example of what software looks like in the age of AI. The harness code is divided into different packages that other packages can use. OpenClaw (formerly) and Flue, for example, use Pi. The interface itself is extensible, with extensions for almost anything. Instead of installing third-party packages, you can ask the agent to create extensions that handle tasks on your behalf. This works quite well in practice.
+
+Couple of things to keep in mind here:
+
+1. The third-party extension landscape is a security minefield. Only install extensions that are open-source and trusted.
+2. When creating extensions for Pi, make sure the agent conducts a review pass to verify whether the extensions respect prompt caching.
+
+#### Pi Extensions
+
+1. [Pi alias](https://github.com/xRyul/pi-aliases) - Just want to hit `/clear`
+2. [Pi Web Access](https://github.com/nicobailon/pi-web-access) - web access, different providers covered
+
+### [Claude Code](https://claude.com/product/claude-code)
+
+Anthropic doesn't like it when people use their subscription with other harnesses, so continuing to use it with their models.
+
+## Models
+
+### [Deepseek Flash 0731](https://huggingface.co/deepseek-ai/DeepSeek-V4-Flash-0731)
+
+This cheap model performs better than many of its counterparts, and you don't need a subscription to use it. You can load some money into Deepseek account and continue using it with your harness. I have been amazed at how far $10 can take me. I'm excited for the updated Deepseek v4 Pro now.
+
+Note that Deepseek API trains on your prompts, so if you are using the official API - you have been warned.
+
+### [OpenAI Luna](https://developers.openai.com/api/docs/models/gpt-5.6-luna)
+
+The 80% price drop has made this a very interesting model. It can work with Sol as its planning model for heavy tasks. When refactoring, if the task is split into vertical slices, I have found that the model is perfectly capable of executing them on its own.
+
+### [Kimi K3](https://www.kimi.com/blog/kimi-k3)
+
+Based on all my evaluations, this is a perfectly good and wise model. It is only limited by my current limitations.
+
+## Machine
+
+I have almost completely disconnected my personal device from my development workflow. I use a Hetzner bare-metal server for work and a small Contabo VPS for personal projects, including writing this blog.
+
+This is also why CLIs rock, I can SSH into a server, keep the agents running without my finger between the laptop lid.
+
+### [Tailscale](https://tailscale.com/)
+
+Tailscale helps set up the remote machine securely, and access it from any of my local machines. The MagicDNS makes it so easy, I don't have to fiddle around with SSH config anymore. Not to forget `tailscale serve` that helps get the dev server onto my local machine browser.
+
+## Terminal
+
+### [Ghostty](https://ghostty.org/)
+
+Ghostty runs into an error whenever I SSH into Linux machines, but something about the simplicity and speed keeps bringing me back. There are many better _ADE_ s at the moment, they all bake Ghostty into their core with Libghostty.
+
+### [Muxy](https://muxy.app/)
+
+Speaking of Libghostty clones, whenever I like an ADE on my local machine - I have gone back to Muxy. It has been remarkably stable - useful features throughout and supports extensions.
+
+## Tools
+
+### [Herdr](https://herdr.dev/)
+
+Herdr isn't a terminal; it's an app that runs inside one. In simple terms, it's a terminal multiplexer designed specifically for managing AI coding agents. It's mouse-first but supports keyboard shortcuts. It keeps agents running in the background even when you're not actively monitoring them and tracks their status, including progress, completion, and blockers. Did I say it supports [extensions](https://herdr.dev/plugins/)?
+
+Herdr integrates with almost all modern harnesses. Once installed, you can have agents create new panes and workspaces, launch agents in them, and control them. The benefit of using subagents is that you can switch between these panes, stop agents, and steer them however you like.
+
+### [hunk](https://www.hunk.dev/)
+
+Diff reviewer in the terminal, allows for agent notes in the diff. It ships with an agent skill that can help agents interact with the diff and add comments.
+
+New beta version supports extensions.
+
+### [Worktrunk](https://worktrunk.dev/)
+
+Worktrunk is my favourite worktree manager. I have [written about it before](https://www.agney.dev/blog/using-worktrees-tools#my-pick-worktrunk). To reiterate, Worktrunk solves most of the issues with worktrees and can even run commands in the background while the agent starts working on the problem in the foreground. [Copy on Write](https://en.wikipedia.org/wiki/Copy-on-write) means it's faster than the naive implementations.
+
+### [Rosie](https://rosie.astro.build/)
+
+A simple skills installation manager from the [Astro team](https://astro.build/). I know most people use Vercel's skills.sh, but it can sometimes be intrusive with prompts and telemetry.
+
+---
+
+In no particular order, tools that have helped the agents and me move faster:
+
+- [mise-en-place](https://mise.jdx.dev/) - Package manager, dot files, task runner. [Dotfiles](https://github.com/agneym/dotfiles) open sourced.
+- [eza](https://eza.rocks/) - A modern `ls` replacement — git status, icons, and sensible defaults without any config.
+- [fzf](https://github.com/junegunn/fzf) - The fuzzy finder that glues everything else together — pipe any list into it and you get an interactive picker for free.
+- [ast-grep](https://ast-grep.github.io/) - Structural search and rewrite for code — grep that understands syntax trees, so bulk refactors land in the right place.
+- [jq](https://jqlang.github.io/jq/) - JSON Swiss-army knife — slice, filter, and reshape API output without leaving the terminal.
+- [yq](https://github.com/mikefarah/yq) - jq for YAML — query and patch YAML right in the shell without dropping into a script.
+- [ripgrep](https://github.com/BurntSushi/ripgrep) - Fastest way to search a codebase — respects `.gitignore` by default and skips binary junk.
+
+Agents are pretty good at using these tools already, you should be able to put a single line in `AGENTS.md` that these are installed, and have your agents work the magic.
+
+## Nursery
+
+Tools that I'm considering, but not sure about their place in workflow just yet.
+
+- [Otty](https://docs.otty.sh/) - Feels like a pretty nice alternative to Muxy, but does not have SSH support just yet.
+- Terminal Code Editors - May be there's a day when I don't have to load SSH folders into Zed, VS Code and switch context. There are few popping up - these are ones that have my attention - [SpiceEdit](https://spice-edit.com/) [Fresh](https://getfresh.dev/)
+- [Zoxide](https://crates.io/crates/zoxide) - smart `cd`
+- [Eternal Terminal](https://eternalterminal.dev/) - Remote terminal that reconnects without interrupting the session. For the times, when I cannot use Tailscale. Lacks local echo of [Mosh](https://mosh.org/) but does port forwarding.
+- [exe.dev](https://exe.dev/) - What if I had a persistent VPS, but instead of worktrees, made copies of that machine for every new task?
+- [Laguna 2.1](https://poolside.ai/blog/introducing-laguna-s-2-1) - Thoroughly impressed with this small(ish) model.
+- [Nahcrof](https://ai.nahcrof.com/) - coding models at really low prices, you just load money and it works. I haven't got enough time to test reliability.
+
+## Looking Forward
+
+You may have noticed the consistent theme throughout this post: software that supports extensions or serves as a building block for a more personalised experience. That is where I think we are going.
