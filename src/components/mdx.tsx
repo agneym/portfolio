@@ -69,6 +69,11 @@ const HorizontalStackedBarChart = lazy(() =>
     }),
   ),
 );
+const GroupedBarChart = lazy(() =>
+  import("components/BlogHome/PostComponents/GroupedBarChart").then((m) => ({
+    default: m.GroupedBarChart,
+  })),
+);
 const P3GamutDemo = lazy(() =>
   import("components/BlogHome/PostComponents/P3GamutDemo").then((m) => ({
     default: m.P3GamutDemo,
@@ -157,6 +162,7 @@ export const CustomMDXComponents = {
   RtkComparison,
   DonutChart,
   HorizontalStackedBarChart,
+  GroupedBarChart,
   P3GamutDemo,
   Quote,
 };

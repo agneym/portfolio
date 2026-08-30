@@ -1,0 +1,60 @@
+---
+title: "Fine-tuning a 350M model to be a Herdr expert"
+date: "2026-08-30T12:00:00.000Z"
+tags:
+  - ai
+  - agents
+  - llm
+published: true
+---
+
+Weekend project: I fine-tuned LiquidAI's LFM2-350M with a LoRA adapter so it became an expert at calling the tools of [Herdr](https://herdr.dev), a terminal multiplexer. Base model gets 6.8% on my holdout. The tuned model gets 96.1%. For scale, frontier models score 73.2% (GLM 5.3 flash) and 56.1% (Deepseek flash) on the same task. Training is hours on a free Colab T4; an L4 does it in under an hour.
+
+The idea: instead of a frontier agent fumbling through my tool schemas, a tiny cheap model handles the "which Herdr operation does this natural language request map to" question. The main agent asks it in plain English, gets back an exact tool call.
+
+<GroupedBarChart
+  title="Herdr tool-calling accuracy"
+  unit="%"
+  series={[{ label: "Accuracy", color: "#3b82f6" }]}
+  groups={[
+    { label: "Base LFM2-350M", values: [6.8] },
+    { label: "Deepseek flash", values: [56.1] },
+    { label: "GLM 5.3 flash", values: [73.2] },
+    { label: "LoRA fine-tune", values: [96.1] },
+  ]}
+  footnote="120-row holdout for base and fine-tune; frontier model scored on the prior 98-row holdout"
+/>
+
+## The setup
+
+Herdr has 25 operations. I generated a dataset of about 800 chat rows covering all of them: user requests in natural language, the assistant answering with the exact tool call. About 12% of the rows are off-topic on purpose, including hard negatives that reuse Herdr verbs but act outside Herdr. Those teach the model to refuse instead of hallucinating a call.
+
+Training is standard PEFT LoRA (r=16, alpha=32) with loss masked to assistant tokens only, run on Colab. Training, dataset generation, and eval are all scripted; `make data`, train on Colab, `make fetch`, `make eval`.
+
+## The eval is the hard part
+
+The fine-tune was easy. Making the numbers honest was not.
+
+My first eval table looked great. Then I found out the model had been scored partly on rows it trained on: the old training script built its train set as "everything not in val", which silently included the eval holdout. Classic contamination, and my own scripts did it to me.
+
+The fix: `split.py` is now the single source of truth. The holdout gets carved out first, train/val split from the remainder, and both the trainer and the eval import it. The holdout is also pinned by query string, so appending training rows never shifts it. 96.1% is on 120 rows the model has never seen, strictly disjoint from training.
+
+## What it gets wrong
+
+Honest failure modes, all on held-out rows:
+
+- "give me a new pane on the right" still emits a hallucinated tool call with wrong argument casing. Paraphrases of that request are thin in training.
+- "where am i?" under-calls and emits nothing. Those surface forms are held out; the tool has ~20 training forms but not that one.
+- Two tools ground below 100% on exact arguments. The other 16 are perfect.
+
+## Small models, narrow domains
+
+The lesson I keep coming back to: a 350M model beats a frontier model on a narrow task it was tuned for, at a fraction of the cost, and it runs locally as a 219MB Q4 GGUF. It knows one thing and refuses everything else, which is exactly what you want from a tool specialist.
+
+Frontier models are still the right call for general reasoning. But for "map this sentence to one of 25 tool calls", spending tokens on general intelligence is waste.
+
+This is also the start of a longer goal: make a model proficient in how I work. Herdr as the multiplexer, worktrunk for worktrees, hunk for diffs. A small expert per tool, each one fluent in my setup, instead of one general model guessing at all of them.
+
+The adapter and merged GGUF are on [Hugging Face](https://huggingface.co/agney/lfm2-herdr-lora) if you want to poke at it.
+
+🥂
