@@ -9,6 +9,7 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './app/__root'
+import { Route as WebmarksRouteImport } from './app/webmarks'
 import { Route as OgRouteImport } from './app/og'
 import { Route as JemRouteImport } from './app/jem'
 import { Route as DesignRouteImport } from './app/design'
@@ -19,6 +20,11 @@ import { Route as BlogIndexRouteImport } from './app/blog/index'
 import { Route as BlogSlugRouteImport } from './app/blog/$slug'
 import { Route as BlogTagTagRouteImport } from './app/blog/tag/$tag'
 
+const WebmarksRoute = WebmarksRouteImport.update({
+  id: '/webmarks',
+  path: '/webmarks',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const OgRoute = OgRouteImport.update({
   id: '/og',
   path: '/og',
@@ -45,9 +51,9 @@ const IndexRoute = IndexRouteImport.update({
   getParentRoute: () => rootRouteImport,
 } as any)
 const WebmarksIndexRoute = WebmarksIndexRouteImport.update({
-  id: '/webmarks/',
-  path: '/webmarks/',
-  getParentRoute: () => rootRouteImport,
+  id: '/',
+  path: '/',
+  getParentRoute: () => WebmarksRoute,
 } as any)
 const BlogIndexRoute = BlogIndexRouteImport.update({
   id: '/',
@@ -71,6 +77,7 @@ export interface FileRoutesByFullPath {
   '/design': typeof DesignRoute
   '/jem': typeof JemRoute
   '/og': typeof OgRoute
+  '/webmarks': typeof WebmarksRouteWithChildren
   '/blog/$slug': typeof BlogSlugRoute
   '/blog/': typeof BlogIndexRoute
   '/webmarks/': typeof WebmarksIndexRoute
@@ -93,6 +100,7 @@ export interface FileRoutesById {
   '/design': typeof DesignRoute
   '/jem': typeof JemRoute
   '/og': typeof OgRoute
+  '/webmarks': typeof WebmarksRouteWithChildren
   '/blog/$slug': typeof BlogSlugRoute
   '/blog/': typeof BlogIndexRoute
   '/webmarks/': typeof WebmarksIndexRoute
@@ -106,6 +114,7 @@ export interface FileRouteTypes {
     | '/design'
     | '/jem'
     | '/og'
+    | '/webmarks'
     | '/blog/$slug'
     | '/blog/'
     | '/webmarks/'
@@ -127,6 +136,7 @@ export interface FileRouteTypes {
     | '/design'
     | '/jem'
     | '/og'
+    | '/webmarks'
     | '/blog/$slug'
     | '/blog/'
     | '/webmarks/'
@@ -139,11 +149,18 @@ export interface RootRouteChildren {
   DesignRoute: typeof DesignRoute
   JemRoute: typeof JemRoute
   OgRoute: typeof OgRoute
-  WebmarksIndexRoute: typeof WebmarksIndexRoute
+  WebmarksRoute: typeof WebmarksRouteWithChildren
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/webmarks': {
+      id: '/webmarks'
+      path: '/webmarks'
+      fullPath: '/webmarks'
+      preLoaderRoute: typeof WebmarksRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/og': {
       id: '/og'
       path: '/og'
@@ -181,10 +198,10 @@ declare module '@tanstack/react-router' {
     }
     '/webmarks/': {
       id: '/webmarks/'
-      path: '/webmarks'
+      path: '/'
       fullPath: '/webmarks/'
       preLoaderRoute: typeof WebmarksIndexRouteImport
-      parentRoute: typeof rootRouteImport
+      parentRoute: typeof WebmarksRoute
     }
     '/blog/': {
       id: '/blog/'
@@ -224,13 +241,25 @@ const BlogRouteChildren: BlogRouteChildren = {
 
 const BlogRouteWithChildren = BlogRoute._addFileChildren(BlogRouteChildren)
 
+interface WebmarksRouteChildren {
+  WebmarksIndexRoute: typeof WebmarksIndexRoute
+}
+
+const WebmarksRouteChildren: WebmarksRouteChildren = {
+  WebmarksIndexRoute: WebmarksIndexRoute,
+}
+
+const WebmarksRouteWithChildren = WebmarksRoute._addFileChildren(
+  WebmarksRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   BlogRoute: BlogRouteWithChildren,
   DesignRoute: DesignRoute,
   JemRoute: JemRoute,
   OgRoute: OgRoute,
-  WebmarksIndexRoute: WebmarksIndexRoute,
+  WebmarksRoute: WebmarksRouteWithChildren,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

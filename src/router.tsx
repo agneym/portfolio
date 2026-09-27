@@ -17,7 +17,10 @@ export function getRouter() {
     defaultPreload: "intent",
     context: { queryClient },
     scrollRestoration: true,
-    scrollToTopSelectors: ['[data-scroll-restoration-id="blog-scroll"]'],
+    scrollToTopSelectors: [
+      '[data-scroll-restoration-id="blog-scroll"]',
+      '[data-scroll-restoration-id="webmarks-scroll"]',
+    ],
   });
   setupRouterSsrQueryIntegration({ router, queryClient });
 
