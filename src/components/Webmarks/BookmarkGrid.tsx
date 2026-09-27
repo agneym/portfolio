@@ -1,3 +1,4 @@
+import { useEffect, useRef } from "react";
 import clsx from "clsx";
 import { BookmarkCard } from "./BookmarkCard";
 import type { Bookmark } from "webmarks/api";
@@ -22,6 +23,16 @@ export function BookmarkGrid({
   hasFilters,
   isFetching,
 }: BookmarkGridProps) {
+  // The staggered entrance is a page-load flourish: play it once for the first
+  // set of cards, then keep later card swaps (filters, pagination) instant.
+  const hasAnimated = useRef(false);
+  useEffect(() => {
+    if (bookmarks.length > 0) {
+      hasAnimated.current = true;
+    }
+  }, [bookmarks]);
+  const animate = !hasAnimated.current && bookmarks.length > 0;
+
   if (bookmarks.length === 0) {
     return (
       <div className="border-muted animate-rise-in mt-8 rounded-xl border border-dashed px-6 py-24 text-center motion-reduce:animate-none">
@@ -62,6 +73,7 @@ export function BookmarkGrid({
             bookmark={bookmark}
             ordinal={offset + index + 1}
             index={index}
+            animate={animate}
             activeTag={activeTag}
             onTagClick={onTagClick}
           />

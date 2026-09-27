@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import type { ChangeEvent } from "react";
 import { Search, X } from "lucide-react";
 import { Input } from "components/uikit/Input";
@@ -16,14 +16,21 @@ export function SearchField({ value, onChange }: SearchFieldProps) {
     setDraft(value);
   }, [value]);
 
+  // Read the latest callback through a ref so parent re-renders (which give
+  // `onChange` a new identity) never restart the debounce timer.
+  const onChangeRef = useRef(onChange);
+  useEffect(() => {
+    onChangeRef.current = onChange;
+  });
+
   useEffect(() => {
     if (draft === value) {
       return;
     }
 
-    const timeout = setTimeout(() => onChange(draft), 300);
+    const timeout = setTimeout(() => onChangeRef.current(draft), 300);
     return () => clearTimeout(timeout);
-  }, [draft, value, onChange]);
+  }, [draft, value]);
 
   return (
     <div className="relative w-full sm:w-72">

@@ -8,6 +8,8 @@ interface BookmarkCardProps {
   /** 1-based position across the whole list, shown like a catalogue number. */
   ordinal: number;
   index: number;
+  /** Play the staggered entrance — first paint of the grid only. */
+  animate: boolean;
   activeTag: string;
   onTagClick: (tag: string) => void;
 }
@@ -16,6 +18,7 @@ export function BookmarkCard({
   bookmark,
   ordinal,
   index,
+  animate,
   activeTag,
   onTagClick,
 }: BookmarkCardProps) {
@@ -25,8 +28,16 @@ export function BookmarkCard({
 
   return (
     <article
-      style={{ animationDelay: `${Math.min(index, 11) * 35}ms` }}
-      className="group animate-rise-in border-muted bg-surface hover:border-accent-muted hover:shadow-accent/5 relative flex flex-1 flex-col overflow-hidden rounded-xl border transition-[border-color,transform,box-shadow] duration-300 hover:-translate-y-0.5 hover:shadow-lg motion-reduce:animate-none"
+      style={
+        animate
+          ? { animationDelay: `${Math.min(index, 11) * 35}ms` }
+          : undefined
+      }
+      className={clsx(
+        "group border-muted bg-surface hover:border-accent-muted hover:shadow-accent/5 relative flex flex-1 flex-col overflow-hidden rounded-xl border transition-[border-color,transform,box-shadow] duration-300 hover:-translate-y-0.5 hover:shadow-lg",
+        animate && "animate-rise-in",
+        "motion-reduce:animate-none",
+      )}
     >
       {bookmark.image ? <Thumbnail src={bookmark.image} /> : null}
 

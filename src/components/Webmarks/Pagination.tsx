@@ -40,7 +40,10 @@ export function Pagination({ params, total }: PaginationProps) {
             Previous
           </Link>
         ) : (
-          <span className={clsx(buttonClass, "pointer-events-none opacity-40")}>
+          <span
+            aria-disabled="true"
+            className={clsx(buttonClass, "pointer-events-none opacity-40")}
+          >
             <ChevronLeft aria-hidden="true" className="h-3.5 w-3.5" />
             Previous
           </span>
@@ -55,7 +58,10 @@ export function Pagination({ params, total }: PaginationProps) {
             <ChevronRight aria-hidden="true" className="h-3.5 w-3.5" />
           </Link>
         ) : (
-          <span className={clsx(buttonClass, "pointer-events-none opacity-40")}>
+          <span
+            aria-disabled="true"
+            className={clsx(buttonClass, "pointer-events-none opacity-40")}
+          >
             Next
             <ChevronRight aria-hidden="true" className="h-3.5 w-3.5" />
           </span>
