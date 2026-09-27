@@ -12,6 +12,7 @@ export default defineConfig({
     alias: {
       components: path.resolve(__dirname, "src/components"),
       images: path.resolve(__dirname, "src/images"),
+      webmarks: path.resolve(__dirname, "src/webmarks"),
     },
   },
   server: {
