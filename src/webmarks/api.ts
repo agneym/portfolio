@@ -151,7 +151,7 @@ async function request<T>(path: string, params?: URLSearchParams): Promise<T> {
  * normaliser the route uses rather than trusted from the caller.
  */
 export const listBookmarks = createServerFn({ method: "GET" })
-  .inputValidator(normalizeListParams)
+  .validator(normalizeListParams)
   .handler(async ({ data }): Promise<BookmarkList> => {
     const params = new URLSearchParams({
       limit: String(PAGE_SIZE),

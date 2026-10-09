@@ -9,35 +9,20 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './app/__root'
-import { Route as WebmarksRouteImport } from './app/webmarks'
-import { Route as OgRouteImport } from './app/og'
-import { Route as JemRouteImport } from './app/jem'
-import { Route as DesignRouteImport } from './app/design'
-import { Route as BlogRouteImport } from './app/blog'
 import { Route as IndexRouteImport } from './app/index'
-import { Route as WebmarksIndexRouteImport } from './app/webmarks/index'
+import { Route as BlogRouteImport } from './app/blog'
+import { Route as DesignRouteImport } from './app/design'
+import { Route as JemRouteImport } from './app/jem'
+import { Route as OgRouteImport } from './app/og'
+import { Route as WebmarksRouteImport } from './app/webmarks'
 import { Route as BlogIndexRouteImport } from './app/blog/index'
 import { Route as BlogSlugRouteImport } from './app/blog/$slug'
+import { Route as WebmarksIndexRouteImport } from './app/webmarks/index'
 import { Route as BlogTagTagRouteImport } from './app/blog/tag/$tag'
 
-const WebmarksRoute = WebmarksRouteImport.update({
-  id: '/webmarks',
-  path: '/webmarks',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const OgRoute = OgRouteImport.update({
-  id: '/og',
-  path: '/og',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const JemRoute = JemRouteImport.update({
-  id: '/jem',
-  path: '/jem',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const DesignRoute = DesignRouteImport.update({
-  id: '/design',
-  path: '/design',
+const IndexRoute = IndexRouteImport.update({
+  id: '/',
+  path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const BlogRoute = BlogRouteImport.update({
@@ -45,15 +30,25 @@ const BlogRoute = BlogRouteImport.update({
   path: '/blog',
   getParentRoute: () => rootRouteImport,
 } as any)
-const IndexRoute = IndexRouteImport.update({
-  id: '/',
-  path: '/',
+const DesignRoute = DesignRouteImport.update({
+  id: '/design',
+  path: '/design',
   getParentRoute: () => rootRouteImport,
 } as any)
-const WebmarksIndexRoute = WebmarksIndexRouteImport.update({
-  id: '/',
-  path: '/',
-  getParentRoute: () => WebmarksRoute,
+const JemRoute = JemRouteImport.update({
+  id: '/jem',
+  path: '/jem',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const OgRoute = OgRouteImport.update({
+  id: '/og',
+  path: '/og',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const WebmarksRoute = WebmarksRouteImport.update({
+  id: '/webmarks',
+  path: '/webmarks',
+  getParentRoute: () => rootRouteImport,
 } as any)
 const BlogIndexRoute = BlogIndexRouteImport.update({
   id: '/',
@@ -64,6 +59,11 @@ const BlogSlugRoute = BlogSlugRouteImport.update({
   id: '/$slug',
   path: '/$slug',
   getParentRoute: () => BlogRoute,
+} as any)
+const WebmarksIndexRoute = WebmarksIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => WebmarksRoute,
 } as any)
 const BlogTagTagRoute = BlogTagTagRouteImport.update({
   id: '/tag/$tag',
@@ -154,32 +154,11 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/webmarks': {
-      id: '/webmarks'
-      path: '/webmarks'
-      fullPath: '/webmarks'
-      preLoaderRoute: typeof WebmarksRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/og': {
-      id: '/og'
-      path: '/og'
-      fullPath: '/og'
-      preLoaderRoute: typeof OgRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/jem': {
-      id: '/jem'
-      path: '/jem'
-      fullPath: '/jem'
-      preLoaderRoute: typeof JemRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/design': {
-      id: '/design'
-      path: '/design'
-      fullPath: '/design'
-      preLoaderRoute: typeof DesignRouteImport
+    '/': {
+      id: '/'
+      path: '/'
+      fullPath: '/'
+      preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/blog': {
@@ -189,19 +168,33 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BlogRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/': {
-      id: '/'
-      path: '/'
-      fullPath: '/'
-      preLoaderRoute: typeof IndexRouteImport
+    '/design': {
+      id: '/design'
+      path: '/design'
+      fullPath: '/design'
+      preLoaderRoute: typeof DesignRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/webmarks/': {
-      id: '/webmarks/'
-      path: '/'
-      fullPath: '/webmarks/'
-      preLoaderRoute: typeof WebmarksIndexRouteImport
-      parentRoute: typeof WebmarksRoute
+    '/jem': {
+      id: '/jem'
+      path: '/jem'
+      fullPath: '/jem'
+      preLoaderRoute: typeof JemRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/og': {
+      id: '/og'
+      path: '/og'
+      fullPath: '/og'
+      preLoaderRoute: typeof OgRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/webmarks': {
+      id: '/webmarks'
+      path: '/webmarks'
+      fullPath: '/webmarks'
+      preLoaderRoute: typeof WebmarksRouteImport
+      parentRoute: typeof rootRouteImport
     }
     '/blog/': {
       id: '/blog/'
@@ -216,6 +209,13 @@ declare module '@tanstack/react-router' {
       fullPath: '/blog/$slug'
       preLoaderRoute: typeof BlogSlugRouteImport
       parentRoute: typeof BlogRoute
+    }
+    '/webmarks/': {
+      id: '/webmarks/'
+      path: '/'
+      fullPath: '/webmarks/'
+      preLoaderRoute: typeof WebmarksIndexRouteImport
+      parentRoute: typeof WebmarksRoute
     }
     '/blog/tag/$tag': {
       id: '/blog/tag/$tag'
