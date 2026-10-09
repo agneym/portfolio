@@ -26,7 +26,7 @@
   },
   "dependencies": {
     "@agney/playground": "^2.0.0",
-    "@content-collections/core": "^0.15.0",
+    "@content-collections/core": "^0.15.3",
     "@content-collections/mdx": "^0.2.2",
     "@fontsource-variable/work-sans": "^5.3.0",
     "@mdx-js/react": "^3.1.1",
@@ -54,7 +54,7 @@
     "react-dom": "^19.3.0",
     "roughjs": "^4.6.6",
     "sharp": "^0.34.5",
-    "shiki": "^4.1.0",
+    "shiki": "^4.5.0",
     "tailwindcss": "^4.3.3",
     "tailwindcss-touch": "^1.0.1",
     "takumi-js": "^2.0.3",
@@ -62,9 +62,9 @@
     "vite": "^8.3.4"
   },
   "devDependencies": {
-    "@content-collections/vite": "^0.3.0",
+    "@content-collections/vite": "^0.3.1",
     "@rsbuild/core": "^2.2.12",
-    "@shikijs/rehype": "^4.1.0",
+    "@shikijs/rehype": "^4.5.0",
     "@types/react": "^19.3.0",
     "@types/react-dom": "^19.3.0",
     "lefthook": "^2.1.8",
