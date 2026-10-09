@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 
 const FIXED_CODE = `function useQuery() {
   const trackedProperties = new Set();
@@ -97,8 +97,6 @@ function executeUserCode(code: string): {
 
 export function NotifyOnChangePropsPlayground() {
   const [userCode, setUserCode] = useState(INITIAL_USER_CODE);
-  const [trackedProps, setTrackedProps] = useState<string[]>([]);
-  const [error, setError] = useState<string | null>(null);
 
   const handleChange = useCallback(
     (e: React.ChangeEvent<HTMLTextAreaElement>) => {
@@ -107,11 +105,12 @@ export function NotifyOnChangePropsPlayground() {
     [],
   );
 
-  useEffect(() => {
-    const result = executeUserCode(userCode);
-    setTrackedProps(result.tracked);
-    setError(result.error);
-  }, [userCode]);
+  // The tracked props come straight from the code, so work them out during
+  // render instead of syncing them into state from an effect.
+  const { tracked: trackedProps, error } = useMemo(
+    () => executeUserCode(userCode),
+    [userCode],
+  );
 
   return (
     <div className="not-prose my-8 font-sans">

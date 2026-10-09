@@ -11,10 +11,13 @@ interface SearchFieldProps {
 export function SearchField({ value, onChange }: SearchFieldProps) {
   const [draft, setDraft] = useState(value);
 
-  // Keep the field in step with the URL (back/forward, cleared filters).
-  useEffect(() => {
+  // Keep the field in step with the URL (back/forward, cleared filters) by
+  // resetting the draft during render whenever the incoming value changes.
+  const [syncedValue, setSyncedValue] = useState(value);
+  if (value !== syncedValue) {
+    setSyncedValue(value);
     setDraft(value);
-  }, [value]);
+  }
 
   // Read the latest callback through a ref so parent re-renders (which give
   // `onChange` a new identity) never restart the debounce timer.

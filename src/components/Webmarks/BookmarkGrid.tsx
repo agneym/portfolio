@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useState } from "react";
 import clsx from "clsx";
 import { BookmarkCard } from "./BookmarkCard";
 import type { Bookmark } from "webmarks/api";
@@ -25,13 +25,15 @@ export function BookmarkGrid({
 }: BookmarkGridProps) {
   // The staggered entrance is a page-load flourish: play it once for the first
   // set of cards, then keep later card swaps (filters, pagination) instant.
-  const hasAnimated = useRef(false);
-  useEffect(() => {
-    if (bookmarks.length > 0) {
-      hasAnimated.current = true;
-    }
-  }, [bookmarks]);
-  const animate = !hasAnimated.current && bookmarks.length > 0;
+  // Remember the first non-empty batch; only that batch gets the animation.
+  const [firstBatch, setFirstBatch] = useState<Bookmark[] | null>(
+    bookmarks.length > 0 ? bookmarks : null,
+  );
+  if (firstBatch === null && bookmarks.length > 0) {
+    setFirstBatch(bookmarks);
+  }
+  const animate =
+    bookmarks.length > 0 && bookmarks === (firstBatch ?? bookmarks);
 
   if (bookmarks.length === 0) {
     return (

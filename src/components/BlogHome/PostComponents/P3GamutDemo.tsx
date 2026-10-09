@@ -1,4 +1,16 @@
-import { useEffect, useState } from "react";
+import { useSyncExternalStore } from "react";
+
+const P3_QUERY = "(color-gamut: p3)";
+
+function subscribeToGamut(onChange: () => void) {
+  const query = window.matchMedia(P3_QUERY);
+  query.addEventListener("change", onChange);
+  return () => query.removeEventListener("change", onChange);
+}
+
+const getGamutSnapshot = () => window.matchMedia(P3_QUERY).matches;
+// Unknown on the server; the client fills it in after hydration.
+const getServerGamutSnapshot = () => null;
 
 interface GamutColor {
   label: string;
@@ -29,11 +41,11 @@ const COLORS: GamutColor[] = [
 ];
 
 export function P3GamutDemo() {
-  const [isP3, setIsP3] = useState<boolean | null>(null);
-
-  useEffect(() => {
-    setIsP3(window.matchMedia("(color-gamut: p3)").matches);
-  }, []);
+  const isP3 = useSyncExternalStore<boolean | null>(
+    subscribeToGamut,
+    getGamutSnapshot,
+    getServerGamutSnapshot,
+  );
 
   return (
     <figure className="my-10">

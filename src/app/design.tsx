@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useTheme } from "next-themes";
-import { useEffect, useState } from "react";
+import { useHydrated } from "components/shared/useHydrated";
 import clsx from "clsx";
 import designMdRaw from "../../DESIGN.md?raw";
 
@@ -278,8 +278,7 @@ function RadiusPreview({ name, value }: { name: string; value: string }) {
 
 function ThemeToggle() {
   const { theme, setTheme } = useTheme();
-  const [mounted, setMounted] = useState(false);
-  useEffect(() => setMounted(true), []);
+  const mounted = useHydrated();
 
   if (!mounted) return <div className="h-9 w-9" />;
 
