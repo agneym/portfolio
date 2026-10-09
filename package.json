@@ -20,7 +20,6 @@
     "dev": "vite dev",
     "build": "vite build",
     "preview": "vite preview",
-    "test": "vitest run",
     "lint": "oxlint",
     "format": "oxfmt",
     "format:check": "oxfmt --check"

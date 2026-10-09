@@ -17,7 +17,8 @@ Personal portfolio site for Agney Menon.
 bun install      # Install dependencies
 bun run dev      # Start development server
 bun run build    # Build for production
-bun run start    # Start production server
+bun run preview  # Preview production build
 bun run lint     # Run linter
 bun run format   # Format code
+bun run format:check  # Check formatting
 ```
