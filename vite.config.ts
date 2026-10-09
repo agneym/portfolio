@@ -10,9 +10,9 @@ import path from "path";
 export default defineConfig({
   resolve: {
     alias: {
-      components: path.resolve(__dirname, "src/components"),
-      images: path.resolve(__dirname, "src/images"),
-      webmarks: path.resolve(__dirname, "src/webmarks"),
+      components: path.resolve(import.meta.dirname, "src/components"),
+      images: path.resolve(import.meta.dirname, "src/images"),
+      webmarks: path.resolve(import.meta.dirname, "src/webmarks"),
     },
   },
   server: {

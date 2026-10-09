@@ -1,4 +1,4 @@
-"use-client";
+"use client";
 
 import avatarPic from "images/avatar-400x400.jpg";
 import { motion, useReducedMotion } from "motion/react";
