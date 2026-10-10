@@ -3,12 +3,5 @@
   "sortTailwindcss": {},
   "printWidth": 80,
   "sortPackageJson": true,
-  "ignorePatterns": [
-    "build",
-    "coverage",
-    ".output",
-    "src/routeTree.gen.ts",
-    ".agents/skills/impeccable",
-    ".impeccable"
-  ]
+  "ignorePatterns": ["build", "coverage", ".output", "src/routeTree.gen.ts"]
 }
