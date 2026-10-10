@@ -1,34 +1,47 @@
 import { NavLink } from "components/uikit/NavLink";
 import { Navbar } from "components/uikit/Navbar";
 import { SkipNavLink } from "components/uikit/SkipNav";
+import { NAV_SHORTCUTS } from "components/shared/shortcuts";
+import { Link } from "@tanstack/react-router";
 import LogoSvg from "images/logo.svg?react";
 
-export const HeadNav = () => {
+interface HeadNavProps {
+  /** Home renders its nav on the keyboard itself; the header stays quiet. */
+  minimal?: boolean;
+}
+
+export const HeadNav = ({ minimal = false }: HeadNavProps) => {
   return (
     <>
-      <SkipNavLink className="text-surface focus:data-reach-skip-link:bg-primary" />
+      <SkipNavLink />
       <Navbar>
         <Navbar.Logo>
-          <NavLink
-            href="/"
-            className="mr-auto -rotate-6 transition-transform before:scale-0! hover:rotate-0 hover:before:scale-0!"
+          <Link
+            to="/"
+            className="text-primary group -m-1 inline-flex items-center gap-x-2 rounded-lg p-1"
+            aria-label="Agney Menon, home"
           >
-            <LogoSvg width={40} className="text-primary" title="Home" />
-          </NavLink>
+            <LogoSvg
+              width={38}
+              aria-hidden
+              className="-rotate-6 transition-transform duration-300 ease-[var(--ease-clack)] group-hover:rotate-3 group-active:scale-90"
+            />
+          </Link>
         </Navbar.Logo>
-        <Navbar.Right>
-          <NavLink
-            href="https://github.com/agneym?tab=repositories"
-            target="_blank"
-          >
-            Projects
-          </NavLink>
-          <NavLink href="/webmarks">Webmarks</NavLink>
-          <NavLink href="/blog">Blog</NavLink>
-          <NavLink href="https://buttondown.email/agney" target="_blank">
-            Newsletter
-          </NavLink>
-        </Navbar.Right>
+        {minimal ? null : (
+          <Navbar.Right>
+            {NAV_SHORTCUTS.filter((item) => item.key !== "h").map((item) => (
+              <NavLink
+                key={item.key}
+                href={item.href}
+                legend={item.key}
+                {...(item.href.startsWith("http") ? { target: "_blank" } : {})}
+              >
+                {item.label}
+              </NavLink>
+            ))}
+          </Navbar.Right>
+        )}
       </Navbar>
     </>
   );

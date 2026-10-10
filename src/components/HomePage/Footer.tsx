@@ -13,8 +13,9 @@ const SocialMediaLink = ({ href, iconEl, ariaLabel }: SocialMediaLinkProps) => {
     <a
       href={href}
       target="_blank"
+      rel="noopener noreferrer"
       aria-label={ariaLabel}
-      className="hover:text-secondary-strong text-secondary h-7 w-7 transition-transform hover:scale-105"
+      className="keycap keycap-plain size-11 [--travel:3px]"
     >
       {iconEl}
     </a>
@@ -23,15 +24,15 @@ const SocialMediaLink = ({ href, iconEl, ariaLabel }: SocialMediaLinkProps) => {
 
 export const Footer = () => {
   return (
-    <footer className="flex items-center justify-center gap-x-8 text-center pointer-fine:gap-x-3">
+    <footer className="flex items-center justify-center gap-x-4 text-center">
       <SocialMediaLink
         href="https://github.com/agneym"
-        iconEl={<GithubIcon width="1.75rem" />}
+        iconEl={<GithubIcon aria-hidden width="1.25rem" />}
         ariaLabel="My Github Profile"
       />
       <SocialMediaLink
         href="https://twitter.com/agneymenon"
-        iconEl={<TwitterIcon width="1.75rem" />}
+        iconEl={<TwitterIcon aria-hidden width="1.25rem" />}
         ariaLabel="My Twitter Profile"
       />
     </footer>
