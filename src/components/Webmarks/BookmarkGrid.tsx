@@ -5,8 +5,6 @@ import type { Bookmark } from "webmarks/api";
 
 interface BookmarkGridProps {
   bookmarks: Bookmark[];
-  /** Offset of the first card, so catalogue numbers stay continuous. */
-  offset: number;
   activeTag: string;
   onTagClick: (tag: string) => void;
   onClearFilters: () => void;
@@ -16,7 +14,6 @@ interface BookmarkGridProps {
 
 export function BookmarkGrid({
   bookmarks,
-  offset,
   activeTag,
   onTagClick,
   onClearFilters,
@@ -24,7 +21,7 @@ export function BookmarkGrid({
   isFetching,
 }: BookmarkGridProps) {
   // The staggered entrance is a page-load flourish: play it once for the first
-  // set of cards, then keep later card swaps (filters, pagination) instant.
+  // set of cards, then keep later card swaps (filters, loading more) instant.
   // Remember the first non-empty batch; only that batch gets the animation.
   const [firstBatch, setFirstBatch] = useState<Bookmark[] | null>(
     bookmarks.length > 0 ? bookmarks : null,
@@ -65,7 +62,7 @@ export function BookmarkGrid({
         // items-start: cards keep their natural height instead of stretching to
         // the tallest card in the row and leaving a hole above their tags.
         "mt-8 grid list-none grid-cols-1 items-start gap-4 sm:grid-cols-2 xl:grid-cols-3",
-        // Keep the previous page visible while the next one loads.
+        // Keep the previous results visible while a filter change loads.
         isFetching && "opacity-60 transition-opacity duration-200",
       )}
     >
@@ -73,7 +70,7 @@ export function BookmarkGrid({
         <li key={bookmark.id} className="flex">
           <BookmarkCard
             bookmark={bookmark}
-            ordinal={offset + index + 1}
+            ordinal={index + 1}
             index={index}
             animate={animate}
             activeTag={activeTag}

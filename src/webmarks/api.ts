@@ -1,5 +1,9 @@
 import { createServerFn } from "@tanstack/react-start";
-import { keepPreviousData, queryOptions } from "@tanstack/react-query";
+import {
+  infiniteQueryOptions,
+  keepPreviousData,
+  queryOptions,
+} from "@tanstack/react-query";
 
 export const PAGE_SIZE = 24;
 
@@ -36,11 +40,15 @@ export interface Bookmark {
   tags: { id: string; name: string }[];
 }
 
+/** One page of the cursor-paginated `GET /api/bookmarks` response. */
 export interface BookmarkList {
   bookmarks: Bookmark[];
+  /** Every bookmark matching the filters, not just this page. */
   total: number;
   limit: number;
-  offset: number;
+  /** Pass back as `cursor` for the next page; null on the last page. */
+  nextCursor: string | null;
+  hasMore: boolean;
 }
 
 export interface TagWithCount {
@@ -49,12 +57,16 @@ export interface TagWithCount {
   bookmarkCount: number;
 }
 
-/** Page state, also the input shape of the list server function. */
+/** Filter state shared by the URL and the list query key. */
 export interface ListParams {
   q: string;
   tag: string;
   sort: SortOrder;
-  page: number;
+}
+
+/** Input of the list server function: the filters plus the page cursor. */
+export interface ListPageParams extends ListParams {
+  cursor: string | null;
 }
 
 /**
@@ -67,18 +79,16 @@ export interface WebmarksSearch {
   q?: string;
   tag?: string;
   sort?: SortOrder;
-  page?: number;
 }
 
 export const DEFAULT_LIST_PARAMS: ListParams = {
   q: "",
   tag: "",
   sort: "newest",
-  page: 1,
 };
 
-/** Upper bound on the page number, so offsets stay sane. */
-const MAX_PAGE = 500;
+/** Matches the backend's own cap; anything longer is not a cursor it issued. */
+const MAX_CURSOR_LENGTH = 1024;
 
 /** Coerce anything (URL search or a server function input) into valid params. */
 export function normalizeListParams(input: unknown): ListParams {
@@ -86,7 +96,6 @@ export function normalizeListParams(input: unknown): ListParams {
     typeof input === "object" && input !== null
       ? (input as Record<string, unknown>)
       : {};
-  const page = Number(raw.page);
 
   return {
     q: typeof raw.q === "string" ? raw.q.slice(0, 128) : "",
@@ -94,9 +103,24 @@ export function normalizeListParams(input: unknown): ListParams {
     sort: SORT_ORDERS.includes(raw.sort as SortOrder)
       ? (raw.sort as SortOrder)
       : "newest",
-    page: Number.isFinite(page)
-      ? Math.min(Math.max(Math.trunc(page), 1), MAX_PAGE)
-      : 1,
+  };
+}
+
+/** Coerce a server function input into filters plus an optional cursor. */
+function normalizeListPageParams(input: unknown): ListPageParams {
+  const cursor =
+    typeof input === "object" && input !== null
+      ? (input as Record<string, unknown>).cursor
+      : undefined;
+
+  return {
+    ...normalizeListParams(input),
+    cursor:
+      typeof cursor === "string" &&
+      cursor.length > 0 &&
+      cursor.length <= MAX_CURSOR_LENGTH
+        ? cursor
+        : null,
   };
 }
 
@@ -112,9 +136,6 @@ export function toSearchParams(params: ListParams): WebmarksSearch {
   }
   if (params.sort !== DEFAULT_LIST_PARAMS.sort) {
     search.sort = params.sort;
-  }
-  if (params.page !== DEFAULT_LIST_PARAMS.page) {
-    search.page = params.page;
   }
 
   return search;
@@ -151,13 +172,17 @@ async function request<T>(path: string, params?: URLSearchParams): Promise<T> {
  * normaliser the route uses rather than trusted from the caller.
  */
 export const listBookmarks = createServerFn({ method: "GET" })
-  .validator(normalizeListParams)
+  .validator(normalizeListPageParams)
   .handler(async ({ data }): Promise<BookmarkList> => {
     const params = new URLSearchParams({
       limit: String(PAGE_SIZE),
-      offset: String((data.page - 1) * PAGE_SIZE),
       sort: data.sort,
     });
+    // A cursor is bound to the sort it was issued under; the query key below
+    // includes the sort, so a cursor only ever travels with its own sort.
+    if (data.cursor) {
+      params.set("cursor", data.cursor);
+    }
     if (data.q) {
       params.set("q", data.q);
     }
@@ -173,10 +198,19 @@ export const listTags = createServerFn({ method: "GET" }).handler(
     request<{ tags: TagWithCount[] }>("/api/tags"),
 );
 
+/**
+ * Cursor-paginated list. The filters are the key, so changing any of them
+ * starts a fresh list from the first page; each further page is fetched with
+ * the previous page's `nextCursor`.
+ */
 export const bookmarksQuery = (params: ListParams) =>
-  queryOptions({
+  infiniteQueryOptions({
     queryKey: ["webmarks", "bookmarks", params] as const,
-    queryFn: () => listBookmarks({ data: params }),
+    queryFn: ({ pageParam }) =>
+      listBookmarks({ data: { ...params, cursor: pageParam } }),
+    initialPageParam: null as string | null,
+    getNextPageParam: (lastPage) =>
+      lastPage.hasMore && lastPage.nextCursor ? lastPage.nextCursor : undefined,
     placeholderData: keepPreviousData,
   });
 
@@ -185,9 +219,6 @@ export const tagsQuery = () =>
     queryKey: ["webmarks", "tags"] as const,
     queryFn: () => listTags(),
   });
-
-export const totalPages = (total: number) =>
-  Math.max(1, Math.ceil(total / PAGE_SIZE));
 
 /** Hostname without the `www.` prefix, for display. */
 export const displayDomain = (url: string) => {

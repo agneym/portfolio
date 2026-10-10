@@ -1,10 +1,11 @@
-import { createFileRoute, redirect } from "@tanstack/react-router";
-import { useQuery } from "@tanstack/react-query";
+import { useMemo } from "react";
+import { createFileRoute } from "@tanstack/react-router";
+import { useInfiniteQuery, useQuery } from "@tanstack/react-query";
 import { Footer } from "components/HomePage";
 import { SkipNavContent } from "components/uikit/SkipNav";
 import {
   BookmarkGrid,
-  Pagination,
+  LoadMore,
   SearchField,
   SortSelect,
   TagFilterRow,
@@ -15,7 +16,6 @@ import {
   normalizeListParams,
   tagsQuery,
   toSearchParams,
-  totalPages,
   type ListParams,
   type WebmarksSearch,
 } from "webmarks/api";
@@ -23,7 +23,8 @@ import {
 /**
  * Keep only params that differ from the defaults. TanStack Start rebuilds the
  * URL from this on the server and redirects when the two disagree, and a clean
- * `/webmarks` beats `/webmarks?q=&tag=&sort=newest&page=1`.
+ * `/webmarks` beats `/webmarks?q=&tag=&sort=newest`. Unknown keys never reach
+ * the loader, so an old page-number link (`?page=2`) just shows the first page.
  */
 const parseSearch = (search: Record<string, unknown>): WebmarksSearch =>
   toSearchParams(normalizeListParams(search));
@@ -31,21 +32,13 @@ const parseSearch = (search: Record<string, unknown>): WebmarksSearch =>
 export const Route = createFileRoute("/webmarks/")({
   validateSearch: parseSearch,
   loaderDeps: ({ search }) => normalizeListParams(search),
+  // Only the first page is loaded here (and rendered on the server); the rest
+  // are fetched on demand with the cursor from the page before.
   loader: async ({ context, deps }) => {
-    const list = await context.queryClient.ensureQueryData(
-      bookmarksQuery(deps),
-    );
-    await context.queryClient.ensureQueryData(tagsQuery());
-
-    // A stale page number in a shared link should not dead-end on an empty list.
-    const pages = totalPages(list.total);
-    if (deps.page > pages) {
-      throw redirect({
-        to: "/webmarks",
-        search: toSearchParams({ ...deps, page: pages }),
-        replace: true,
-      });
-    }
+    await Promise.all([
+      context.queryClient.ensureInfiniteQueryData(bookmarksQuery(deps)),
+      context.queryClient.ensureQueryData(tagsQuery()),
+    ]);
   },
   head: () => ({
     meta: [
@@ -69,13 +62,24 @@ function WebmarksPage() {
   const navigate = Route.useNavigate();
 
   const params = normalizeListParams(search);
-  const { data: list, isFetching } = useQuery(bookmarksQuery(params));
+  const {
+    data: list,
+    isFetching,
+    isFetchingNextPage,
+    isFetchNextPageError,
+    hasNextPage,
+    fetchNextPage,
+  } = useInfiniteQuery(bookmarksQuery(params));
   const { data: tagData } = useQuery(tagsQuery());
 
   const tags = tagData?.tags ?? [];
-  const bookmarks = list?.bookmarks ?? [];
-  const total = list?.total ?? 0;
-  const offset = list?.offset ?? 0;
+  // Memoised so the grid sees the same array until a page actually arrives;
+  // its entrance animation is keyed on that identity.
+  const bookmarks = useMemo(
+    () => list?.pages.flatMap((page) => page.bookmarks) ?? [],
+    [list],
+  );
+  const total = list?.pages[0]?.total ?? 0;
   const hasFilters =
     params.q !== DEFAULT_LIST_PARAMS.q ||
     params.tag !== DEFAULT_LIST_PARAMS.tag;
@@ -110,16 +114,16 @@ function WebmarksPage() {
             <div className="flex flex-wrap items-center gap-3">
               <SearchField
                 value={params.q}
-                onChange={(q) => setParams({ q, page: 1 })}
+                onChange={(q) => setParams({ q })}
               />
               <SortSelect
                 value={params.sort}
-                onChange={(sort) => setParams({ sort, page: 1 })}
+                onChange={(sort) => setParams({ sort })}
               />
               {hasFilters ? (
                 <button
                   type="button"
-                  onClick={() => setParams({ q: "", tag: "", page: 1 })}
+                  onClick={() => setParams({ q: "", tag: "" })}
                   className="text-tertiary hover:text-primary focus-visible:ring-accent rounded text-xs underline decoration-dotted underline-offset-4 transition-colors focus-visible:ring-2 focus-visible:outline-none"
                 >
                   Reset
@@ -129,22 +133,30 @@ function WebmarksPage() {
             <TagFilterRow
               tags={tags}
               activeTag={params.tag}
-              onSelect={(tag) => setParams({ tag, page: 1 })}
+              onSelect={(tag) => setParams({ tag })}
             />
           </section>
         )}
 
         <BookmarkGrid
           bookmarks={bookmarks}
-          offset={offset}
           activeTag={params.tag}
-          onTagClick={(tag) => setParams({ tag, page: 1 })}
-          onClearFilters={() => setParams({ q: "", tag: "", page: 1 })}
+          onTagClick={(tag) => setParams({ tag })}
+          onClearFilters={() => setParams({ q: "", tag: "" })}
           hasFilters={hasFilters}
-          isFetching={isFetching}
+          // Dim only for a filter change; appending a page leaves the
+          // existing cards alone.
+          isFetching={isFetching && !isFetchingNextPage}
         />
 
-        <Pagination params={params} total={total} />
+        <LoadMore
+          shown={bookmarks.length}
+          total={total}
+          hasMore={hasNextPage}
+          isLoading={isFetchingNextPage}
+          isError={isFetchNextPageError}
+          onLoadMore={() => void fetchNextPage()}
+        />
       </div>
       <div className="pb-16">
         <Footer />
