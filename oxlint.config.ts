@@ -11,5 +11,6 @@ export default defineConfig({
     "out/**",
     "build",
     "src/routeTree.gen.ts",
+    ".agents/skills/impeccable/**",
   ],
 });

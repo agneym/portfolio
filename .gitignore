@@ -206,3 +206,10 @@ dist
 
 
 # End of https://www.toptal.com/developers/gitignore/api/visualstudiocode,node,macos
+
+# Impeccable design skill: ephemeral decision rounds, caches, and live sessions
+.impeccable/questions/
+.impeccable/review/
+.impeccable/live/
+**/.impeccable/hook.cache.json
+.impeccable/config.local.json
