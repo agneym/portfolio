@@ -582,9 +582,14 @@ html[data-rgb="on"] .keycap {
   }
 }
 
+/* Side by side with the 20rem writing column: what's left of the 80rem
+   container, less padding, gap, and slack for the tilt. */
 @media (min-width: 1280px) {
   .clack-board {
-    --u: min(6rem, 5.9vw);
+    --u: min(
+      5.75rem,
+      calc((min(100vw, 80rem) - 4rem - 20rem - 3rem - 2rem) / 9.3)
+    );
   }
 }
 
