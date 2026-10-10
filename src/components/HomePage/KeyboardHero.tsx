@@ -3,7 +3,7 @@ import { Link } from "@tanstack/react-router";
 import avatarPic from "images/avatar-400x400.jpg";
 import GithubIcon from "images/social-media/github.svg?react";
 import TwitterIcon from "images/social-media/twitter.svg?react";
-import { Hand } from "lucide-react";
+import { Hand, Volume2, VolumeX } from "lucide-react";
 import { useCallback, useEffect, useRef, useState } from "react";
 import type { CSSProperties, ReactNode } from "react";
 import {
@@ -11,8 +11,16 @@ import {
   OPEN_SHEET_EVENT,
   isExternal,
   isTypingTarget,
+  shortcutsEnabled,
 } from "components/shared/shortcuts";
 import { ThemeButton } from "components/shared/ThemeButton";
+import {
+  feedback,
+  setSoundEnabled,
+  startFeedback,
+} from "components/shared/feedback";
+import type { FeedbackKind } from "components/shared/feedback";
+import { useSoundEnabled } from "components/shared/feedback/hooks";
 
 /** Board geometry: 32 columns = 8u, so a 1u key spans 4 columns. */
 const NAME_ROWS = [
@@ -80,11 +88,12 @@ export function KeyboardHero() {
   }, []);
 
   const type = useCallback(
-    (letter: string) => {
+    (letter: string, touch = false) => {
       typed.current = (typed.current + letter).slice(-8);
       if (SECRET_WORDS.some((word) => typed.current.endsWith(word))) {
         typed.current = "";
         sayHi("You spelled my name. Hello!");
+        feedback("wave", { touch });
       }
     },
     [sayHi],
@@ -97,20 +106,38 @@ export function KeyboardHero() {
     return () => window.clearTimeout(timeout);
   }, [message, wave]);
 
+  // Sound and haptics load in the background, off the critical path.
+  useEffect(() => {
+    const board = boardRef.current;
+    if (!board) return;
+    return startFeedback(board);
+  }, []);
+
   // The physical keyboard presses the keys on screen.
   useEffect(() => {
     const letters = new Set("agneymo");
+    const modKeys = new Set(["t", "s", ...NAV_SHORTCUTS.map((nav) => nav.key)]);
     const onDown = (event: KeyboardEvent) => {
       if (isTypingTarget(event)) return;
       const key = event.key.toLowerCase();
       if (letters.has(key)) {
         press(`letter-${key}`);
-        if (!event.repeat) type(key);
+        if (!event.repeat) {
+          feedback("alpha");
+          type(key);
+        }
       } else if (key === " ") {
         press("space");
+        if (!event.repeat) feedback("space");
       } else if (key === "enter" && event.target === document.body) {
         press("enter");
+        if (!event.repeat) feedback("enter");
         sayHi();
+      } else if (
+        !event.repeat &&
+        (key === "?" || (modKeys.has(key) && shortcutsEnabled()))
+      ) {
+        feedback("mod");
       }
     };
     const onUp = (event: KeyboardEvent) => {
@@ -132,14 +159,19 @@ export function KeyboardHero() {
     const board = boardRef.current;
     if (!board) return;
     const onPointerDown = (event: PointerEvent) => {
-      const target = (event.target as HTMLElement).closest<HTMLElement>(
-        "[data-toy-key]",
+      if (event.button !== 0) return;
+      const touch = event.pointerType !== "mouse";
+      const key = (event.target as HTMLElement).closest<HTMLElement>(
+        ".clack-key",
       );
+      if (!key) return;
+      feedback((key.dataset.sound ?? "alpha") as FeedbackKind, { touch });
+      const target = key.closest<HTMLElement>("[data-toy-key]");
       if (!target) return;
       const id = target.dataset.toyKey!;
       press(id, 160);
       const letter = target.dataset.letter;
-      if (letter) type(letter);
+      if (letter) type(letter, touch);
     };
     board.addEventListener("pointerdown", onPointerDown);
     return () => board.removeEventListener("pointerdown", onPointerDown);
@@ -192,6 +224,7 @@ export function KeyboardHero() {
             window.dispatchEvent(new CustomEvent(OPEN_SHEET_EVENT))
           }
           data-pressed={isPressed("help")}
+          data-sound="mod"
           style={{ "--i": 6, "--span": 4 } as KeyStyle}
           className="keycap keycap-plain clack-key font-mono text-[calc(var(--u)*0.3)] font-bold"
           aria-label="Keyboard shortcuts"
@@ -202,6 +235,7 @@ export function KeyboardHero() {
 
         {/* Row 2: theme, M E N O N, Enter */}
         <span
+          data-sound="mod"
           style={{ "--i": 7, "--span": 6 } as KeyStyle}
           className="clack-key [&>button]:size-full [&>button]:rounded-[var(--radius-key)]"
         >
@@ -214,8 +248,13 @@ export function KeyboardHero() {
         />
         <button
           type="button"
-          onClick={() => sayHi()}
+          onClick={(event) => {
+            // Keyboard activation (detail 0) has no pointerdown to sound.
+            if (event.detail === 0) feedback("enter");
+            sayHi();
+          }}
           data-pressed={isPressed("enter")}
+          data-sound="enter"
           style={{ "--i": 13, "--span": 6 } as KeyStyle}
           className="keycap clack-key flex-col items-start justify-between px-[calc(var(--u)*0.14)] py-[calc(var(--u)*0.12)] text-left [--cap-ink:var(--color-text-on-lemon)] [--cap-skirt:color-mix(in_oklab,var(--color-lemon)_60%,var(--color-primary))] [--cap:var(--color-lemon)]"
           aria-label="Say hi"
@@ -252,6 +291,7 @@ export function KeyboardHero() {
               rel="noopener noreferrer"
               className={className}
               style={style}
+              data-sound="mod"
               aria-keyshortcuts={item.key}
             >
               {body}
@@ -262,6 +302,7 @@ export function KeyboardHero() {
               to={item.href}
               className={className}
               style={style}
+              data-sound="mod"
               aria-keyshortcuts={item.key}
             >
               {body}
@@ -280,7 +321,8 @@ export function KeyboardHero() {
         <p
           data-toy-key="space"
           data-pressed={isPressed("space")}
-          style={{ "--i": 19, "--span": 22 } as KeyStyle}
+          data-sound="space"
+          style={{ "--i": 19, "--span": 20 } as KeyStyle}
           className="keycap clack-key text-secondary-strong px-4 text-center text-[clamp(0.8125rem,calc(var(--u)*0.21),1.125rem)] font-bold"
         >
           Web Developer. Storyteller.
@@ -292,6 +334,7 @@ export function KeyboardHero() {
         >
           <TwitterIcon aria-hidden width="42%" />
         </SocialKey>
+        <SoundKey index={21} />
 
         <p
           aria-live="polite"
@@ -364,10 +407,45 @@ function SocialKey({
       target="_blank"
       rel="noopener noreferrer"
       aria-label={label}
-      style={{ "--i": index, "--span": 5 } as KeyStyle}
+      style={{ "--i": index, "--span": 4 } as KeyStyle}
+      data-sound="mod"
       className="keycap keycap-plain clack-key"
     >
       {children}
     </a>
+  );
+}
+
+/**
+ * Sound is opt-in: a media key with a lock-light, like Caps Lock. Lit
+ * lemon while key sounds are on. The state lives in localStorage.
+ */
+function SoundKey({ index }: { index: number }) {
+  const on = useSoundEnabled();
+  const Icon = on ? Volume2 : VolumeX;
+  return (
+    <button
+      type="button"
+      role="switch"
+      aria-checked={on}
+      aria-label="Key sounds"
+      aria-keyshortcuts="s"
+      title={on ? "Key sounds on (s)" : "Key sounds off (s)"}
+      onClick={() => setSoundEnabled(!on)}
+      data-sound="mod"
+      style={{ "--i": index, "--span": 4 } as KeyStyle}
+      className="keycap keycap-plain clack-key"
+    >
+      <Icon aria-hidden className="size-[calc(var(--u)*0.3)]" />
+      <span
+        aria-hidden
+        className={clsx(
+          "absolute top-[calc(var(--u)*0.1)] right-[calc(var(--u)*0.1)] size-[calc(var(--u)*0.07)] rounded-full transition-[background-color,box-shadow] duration-200",
+          on
+            ? "bg-lemon shadow-[0_0_6px_1px_var(--color-lemon)]"
+            : "bg-[var(--color-skirt)]",
+        )}
+      />
+    </button>
   );
 }
