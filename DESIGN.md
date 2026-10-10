@@ -216,7 +216,7 @@ titles use h1 (clamp to 3.75rem). Article h2/h3 step down in Unbounded;
 body is 1.125rem / 1.8 at 68ch.
 
 **The Unit Rule.** Hierarchy on the board comes from keycap width on a
-fixed unit ramp (1u, 1.25u, 1.5u, 2u, 5.5u spacebar), not from extra type
+fixed unit ramp (1u, 1.25u, 1.5u, 2u, 5u spacebar), not from extra type
 sizes.
 
 ## Layout
@@ -278,7 +278,32 @@ shadow, lift on hover, drop when the link is pressed.
 `KeyboardHero` lays the name out on a plate. Letters press on tap or on the
 matching physical key; the Enter key says hi; typing "agney" or "menon"
 sends a wave down the rows. The Konami code turns on RGB underglow across
-every keycap on the site.
+every keycap on the site. The bottom row ends in a sound key: a plain cap
+with a Caps-Lock-style lock-light that glows lemon while key sounds are on.
+
+### Sound & haptics
+
+The board can be heard and felt, but only when asked.
+
+- **Sound is opt-in.** Off by default; turn it on with the sound key, the
+  `s` shortcut, or the switch in the `?` sheet. The choice persists in
+  `localStorage` (`clack:sound`).
+- **Synthesized, not sampled.** Web Audio only, no audio files
+  (`src/components/shared/feedback/audio.ts`). A key is a band-passed
+  noise burst (the click) over a sine that drops in pitch (the thump), with
+  small random variation in pitch, filter and level on every press. Alphas
+  clack bright, the spacebar and Enter thock low with a stabiliser rattle,
+  modifier and nav keys tick light. Spelling the name rolls a five-note
+  pentatonic arpeggio with the wave; the Konami code plays an 8-bit
+  power-up. Everything sits under a quiet master gain and a limiter.
+- **Haptics** are a short `navigator.vibrate` tap on finger presses only,
+  on touch devices that support it (Android). On by default there, off by
+  default under `prefers-reduced-motion`, with their own switch in the
+  sheet (`clack:haptics`). iOS Safari has no Vibration API, so iPhones get
+  none.
+- **Zero cost up front.** Audio and haptics are separate chunks loaded with
+  `import()` on idle (if a setting needs them) or when the visitor first
+  reaches for the board. The AudioContext is only created inside a gesture.
 
 ## Do's and Don'ts
 
@@ -291,6 +316,7 @@ every keycap on the site.
   wave and RGB cycle stop, presses still change colour.
 - **Do** keep single-key shortcuts switchable (WCAG 2.1.4) from the `?`
   sheet.
+- **Do** keep sound opt-in and quiet, and every feedback lazy-loaded.
 
 ### Don't:
 
