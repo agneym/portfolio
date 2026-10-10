@@ -15,17 +15,13 @@ function BlogHome() {
   return (
     <div className="min-h-full">
       <SkipNavContent />
-      <header className="pt-24 pb-28">
-        <div className="mx-auto flex max-w-7xl flex-col items-center justify-center gap-y-16 px-4 sm:px-6 lg:px-8">
-          <Header />
-          <div className="w-full max-w-3xl px-4">
-            <SubscribeNewsletter />
-          </div>
-        </div>
+      <header className="mx-auto grid max-w-6xl gap-x-12 gap-y-10 px-4 pt-14 pb-16 sm:px-8 sm:pt-20 lg:grid-cols-[1fr_minmax(0,36rem)] lg:items-end">
+        <Header />
+        <SubscribeNewsletter />
       </header>
-      <main className="mx-auto max-w-3xl px-8 pb-20">
+      <div className="mx-auto max-w-6xl px-4 pb-24 sm:px-8">
         <PostList />
-      </main>
+      </div>
     </div>
   );
 }

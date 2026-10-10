@@ -13,7 +13,7 @@ export function InputLabel({ className, ...rest }: InputLabelProps) {
     <label
       htmlFor={inputId}
       className={clsx(
-        "block text-sm leading-6 font-medium text-primary",
+        "block text-sm leading-6 font-bold text-primary",
         className,
       )}
       {...rest}

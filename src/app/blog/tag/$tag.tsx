@@ -37,18 +37,27 @@ function TagPage() {
   return (
     <div className="min-h-full">
       <SkipNavContent />
-      <main className="mx-auto max-w-4xl px-8 py-24">
-        <div className="text-secondary-muted mb-2 flex items-center gap-x-2 text-sm">
-          <Link to="/blog" className="hover:text-secondary-strong">
+      <div className="mx-auto max-w-4xl px-4 pt-14 pb-24 sm:px-8 sm:pt-20">
+        <nav
+          aria-label="Breadcrumb"
+          className="text-secondary mb-4 flex items-center gap-x-2 text-base"
+        >
+          <Link
+            to="/blog"
+            className="text-primary decoration-mod font-bold underline decoration-2 underline-offset-4"
+          >
             Blog
           </Link>
-          <span>/</span>
+          <span aria-hidden>/</span>
           <span className="text-secondary-strong">{tag}</span>
-        </div>
-        <h1 className="text-secondary-strong mb-8 text-2xl font-semibold text-balance">
-          Posts tagged <span className="text-primary">"{tag}"</span>
+        </nav>
+        <h1 className="text-primary mb-10 text-[clamp(2rem,5vw,3.25rem)] leading-tight font-bold tracking-[-0.02em] text-balance">
+          Posts tagged{" "}
+          <span className="keycap keycap-mod px-3 pb-1 align-middle text-[0.75em] [--travel:4px]">
+            {tag}
+          </span>
         </h1>
-        <div className="flex flex-col gap-y-12">
+        <div className="divide-muted flex flex-col divide-y">
           {posts.map((post) => (
             <PostListItem
               key={post.slug}
@@ -61,7 +70,7 @@ function TagPage() {
             />
           ))}
         </div>
-      </main>
+      </div>
     </div>
   );
 }
