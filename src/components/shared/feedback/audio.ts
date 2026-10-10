@@ -9,70 +9,144 @@
  */
 import type { FeedbackKind } from "./index";
 
-type Voice = {
-  /** Noise filter: band-pass centre in Hz and its Q. */
-  click: number;
-  q: number;
-  /** How long the click rings, in seconds. */
-  clickDecay: number;
-  clickLevel: number;
-  /** Thump: start and end pitch in Hz. */
-  thump: number;
-  thumpEnd: number;
-  thumpDecay: number;
-  thumpLevel: number;
-  /** A softer second click: the stabiliser rattle on long keys. */
-  rattle?: number;
+/**
+ * Every parameter of one key sound. The shipped voices below are the
+ * defaults; the sound lab (/lab/sound) passes its own to `playKey`.
+ * Times are in seconds, frequencies in Hz, levels are linear gain.
+ */
+export type KeySound = {
+  /** The stem: a filtered noise burst. */
+  click: {
+    filter: "bandpass" | "highpass" | "lowpass";
+    frequency: number;
+    q: number;
+    decay: number;
+    level: number;
+    /** A softer second click after this delay (0: off): stabiliser rattle. */
+    rattle: number;
+    /** Level of the rattle relative to the click. */
+    rattleLevel: number;
+  };
+  /** An optional, very short high transient on top (level 0: off). */
+  tick: {
+    level: number;
+    frequency: number;
+    q: number;
+    decay: number;
+    delay: number;
+  };
+  /** The cap bottoming out: a pitch-dropping oscillator. */
+  thump: {
+    wave: "sine" | "triangle" | "square" | "sawtooth";
+    start: number;
+    end: number;
+    decay: number;
+    level: number;
+  };
+  /** An optional ringing resonance of the case and plate (level 0: off). */
+  bottomOut: {
+    level: number;
+    frequency: number;
+    q: number;
+    decay: number;
+    delay: number;
+  };
+  envelope: {
+    /** Time to peak for every layer. */
+    attack: number;
+    /** Stretches every decay and delay: 1 is as written. */
+    length: number;
+  };
+  /** Random spread per press, as a fraction (0.1 is ±10%). */
+  variation: {
+    pitch: number;
+    level: number;
+    clickFrequency: number;
+    clickQ: number;
+    clickDecay: number;
+    thumpDecay: number;
+  };
+  output: {
+    /** Gain of this voice before the shared master bus. */
+    level: number;
+    /** Low-pass over the whole voice in Hz (20000: off). */
+    tone: number;
+  };
 };
 
-const VOICES = {
+const BASE = {
+  tick: { level: 0, frequency: 7000, q: 2, decay: 0.008, delay: 0 },
+  bottomOut: { level: 0, frequency: 900, q: 10, decay: 0.04, delay: 0.004 },
+  envelope: { attack: 0.002, length: 1 },
+  variation: {
+    pitch: 0.06,
+    level: 0.12,
+    clickFrequency: 0.15,
+    clickQ: 0.2,
+    clickDecay: 0.15,
+    thumpDecay: 0.1,
+  },
+  output: { level: 1, tone: 20000 },
+} satisfies Partial<KeySound>;
+
+export const KEY_SOUNDS = {
   // Alphas: a crisp, bright clack.
   alpha: {
-    click: 3400,
-    q: 1.1,
-    clickDecay: 0.028,
-    clickLevel: 0.55,
-    thump: 190,
-    thumpEnd: 95,
-    thumpDecay: 0.05,
-    thumpLevel: 0.45,
+    ...BASE,
+    click: {
+      filter: "bandpass",
+      frequency: 3400,
+      q: 1.1,
+      decay: 0.028,
+      level: 0.55,
+      rattle: 0,
+      rattleLevel: 0.45,
+    },
+    thump: { wave: "sine", start: 190, end: 95, decay: 0.05, level: 0.45 },
   },
   // Spacebar: a deep, round thock with a stabiliser rattle.
   space: {
-    click: 1500,
-    q: 0.7,
-    clickDecay: 0.05,
-    clickLevel: 0.45,
-    thump: 115,
-    thumpEnd: 55,
-    thumpDecay: 0.12,
-    thumpLevel: 0.7,
-    rattle: 0.016,
+    ...BASE,
+    click: {
+      filter: "bandpass",
+      frequency: 1500,
+      q: 0.7,
+      decay: 0.05,
+      level: 0.45,
+      rattle: 0.016,
+      rattleLevel: 0.45,
+    },
+    thump: { wave: "sine", start: 115, end: 55, decay: 0.12, level: 0.7 },
   },
   // Enter: big and satisfying, between alpha and space.
   enter: {
-    click: 2300,
-    q: 0.9,
-    clickDecay: 0.04,
-    clickLevel: 0.5,
-    thump: 140,
-    thumpEnd: 65,
-    thumpDecay: 0.09,
-    thumpLevel: 0.6,
-    rattle: 0.012,
+    ...BASE,
+    click: {
+      filter: "bandpass",
+      frequency: 2300,
+      q: 0.9,
+      decay: 0.04,
+      level: 0.5,
+      rattle: 0.012,
+      rattleLevel: 0.45,
+    },
+    thump: { wave: "sine", start: 140, end: 65, decay: 0.09, level: 0.6 },
   },
   // Modifiers and nav keys: a lighter, higher tick.
   mod: {
-    click: 4800,
-    q: 1.4,
-    clickDecay: 0.018,
-    clickLevel: 0.4,
-    thump: 260,
-    thumpEnd: 170,
-    thumpDecay: 0.03,
-    thumpLevel: 0.25,
+    ...BASE,
+    click: {
+      filter: "bandpass",
+      frequency: 4800,
+      q: 1.4,
+      decay: 0.018,
+      level: 0.4,
+      rattle: 0,
+      rattleLevel: 0.45,
+    },
+    thump: { wave: "sine", start: 260, end: 170, decay: 0.03, level: 0.25 },
   },
-} satisfies Record<string, Voice>;
+} satisfies Record<string, KeySound>;
 
 /** Pentatonic notes (Hz), so any run of them sounds sweet. */
 const C5 = 523.25;
@@ -83,7 +157,7 @@ const A5 = 880;
 const C6 = 1046.5;
 const E6 = 1318.51;
 
-const MASTER = 0.22;
+export const MASTER = 0.22;
 
 let ctx: AudioContext | undefined;
 let out: GainNode | undefined;
@@ -140,46 +214,144 @@ function envelope(
   at: number,
   peak: number,
   decay: number,
+  destination: AudioNode = out!,
+  attack = 0.002,
 ) {
   const gain = audio.createGain();
   gain.gain.setValueAtTime(0.0001, at);
-  gain.gain.exponentialRampToValueAtTime(peak, at + 0.002);
-  gain.gain.exponentialRampToValueAtTime(0.0001, at + decay);
-  gain.connect(out!);
+  gain.gain.exponentialRampToValueAtTime(Math.max(peak, 0.0001), at + attack);
+  gain.gain.exponentialRampToValueAtTime(
+    0.0001,
+    at + Math.max(decay, attack + 0.002),
+  );
+  gain.connect(destination);
   return gain;
 }
 
-function click(audio: AudioContext, at: number, voice: Voice, level: number) {
+/** A filtered noise burst: the click, the tick, and the bottom-out ring. */
+function burst(
+  audio: AudioContext,
+  bus: AudioNode,
+  at: number,
+  {
+    filter: type,
+    frequency,
+    q,
+    decay,
+    level,
+    attack,
+  }: {
+    filter: BiquadFilterType;
+    frequency: number;
+    q: number;
+    decay: number;
+    level: number;
+    attack: number;
+  },
+) {
   const source = audio.createBufferSource();
   source.buffer = noise!;
+  // Long lab decays outlast the buffer from a late offset; wrap around.
+  source.loop = true;
   const filter = audio.createBiquadFilter();
-  filter.type = "bandpass";
-  filter.frequency.value = voice.click * jitter(0.15);
-  filter.Q.value = voice.q * jitter(0.2);
-  const decay = voice.clickDecay * jitter(0.15);
+  filter.type = type;
+  filter.frequency.value = frequency;
+  filter.Q.value = q;
   source
     .connect(filter)
-    .connect(envelope(audio, at, voice.clickLevel * level, decay));
+    .connect(envelope(audio, at, level, decay, bus, attack));
   source.start(at, Math.random() * 0.4);
   source.stop(at + decay + 0.01);
 }
 
-function key(audio: AudioContext, voice: Voice) {
-  const at = audio.currentTime + 0.001;
-  const level = jitter(0.12);
-  click(audio, at, voice, level);
-  if (voice.rattle) click(audio, at + voice.rattle, voice, level * 0.45);
+function click(
+  audio: AudioContext,
+  bus: AudioNode,
+  at: number,
+  sound: KeySound,
+  level: number,
+) {
+  const { click, variation, envelope: env } = sound;
+  burst(audio, bus, at, {
+    filter: click.filter,
+    frequency: click.frequency * jitter(variation.clickFrequency),
+    q: click.q * jitter(variation.clickQ),
+    decay: click.decay * env.length * jitter(variation.clickDecay),
+    level: click.level * level,
+    attack: env.attack,
+  });
+}
 
+/** Play one key with the given parameters (defaults: `KEY_SOUNDS`). */
+function key(audio: AudioContext, sound: KeySound) {
+  const at = audio.currentTime + 0.001;
+  const { envelope: env, variation, output } = sound;
+  const stretch = env.length;
+
+  // Per-voice bus: level, and an optional low-pass over the whole voice.
+  let bus: AudioNode = out!;
+  if (output.tone < 20000) {
+    const tone = audio.createBiquadFilter();
+    tone.type = "lowpass";
+    tone.frequency.value = output.tone;
+    tone.connect(bus);
+    bus = tone;
+  }
+  if (output.level !== 1) {
+    const gain = audio.createGain();
+    gain.gain.value = output.level;
+    gain.connect(bus);
+    bus = gain;
+  }
+
+  const level = jitter(variation.level);
+  if (sound.click.level > 0) {
+    click(audio, bus, at, sound, level);
+    if (sound.click.rattle > 0) {
+      click(
+        audio,
+        bus,
+        at + sound.click.rattle * stretch,
+        sound,
+        level * sound.click.rattleLevel,
+      );
+    }
+  }
+
+  const { tick, bottomOut } = sound;
+  if (tick.level > 0) {
+    burst(audio, bus, at + tick.delay * stretch, {
+      filter: "bandpass",
+      frequency: tick.frequency * jitter(variation.clickFrequency),
+      q: tick.q,
+      decay: tick.decay * stretch * jitter(variation.clickDecay),
+      level: tick.level * level,
+      attack: env.attack / 2,
+    });
+  }
+  if (bottomOut.level > 0) {
+    burst(audio, bus, at + bottomOut.delay * stretch, {
+      filter: "bandpass",
+      frequency: bottomOut.frequency * jitter(variation.pitch),
+      q: bottomOut.q,
+      decay: bottomOut.decay * stretch * jitter(variation.thumpDecay),
+      level: bottomOut.level * level,
+      attack: env.attack,
+    });
+  }
+
+  const { thump } = sound;
+  if (thump.level <= 0) return;
   const osc = audio.createOscillator();
-  osc.type = "sine";
-  const pitch = jitter(0.06);
-  osc.frequency.setValueAtTime(voice.thump * pitch, at);
+  osc.type = thump.wave;
+  const pitch = jitter(variation.pitch);
+  osc.frequency.setValueAtTime(thump.start * pitch, at);
   osc.frequency.exponentialRampToValueAtTime(
-    voice.thumpEnd * pitch,
-    at + voice.thumpDecay,
+    thump.end * pitch,
+    at + thump.decay * stretch,
   );
-  const decay = voice.thumpDecay * jitter(0.1);
-  osc.connect(envelope(audio, at, voice.thumpLevel * level, decay));
+  const decay = thump.decay * stretch * jitter(variation.thumpDecay);
+  osc.connect(envelope(audio, at, thump.level * level, decay, bus, env.attack));
   osc.start(at);
   osc.stop(at + decay + 0.01);
 }
@@ -215,6 +387,29 @@ function notes(
   });
 }
 
+/** Play a key with custom parameters: the sound lab's entry point. */
+export function playKey(sound: KeySound) {
+  try {
+    const audio = context();
+    if (!audio) return;
+    if (audio.state === "suspended") void audio.resume();
+    key(audio, sound);
+  } catch {
+    // Never let a bad dial break the page.
+  }
+}
+
+/** "running" once a gesture has started audio; undefined before. */
+export function audioState() {
+  return ctx?.state;
+}
+
+/** The shared bus gain for every sound (default `MASTER`). */
+export function setMasterVolume(volume: number) {
+  context();
+  if (out) out.gain.value = volume;
+}
+
 export function play(kind: FeedbackKind) {
   try {
     const audio = context();
@@ -225,7 +420,7 @@ export function play(kind: FeedbackKind) {
       case "space":
       case "enter":
       case "mod":
-        key(audio, VOICES[kind]);
+        key(audio, KEY_SOUNDS[kind]);
         break;
       case "toggle":
         notes(audio, [E5, A5], {

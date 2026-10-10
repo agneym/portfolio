@@ -17,6 +17,7 @@ import { Route as OgRouteImport } from './app/og'
 import { Route as WebmarksRouteImport } from './app/webmarks'
 import { Route as BlogIndexRouteImport } from './app/blog/index'
 import { Route as BlogSlugRouteImport } from './app/blog/$slug'
+import { Route as LabSoundRouteImport } from './app/lab/sound'
 import { Route as WebmarksIndexRouteImport } from './app/webmarks/index'
 import { Route as BlogTagTagRouteImport } from './app/blog/tag/$tag'
 
@@ -60,6 +61,11 @@ const BlogSlugRoute = BlogSlugRouteImport.update({
   path: '/$slug',
   getParentRoute: () => BlogRoute,
 } as any)
+const LabSoundRoute = LabSoundRouteImport.update({
+  id: '/lab/sound',
+  path: '/lab/sound',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const WebmarksIndexRoute = WebmarksIndexRouteImport.update({
   id: '/',
   path: '/',
@@ -79,6 +85,7 @@ export interface FileRoutesByFullPath {
   '/og': typeof OgRoute
   '/webmarks': typeof WebmarksRouteWithChildren
   '/blog/$slug': typeof BlogSlugRoute
+  '/lab/sound': typeof LabSoundRoute
   '/blog/': typeof BlogIndexRoute
   '/webmarks/': typeof WebmarksIndexRoute
   '/blog/tag/$tag': typeof BlogTagTagRoute
@@ -89,6 +96,7 @@ export interface FileRoutesByTo {
   '/jem': typeof JemRoute
   '/og': typeof OgRoute
   '/blog/$slug': typeof BlogSlugRoute
+  '/lab/sound': typeof LabSoundRoute
   '/blog': typeof BlogIndexRoute
   '/webmarks': typeof WebmarksIndexRoute
   '/blog/tag/$tag': typeof BlogTagTagRoute
@@ -102,6 +110,7 @@ export interface FileRoutesById {
   '/og': typeof OgRoute
   '/webmarks': typeof WebmarksRouteWithChildren
   '/blog/$slug': typeof BlogSlugRoute
+  '/lab/sound': typeof LabSoundRoute
   '/blog/': typeof BlogIndexRoute
   '/webmarks/': typeof WebmarksIndexRoute
   '/blog/tag/$tag': typeof BlogTagTagRoute
@@ -116,6 +125,7 @@ export interface FileRouteTypes {
     | '/og'
     | '/webmarks'
     | '/blog/$slug'
+    | '/lab/sound'
     | '/blog/'
     | '/webmarks/'
     | '/blog/tag/$tag'
@@ -126,6 +136,7 @@ export interface FileRouteTypes {
     | '/jem'
     | '/og'
     | '/blog/$slug'
+    | '/lab/sound'
     | '/blog'
     | '/webmarks'
     | '/blog/tag/$tag'
@@ -138,6 +149,7 @@ export interface FileRouteTypes {
     | '/og'
     | '/webmarks'
     | '/blog/$slug'
+    | '/lab/sound'
     | '/blog/'
     | '/webmarks/'
     | '/blog/tag/$tag'
@@ -150,6 +162,7 @@ export interface RootRouteChildren {
   JemRoute: typeof JemRoute
   OgRoute: typeof OgRoute
   WebmarksRoute: typeof WebmarksRouteWithChildren
+  LabSoundRoute: typeof LabSoundRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -210,6 +223,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BlogSlugRouteImport
       parentRoute: typeof BlogRoute
     }
+    '/lab/sound': {
+      id: '/lab/sound'
+      path: '/lab/sound'
+      fullPath: '/lab/sound'
+      preLoaderRoute: typeof LabSoundRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/webmarks/': {
       id: '/webmarks/'
       path: '/'
@@ -260,6 +280,7 @@ const rootRouteChildren: RootRouteChildren = {
   JemRoute: JemRoute,
   OgRoute: OgRoute,
   WebmarksRoute: WebmarksRouteWithChildren,
+  LabSoundRoute: LabSoundRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
