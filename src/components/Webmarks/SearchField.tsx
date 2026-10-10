@@ -36,10 +36,10 @@ export function SearchField({ value, onChange }: SearchFieldProps) {
   }, [draft, value]);
 
   return (
-    <div className="relative w-full sm:w-72">
+    <div className="relative w-full sm:w-80">
       <Search
         aria-hidden="true"
-        className="text-tertiary pointer-events-none absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2"
+        className="text-secondary pointer-events-none absolute top-1/2 left-3.5 z-10 h-4 w-4 -translate-y-1/2"
       />
       <Input.Group hasDescription={false}>
         <Input.InputBase
@@ -50,9 +50,19 @@ export function SearchField({ value, onChange }: SearchFieldProps) {
           }
           placeholder="Search title, notes, URL"
           aria-label="Search bookmarks"
-          className="pr-9 pl-9 [&::-webkit-search-cancel-button]:hidden"
+          aria-keyshortcuts="/"
+          data-shortcut-search=""
+          className="pr-10 pl-10 [&::-webkit-search-cancel-button]:hidden"
         />
       </Input.Group>
+      {draft ? null : (
+        <kbd
+          aria-hidden
+          className="keycap keycap-plain pointer-events-none absolute top-1/2 right-2.5 hidden h-6 min-w-6 -translate-y-1/2 px-1.5 font-mono text-xs [--radius-key:0.375rem] [--travel:2px] pointer-fine:inline-flex"
+        >
+          /
+        </kbd>
+      )}
       {draft ? (
         <button
           type="button"
@@ -61,7 +71,7 @@ export function SearchField({ value, onChange }: SearchFieldProps) {
             setDraft("");
             onChange("");
           }}
-          className="text-tertiary hover:text-primary focus-visible:ring-accent absolute top-1/2 right-2.5 -translate-y-1/2 rounded p-0.5 transition-colors focus-visible:ring-2 focus-visible:outline-none"
+          className="text-secondary hover:text-primary absolute top-1/2 right-2.5 -translate-y-1/2 rounded p-1 transition-colors"
         >
           <X className="h-4 w-4" />
         </button>

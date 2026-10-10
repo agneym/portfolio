@@ -1,58 +1,44 @@
-import MoonIcon from "images/moon.svg?react";
-import SunIcon from "images/sun.svg?react";
-import { AnimatePresence, motion } from "motion/react";
+import { Moon, Sun } from "lucide-react";
+import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { useTheme } from "next-themes";
-import type { ComponentType, SVGProps } from "react";
 import { useHydrated } from "./useHydrated";
 
-interface AnimatedIconProps {
-  icon: ComponentType<SVGProps<SVGSVGElement>>;
-}
-
-const AnimatedIcon = ({ icon: Icon }: AnimatedIconProps) => {
-  return (
-    <motion.span
-      initial={{
-        rotate: 30,
-      }}
-      animate={{
-        rotate: 0,
-      }}
-      exit={{
-        rotate: -30,
-        opacity: 0,
-      }}
-      layoutId="one-thing"
-      className="absolute"
-    >
-      <Icon className="h-5 w-5" />
-    </motion.span>
-  );
-};
-
 export const ThemeButton = () => {
-  const { theme, setTheme } = useTheme();
+  const { resolvedTheme, setTheme } = useTheme();
   const mounted = useHydrated();
+  const reduceMotion = useReducedMotion();
 
-  const isLightTheme = theme === "light";
-  const Icon = isLightTheme ? MoonIcon : SunIcon;
+  const isLightTheme = resolvedTheme !== "dark";
+  const Icon = isLightTheme ? Moon : Sun;
   const label = isLightTheme ? "Dark Mode" : "Light Mode";
 
   return (
     <button
       type="button"
-      className="inline-flex h-6 w-6 items-center justify-center transition-transform duration-150 hover:scale-105"
+      className="keycap keycap-mod size-10 overflow-hidden [--travel:3px]"
       onClick={() => setTheme(isLightTheme ? "dark" : "light")}
-      aria-label={mounted ? label : undefined}
-      title={mounted ? label : undefined}
+      aria-label={mounted ? label : "Toggle theme"}
+      title={mounted ? `${label} (t)` : undefined}
+      aria-keyshortcuts="t"
       suppressHydrationWarning
     >
       {mounted ? (
-        <AnimatePresence>
-          <AnimatedIcon key={theme} icon={Icon} />
+        <AnimatePresence initial={false} mode="popLayout">
+          <motion.span
+            key={resolvedTheme}
+            initial={reduceMotion ? false : { y: 18, rotate: -40, opacity: 0 }}
+            animate={{ y: 0, rotate: 0, opacity: 1 }}
+            exit={
+              reduceMotion ? { opacity: 0 } : { y: -18, rotate: 40, opacity: 0 }
+            }
+            transition={{ type: "spring", stiffness: 500, damping: 28 }}
+            className="inline-flex"
+          >
+            <Icon aria-hidden className="size-5" />
+          </motion.span>
         </AnimatePresence>
       ) : (
-        <span className="h-5 w-5" />
+        <span className="size-5" />
       )}
     </button>
   );

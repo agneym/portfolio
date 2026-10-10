@@ -1,5 +1,5 @@
 import * as Popover from "@radix-ui/react-popover";
-import HamburgerSvg from "images/hamburger.svg?react";
+import { Menu } from "lucide-react";
 import type { ReactNode } from "react";
 
 interface NavbarPopoverProps {
@@ -9,12 +9,20 @@ interface NavbarPopoverProps {
 export function NavbarPopover({ children }: NavbarPopoverProps) {
   return (
     <Popover.Root>
-      <Popover.Trigger className="inline-flex md:hidden" title="Menu">
-        <HamburgerSvg width={20} height={20} />
+      <Popover.Trigger
+        className="keycap keycap-mod size-10 [--travel:3px] md:hidden"
+        aria-label="Menu"
+      >
+        <Menu aria-hidden className="size-5" />
       </Popover.Trigger>
       <Popover.Portal>
-        <Popover.Content sideOffset={24}>
-          <div className="bg-muted/40 flex w-[var(--radix-popover-content-available-width)] flex-col gap-y-6 px-4 py-2 shadow-xs backdrop-blur-xs">
+        <Popover.Content
+          sideOffset={14}
+          align="end"
+          collisionPadding={16}
+          className="z-40 data-[state=open]:animate-[sheet-in_200ms_var(--ease-out-expo)] motion-reduce:animate-none"
+        >
+          <div className="bg-plate-deep flex w-[min(18rem,calc(100vw-2rem))] flex-col gap-y-3 rounded-[var(--radius-plate)] p-4 shadow-[0_4px_0_var(--color-skirt),0_20px_40px_-12px_var(--key-cast)] [&>*]:w-full">
             {children}
           </div>
         </Popover.Content>

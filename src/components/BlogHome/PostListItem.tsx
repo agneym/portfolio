@@ -13,17 +13,23 @@ interface PostListItemProps {
 
 export function PostListItem({ meta, slug }: PostListItemProps) {
   return (
-    <article className="flex flex-col gap-y-4 py-2">
-      <header className="flex flex-col gap-y-1">
-        <Link to="/blog/$slug" params={{ slug }}>
-          <h3 className="text-xl text-balance">{meta.title}</h3>
-        </Link>
-        <DateString className="text-secondary-muted text-xs">
+    <article className="group/post relative flex flex-col gap-y-3 py-5">
+      <header className="flex flex-col gap-y-1.5">
+        <h3 className="font-sans text-xl leading-snug font-bold text-pretty sm:text-[1.375rem]">
+          <Link
+            to="/blog/$slug"
+            params={{ slug }}
+            className="group text-primary rounded-sm"
+          >
+            <span className="marker">{meta.title}</span>
+          </Link>
+        </h3>
+        <DateString className="text-secondary-muted tabular text-sm">
           {meta.date}
         </DateString>
       </header>
       {meta.tags && meta.tags.length > 0 && (
-        <div className="flex flex-wrap gap-1.5">
+        <div className="flex flex-wrap gap-2 pb-1">
           {meta.tags.map((tag) => (
             <TagBadge key={tag} tag={tag} />
           ))}

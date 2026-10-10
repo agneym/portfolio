@@ -7,15 +7,13 @@ interface SortSelectProps {
 
 export function SortSelect({ value, onChange }: SortSelectProps) {
   return (
-    <label className="text-tertiary flex shrink-0 items-center gap-x-2 text-xs">
-      <span className="hidden font-mono tracking-widest uppercase sm:inline">
-        Sort
-      </span>
+    <label className="text-secondary flex shrink-0 items-center gap-x-2 text-sm font-bold">
+      <span className="hidden sm:inline">Sort</span>
       <select
         value={value}
         onChange={(event) => onChange(event.target.value as SortOrder)}
         aria-label="Sort bookmarks"
-        className="border-muted text-primary bg-surface focus:ring-accent rounded-md border py-2 pr-8 pl-3 text-sm ring-inset focus:ring-2"
+        className="key-well text-primary focus:ring-accent border-0 py-2.5 pr-9 pl-3.5 text-base font-normal focus:ring-2"
       >
         {SORT_ORDERS.map((order) => (
           <option key={order} value={order}>

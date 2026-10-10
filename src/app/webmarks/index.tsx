@@ -92,24 +92,29 @@ function WebmarksPage() {
     <>
       <SkipNavContent />
       <div className="mx-auto w-full max-w-7xl px-4 pb-16 sm:px-6 lg:px-8">
-        <header className="pt-12 pb-8 sm:pt-20">
-          <h1 className="font-heading text-primary text-4xl font-extrabold tracking-tight text-balance sm:text-5xl">
+        <header className="pt-14 pb-10 sm:pt-20">
+          <h1 className="text-primary text-[clamp(3.25rem,9vw,6rem)] leading-[0.95] font-bold tracking-[-0.03em]">
             Webmarks
           </h1>
           <p
             aria-live="polite"
-            className="text-tertiary mt-6 font-mono text-[0.6875rem] tracking-widest uppercase"
+            className="text-secondary-strong mt-5 text-xl text-pretty"
           >
-            {total} {total === 1 ? "link" : "links"}
-            {tags.length > 0 ? ` · ${tags.length} tags` : ""}
-            {hasFilters ? " · filtered" : ""}
+            {hasFilters ? "Showing " : "Bookmarks I keep coming back to: "}
+            <span className="text-primary tabular font-bold">{total}</span>{" "}
+            {total === 1 ? "link" : "links"}
+            {tags.length > 0 && !hasFilters
+              ? `, filed under ${tags.length} tags.`
+              : hasFilters
+                ? " that match."
+                : "."}
           </p>
         </header>
 
         {total === 0 && !hasFilters ? null : (
           <section
             aria-label="Filters"
-            className="border-muted bg-surface/90 sticky top-12 z-20 -mx-4 flex flex-col gap-y-4 border-y px-4 py-4 backdrop-blur-sm sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8"
+            className="bg-surface/90 sticky top-16 z-20 -mx-4 flex flex-col gap-y-3 px-4 pt-3 pb-2 backdrop-blur-md backdrop-saturate-150 sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8"
           >
             <div className="flex flex-wrap items-center gap-3">
               <SearchField
@@ -124,7 +129,7 @@ function WebmarksPage() {
                 <button
                   type="button"
                   onClick={() => setParams({ q: "", tag: "" })}
-                  className="text-tertiary hover:text-primary focus-visible:ring-accent rounded text-xs underline decoration-dotted underline-offset-4 transition-colors focus-visible:ring-2 focus-visible:outline-none"
+                  className="text-primary decoration-mod rounded text-sm font-bold underline decoration-2 underline-offset-4 hover:decoration-[var(--color-accent)]"
                 >
                   Reset
                 </button>

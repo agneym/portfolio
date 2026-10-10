@@ -1,4 +1,4 @@
-import { ChevronDown, LoaderCircle } from "lucide-react";
+import { CornerDownLeft, LoaderCircle } from "lucide-react";
 
 interface LoadMoreProps {
   /** Cards on screen so far. */
@@ -28,14 +28,14 @@ export function LoadMore({
   return (
     <nav
       aria-label="More bookmarks"
-      className="border-muted mt-10 flex items-center justify-between border-t pt-6"
+      className="mt-12 flex flex-wrap items-center justify-between gap-4"
     >
-      <p
-        aria-live="polite"
-        className="text-tertiary font-mono text-[0.6875rem] tracking-widest uppercase"
-      >
-        {isError ? "Couldn't load more · " : ""}
-        Showing {pad(shown)} / {pad(total)}
+      <p aria-live="polite" className="text-secondary tabular text-base">
+        {isError ? "Couldn't load more. " : ""}
+        Showing <span className="text-primary font-bold">
+          {pad(shown)}
+        </span> of{" "}
+        {pad(total)}
       </p>
       {hasMore ? (
         <button
@@ -43,15 +43,15 @@ export function LoadMore({
           onClick={onLoadMore}
           disabled={isLoading}
           aria-busy={isLoading}
-          className="border-muted text-secondary hover:border-tertiary hover:text-primary focus-visible:ring-accent inline-flex items-center gap-x-1 rounded-md border px-3 py-1.5 text-xs font-medium transition-colors focus-visible:ring-2 focus-visible:outline-none disabled:pointer-events-none disabled:opacity-60"
+          className="keycap keycap-mod h-14 min-w-44 justify-between gap-x-6 px-5 text-base font-bold"
         >
           {isLoading ? (
             <LoaderCircle
               aria-hidden="true"
-              className="h-3.5 w-3.5 animate-spin motion-reduce:animate-none"
+              className="h-5 w-5 animate-spin motion-reduce:animate-none"
             />
           ) : (
-            <ChevronDown aria-hidden="true" className="h-3.5 w-3.5" />
+            <CornerDownLeft aria-hidden="true" className="h-5 w-5" />
           )}
           {isLoading ? "Loading" : isError ? "Try again" : "Load more"}
         </button>

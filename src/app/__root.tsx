@@ -5,8 +5,12 @@ import {
   Scripts,
   createRootRouteWithContext,
 } from "@tanstack/react-router";
-import "@fontsource-variable/work-sans";
+import "@fontsource-variable/unbounded";
+import "@fontsource-variable/atkinson-hyperlegible-next";
+import "@fontsource-variable/atkinson-hyperlegible-next/wght-italic.css";
+import "@fontsource-variable/martian-mono/standard.css";
 import appCss from "./global.css?url";
+import unboundedLatin from "@fontsource-variable/unbounded/files/unbounded-latin-wght-normal.woff2?url";
 import { Providers } from "./providers";
 import type { QueryClient } from "@tanstack/react-query";
 
@@ -47,6 +51,14 @@ export const Route = createRootRouteWithContext<{
     links: [
       { rel: "stylesheet", href: appCss },
       { rel: "icon", type: "image/png", href: "/icon.png" },
+      // The display face sets the first viewport; fetch it with the CSS.
+      {
+        rel: "preload",
+        href: unboundedLatin,
+        as: "font",
+        type: "font/woff2",
+        crossOrigin: "anonymous",
+      },
     ],
   }),
   component: RootComponent,
@@ -58,7 +70,7 @@ function RootComponent() {
       <head>
         <HeadContent />
       </head>
-      <body className="bg-surface selection:bg-accent-light selection:text-primary h-full antialiased">
+      <body className="bg-surface text-primary h-full antialiased">
         <Providers>
           <Outlet />
         </Providers>

@@ -34,11 +34,11 @@ export function BookmarkGrid({
 
   if (bookmarks.length === 0) {
     return (
-      <div className="border-muted animate-rise-in mt-8 rounded-xl border border-dashed px-6 py-24 text-center motion-reduce:animate-none">
-        <p className="font-heading text-primary text-lg font-semibold">
+      <div className="bg-plate-deep animate-rise-in mt-8 rounded-[var(--radius-plate)] px-6 py-24 text-center shadow-[inset_0_3px_0_var(--color-skirt)] motion-reduce:animate-none">
+        <p className="text-primary font-display text-xl font-semibold">
           {hasFilters ? "Nothing matches that" : "The shelf is empty"}
         </p>
-        <p className="text-secondary mx-auto mt-2 max-w-sm text-sm text-balance">
+        <p className="text-secondary mx-auto mt-3 max-w-sm text-base text-balance">
           {hasFilters
             ? "Try a different search term, or clear the filters to see every link."
             : "Public bookmarks appear here as soon as there is something to show."}
@@ -47,7 +47,7 @@ export function BookmarkGrid({
           <button
             type="button"
             onClick={onClearFilters}
-            className="border-muted text-secondary hover:border-tertiary hover:text-primary focus-visible:ring-accent mt-6 rounded-md border px-3 py-1.5 text-xs font-medium transition-colors focus-visible:ring-2 focus-visible:outline-none"
+            className="keycap keycap-mod mt-6 px-4 py-2.5 text-sm font-bold"
           >
             Clear filters
           </button>
@@ -61,7 +61,7 @@ export function BookmarkGrid({
       className={clsx(
         // items-start: cards keep their natural height instead of stretching to
         // the tallest card in the row and leaving a hole above their tags.
-        "mt-8 grid list-none grid-cols-1 items-start gap-4 sm:grid-cols-2 xl:grid-cols-3",
+        "mt-8 grid list-none grid-cols-1 items-start gap-x-5 gap-y-6 sm:grid-cols-2 xl:grid-cols-3",
         // Keep the previous results visible while a filter change loads.
         isFetching && "opacity-60 transition-opacity duration-200",
       )}

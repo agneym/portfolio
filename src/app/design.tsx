@@ -1,7 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useTheme } from "next-themes";
-import { useHydrated } from "components/shared/useHydrated";
-import clsx from "clsx";
+import type { ReactNode } from "react";
+import { HeadNav } from "components/HomePage";
+import { Quote } from "components/BlogHome/PostComponents/Quote";
+import { TagBadge } from "components/BlogHome/TagBadge";
+import { SkipNavContent } from "components/uikit/SkipNav";
 import designMdRaw from "../../DESIGN.md?raw";
 
 // ── Parser ──────────────────────────────────────────────────────────────────
@@ -26,6 +28,7 @@ interface DesignTokens {
   name: string;
   description: string;
   colors: Record<string, string>;
+  "colors-dark"?: Record<string, string>;
   typography: Record<string, TypographyToken>;
   rounded: Record<string, string>;
   spacing: Record<string, string>;
@@ -192,27 +195,17 @@ function ColorSwatch({
 
   return (
     <div className="flex flex-col gap-2">
-      <div
-        className="border-muted relative h-16 overflow-hidden rounded-md border shadow-sm"
-        style={{ backgroundColor: hex }}
-      >
+      <div className="relative flex h-20 overflow-hidden rounded-xl shadow-[inset_0_0_0_1px_var(--color-muted),0_3px_0_var(--color-skirt)]">
+        <div className="flex-1" style={{ backgroundColor: hex }} />
         {dark && (
-          <div
-            className="absolute inset-y-0 right-0 w-1/2 border-l border-black/10"
-            style={{ backgroundColor: darkHex }}
-          />
+          <div className="flex-1" style={{ backgroundColor: darkHex }} />
         )}
       </div>
       <div className="flex flex-col gap-0.5">
-        <span className="text-secondary-strong font-mono text-xs">{name}</span>
-        <span className="text-secondary-muted font-mono text-[11px]">
+        <span className="text-primary text-sm font-bold">{name}</span>
+        <span className="text-secondary font-mono text-[0.6875rem]">
           {hex}
-          {dark && (
-            <>
-              {" "}
-              <span className="text-tertiary">/</span> {darkHex}
-            </>
-          )}
+          {dark && <> / {darkHex}</>}
         </span>
       </div>
     </div>
@@ -221,10 +214,8 @@ function ColorSwatch({
 
 function TypeSample({ name, token }: { name: string; token: TypographyToken }) {
   return (
-    <div className="border-muted/50 flex flex-col gap-2 border-b py-3 last:border-b-0">
-      <span className="text-secondary-muted font-mono text-[11px] tracking-wider uppercase">
-        {name}
-      </span>
+    <div className="border-muted flex flex-col gap-2 border-b py-5 last:border-b-0">
+      <span className="text-secondary text-sm font-bold">{name}</span>
       <p
         style={{
           fontFamily: `"${token.fontFamily} Variable", sans-serif`,
@@ -233,13 +224,14 @@ function TypeSample({ name, token }: { name: string; token: TypographyToken }) {
           lineHeight: token.lineHeight,
           letterSpacing: token.letterSpacing,
         }}
-        className="text-primary"
+        className="text-primary truncate"
       >
-        The quick brown fox
+        Clack clack, Agney
       </p>
-      <span className="text-tertiary font-mono text-[10px]">
-        {token.fontSize} / {token.fontWeight} / {token.lineHeight}
-        {token.letterSpacing ? ` / ${token.letterSpacing}` : ""}
+      <span className="text-secondary-muted font-mono text-[0.6875rem]">
+        {token.fontFamily}, {token.fontSize}, {token.fontWeight},{" "}
+        {token.lineHeight}
+        {token.letterSpacing ? `, ${token.letterSpacing}` : ""}
       </span>
     </div>
   );
@@ -249,14 +241,16 @@ function SpacingBar({ name, value }: { name: string; value: string }) {
   const px = parseInt(value, 10);
   return (
     <div className="flex items-center gap-4">
-      <span className="text-secondary-strong w-8 text-right font-mono text-xs">
+      <span className="text-primary w-14 text-right text-sm font-bold">
         {name}
       </span>
-      <span className="text-tertiary w-14 font-mono text-[11px]">{value}</span>
-      <div className="relative h-6 flex-1">
+      <span className="text-secondary w-14 font-mono text-[0.6875rem]">
+        {value}
+      </span>
+      <div className="relative h-6 min-w-0 flex-1 overflow-hidden">
         <div
-          className="bg-accent/20 absolute top-0 left-0 h-full rounded"
-          style={{ width: Math.min(px * 3, 200) }}
+          className="bg-mod absolute top-0 left-0 h-full rounded-md"
+          style={{ width: Math.min(px * 3, 288) }}
         />
       </div>
     </div>
@@ -267,67 +261,46 @@ function RadiusPreview({ name, value }: { name: string; value: string }) {
   return (
     <div className="flex flex-col items-center gap-2">
       <div
-        className="bg-accent/20 border-accent/30 size-12 border"
+        className="bg-key size-16 shadow-[0_4px_0_var(--color-skirt)]"
         style={{ borderRadius: value }}
       />
-      <span className="text-secondary-muted font-mono text-[10px]">{name}</span>
-      <span className="text-tertiary font-mono text-[10px]">{value}</span>
+      <span className="text-primary text-sm font-bold">{name}</span>
+      <span className="text-secondary font-mono text-[0.6875rem]">{value}</span>
     </div>
   );
 }
 
-function ThemeToggle() {
-  const { theme, setTheme } = useTheme();
-  const mounted = useHydrated();
-
-  if (!mounted) return <div className="h-9 w-9" />;
-
+function Section({ title, children }: { title: string; children: ReactNode }) {
   return (
-    <button
-      onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-      className="border-muted flex size-9 items-center justify-center rounded-md border transition-transform hover:scale-105"
-      aria-label="Toggle theme"
+    <section className="flex flex-col gap-6">
+      <h2 className="text-primary text-2xl font-semibold">{title}</h2>
+      {children}
+    </section>
+  );
+}
+
+function Panel({
+  children,
+  className,
+}: {
+  children: ReactNode;
+  className?: string;
+}) {
+  return (
+    <div
+      className={`bg-key rounded-[var(--radius-plate)] p-6 shadow-[inset_0_1px_0_var(--key-highlight),0_5px_0_var(--color-skirt)] sm:p-8 ${className ?? ""}`}
     >
-      {theme === "dark" ? (
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="18"
-          height="18"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          className="text-secondary"
-        >
-          <circle cx="12" cy="12" r="4" />
-          <path d="M12 2v2" />
-          <path d="M12 20v2" />
-          <path d="m4.93 4.93 1.41 1.41" />
-          <path d="m17.66 17.66 1.41 1.41" />
-          <path d="M2 12h2" />
-          <path d="M20 12h2" />
-          <path d="m6.34 17.66-1.41 1.41" />
-          <path d="m19.07 4.93-1.41 1.41" />
-        </svg>
-      ) : (
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="18"
-          height="18"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          className="text-secondary"
-        >
-          <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z" />
-        </svg>
-      )}
-    </button>
+      {children}
+    </div>
+  );
+}
+
+function Prose({ md }: { md: string }) {
+  return (
+    <div
+      className="text-secondary-strong [&_code]:bg-plate-deep [&_strong]:text-primary space-y-3 text-base text-pretty [&_code]:rounded [&_code]:px-1 [&_code]:text-sm [&_li]:ml-5 [&_li]:list-disc [&_strong]:font-bold"
+      dangerouslySetInnerHTML={{ __html: mdToHtml(md) }}
+    />
   );
 }
 
@@ -343,51 +316,27 @@ export const Route = createFileRoute("/design")({
 function DesignPage() {
   const { tokens, body } = parseFrontMatter(designMdRaw);
   const sections = parseSections(body);
-
-  // Build dark mode color map from the Colors prose (for showing dual swatches)
-  const darkColors: Record<string, string> = {
-    primary: "oklch(0.968 0.007 247.896)",
-    secondary: "oklch(0.711 0.035 256.788)",
-    "secondary-strong": "oklch(0.869 0.020 252.894)",
-    "secondary-muted": "oklch(0.711 0.035 256.788)",
-    tertiary: "oklch(0.554 0.041 257.417)",
-    accent: "oklch(0.585 0.204 277.117)",
-    "accent-hover": "oklch(0.680 0.158 276.935)",
-    "accent-muted": "oklch(0.585 0.204 277.117)",
-    "accent-light": "oklch(0.511 0.230 276.966)",
-    surface: "oklch(0.279 0.037 260.031)",
-    muted: "oklch(0.372 0.039 257.287)",
-  };
+  const darkColors = tokens["colors-dark"] ?? {};
 
   return (
     <div className="bg-surface min-h-full">
-      {/* Header */}
-      <header className="border-muted border-b">
-        <div className="mx-auto flex max-w-4xl items-center justify-between px-6 py-6">
-          <div>
-            <h1 className="font-heading text-primary text-2xl font-extrabold">
-              {tokens.name}
-            </h1>
-            <p className="text-secondary-muted mt-1 text-sm">
-              {tokens.description}
-            </p>
-          </div>
-          <ThemeToggle />
-        </div>
+      <HeadNav />
+      <SkipNavContent />
+      <header className="mx-auto max-w-5xl px-4 pt-14 pb-10 sm:px-8 sm:pt-20">
+        <h1 className="text-primary text-[clamp(3.25rem,9vw,6rem)] leading-[0.95] font-bold tracking-[-0.03em]">
+          {tokens.name}
+        </h1>
+        <p className="text-secondary-strong mt-5 max-w-2xl text-xl text-pretty">
+          {tokens.description}
+        </p>
       </header>
 
-      <main className="mx-auto max-w-4xl space-y-20 px-6 py-12">
-        {/* ── Color Palette ──────────────────────────────────────────── */}
-        <section>
-          <div className="mb-6 flex items-baseline gap-2">
-            <span className="text-accent font-mono text-[11px] font-medium tracking-wider uppercase">
-              01
-            </span>
-            <h2 className="font-heading text-primary text-xl font-bold">
-              Color Palette
-            </h2>
-          </div>
-          <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4">
+      <main className="mx-auto flex max-w-5xl flex-col gap-y-20 px-4 pb-24 sm:px-8">
+        <Section title="Colors">
+          <p className="text-secondary -mt-2">
+            Left half light plate, right half dark plate.
+          </p>
+          <div className="grid grid-cols-2 gap-x-4 gap-y-6 sm:grid-cols-3 md:grid-cols-4">
             {Object.entries(tokens.colors).map(([name, hex]) => (
               <ColorSwatch
                 key={name}
@@ -397,209 +346,123 @@ function DesignPage() {
               />
             ))}
           </div>
-
-          {/* Color prose from DESIGN.md */}
           {sections["Colors"] && (
-            <div className="border-muted bg-surface mt-8 rounded-lg border p-5">
-              <div
-                className="text-secondary prose-sm [&_strong]:text-secondary-strong space-y-2 text-sm [&_strong]:font-semibold"
-                dangerouslySetInnerHTML={{
-                  __html: mdToHtml(sections["Colors"]),
-                }}
-              />
-            </div>
+            <Panel>
+              <Prose md={sections["Colors"]} />
+            </Panel>
           )}
-        </section>
+        </Section>
 
-        {/* ── Typography ─────────────────────────────────────────────── */}
-        <section>
-          <div className="mb-6 flex items-baseline gap-2">
-            <span className="text-accent font-mono text-[11px] font-medium tracking-wider uppercase">
-              02
-            </span>
-            <h2 className="font-heading text-primary text-xl font-bold">
-              Typography Scale
-            </h2>
-          </div>
-          <div className="border-muted bg-surface rounded-lg border p-6">
-            <p className="text-secondary-muted mb-4 font-mono text-xs">
-              Work Sans Variable — Variable weight 100–900
-            </p>
+        <Section title="Typography">
+          <Panel className="py-2 sm:py-2">
             {Object.entries(tokens.typography).map(([name, token]) => (
               <TypeSample key={name} name={name} token={token} />
             ))}
-          </div>
-        </section>
+          </Panel>
+        </Section>
 
-        {/* ── Spacing ────────────────────────────────────────────────── */}
-        <section>
-          <div className="mb-6 flex items-baseline gap-2">
-            <span className="text-accent font-mono text-[11px] font-medium tracking-wider uppercase">
-              03
-            </span>
-            <h2 className="font-heading text-primary text-xl font-bold">
-              Spacing Scale
-            </h2>
-          </div>
-          <div className="border-muted bg-surface space-y-3 rounded-lg border p-6">
+        <Section title="Spacing">
+          <Panel className="space-y-3">
             {Object.entries(tokens.spacing).map(([name, value]) => (
               <SpacingBar key={name} name={name} value={value} />
             ))}
-          </div>
-        </section>
+          </Panel>
+        </Section>
 
-        {/* ── Border Radius ──────────────────────────────────────────── */}
-        <section>
-          <div className="mb-6 flex items-baseline gap-2">
-            <span className="text-accent font-mono text-[11px] font-medium tracking-wider uppercase">
-              04
-            </span>
-            <h2 className="font-heading text-primary text-xl font-bold">
-              Border Radius
-            </h2>
+        <Section title="Radius">
+          <div className="flex flex-wrap items-end gap-10">
+            {Object.entries(tokens.rounded).map(([name, value]) => (
+              <RadiusPreview key={name} name={name} value={value} />
+            ))}
           </div>
-          <div className="border-muted bg-surface rounded-lg border p-6">
-            <div className="flex flex-wrap items-end justify-center gap-8">
-              {Object.entries(tokens.rounded).map(([name, value]) => (
-                <RadiusPreview key={name} name={name} value={value} />
-              ))}
+        </Section>
+
+        <Section title="Components">
+          <Panel className="flex flex-col gap-8">
+            <div className="flex flex-col gap-3">
+              <h3 className="text-primary text-base font-semibold">Keycaps</h3>
+              <div className="flex flex-wrap items-center gap-4">
+                <span className="keycap font-display size-16 text-2xl font-semibold">
+                  A
+                </span>
+                <button
+                  type="button"
+                  className="keycap keycap-mod px-5 py-3 font-bold"
+                >
+                  Mod key
+                </button>
+                <button
+                  type="button"
+                  className="keycap keycap-plain px-5 py-3 font-bold"
+                >
+                  Plain key
+                </button>
+                <span
+                  data-pressed="true"
+                  className="keycap px-5 py-3 font-bold"
+                >
+                  Pressed
+                </span>
+                <button
+                  type="button"
+                  disabled
+                  className="keycap keycap-plain px-5 py-3 font-bold"
+                >
+                  Disabled
+                </button>
+              </div>
+              <p className="text-secondary text-sm">
+                Press and hold any key to see its travel.
+              </p>
             </div>
-          </div>
-        </section>
-
-        {/* ── Components ─────────────────────────────────────────────── */}
-        <section>
-          <div className="mb-6 flex items-baseline gap-2">
-            <span className="text-accent font-mono text-[11px] font-medium tracking-wider uppercase">
-              05
-            </span>
-            <h2 className="font-heading text-primary text-xl font-bold">
-              Components
-            </h2>
-          </div>
-
-          {/* Buttons */}
-          <div className="border-muted bg-surface space-y-6 rounded-lg border p-6">
-            <h3 className="text-secondary-strong text-sm font-semibold">
-              Buttons
-            </h3>
-            <div className="flex flex-wrap items-center gap-4">
-              <button className="bg-accent text-text-on-accent hover:bg-accent-hover focus-visible:outline-accent inline-flex items-center gap-2 rounded-md px-3 py-2 text-xs font-medium transition-colors focus-visible:outline-2 focus-visible:outline-offset-2">
-                Primary Button
-              </button>
-              <span className="text-tertiary font-mono text-[10px]">
-                button-primary
-              </span>
+            <div className="flex flex-col gap-3">
+              <h3 className="text-primary text-base font-semibold">Tags</h3>
+              <div className="flex flex-wrap gap-2">
+                {["react", "css", "javascript", "agents"].map((tag) => (
+                  <TagBadge key={tag} tag={tag} />
+                ))}
+              </div>
             </div>
-          </div>
-
-          {/* Tag Badges */}
-          <div className="border-muted bg-surface mt-4 space-y-6 rounded-lg border p-6">
-            <h3 className="text-secondary-strong text-sm font-semibold">
-              Tag Badges
-            </h3>
-            <div className="flex flex-wrap items-center gap-3">
-              {["React", "TypeScript", "Design Systems", "Performance"].map(
-                (tag) => (
-                  <span
-                    key={tag}
-                    className="border-muted bg-surface text-secondary hover:text-primary hover:border-secondary-strong inline-flex cursor-default items-center rounded-full border px-1 py-0.5 text-xs font-medium transition-colors"
-                  >
-                    {tag}
-                  </span>
-                ),
-              )}
-            </div>
-          </div>
-
-          {/* Input Field */}
-          <div className="border-muted bg-surface mt-4 space-y-6 rounded-lg border p-6">
-            <h3 className="text-secondary-strong text-sm font-semibold">
-              Input Fields
-            </h3>
-            <div className="max-w-sm">
+            <div className="flex max-w-sm flex-col gap-3">
+              <h3 className="text-primary text-base font-semibold">Wells</h3>
               <input
                 type="text"
-                placeholder="Enter your email"
+                placeholder="address@example.ext"
                 aria-label="Example email input"
-                readOnly
-                className="bg-surface ring-muted text-primary placeholder:text-tertiary focus:ring-accent w-full rounded-md px-3 py-2 text-sm ring-1 transition-shadow outline-none focus:ring-2 focus:ring-inset"
+                className="key-well text-primary placeholder:text-tertiary focus:ring-accent w-full border-0 px-3.5 py-2.5 focus:ring-2"
               />
             </div>
-          </div>
+            <div className="flex flex-col gap-3">
+              <h3 className="text-primary text-base font-semibold">
+                Highlight
+              </h3>
+              <p className="text-secondary-strong">
+                Links get a{" "}
+                <span className="group">
+                  <span className="marker text-primary font-bold">
+                    lemon marker
+                  </span>
+                </span>{" "}
+                on hover, and selections are lemon too.
+              </p>
+            </div>
+            <div className="flex flex-col gap-3">
+              <h3 className="text-primary text-base font-semibold">Quote</h3>
+              <Quote author="Clack design rule">
+                Pink belongs to the key under your finger.
+              </Quote>
+            </div>
+          </Panel>
+        </Section>
 
-          {/* Nav Links */}
-          <div className="border-muted bg-surface mt-4 space-y-6 rounded-lg border p-6">
-            <h3 className="text-secondary-strong text-sm font-semibold">
-              Navigation Links
-            </h3>
-            <nav className="flex gap-6" aria-label="Example navigation">
-              {["Home", "Blog", "Projects"].map((label, i) => (
-                <button
-                  key={label}
-                  className={clsx(
-                    "relative text-sm transition-colors bg-transparent border-0 p-0 cursor-pointer",
-                    "after:absolute after:bottom-[-2px] after:left-0 after:h-[2px] after:bg-accent after:transition-transform after:duration-200",
-                    i === 0
-                      ? "text-primary after:w-full after:scale-x-100"
-                      : "text-secondary hover:text-primary after:w-full after:scale-x-0 hover:after:scale-x-100",
-                  )}
-                >
-                  {label}
-                </button>
-              ))}
-            </nav>
-          </div>
-
-          {/* Blockquote */}
-          <div className="border-muted bg-surface mt-4 space-y-6 rounded-lg border p-6">
-            <h3 className="text-secondary-strong text-sm font-semibold">
-              Blockquote
-            </h3>
-            <blockquote className="text-secondary-strong rounded-r-lg border-l-4 border-amber-500/60 px-6 py-4 text-lg italic">
-              The best design systems are invisible — they get out of the way
-              and let the content speak.
-              <figcaption className="text-secondary-muted mt-2 text-sm not-italic">
-                — Design System Principle
-              </figcaption>
-            </blockquote>
-          </div>
-        </section>
-
-        {/* ── Do's and Don'ts ────────────────────────────────────────── */}
         {sections["Do's and Don'ts"] && (
-          <section>
-            <div className="mb-6 flex items-baseline gap-2">
-              <span className="text-accent font-mono text-[11px] font-medium tracking-wider uppercase">
-                06
-              </span>
-              <h2 className="font-heading text-primary text-xl font-bold">
-                Do's & Don'ts
-              </h2>
-            </div>
-            <div className="border-muted bg-surface rounded-lg border p-6">
-              <div
-                className="text-secondary [&_strong]:text-secondary-strong space-y-2 text-sm"
-                dangerouslySetInnerHTML={{
-                  __html: mdToHtml(sections["Do's and Don'ts"]),
-                }}
-              />
-            </div>
-          </section>
+          <Section title="Do's and Don'ts">
+            <Panel>
+              <Prose md={sections["Do's and Don'ts"]} />
+            </Panel>
+          </Section>
         )}
       </main>
-
-      {/* Back link */}
-      <footer className="border-muted border-t">
-        <div className="mx-auto max-w-4xl px-6 py-6">
-          <a
-            href="/"
-            className="text-secondary-muted hover:text-secondary text-sm transition-colors"
-          >
-            ← Back to site
-          </a>
-        </div>
-      </footer>
     </div>
   );
 }
