@@ -1,4 +1,3 @@
-import clsx from "clsx";
 import type { TagWithCount } from "webmarks/api";
 
 interface TagFilterRowProps {
@@ -13,7 +12,7 @@ export function TagFilterRow({ tags, activeTag, onSelect }: TagFilterRowProps) {
   }
 
   return (
-    <ul className="flex [scrollbar-width:none] gap-x-2 overflow-x-auto pb-0.5 [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
+    <ul className="-mx-1 flex [scrollbar-width:none] gap-x-2 overflow-x-auto [mask-image:linear-gradient(to_right,black_calc(100%-3rem),transparent)] px-1 pt-1 pb-2 [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
       {tags.map((tag) => {
         const active = tag.name === activeTag;
 
@@ -24,20 +23,10 @@ export function TagFilterRow({ tags, activeTag, onSelect }: TagFilterRowProps) {
               // Clicking the active tag clears the filter.
               onClick={() => onSelect(active ? "" : tag.name)}
               aria-pressed={active}
-              className={clsx(
-                "inline-flex shrink-0 items-center gap-x-1.5 rounded-full border px-3 py-1 text-xs font-medium whitespace-nowrap transition-colors",
-                active
-                  ? "border-accent bg-accent text-text-on-accent"
-                  : "border-muted text-secondary hover:border-tertiary hover:text-primary",
-              )}
+              className="keycap keycap-plain keycap-light shrink-0 gap-x-1.5 px-3 pt-1 pb-1.5 text-sm font-bold whitespace-nowrap [--radius-key:0.5rem] [--travel:3px]"
             >
               {tag.name}
-              <span
-                className={clsx(
-                  "font-mono text-[0.625rem] tabular-nums",
-                  active ? "text-text-on-accent/75" : "text-tertiary",
-                )}
-              >
+              <span className="font-mono text-[0.6875rem] tabular-nums opacity-75">
                 {tag.bookmarkCount}
               </span>
             </button>
