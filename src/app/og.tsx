@@ -1,89 +1,149 @@
 import { createFileRoute } from "@tanstack/react-router";
 import ImageResponse from "takumi-js/response";
-import { googleFonts } from "takumi-js/helpers";
+// Self-hosted faces, inlined into the server bundle so the image never
+// depends on a font CDN at request time.
+import unboundedUrl from "@fontsource-variable/unbounded/files/unbounded-latin-wght-normal.woff2?inline";
+import atkinsonUrl from "@fontsource-variable/atkinson-hyperlegible-next/files/atkinson-hyperlegible-next-latin-wght-normal.woff2?inline";
+
+/** Clack colorway, light plate (hex mirrors of DESIGN.md). */
+const clack = {
+  plate: "#eae1fe",
+  key: "#fcfbff",
+  skirt: "#c2b7da",
+  ink: "#25193f",
+  mod: "#006a68",
+  modSkirt: "#004847",
+  onMod: "#fcfbff",
+  accent: "#c81c71",
+  accentSkirt: "#8e024d",
+};
+
+const fromDataUrl = (url: string) =>
+  Uint8Array.from(atob(url.slice(url.indexOf(",") + 1)), (c) =>
+    c.charCodeAt(0),
+  );
+
+const fonts = [
+  { name: "Unbounded", data: fromDataUrl(unboundedUrl) },
+  { name: "Atkinson Hyperlegible Next", data: fromDataUrl(atkinsonUrl) },
+];
+
+function Key({
+  children,
+  cap = clack.key,
+  skirt = clack.skirt,
+  ink = clack.ink,
+  width = 76,
+}: {
+  children: string;
+  cap?: string;
+  skirt?: string;
+  ink?: string;
+  width?: number;
+}) {
+  return (
+    <div
+      style={{
+        display: "flex",
+        alignItems: "flex-start",
+        width: `${width}px`,
+        height: "76px",
+        padding: "10px 12px",
+        borderRadius: "14px",
+        backgroundColor: cap,
+        color: ink,
+        boxShadow: `0 6px 0 ${skirt}`,
+        fontFamily: '"Unbounded", sans-serif',
+        fontSize: "30px",
+        fontWeight: 600,
+        lineHeight: 1,
+      }}
+    >
+      {children}
+    </div>
+  );
+}
 
 function OgImage({ title }: { title: string }) {
+  const size = title.length > 60 ? 54 : title.length > 32 ? 64 : 76;
   return (
     <div
       style={{
         width: "100%",
         height: "100%",
         display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        padding: "48px",
-        backgroundImage:
-          "linear-gradient(135deg, oklch(0.984 0.003 247.858) 0%, oklch(0.962 0.018 272.314) 40%, oklch(0.930 0.033 272.788) 100%)",
-        fontFamily: '"Work Sans", sans-serif',
+        flexDirection: "column",
+        padding: "56px 64px 64px",
+        gap: "40px",
+        backgroundColor: clack.plate,
+        fontFamily: '"Atkinson Hyperlegible Next", sans-serif',
       }}
     >
-      {/* Top accent bar */}
-      <div
-        style={{
-          position: "absolute",
-          top: 0,
-          left: 0,
-          right: 0,
-          height: "6px",
-          backgroundImage:
-            "linear-gradient(90deg, oklch(0.511 0.230 276.966), oklch(0.680 0.158 276.935), oklch(0.585 0.204 277.117))",
-        }}
-      />
-
-      {/* Card */}
+      {/* The title is one big keycap. */}
       <div
         style={{
           display: "flex",
-          flexDirection: "column",
           flex: 1,
-          height: "100%",
-          padding: "64px 72px",
-          backgroundColor: "oklch(1 0 0)",
-          borderRadius: "16px",
-          boxShadow: "0 4px 24px rgba(0, 0, 0, 0.06)",
+          alignItems: "center",
+          padding: "40px 56px",
+          borderRadius: "28px",
+          backgroundColor: clack.key,
+          boxShadow: `0 10px 0 ${clack.skirt}`,
         }}
       >
-        {/* Title */}
-        <div style={{ display: "flex", flex: 1, alignItems: "center" }}>
-          <p
-            style={{
-              fontSize: "72px",
-              fontWeight: 800,
-              lineHeight: 1.1,
-              color: "oklch(0.208 0.040 265.755)",
-              letterSpacing: "-0.025em",
-            }}
-          >
-            {title}
-          </p>
-        </div>
+        <p
+          style={{
+            fontFamily: '"Unbounded", sans-serif',
+            fontSize: `${size}px`,
+            fontWeight: 700,
+            lineHeight: 1.08,
+            letterSpacing: "-0.025em",
+            color: clack.ink,
+          }}
+        >
+          {title}
+        </p>
+      </div>
 
-        {/* Bottom: author + domain */}
+      {/* Bottom row: the name in alpha keys, the domain on a mod key. */}
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
+        }}
+      >
+        <div style={{ display: "flex", gap: "10px" }}>
+          {"AGNEY".split("").map((letter, i) => (
+            <Key
+              key={`${letter}-${i}`}
+              {...(i === 0
+                ? {
+                    cap: clack.accent,
+                    skirt: clack.accentSkirt,
+                    ink: clack.onMod,
+                  }
+                : {})}
+            >
+              {letter}
+            </Key>
+          ))}
+        </div>
         <div
           style={{
             display: "flex",
-            justifyContent: "space-between",
-            alignItems: "flex-end",
+            alignItems: "center",
+            height: "76px",
+            padding: "0 32px",
+            borderRadius: "14px",
+            backgroundColor: clack.mod,
+            color: clack.onMod,
+            boxShadow: `0 6px 0 ${clack.modSkirt}`,
+            fontSize: "30px",
+            fontWeight: 700,
           }}
         >
-          <p
-            style={{
-              fontSize: "28px",
-              fontWeight: 600,
-              color: "oklch(0.511 0.230 276.966)",
-            }}
-          >
-            Agney
-          </p>
-          <p
-            style={{
-              fontSize: "22px",
-              fontWeight: 400,
-              color: "oklch(0.554 0.041 257.417)",
-            }}
-          >
-            agney.dev
-          </p>
+          agney.dev
         </div>
       </div>
     </div>
@@ -104,7 +164,7 @@ export const Route = createFileRoute("/og")({
             headers: {
               "Cache-Control": "public, immutable, max-age=31536000",
             },
-            fonts: googleFonts([{ name: "Work Sans", weight: "100..900" }]),
+            fonts,
           });
         } catch {
           return new Response("Failed to generate image", {
