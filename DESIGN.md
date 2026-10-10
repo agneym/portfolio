@@ -1,283 +1,302 @@
 ---
 version: alpha
-name: Slate & Indigo
-description: A clean, content-first personal portfolio with slate neutrals, indigo accents, and typography-driven hierarchy. Dark mode native.
+name: Clack
+description: A custom mechanical keyboard in Agney's own colorway. Everything you press is a keycap with real travel, and the real keyboard drives it. Light and dark are two plates of the same set.
 colors:
-  primary: "#0f172a"
-  secondary: "#475569"
-  secondary-strong: "#334155"
-  secondary-muted: "#64748b"
-  tertiary: "#94a3b8"
-  accent: "#4f46e5"
-  accent-hover: "#6366f1"
-  accent-muted: "#a5b4fc"
-  accent-light: "#e0e7ff"
-  surface: "#f8fafc"
-  muted: "#e2e8f0"
-  text-on-accent: "#ffffff"
-  quote-accent: "#f59e0b"
+  surface: "#eae1fe"
+  plate-deep: "#dbcef8"
+  key: "#fcfbff"
+  skirt: "#c2b7da"
+  muted: "#cfc4e7"
+  primary: "#25193f"
+  secondary-strong: "#382d55"
+  secondary: "#4a4069"
+  secondary-muted: "#5a5176"
+  tertiary: "#5d5479"
+  mod: "#006a68"
+  mod-skirt: "#004847"
+  text-on-mod: "#fcfbff"
+  accent: "#c81c71"
+  accent-skirt: "#8e024d"
+  accent-light: "#ffdbe8"
+  text-on-accent: "#fcfbff"
+  lemon: "#f8e94c"
+  text-on-lemon: "#25193f"
+colors-dark:
+  surface: "#1a142b"
+  plate-deep: "#110b1f"
+  key: "#302844"
+  skirt: "#0d071a"
+  muted: "#3a334f"
+  primary: "#f3f0fb"
+  secondary-strong: "#e0dbed"
+  secondary: "#cdc7dc"
+  secondary-muted: "#b5acc7"
+  tertiary: "#aea6c1"
+  mod: "#37c9bf"
+  mod-skirt: "#027972"
+  text-on-mod: "#130d21"
+  accent: "#fd77aa"
+  accent-skirt: "#ac3668"
+  accent-light: "#551b33"
+  text-on-accent: "#130d21"
+  lemon: "#e9dc4b"
+  text-on-lemon: "#181128"
 typography:
   display:
-    fontFamily: Work Sans
-    fontSize: 3.75rem
-    fontWeight: 800
-    lineHeight: 1.1
-    letterSpacing: "-0.025em"
+    fontFamily: Unbounded
+    fontSize: clamp(3.25rem, 9vw, 6rem)
+    fontWeight: 700
+    lineHeight: 0.95
+    letterSpacing: "-0.03em"
   h1:
-    fontFamily: Work Sans
-    fontSize: 2.25rem
-    fontWeight: 800
-    lineHeight: 1.2
-    letterSpacing: "-0.02em"
+    fontFamily: Unbounded
+    fontSize: clamp(2.125rem, 5.5vw, 3.75rem)
+    fontWeight: 700
+    lineHeight: 1.08
+    letterSpacing: "-0.025em"
   h2:
-    fontFamily: Work Sans
-    fontSize: 1.875rem
-    fontWeight: 700
-    lineHeight: 1.3
-  h3:
-    fontFamily: Work Sans
-    fontSize: 1.25rem
-    fontWeight: 700
+    fontFamily: Unbounded
+    fontSize: 1.625rem
+    fontWeight: 650
     lineHeight: 1.4
-  body-lg:
-    fontFamily: Work Sans
-    fontSize: 1.25rem
-    fontWeight: 500
-    lineHeight: 1.6
-  body:
-    fontFamily: Work Sans
+    letterSpacing: "-0.02em"
+  legend:
+    fontFamily: Unbounded
     fontSize: 1rem
-    fontWeight: 400
-    lineHeight: 1.75
-  label-sm:
-    fontFamily: Work Sans
-    fontSize: 0.75rem
-    fontWeight: 500
+    fontWeight: 600
     lineHeight: 1
-  caption:
-    fontFamily: Work Sans
-    fontSize: 0.75rem
+  body-lg:
+    fontFamily: Atkinson Hyperlegible Next
+    fontSize: 1.25rem
     fontWeight: 400
-    lineHeight: 1.4
+    lineHeight: 1.5
+  body:
+    fontFamily: Atkinson Hyperlegible Next
+    fontSize: 1.125rem
+    fontWeight: 400
+    lineHeight: 1.6
+  label:
+    fontFamily: Atkinson Hyperlegible Next
+    fontSize: 0.875rem
+    fontWeight: 700
+    lineHeight: 1.2
+  code:
+    fontFamily: Martian Mono
+    fontSize: 0.875rem
+    fontWeight: 400
+    lineHeight: 1.7
 rounded:
-  sm: 4px
-  md: 6px
-  lg: 8px
-  full: 9999px
+  tag: 8px
+  key: 12px
+  card: 16px
+  plate: 28px
 spacing:
+  travel: 4px
   xs: 4px
   sm: 8px
   md: 16px
   lg: 24px
-  xl: 32px
-  2xl: 48px
-  3xl: 64px
-  content-max: 65ch
+  xl: 40px
+  2xl: 64px
+  1u: 96px
 components:
-  button-primary:
+  keycap-alpha:
+    backgroundColor: "{colors.key}"
+    textColor: "{colors.primary}"
+    rounded: "{rounded.key}"
+    typography: "{typography.legend}"
+  keycap-mod:
+    backgroundColor: "{colors.mod}"
+    textColor: "{colors.text-on-mod}"
+    rounded: "{rounded.key}"
+    padding: 10px 16px
+    typography: "{typography.label}"
+  keycap-pressed:
     backgroundColor: "{colors.accent}"
     textColor: "{colors.text-on-accent}"
-    rounded: "{rounded.md}"
-    padding: 8px 12px
-    typography: "{typography.label-sm}"
-  button-primary-hover:
-    backgroundColor: "{colors.accent-hover}"
-  tag-badge:
-    backgroundColor: "{colors.surface}"
-    textColor: "{colors.secondary}"
-    rounded: "{rounded.full}"
-    padding: 2px 12px
-  tag-badge-hover:
+    rounded: "{rounded.key}"
+  keycap-plain:
+    backgroundColor: "{colors.plate-deep}"
     textColor: "{colors.primary}"
-  input-field:
-    backgroundColor: "{colors.surface}"
+    rounded: "{rounded.key}"
+  tag-key:
+    backgroundColor: "{colors.plate-deep}"
     textColor: "{colors.primary}"
-    rounded: "{rounded.md}"
-    padding: 8px 12px
-  input-field-focus:
-    textColor: "{colors.accent}"
-  nav-link:
-    textColor: "{colors.secondary}"
-    typography: "{typography.body}"
-  nav-link-active:
+    rounded: "{rounded.tag}"
+    padding: 4px 10px
+  key-well:
+    backgroundColor: "{colors.key}"
     textColor: "{colors.primary}"
-  nav-link-hover:
+    rounded: "{rounded.key}"
+    padding: 10px 14px
+  card:
+    backgroundColor: "{colors.key}"
     textColor: "{colors.primary}"
-  prose-quote:
-    textColor: "{colors.secondary}"
-    rounded: "{rounded.lg}"
-    padding: 16px 24px
+    rounded: "{rounded.card}"
+    padding: 20px
+  highlight:
+    backgroundColor: "{colors.lemon}"
+    textColor: "{colors.text-on-lemon}"
 ---
 
 ## Overview
 
-Slate & Indigo is a clean, content-first design system for a personal portfolio
-and blog. It prioritises readability and calm navigation, using a restricted
-slate-neutral palette with a single indigo accent for all interactive cues.
-Dark mode is a first-class citizen — every color token flips via CSS custom\nproperty overrides in a `.dark` selector. Components use the same token name\nin both themes; the variable value changes, not the class.
+**Creative North Star: "The custom board."** agney.dev is a mechanical
+keyboard built in Agney's own colorway, called Clack. The home page is the
+board itself: his name typed out in alpha keys, an artisan Esc key carrying
+his avatar, the site's sections as teal modifier keys, and a spacebar that
+reads "Web Developer. Storyteller." Every other page is built from the same
+parts: plates, keycaps, wells, and legends.
 
-The personality is **restrained but warm**: generous whitespace, a single
-variable font family (Work Sans) spanning every weight, and subtle motion
-(animated underlines, scale transforms on hover). The feel should be
-"engineer's notebook" — precise, uncluttered, trustworthy.
+The world is playful and physical but never in the way of reading. Keys
+travel when pressed, the real keyboard presses the keys on screen, and the
+board hides a couple of secrets. The blog keeps the world in its chrome and
+lets long-form text sit quietly on the plate.
+
+**Key Characteristics:**
+
+- Keycaps with real travel: a side wall (skirt) under the cap, a soft cast
+  shadow, and a press that drops the cap into the plate.
+- A four-role colorway: lilac plate, white or graphite alphas, teal
+  modifiers, hot pink for whatever is pressed, lemon for highlights.
+- A wide, round display face for legends and headlines; a hyper-legible
+  reading face for everything long.
+- Keyboard first: single-key shortcuts for every section, a `?` sheet, and
+  a switch to turn them off.
 
 ## Colors
 
-The palette is built on Tailwind's slate scale for neutrals and indigo for
-accent. Only indigo drives interaction — there is no secondary accent color.
-Dark mode is handled by CSS variable overrides (`.dark { ... }`), not
-`dark:` utility prefixes — every token has a single canonical name that
-resolves to the correct value per theme.
+Light and dark are two plates of the same set: the same token names flip
+values under `.dark` (CSS custom properties in `src/app/global.css`), so
+components never need `dark:` variants for system colours.
 
-- **Primary (#0f172a / dark: #f1f5f9):** Near-black slate for headlines and
-  body text in light mode, flipping to a near-white slate in dark mode.
-  Provides maximum readability without harsh black/white extremes.
-- **Secondary (#475569 / dark: #94a3b8):** Muted slate for supporting text,
-  captions, metadata, and inactive navigation.
-- **Secondary Strong (#334155 / dark: #cbd5e1):** A bolder secondary for
-  emphasized supporting text.
-- **Secondary Muted (#64748b / dark: #94a3b8):** A lighter secondary for
-  dates, tag text, and subtle metadata.
-- **Tertiary (#94a3b8 / dark: #64748b):** The most muted text tier — figure
-  captions, placeholder text. Flips to a darker shade in dark mode to
-  maintain contrast against the dark surface.
-- **Accent (#4f46e5 / dark: #6366f1):** Indigo — the sole driver for
-  interactive elements. Used for primary buttons, focus rings, active nav
-  states, and decorative underlines. Hover state is `accent-hover` (#6366f1
-  in light, #818cf8 in dark).
-- **Accent Light (#e0e7ff / dark: #4f46e5):** Used for text selection
-  highlights. Flips from a light indigo wash to a saturated indigo in dark
-  mode.
-- **Accent Muted (#a5b4fc / dark: #6366f1):** Decorative accents like dashed
-  underlines.
-- **Surface (#f8fafc / dark: #1e293b):** Page background — a warm off-white
-  slate in light mode, dark slate in dark mode.
-- **Muted (#e2e8f0 / dark: #334155):** Borders, dividers, input rings, and
-  tag outlines.
-- **Quote Accent (#f59e0b):** A restrained amber used only for blockquote
-  left-border accents — the single warm note in an otherwise cool palette.
-  Does not flip in dark mode (amber reads well on dark backgrounds).
-- **Text on Accent (#ffffff):** White text on indigo buttons and elements to
-  guarantee WCAG AA contrast. Does not flip.
+- **Plate (surface #eae1fe / dark #1a142b):** the page ground. A lilac case
+  in light mode and a plum case at night.
+- **Plate deep (#dbcef8 / #110b1f):** the board's bed, recessed panels,
+  filter bars, empty states, and plain keys.
+- **Key (#fcfbff / #302844):** the alpha keycap. Raised reading and control
+  surfaces: cards, code blocks, the newsletter panel, inputs.
+- **Skirt (#c2b7da / #0d071a):** a keycap's side wall, drawn as the
+  zero-blur shadow under every key.
+- **Ink (primary #25193f / #f3f0fb, then secondary-strong, secondary,
+  secondary-muted, tertiary):** plum-tinted text steps. Every step passes AA
+  on plate, plate-deep, and key in both themes.
+- **Mod (#006a68 / #37c9bf):** teal modifier keys: navigation, primary
+  actions, year keys, link underlines.
+- **Accent (#c81c71 / #fd77aa):** hot pink.
+- **Lemon (#f8e94c / #e9dc4b):** the highlighter: text selection, link hover
+  marks, the Enter key, "Digital Garden".
+
+**The Pressed Pink Rule.** Pink belongs only to the key that is pressed or
+active: the current page's nav key, a key under your finger, a selected
+tag, the focus ring. Never use it as decoration.
+
+**The Tinted Ink Rule.** No grey and no pure black. Every neutral is tinted
+from the plate's plum hue.
 
 ## Typography
 
-**Work Sans Variable** is the sole type family, used at every level from
-72px display to 12px captions. The variable axis (weight 100–900) eliminates
-the need for multiple font files while providing precise control.
+- **Unbounded** (variable, 200 to 900) is the legend and display voice:
+  page titles, post titles, headings, key legends. Wide, round terminals,
+  like printed keycap legends.
+- **Atkinson Hyperlegible Next** (variable, with italics) sets body copy,
+  labels, controls, and post lists. Built for legibility, which suits a
+  site whose product is reading.
+- **Martian Mono** (variable width and weight) is for code, `kbd`, and
+  data such as ordinals. Code blocks set it at 75% width so lines fit.
 
-- **Display:** 60px (3.75rem) Extrabold at -0.025em tracking. Reserved for the
-  hero name on the homepage. Intentionally oversized to establish presence.
-- **Headings:** Work Sans Extrabold (h1: 36px, h2: 30px, h3: 20px) with
-  progressively tighter tracking at larger sizes. All headings use the
-  `--font-heading` CSS variable.
-- **Body:** 16px Regular at 1.75 line-height for long-form reading. The
-  generous leading and 65ch max-width column create a comfortable measure.
-- **Body Large:** 20px Medium. Used for the homepage tagline — larger but
-  lighter-weight to feel approachable.
-- **Labels & Captions:** 12px at tighter leading (1.0–1.4). Used for dates,
-  tag badges, and figure captions.
+All three are self-hosted through `@fontsource-variable/*`; there are no
+font CDNs. The Unbounded latin file is preloaded from `__root.tsx`.
+
+### Hierarchy
+
+Display (6rem max) is reserved for section names (Blog, Webmarks). Post
+titles use h1 (clamp to 3.75rem). Article h2/h3 step down in Unbounded;
+body is 1.125rem / 1.8 at 68ch.
+
+**The Unit Rule.** Hierarchy on the board comes from keycap width on a
+fixed unit ramp (1u, 1.25u, 1.5u, 2u, 5.5u spacebar), not from extra type
+sizes.
 
 ## Layout
 
-The layout follows a **content-column grid** model. Pages use CSS Grid with
-named rows: a 3rem sticky navbar row, a flexible content row, and (on the
-homepage) a 6rem footer row.
-
-Blog articles use a three-column grid with a 65ch content column flanked by
-flexible margins:
-
-```
-grid-cols-[minmax(1.5rem,1fr)_minmax(0,65ch)_minmax(1.5rem,1fr)]
-```
-
-Full-bleed elements (wide charts, code blocks) span all three columns via
-`.article-full-bleed`.
-
-Spacing follows an 8px base unit with half-steps (4px) for micro-adjustments.
-The scale: 4, 8, 12, 16, 20, 24, 32, 40, 48, 64px. Vertical rhythm is
-generous — 16px between sections, 64px for major content breaks.
-
-The navbar is sticky with `backdrop-blur` for a frosted-glass effect over
-scrolling content. Navigation links sit on the right on desktop, collapsing
-into a popover on mobile.
+- The home page is the board plus a "Latest writing" column; it rotates
+  -2deg on wide screens and sits flat on phones. The board is a 32-column
+  grid (a quarter-unit per column) sized by `--u`.
+- Blog index: display title and newsletter panel share the header; posts
+  group by year, with the year as a sticky teal key.
+- Posts: a 68ch column with full-bleed escapes for interactive demos.
+- Webmarks: display title, a sticky filter bar (search well, sort, tag keys),
+  and a 1/2/3-column card grid.
+- Breakpoints: Tailwind defaults (640, 768, 1024, 1280). Nav collapses to a
+  menu key below 768px; the home layout goes side by side at 1280px.
 
 ## Elevation & Depth
 
-Depth is achieved through **subtle tonal separation**, not heavy shadows. The
-approach is largely flat with strategic depth cues:
+Depth is physical, not ambient. A raised key carries three shadows: an
+inset top highlight, a zero-blur skirt (`0 var(--travel) 0 skirt`), and a
+soft cast shadow (`0 calc(travel + 4px) 12px -2px`). Pressing moves the cap
+down by the travel (4px, 3px on small keys, 2px on tags) and collapses the
+skirt. Wells (inputs) invert it: an inset skirt at the top.
 
-- Background surfaces use distinct slate tones: surface (#f8fafc) for the page,
-  pure white cards for OG images and elevated content.
-- `shadow-xs` (1px blur) on inputs for subtle inset feel. `shadow-lg` (24px
-  blur) reserved for cover images to lift them off the page.
-- The navbar uses `backdrop-blur-xs` with `opacity-90` over the scrollable
-  content — a lightweight frosted-glass effect that indicates elevation without
-  a drop shadow.
-- Dividers (`<hr>`) separate article footer from content with a faint
-  `border-muted`.
+**The Travel Rule.** The zero-blur shadow is only ever a keycap's wall,
+always paired with a blurred cast shadow, always collapsing on press.
 
 ## Shapes
 
-The shape language is **soft rectangles** — corners are rounded but never
-fully circular except for tag badges.
-
-- **4px (sm):** Minimum radius for cards and subtle rounding.
-- **6px (md):** Default for buttons and input fields. Enough to feel modern
-  without sacrificing the "engineered" aesthetic.
-- **8px (lg):** Cover images and blockquote right edges.
-- **9999px (full):** Tag badges — the only fully rounded elements, creating a
-  pill shape that visually distinguishes them from interactive controls.
-- **Sharp:** Blockquote left edge is a straight 4px border with no radius on
-  that side, creating an intentional sharp/soft contrast (sharp left, rounded
-  right).
+Radii scale with the object: 8px tags, 12px keys, 16px cards and code
+blocks, 28px plates and panels. No pills: even tags are small keys.
 
 ## Components
 
-- **Buttons:** The primary button is indigo-600 with white text, 6px radius,
-  8px×12px padding, and a `font-semibold` label. Hover lightens to indigo-500.
-  Focus ring uses `outline-2 outline-offset-2 outline-indigo-600`. There are
-  no secondary or tertiary button variants — the primary button is the only
-  high-emphasis action on a page.
+### Keycaps (`.keycap`)
 
-- **Tag Badges:** Pill-shaped (`rounded-full`) with a 1px `border-muted`,
-  2px×12px padding, and 12px Medium text. Hover deepens the border and text
-  color. Tags link to filtered tag pages.
+One class, four caps: alpha (`keycap`, key white), plain (`keycap-plain`,
+plate-deep), light (`keycap-light`), and mod (`keycap-mod`, teal). Any
+keycap that is `:active`, `[aria-current="page"]`, `[aria-pressed="true"]`
+or `[data-pressed="true"]` turns pink and drops. Disabled keys sit flat.
 
-- **Input Fields:** `bg-surface` background, 6px radius, 1px `ring-muted`,
-  8px×12px padding. Focus transitions to a 2px `ring-accent` with
-  `ring-inset`. Placeholder text is `text-tertiary`.
+### Navigation
 
-- **Navigation Links:** A custom underline animation via a `::before`
-  pseudo-element that scales from 0 to 100% on hover. Active links keep the
-  underline visible at `text-primary`. External links open in new tabs.
+Header nav keys carry their shortcut letter as a top-left legend. The
+current page's key stays pressed. The `?` key opens the shortcut sheet and
+the teal theme key swaps the plate.
 
-- **Blockquotes:** A 4px amber left border (`border-quote-accent/60`), 8px
-  right radius, 16px×24px padding. Body text is italic, 18px,
-  `text-secondary-strong`. Optional `<figcaption>` attribution in
-  `text-secondary-muted`, 14px.
+### Inputs (`.key-well`)
 
-- **Theme Toggle:** A 24px×24px icon button with a subtle scale-up on hover
-  (`hover:scale-105`). Animates the icon swap with a 30° rotation via
-  Framer Motion's `AnimatePresence`.
+Inputs are the holes keys sit in: key-coloured, inset skirt at the top,
+pink focus ring.
 
-- **Rough Charts:** Data visualisations use RoughJS for a hand-drawn sketch
-  aesthetic. Charts render as inline SVG with hachure fills and currentColor
-  strokes, respecting the light/dark theme.
+### Cards
+
+Webmark cards are big keycaps: key surface, 16px radius, skirt and cast
+shadow, lift on hover, drop when the link is pressed.
+
+### Signature: the board
+
+`KeyboardHero` lays the name out on a plate. Letters press on tap or on the
+matching physical key; the Enter key says hi; typing "agney" or "menon"
+sends a wave down the rows. The Konami code turns on RGB underglow across
+every keycap on the site.
 
 ## Do's and Don'ts
 
-- Do use `accent` only for the single most important action per screen
-- Color tokens handle dark mode via CSS variables — do not use `dark:`
-  prefixes for color utilities (use `text-primary`, not
-  `text-primary dark:text-primary-inverse`)
-- Do keep body text within 65ch for readability
-- Do use Work Sans for everything — do not introduce a second type family
-- Don't mix rounded corners on the same element (sharp left + rounded right
-  on blockquotes is the only intentional exception)
-- Don't use shadows heavier than `shadow-lg` — the design relies on tonal
-  separation, not depth
-- Don't use `accent` for non-interactive decorative elements — reserve it for
-  actions and focus states
-- Do maintain the 8px spacing rhythm — avoid arbitrary pixel values
-- Do animate with purpose — under 300ms transitions, `ease-in-out` timing
+### Do:
+
+- **Do** build every control as a keycap or a well, with real travel.
+- **Do** keep pink for the pressed or active state only.
+- **Do** keep long-form reading quiet: ink on plate, Atkinson at 68ch.
+- **Do** give every motion a `prefers-reduced-motion` path; the board's
+  wave and RGB cycle stop, presses still change colour.
+- **Do** keep single-key shortcuts switchable (WCAG 2.1.4) from the `?`
+  sheet.
+
+### Don't:
+
+- **Don't** use grey or pure black; tint from the plum hue.
+- **Don't** use a zero-blur shadow on anything that is not a keycap.
+- **Don't** add eyebrow labels, numbered section markers, or side-stripe
+  borders.
+- **Don't** set body copy in Unbounded or mono; they are legends and code.
+- **Don't** load fonts from a CDN.

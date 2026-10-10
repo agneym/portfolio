@@ -1,0 +1,257 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-10T11:12:19.338192+00:00",
+  "title": "Design System: Clack",
+  "extensions": {
+    "colorMeta": {
+      "surface": {
+        "role": "neutral",
+        "displayName": "Lilac Plate",
+        "canonical": "oklch(0.925 0.04 300)",
+        "tonalRamp": [
+          "oklch(0.15 0.04 300)",
+          "oklch(0.27 0.04 300)",
+          "oklch(0.39 0.04 300)",
+          "oklch(0.51 0.04 300)",
+          "oklch(0.63 0.04 300)",
+          "oklch(0.75 0.04 300)",
+          "oklch(0.86 0.04 300)",
+          "oklch(0.95 0.04 300)"
+        ]
+      },
+      "key": {
+        "role": "neutral",
+        "displayName": "Alpha Cap",
+        "canonical": "oklch(0.99 0.006 300)",
+        "tonalRamp": [
+          "oklch(0.15 0.006 300)",
+          "oklch(0.27 0.006 300)",
+          "oklch(0.39 0.006 300)",
+          "oklch(0.51 0.006 300)",
+          "oklch(0.63 0.006 300)",
+          "oklch(0.75 0.006 300)",
+          "oklch(0.86 0.006 300)",
+          "oklch(0.95 0.006 300)"
+        ]
+      },
+      "primary": {
+        "role": "neutral",
+        "displayName": "Plum Ink",
+        "canonical": "oklch(0.25 0.07 295)",
+        "tonalRamp": [
+          "oklch(0.15 0.07 295)",
+          "oklch(0.27 0.07 295)",
+          "oklch(0.39 0.07 295)",
+          "oklch(0.51 0.07 295)",
+          "oklch(0.63 0.07 295)",
+          "oklch(0.75 0.07 295)",
+          "oklch(0.86 0.07 295)",
+          "oklch(0.95 0.07 295)"
+        ]
+      },
+      "mod": {
+        "role": "secondary",
+        "displayName": "Modifier Teal",
+        "canonical": "oklch(0.47 0.09 192)",
+        "tonalRamp": [
+          "oklch(0.15 0.09 192)",
+          "oklch(0.27 0.09 192)",
+          "oklch(0.39 0.09 192)",
+          "oklch(0.51 0.09 192)",
+          "oklch(0.63 0.09 192)",
+          "oklch(0.75 0.09 192)",
+          "oklch(0.86 0.09 192)",
+          "oklch(0.95 0.09 192)"
+        ]
+      },
+      "accent": {
+        "role": "primary",
+        "displayName": "Pressed Pink",
+        "canonical": "oklch(0.55 0.21 358)",
+        "tonalRamp": [
+          "oklch(0.15 0.21 358)",
+          "oklch(0.27 0.21 358)",
+          "oklch(0.39 0.21 358)",
+          "oklch(0.51 0.21 358)",
+          "oklch(0.63 0.21 358)",
+          "oklch(0.75 0.21 358)",
+          "oklch(0.86 0.21 358)",
+          "oklch(0.95 0.21 358)"
+        ]
+      },
+      "lemon": {
+        "role": "tertiary",
+        "displayName": "Highlighter Lemon",
+        "canonical": "oklch(0.92 0.17 104)",
+        "tonalRamp": [
+          "oklch(0.15 0.17 104)",
+          "oklch(0.27 0.17 104)",
+          "oklch(0.39 0.17 104)",
+          "oklch(0.51 0.17 104)",
+          "oklch(0.63 0.17 104)",
+          "oklch(0.75 0.17 104)",
+          "oklch(0.86 0.17 104)",
+          "oklch(0.95 0.17 104)"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "Section names only (Blog, Webmarks, Clack)."
+      },
+      "legend": {
+        "displayName": "Legend",
+        "purpose": "Keycap legends and headings."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Article text and UI copy."
+      },
+      "code": {
+        "displayName": "Code",
+        "purpose": "Code blocks, kbd, ordinals."
+      }
+    },
+    "shadows": [
+      {
+        "name": "key-raised",
+        "value": "inset 0 1px 0 var(--key-highlight), 0 var(--travel) 0 var(--cap-skirt), 0 calc(var(--travel) + 4px) 12px -2px var(--key-cast)",
+        "purpose": "A raised keycap: highlight, side wall, cast shadow."
+      },
+      {
+        "name": "key-pressed",
+        "value": "inset 0 1px 0 var(--key-highlight), 0 1px 0 var(--cap-skirt), 0 2px 4px -1px var(--key-cast)",
+        "purpose": "The same cap, pressed into the plate."
+      },
+      {
+        "name": "well",
+        "value": "inset 0 2px 0 var(--color-skirt), inset 0 0 0 1px var(--color-muted)",
+        "purpose": "Inputs: the hole a key sits in."
+      }
+    ],
+    "motion": [
+      {
+        "name": "ease-clack",
+        "value": "cubic-bezier(0.2, 0.9, 0.3, 1.35)",
+        "purpose": "Key travel, 120ms, a hint of overshoot."
+      },
+      {
+        "name": "ease-out-expo",
+        "value": "cubic-bezier(0.16, 1, 0.3, 1)",
+        "purpose": "Entrances, marker swipes, sheet."
+      },
+      {
+        "name": "travel",
+        "value": "4px",
+        "purpose": "Key travel distance (3px small keys, 2px tags)."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "sm",
+        "value": "640px"
+      },
+      {
+        "name": "md",
+        "value": "768px"
+      },
+      {
+        "name": "lg",
+        "value": "1024px"
+      },
+      {
+        "name": "xl",
+        "value": "1280px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Alpha Keycap",
+      "kind": "button",
+      "refersTo": "keycap-alpha",
+      "description": "Default raised key.",
+      "html": "<button class=\"ds-key\">A</button>",
+      "css": ".ds-key{--cap:#fcfbff;--ink:#25193f;--skirt:#c2b7da;background:var(--cap);color:var(--ink);border:0;border-radius:12px;padding:10px 18px;font-weight:700;box-shadow:inset 0 1px 0 rgb(255 255 255/.7),0 4px 0 var(--skirt),0 8px 12px -2px rgb(60 30 90/.28);transition:transform 120ms cubic-bezier(.2,.9,.3,1.35),box-shadow 120ms;cursor:pointer;font-family:'Unbounded Variable',sans-serif;font-size:24px;min-width:64px;height:64px}.ds-key:hover{transform:translateY(-1px)}.ds-key:active{background:var(--color-accent,#c81c71);color:#fcfbff;transform:translateY(3px);box-shadow:0 1px 0 #8e024d,0 2px 4px -1px rgb(60 30 90/.28);}.ds-key:focus-visible{outline:3px solid #c81c71;outline-offset:3px}"
+    },
+    {
+      "name": "Modifier Keycap",
+      "kind": "button",
+      "refersTo": "keycap-mod",
+      "description": "Navigation and primary actions.",
+      "html": "<button class=\"ds-mod\">I want in!</button>",
+      "css": ".ds-mod{--cap:#006a68;--ink:#fcfbff;--skirt:#004847;background:var(--cap);color:var(--ink);border:0;border-radius:12px;padding:10px 18px;font-weight:700;box-shadow:inset 0 1px 0 rgb(255 255 255/.7),0 4px 0 var(--skirt),0 8px 12px -2px rgb(60 30 90/.28);transition:transform 120ms cubic-bezier(.2,.9,.3,1.35),box-shadow 120ms;cursor:pointer;}.ds-mod:hover{transform:translateY(-1px)}.ds-mod:active{background:var(--color-accent,#c81c71);color:#fcfbff;transform:translateY(3px);box-shadow:0 1px 0 #8e024d,0 2px 4px -1px rgb(60 30 90/.28);}.ds-mod:focus-visible{outline:3px solid #c81c71;outline-offset:3px}"
+    },
+    {
+      "name": "Tag Key",
+      "kind": "chip",
+      "refersTo": "tag-key",
+      "description": "Tags are small blank keys.",
+      "html": "<a class=\"ds-tag\" href=\"#\">react</a>",
+      "css": ".ds-tag{display:inline-block;background:#dbcef8;color:#25193f;border-radius:8px;padding:4px 10px 6px;font-size:12px;font-weight:700;text-decoration:none;box-shadow:0 2px 0 #c2b7da;transition:transform 120ms}.ds-tag:active{background:#c81c71;color:#fcfbff;transform:translateY(1px);box-shadow:0 1px 0 #8e024d}.ds-tag:focus-visible{outline:3px solid #c81c71;outline-offset:3px}"
+    },
+    {
+      "name": "Key Well Input",
+      "kind": "input",
+      "refersTo": "key-well",
+      "description": "Inputs sit in wells.",
+      "html": "<input class=\"ds-well\" placeholder=\"Search title, notes, URL\">",
+      "css": ".ds-well{background:#fcfbff;color:#25193f;border:0;border-radius:12px;padding:10px 14px;box-shadow:inset 0 2px 0 #c2b7da,inset 0 0 0 1px #cfc4e7;font:inherit}.ds-well:focus-visible{outline:3px solid #c81c71;outline-offset:3px}"
+    },
+    {
+      "name": "Marker Link",
+      "kind": "custom",
+      "refersTo": "highlight",
+      "description": "Lemon highlighter swipe on hover.",
+      "html": "<a class=\"ds-marker\" href=\"#\">Event delegation - The React Way</a>",
+      "css": ".ds-marker{color:#25193f;font-weight:700;text-decoration:none;background-image:linear-gradient(#f8e94c,#f8e94c);background-repeat:no-repeat;background-position:0 88%;background-size:0% .42em;transition:background-size 280ms cubic-bezier(.16,1,.3,1)}.ds-marker:hover,.ds-marker:focus-visible{background-size:100% .42em}"
+    }
+  ],
+  "narrative": {
+    "northStar": "The custom board.",
+    "overview": "agney.dev is a mechanical keyboard built in Agney's own colorway, called Clack. The home page is the board itself; every other page is built from the same parts: plates, keycaps, wells, and legends.",
+    "keyCharacteristics": [
+      "Keycaps with real travel.",
+      "A four-role colorway: lilac plate, teal modifiers, pressed pink, lemon highlights.",
+      "Unbounded legends over Atkinson Hyperlegible Next body.",
+      "Keyboard first, with switchable single-key shortcuts."
+    ],
+    "rules": [
+      {
+        "name": "The Pressed Pink Rule",
+        "body": "Pink belongs only to the key that is pressed or active.",
+        "section": "colors"
+      },
+      {
+        "name": "The Tinted Ink Rule",
+        "body": "No grey and no pure black. Every neutral is tinted from the plate's plum hue.",
+        "section": "colors"
+      },
+      {
+        "name": "The Unit Rule",
+        "body": "Hierarchy on the board comes from keycap width on a fixed unit ramp, not extra type sizes.",
+        "section": "typography"
+      },
+      {
+        "name": "The Travel Rule",
+        "body": "The zero-blur shadow is only ever a keycap's wall, always paired with a blurred cast shadow, always collapsing on press.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "Do build every control as a keycap or a well, with real travel.",
+      "Do keep pink for the pressed or active state only.",
+      "Do keep long-form reading quiet: ink on plate, Atkinson at 68ch.",
+      "Do give every motion a prefers-reduced-motion path.",
+      "Do keep single-key shortcuts switchable (WCAG 2.1.4)."
+    ],
+    "donts": [
+      "Don't use grey or pure black; tint from the plum hue.",
+      "Don't use a zero-blur shadow on anything that is not a keycap.",
+      "Don't add eyebrow labels, numbered section markers, or side-stripe borders.",
+      "Don't set body copy in Unbounded or mono.",
+      "Don't load fonts from a CDN."
+    ]
+  }
+}
