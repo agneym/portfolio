@@ -90,19 +90,20 @@ const BASE = {
 } satisfies Partial<KeySound>;
 
 export const KEY_SOUNDS = {
-  // Alphas: a crisp, bright clack.
+  // Alphas: a crisp, bright clack with a high tick and a little rattle.
   alpha: {
     ...BASE,
     click: {
       filter: "bandpass",
-      frequency: 3400,
-      q: 1.1,
-      decay: 0.028,
-      level: 0.55,
-      rattle: 0,
-      rattleLevel: 0.45,
+      frequency: 4200,
+      q: 1.6,
+      decay: 0.02,
+      level: 0.6,
+      rattle: 0.011,
+      rattleLevel: 0.75,
     },
-    thump: { wave: "sine", start: 190, end: 95, decay: 0.05, level: 0.45 },
+    thump: { wave: "sine", start: 220, end: 120, decay: 0.04, level: 0.3 },
+    tick: { level: 0.6, frequency: 6500, q: 3, decay: 0.006, delay: 0 },
   },
   // Spacebar: a deep, round thock with a stabiliser rattle.
   space: {

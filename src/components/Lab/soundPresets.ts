@@ -37,22 +37,6 @@ export const PRESETS: { name: string; hint: string; sound: KeySound }[] = [
     }),
   },
   {
-    name: "Clicky blue",
-    hint: "Sharp double click, light bottom-out",
-    sound: preset({
-      click: {
-        frequency: 4200,
-        q: 1.6,
-        decay: 0.02,
-        level: 0.6,
-        rattle: 0.011,
-        rattleLevel: 0.75,
-      },
-      tick: { level: 0.6, frequency: 6500, q: 3, decay: 0.006 },
-      thump: { start: 220, end: 120, decay: 0.04, level: 0.3 },
-    }),
-  },
-  {
     name: "Creamy linear",
     hint: "Smooth, soft, even",
     sound: preset({
