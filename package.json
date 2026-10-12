@@ -46,6 +46,7 @@
     "@vitejs/plugin-react": "^6.1.2",
     "arktype": "^2.2.8",
     "clsx": "^2.1.1",
+    "dialkit": "^2.0.2",
     "is-ci": "^4.1.0",
     "lucide-react": "^1.54.0",
     "motion": "^14.1.0",

@@ -12,6 +12,17 @@ import {
   setShortcutsEnabled,
   shortcutsEnabled,
 } from "./shortcuts";
+import {
+  feedback,
+  setHapticsEnabled,
+  setSoundEnabled,
+  soundEnabled,
+} from "./feedback";
+import {
+  useHapticsEnabled,
+  useHapticsSupported,
+  useSoundEnabled,
+} from "./feedback/hooks";
 
 const subscribe = (callback: () => void) => {
   window.addEventListener("clack:shortcuts-change", callback);
@@ -34,6 +45,9 @@ export function KeyboardShortcuts() {
   const navigate = useNavigate();
   const { resolvedTheme, setTheme } = useTheme();
   const enabled = useShortcutsEnabled();
+  const sound = useSoundEnabled();
+  const haptics = useHapticsEnabled();
+  const hapticsSupported = useHapticsSupported();
   const dialogRef = useRef<HTMLDialogElement>(null);
   const konamiIndex = useRef(0);
   const [rgb, setRgb] = useState(false);
@@ -64,6 +78,7 @@ export function KeyboardShortcuts() {
             const next = document.documentElement.dataset.rgb !== "on";
             document.documentElement.dataset.rgb = next ? "on" : "off";
             setRgb(next);
+            feedback(next ? "konami-on" : "konami-off");
             window.dispatchEvent(
               new CustomEvent(RGB_EVENT, { detail: { on: next } }),
             );
@@ -102,6 +117,12 @@ export function KeyboardShortcuts() {
         event.preventDefault();
         const { resolvedTheme: current, setTheme: set } = themeRef.current;
         set(current === "dark" ? "light" : "dark");
+        return;
+      }
+
+      if (key === "s") {
+        event.preventDefault();
+        setSoundEnabled(!soundEnabled());
         return;
       }
 
@@ -155,28 +176,34 @@ export function KeyboardShortcuts() {
             </ShortcutRow>
           ))}
           <ShortcutRow keys={["t"]}>Switch light and dark</ShortcutRow>
+          <ShortcutRow keys={["s"]}>Turn key sounds on or off</ShortcutRow>
           <ShortcutRow keys={["/"]}>Search webmarks</ShortcutRow>
           <ShortcutRow keys={["?"]}>Show this sheet</ShortcutRow>
         </dl>
 
-        <div className="bg-surface flex items-center justify-between gap-4 rounded-xl px-4 py-3 text-sm">
-          <label htmlFor="shortcut-toggle" className="cursor-pointer">
-            <span className="text-primary block font-bold">
-              Single-key shortcuts
-            </span>
-            <span className="text-secondary">
-              Turn off if they get in the way of your screen reader or
-              extensions.
-            </span>
-          </label>
-          <input
+        <div className="flex flex-col gap-y-2">
+          <SettingSwitch
+            id="sound-toggle"
+            label="Key sounds"
+            hint="Soft, synthesized switch clacks on the home keyboard. Off until you turn them on."
+            checked={sound}
+            onChange={setSoundEnabled}
+          />
+          {hapticsSupported ? (
+            <SettingSwitch
+              id="haptics-toggle"
+              label="Haptics"
+              hint="A tiny buzz when you tap a key."
+              checked={haptics}
+              onChange={setHapticsEnabled}
+            />
+          ) : null}
+          <SettingSwitch
             id="shortcut-toggle"
-            type="checkbox"
-            role="switch"
-            aria-checked={enabled}
+            label="Single-key shortcuts"
+            hint="Turn off if they get in the way of your screen reader or extensions."
             checked={enabled}
-            onChange={(event) => setShortcutsEnabled(event.target.checked)}
-            className="text-mod focus-visible:ring-accent size-5 shrink-0 cursor-pointer rounded border-[var(--color-skirt)] focus:ring-0 focus-visible:ring-2"
+            onChange={setShortcutsEnabled}
           />
         </div>
 
@@ -211,5 +238,37 @@ function ShortcutRow({
       </dt>
       <dd className="text-secondary-strong">{children}</dd>
     </>
+  );
+}
+
+function SettingSwitch({
+  id,
+  label,
+  hint,
+  checked,
+  onChange,
+}: {
+  id: string;
+  label: string;
+  hint: string;
+  checked: boolean;
+  onChange: (checked: boolean) => void;
+}) {
+  return (
+    <div className="bg-surface flex items-center justify-between gap-4 rounded-xl px-4 py-3 text-sm">
+      <label htmlFor={id} className="cursor-pointer">
+        <span className="text-primary block font-bold">{label}</span>
+        <span className="text-secondary">{hint}</span>
+      </label>
+      <input
+        id={id}
+        type="checkbox"
+        role="switch"
+        aria-checked={checked}
+        checked={checked}
+        onChange={(event) => onChange(event.target.checked)}
+        className="text-mod focus-visible:ring-accent size-5 shrink-0 cursor-pointer rounded border-[var(--color-skirt)] focus:ring-0 focus-visible:ring-2"
+      />
+    </div>
   );
 }
