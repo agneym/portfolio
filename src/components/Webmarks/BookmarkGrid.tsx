@@ -61,7 +61,7 @@ export function BookmarkGrid({
       className={clsx(
         // items-start: cards keep their natural height instead of stretching to
         // the tallest card in the row and leaving a hole above their tags.
-        "mt-8 grid list-none grid-cols-1 items-start gap-x-5 gap-y-6 sm:grid-cols-2 xl:grid-cols-3",
+        "mt-8 grid list-none grid-cols-1 items-start gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3",
         // Keep the previous results visible while a filter change loads.
         isFetching && "opacity-60 transition-opacity duration-200",
       )}
@@ -70,7 +70,6 @@ export function BookmarkGrid({
         <li key={bookmark.id} className="flex">
           <BookmarkCard
             bookmark={bookmark}
-            ordinal={index + 1}
             index={index}
             animate={animate}
             activeTag={activeTag}

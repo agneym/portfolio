@@ -7,7 +7,6 @@ import {
   BookmarkGrid,
   LoadMore,
   SearchField,
-  SortSelect,
   TagFilterRow,
 } from "components/Webmarks";
 import {
@@ -23,8 +22,8 @@ import {
 /**
  * Keep only params that differ from the defaults. TanStack Start rebuilds the
  * URL from this on the server and redirects when the two disagree, and a clean
- * `/webmarks` beats `/webmarks?q=&tag=&sort=newest`. Unknown keys never reach
- * the loader, so an old page-number link (`?page=2`) just shows the first page.
+ * `/webmarks` beats `/webmarks?q=&tag=`. Unknown keys never reach the loader, so an old
+ * page-number link (`?page=2`) or a retired `?sort=` just shows the default list.
  */
 const parseSearch = (search: Record<string, unknown>): WebmarksSearch =>
   toSearchParams(normalizeListParams(search));
@@ -120,10 +119,6 @@ function WebmarksPage() {
               <SearchField
                 value={params.q}
                 onChange={(q) => setParams({ q })}
-              />
-              <SortSelect
-                value={params.sort}
-                onChange={(sort) => setParams({ sort })}
               />
               {hasFilters ? (
                 <button
