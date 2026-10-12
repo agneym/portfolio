@@ -36,7 +36,7 @@ export function SearchField({ value, onChange }: SearchFieldProps) {
   }, [draft, value]);
 
   return (
-    <div className="relative w-full sm:w-80">
+    <div className="relative w-full sm:w-72">
       <Search
         aria-hidden="true"
         className="text-secondary pointer-events-none absolute top-1/2 left-3.5 z-10 h-4 w-4 -translate-y-1/2"
