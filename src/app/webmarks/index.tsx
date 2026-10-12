@@ -114,7 +114,7 @@ function WebmarksPage() {
         {total === 0 && !hasFilters ? null : (
           <section
             aria-label="Filters"
-            className="bg-surface/90 sticky top-16 z-20 -mx-4 flex flex-col gap-y-3 px-4 pt-3 pb-2 backdrop-blur-md backdrop-saturate-150 sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8"
+            className="bg-surface sticky top-16 z-20 -mx-4 flex flex-col gap-y-3 px-4 pt-3 pb-2 backdrop-blur-md backdrop-saturate-150 sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8"
           >
             <div className="flex flex-wrap items-center gap-3">
               <SearchField

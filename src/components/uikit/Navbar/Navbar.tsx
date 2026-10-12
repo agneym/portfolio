@@ -48,7 +48,7 @@ export function Navbar({ className, children }: NavbarProps) {
     <nav
       aria-label="Main"
       className={clsx(
-        "bg-surface/85 text-primary sticky top-0 z-30 flex items-center justify-between gap-x-4 px-4 py-3 backdrop-blur-md backdrop-saturate-150 md:px-8",
+        "bg-surface text-primary sticky top-0 z-30 flex h-16 items-center justify-between gap-x-4 px-4 backdrop-blur-md backdrop-saturate-150 md:px-8",
         className,
       )}
     >
