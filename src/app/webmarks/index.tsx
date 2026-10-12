@@ -113,9 +113,17 @@ function WebmarksPage() {
         {total === 0 && !hasFilters ? null : (
           <section
             aria-label="Filters"
-            className="bg-surface sticky top-16 z-20 -mx-4 flex flex-col gap-y-3 px-4 pt-3 pb-2 backdrop-blur-md backdrop-saturate-150 sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8"
+            className="bg-surface sticky top-16 z-20 -mx-4 flex flex-col gap-3 px-4 pt-3 pb-2 backdrop-blur-md backdrop-saturate-150 sm:-mx-6 sm:flex-row sm:items-center sm:gap-5 sm:px-6 lg:-mx-8 lg:px-8"
           >
-            <div className="flex flex-wrap items-center gap-3">
+            {/* Search sits above the tags on phones, to their right from sm. */}
+            <div className="min-w-0 flex-1 max-sm:order-2">
+              <TagFilterRow
+                tags={tags}
+                activeTag={params.tag}
+                onSelect={(tag) => setParams({ tag })}
+              />
+            </div>
+            <div className="flex shrink-0 items-center gap-3 sm:pb-1">
               <SearchField
                 value={params.q}
                 onChange={(q) => setParams({ q })}
@@ -130,11 +138,6 @@ function WebmarksPage() {
                 </button>
               ) : null}
             </div>
-            <TagFilterRow
-              tags={tags}
-              activeTag={params.tag}
-              onSelect={(tag) => setParams({ tag })}
-            />
           </section>
         )}
 
