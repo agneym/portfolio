@@ -50,7 +50,7 @@ export const Route = createRootRouteWithContext<{
     ],
     links: [
       { rel: "stylesheet", href: appCss },
-      { rel: "icon", type: "image/png", href: "/icon.png" },
+      { rel: "icon", type: "image/svg+xml", href: "/favicon.svg" },
       // The display face sets the first viewport; fetch it with the CSS.
       {
         rel: "preload",
