@@ -1,0 +1,122 @@
+---
+title: Web in April - Newsletter by Agney
+date: "2022-05-03T22:52:38.115000Z"
+buttondownUrl: https://buttondown.com/agney/archive/web-in-april-newsletter-by-agney-7142/
+---
+
+May the 4th Be With You
+
+The month's biggest news has been [Acquisition](https://www.wsj.com/articles/twitter-and-elon-musk-strike-deal-for-takeover-11650912837) of Twitter by the billionaire Elon Musk. It reminds you of the antics of Batman and Iron Man and by his tweets, he might want us to be reminded of it. While it has not been an aggressive takeover in financial details, that's what it certainly [looks like](https://www.wionews.com/technology/twitter-is-in-dark-about-future-under-musk-ceo-parag-agrawal-tells-employees-473866) to the layman. Elon Musk has promised to bring back Free Speech or whatever the definition of it fits right now.
+
+On personal front, I'm joining [Circle App](https://circle.so/) as Frontend Developer. Wish me luck 🍀.
+
+### Technology and War
+
+- [How open source intelligence is shaping the Russia-Ukraine war - Wbur](https://www.wbur.org/onpoint/2022/04/11/how-open-source-intelligence-is-shaping-the-russia-ukraine-war)
+- [As Russia Plots Its Next Move, an AI Listens to the Chatter - Wired](https://www.wired.com/story/russia-ukraine-war-ai-surveillance/)
+- [Ukraine’s Online Volunteers Go After Russian Targets - Foreign Policy](https://foreignpolicy.com/2022/05/03/ukraine-it-army-hackers-russia-war)
+
+---
+
+## Releases
+
+### [Firefox 100](https://developer.mozilla.org/en-US/docs/Mozilla/Firefox/Releases/100)
+
+- `navigator.pdfViewerEnabled` is now enabled, and is the recommended way to determine whether a browser supports inline display of PDF files when navigating to them.
+
+### [Chrome 101](https://developer.chrome.com/blog/new-in-devtools-101/)
+
+- Chrome now supports [hwb color notation](https://drafts.csswg.org/css-color/#the-hwb-notation)
+- The Devtools can now view cascade layers in CSS
+
+### [RedwoodJS](https://redwoodjs.com/)
+
+The serverless NodeJS framework which has been in development for a long time is finally 1.0 🚀 [Watch Launch Week recap](https://v1launchweek.redwoodjs.com/) with startup showcases and active office hours.
+
+### Facebook Experimental libraries
+
+Facebook moved two of their major libraries into open source this month.
+
+- [Eden](https://github.com/facebookexperimental/eden) - Cross-platform, highly scalable source control management system.
+- [Lexical](https://github.com/facebook/lexical) - Lexical is an extensible text editor framework that provides excellent reliability, accessibility and performance.
+
+[https://twitter.com/sebmarkbage/status/1516907614566854659](https://twitter.com/sebmarkbage/status/1516907614566854659)
+
+## Tutorials
+
+### [How We Build r/Place](https://www.redditinc.com/blog/how-we-built-rplace/)
+
+The developers at Reddit build a unique community named r/Place for this week's April Fool. If you didn't run into it, it's a huge infinite canvas where you can place a tile each and if you have a community, turn them into beautiful works of art. The reddit team discusses how they did it with the roadblocks they considered and ran into.
+
+### [Building a dialog component](https://web.dev/building-a-dialog-component/)
+
+The new `dialog` element is pretty cool in that it provides a dialog/modal without the hassle of any JavaScript. It's granted that you would have to use some JavaScript to make all the functionalities that you normally associate with a modal to work, but it's a good canvas to paint on. There's a gift of accessibility, if nothing else. Adam Argyle dives deep into markup, styling, accessibility and animation of building a Dialog with `dialog` HTML element in this edition.
+
+### [The Front-End Developer's Guide to the Terminal - Josh Comeau](https://www.joshwcomeau.com/javascript/terminal-for-js-devs/)
+
+Most tutorials already assume that you are familiar with some form of terminal before you get into the meat of programming. But that may not be the case with most people. Josh's blog post might be a good reference if that is the case.
+
+### [CSS Parent Selector - Ishadeed](https://ishadeed.com/article/css-has-parent-selector/)
+
+The `has` operator is currently [available only](https://caniuse.com/css-has) on Safari (and behind a flag in some other browsers) but it's already turning heads. It's the first parent selector that CSS has had and it can be used to check if the container has a particular element inside and style accordingly. The examples in this blog post are 🤯
+
+I'm actually looking forward to how frameworks like Tailwind will adopt to this challenge.
+
+## In the Spotlight 🔦
+
+[https://twitter.com/aleccortega/status/1520076284130439171](https://twitter.com/aleccortega/status/1520076284130439171)
+
+As Disney Plus and Hulu are moving to JavaScript monorepos, it's what we will talk about in this months' spotlight.
+
+> A monorepo is a single repository containing multiple distinct projects, with well-defined relationships.
+
+A very easy use case available for most applications would be the library tree:
+
+app/
+├── frontend/
+├── library/
+└── configuration/
+
+You want to split the reused components in library and any configuration like ESLint, TypeScript, theming into configuration (so you can use them across frontend and library). Since you have them in the same repository structure, you can ship updates in the same commit without waiting for PRs. If you use workspaces (provided by all package managers: yarn, npm, pnpm) you don't even have to publish the library. Instead taking a build of the library, gets the updated version on frontend to use.
+
+- [monorepo.tools](https://monorepo.tools/#what-is-a-monorepo)
+- [TurboRepo - Vercel](https://turborepo.org/docs/getting-started)
+- [PNPM workspaces](https://pnpm.io/workspaces)
+
+## In Other News
+
+### Data Loss fears from Atlassian
+
+Atlassian was down for around 10 days time period during the last month and several customers lost access to Bitbucket, Jira and Confluence. There were also wide reports of customer data being lost from Atlassian after a faulty script was run from the server. (All the accounts are now restored).
+
+- [Postmortem - Atlassian Blog](https://www.atlassian.com/engineering/april-2022-outage-update)
+- [Detailed timeline of events - Pragmatic Engineer Blog](https://newsletter.pragmaticengineer.com/p/scoop-atlassian?)
+
+### AirBnb on the Remote train
+
+[https://twitter.com/bchesky/status/1519831566486147073](https://twitter.com/bchesky/status/1519831566486147073)
+
+AirBnb is now widely used by remote workers and worked at by remote workers. Classy touch.
+
+Also worth reading [this letter](https://appletogether.org/hotnews/thoughts-on-office-bound-work) from Apple employees responding on return to office calls:
+
+> You have characterized the decision for the Hybrid Working Pilot as being about combining the “need to commune in-person” and the value of flexible work. But in reality, it does not recognize flexible work and is only driven by fear. Fear of the future of work, fear of worker autonomy, fear of losing control.
+
+### Apple deleting apps that haven't had updates
+
+Developers are having their apps and games taken off the App Store because there hasn't been enough updates or enough downloads. Both of which are not significant parameters in whether an app is required. As complaints and Twitter threads poured in, Apple [responded](https://developer.apple.com/news/?id=gi6npkmf&1651278071) with _this is how things are going to be and it's your fault_
+
+### [The Manager's Handbook](https://themanagershandbook.com/)
+
+Alex MacCaw with help from the team at Clearbit has released a free book for want to be Managers. It's definitely exciting that a book about managing people begins with a chapter to manage yourself.
+
+> Don't micromanage your teams work or daily output (creative work isn’t an assembly line). If you find yourself supervising too often, you've hired the wrong people.
+
+> Authority isn’t bestowed freely. It’s earned by repeatedly making good decisions.
+
+## Looking Forward
+
+- [Figma Config](https://config.figma.com/events/figma-config-2022/home) - May 10,11
+- [Google I/O](https://io.google/2022/) - May 11,12
+- [Remix Conf](https://remix.run/conf) - May 24,25
+- [Microsoft Build](https://mybuild.microsoft.com/) - May 24-26

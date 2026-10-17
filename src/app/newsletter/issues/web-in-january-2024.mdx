@@ -1,0 +1,141 @@
+---
+title: JEM - Web in January - JavaScript Every Month Newsletter
+date: "2024-02-12T20:53:46.696465Z"
+buttondownUrl: https://buttondown.com/agney/archive/jem-web-in-january-javascript-every-month/
+---
+
+Welcome to shortest month of the year. Which happens to be a day longer this year.
+
+```javascript
+function isLeapYear(year) {
+  return year % 400 === 0 || (year % 4 === 0 && year % 100 !== 0);
+}
+```
+
+Last month, Apple launched Vision Pro, sparking a frenzy of videos and posts across the internet. Already, there are Twitter accounts dedicated to people wearing it in unconventional places. Although I haven't had the opportunity to test it myself (because I'm not from the US), reviews suggest it's impressive. What's intriguing is that Meta transitioned their entire company yet didn't achieve the same level of success as Apple. However, I believe this move will eventually prove beneficial for Meta. A Meta Quest equipped with better passthrough and displays seems to be on the horizon.
+
+## Releases
+
+### Browsers
+
+#### [Firefox 122](https://developer.mozilla.org/en-US/docs/Mozilla/Firefox/Releases/122)
+
+- `<hr>` in select elements - much easier separation.
+- Various SVG CSS related improvements like `offset-position`, `offset-path`, `ray()` function.
+- For parity with other browsers, `Date.parse()` and the `Date()` constructor only consider the first three letters of the specified month when non-standard date strings are parsed.
+- `HTMLSelectElement.showPicker()` method is now supported, allowing the browser picker for a `<select>` element to be programmatically launched when triggered by user interaction.
+
+#### [Chrome 121](https://developer.chrome.com/blog/new-in-chrome-121)
+
+- `scrollbar-color` and `scrollbar-width` are available.
+- `font-palette` lets you select a specific palette to render a color font.
+- Pseudo elements `::spelling-error` and `grammar-error` lets you customize colors for the spelling and grammar errors.
+- Sites can use the [Speculation Rules API](https://developer.mozilla.org/en-US/docs/Web/API/Speculation_Rules_API), to programmatically tell Chrome which pages to prerender, creating a better user experience by reducing page navigation time.
+- `showPicker` makes an appearance here as well.
+
+#### [Safari 17.3](https://developer.apple.com/documentation/safari-release-notes/safari-17_3-release-notes)
+
+- Bug fixes.
+
+### [Next.js 14.1](https://nextjs.org/blog/next-14-1)
+
+Critics have previously pointed out that Next.js can be challenging to self-host and can potentially tether users to a single vendor, particularly Vercel.
+
+- Turbopack improvements with memory usage and performance.
+- Very promising performance improvement stats.
+- Improved error messages and fast refresh for RSC.
+- `next/image` support for `<picture>` and art direction.
+
+### [The Bun Shell](https://bun.sh/blog/the-bun-shell)
+
+Bun makes it possible to run JavaScript programs in a shell. The release post looks at existing problems with using JavaScript in the shell and how Bun fixes it (Spoiler: with a `$`)
+
+### [LLRT](https://github.com/awslabs/llrt)
+
+AWS open sourced a JavaScript runtime that they build.
+
+> LLRT (Low Latency Runtime) is an experimental, lightweight JavaScript runtime designed to address the growing demand for fast and efficient Serverless applications.
+
+## In the Spotlight 🔦
+
+There has been a lot of chatter about React server components last month and not all of it has been positive.
+
+It's a fundamental shift on how we do things and the advantages of doing it is not clear from the first glance. A [short post from Cassidy Williams](https://blog.cassidoo.co/post/annoyed-at-react/) makes community's feelings clear:
+
+> Not to boast but I like… really know React. I’ve used it for almost a decade. I’ve seen it morph and grow and used the frameworks that have popped up to work with it, I’ve written dozens of articles and tutorials for it, I was in the React 18 Working Group and other related groups before that, and before the pandemic, I taught React full time. So trust me when I say: React’s gotten really hard to understand.
+
+Tanner Linsley, the creator of the Tan stack, [shared a tweet elaborating on his thoughts](<(https://twitter.com/tannerlinsley/status/1746970043836158330)>).
+
+> Since hooks and the early conception of the suspense API, I have personally felt that React has been obsessed with just a handful of concepts. While technically impressive and undoubtedly pushing the limits and boundaries of what a single-threaded UI API can do, these new concepts have had very little impact on what I do day to day to deliver value to my users (other than making it more complex to "safely"/idiomatically do the same thing or dancing around experimental APIs that my open source users think are officially ready for prime time).
+
+It seems like React team listened. Dan Abramov has been on Twitter, replying to questions and posting material on React server components.
+
+[https://twitter.com/dan_abramov2/status/1746152375046242422](https://twitter.com/dan_abramov2/status/1746152375046242422)
+
+[https://twitter.com/rickhanlonii/status/1747333623152275685](https://twitter.com/rickhanlonii/status/1747333623152275685)
+
+A resource I liked about patterns in React server components is [Donut Components by frontendatscale](https://frontendatscale.com/blog/donut-components/). It takes a small problem with RSC and solves it instead of explaining the entire thing.
+
+There is also a [React conference announced](https://conf.react.dev/) after so many years in May.
+
+## Tutorials
+
+### [Codepen Moved Loved Pens](https://codepen.io/2023/popular/pens/)
+
+Codepen has released a list of moved loved pens. There's some CSS for everyone in this collection.
+
+### [Coding an Interactive (and Damn Satisfying) Cursor: 7 Simple Steps + 2kb of Code](https://dev.to/uuuuuulala/coding-an-interactive-and-damn-satisfying-cursor-7-simple-steps-2kb-of-code-1c8b)
+
+This cursor pen wasted lot of my time, but at least it was satisfying. The dev.to blog contains a step-by-step tutorial into making the cursor possible, with the power of canvas and math.
+
+### [React Libraries for 2024 - Robin Wieruch](https://www.robinwieruch.de/react-libraries/)
+
+React, often referred to as a "library," relies on additional libraries for support. While we frequently discuss frameworks backed by major companies thriving, it's worth noting that even libraries released by Facebook, such as some React libraries, may not perform as strongly against community-driven alternatives.
+
+The ones like I keep on a watchlist this year are:
+
+- [Plate](https://platejs.org/) - Text Editor
+- [Tanstack Router](https://tanstack.com/router/latest)
+- [Arc UI](https://ark-ui.com/)
+- [Lucia](https://lucia-auth.com/) - Open source auth
+
+### [Rust-Based JavaScript Linters: Fast, But No Typed Linting Right Now](https://www.joshuakgoldberg.com/blog/rust-based-javascript-linters-fast-but-no-typed-linting-right-now/)
+
+As mentioned in last month's newsletter, there's a growing trend towards rewriting software in Rust or other system-level languages. Biome and Oxlint have been emerging as contenders aiming to replace ESLint over the past quarter. However, a significant feature lacking in these competitors is type-based lint rules. This article delves into why this gap exists and explores potential solutions.
+
+### [Designing better target sizes](https://ishadeed.com/article/target-size/)
+
+Ahmad Shadeed has crafted an exceptional guide on designing target sizes. Have you ever experienced misclicks within an application, leading to frustration? Perhaps it wasn't entirely your fault; it could be attributed to the application's design itself. This guide delves into factors to consider regarding target sizes and provides practical CSS solutions to achieve better sizing, ultimately enhancing user experience.
+
+ 
+
+## In Other News
+
+### [How AI is quietly changing everyday life](https://www.politico.com/news/2024/02/04/how-ai-is-quietly-changing-everyday-life-00138341)
+
+Over the past year, we've witnessed the AI revolution embodied by ChatGPT. Politico examines how AI has significantly influenced our interactions with technology across diverse sectors, addressing challenges and the need for regulation and oversight. It's worth noting that as developers, when we refer to the "Age of ChatGPT," we're often alluding to Transformers and Generative AI. However, this nuanced perspective might not be explicitly captured in the article itself.
+
+### [I stopped using Passwords. It's Great - and a Total Mess - Wired](https://www.wired.com/story/stopped-using-passwords-passkeys/)
+
+Throughout the past year, numerous applications have shifted their default authentication method to passkeys. Wired delves into the challenges individuals face when adopting passkeys, highlighting the hoops one must navigate.
+
+However, it's worth noting that there are way more issues with passkeys beyond those outlined in the article. These include concerns about transitioning between devices and the ability to share accounts with others—a topic briefly alluded to in the context of strong passwords.
+
+### [Apple announces changes to iOS, Safari, and the App Store in the European Union](https://www.apple.com/newsroom/2024/01/apple-announces-changes-to-ios-safari-and-the-app-store-in-the-european-union/)
+
+The European Union is pressuring Apple to alter its practices concerning the App Store, viewing it as a monopoly on Apple devices. While Apple has made some changes, they aren't very effective. Now, Apple has introduced hidden fees for every app available on third-party app stores, as well as for the third-party app stores themselves. This move has obviously [left](https://www.theverge.com/2024/1/26/24052067/mozilla-apple-ios-browser-rules-firefox) [many](https://twitter.com/eldsjal/status/1750988499518362089) [campaigners](https://techcrunch.com/2024/02/01/mark-zuckerberg-calls-apples-dma-rules-so-onerous-he-doubts-any-developer-will-opt-in/) [dissatisfied](https://twitter.com/dhh/status/1755983058245923000).
+
+There are also reports that [PWA support is broken](https://twitter.com/firt/status/1753241301657460828) in Safari 17.4 beta, may be only in European Union too.
+
+### [How a $300 Million Flop Turned Into an Improbable Hit - WSJ](https://www.wsj.com/tech/cyberpunk-2077-videogame-flop-to-hit-58ed2741?st=7o1j7n8n4gc5a2h)
+
+Cyberpunk 2077 launched amid high anticipation and excitement, only to be met with poor reviews initially. Critics and players alike poked fun at its gameplay mechanics and numerous bugs. However, the game has since undergone a remarkable turnaround, selling 25 million units and even winning a major award. This article delves into how the company persevered, diligently delivering bug fixes and addressing the requests of gamers, ultimately leading to its resurgence.
+
+ 
+
+## Looking Ahead
+
+- [axe-con](https://www.deque.com/axe-con/) - Feb 20-22
+- [vue.js Amsterdam](https://vuejs.amsterdam/) - Feb 28-29
+- [JS World](https://jsworldconference.com/) - Feb 28-Mar 1
+- [IntelliJ IDEA Conf](https://lp.jetbrains.com/intellij-idea-conf-2024/) - March 6-7

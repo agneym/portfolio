@@ -1,0 +1,163 @@
+---
+title: JEM - Web in July - JavaScript Every Month Newsletter
+date: "2025-08-12T12:09:51.826409Z"
+buttondownUrl: https://buttondown.com/agney/archive/jem-web-in-july-javascript-every-month-newsletter-2859/
+---
+
+Hello August 🌧️
+
+Last month in the spotlight, we discussed the state of Radix UI libraries. WorkOS launched a [live stream maintenance session with Chantastic](https://x.com/radix_ui/status/1945942907904745477). I haven't seen any activity since the live stream, but this is a step in the right direction.
+
+## Releases
+
+### Browsers
+
+#### [Firefox 141](https://developer.mozilla.org/en-US/docs/Mozilla/Firefox/Releases/141)
+
+- WebGPU API fully supported on Windows, supported in all contexts other than service workers.
+- variants accessor property is now supported on `Intl.Locale` instances.
+- `closedby` attribute support for `<dialog>`
+
+### IDEs
+
+- Google has announced a CLI similar to Claude Code - [Gemini CLI](https://blog.google/technology/developers/introducing-gemini-cli-open-source-ai-agent/)
+- Qwen forked Gemini CLI for their Qwen Code model, naming it [qwen-code](https://github.com/QwenLM/qwen-code)
+- Claude Code launched support for slash commands, hooks and subagents.
+- [Cursor agents are on both web and mobile](https://cursor.com/blog/agent-web)
+- Cursor and VS code has launched experimental support for in build to do lists.
+- Github copilot integration is now [open source](https://code.visualstudio.com/blogs/2025/05/19/openSourceAIEditor)
+
+### [TipTap 3.0](https://tiptap.dev/docs/resources/whats-new)
+
+Major version update for the popular text editor library.
+
+- New @tiptap/extensions package includes and combines multiple utility extensions
+- MarkViews are now supported by Tiptap. This can be useful to render custom HTML for marks.
+- The editor can now run on SSR environments without rendering the editor content
+- Menus now use floating UI.
+
+### [Next 15.4](https://nextjs.org/blog/next-15-4)
+
+- Turbopack Builds: 100% integration test compatibility for next build --turbopack
+- stability and performance improvements to Next.js and Turbopack.
+
+### [NuxtLabs join Vercel](https://vercel.com/blog/nuxtlabs-joins-vercel)
+
+- Nuxt and team is hired by Vercel
+- This move also means that Vercel gets Nitro which powers Nuxt, SolidStart, Tanstack Start, and AnalogJS
+- In other news, Tanner Linsley has announced that Tanstack Start [will not have a hard dependency on Nitro](https://x.com/tannerlinsley/status/1942979827566567807)
+
+### [Nuxt 4.0](https://nuxt.com/blog/v4)
+
+The glow-up Vercel release.
+
+- cleaner project organization with `app/` directory structure
+- smart data fetching
+- better TypeScript support
+
+### [Unistyle 3.0](https://www.reactnativecrossroads.com/posts/introducing-unistyles-3)
+
+React Native styling powered by C++ core and Fabric.
+
+- Tracks usage and updates only those components that use the changed values.
+
+### [Perplexity Comet](https://techcrunch.com/2025/07/09/perplexity-launches-comet-an-ai-powered-web-browser/)
+
+If Chrome remains the primary gateway to the Internet for most people, Perplexity understands that it cannot compete with Google. To overcome this limitation, they are launching their own browser. Currently, it is invite-only, but as the trend suggests, it is an AI browser.
+
+### [Reanimated 4](https://blog.swmansion.com/reanimated-4-stable-release-the-future-of-react-native-animations-ba68210c3713)
+
+- CSS-Compatible Animation API
+- Worklets refactor
+- improved spring animation for more natural behaviour
+
+### [Deno 2.4](https://deno.com/blog/v2.4)
+
+- Build bundle with Deno `deno bundle`
+
+### [Bun 1.2.19](https://bun.com/blog/bun-v1.2.19)
+
+- `bun update --interactive` for interactive upgrades
+- `bun why` to explain why a package is installed
+
+## In the Spotlight 🔦
+
+This scandal, if you can call it that, began when Mixpanel founder Suhail tweeted a warning about a man named Soham Parekh. Parekh works at multiple startups simultaneously and has a particular interest in the Y Combinator list of companies.
+
+[https://x.com/Suhail/status/1940287384131969067](https://x.com/Suhail/status/1940287384131969067)
+
+To be honest, I didn't think much of it when I first read the tweet. However, other companies soon began to expose the same individual. Many companies had hired this person but fired him when they discovered he was moonlighting elsewhere. Soham then participated in some podcasts where he attributed his actions to financial stress.
+
+- [Soham Parekh Breaks his Silence - Youtube Interview](https://youtube.com/watch?v=IWMngMm3_88)
+- [His story does not add up - ThePrimeTime YouTube](https://youtube.com/watch?v=hkMzRB3cR3I)
+
+At this point, he should launch courses or write a book on _How to Crack an Interview_ and let it go viral.
+
+### In short
+
+- [Celebrating 20 years of MDN](https://developer.mozilla.org/en-US/blog/mdn-turns-20/)
+- v8 team writes about [how they made JSON.stringify twice as fast](https://v8.dev/blog/json-stringify)
+- [State of HTML survey](https://survey.devographics.com/en-US/survey/state-of-html/2025) is out.
+- DHH released a version of OS named [Omarchy](https://omarchy.org/) - An opinionated Arch + Hyprland setup
+- [Better T Stack](https://github.com/AmanVarshney01/create-better-t-stack) is a CLI scaffolding tool with so many good choices for a fullstack JavaScript app.
+- TIL [Meta uses Hermes](https://www.reddit.com/r/reactjs/comments/1ltbw2e/comment/n1pjs41/) for dynamic React rendering
+- [State of Devs 2025](https://2025.stateofdevs.com/) results
+- `eslint-config-prettier` was [highjacked through an NPM supply chain attack](https://www.bleepingcomputer.com/news/security/popular-npm-linter-packages-hijacked-via-phishing-to-drop-malware/)
+- npm accidentally [removed the stylus package from the registry](https://www.bleepingcomputer.com/news/security/npm-accidentally-removes-stylus-package-breaks-builds-and-pipelines/)
+
+## Tutorials
+
+### [Remixing Shopify's Admin: How We Made It 30% Faster and AI-Ready](https://shopify.engineering/remixing-admin)
+
+Shopify revamped its Admin page using Remix, resulting in a 30% improvement in load times. This update also laid the groundwork for AI integration into the app, allowing users to navigate across routes while continuing to interact with the AI assistant.
+
+I found their approach of using Remix actions and Zod schemas for routes intriguing. This method allows AI to understand how to load a page and what it requires solely from the route schema.
+
+### [Pixel Pirate #DevToolTips - Chrome for Developers](https://youtube.com/watch?v=n0bzBBaZhUQ)
+
+This informative video explains new development tool tips, such as focus emulation, the autofill panel, network overrides, and, of course, how to ask the AI. The treasure adventure and plot of the tutorial are a bit silly, but no harm done.
+
+### [The many, many, many JavaScript runtimes of the last decade](https://buttondown.com/whatever_jamie/archive/the-many-many-many-javascript-runtimes-of-the-last-decade/)
+
+One of JavaScript's strengths is its ability to run absolutely anywhere. This blog talks about JavaScript runtimes that have enabled this in the last decade. Even though it says "last decade," there are several sets in there: what got inspired from what, and what is created, and so on. Lots of new information, lots of JavaScript runtimes to learn, and you'll be surprised that JavaScript runs at some of these runtimes.
+
+### [How Parcel bundles React Server Components - Devon Govett](https://devongovett.me/blog/parcel-rsc.html)
+
+Parcel and Vite recently added support for React Server Components. This blog provides a walkthrough of how bundling typically works with components and how it differs when implemented for RSCs.
+
+It's worth going through many of Dan Abramov's blog along with this: [JSX over the Wire](https://overreacted.io/jsx-over-the-wire/)
+
+Also from this month, [React Router & React Server Components](https://remix.run/blog/react-router-and-react-server-components) from the Remix team.
+
+### [Building Lightweight Reactive State Manager with JavaScript proxies - Loren Stewart](https://www.lorenstew.art/blog/reactive-state-manager-with-proxies)
+
+This tutorial explains how to use JavaScript proxies to intercept state changes and automatically trigger the UI when they occur.
+
+### [How We Achieved 75% Faster Builds by Removing Barrel Files - Atlassian Blog](https://www.atlassian.com/blog/atlassian-engineering/faster-builds-when-removing-barrel-files)
+
+Barrel files appear beneficial at first, as they simplify the API by allowing you to say `import { Button } from "ui-kit"`. However, they also increase the size of your builds and can slow down your development setup. Atlassian team explains how they got rid of barrel files from their setup.
+
+## In Other News
+
+### [A.I. Is About to Solve Loneliness. That’s a Problem - New Yorker](https://www.newyorker.com/magazine/2025/07/21/ai-is-about-to-solve-loneliness-thats-a-problem)
+
+xAI has launched an animatronic AI anime girl this month who flirts with you. This is also an ideal time to discuss loneliness. People often view loneliness as a negative experience, with some even calling it an epidemic. However, it also drives us toward companionship and community. If you can converse with an AI every day that agrees with everything you say, do you still seek a human companion?
+
+### [Project Vend: Can Claude run a small shop? (And why does that matter?) - Anthropic Research](https://www.anthropic.com/research/project-vend-1)
+
+Anthropic set up a vending machine in their office that is entirely managed by a Claude model. It handles the inventory and pricing. This fascinating case study illustrates the impact of training the model to satisfy user preferences in the real world. The bottom line is that it was pressured into ordering specialty items and offering discounts.
+
+### [Two guys hated using Comcast, so they built their own fiber ISP - Arstechnica](https://arstechnica.com/tech-policy/2025/07/two-guys-hated-using-comcast-so-they-built-their-own-fiber-isp/)
+
+Frustrated by Comcast’s poor service and high prices, brothers-in-law Samuel Herman and Alexander Baciu founded Prime-One, a fiber-optic ISP in Saline, Michigan. Leveraging their construction expertise, they built a network offering symmetrical gigabit speeds starting at $80/month with no data caps, contracts, or equipment fees.
+
+### AI Updates
+
+- Grok 4 launched this month, with a thinking model alongside named Grok 4 Heavy.
+- [Kimi K2](https://github.com/MoonshotAI/Kimi-K2) is a huuuuge AI model that has great pricing for developers.
+- [ChatGPT Agent](https://openai.com/index/introducing-chatgpt-agent/) - Agent with access to a computer.
+- [Qwen Coder](https://qwenlm.github.io/blog/qwen3-coder/) - Seriously impressive coding and general models from Alibaba, open source. 4B parameters model that you can run locally.
+
+## Looking Ahead
+
+- [React Universe Conf](https://www.reactuniverseconf.com/) - Sept 2-5

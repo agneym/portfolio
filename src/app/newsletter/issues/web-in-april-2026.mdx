@@ -1,0 +1,205 @@
+---
+title: JEM - Web in April - JavaScript Every Month Newsletter
+date: "2026-05-09T06:02:49.583000Z"
+image: https://image-generator.buttondown.email/api/emphasize-subject?subject=JEM%20-%20Web%20in%20April%20-%20JavaScript%20Every%20Month%20Newsletter&author=JEM%20Newsletter%20-%20JavaScript%20Every%20Month&date=2026-05-09&img=
+buttondownUrl: https://buttondown.com/agney/archive/jem-web-in-april-javascript-every-month-newsletter-4186/
+---
+
+Hello May 👋
+
+Vercel had a [security incident](https://vercel.com/kb/bulletin/vercel-april-2026-security-incident) last month as the platform was infiltrated to leak non sensitive stored environment variables for a subset of customers. How the attacker gained access is the more interesting part here:
+
+> The incident originated with a compromise of Context.ai, a third-party AI tool used by a Vercel employee. The attacker used that access to take over the employee's individual Vercel Google Workspace account, which enabled them to gain access to that employee’s Vercel account. From there, they were able to pivot into a Vercel environment, and subsequently maneuvered through systems to enumerate and decrypt non-sensitive environment variables.
+
+If you are a Vercel customer, remember to rotate your keys.
+
+## Releases
+
+### Browsers
+
+### [Chrome 147](https://developer.chrome.com/release-notes/147)
+
+- `contrast-color()` function is out and baseline newly available
+- `element.startViewTransition()` on arbitrary HTML elements
+- `Math.sumPrecise` - precise math in an iterable
+
+### [Firefox 150](https://developer.mozilla.org/en-US/docs/Mozilla/Firefox/Releases/150)
+
+- `ariaNotify` allows content authors to queue a string of text to be announced by a screen reader
+- `colorMix()` supports n number of colors
+- `lightDark()` supports `<image>` values
+- media-based pseudo-classes `:buffering`, `:muted`, `:paused`, `:playing`, `:seeking`, `:stalled`, and `:volume-locked` are now supported
+- `auto` keyword is supported for image sizes attribute. More on this later.
+
+### IDE
+
+- [Cursor 3](https://cursor.com/blog/cursor-3) is Cursor's move to Codex with it's agents window.
+- Tech blog on the linear task agent - [Symphony](https://openai.com/index/open-source-codex-orchestration-symphony/) from OpenAI
+- Claude code [postmortem update](https://www.anthropic.com/engineering/april-23-postmortem) - If you thought Claude Code was regressing, you were right.
+- [Codex for (almost) everything](https://openai.com/index/codex-for-almost-everything/) - Computer use and Browser use natively in Codex.
+- Anthropic bans third party harnesses from using Claude subscription. Any usage will be [billed as third party usage](https://news.ycombinator.com/item?id=47633568). The major change being that the default reasoning effort on Claude models changed.
+- Codex has added [pay as you go pricing](https://openai.com/index/codex-flexible-pricing-for-teams/) for teams and enterprises.
+- Google Stitch [open sources Design.MD](https://blog.google/innovation-and-ai/models-and-research/google-labs/stitch-design-md/) - markdown for your design tokens and rules for AI
+- GitHub Copilot has a feature named [Rubber Duck](https://github.blog/ai-and-ml/github-copilot/github-copilot-cli-combines-model-families-for-a-second-opinion) which asks for second opinion from a different model.
+
+### [Rspack 2](https://rspack.rs/blog/announcing-2-0)
+
+Rspack is moving away from its compatibility with the Webpack era to new features.
+
+- 10% faster performance on builds
+- Better static analysis helping with tree shaking
+- Tree shaking for packages for module federation
+- support for import.meta
+- support for import defer
+- RSC low level build support
+
+### [Tanstack Start - RSC](https://tanstack.com/blog/react-server-components)
+
+Implementations of RSCs like Next.js depend heavily on your app being rebuilt around server components. Tanstack Start reinvents the paradigm by shifting focus to streamable components. Instead of choosing between server and client for each component tree, you select which components to stream over the network.
+
+### [InertiaJS 3](https://inertiajs.com/docs/v3/getting-started/upgrade-guide)
+
+- SSR now works out of the box during development without a separate Node.js server
+- optimistic updates
+- axios, qs, lodash-es dependencies have been removed
+
+### [Fresh 2.3](https://x.com/deno_land/status/2048741784423924145)
+
+- Zero JavaScript by default
+- View Transitions API integration
+- Temporal API
+
+### [Voidzero Angular Compiler](https://voidzero.dev/posts/oxc-angular-compiler)
+
+VoidZero incorporated their Rust code into the angular compiler making 20x faster. It is a vite plugin with HMR support.
+
+### [TypeScript 7.0 Beta](https://devblogs.microsoft.com/typescript/announcing-typescript-7-0-beta/)
+
+Excited as native TS approaches. I have been using 7.0 across projects for some time now, and it's impressive how stable such a large project migration has been.
+
+### [tsrx](https://tsrx.dev/)
+
+Attio releases a _spiritual successor to jsx_ Control flow, scoped styles, and locals sit in the template as first-class syntax instead of being squeezed through expression slots, and the language stays aware of them through to the compiled output.
+
+### [Pracht](https://pracht.resynapse.dev/)
+
+Pracht is a Preact framework that does the whole cycle:
+SSG, SSR, ISG, SPA
+
+### [React Email 6](https://resend.com/blog/react-email-6)
+
+- open source editor, customizable with extensions
+- faster HMR
+
+### [Lingui 6](https://lingui.dev/blog/2026/04/22/announcing-lingui-6.0)
+
+- CLI multithreading
+- Explicit Placeholder Labels Macro
+- Reduced package size
+
+### [Bun 1.3.13](https://bun.com/blog/bun-v1.3.13)
+
+Two versions of Bun released in April
+
+- Test parallel and isolate
+- Faster gzip compression
+- `Bun.WebView` headless browser automation
+- Render Markdown in the Terminal with `bun ./file.md`
+
+### [pnpm 11](https://pnpm.io/blog/releases/11.0)
+
+- supply chain protection by default
+- allowBuilds replaces the legacy build-dependency settings
+- global installs are isolated and use global virtual store by default.
+- native package publish flow
+
+## In the Spotlight 🔦
+
+GitHub has been plagued by frequent downtime. [Every time you open the app](https://www.githubstatus.com/), it either runs slowly or one part of it has completely failed. Over all the people moving away and building alternatives, a tweet changed the perspective on what the company was running into.
+
+[https://x.com/kdaigle/status/2040164759836778878](https://x.com/kdaigle/status/2040164759836778878)
+
+Meanwhile, Cloudflare built a system named [Artifacts](https://blog.cloudflare.com/artifacts-git-for-agents-beta/) which allows you to programatically create/edit versioned files with git. It's in private beta as of right now.
+
+The month also saw GitHub pausing sign ups to GitHub Copilot, end their counting requests plan and dramatically change multipliers for costly models with Opus.
+
+[https://x.com/GHchangelog/status/2046302898888307165](https://x.com/GHchangelog/status/2046302898888307165)
+
+## Tutorials
+
+### [Shared Dictionaries - Cloudflare](https://blog.cloudflare.com/shared-dictionaries/)
+
+If we release updates multiple times a day, our current caching mechanisms become ineffective. Instead, Cloudflare has begun implementing shared dictionaries. By using previously cached versions of files as a "dictionary," this technology enables servers to send only the differences (diffs) between versions instead of re-downloading entire assets. The implementation will be on different layers.
+
+### [The end of responsive images](https://piccalil.li/blog/the-end-of-responsive-images/)
+
+This cannot be entirely considered a tutorial; it's a journal documenting the journey to achieve responsive images, which have started rolling out across major browsers. Matt Marquis tells the tale about `sizes=auto` which will allow the browser to pick the size it wants to put in.
+
+### [AI is approving our pull requests: Here’s how we made it safe - Intercom](https://www.intercom.com/blog/ai-is-approving-our-pull-requests-heres-how-we-made-it-safe/)
+
+Ask anyone in the industry about the new bottleneck, and they will mention reviews. More code is being written, and PR sizes have often increased, as agents can produce as much as desired and even more. Intercom has formulated a system where the AI approves code that gets to production. Currently the system is known to auto-approve and merge 19% of the PRs.
+
+To read alongside, [Orchestrating AI Code Review at scale - Cloudflare](https://blog.cloudflare.com/ai-code-review/)
+
+### [State of Vue - Evan You](https://youtu.be/a9_Ud5MFTjU?si=41kJ-0E0yfofvq45)
+
+Evan You details the progress on Vue JS Vapor mode as the new version approaches Beta. Although titled "State of Vue," this talk covers much about the Oxc ecosystem and highlights several projects built on Oxc that enhance the performance of Vue projects.
+
+Alongside, [State of Nuxt](https://www.youtube.com/watch?v=we4gdQikxm8) from the same conference.
+
+### [Under the hood of MDN's new frontend](https://developer.mozilla.org/en-US/blog/mdn-front-end-deep-dive/#the_development_environment)
+
+MDN transitioned from React to web components, delivering only the necessary JavaScript while addressing server-side rendering. The blog outlines the reasons behind this decision and the challenges they encountered with the previous system.
+
+In another migration story, Railway [migrated their frontend from Next.js to Tanstack Start](https://blog.railway.com/p/moving-railways-frontend-off-nextjs). I migrated my [portfolio off to Tanstack Start](https://github.com/agneym/portfolio/pull/47) too, but not a blog on it so far 😅
+
+## In short
+
+- Brand new CVEs for Next.js and RSCs - [CVE-2026-23869](https://vercel.com/changelog/summary-of-cve-2026-23869)
+- A brand new website and advisory board for [Module federation](https://native-federation.com/)
+- [Escaping the Fork](https://engineering.fb.com/2026/04/09/developer-tools/escaping-the-fork-how-meta-modernized-webrtc-across-50-use-cases/): How Meta Modernized WebRTC Across 50+ Use Cases
+- [Vulnerability disclosure](https://www.wiz.io/blog/github-rce-vulnerability-cve-2026-3854) from GitHub.com and GitHub Enterprise allows for remote code execution through git push.
+- [warp terminal](https://github.com/warpdotdev/warp) was open sourced
+- [React Compiler Rust port](https://github.com/facebook/react/pull/36173) is coming.
+- Macbook Pro finds a worthy competitor in [Framework 13 Pro](https://frame.work/laptop13pro) - with 20 hours of battery life.
+- [Inside GitHub's Fake Star Economy](https://awesomeagents.ai/news/github-fake-stars-investigation) - A tale about people adding fake GitHub stars for VC funds.
+- Back button highjacking is [listed as a malicious practice](https://developers.google.com/search/blog/2026/04/back-button-hijacking) on Google search
+- TkDoko helps you find the best organizational structure for your codebase, even if agents are writing all the code - [Vertical Codebase](https://tkdodo.eu/blog/the-vertical-codebase)
+- [Postmortem](https://github.com/axios/axios/issues/10636) on axios supply chain attack
+
+## In Other News
+
+### [Cursor partners with SpaceX on model training](https://cursor.com/blog/spacex-model-training)
+
+Cursor gets the ability to use SpaceX infrastructure for it's Composer model training. It seems the deal comes with Elon Musk's company getting a future acquire deal with them. With _codeX_ and _XCode_ already taken, renaming Cursor is going to be wild.
+
+### [Designing for Agents - Ramp - Twitter](https://x.com/teddy_riker/status/2047312986696454584)
+
+Teddy Riker, a Product Manager at Ramp, argues that 80% of interactions with software will occur through software itself, while only 20% will involve the user interface. This ratio has flipped. In this future scenario, software companies will create their own "agentic" layers to manage complex business logic and context that a general LLM may lack.
+
+### [Interior design at 25,000 mph - The Verge](https://www.theverge.com/design/909710/artemis-ii-orion-capsule-interior-design)
+
+Serious design choices are necessary when packing a group of people into a very small space where they cannot leave. This Verge blog reveals how Artemis II designed the spacecraft for maximum comfort.
+
+- Incredible pictures from Artemis crew: [NASA.gov](https://www.nasa.gov/gallery/journey-to-the-moon/)
+- [Explaining the Most Important Artemis II Photos - Hank Green](https://youtu.be/oaXRREHVkHo?si=5MFOKpH2gpKnlUFc)
+- Answering _How do you design caps for spacefarers_ : [The Story Behind the Artemis II Crew’s Incredible Custom Caps - GQ](https://www.gq.com/story/nasa-artemis-ii-recovery-hats-luna-replicas-interview)
+
+### AI updates
+
+- [Mythos Preview](https://red.anthropic.com/2026/mythos-preview/) - A controlled test for cybersecurity model from Anthropic
+- [GPT 5.5](https://openai.com/index/introducing-gpt-5-5/) - OpenAI incremental update
+- [Claude Opus 4.7](https://www.anthropic.com/news/claude-opus-4-7) - New iteration. New tokernizer. More tokens.
+- [Qwen 3.6 plus](https://qwen.ai/blog?id=qwen3.6) with 1M context window and corresponding local model [Qwen 3.6 27b](https://qwen.ai/blog?id=qwen3.6-27b)
+- [ChatGPT Images 2.0](https://openai.com/index/introducing-chatgpt-images-2-0/) - perfect text rendering. The introduction blog is impressive.
+- Xiaomi lands an impressive 1M context with [MiMo v2.5 Pro](https://mimo.xiaomi.com/mimo-v2-5-pro/)
+- [Gemma 4](https://ai.google.dev/gemma/docs/core/model_card_4) - New variation of Google's local small models.
+- The 🐳 is back with [Deepseek v4 Pro](https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro) - their trump card being very cheap usages.
+- [GLM 5.1](https://z.ai/blog/glm-5.1)
+- [Kimi K2.6](https://www.kimi.com/blog/kimi-k2-6) - Kimi has proven to best backed open sourced model.
+- Minimax 2.7 was open sourced but has a non-commercial license.
+
+## Looking Ahead
+
+- [Android I/O](https://www.android.com/new-features-on-android/io-2026/) - May 12
+- [JSHeroes Romania](https://jsheroes.io/) - May 14-15

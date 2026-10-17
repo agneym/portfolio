@@ -1,0 +1,136 @@
+---
+title: Web in July - Newsletter by Agney
+date: "2022-08-02T21:20:53.364693Z"
+buttondownUrl: https://buttondown.com/agney/archive/web-in-july-newsletter-by-agney-8567/
+---
+
+Hey August 👋
+
+The dependence we have on technology is becomes clear only when we are cut off from the Internet. There are areas and states that are cut off for months because of geopolitical tensions but Canada got a jolt last month as a carrier went down disrupting smart systems, ATMs and even emergency phone lines.
+
+- [Rogers outage: Why a network upgrade pushed millions in Canada offline](https://www.bbc.com/news/world-us-canada-62174477)
+
+### Tech Updates on the ongoing Russia - Ukraine war
+
+- [Ukraine-Russia: Hidden tech war as Slovyansk battle looms](https://www.bbc.com/news/world-europe-62090791)
+
+---
+
+## Releases
+
+### [Vite 3](https://vitejs.dev/blog/announcing-vite3.html)
+
+The number of libraries using Vite by default is growing day by day.
+
+> SvelteKit, Astro, Hydrogen, and SolidStart are all built with Vite. Laravel has now decided to use Vite by default. Vite Ruby shows how Vite can improve Rails DX. Vitest is making strides as a Vite-native alternative to Jest. Vite is behind Cypress and Playwright's new Component Testing features, Storybook has Vite as an official builder. And the list goes on.
+
+Look into Vite and you wouldn't look back.
+
+### [Starlink Maritime](https://www.starlink.com/maritime)
+
+Elon Musk's Starlink operates Internet that is provided by satellites. Unfortunately, it doesn't have much range when there are trees or buildings blocking the signals. Where is that one place that requires Internet but does not have any blockades? Well, the sea is the answer. So here is Starlink Maritime for ships.
+
+### [VSCode Server](https://code.visualstudio.com/blogs/2022/07/07/vscode-server)
+
+Visual Studio Code as itself was already open source and accessible from Github. But that's not what made the editor that we know and love. How about the server that runs the backend, hosts the extensions. The team has released a private preview of the backend service that you can run by yourself, titled Visual Studio Code Server.
+
+### [WebContainers are now supported in Firefox on desktop and Android](https://blog.stackblitz.com/posts/webcontainers-are-now-supported-on-firefox/)
+
+WebContainers was something I heard first from StackBlitz. They had somehow perfected how to run NodeJS in the browser and could work it in the Chromium based features. I have run through the documentation multiple times but still can't understand how it works (apart from the fact that it's a magic container running in the browser and StackBlitz developers are wizards who can wield that magic). StackBlitz launched with NodeJS and NextJS that could work in Chrome and Edge, now with this announcement turns out their code snippets will start working in Firefox and Android as well.
+
+Release 103 also brings support for `backdrop-filter` to Firefox, meaning we will see much more of blur in days to come.
+
+### [React Query v4](https://tanstack.com/blog/announcing-tanstack-query-v4)
+
+The title here is a bit misleading since v4 has renamed it - Tanstack Query now. But v4 brings support for features like Offline and Persistors. It's a major release and so expect breaking changes, the team has also added codemods for most of the changes - [Migration Guide](https://tanstack.com/query/v4/docs/guides/migrating-to-react-query-4)
+
+## Tutorials
+
+### [The Smallest CSS](https://www.robinrendle.com/notes/the-smallest-css)
+
+We write a lot of CSS, but how much of it is necessary. Robin explores in under 15 lines. I had no idea there was a `color-scheme` property.
+
+### [Everything You Need to Know About JavaScript Import Maps](https://www.honeybadger.io/blog/import-maps/)
+
+Ayooluwa Isaiah writes about the new(ish) feature drop in Chromium browsers - Import Maps. Since the advent of Snowpack and Skypack, there is renewed enthusiasm in CDNs and importing content than installing them. Here is how that worked:
+
+```
+import dayjs from "https://cdn.skypack.dev/dayjs@1.10.7";
+```
+
+But we can't keep reusing the URLs every time we import (and other amiss use cases). Import Maps rejig and revitalise these behaviour quirks:
+
+```
+<script type="importmap">
+{
+  "imports": {
+    "dayjs": "https://cdn.skypack.dev/dayjs@1.10.7",
+  }
+}
+</script>
+<script type="module">
+  import dayjs from 'dayjs';
+</script>
+```
+
+[https://twitter.com/Gavmn/status/1545387084017532929](https://twitter.com/Gavmn/status/1545387084017532929)
+
+### [The Joy of Variable Fonts](https://evilmartians.com/chronicles/the-joy-of-variable-fonts-getting-started-on-the-frontend)
+
+From declaring fonts to the tiny tweaks to use them, everything you need to know about variable fonts from Evil Martians.
+
+### [Building Tabs in Web Components](https://darn.es/building-tabs-in-web-components/)
+
+Tabs are a tricky component to get right. On this tutorial with Nord Design System, David Darnes explores the accessibility labels required to pull this off and links to bunch of external resources if you need help.
+
+### [web.dev Patterns](https://web.dev/patterns/)
+
+web.dev has released a resource named Patterns where different UI patterns are listed and implementations discussed. Currently the core categories are Animation, Component, Layout, Theming and Web Vitals. A good resource to bookmark.
+
+### [Holograms, light-leaks and how to build CSS-only shaders.](https://robbowen.digital/wrote-about/css-blend-mode-shaders/)
+
+In this tutorial, we create a light leak effect with just CSS (spoiler: `mix-blend-mode`)
+
+This is how badass the tutorial are going to get:
+
+> Now we know what we're working with, it might seem like the next step would be to slap a blend mode onto our gradient, place it over our base image and call it a day. That will definitely work, but it won't reach the level of quality we're going for.
+
+The demos down the bottom of the page are too good to be true.
+
+## In the Spotlight 🔦
+
+[Histoire](https://github.com/histoire-dev/histoire) is a component playground (think Storybook) that runs natively on Vite. Storybook has also unveiled their [Vite runner](https://storybook.js.org/blog/storybook-for-vite/) Histoire's interface is way more busy that Storybook's, but I like how things are laid out. There is also support for Tailwind building out the configuration and generating design system tokens automatically.
+
+---
+
+[https://twitter.com/nextjs/status/1549841497822056454?s=20\&t=XtYINrfvfT7yulBVAcSRbg](https://twitter.com/nextjs/status/1549841497822056454?s=20&t=XtYINrfvfT7yulBVAcSRbg)
+
+## In Other News
+
+### [Illuminating Dark Mode - Figma](https://www.figma.com/blog/illuminating-dark-mode/)
+
+Figma blog covers the techniques they used for perfecting dark mode and make sure their cross platform teams can adapt well to it.
+
+> Not only did dark mode surface thorny UI questions—which Jacob and Ryhan talked all about—it required a significant engineering lift. As they said in their talk, “One of the hardest things about dark mode is that people think it’s easy.”
+
+### [Apple expands industry-leading commitment to protect users from highly targeted mercenary spyware](https://www.apple.com/newsroom/2022/07/apple-expands-commitment-to-protect-users-from-mercenary-spyware/)
+
+There are reports of hackware on every phone - from President to the Journalist. Even if you are not somebody, you have reasons to fear - Apple has a feature for you if you are paranoid.
+
+### [How a fake job offer took down the world’s most popular crypto game](https://www.theblock.co/post/156038/how-a-fake-job-offer-took-down-the-worlds-most-popular-crypto-game)
+
+A senior engineer at Axle Infinity applied for a job at a fictitious company. Later, the company lost $540 million in crypto. The story of how the scam unfolded.
+
+### [Scratch is a big deal](https://www.bryanbraun.com/2022/07/16/scratch-is-a-big-deal/)
+
+I wish Scratch was the first programming language that I first learned. It would have given me a new perspective on what programming entails. Scratch has a community like CodePen's with some really sick demos.
+
+### [Discord is on React Native](https://discord.com/blog/android-react-native-framework-update)
+
+### [Building text animations for Instagram Stories](https://engineering.fb.com/2022/07/18/developer-tools/building-text-animations-for-instagram-stories/)
+
+## Looking Forward
+
+- [Rust Conf](https://rustconf.com/) - Aug 5
+- [CascadiaJS](https://2022.cascadiajs.com/) - Aug 30- Sep 2
+- [ng-conf](https://2022.ng-conf.org/) - Aug 31 - Sep 2

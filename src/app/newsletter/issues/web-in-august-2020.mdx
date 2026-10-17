@@ -1,0 +1,47 @@
+---
+title: The Web in August - Mindless Newsletter by Agney
+date: "2020-08-30T06:04:57.962565Z"
+buttondownUrl: https://buttondown.com/agney/archive/the-web-in-august-mindless-newsletter-by-agney/
+---
+
+We have an _Epic_ fight brewing between Epic Games and Apple and it's story of the month. Epic created a built-in payment mechanism for Fortnite by which they could side step Apple's hefty App store commisions. This did not sit well with Apple and [pulled the game](https://www.bbc.com/news/world-us-canada-53955183) from the App Store. Apple then went on to [terminate Epic's account altogether](https://arstechnica.com/gaming/2020/08/apple-terminates-epics-app-store-access-following-fortnite-dispute/) pushing other games like _Infinity Blade_ off the store. Epic has another account hosting their Unreal Engine (which is depended on by several other games and graphical apps) which now exists [on top of a court order](https://www.theverge.com/2020/8/26/21402443/epic-fortnite-apple-unreal-engine-ios-game-developers-lawsuit). This isn't the first time a company revolts against Apple's apps store practices, you might remember [Hey from two months back](https://www.protocol.com/hey-email-app-store-rejection). While this is also a prevalent issue on Android, iOS being a closed ecosystem amplifies the cause these companies are fighting against.
+
+This fight has triggered Epic Games to create a mirror [1984 themed video against Apple](https://www.youtube.com/watch?v=euiSHuaw6Q4) and host #FreeFortnite competitions with [Anti Apple gifts](https://www.thesun.co.uk/tech/12463977/fortnite-free-cup-anti-apple-prizes-how-to-compete-weekend/). Fortnite users are now stuck without iOS updates (iOS and Mac) not getting to play the new [Marvel themed season](https://www.youtube.com/watch?v=DBZoXzIExhU).
+
+Two major companies - Adobe and Canon lost their customers a bunch of photos this month all through software updates. How safe should we consider digital backups?
+
+- [Years of photos deleted from devices through Lightroom update - Register](https://www.theregister.com/2020/08/21/adobe_lightroom_photos_deleted/)
+- [Canon cloud platform loses customer photos and can't restore them - Camera World](https://www.digitalcameraworld.com/news/canon-websites-held-to-ransom-by-hackers)
+
+## Releases
+
+It's been a bit underwhelming in terms of new releases, although this month bought [TypeScript 4.0](https://devblogs.microsoft.com/typescript/announcing-typescript-4-0/) and [React 17 RC](https://reactjs.org/blog/2020/08/10/react-v17-rc.html). They have been pretty boring as far as features are concerned. But it might very well be a sign of maturity.
+
+- [Tailwind 1.7.0](https://github.com/tailwindlabs/tailwindcss/releases/tag/v1.7.0) - Tailwind has new release with lots of exciting new enhancements. Adam has also written up on how Tailwind grew from a [side project to a successful business](https://adamwathan.me/tailwindcss-from-side-project-byproduct-to-multi-mullion-dollar-business/)
+- [Storybook 6.0](https://medium.com/storybookjs/storybook-6-0-1e14a2071000) - Storybook is going zero configuration with most defaults set in.
+- [Fast.AI](https://www.fast.ai/2020/08/21/fastai2-launch/) - The team releases new libraries, improved course and a new book on Machine Learning.
+- [VS Code 1.47 - Launch Party](https://www.youtube.com/watch?v=l0ZQMa6Xt4k) - VS Code ran their first launch party for a release this month. The inbuild JS debugger for browser is an exciting update.
+- [TS Migrate](https://medium.com/airbnb-engineering/ts-migrate-a-tool-for-migrating-to-typescript-at-scale-cd23bfeb5cc) - The recommended migration path to TypeScript is file by file. But this usually leaves modules on a whole untouched because nobody wants to change a whole file of contents unknown to them. The better alternative might be to migrate altogether with `any` so developers can choose small chunks to migrate at a time. While it sounds easy the actual experience is quite hard, AirBnB team has released a bunch of codemods and helpers to automate the process.
+- [Nueralink](https://www.youtube.com/watch?v=CLUWDLKAF1M) - This isn't much of a release yet, but I'm adding it here anyway because I stayed up all night to watch the live stream 😓. Elon unveiled the second version of their nueralink chip and a robot for fixing it in your head. Of course there are pigs with brain enhancing chips. They want to hire more people, so do [apply](https://jobs.lever.co/neuralink).
+
+## My Content
+
+- [Sequelize Associations](https://blog.agney.dev/sequelize-associations/)
+- [Please don't overuse optional chaining](https://blog.agney.dev/overusing-optional-chaining/)
+
+## Tutorials
+
+- [Error Handling in NodeJS](https://www.smashingmagazine.com/2020/08/error-handling-nodejs-error-classes/) - Explains badly handled real world scenarios and use of Error classes as _promised_
+- [A case against GraphQL for local state management](https://tech.okcupid.com/why-we-decided-against-graphql-for-local-state-management/) - Apollo for a long time has boasted the ability to manage local state with their cache API. Is it worth your time to try? It reminds me of [this talk from Jed Watson](https://www.youtube.com/watch?v=tBz3UmZG_bk) explaining different types of state (local, shared, remote, meta and router) and how they are handled differently in React.
+- [Rust for non system programmers](https://becca.ooo/rustconf/2020/#) - Talks about Rust always talk about memory and garbage collection. If you are coming from a non system programming background like JavaScript, this is probably confusing. Rebecca has neat explanier.
+- [Building a Button](https://react-spectrum.adobe.com/blog/building-a-button-part-1.html) - As Adobe released their new library `react-aria`, they created this tutorial for creating an accessible button component. Even if you don't use the library, the article series is great.
+- [Why I switched away from Firebase](https://dev.to/spencerpauly/why-i-switched-away-from-google-firestore-3pn) - Firebase was one of the first companies that I fell in love with. They made it easy and quick to create web applications. But I have to admit there is a certain disillusionment when it comes to scale of the database tech.
+
+## In Other News
+
+- [Goto Book Club Interview with Andy Hunt & Dave Thomas](https://www.youtube.com/watch?v=taCNjiiusRk) - The Pragmatic Programmer is my favorite programming book all time and it's 20 celebrating it's 20th anniversary 😲 It's interesting how little has changed. Andy and Dave have some great takeaways and stories in their interview.
+- [Writing Maintainable code](https://medium.com/oreillymedia/write-code-as-if-you-had-to-support-it-for-the-rest-of-your-life-a707d3442f1a) - Yuriy Zubarev has a simple advice for writing more maintanable code - _Write Code as If You had to support It for the rest of your Life_.
+- [Blocking Plandemic 2](https://www.theverge.com/2020/8/18/21374081/plandemic-indoctornation-conspiracy-video-facebook-misinformation) - Facebook was the major area of spread for the fake news documentary series Plandemic back in May. While there are several fake news conspiracies floating around, this one was extremely well made and hence the more convicing it sounded. As Plandemic 2 launched, Facebook made sure that it blocked any links to the video making a case for blocking Fake News before it starts.
+- [Dino Swords](https://dinoswords.gg/) - What if we add some retro gaming goodness to the offline dino game of Google Chrome! As the name indicates, the dinosaurs can now yield swords, but they aren't the only weapon they yield.
+
+> Wake me up when September ends.

@@ -1,0 +1,110 @@
+---
+title: JEM - Web in February - JavaScript Every Month Newsletter
+date: "2024-03-15T20:23:52.460523Z"
+buttondownUrl: https://buttondown.com/agney/archive/jem-web-in-february-javascript-every-month/
+---
+
+Welcome to the 50th edition of our JEM Newsletter! It's been a consistent presence in your mailbox for the past four years, thank you for staying with me on this journey.
+
+## Releases
+
+### Browsers
+
+#### [Firefox 123](https://developer.mozilla.org/en-US/docs/Mozilla/Firefox/Releases/123)
+
+- Supports `shadowrootmode` which allows for declarative shadow DOM components. Earlier, you could add a shadow DOM only through custom JS, with this update on Firefox, declarative shadow DOM is supported across the platform.
+- `Date.parse()` global object has had a number of bug fixes to bring it into line with how other browsers parse the values being passed.
+- The [103 Early Hints](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/103) HTTP information response status code is now enabled for preloading resources that the page is likely to need while the server is still preparing the full response.
+- The Web Authentication API now supports cross-origin credential creation. Specifically `navigator.credentials.create({publicKey})` can now be called in nested browsing contexts loaded from a different origin to the top-most document, if allowed by a `Feature-Policy: publickey-credentials-create` on the top level nesting `<iframe>`
+
+#### [Chrome 122](https://developer.chrome.com/blog/new-in-chrome-122)
+
+- Storage buckets API introduces a way to create different buckets of data and with different levels of persistence.
+- When copying and pasting using the Async Clipboard API the unsanitized option for the `read()` method allows apps and websites to get unsanitized HTML.
+
+### [Million 3](https://million.dev/blog/million-3)
+
+- A complete rewrite aimed at being more stable including TypeScript support, multiple returns, conditionals and nested React components.
+- A new hydration system that only traverses the parts of the component that are dynamic, resulting in O(d) time complexity (where d is the number of dynamic nodes, d ≤ n).
+
+### [Astro 4.5](https://astro.build/blog/astro-450/)
+
+- Includes Dev Audit UI which is a developer toolbar that shows performance and accessibility improvement suggestions.
+- Also includes launches for a database named AstroDB.
+
+### [Remix Vite](https://remix.run/blog/remix-vite-stable)
+
+- Remix Vite plugin is declared stable.
+- Remix now supports building purely static sites that don’t require a JavaScript server in production, all while keeping the benefits of Remix’s file based route conventions, automatic code splitting, route module prefetching, head tag management and more.
+
+### [Redwood 7](https://community.redwoodjs.com/t/redwood-v7-0-0-is-now-available/5777)
+
+- Includes Redwood Studio, an observability tool, containing SQL logging and GraphQL playground.
+- Realtime GraphQL is now supported.
+- Support for GraphQL fragments and trusted documents.
+
+### [Tommy's inclusive datepicker](https://fymmot.github.io/inclusive-dates/)
+
+Datepicker's are a hot topic and never solved on the web front. I like how this date picker combines natural language into the date selection.
+
+## In the Spotlight 🔦
+
+The new React docs describe React server component directives as follows:
+
+[https://twitter.com/JLarky/status/1758234431431802915](https://twitter.com/JLarky/status/1758234431431802915)
+
+Dan Abramov mentioned on Twitter that these three sentences took him 3 months to write and rightly so. The explanation refers to other technologies like Astro and tRPC which are surely less popular than React.
+
+I like that there have been effort in the direction of explaining things, but I don't think they have reached fruition yet. Compiling here a collection of articles from last few editions of our newsletter on RSC.
+
+- [React server components from Scratch - Ben Holmes Youtube](https://www.youtube.com/watch?v=MaebEqhZR84)
+- [The Two Reacts - overreacted blog](https://overreacted.io/the-two-reacts/)
+- [Simplifying Server Components - Mark Dalgleish](https://portal.gitnation.org/contents/simplifying-server-components)
+- [Making sense of RSC - joshwcomeau](https://www.joshwcomeau.com/react/server-components/)
+- [Delicious Donut Components - Frontend at Scale](https://frontendatscale.com/blog/donut-components/)
+
+## Tutorials
+
+### [CSS :has() Interactive Guide](https://ishadeed.com/article/css-has-guide)
+
+`has` has been available for some time now and is supported on all major browsers. While I've discovered some useful applications for it in edge cases and navigating third-party library CSS, it hasn't become a regular part of my daily CSS workflow yet. There's a bit of unlearning involved in incorporating it effectively. However, this interactive guide serves as an excellent starting point for exploring various use cases and delving deeper into its capabilities.
+
+### [State of React Native 2024](https://results.stateofreactnative.com/react-native-alternatives/)
+
+The _State of_ surveys serve as valuable resources for noting and learning about the libraries people are using in their apps. While the extent of usage might not always be clear, these surveys provide insights into the hype cycle surrounding various libraries. As someone who is just starting off with React Native, I've found that examining these survey results has been incredibly educational, offering valuable insights and learnings.
+
+### [React Labs: What We've Been Working On – February 2024](https://react.dev/blog/2024/02/15/react-labs-what-we-have-been-working-on-february-2024)
+
+The React team has recently published a blog post detailing their current projects and initiatives. We anticipate further information to be unveiled during the talks at React Conf. Notably, the compiler is expected to be released soon, given that it's already being utilized in production on Instagram.
+
+### [Interaction to Next Paint is officially a Core Web Vital 🚀](https://web.dev/blog/inp-cwv-launch)
+
+First Input Delay (FID) is being replaced by Interaction to Next Paint (INP) as a core web vital. Tools like PageSpeed Insights, the CrUX Dashboard, and the Web Vitals extension will more prominently show INP in the trio of Core Web Vitals metrics. web.dev also consists of a [list of resources to optimise Interaction to Next Paint](https://web.dev/explore/how-to-optimize-inp).  
+
+## In Other News
+
+### AI Updates
+
+- Anthropic launched [new models from Claude 3](https://www.anthropic.com/news/claude-3-family) family: Haiku, Sonnet and Opus. Out of these, Opus outperforms existing models on benchmark scores and has a higher context limit.
+- OpenAI announced their text to video model [Sora](https://openai.com/sora) with some examples to great fanfare.
+- Google released their updated model [Gemini 1.5](https://blog.google/technology/ai/google-gemini-next-generation-model-february-2024/). The AI chatbot service was renamed to Gemini and it started replacing Google Assistant on Android devices. They had to rollback image generation changes on the bot due to an issue with generating historically inaccurate images.
+- [Stable Diffusion 3](https://stability.ai/news/stable-diffusion-3) was announced by Stability AI. They have announced that the model has greatly improved performance in multi-subject prompts, image quality, and spelling abilities.
+- Meta released a new model - [Video Joint Embedding Predictive Architecture (V-JEPA)](https://ai.meta.com/blog/v-jepa-yann-lecun-ai-model-video-joint-embedding-predictive-architecture/) which can predict real world information from videos.
+
+### [Air Canada must honor refund policy invented by airline’s chatbot](https://arstechnica.com/tech-policy/2024/02/air-canada-must-honor-refund-policy-invented-by-airlines-chatbot/)
+
+One of the primary drawbacks of Large Language Models (LLMs) today is their propensity for hallucinations. Despite this, many companies have begun employing LLMs to develop customer support chatbots. However, when these chatbots hallucinate significant details, it can lead to unexpected consequences. Air Canada experienced this firsthand when they were ordered by a court to honor a refund policy that their chatbot had fabricated.
+
+### [Passkeys might really kill passwords | The Vergecast](https://youtu.be/shumN3hM198?si=h8B3jqUCUR-yKsZa)
+
+Last month, I highlighted Passkeys' article from Wired. This month, The Verge has released an hour long documentary on the topic. I'm eagerly anticipating this future of the Internet, and it's exciting to see mainstream media increasingly covering this technology.
+
+### [The vacation town that livestream shopping built - Rest of World](https://restofworld.org/2024/xishuangbanna-livestream-real-estate-boom/)
+
+China's property market has been affected by various crisis situations, leading to a downturn. However, some areas are still resilient, thanks to real estate agents leveraging live streaming through apps to showcase properties to potential buyers. It's a fascinating trend that highlights innovative approaches within the industry.  
+
+## Looking Ahead
+
+- [ng-conf](https://ng-conf.org/) - March 20-21
+- [React Paris](https://react.paris/) - March 22
+- [Laracon India](https://laracon.in/) - March 23-24

@@ -1,0 +1,195 @@
+---
+title: JEM - Web in February - JavaScript Every Month Newsletter
+date: "2026-03-08T19:19:53.559961Z"
+image: https://image-generator.buttondown.email/api/emphasize-subject?subject=JEM%20-%20Web%20in%20February%20-%20JavaScript%20Every%20Month%20Newsletter&author=JEM%20Newsletter%20-%20JavaScript%20Every%20Month&date=2026-03-08&img=
+buttondownUrl: https://buttondown.com/agney/archive/jem-web-in-february-javascript-every-month-5952/
+---
+
+Hello March 👋
+
+Everyone's using AI to write or rewrite content these days. But what happens when Cloudflare enters the picture? And what changes when the library is Next.js, Vercel's brainchild? We found out this February.
+
+- [How we rebuilt Next.js with AI in one week - Cloudflare](https://blog.cloudflare.com/vinext/)
+- [Migrate to Vercel from Cloudflare - Vercel docs](https://t.co/boRejoK9ah)
+- Vercel discloses security vulnerabilies on [vibe coded Vinext platform](https://x.com/rauchg/status/2026864132423823499)
+
+---
+
+## Releases
+
+### Browsers
+
+#### [Chrome 145](https://developer.chrome.com/release-notes/145)
+
+- Customizable `<select>` listbox mode
+- `text-justify` is supported in Chrome, finally.
+- enable percentage values for CSS `letter-spacing` and `word-spacing` properties
+- Support for column wrapping for multicol
+
+#### [Firefox 148](https://developer.mozilla.org/en-US/docs/Mozilla/Firefox/Releases/148)
+
+- CSS `shape()` function
+- `Iterator.zip()` and `Iterator.zipKeyed()` static methods are now supported
+- HTML Sanitizer API and Trusted Types API to protect against XSS attacks
+
+#### [Safari 26.3](https://developer.apple.com/documentation/safari-release-notes/safari-26_3-release-notes)
+
+- Support for Zstandard compression
+
+### IDE
+
+- [VS Code](https://x.com/code/status/2019120117884309718) released parallel subagents and support for MCP apps.
+- Cursor wrote about how they implemented [secure sandboxes](https://cursor.com/blog/agent-sandboxing)
+- Claude Code's [1st birthday](https://x.com/bcherny/status/2025701404988592359?ck_subscriber_id=3396910714) 4% of GitHub commits are coauthored by Claude Code right now.
+- [Claude Code Max plan](https://claude.com/contact-sales/claude-for-oss) free for open source developers.
+
+### [Expo SDK 55](https://expo.dev/changelog/sdk-55)
+
+- 75% smaller update downloads with Hermes bytecode diffing
+- Expo Router v7 🤯
+- Brownfield isolation via expo-brownfield
+- AI tooling: MCP + agent skills for Claude Code
+- Expo UI much improved for both Swift and Jetpack Compose
+
+### [Perplexity Computer](https://www.perplexity.ai/hub/blog/introducing-perplexity-computer)
+
+The search engine gets a computer for every query.
+
+### [React Foundation - React Blog](https://react.dev/blog/2026/02/24/the-react-foundation)
+
+This was announced at ReactConf, it's officially launched.
+
+### [Tamagui 2](https://tamagui.dev/blog/version-two)
+
+- Components like Input and Image now use standard HTML attributes (e.g., type, src, alt) and automatically map them to React Native equivalents. It also replaces React Native accessibility props with W3C aria-\* and role attributes.
+- The core bundle size has been reduced by \~32%
+- Added Motion as animation driver, rewrote Reanimated driver
+
+### [React Native 0.84](https://reactnative.dev/blog/2026/02/11/react-native-0.84)
+
+- Hermes V1 as Default
+- Precompiled binaries on iOS by default
+
+### [Tailwind 4.2](https://github.com/tailwindlabs/tailwindcss/releases/tag/v4.2.0)
+
+New CSS utils and a [webpack plugin](https://github.com/tailwindlabs/tailwindcss/pull/19610) for tailwind (only had a Vite plugin so far)
+
+### [ESLint 10](https://eslint.org/docs/latest/use/migrate-to-10.0.0)
+
+- config lookup is smarter supporting different configs for monorepos
+- jsx references are tracked
+
+### [Markdown for Agents - Cloudflare](https://blog.cloudflare.com/markdown-for-agents/?ck_subscriber_id=3396910714/)
+
+> Feeding raw HTML to an AI is like paying by the word to read packaging instead of the letter inside.
+
+### [Babel 7.29.0](https://babeljs.io/blog/2026/01/31/7.29.0)
+
+This is the last minor update of Babel before the big 8.0 upgrade (this is in RC currently)
+
+- `@babel/standalone` support for `data-targets` attribute
+
+### [Electrobun v1](https://blackboard.sh/blog/electrobun-v1/)
+
+Electron but with bun.
+
+### [npmx - NPM registry explorer](https://npmx.dev/)
+
+Currently in Alpha. Connected to oxc ecosystem.
+
+### [Vercel Queues - Public Beta](https://vercel.com/changelog/vercel-queues-now-in-public-beta)
+
+Queues directly on Vercel infra. I'm assuming we will see Next.js support?
+
+## In the Spotlight 🔦
+
+Background agents are surely having their day in the sun. Many companies have introduced their own versions of background agents where the development is entirely moved off the local machine so it can support collaboration and parallel workflows.
+
+If you don't know what a background agent is, this microsite does a great deal on making it sexy.
+
+[https://background-agents.com/](https://background-agents.com/)
+
+Cursor launched their own version of background agents last month titled [The third era of AI software development
+](https://cursor.com/blog/third-era). The especially love the portion where they just ask the AI to figure out and setup your repository on the cloud.
+
+Companies that have technical blogs on what they have build so far:
+
+- [Why We Built Our Own Background Agent - Ramp](https://builders.ramp.com/post/why-we-built-our-background-agent)
+- [Minions - Stripe's end to end coding agents](https://stripe.dev/blog/minions-stripes-one-shot-end-to-end-coding-agents-part-2)
+- [Spotify - background coding agents](https://engineering.atspotify.com/2025/11/context-engineering-background-coding-agents-part-2)
+
+Remember the security implications: [Cline CLI was once compromised to install openclaw on every setup](https://cline.bot/blog/post-mortem-unauthorized-cline-cli-npm). This happened because of Claude on GitHub Action executing a command it found on a GitHub issue that it was triaging.
+
+The package openclaw is harmless, so this was probably a prank, but it shows what could have happened.
+
+## Tutorials
+
+### [Unrolling the Codex agent loop - OpenAI blog](https://openai.com/index/unrolling-the-codex-agent-loop/)
+
+This OpenAI blog explores how Codex works (🔁) but with some neat illustrations on what gets passed through on each request and how to get most of out of prompt caching. It could have been a line on IDEs section but I wanted to highlight it here because of how useful the illustrations are to form the picture in your head.
+
+Worth reading alongside:
+
+- [Seeing like an Agent: Lessons from building Claude Code](https://x.com/trq212/status/2027463795355095314?s=20)
+- [Prompt Caching Is Everything: Lessons from building Claude Code](https://x.com/trq212/status/2024574133011673516)
+
+### [Building Bulletproof React Components](https://shud.in/thoughts/build-bulletproof-react-components)
+
+There are far too many environments that a reusable React component has to operate in, and most times I struggle to list them all. But this tutorial uses one single component to explain through them all - the Theme Switcher.
+
+### [Reducing local dev time by 83%: Why we migrated off Next.js - Inngest Blog](https://www.inngest.com/blog/migrating-off-nextjs-tanstack-start)
+
+The Inngest team migrated from Next.js to Tanstack Start, cutting local startup times. Their post suggests the real pain point was constant RSC errors. They share a useful decision graph to help you judge whether Next.js is the source of your troubles and if a move makes sense.
+
+### [Modern CSS](https://modern-css.com/)
+
+If you have been working with CSS for a while, you have probably gathered a collection of CSS hacks. I notice agents still rely on them frequently. This site lists those hacks alongside their modern equivalents.
+
+## In short
+
+- [A React trick to improve exit animations](https://barvian.me/react-exit-animations)
+- Building a 3D render in React - [3 React Three Fiber Mistakes I'll Never Make Again](https://youtu.be/GlaFgKgtJM4?si=P0_SoAaWNSJTN9Sv)
+- Interactive article for creating halftone shaders - [Shades of Halftone](https://blog.maximeheckel.com/posts/shades-of-halftone/)
+- Breakdown of [State of React 2025 survey](https://certificates.dev/blog/breaking-down-state-of-react-2025-results)
+- GitHub open sources a storybook [performance profiliing plugin](https://github.com/github/storybook-addon-performance-panel)
+- Openclaw tried to bully an open source maintainer to accept their PR: [An AI Agent Published a Hit Piece on Me](https://theshamblog.com/an-ai-agent-published-a-hit-piece-on-me/)
+- [Developing Taste - Emil Kowalski](https://emilkowal.ski/ui/developing-taste)
+
+## In Other News
+
+### [The Internet Was Weeks Away From Disaster and No One Knew - Veritasium - YouTube](https://youtu.be/aoag03mSuXQ?si=uz3tLnqHgl1FnemG)
+
+A malicious actor used social engineering to infiltrate a core Linux dependency and nearly shipped a backdoor that could have granted access to millions of Linux machines worldwide. He was stopped at the very last moment, and he just disappeared with no trace.
+
+Obligatory [xkcd: Dependency](https://xkcd.com/2347/)
+
+### [Testing ads in ChatGPT - OpenAI blog](https://openai.com/index/testing-ads-in-chatgpt/)
+
+We have proven that coders will pay for AI access. The general public has not followed suit, yet AI companies trade at sky-high valuations. That disconnect cannot last. At a time of inflation, ChatGPT has announced it will start testing ads on its platform, while [Anthopic have said](https://www.anthropic.com/news/claude-is-a-space-to-think) they will not carry ads.
+
+Also worth watching, [Anthropic's](https://www.youtube.com/watch?v=De-_wQpKw0s) [ads](https://www.youtube.com/watch?v=kQRu7DdTTVA) on the [same](https://www.youtube.com/watch?v=3sVD3aG_azw).
+
+### [You are being misled about renewable energy technology - Technology Connections - YouTube](https://www.youtube.com/watch?v=KtQ9nt2ZeGM)
+
+As we fight wars over oil-rich nations, a decisive shift from disposable to renewable energy is at our doorstep, yet we still hesitate to embrace it.
+
+### [We Didn’t Ask for This Internet | The Ezra Klein Show - YouTube](https://youtu.be/Yepnhe1T-9U?si=oSBa-yEVIW86WY8B)
+
+"Enshittification" of Internet and how the AIs might have the monopolies grow to an insane size. What is user value vs squeezing the user for monies.
+
+### AI Updates
+
+- OpenAI has a new codex specific model - [GPT 5.3 Codex](https://openai.com/index/introducing-gpt-5-3-codex/). This was followed up with a faster version - [GPT‑5.3‑Codex‑Spark](https://openai.com/index/introducing-gpt-5-3-codex-spark/)
+- Anthropic added improvements over their two best models - [Opus 4.6](https://www.anthropic.com/news/claude-opus-4-6) and [Sonnet 4.6](https://www.anthropic.com/news/claude-sonnet-4-6)
+- Google's updates last month included [Nano Banana 2](https://blog.google/innovation-and-ai/technology/ai/nano-banana-2/), Lyria 3 and Gemini 3.1, which blasted through all benchmarks.
+- z.ai added [GLM 5](https://z.ai/blog/glm-5), major iteration to their coding model (this was also revealed as stealth model Pony Alpha) and GLM OCR.
+- Qwen had Qwen Image 2 and different variants of [Qwen 3.5](https://qwen.ai/blog?id=qwen3.5) (including a Max thinking)
+- Minimax updated their fast cheap coding model - [Minimax 2.5](https://www.minimax.io/news/minimax-m25)
+- Sarvam AI put out a 105B model specialising on Indian languages - [Indus](https://www.sarvam.ai/blogs/introducing-indus).
+- The release that got the micro text platforms buzzing this month is surely the [Seedance 2.0](https://seed.bytedance.com/en/seedance2_0) - an improved video generation model from Bytedance.
+
+## Looking Ahead
+
+- [Vue.js Amsterdam](https://vuejs.amsterdam/) - March 12, 13
+- [Node Congress](https://nodecongress.com/) - March 26, 27
+- [React Paris](https://react.paris/) - March 26, 27

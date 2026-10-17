@@ -1,0 +1,88 @@
+---
+title: Web in April - The Newsletter by Agney
+date: "2021-04-30T10:54:44.053823Z"
+buttondownUrl: https://buttondown.com/agney/archive/web-in-april-the-newsletter-by-agney/
+---
+
+April might just be known as the month that Basecamp went [rogue](https://world.hey.com/jason/changes-at-basecamp-7f32afc5). After a successful stint of taking [the fight to the big boys](https://www.theverge.com/2020/6/16/21293419/hey-apple-rejection-ios-app-store-dhh-gangsters-antitrust), the well known founders are falling from grace from Tech Twitter.
+
+---
+
+Joel from [Egghead](https://egghead.io/) gave us a list of his favourite resources for learning JavaScript. Listing them here:
+
+[https://learnvanillajs.com/roadmap/](https://learnvanillajs.com/roadmap/)
+
+[https://learnjavascript.online/](https://learnjavascript.online/)
+
+[https://learn.co/courses/introduction-to-javascript](https://learn.co/courses/introduction-to-javascript)
+
+[https://watchandcode.com/p/practical-javascript](https://watchandcode.com/p/practical-javascript)
+
+[https://javascript.info/](https://javascript.info/)
+
+---
+
+# Releases
+
+- [Cloudflare Pages](https://blog.cloudflare.com/cloudflare-pages-ga/) - Cloudflare can now host JAMStack websites, combined with Workers, this is definitely a powerful solution. Along with the usual stack of live previews, CDN solutions, cloudflare also optimises your images - depending on whether you are visiting from a mobile or desktop device.
+- [Github Sponsors Community](https://github.com/sponsors/community) - Github now has a listing page for all the open source repositories that you depend on so you can choose to sponsor them easily. I found out that my repos depend on 3k open source repositories 🤯.
+- [Safari 14.1](https://firt.dev/ios-14.5/) - Safari 14.1 ships with lots of stuff (as usual) but now we have `flex-gap` everywhere (that matters). You can now space flex items without the weird margins between flex children.
+- [NextJS 10.2](https://nextjs.org/blog/next-10-2) - NextJS 10.2 comes with automatic webfont optimisation and accessibility improvements. Also Tobias Koppers, the author of webpack has joined the Vercel team.
+- [Tailwind 2.1](https://blog.tailwindcss.com/tailwindcss-2-1) - JIT has now been added to the core. Adds support for blending modes. Tailwind UI _supports_ React and Vue as well.
+
+# Tutorials
+
+- [Gitlet.js](http://gitlet.maryrosecook.com/docs/gitlet.html) - Gitlet is a heavily commented and explained deep dive into Git written with JavaScript. Fascinating read.
+- [React Labs by Facebook](https://www.youtube.com/watch?v=rVpMhn5CafM&list=PLzIwronG0sE59zqnXPDDZ8qYuGPvHeJMA) - Facebook Open Source team has launched a video series for technical deep dives into React internals. The launch is now accompanied by a developer Q\&A with React team and developers focused on the new Server Components API. If you like frontend architecture design, go for it, but do remember that the API is not yet final so you don't _need_ to.
+- [Breaking GitHub Private Pages for $35k
+  ](https://robertchen.cc/blog/2021/04/03/github-pages-xss) - Breaking into Github private pages with some CRLF injection and cache poisoning on a CTF.
+- [Writing Resilient Components](https://overreacted.io/writing-resilient-components/) - Who better than Dan Abramov for React tips. This time around it's not a huge essay, it's some specific issues with solutions that Dan has gifted.
+- [Is WebAssembly magic performance pixie dust?
+  ](https://surma.dev/things/js-to-asc/index.html) - Shouldn't we all be just writing Web Assembly instead of JavaScript if it's faster? Surma writes the same cases on JavaScript and AssemblyScript to compares their performance.
+
+# In the Spotlight 🔦
+
+Checkout Hakkim El Hattab's lab projects 🔥
+
+[https://twitter.com/hakimel/status/1385169204136095744](https://twitter.com/hakimel/status/1385169204136095744)
+
+[https://twitter.com/addyosmani/status/1388031656355794945/photo/1](https://twitter.com/addyosmani/status/1388031656355794945/photo/1)
+
+## Product Discoveries of the Month
+
+- [FEToolkit](https://www.fetoolkit.io/) - Toolkit of recurring frontend tasks.
+- [Frontend Practice](https://www.frontendpractice.com/) - Take your frontend skills to the next level by recreating real websites.
+- [Webkit's new Grid Inspector](https://webkit.org/blog/11588/introducing-css-grid-inspector/) - Developer tools for Grid has been improving all year 🎉
+
+## Web Vitals
+
+Google could start including the new web vitals measurements into the page ranking algorithm starting as soon as May or June. If you haven't looked into web vitals yet, now might be a good time to start.
+
+Web Vitals is a collection of three (currently) measurements from a webpage. These are:
+
+- Largest Contentful Paint (LCP): measures loading performance. To provide a good user experience, LCP should occur within 2.5 seconds of when the page first starts loading.
+- First Input Delay (FID): measures interactivity. To provide a good user experience, pages should have a FID of 100 milliseconds or less.
+- Cumulative Layout Shift (CLS): measures visual stability. To provide a good user experience, pages should maintain a CLS of 0.1. or less.
+
+Google provides a library named [web-vitals](https://github.com/GoogleChrome/web-vitals) on NPM that can be used to measure all three parameters. If you have created a project with `create-react-app` recently, you would have run across a web-vitals file along side the regular ones. It measures the metrics that Google suggested with the library.
+
+You can measure web vitals on popular tools like Pagespeed Insights, Chrome UX Report, Search Console and Web Vitals extension. Lighthouse currently reports two of the vitals - LCP and CLS.
+
+Find out more:
+
+- [Web Vitals - Web.dev](https://web.dev/vitals/)
+- [Measure Web Vitals - Web.dev](https://web.dev/vitals-tools/)
+- [Bringing Vitals to Google Search](https://developers.google.com/search/blog/2020/11/timing-for-page-experience)
+- [Optimising Images on Core Vitals](https://www.smashingmagazine.com/2021/04/humble-img-element-core-web-vitals/)
+
+# In Other News
+
+- [Starting with an idea and building a community - Evan You](https://github.com/readme/evan-you) - The founder of Vue talks about building a community and making open source work for you on the new Github blog series.
+- [How Anjali Sud reinvented Vimeo](https://www.theverge.com/2021/4/20/22392228/vimeo-ceo-interview-streaming-software-business-anjali-sud) - Vimeo was always known as a small Youtube competitor. Recently they have taken a large pivot under their new CEO Anjali Sud to video creation tools. She talks about the success of Tik Tok and how much of it is actually attributed to video creation tool rather than watching short videos. This is a must read/listen for anyone interested in startups.
+- [Welcome to YOLO economy](https://www.nytimes.com/2021/04/21/technology/welcome-to-the-yolo-economy.html) - There were repeated predictions based on historical pandemics of a renaissance. When everything cools down, people doing what they wanted to instead of what they were forced to. NYTimes reports suggests that it's already here, the YOLO economy.
+
+---
+
+# Looking Forward
+
+- [Ioniconf - June 23](https://ionic.io/ioniconf) - CFPs are now open.

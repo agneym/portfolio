@@ -1,0 +1,131 @@
+---
+title: Web in March - Newsletter by Agney
+date: "2022-03-31T20:49:41.262042Z"
+buttondownUrl: https://buttondown.com/agney/archive/web-in-march-newsletter-by-agney/
+---
+
+There is still an ongoing war situation going on in Ukraine and my heart goes out to the affected.
+
+From the knee jerk reactions from last month, the Big Tech companies that we know have had to take a stand and perform their own section of sanctions on the invading country.
+
+- [Putin’s War Has Changed Big Tech Forever - Foreign Policy](https://foreignpolicy.com/2022/03/29/ukraine-war-russia-putin-big-tech-social-media-internet-platforms/)
+- [Russia’s War in Ukraine Is a Watershed Moment for Internet Platforms](https://carnegieendowment.org/2022/03/03/russia-s-war-in-ukraine-is-watershed-moment-for-internet-platforms-pub-86569)
+- [It took a war for Big Tech to take a side - recode](https://www.vox.com/recode/2022/3/9/22968744/russia-ukraine-facebook-tiktok)
+
+Since the war began, there are several video reports from the ground starring drones. In multiple roles: attack, defence, journalism and surveillance. This could very well be the second _Drone war_ (The first being [Azerbaijan-Armenia](https://www.washingtonpost.com/world/europe/nagorno-karabkah-drones-azerbaijan-aremenia/2020/11/11/441bcbd2-193d-11eb-8bda-814ca56e138b_story.html))
+
+- [Drone War Over Ukraine - IEEE Spectrum](https://spectrum.ieee.org/ukraine-drone-war)
+- [Exploding ‘kamikaze’ drones are ushering in a new era of warfare in Ukraine - Washington Post](https://www.washingtonpost.com/technology/2022/03/24/loitering-drone-ukraine/)
+
+Everyone is talking about inflation and rising gas and oil prices due to the War. I'm not going to talk about it, at least not in this newsletter. But we are going to talk about the semiconductor shortage that is worsened by the war.
+
+- [Chip Makers Stockpiled Key Materials Ahead of Russian Invasion of Ukraine](https://www.wsj.com/articles/chip-makers-stockpiled-key-materials-ahead-of-russian-invasion-of-ukraine-11647167582)
+- [The neon shortage is a bad sign](https://www.vox.com/recode/22983468/neon-shortage-chips-semiconductors-russia-ukraine)
+
+---
+
+## Releases
+
+### [Interop 2022](https://wpt.fyi/interop-2022)
+
+Browser vendors like Apple, Microsoft, Google and Mozilla came together to form Interop and unify web standards for one and all. There is the usual [proliferation of standards](https://xkcd.com/927/) issue. The dashboard is very helpful to figure out what the browsers have been focusing on.
+
+### [100 Cool Web Moments](https://developer.chrome.com/100/)
+
+To celebrate the 100th version of Chrome, Google team has a website with 100 moments from the Web after Chrome was released.
+
+### [Safari 15.4](https://webkit.org/blog/12445/new-webkit-features-in-safari-15-4/)
+
+WebKit is adding support for `dialog` and lazy loading images. There is also cascade layers.
+
+- [Web Push notifications on iOS](https://firt.dev/ios-15.4b#web-push-notifications-on-ios%EF%BC%8Dwith-a-catch)
+- [Safari Technology Preview 142](https://webkit.org/blog/12522/release-notes-for-safari-technology-preview-142/)
+
+### [MDN](https://hacks.mozilla.org/2022/03/a-new-year-a-new-mdn/)
+
+If you have taken MDN in the last month (of course, you have. Who am I kidding) you would have noticed the design change. I think it looks like every other documentation site on the Internet now, but let me know your thoughts. Also, new logo, new bling.
+
+[https://twitter.com/alunny/status/1501261144341680130](https://twitter.com/alunny/status/1501261144341680130)
+
+## Tutorials
+
+### [Creating Generative SVG Grids](https://frontend.horse/articles/generative-grids/)
+
+Alex Toast makes a step by step look into creating a complex generative art with SVG using several frontend libraries and makes it look very easy.
+
+### [Building a loading bar component](https://web.dev/building-a-loading-bar-component/)
+
+A loading bar looks very easy to build and most web applications have one, even if it's a winner. But this challenge uses the HTML progress element and doubles down on accessibility.
+
+### \[Pitch me on the pros and cons of your preferred web app framework
+
+]\([https://dev.to/ben/pitch-me-on-the-pros-and-cons-of-your-preferred-web-app-framework-iam](https://dev.to/ben/pitch-me-on-the-pros-and-cons-of-your-preferred-web-app-framework-iam))
+
+We can't use every framework out there to judge their pros and cons. So Ben Halpern has a thread on dev.to (his website) where he asks users to post the pros and cons of the framework they are using. It's an interesting swipe through the comments.
+
+### [Why UX Writers Have to Learn to Be Less Polite](https://medium.com/carmax-ux/why-ux-writers-have-to-learn-to-be-less-polite-de2cfb08e912)
+
+A UX copy needs to be three things:
+
+- clear.
+- concise.
+- useful.
+
+Politeness is not included in these. So do you have to say "Please", "Sorry" and "Thank you" every time? This is what this medium post analyses.
+
+[https://twitter.com/steveschoger/status/1499780794193166341](https://twitter.com/steveschoger/status/1499780794193166341)
+
+### [Upgrading Next.js for instant performance improvements](https://vercel.com/blog/upgrading-nextjs-for-instant-performance-improvements)
+
+Vercel upgrades a site through NextJS updates and notes the impact it has on it's performance. It's a journey through the great features NextJS has gained over time and how it has impacted the performance all in all. Mostly with minimal effort from the developer for maximum impact.
+
+## In the Spotlight 🔦
+
+### React 18
+
+The talk of the town, the concurrent mode of React is finally here. The concurrent mode is a bit like how JavaScript works. It's single threaded, but can perform multiple operations - because it has an event loop. Likewise, we have React 18 where the library can pause and play on when it renders certain components when it seems fit.
+
+When is that a good idea? While loading a large table, the user is also making an input. In practice, because JavaScript is busy with the table, the user input would be sluggish. But with React, it can focus the priority components so that the site _feels_ more performant.
+
+- [React 18 Blog](https://reactjs.org/blog/2022/03/29/react-v18.html)
+- [Upgrade Guide](https://reactjs.org/blog/2022/03/08/react-18-upgrade-guide.html)
+- [Shruthi Kapoor demoing features in React 18 - ReactConf](https://youtu.be/ytudH8je5ko)
+
+### CSS - The Programming Language
+
+May be we have been learning it all wrong.
+
+#### [Writing Logic in CSS](https://iamschulz.com/writing-logic-in-css/)
+
+Schulz analyses structures in CSS as to how a proper introduction to a programming language would be written. Analysing it's variables, control structures and loops.
+
+#### [Understanding Layout Algorithms](https://www.joshwcomeau.com/css/understanding-layout-algorithms/)
+
+Josh is a constant on our newsletter. This is plan on learning CSS through it's layout algorithms rather than individual properties.
+
+> It's not enough to learn what specific properties do. We need to learn how the layout algorithms work, and how they use the properties we provide to them.
+
+## In Other News
+
+### [A Proposal For Type Syntax in JavaScript](https://devblogs.microsoft.com/typescript/a-proposal-for-type-syntax-in-javascript/)
+
+What if we did not require TypeScript and could write types in JavaScript and VS Code could type check it for you, force the engine to ignore the types? Hold that thought because Microsoft has an official proposal.
+
+### [CSS-Tricks is joining DigitalOcean!](https://css-tricks.com/css-tricks-is-joining-digitalocean/)
+
+CSS Tricks is one of the thespian blogs in the web development world. I have been a long time reader and a fortunate writer for a couple of times. The website is now being acquired by DigitalOcean and will be taken over by the team. Congrats to Chris and the team for running it for so long with so much quality.
+
+### [His software sang the words of God. Then it went silent - InputMag](https://www.inputmag.com/features/tropetrainer-thomas-buchler-torah-software)
+
+The story of how one man and the software he wrote made a difference. The search for the source code in his demise still continues. Intriguing story of how a religious software came to be, genius and the impact we can set out to achieve in this world.
+
+### [Inside the Making of CoComelon, the Children's Entertainment Juggernaut - Time](https://time.com/6157797/cocomelon-success-children-entertainment/)
+
+MoonBug entertainment might be the biggest studio of our times that we are not aware of. But you might be familiar with Cocomelon, if you have been near a kid this pandemic. Cocomelon was watched for 33 billion minutes last year, more than the Netflix hits Squid Game and Bridgerton combined, according to market-measurement firm Nielsen.
+
+> Before screens were ubiquitous, most families had just a television or two, and children’s shows were geared toward a broad age group. When parents started having phones in their pockets, entrepreneurs realized they could make shows for even smaller kids and still get millions of viewers.
+
+## Looking Forward
+
+- [An Event Apart Spring Summit](https://aneventapart.com/) - April 18-20
+- [EmberConf](https://2022.emberconf.com/) - April 19

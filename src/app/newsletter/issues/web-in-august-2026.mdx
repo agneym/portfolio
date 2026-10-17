@@ -1,0 +1,254 @@
+---
+title: JEM - Web in August - JavaScript Every Month Newsletter
+date: "2026-09-10T12:07:57.964374Z"
+image: https://image-generator.buttondown.email/api/emphasize-subject?subject=JEM%20-%20Web%20in%20August%20-%20JavaScript%20Every%20Month%20Newsletter&author=JEM%20Newsletter%20-%20JavaScript%20Every%20Month&date=2026-09-10&img=
+buttondownUrl: https://buttondown.com/agney/archive/jem-web-in-august-javascript-every-month-6608/
+---
+
+Hello September!
+
+> Wake me up when September ends.
+
+## Releases
+
+### Browsers
+
+### [Chrome 152](https://developer.chrome.com/release-notes/152)
+
+- CSSPseudoElement support for `::backdrop`, `::scroll-marker`, and `::view-transition`
+- `autocorrect` global attribute
+- relative alpha colors with `alpha()` function
+- Notification attribution for PWAs on macOS
+- For users of Safe Browsing Enhanced protection, Chrome displays a bypassable warning popup when visiting sites with signals indicating they are potentially malicious.
+
+### [Firefox 154](https://developer.mozilla.org/en-US/docs/Mozilla/Firefox/Releases/154)
+
+- text box properties are baseline newly available
+- sibling count and sibling index functions are baseline newly available
+- new iterator helper methods - `includes()`, `joins()`, `chunks()`
+- `No-Vary-Search` header support
+
+### IDE
+
+- Major AI companies have standardised AI agent extensions with [Agent plugins](https://agent-plugins.org/). The package contains skills, MCPs and hooks.
+- Minimax launches their coding agent build on Pi - [Minimax Code](https://x.com/MiniMaxAgent/status/2085679716976243045)
+- Meta's coding agent - [Muse Code](https://developer.meta.com/ai/products/muse-code/)
+  -Artificial Analysis has added a [Search Index](https://artificialanalysis.ai/articles/search-api) that tracks which external search providers perform best.
+- [Deepseek has released a harness](https://www.deepseek.com/harness/en/) where everything is a plugin and can be replaced by the agent runtime. It comes with it's own mathematical proof.
+- [Openclaw 2](https://openclaw.ai/blog/openclaw-2-accidentally) with team based building
+- Claude subscriptions plan weekly limits will be cut 17% starting September 14
+- If you are subscribed to Google AI Pro or Ultra, you get [AI credits](https://x.com/ChrisDemeke/status/2092980712387318069) worth $50-$100 each month.
+- Claude is [watermarking all of it's outputs](https://www.anthropic.com/news/claude-text-watermark) by configuring the dice.
+
+### [Bun 1.4](https://bun.com/blog/bun-v1.4)
+
+The Rust rewrite lands.
+
+- better Node.js compatibility
+- reduces idle CPU usage by 5x
+- `Bun.Image`, `Bun.WebView`, `Bun.markdown`, `Bun.cron()`, `Bun.Terminal`, `bun run --parallel`, `bun test --parallel`, `bun audit fix`, `bun dedupe`, and `bun prune`
+
+### [pnpm 12](https://pnpm.io/blog/releases/12.0)
+
+pnpm's Rust rewrite is stable.
+
+### [Rspack 2.2](https://rspack.rs/blog/announcing-2-2)
+
+- 5x faster production build
+- CSS parsing is 3.7x faster
+- CopyRspackPlugin 3–4× faster
+- HMR skips unnecessary CSS
+
+### [Next 16.3](https://nextjs.org/blog/next-16-3)
+
+- long dev sessions use 90% less RAM
+- faster builds, type checking, server side rendering
+- versioned docs for AI agents
+- fewer prefetch requests
+- custom error boundaries
+
+### [Better Auth 1.7](https://better-auth.com/blog/1-7)
+
+- Device authorization flow to registred OAuth clients
+- MCP authentication moves to it's own package
+- OAuth provider now supports stronger tokens, explicit rules for protected APIs, more client authentication methods, and broader OpenID conformance
+
+### [Formisch v1](https://formisch.dev/blog/formisch-v1/)
+
+- framework agnostic library built around schemas
+
+### [Tanstack Table 9](https://tanstack.com/blog/announcing-tanstack-table-v9)
+
+- Adapters are available for React, Preact, Vue, Solid, Svelte, Angular, Lit, Alpine, Ember and Octane.
+- lower memory usage at scale
+- table state is managed through Tanstack store
+- type safety improvements
+- tree shaking and extensibility
+
+### [Oxlint](https://oxc.rs/blog/2026-08-18-react-compiler-support)
+
+React compiler support for oxlint
+
+### [SSR - Foldkit](https://foldkit.dev/blog/foldkit-has-server-rendering)
+
+The Effect based frontend framework gets SSR.
+
+### [GitHub Stacked PRs](https://docs.github.com/en/pull-requests/how-tos/stacked-pull-requests)
+
+GitHub has a new shiny feature to split features into smaller PRs that _stack_ together. You can use an agent skill that comes with the gh-cli.
+
+Note that if you installed it when stacked PRs were released, a newer, smaller version is now available and worth reinstalling.
+
+### [Zod 4.5](https://zod.dev/blog/zod-4-5)
+
+- `compile` function is now stable
+- lower memory usage
+
+### [vgpu](https://vgpu.sh/)
+
+A WebGPU based graphics library from Vercel.
+
+### [celld](https://celld.dev/)
+
+Cloudflare Durable Objects, open source version from Ryan Dahl - founder of Node.js and Deno.
+
+### [Cloudflare OS](https://blog.cloudflare.com/cloudflare-os/)
+
+Agent workspaces for your company, from Cloudflare.
+
+### [NestJS 12](https://trilon.io/blog/nestjs-12-is-now-available)
+
+- ESM first projects
+- Rspack replaces webpack
+- Standard schema support
+- structured logging
+
+### [Changesets v3](https://changesets.dev/blog/announcing-changesets-v3)
+
+- ESM only, small size
+- Less aggressive peer dependency bumping
+- More robust and flexible version, pack, and publish flows
+
+### [ui.camera](https://ui.camera/)
+
+Generate software/web photo/animated video. Great looking UI on this one.
+
+## In the Spotlight 🔦
+
+### GitHub outage
+
+GitHub had a major outage on August 17, that lasted over 7 hours. They have published a [postmortem](https://github.blog/news-insights/company-news/the-august-17-outage-and-the-work-ahead/) on the outage. Outside the _neither here nor there_ messaging in the postmortem, there are some graphs that show the scale that AI agents have caused on GitHub and coding in general.
+
+> We failed to scale critical components before demand exceeded their capacity.
+
+The outage prompted all of GitHub's stealth competitors to emerge and announce their products while it was still ongoing.
+
+- [Cursor Origin](https://cursor.com/origin)
+- [code.storage](https://code.storage/) from Pierre Computer Company
+- [Cloudflare Artifacts](https://www.cloudflare.com/products/artifacts/)
+- [Netlify Source](https://www.netlify.com/blog/netlify-source-with-netlify-cto-dana-lawson/)
+- [Zed DeltaDB](https://zed.dev/blog/introducing-delta) - More of keeping the conversations along with code.
+
+The Cursor team wrote about how they arrived at a backend architectural solution for their product Origin: [Git at scale](https://cursor.com/blog/git-at-any-scale). It's a well structured write up on the shortcomings of GitHub architecture to deal with agent traffic and how Cursor wants to get ahead by using S3 write ahead logs. Tobi Lutke was inspired by the article to code his own solution for a git monorepo - [walgit](https://github.com/tobi/walgit)
+
+### OpenAI hacking Huggingface
+
+The incident with OpenAI hacking Huggingface became a public spectacle and caught the eye of people who are not into tech in general. Here's some must reads from the incident:
+
+- [The Hugging Face incident and the road ahead](https://openai.com/index/hugging-face-incident-and-the-road-ahead/) - OpenAI blog
+- [Anatomy of a Frontier Lab Agent Intrusion](https://huggingface.co/blog/agent-intrusion-technical-timeline) - Hugging face
+- Anthropic's [incident report on Claude models](https://www.anthropic.com/news/investigating-incidents-cybersecurity-evals)
+- OpenAI [researcher presentation](https://www.youtube.com/watch?v=87DyyMV0kCY) at BlackHat USA available for streaming on YouTube
+- [AI assistant hacks gym website in first known Australian autonomous cyber attack](https://www.abc.net.au/news/2026-08-10/ai-assistant-hacks-gym-website-aus-cyber-attack/107007986) - ABC News
+- The incident has even got [Bill Gates to change his mind on AI](https://youtu.be/U4zGLSlLo5A?si=vhMNtYBOh9uYTmPf)
+
+### Security
+
+- Next.js [August security release](https://nextjs.org/blog/august-2026-security-release)
+- Wordpress [pre-auth XSS](https://brandefense.io/blog/xss2shell-wordpress-pre-auth-xss-rce/) CVE
+- Mini Shai-Hulud npm supply chain attacks from August hit 440+ npm packages - [ChainDrop supply chain compromise: Anatomy of a self-propagating worm](https://www.microsoft.com/en-us/security/blog/2026/08/04/chaindrop-supply-chain-compromise-anatomy-self-propagating-worm/) - Microsoft
+- LiteLLM hack and [153GB of data publicly available](https://blog.gitguardian.com/inside-the-litellm-hack/) on the Internet.
+- Vercel raises the alarm with [Everything hackable will get hacked](https://vercel​.com/blog/everything-hackable-will-get-hacked)
+
+## Tutorials
+
+### [How we migrated lovable.dev away from Next.js and turned it into another Lovable app](https://lovable.dev/blog/how-we-migrated-lovable-dev-away-from-nextjs)
+
+Lovable moved the app, developing it in parallel, from Next.js to Tanstack Start. The article shares tidbits about the workarounds they used and how they handled the challenging navigation between the frameworks during the migration.
+
+### [Styling Linear for the future with StyleX](https://linear.app/now/styling-linear-for-the-future-stylex)
+
+Linear migrated their codebase from Styled Components to StyleX. The blog explains why they chose this migration and why StyleX was the ideal choice. Moreover, it shows how developer tooling streamlined the migration.
+
+Cursor also has a [post](https://x.com/poteto/status/2089227731305464150) on migrating their interface from Solid to React and SCSS, Tailwind to StyleX.
+
+### [Creator of TypeScript: 10x Faster Typescript, Why AI Won't Replace SWEs | Anders Hejlsberg - YouTube](https://www.youtube.com/watch?v=cywK3XYYJ2o)
+
+Anders Hejlsberg, creator of TypeScript, C#, and Turbo Pascal, explains why he chose JavaScript as the language to start TypeScript and why he later migrated it to Go. He describes how LLMs facilitated the large, mostly error‑free migration, while human insight remained valuable in many cases.
+
+### [Async Solid - Fetch High, Block Low - Ryan Carniato](https://www.solidjs.com/blog/async-solid-fetch-high-block-low)
+
+As Solid 2.0 release is close, Ryan Carniato talks about how async is implemented in SolidJS through a series of blog posts. You should give it a read on how async gets implemented today vs how it could be simplified. This is my favourite aspect of the lot.
+
+> There is no special primitive. No loading flag. No story()?.title. story() is a Story, not a Story | undefined. The types reflect what you see. If it is running, it is there.
+
+## In short
+
+- ESLint 9.x has reached [end of life support stage](https://eslint.org/version-support/). There is a new ESLint RFC for a [parsing toolkit](https://github.com/eslint/rfcs/pull/153)
+- Tip for shipping ESM packages - [use mjs for your files](https://x.com/_pi0_/status/2093283873165545832)
+- Visualise your node_modules black holes with [beautiful interactive graphs](https://node-modules.dev/) from Antony Fu.
+- Stripe [acquires](https://stripe.com/in/newsroom/news/stripe-agrees-to-acquire-openrouter) OpenRouter
+- [Tanstack Charts Alpha](https://tanstack.com/charts/latest)
+- DuckDB has been [acquired by AWS](https://duckdb.org/2026/08/26/ducklabs-to-join-aws)
+- Google has a cheer leading article on Go being [perfect agent language](https://developers.googleblog.com/why-go-is-an-ideal-language-for-ai-assisted-software-engineering/)
+- Replit has a [free mode](https://replit.com/blog/replit-introduces-free-mode) powered with GPT Luna
+- Tobi Lutke is [thinking about banning Claude Code usage](https://x.com/tobi/status/2092259436538495186) at Shopify until they implements AGENTS.md.
+- The mailbox that receives your no-reply.net emails - [noreply@noreply.net](https://noreply.net/)
+- [Reliable Query Prefetching with TanStack Router](https://tkdodo.eu/blog/reliable-query-prefetching-with-tanstack-router) - TkDodo
+- [“Code was never the hard part” is an insult to all programmers](https://blog.senko.net/code-was-never-the-hard-part-is-an-insult-to-all-programmers)
+- [EnvHarness: Awakening Static Worlds for Agent Learning](https://envharness.com/)
+- Rolldown RFC on [Reduce small common chunks](https://github.com/rolldown/rolldown/discussions/10693)
+- Tanner Lindsley [responds to the claims](https://github.com/TanStack/router/discussions/8087) of a 19x faster Tanstack Router replacement.
+
+## In Other News
+
+### [New M6 Mac Mini](https://www.apple.com/in/newsroom/2026/08/apple-unveils-a-more-powerful-mac-mini-featuring-the-all-new-m6-and-m5-pro/)
+
+Apple skipped the ceremony and announced the new devices last week through a blog post and a [YouTube video](https://www.youtube.com/watch?v=3WpzNmY35S4). Apple highlights the new processor family and its 4x improvement in AI performance, but the devices also cost $100 more than the previous versions.
+
+On a developer note, Apple has [asked developers to remove Intel processor support](https://www.macworld.com/article/3225932/apple-to-mac-developers-its-time-to-let-go-of-intel.html) for smaller size and efficiency.
+
+There's a also a new [Framework 12](https://frame.work/hr/en/laptop12) in town.
+
+### [Jeff Dean: The 1% Rule for Building in AI | YCombinator - YouTube](https://youtu.be/CxXgV54KzpQ?si=UY1fgWL8fGE7b7Fr)
+
+There's always time in my life for listening to a Jeff Dean interview, even if it's just to marvel at the technical genius that he is. He's asked a lot of questions that he had not prepared the answers for, so some of the agent use cases turn out to be the obvious, but it's a good take for the _napkin math_. Also this month, Jeff Dean and Sanjay Ghemawat left Google to start their own AI company named [Discovery Loop](https://www.discoveryloop.com/)
+
+### [Mathematicians and AI](https://spectrum.ieee.org/ai-in-mathematics)
+
+The first field AI took by storm was software development. It has likely changed every way software is written. The next field that every AI lab is focusing on is mathematics, because it is even more independently verifiable than software. How should a mathematician react to this sudden change in their field?
+
+- [Mathematicians are grappling with the possibility that AI might eclipse them](https://www.understandingai.org/p/mathematicians-are-grappling-with)
+- [Mathematics in the age of AI](https://arxiv.org/html/2608.16753v1)
+- [The End of Mathematics](https://www.daniellitt.com/blog/2026/8/11/the-end-of-mathematics/)
+
+Also an idea, [Software engineers will become scientists](https://alexatallah.com/blog/software-engineers-will-become-scientists)
+
+### AI updates
+
+- [State of Open Models](https://huggingface.co/blog/state-of-open-models-summer-2026) - Hugging Face - 1M datasets.
+- Grok's incremental update - [Grok 4.6](https://x.com/spacexai/status/2087562800982077492)
+- Meta update - [Muse Spark 1.2](https://research.meta.ai/blog/introducing-muse-code-and-muse-spark-1-2). Mark Zuckerberg has put out Meta's [vision statement](https://www.meta.com/thefutureisforeveryone/) for open AI. [Meta Glimmer](https://x.com/finkd/status/2086755195535413696) open source model 30B.
+- Qwen launched an update to their very popular open source model - [Qwen 3.8-27B](https://huggingface.co/Qwen/Qwen3.8-27B) that you can run locally. [Tips from Qwen team](https://x.com/QwenDevs/status/2088289608031510811) on running the model. It's based on [Qwen 3.8 Max](https://qwen.ai/blog?id=qwen3.8)
+- fal's posttrained Minimax H3 model generates video faster than you can watch - which has created so many real time use cases - [Interdimensional cable](https://x.com/rehan_shei/status/2093528415576211819) if you are a Rick & Morty's fan.
+- [GLM 5.3 flash](https://z.ai/blog/glm-5.3-flash) - New patero frontier
+
+## Looking Ahead
+
+- [Rust Conf](https://rustconf.com/) - Sep 8-11
+- Apple event - [Surprise & Shine](https://www.apple.com/in/apple-events/) - Sep 9
+- [ZurichJS](https://conf.zurichjs.com/) - Sep 11
+- [Agent Conf](https://www.agent.sh/) - Sep 17-18
+- [dotAI](https://www.dotai.io/) - Sep 17
+- [dotJS](https://www.dotjs.io/) - Sep 18
+- [GOTO Copenhagen](https://gotocph.com/2026) - Sep 28

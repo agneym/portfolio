@@ -1,0 +1,128 @@
+---
+title: Web in November - Newsletter by Agney
+date: "2022-12-04T11:24:45.004020Z"
+buttondownUrl: https://buttondown.com/agney/archive/web-in-november-newsletter-by-agney-9010/
+---
+
+Hello there December 👋
+
+### Twitter Turmoil
+
+It is the month Elon Musk took charge of the social network Twitter and things have been going wild. From a promoter of free speech, Elon has moved to an arbiter of it
+
+- Alex Jones being banned because nothing against children)
+- Kanye West (or Ye) being banned and unbanned because of antisemitic statements.
+
+Elon Musk also released a bunch of files dubbed #TwitterFiles which shows Twitter executives debating limits of their control and free speech. I'm not into American politics to speak on policies with the files but it's ironic to me that Elon Musk is encountering the same problems as his predecessors (whom he fired) on content moderation.
+
+That's the political side of it. Moving on to the technical ones:
+
+- Lots of people are raising Twitter life Tik-Toks as proof that these people did no work. The people who worked at Twitter (or any of these companies) are not allowed to film any work related documents or show laptops in their videos. This is why they are always about what else is in their workplace that is interesting. Linking to [TheVerge Coverage](https://www.theverge.com/23399448/big-tech-employees-tiktok-youtube-influencers-tech-girlies-vlogs).
+- Other people point out how their experience of the site did not deteriorate over time even though the employees were fired. That's not how sites work, if the sites did not deteriorate, you would have to be extra thankful to the employees fired, left and still working.
+
+I generally use Twitter to connect to developers and generally follow blogs and technical talks. But now that it's a dumpster fire, I'm open to looking for alternatives. Mastodon is what I hear a lot, but is there a good frontend communities on there? Let me know what you people use.
+
+---
+
+## Releases
+
+### Browsers
+
+#### [Chrome 108](https://developer.chrome.com/blog/new-in-chrome-108/)
+
+Chrome 108 includes support for the avoid value of the CSS fragmentation properties break-before, break-after, and break-inside when printing.
+
+There is a change in how the resize works on showing keyboard in mobile browsers: [Prepare for viewport resize behavior changes coming to Chrome on Android](https://developer.chrome.com/blog/viewport-resize-behavior/)
+
+#### [Firefox 107](https://developer.mozilla.org/en-US/docs/Mozilla/Firefox/Releases/107)
+
+The contain-intrinsic-size shorthand CSS property can now be applied to specify the size of a UI element that is subject to size containment. This allows a user agent to determine the size of an element without needing to render its child elements. The shorthand properties contain-intrinsic-width and contain-intrinsic-height are also supported, along with the logical properties contain-intrinsic-block-size and contain-intrinsic-inline-size.
+
+### [ChatGPT - OpenAI](https://openai.com/blog/chatgpt/)
+
+OpenAI is introducing a new AI model with ChatGPT in research preview. ChatGPT maintains context with conversations and it's amazing how barbaric it makes competitors like Siri feel like. ChatGPT analysing code it a breeze to use and there is already people trying to use it as a No Code platform.
+
+There are also several Twitter threads of trying to game the system.
+
+[https://twitter.com/carnage4life/status/1598332648723976193](https://twitter.com/carnage4life/status/1598332648723976193)
+
+### [TypeScript 4.9](https://devblogs.microsoft.com/typescript/announcing-typescript-4-9)
+
+- The new TypeScript release brings the `satisfies` operator. I might be off my TS game for a long time now since I don't get it 😅 but looks cool.
+- Another nice feature is the `NaN ==` feature - NaN is not "equal" to anything in JavaScript. Not even itself.
+  The file watching now uses system file callbacks instead of the NodeJS `watchFile` and it should make watching large repositories a lot smoother.
+
+### Elon's events
+
+- Tesla is launching a semi truck: [Event in 9 minutes from CNET](https://youtu.be/HrhSIDu4_Zw)
+- Neuralink demo with a monkey (who we are told loves the demo) - [Neuralink event in 10 minutes from CNET](https://youtu.be/xv2_F4FwFiM)
+
+## In the Spotlight 🔦
+
+Black Friday Madness:
+
+[https://twitter.com/shopifyeng/status/1597983918900510720](https://twitter.com/shopifyeng/status/1597983918900510720)
+
+[https://twitter.com/patrickc/status/1597421393536487424](https://twitter.com/patrickc/status/1597421393536487424)
+
+## Tutorials
+
+### [An Interactive Guide to Flexbox - Josh W Comeau](https://www.joshwcomeau.com/css/interactive-guide-to-flexbox/)
+
+This blog post is from one of our regulars - Josh. To call it a simple blog post is a crime given it's a entire website worth of content. Go check it out if you miss flexbox or love some interactive blog developer content.
+
+### [Inside Framer's Magic Motion](https://www.nan.fyi/magic-motion)
+
+Framer's Magic Motion is the animation engine that auto-animates between layout changes in components. This is an interactive blog on how this possibel and the layout animation principles.
+
+### [Speeding up the JavaScript ecosystem - one library at a time](https://marvinh.dev/blog/speeding-up-javascript-ecosystem/)
+
+This is some awesome intermediate JavaScript content on analysing JavaScript libraries and making them faster.
+
+> Most popular libraries can be sped up by avoiding unnecessary type conversions or by avoiding creating functions inside functions.
+
+### [The large, small, and dynamic viewport units - web.dev](https://web.dev/viewport-units/)
+
+Most of us are familiar with vh and vw. If you have used `vh` for long in production, you are probably also familiar with issues it has on mobile devices. There are different configurations on mobile screens, with address bars and different toolbars being shown and hidden on scroll that `vh` becomes a bug that you have to fix with % magic.
+
+There are now new units approved and supported everywhere - small viewport units, large viewport units and dynamic viewport units. Long story short, `dvh` is a better substitute for `vh` if you have to support mobile browsers.
+
+### [What CSS do you absolutely have to know in 2022? - CSS Tricks](https://css-tricks.com/what-css-do-you-absolutely-have-to-know-in-2022)
+
+Last month, I had written about Sacha Grief's thought on if CSS surface area is getting too large for a beginner to grasp. Geoff Graham writes on a list of properties that a Must-Have when you start. You don't have to agree to his list but it's pretty though provoking.
+
+### [Why you should never use px to set font-size in CSS](https://joshcollinsworth.com/blog/never-use-px-for-font-size)
+
+If you want a comprehensive tutorial and light opinion CSS units - px, em and rem, this is your stop. The base idea is that user gets to change the base font size of their browser (default set to 16px) and if you use `px` everywhere, it wouldn't respect the user preference. `rem` all the way for font sizes.
+
+## In Other News
+
+### World Population crosses 8 billion
+
+According to UN estimates, the world population has officially crossed 8 billion, that's a lot of us. Here are some interesting articles I came across on the
+topic.
+
+- [Elon Musk Is Totally Wrong About Population Collapse - The Wired](https://www.wired.co.uk/article/elon-musk-population-crisis)
+- [‘I can’t give up on hope’: As the world’s population passes 8bn, new parents from Italy to India look to the future](https://www.theguardian.com/world/2022/nov/15/i-cant-give-up-on-hope-as-the-worlds-population-passes-8bn-new-parents-from-italy-to-india-look-to-the-future)
+
+### [China just announced a new social credit law. Here’s what it means - MIT Technology Review](https://www.technologyreview.com/2022/11/22/1063605/china-announced-a-new-social-credit-law-what-does-it-mean/)
+
+There has been a lot of chatter about a "social credit law" in China over the Western media and widespread fear about it's adoption. MIT Technology Review looks at the latest Central Government draft and analysis what it really entails.
+
+- There are two scores - one of them is the credit score for financial transactions, pretty common everywhere. The second is the social score - it's a score of trustworthiness score for an individual based on their deeds.
+- The score can in theory get you better government services. At depleted score, there could be punishment measures where there could be services you cannot access or get pushed back in the queue.
+- It's not implemented for the entire population - it's a draft for local institutions to play around with.
+- There is **no** algorithm going around giving every Chinese citizen a social score.
+
+### [Web technology optimism hour](https://macwright.com/2022/11/18/optimism-updates.html)
+
+This is perfect year ender with web technology evolution this year and what to look forward to next year. A lot of this, we have talked in the earlier issues of our Web in a Month newsletter, but this is good breather.
+
+### [Nothing CEO Reviews iPhone 14 Pro](https://youtu.be/13PowoqJkEM)
+
+Carl Pei is one of those CEO's who specialise in design and marketing for digital products. So watching him review an iPhone is interesting content. This is on the Nothing channel, so there's a lot of Nothing ads.
+
+## Looking Forward
+
+- [Unblock - CI/CD Conference from Buildkite](https://buildkite.com/unblock) - 6-7 Dec
+- [Advent of Code](https://adventofcode.com/)

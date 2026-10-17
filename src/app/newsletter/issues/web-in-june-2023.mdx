@@ -1,0 +1,150 @@
+---
+title: Web in June - Newsletter by Agney
+date: "2023-07-05T20:45:25.852469Z"
+buttondownUrl: https://buttondown.com/agney/archive/web-in-may-newsletter-by-agney-5319/
+---
+
+Hello July 👋
+
+We find ourselves in a pivotal moment where the internet's landscape is shifting, and there is a perception that the free content community, once vibrant and community-driven, is gradually being replaced by corporate-dominated content farms.
+
+- Reddit's API fee increase: Reddit's decision to significantly raise API fees led to a strong backlash from third-party app developers and resulted in numerous communities, with millions of members, going private in protest. However, Reddit has since bought back many of these communities, raising concerns about a potential violation of its own community guidelines.
+
+- Twitter's content restrictions: Twitter has made changes that restrict access to content, with many tweets now hidden behind sign-up buttons and paywalls. Additionally, rate limiting measures have been implemented, limiting the number of tweets that new members can see.
+
+The proliferation of Language Models (LLMs) has enabled corporations to utilize and repackage data created by online communities, often while extracting payment from users. This raises the question of how content and community can survive in this challenging landscape.
+
+## Releases
+
+### Browsers
+
+#### [Firefox 114](https://developer.mozilla.org/en-US/docs/Mozilla/Firefox/Releases/114)
+
+- Workers now support loading ECMAScript modules. You can load modules into workers by specifying the `{type: "module"}` option in the Worker and SharedWorker constructors.
+- Support for WebTransport API provides a modern update to WebSockets, transmitting data between client and server using HTTP/3 Transport
+
+### [Ember 5](https://blog.emberjs.com/ember-5-0-released/)
+
+Polaris is the name of an upcoming edition of Ember, first announced at EmberConf 2021. Over the course of 5.x, new features will be added to Ember that will eventually make up the new edition.
+
+### [Svelte 4](https://svelte.dev/blog/svelte-4)
+
+Svelte 4 has been released, marking a significant milestone after a four-year gap since its last major release.
+
+- The Svelte library size has been drastically reduced by almost 75% 🫨, with an estimated further reduction of over 50%.
+- The number of dependencies required by the library has decreased from 61 to 16.
+- The default transition behavior has been changed to |local, ensuring smoother page transitions by avoiding animation blocking.
+- Writing preprocessors has become easier with improved support.
+- Several fixes have been implemented to simplify the setup and usage of CSP (Content Security Policy).
+
+Looking ahead, Svelte 5 is planned as a complete rewrite of the library.
+
+### [Remix 1.18.1](https://github.com/remix-run/remix/releases/tag/remix%401.18.0)
+
+This release introduces a new developer experience feature they call HDR - Hot Data Revalidation.
+
+> HMR handles client-side code updates like when you change the components, markup, or styles in your app. Likewise, HDR handles server-side code updates.
+
+[Talk at Remix Conf](https://www.youtube.com/watch?v=79M4vYZi-po) explaining the concept.
+
+### [Framer AI](https://www.framer.com/ai)
+
+Framer AI can take a prompt, generate a site and deploy it in minutes. Here's some highlights:
+
+[https://twitter.com/namyakhann/status/1668880952423063552](https://twitter.com/namyakhann/status/1668880952423063552)
+
+## In the Spotlight 🔦
+
+Addy Osmani's [video presentation on The Cost of JavaScript](https://youtu.be/ZKH3DLT4BKw) is a great resource to get an overview of optimisation landscape. Topics covered here:
+
+- What the dominant costs of heavy JavaScript are
+- How median hardware plus heavy JavaScript can impact user-experience
+- Tips and tricks for reducing the cost of JavaScript, reducing long-tasks and improving the Core Web Vitals metrics
+- Things frameworks and browsers are doing to try reducing the cost of JavaScript by default.
+- How new performance metrics can help you reason about where to optimize JavaScript to improve user interactions.
+
+Remember:
+
+- Test on real phones and networks
+- Hydrate but not too much.
+- Add performance budgets
+
+## Tutorials
+
+### [Some things I learnt from working on big frontend codebases](https://dev.to/noriste/some-things-i-learnt-from-working-on-big-frontend-codebases-1e0a)
+
+Stefano Magni has penned a comprehensive post sharing the lessons he has learned from his experience maintaining WorkWave RouteManager and the Hasura Console. The post is divided into sections that cover both generic approaches to codebase maintenance and specific technologies, including React, TypeScript, and more.
+
+### [Modern CSS in Real Life - Chris Coyier](https://chriscoyier.net/2023/06/06/modern-css-in-real-life/)
+
+In his article, Chris Coyier starts by mentioning that he has transformed his presentation at RenderATL into a blog post. However, in my opinion, this post contains a wealth of content that could easily constitute an entire course.
+
+Chris takes an in-depth look at several CSS properties that have been introduced recently but haven't yet gained widespread adoption. These include logical properties, CSS Grid features like subgrid and masonry, container queries, cascade layers, and more. Instead of simply explaining each feature, Chris goes beyond and explores the use cases, providing insights into why these features were necessary in the first place.
+
+### [RSC From Scratch. Part 1: Server Components](https://github.com/reactwg/server-components/discussions/5)
+
+Dan Abramov has converted his talk into a blog post series, with the first part focusing on a tutorial for creating and implementing server components. In this tutorial, he deviates from using React and instead demonstrates the process of creating JSX and a Router with NodeJS code.
+
+I found the conclusion of this part interesting:
+
+> We will say React Server (or just capitalized Server) to mean only the RSC server environment. Components that exist only on the RSC server (in this example, that's all our components so far) are called Server Components.
+
+> We will say React Client (or just capitalized Client) to mean any environment that consumes the React Server output. As you've just seen, SSR is a React Client — and so is the browser. We don't support components on the Client yet — we'll build that next! — but it shouldn't be a huge spoiler to say that we will call them Client Components.
+
+### [Crafting the Next.js Website](https://rauno.me/craft/nextjs)
+
+Rauno showcases the graphics and shares clever tricks used in the new Next.js site. One notable technique involves creating gridlines using a linear gradient, which adds a visually appealing element to the design. Additionally, Rauno demonstrates the creation of a switchboard effect by animating opacity with box shadows.
+
+### [How to use GitHub Copilot: Prompts, tips, and use cases - GitHub blog](https://github.blog/2023-06-20-how-to-write-better-prompts-for-github-copilot/)
+
+This is one of those "Prompt Engineering Courses" but for Github Copilot. You might be already be doing these but validation is nice.
+
+- If you have a blank file, start with comments explaining what you want to do.
+- Give the AI examples if you want it to generate data.
+- Keep the files connected the one you are writing open so it can learn better context.
+
+### [How large DOM sizes affect interactivity, and what you can do about it](https://web.dev/dom-size-and-interactivity/)
+
+If you've encountered the Lighthouse prompt that advises you to "Avoid an excessive DOM size," this article provides an in-depth exploration of the topic. It covers various aspects, including how to inspect your DOM size, the issues that arise from having an excessively large DOM, and methods to reduce its size.
+
+## In Other News
+
+### [StackOverflow Developer Survey 2023 Results](https://survey.stackoverflow.co/2023/)
+
+he results of the StackOverflow Developer Survey 2023 have been released, featuring responses from a staggering 90,000 developers. Several statistics from the survey have caught my attention:
+
+- A significant 80% of developers rely on online resources such as videos, blogs, and forums to learn coding.
+- JavaScript continues to maintain its position as the most popular language among professional developers.
+- PostgreSQL has claimed the top spot among databases, surpassing MySQL in popularity.
+- Docker has emerged as the most widely used tool, followed by npm and pip. It's interesting to note that npm and pip, although commonly used, are not typically categorised as standalone tools.
+
+NB: [State of CSS Survey 2023](https://survey.devographics.com/en-US/survey/state-of-css/2023) is now open.
+
+### [Lisa: Steve Jobs’ sabotage and Apple’s secret burial - TheVerge](https://youtu.be/BkDK2EiflWk)
+
+The Lisa computer holds a significant place in history as the first personal computer to introduce a graphical user interface (GUI), a feature that has now become standard on most computers. It also introduced the concept of a pointing device, which would later evolve into what we now know as the mouse. Despite its revolutionary nature, the Lisa was ultimately a commercial failure.
+
+However, a few years after the Lisa's launch, Apple released its successful successor, the Macintosh, which propelled the company to the forefront of the computer industry.
+
+The Verge has conducted an examination of the Lisa's history, shedding light on its journey and eventual demise, which led to the unfortunate disposal of numerous Lisa computers in a landfill located in Utah.
+
+### [28 Questions to Ask Your Boss in Your One-on-Ones](https://hbr.org/2023/06/28-questions-to-ask-your-boss-in-your-one-on-ones)
+
+One-on-one meetings with bosses or managers can indeed be awkward at times. It's common to feel hesitant about asking questions during these meetings and often end up saying, "Nothing from my end," only to think of questions later on. Harvard Business Review (HBR) offers a helpful framework to approach these meetings and provides a set of questions to help you prepare.
+
+### [Harvard’s new computer science teacher is a chatbot](https://www.independent.co.uk/tech/harvard-chatbot-teacher-computer-science-b2363114.html)
+
+Harvard University will be using an AI chatbot as an instructor on its flagship coding course, Computer Science 50: Introduction to Computer Science (CS50). The chatbot will be based on OpenAI's GPT 3.5 or GPT 4 models, and will be able to answer questions, provide feedback, and even help students debug their code.
+
+This marks the achievement of a long-awaited goal: a 1-1 student-teacher ratio. However, it remains to be seen whether this will have a detrimental impact on students due to the presence of hallucinations.
+
+### [AI Is a Lot of Work - The Verge](https://www.theverge.com/features/23764584/ai-artificial-intelligence-data-notation-labor-scale-surge-remotasks-openai-chatbots)
+
+In a collaborative effort, The Verge and The New York Times have joined forces to explore the individuals and processes involved in preparing the terabytes of labeled data that power the kings of Artificial Intelligence systems today, known as Language Models (LLMs). This joint feature aims to delve into the operations of the data preparation factories and shed light on the people who play a crucial role in this process.
+
+## Looking Forward
+
+- [React Nexus](https://reactnexus.com/) - July 7-8
+- [TribeConf](https://www.thetesttribe.com/tribeqonf/) - July 14-15
+- [LaraCon](https://laracon.us/) - July 19-20
+- [VueJS Forge](https://vuejsforge.com/) - Aug 2-3

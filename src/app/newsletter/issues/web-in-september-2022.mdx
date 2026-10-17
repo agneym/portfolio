@@ -1,0 +1,115 @@
+---
+title: Web in September - Newsletter by Agney
+date: "2022-10-01T09:12:48.141000Z"
+buttondownUrl: https://buttondown.com/agney/archive/web-in-september-newsletter-by-september-3588/
+---
+
+Hey October!
+
+October means it's time for [Hacktoberfest](https://hacktoberfest.com/). Over the years, there has been very different public opinion about what the fest and the month means for everyone and there are still apprehensions. If you aren't familiar, the fest is about celebrating open source and encouraging more people to directly contribute and support open source projects.
+
+This year, Hacktoberfest focuses on brining in non code interactions with open source projects b bringing chores like design, testing, documentation to the forefront.
+
+---
+
+## Releases
+
+### Browsers
+
+- [Firefox 105](https://developer.mozilla.org/en-US/docs/Mozilla/Firefox/Releases/105) ships with Offscreen Canvas API (just Safari to follow up now) and Intl improvements.
+- [Chrome 106](https://developer.chrome.com/blog/new-in-chrome-106/) brings new Intl APIs for currency and number formatting. There is a [Popup API](https://developer.chrome.com/blog/pop-ups-theyre-making-a-resurgence/) on origin trial now which will make creating modals much easier.
+- [Safari 16](https://developer.apple.com/documentation/safari-release-notes/safari-16-release-notes) adds support for container queries and animatable grids. On the JavaScript front are form improvements like `requestSubmit` and `showPicker`.
+- Microsoft Edge Canary is shipping with it's own VPN that Microsoft calls [_Microsoft Edge Secure Network_](<(https://techcommunity.microsoft.com/t5/articles/introducing-microsoft-edge-secure-network/m-p/3367243)>). Microsoft has partnered with Cloudflare to offer the VPN which connects users to nearest Cloudflare network (no geolocation hacks) and hide their IP address. However, to save bandwidth these might be turned off on network heavy operations like gaming or streaming.
+
+### [Next.js 12.3](https://nextjs.org/blog/next-12-3)
+
+Next.js 12.3 is the beginning for new layout components for Next.js. From just file system based routing, Next.js is introducing more complex concepts of adding layouts to the routing system. These will remain constant on routing and will not change. This earlier required many different hacks to perfect and as someone who has felt the pain of implementing these, love that these are making their way in natively.
+
+### [Introducing Whisper - OpenAI](https://openai.com/blog/whisper/)
+
+> We’ve trained and are open-sourcing a neural net called Whisper that approaches human level robustness and accuracy on English speech recognition.
+
+It's bloody perfect.
+
+### [Introducing Make-A-Video - Meta](https://ai.facebook.com/blog/generative-ai-text-to-video/)
+
+Everyone hypothesised an AI that would created videos from description when they saw Dall-E come up. But no one would have thought it would be this fast. Meta has released their private Beta for Make-a-Video, an AI tool that does just that.
+
+Also, Dall-E is now [available without waitlist](https://openai.com/blog/dall-e-now-available-without-waitlist/)
+
+### [Introducing Signals - PreactJS](https://preactjs.com/blog/introducing-signals/)
+
+Signals are the new state management library from PreactJS. If you have used the modern ones like Zustand or Recoil, this would be very familiar. The library like all of Preact, comes with a lean philosophy of 1.6kB. They can be used inside or outside your components unlike Hooks and can be used with React or PreactJS.
+
+### [First Batch of Color Fonts are on Google Fonts](https://material.io/blog/color-fonts-are-here)
+
+### Cloudflare workers [finally open source](https://blog.cloudflare.com/workerd-open-source-workers-runtime/)
+
+## Tutorials
+
+### [What’s New With Forms in 2022? - CSS Tricks](https://css-tricks.com/whats-new-with-forms-in-2022/)
+
+There are things that show up on browsers every month and some of it gets drowned in the content. Ollie Williams makes of list of features that makes forms better.
+
+- `requestSubmit` allows you to submit a form programmatically and validate the form at the same time.
+- `inert` attribute to disable an entire form and make it non focusable.
+
+### [Creative List Styling - web.dev](https://web.dev/creative-list-styling/)
+
+Most people forget things are lists. This article lists down different ways in which lists and numbering can change designs and how adaptable they are. `counter` is a pretty amazing CSS property to have.
+
+### HTML courses from web.dev
+
+Web.dev (from Google) has introduced two new courses to their arsenal this month.
+
+- [Learn HTML](https://web.dev/learn/html/)
+- [Learn Accessibility](https://web.dev/learn/accessibility/)
+
+They are not complete, still evolving. But seems pretty professional at the glance.
+
+### [Use the Right Container Query Syntax - Miriam Suzzane](https://www.oddbird.net/2022/08/18/cq-syntax/)
+
+Since Safari has now shipped Container Query units, might as well study about them. The units are cqw, cqh, cqi, cqb, cqmin and cqmax. Confused much?
+
+### [Type Level TypeScript](https://type-level-typescript.com/)
+
+This is a new free content that was released to make you better at TypeScript as a language and the small tests that it comes up with is really cool way to learn 📝
+
+[https://twitter.com/bramus/status/1574495889300897805](https://twitter.com/bramus/status/1574495889300897805)
+
+## In Other News
+
+### [Goodbye Stadia](https://blog.google/products/stadia/message-on-stadia-streaming-strategy/)
+
+Google is shutting down their game streaming service Stadia. If you purchased a Stadia controller, there is a good news and bad news - The good news is that Google will refund that purchase, the bad news is in the headline.
+
+Even though Stadia is dead, cloud gaming clearly isn't - with the number of competitors Google bought on (May be that was the intention in the first place). Microsoft has [XBox Cloud Gaming](https://www.xbox.com/en-us/play) which is getting good, Nvidia's [Geforce Now](https://www.nvidia.com/en-us/geforce-now/) and Amazon [Luna](https://www.amazon.com/luna/)
+
+- [Google Stadia never mattered - The Verge](https://www.theverge.com/2022/9/29/23379470/google-stadia-cloud-gaming-future-never-mattered-chance-shutdown)
+
+### [Adobe acquires Figma](https://news.adobe.com/news/news-details/2022/Adobe-to-Acquire-Figma/default.aspx)
+
+The independent company that was designed to kill Adobe has been bought by Adobe. For 20$ Billion.
+
+### [Web Almanac - HTTP Archive](https://almanac.httparchive.org/en/2022/)
+
+The annual report from HTTP Archive is here and it has some very interesting stats to ponder on. For eg. Did you know that the median mobile page loads 162 KB of unused JavaScript. At the 90th percentile, 604 KB of JavaScript are unused.
+
+[What Figma plans to do inside Adobe - TheVerge](https://www.theverge.com/23376442/figma-ceo-interview-adobe-acquisition-ai-antitrust-design-field)
+
+### Hacks galore
+
+- [The Uber Hack’s Devastation Is Just Starting to Reveal Itself - Wired](https://www.wired.com/story/uber-hack-mfa-phishing/) - Uber was hacked by a teenager (who epically posted on company slack.
+- [Uber Hack: It’s the Simple Things That Kill Your Security - The NewStack](https://thenewstack.io/uber-hack-its-the-simple-things-that-kill-your-security/)
+- [Grand Theft Auto VI footage leaked after hack, developer Rockstar confirms - BBC](https://www.bbc.com/news/technology-62960828)
+- [Shiba Inu Leaked their AWS Cloud Credential](https://www.cyberkendra.com/2022/09/shiba-inu-leaked-their-aws-cloud.html)
+
+### [Pytorch](https://pytorch.org/) is now on Linux Foundation and there is now [a course](https://training.linuxfoundation.org/training/pytorch-and-deep-learning-for-decision-makers-lfs116x) from the foundation as well.
+
+## Looking Forward
+
+- [HacktoberFest](https://hacktoberfest.com/) - All of October
+- [GraphQL Summit](https://summit.graphql.com/event/9cabb0aa-eb3c-4bfd-bf74-3dcc4c82c066/summary) - October 3-5
+- [ViteConf](https://viteconf.org/) - October 11-12
+- [SmashingConf NYC 2022](https://smashingconf.com/ny-2022) - October 10-13
+- [Next.JS Conf](https://nextjs.org/conf) - October 25

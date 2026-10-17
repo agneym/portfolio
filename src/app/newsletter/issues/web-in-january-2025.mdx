@@ -1,0 +1,163 @@
+---
+title: JEM - Web in January - JavaScript Every Month Newsletter
+date: "2025-02-08T11:59:52.099983Z"
+buttondownUrl: https://buttondown.com/agney/archive/jem-web-in-january-javascript-every-month-7289/
+---
+
+Hello 2025 👋
+
+The year has just begun, and significant changes are already occurring worldwide. Deepseek has disrupted the US stock markets with its low pricing and the GPUs used to train its models. The new American president has announced tariffs on Chinese products, which will impact e-commerce everywhere. Additionally, Elon Musk is now involved with the government regarding DOGE and seeks "read-only" access to government departments. To quote "The Verge," they have concluded that the government is essentially a network of computers, and controlling these computers means controlling the country.
+
+## Releases
+
+### Browsers
+
+#### [Firefox 134](https://developer.mozilla.org/en-US/docs/Mozilla/Firefox/Releases/134)
+
+- `align-self` and `justify-self` CSS properties and `place-self` CSS shorthand property are now supported for absolutely positioned elements.
+- `Promise.try` takes a callback of any kind and wraps the result in a Promise. This is now in Baseline.
+
+#### [Safari 18.3](https://developer.apple.com/documentation/safari-release-notes/safari-18_3-release-notes)
+
+- Resolved issues and deprecations.
+
+#### [Chrome 132](https://developer.chrome.com/release-notes/132)
+
+- `anchor-size()` is allowed in insets and margins as well.
+- Support of `sideways-rl` and `sideways-lr` keywords for `writing-mode`. These will help write non-CJK text veritically.
+- Device posture API - determine the posture of a foldable device.
+- Toggle event when `dialog` elements open and close.
+- The WebAuthn Signal API enables relying parties to communicate information about existing credentials to credential storage providers. This functionality allows for the updating or removal of incorrect or revoked credentials from both the provider and the system user interface.
+
+### [pnpm 10](https://github.com/pnpm/pnpm/releases/tag/v10.0.0)
+
+- pnpm has stopped executing lifecycle scripts by default. This is meant to increase security. [Blog post](https://socket.dev/blog/pnpm-10-0-0-blocks-lifecycle-scripts-by-default)
+- The pnpm link command now adds overrides to the root `package.json`
+
+### [Node v22.13.0 (LTS)](https://nodejs.org/en/blog/release/v22.13.0)
+
+- permission model is now stable
+
+### [ESLint 9.18.0](https://eslint.org/blog/2025/01/eslint-v9.18.0-released/)
+
+- TypeScript configuration file support is stable.
+- [ESLint's 2024 year in review](https://eslint.org/blog/2025/01/eslint-2024-year-review/)
+
+### [Vitest 3.0](https://vitest.dev/blog/vitest-3)
+
+- Test reports should now have less flicker and more stable output.
+- single file for workspaces
+- more performant way to run your browser tests in different browsers or setups
+
+### [Tailwind 4.0](https://tailwindcss.com/blog/tailwindcss-v4)
+
+- New high-performance engine — where full builds are up to 5x faster, and incremental builds are over 100x faster — and measured in microseconds.
+- first party Vite plugin
+- automatic content detection
+- build in import support no postcss-import necessary
+- css first configuration - JavaScript configuration is still supported for backward compatibility
+- container queries, 4D transform, cascade layers, modernized color palette, theme variables.
+
+## In the Spotlight 🔦
+
+The Permissions API has been declared stable in the new Node.js LTS, so let's discuss it.
+
+The Node.js documentation recommends using permissions as a "seat belt" approach. If you allow malicious code to run on your server, the Permissions API cannot protect you. Its purpose is to inform good code where the guardrails are.
+
+To enable the Permissions API, you need to use the flag `--permission`:
+
+```bash
+node --permission index.js
+```
+
+Once enabled, various capabilities of Node.js processes will be restricted.
+
+You would need to addon flags for each permission you want to grant Node.js. For example, if you want to allow `node:fs` to read and write files.
+
+```bash
+node --permission --allow-fs-read=* --allow-fs-write=* index.js
+```
+
+## Tutorials
+
+### [Accessibility essentials every front-end developer should know](https://martijnhols.nl/blog/accessibility-essentials-every-front-end-developer-should-know)
+
+Breaks it down to few core principles that every frontend developer should follow for accessiblity
+
+- Semantic HTML: Use the right elements for interactive and native functionality.
+- Forms: Simplify labels and structure to improve usability for everyone.
+- Keyboard navigation: Ensure users can navigate around with their keyboard.
+- Modals: Modals have many accessibility requirements.
+- Image alt texts: Write better descriptions to make images more accessible.
+- Styling: Enhance accessibility through focus indicators, responsive design, and reduced motion.
+- ARIA Attributes: When and how to use ARIA to fill accessibility gaps.
+
+### [JavaScript Frameworks - Heading into 2025 - Ryan Carniato](https://dev.to/this-is-learning/javascript-frameworks-heading-into-2025-hkb)
+
+This is the SolidJS creator's perspective on the future of the web in 2025:
+
+- We have moved too far in the server direction and may shift back the momentum.
+- Compiled frameworks like Svelte are here to stay.
+- There is a growing collection of pain points associated with signals. While this approach was initially celebrated, more people are now recognizing its trade-offs.
+
+### [The MOST Starred JS Projects 2024 - SyntaxFM](https://youtu.be/NBDnS9UQg5w?si=4_upCzs0rv8ZK_p9)
+
+Syntax has a 2024 rundown of projects with most stars. `shadcn/ui` topped the list of projects with the most stars in 2024, despite being only one year old. The recent video rundown also highlights various features released throughout the year related to these projects.
+
+[JavaScript Rising stars](https://risingstars.js.org/2024/) is also a website build on the same concept and allows to visualise stars ⭐ in different categories.
+
+### [Five years of React Native at Shopify](https://shopify.engineering/five-years-of-react-native-at-shopify)
+
+The Shopify blog updates on their learnings movings to React Native for their apps.
+
+- React Native apps are fast.
+- Hot reloading is awesome.
+- Typescript's ubiquity has facilitated seamless transitions for developers between React web and React Native, making mobile development more accessible for web developers and vice versa
+- Native devs are crucial. The goal is not to make a 100% React Native app. Switch to Native whenever better.
+- Debugging is flakey and requires some work setting up
+- Updating an app to new React native versions takes significant amounts of work
+- More reliance on 3rd party libraries.
+
+### In short
+
+- [Codepen's most popular pens of 2024](https://codepen.io/2024/popular/pens/)
+- [Success of Interop 2024](https://webkit.org/blog/16413/the-success-of-interop-2024/) - 95% interop between 4 popular browsers by end of December.
+
+## In Other News
+
+### [WordPress is in trouble](https://anderegg.ca/2025/01/11/wordpress-is-in-trouble)
+
+Illustrates how the WordPress drama has evolved and where it is headed. Decisions are now being made out of spite rather than for the benefit of WordPress itself. Matt's post on Reddit [What drama should I create in 2025](https://www.reddit.com/r/WPDrama/comments/1hlp08d/what_drama_should_i_create_in_2025/) is just the icing on the cake.
+
+### [We made MKBHD's Dream Phone - Nothing](https://youtu.be/bny2NJkJGXc?si=RF7q0ZWx3wT3nOpx)
+
+Someone asked MKBHD about the specifications of his favorite phone. They then analyzed the cost of each material he requested. More interestingly, they also examined the R\&D process and the hidden costs involved like support and marketing.
+
+### [WTF is Artificial Intelligence Really? | Yann LeCun x Nikhil Kamath | People by WTF Ep #4](https://youtu.be/JAgHUDhaTU0?si=y8UnqB3lZmZWSh25)
+
+This is an amazing podcast featuring Zerodha founder Nikhil Kamath, where guest Yann LeCun explains terms used in artificial intelligence in a way that is easy for everyone to understand. Many topics are covered, making it a valuable resource for anyone new to the subject.
+
+[Another podcast](https://youtu.be/soQRRFwrfpQ?si=aEDbkSebODO3r6dW) I found interesting features Mukesh Bansal interviewing Anil Ananthaswamy, who discusses the history of AI and delves deeper into the question of "why" machines learn. Note that these are for beginners.
+
+Also watch [AI software sketch by SNL](https://youtu.be/ua4rYsMdC4U?si=z9y615s2yeGcl0xX) - it's not even that far from the real world.
+
+### [Last Exam for Humanity](https://lastexam.ai/)
+
+The exams we have are being easily passed by AIs. As a result, we are creating new questions designed to trip them up. It's entertaining to read through these, but I wonder if they will appear on future CAPTCHAs.
+
+ 
+
+### AI Updates
+
+There is going to be a lot of OpenAI news in here.
+
+- [OpenAI Operator](https://openai.com/index/introducing-operator/) - OpenAI's take using the LLM to control a browser.
+- [Scheduled tasks in ChatGPT](https://help.openai.com/en/articles/10291617-scheduled-tasks-in-chatgpt)
+- [Deepseek r1](https://api-docs.deepseek.com/news/news250120) shook the world with their floor price.
+- [OpenAI o3 Mini](https://openai.com/index/openai-o3-mini/) - cost efficient reasoning model from OpenAI
+- [Mistral Small 3](https://mistral.ai/en/news/mistral-small-3)
+
+## Looking Ahead
+
+- [AxeCon](https://www.deque.com/axe-con) - Feb 25-27
+- [Angular 2025 strategy](https://blog.angular.dev/angular-2025-strategy-9ca333dfc334)

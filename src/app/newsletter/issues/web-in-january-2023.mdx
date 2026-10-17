@@ -1,0 +1,114 @@
+---
+title: Web in January - Newsletter by Agney
+date: "2023-02-05T19:08:11.299613Z"
+description: What happened in the month of January 2023 in the World of Web.
+image: https://calendar.perfplanet.com/wp-content/uploads/2022/12/estela/figure-4.png
+buttondownUrl: https://buttondown.com/agney/archive/web-in-january-newsletter-by-agney-9039/
+---
+
+## Welcome to the shortest month!
+
+## Releases
+
+### Browsers
+
+#### [Chrome 109](https://developer.chrome.com/blog/new-in-chrome-109/)
+
+- Support for MathML - Mathematical Markup Language. This will allow for representing mathematical formulas and symbols natively. It's already supported in Firefox and Safari.
+- The `lh` unit - which is computed value of current line height. An example use case is to set the textarea height to number of lines of expected text. It's only supported in Chromium browsers for the time being but could very well be a good progressive enhancement to have.
+
+#### [Firefox 109](https://www.mozilla.org/en-US/firefox/109.0/releasenotes/)
+
+- `scrollend` event to detect when the page scroll ends.
+- [Manifest v3](https://blog.mozilla.org/addons/2022/11/17/manifest-v3-signing-available-november-21-on-firefox-nightly/) is now live for Firefox and brings new extensions APIs. Firefox will continue to support v2 for long time to come as well.
+
+### [Docker for CodeSandbox](https://codesandbox.io/docs/tutorial/getting-started-with-docker)
+
+CodeSandbox has achieved impressive results with its live coding platform, particularly for JavaScript-intensive sites and bundlers. Additionally, I appreciate that a significant portion of their code is open source. Their recent release of Docker support allows for seamless integration of root access, enabling support for a wide range of programming languages.
+
+### [Gatsby is joining Netlify](https://www.gatsbyjs.com/blog/gatsby-is-joining-netlify/)
+
+As NextJS has established itself as the dominant meta framework for ReactJS, Gatsby had shifted its focus to expanding its content offerings, such as Gatsby Cloud and Valhalla Content Hub. With the company integration into Netlify, I anticipate further growth in these systems.
+
+### [MusicLM by Google](https://google-research.github.io/seanet/musiclm/examples/)
+
+The research paper and accompanying examples from Google that demonstrate the ability to generate music from descriptions are truly awe-inspiring. I am grateful to be alive in this exciting time.
+
+### [ChatGPT Plus](https://openai.com/blog/chatgpt-plus/)
+
+ChatGPT is a popular trend globally, and it is anticipated that Google will unveil their AI assistant during a February 8th event. ChatGPT has recently introduced a paid version of their platform with a $20/month subscription, offering dedicated servers with zero downtime.
+
+Additionally, Azure has launched the [Azure OpenAI Service](https://azure.microsoft.com/en-us/products/cognitive-services/openai-service/), providing access to OpenAI's machine learning models. There are also reports that [Microsoft Bing version has been spotted with ChatGPT integrated into the search engine](https://www.theverge.com/2023/2/3/23584675/microsoft-ai-bing-chatgpt-screenshots-leak).
+
+Some companies have started hiring engineers by the name _Prompt Engineer_ - someone who feeds LLMs with prompts to do tasks. [This opinion piece](https://matt-rickard.com/prompt-engineering-shouldnt-exist) from Matt Rickard explains the phenomenon and why it should not exist.
+
+## In the Spotlight 🔦
+
+With widespread support for lazy loading across the web platform, optimizing performance through lazy loading images has become significantly easier. However, it is likely that this top performance optimization technique has reached its peak potential. In all modern browsers, images can be lazy loaded with:
+
+```
+<img src="image.png" loading="lazy" alt="…" width="200" height="200">
+```
+
+Notice that the image has implicit `height` and `width` attributes which are mandatory for this feature to work correctly. But with this being very popular, many performance experts suggest for this to be applied to every image on the page - ignoring the very warning on the page describing this feature:
+
+> Images that are highly likely to be in-viewport, and in particular LCP images, should not be lazy-loaded.
+
+How does this affect LCP scores for a page? A 15% regression in performance.
+
+[https://calendar.perfplanet.com/2022/lazy-loading-lcp-images-why-does-this-anti-pattern-happen/](https://calendar.perfplanet.com/2022/lazy-loading-lcp-images-why-does-this-anti-pattern-happen/)
+
+## Tutorials
+
+### [The truth about CSS selector performance - Windows Edge Blog](https://blogs.windows.com/msedgedev/2023/01/17/the-truth-about-css-selector-performance/)
+
+The topic of CSS selector performance is often casually mentioned in performance discussions, with a focus on determining the speed of different selectors. However, I have not seen it applied in a practical context (it's not even relevant to Tailwind context I guess). In this blog, Patrick Brosset sheds light on how to effectively measure selector performance using developer tools and improve them.
+
+### [A Fancy Hover Effect For Your Avatar - CSS Tricks](https://css-tricks.com/a-fancy-hover-effect-for-your-avatar/)
+
+Temani Afif has created a guaranteed hit for portfolios and conference speaking engagements with a single img element. I was thoroughly impressed by the vast amount of possibilities demonstrated in this technique.
+
+### [Infinite Cover Flow with GSAP - CodePen](https://codepen.io/jh3y/pen/WNRvqJP)
+
+Jhey's Web skills are well-known but I love how this carousel looks amazing yet is practical. Also, from this CodePen I learned of the CSS property named [`webkit-box-reflect`](https://developer.mozilla.org/en-US/docs/Web/CSS/-webkit-box-reflect)
+
+### [10 powerful ways to use CSS variables](https://nerdy.dev/custom-prop-categories)
+
+This blog article helped me recognize that most of my CSS variable usage only encompasses the top three out of the ten mentioned. Typed props?! How cool is that!
+
+### [Replace Create React App recommendation with Vite](https://github.com/reactjs/reactjs.org/pull/5487)
+
+Theo Browne raised a PR on the ReactJS docs repository to remove Create React App as the default recommendation for beginner React developers. Lots and lots of developers went onto agree to Theo and even approve the PR - the default option is most cases being Vite.
+
+Dan Abramov [wrote a detailed reply on the PR](https://github.com/reactjs/reactjs.org/pull/5487#issuecomment-1409720741), longer than most of my blog posts and certainly this newsletter. He explains why Create React app exists and options they are exploring for the future of CRA.
+
+> We could keep Create React App as a command, but turn it into a launcher. It would suggest a list of recommended frameworks, followed by the "classic" framework-less approach being the last option. That last "classic" approach would produce a client-only app like CRA does now (to avoid breaking tutorials), but could eventually move to Vite under the hood.
+
+[https://twitter.com/alex_buraks/status/1618988134850785280](https://twitter.com/alex_buraks/status/1618988134850785280)
+
+## In Other News
+
+### [Clever Code considered Harmful - Josh W Comeau](https://www.joshwcomeau.com/career/clever-code-considered-harmful/)
+
+At some point in our careers, we have likely fallen into the trap of prioritizing the use of flashy APIs over code readability. While utilizing cutting-edge technology may raise the bar in our own eyes, it does not make the code better. We should not measure excellence by how much a senior engineer would struggle but by how easy it would for a junior engineer to understand.
+
+### [What it means to design a platform](https://matthewstrom.com/writing/platform-design/)
+
+While anyone can design a webpage, it takes a seasoned designer to create a platform. Matthew Ström highlights the key elements that contribute to exceptional platform design.
+
+> The simplicity of the design is misleading: if you have 6 standard lego bricks, you can put them together in 915,103,765 different ways.
+
+### [Understanding Authentication In Websites: A Banking Analogy - Smashing Magazine](https://www.smashingmagazine.com/2023/01/authentication-websites-banking-analogy/)
+
+I find it intriguing how analogies can greatly enhance the memorability of a concept. Crafting them can be challenging for me as my imagination tends to run wild, causing concern of confusing my audience. However, Eric's comparison of authentication to bank notes, credit cards, and bank accounts is a refreshing approach that makes the concept easier to understand.
+
+### [AI Generated Seinfeld](https://www.twitch.tv/watchmeforever)
+
+In tune of the TV show, Seinfeld - AI generated, runs forever 24x7.
+
+## Looking Forward
+
+- [FOSDEM](https://fosdem.org/2023/) - Feb 4-5
+- [Google presents](https://www.youtube.com/watch?v=yLWXJ22LUEc) - Feb 8, 2:30PM CET ([In Your TimeZone](https://www.inyourowntime.zone/2023-02-08_14.30_Africa.Algiers))
+- [JSWorld Conf](https://jsworldconference.com/) - Feb 8, 9, 10
+- The documentary for React.Js from Honeypot is premiering on Feb 10th. [Watch Trailer](https://www.youtube.com/watch?v=gmp0istg5xo)

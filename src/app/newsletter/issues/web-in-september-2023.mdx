@@ -1,0 +1,161 @@
+---
+title: JEM - Web in September - JavaScript Every Month Newsletter
+date: "2023-10-16T08:13:05.470927Z"
+buttondownUrl: https://buttondown.com/agney/archive/jem-web-in-september-javascript-every-month/
+---
+
+Sorry for being a little late this month. I was in Goa for the beginning of the month for React India 2023. I spoke about Accessibility at the conference and discussed some common pitfalls. Besides mine, there were some amazing talks worth checking out and I had so much fun interacting with other speakers and attendees.
+
+The [full talk is now available on YouTube](https://www.youtube.com/watch?v=eZHVy3Bsnkg).
+
+## Releases
+
+### Browsers
+
+#### [Firefox 118](https://developer.mozilla.org/en-US/docs/Mozilla/Firefox/Releases/118)
+
+- `search` HTML element replaces the need for `role=search`.
+- Whole barrage of math functions are now supported: `abs()`, `sign()`, `round()`, `mod()`, `rem()`, `pow()`, `sqrt()`, `hypot()`, `log()`, and `exp()`.
+
+#### [Chrome 117-118](https://developer.chrome.com/blog/new-in-chrome-118/)
+
+- `subgrid` value is here and supported everywhere.
+- `transition-behavior` allows you to add entry and exit animations for dialogs and popovers.
+- The trend of lodash/underscore utilities coming to JavaScript continues with [`groupBy`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/groupBy)
+- `@scope` supports basic CSS modules in CSS.
+
+Chrome team is making [releases faster](https://developer.chrome.com/blog/faster-chrome-releases-round2/) resulting in the next release to be available in 3 weeks.
+
+#### [Safari 17](https://developer.apple.com/documentation/safari-release-notes/safari-17-release-notes)
+
+- Support for `@counter-style`, `overflow-block` and `overflow-inline` media queries.
+- Support for `popover` attribute and `search` element.
+
+### AI Updates
+
+There are so many updates with AI that I'm listing them in bullets here.
+
+#### [Dall-E-3](https://openai.com/dall-e-3)
+
+OpenAI's image generation system, DALL-E, was a pioneer in the field of AI, setting the stage for subsequent developments. Over time, it faced competition from other AI systems, such as Midjourney and the open-source project Stable Diffusion, which advanced the technology significantly.
+
+However, DALL-E has made a remarkable return with enhanced text recreation capabilities that surpass those of its AI counterparts, establishing itself as a leader in this domain.
+
+[https://twitter.com/OpenAI/status/1706280618429141022](https://twitter.com/OpenAI/status/1706280618429141022)
+
+#### [Adobe MAX AI Updates](https://blog.adobe.com/en/publish/2023/10/11/max-sneaks-2023)
+
+- Project Fast Fill removes objects or change background elements in videos.
+- Turn doodles or scribbles into polished sketches with Project Draw & Delight.
+- Project Neo enables designers to create 2D content by using 3D shapes without having to learn traditional 3D creation tools and methods.
+- Project Primrose, displayed at MAX as an interactive dress, makes this possible with wearable and flexible, non-emissive textiles which allow an entire surface to display content.
+- Project Dub Dub Dub uses generative AI to auto-dub videos or audio clips in more than 70 languages and over 140 dialects.
+
+#### [Microsoft Copilot Event](https://blogs.microsoft.com/blog/2023/09/21/announcing-microsoft-copilot-your-everyday-ai-companion/)
+
+- The next Windows update will bring AI to apps like Paint, Photos, Clipchamp and more.
+- Copilot is integrated into Windows so you will be able to use Bing chat and even more integrated actions.
+
+#### [Made in Youtube Event](https://blog.youtube/news-and-events/made-on-youtube-product-and-event-photos/)
+
+- Dream Screen feature creates AI generated video from a prompt.
+- Get AI generated insights and topics to create more videos.
+- AI powered dubbing tool (just like Adobe)
+- Soundtrack search which works with AI prompts.
+
+### [Remix v2](https://remix.run/blog/remix-v2)
+
+- Remix has a routing API that aligns with Remix Router.
+- `defer` feature is "promises over the wire" if you want to prioritise component loading.
+- Improved support for PostCSS, CSS modules, Vanilla Extract etc.
+
+The release notes also point to an explanation for when React Server Components will be coming to Remix and why it's not here yet.
+
+### [Next 13.5](https://nextjs.org/blog/next-13-5)
+
+- Performance improvements with faster local server startup, faster HMR and lesser memory usage.
+- Optimised package imports now gives you optimised imports for many major libraries like `lodash`, `date-fns` etc.
+- Improvements with `next/image` and support for `picture`
+
+### [npm provenance is not generally available](https://github.blog/changelog/2023-09-26-npm-provenance-general-availability/)
+
+npm packages built on a supported cloud CI/CD system can publish with provenance. Today this includes GitHub Actions and GitLab CI/CD.
+
+PS: [Amazon is investing $4 billion in Anthropic](https://www.anthropic.com/index/anthropic-amazon).
+
+## In the Spotlight 🔦
+
+The `search` element is supported everywhere on modern browsers with this months releases. Most apps have a search area where users can search through contents of the site. Earlier this was fulfilled by `form role=search`, this will be replaced by `search` landmark.
+
+```html
+<search title="Media">
+  <form>
+    <label>Search media</label>
+    <input type="search" id="media" name="q" />
+  </form>
+</search>
+```
+
+Note that `search` landmark is not for providing search result contents - that should go into main content of website. But if you have auto-complete suggestions that go into the search bar, they can be nested inside `search` element.
+
+## Tutorials
+
+### [State of HTML 2023](https://survey.devographics.com/en-US/survey/state-of-html/2023)
+
+State of HTML 2023 is now out, do fill it out for some HTML numbers goodness.
+
+### [Photoshop is now on the Web](https://medium.com/@addyosmani/photoshop-is-now-on-the-web-38d70954365a)
+
+Addy Osmani writes a Medium blog about the list of technologies that contributed to bringing Photoshop to the Web.
+
+- Local file access with Origin Private File system.
+- Web Assembly
+- Wide P3 Color Gamut
+- Web Components
+
+The [web.dev post on the same](https://web.dev/articles/ps-on-the-web) is also an excellent read.
+
+### [A (more) Modern CSS Reset](https://andy-bell.co.uk/a-more-modern-css-reset/)
+
+Andy bell creates a modern CSS reset and explains the reasoning behind his choices. It's apparent that we don't require ironing out all elements and "fixing" them as we did earlier but there are some quirks to be looked into.
+
+If that's not enough, Chris Coyier adds his comments on the modern reset as well, [on his blog](https://chriscoyier.net/2023/10/03/being-picky-about-a-css-reset-for-fun-pleasure/).
+
+### [Best packages you have discovered - Reddit](https://www.reddit.com/r/reactjs/comments/1725kd3/what_are_the_best_packages_you_have_discovered/)
+
+One of the most remarkable aspects of ReactJS is its robust and supportive community. This dedicated community consistently contributes to the ecosystem by creating exceptional packages. In a recent React thread, you can discover a selection of outstanding packages that users have developed, and there's a good chance you'll find something worth starring on the list.
+
+My favourites:
+
+- [auto-animate](https://auto-animate.formkit.com/)
+- [React Konva](https://konvajs.org/docs/react/index.html)
+- [Shadcn/UI](https://ui.shadcn.com/)
+- [TS Pattern](https://github.com/gvergnaud/ts-pattern)
+- [Floating UI](https://floating-ui.com/)
+
+### [An Interactive Intro to CRDTs](https://jakelazaroff.com/words/an-interactive-intro-to-crdts/)
+
+CRDTs (Conflict-free Replicated Data Types) are extensively employed in the creation of collaborative multi-user experiences on the web. If you're interested in learning more about CRDTs, this interactive guide serves as an excellent starting point, complete with insightful explanations and compelling examples.
+
+## In Other News
+
+### [The FTX jury suffers through a code review](https://www.theverge.com/2023/10/6/23906899/ftx-alameda-sam-bankman-fried-trial-gary-wang-testimony)
+
+The SBF trial is presently underway in court. One significant aspect of the trial revolves around the code change for allow_negative, a modification that could potentially permit Alameda Research to maintain a negative account balance on FTX. Amidst the legal proceedings, numerous intriguing details have emerged, but a particular passage has piqued my interest:
+
+> But FTX lied about how much money was in the backstop fund, Wang said. In court we saw the code that generated the fake number published on the website: it took the daily trading volume on FTX, multiplied it by a random number, divided it by a billion, and added it to the existing number displayed on the site. It had nothing to do with the actual amount of money in the insurance fund.
+
+### [TypeScript Origins: The Documentary](https://www.youtube.com/watch?v=U6s2pdxebSo)
+
+This hour-long documentary provides a fascinating look into the TypeScript team at Microsoft HQ. It features personal interviews and narratives that delve into the origins of TypeScript, exploring the 'why' and 'how' behind its development.
+
+### [Engage a Wider Audience With ActivityPub on WordPress.com](https://wordpress.com/blog/2023/10/11/activitypub/)
+
+WordPress.com sites are seamlessly integrated into the Fediverse, allowing users to engage with articles on platforms like Mastodon. This integration facilitates the creation of content that can be shared across multiple platforms, even appearing as comments on your WordPress.com site.
+
+## Looking Ahead
+
+- [Vite Conf Replay](https://viteconf.org/23/replay) - October 5-6
+- [DjangoCon](https://2023.djangocon.us/) - October 16-20
+- [MagnoliaJS](https://www.magnoliajs.com/) - October 17-18
+- [reactjs day](https://2023.reactjsday.it/) - October 27

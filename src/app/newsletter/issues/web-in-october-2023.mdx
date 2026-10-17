@@ -1,0 +1,186 @@
+---
+title: JEM - Web in October - JavaScript Every Month Newsletter
+date: "2023-11-09T22:32:27.837867Z"
+image: comments-placeholder.png
+buttondownUrl: https://buttondown.com/agney/archive/jem-web-in-october-javascript-every-month/
+---
+
+## Releases
+
+### Browsers
+
+#### [Firefox 119](https://developer.mozilla.org/en-US/docs/Mozilla/Firefox/Releases/119)
+
+- `Object.groupBy` and `Map.groupBy` are supported.
+- `isWellFormed()` and `toWellFormed()` methods are supported.
+- The SVG attributes that accept a \<length> value now support level 3 length CSS data types for all SVG elements.
+
+#### [Chrome 119](https://developer.chrome.com/blog/new-in-chrome-119/)
+
+- `:user-invalid` and `:user-valid` pseudo-classes that represent an element with incorrect or correct input, respectively, but only after the user has significantly interacted with it.
+- `clip-path` supports more values.
+- [relative color syntax](https://developer.chrome.com/blog/css-relative-color-syntax/) is supported.
+
+#### [Safari 17.1](https://developer.apple.com/documentation/safari-release-notes/safari-17_1-release-notes)
+
+- Fixed font-size-adjust toggling font sizes for system-ui font
+- Added support for Managed MediaSource on iOS.
+
+### [NodeJS 21](https://openjsf.org/announcement/2023/10/17/node-js-21-available-now/)
+
+- V8 JavaScript engine updated to 11.8
+- WebStreams API is now stable.
+- NodeJS 20 is now promoted to LTS.
+
+### [NextJS 14](https://nextjs.org/blog/next-14)
+
+- Server actions is stable with caching and revalidation.
+- Turbopack with 5,000 tests passing for App & Pages Router
+- New Learn tutorial covering AppRouter, authentication.
+
+We will talk more about the release in the Spotlight section.
+
+### [Angular v17](https://blog.angular.io/introducing-angular-v17-4d7033312e4b)
+
+- Up to 90% faster runtime with a built-in control flow loops
+- Up to 87% faster builds for hybrid rendering and 67% for client-side rendering
+- Allows for deferrable views with control flows.
+
+```html
+@defer (on viewport) {
+<comment-list />
+} @placeholder {
+<!-- A placeholder content to show until the comments load -->
+<img src="comments-placeholder.png" />
+}
+```
+
+- View [Live Announcement](https://www.youtube.com/live/Wq6GpTZ7AX0?si=8JSkE3FdDlNCxTUP) on Youtube
+- Angular has revamped docs at [angular.dev](https://angular.dev/)
+
+### [Copilot Chat](https://github.blog/2023-11-08-universe-2023-copilot-transforms-github-into-the-ai-powered-developer-platform/)
+
+- Github Copilot Chat will be generally available by December 2023.
+
+- It will also be available on Github website and mobile apps.
+
+- Copilot is opening up to a partner program where third party developers can make use of Copilot and build apps.
+
+- [State of Octoverse Report](https://github.blog/2023-11-08-the-state-of-open-source-and-ai/) from Github Universe is food for your stats brain.
+
+### [Docusaurus 3.0](https://docusaurus.io/blog/releases/3.0)
+
+- Supported markdown version upgraded to MDX 3
+- support for ES Modules and TypeScript config files, including site config, docs sidebars, plugins and presets.
+- unlisted option which will be available on production but unlinked.
+
+## In the Spotlight 🔦
+
+NextJS conference was last month and opened to much fanfare. The release spotlight was on Server Actions with NextJS, which allows you to write server side code inside a form handler.
+
+```typescript
+export default function Page() {
+  async function create(formData: FormData) {
+    'use server';
+    const id = await createItem(formData);
+  }
+
+  return (
+    <form action={create}>
+      <input type="text" name="name" />
+      <button type="submit">Submit</button>
+    </form>
+  );
+}
+```
+
+At present, the combination of React server components and Server actions is primarily supported by a single major framework, namely Next.js. The reason for this is that these features are exclusively available on React Canary. It's worth noting that Remix has opted not to develop these features until they reach a stable release.
+
+The React team has clarified that the term "Canary" in the context of React signifies that it's stable for libraries to adopt but may not yet be deemed stable for regular users.
+
+[https://twitter.com/reactjs/status/1716573234160967762](https://twitter.com/reactjs/status/1716573234160967762)
+
+After the release, there were posts from both teams regarding the direction NextJS is taking.
+
+- [Why I won't use NextJS](https://www.epicweb.dev/why-i-wont-use-nextjs) - Kent C Dodds
+- [Why I'm using NextJS](https://leerob.io/blog/using-nextjs) - Lee Robinson.
+
+The presentation by Sam Selikoff at NextConf spurred off so many memes that Vercel CEO Guillermo Rauch created a Meme generator for it: [https://samgen.vercel.app/](https://samgen.vercel.app/)
+
+## Tutorials
+
+### [Web Content Accessibility Guidelines 2.2](https://www.w3.org/TR/WCAG22/)
+
+WCAG 2.2 was promoted to stable W3C recommendation in October. The spec is almost fully backwards compatible and includes few new rules like non obstructed focus and minimum target size.
+
+The [illustration by intopia.digital](https://intopia.digital/wp-content/uploads/2023/10/Intopia-WCAG-2.2-Map-Portrait-Mode.pdf) of the spec is worth your time, especially if you are a visual learner.
+
+### [State of React survey](https://survey.devographics.com/en-US/survey/state-of-react/2023)
+
+State of React survey is live from the same team that brings you the amazing State of CSS and State of JavaScript.
+
+### [Speeding up the JavaScript ecosystem - Tailwind CSS](https://marvinh.dev/blog/speeding-up-javascript-ecosystem-part-8/)
+
+Speeding up Tailwind CSS is the latest addition to Marvin's ongoing series, in which he meticulously examines popular tools, conducts performance benchmarks, and proposes enhancements to optimize their performance. This blog post series is truly a spectacular read.
+
+[https://twitter.com/adamwathan/status/1719119230518374478](https://twitter.com/adamwathan/status/1719119230518374478)
+
+### [Svelte by example](https://sveltebyexample.com/)
+
+A neat and concise tutorial with examples for Svelte and Svelte Kit.
+
+### [Why I use flushSync for managing focus](https://twitter.com/ryanflorence/status/1722358755499913582)
+
+Ryan Florence describes why he uses the `flushSync` function in place of effects to manage focus. Note that React does caution on the docs that this _is uncommon and can hurt the performance of your app._
+
+### [Core Web Vitals saved users 10,000 years of waiting for web pages to load - Chromium Blog](https://blog.chromium.org/2023/11/how-core-web-vitals-saved-users-10000.html)
+
+Chromium team claims that the introduction of Web Vitals in 2020 has helped save 10,000 years by having websites load faster.
+
+[https://twitter.com/danielcroe/status/1720425413866897536](https://twitter.com/danielcroe/status/1720425413866897536)
+
+## In the AI World 🤖
+
+### [OpenAI DevDay](https://openai.com/blog/new-models-and-developer-products-announced-at-devday)
+
+First OpenAI conference and product announcement day was held this month.
+
+- GPT-4 Turbo: more capable, cheaper, 128K context
+- Assistants API: build your own AI apps with goals and functions
+- Multimodal: vision, image creation (DALL·E 3), text-to-speech Learn more
+
+### [Grok](https://grok.x.ai/)
+
+Elon Musk launched his generative AI project named Grok. Grok's prototype is running a language model called Grok-1 that's trained partly using real-time data from the X social media platform. Musk has also said that the model will "some humour sense" unlike ChatGPT.
+
+### Other Updates
+
+- Samsung has announced Galaxy AI which will be coming to Samsung phones early next year.
+- Amazon is reportedly working on their generative AI competitor with a project codenamed Olympus.
+- Google expanded its generative AI in search to over 120 new countries and territories.
+- [Humane AI released their pin](https://hu.ma.ne/) to talk to generative AI. It's a different computational device considering laptops and phones.
+
+## In Other News
+
+### [Paul McCartney says AI tools helped rescue John Lennon vocals for ‘last Beatles record’ - TheVerge](https://www.theverge.com/2023/6/13/23759296/the-beatles-now-and-then-restoration-ai-paul-mccartney-john-lennon)
+
+Beatles released their [last album song Now And Then](https://youtu.be/Opxhh9Oh3rg?si=DgADnvISHod7obcc) this month and it was enabled by AI.
+
+> The long mythologised John Lennon demo was first worked on in February 1995 by Paul, George and Ringo as part of The Beatles Anthology project but it remained unfinished, partly because of the impossible technological challenges involved in working with the vocal John had recorded on tape in the 1970s. For years it looked like the song could never be completed. But in 2022 there was a stroke of serendipity. A software system developed by Peter Jackson and his team, used throughout the production of the documentary series Get Back, finally opened the way for the uncoupling of John’s vocal from his piano part. As a result, the original recording could be brought to life and worked on anew with contributions from all four Beatles.
+
+### [Euclid's first images: the dazzling edge of darkness - Youtube](https://www.youtube.com/live/hHWbe82zM8o?si=FAKGmftTImG_RmZm)
+
+First images revealed from the Euclid telescope, a space observatory that aims to understand the nature of dark matter and dark energy. The images show the telescope’s exceptional capabilities to observe the contours, distances and motions of billions of galaxies.
+
+### [Alan Turing and the Power of Negative Thinking - Quanta Magazine](https://www.quantamagazine.org/alan-turing-and-the-power-of-negative-thinking-20230905/)
+
+We live in an age where every problem is seemingly solved by an algorithm. But can an algorithm solve all our problem? Alan Turing used a mathematical technique called diagonalization to prove the existence of problems that cannot be solved by algorithms. Diagonalization is a method of generating a new object that differs from every object in a given list, by inverting some property of the objects along a diagonal line.
+
+## Looking Ahead
+
+- [OpenAI Dev Day](https://devday.openai.com/) - Nov 6
+- [Github Universe](https://github.blog/2023-11-08-universe-2023-copilot-transforms-github-into-the-ai-powered-developer-platform/) - Nov 8
+- [Firebase Demo Day](https://firebase.google.com/demo-day/2023/) - Nov 8
+- [Vue Mastery Free Weekend](https://www.vuemastery.com/free-weekend/) - Nov 10-12
+- [React Summit](https://reactsummit.us/) - Nov 13-15
+- [Web Summit](https://websummit.com/) - Nov 13-16

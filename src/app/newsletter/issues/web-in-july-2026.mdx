@@ -1,0 +1,221 @@
+---
+title: JEM - Web in July - JavaScript Every Month Newsletter
+date: "2026-08-09T20:36:00.196931Z"
+buttondownUrl: https://buttondown.com/agney/archive/jem-web-in-july-javascript-every-month-newsletter-2119/
+---
+
+Hello August ☔☔☔
+
+Another month has brought the release of models that apparently write _better code than you!_ While being a human in the loop isn't always great ([ask Laura Summers](https://pydantic.dev/articles/the-human-in-the-loop-is-tired)), I'm also excited about everything this has enabled people to create. Setting aside Bun's rewrite and the accompanying blog post, I'm especially amazed by [Burrow](https://github.com/dhravya/burrow), a project that brings Bun, Git, the shell, and a coding agent together in the browser tab.
+
+## Releases
+
+### Browsers
+
+### [Chrome 151](https://developer.chrome.com/release-notes/151)
+
+- `ruby-overhang` property
+- Declarative shadow DOM manual slot assignment
+- read-only animation attribute to the AnimationEvent and TransitionEvent interfaces
+  -declarative `<usermedia>` capability element
+
+### [Firefox 153](https://developer.mozilla.org/en-US/docs/Mozilla/Firefox/Releases/153)
+
+- HTML parsing rules for `<select>` has been updated. Enables future support for customizable select eleements
+- `muted` attribute has been updated for the `audio` and `video` elements to reflect when it is added to or removed from DOM.
+- `::webkit-scrollbar` pseudo-element is now recognised
+- TC39 Intl.Locale info proposal
+- `import source` syntax is supported
+
+### IDE
+
+- [Jetbrains Air](https://x.com/getsome_air/status/2077397570909769885) adds support for other harnesses using ACP
+- [CodePen 2.0](https://codepen.io/2/whats-new) - Beloved in browser demo tool now has compiler for processing libraries and even deployment.
+- Codex open sources their security toolkit - [codex security](https://github.com/openai/codex-security)
+- Google cloud [launches agent sandboxes](https://cloud.google.com/blog/topics/developers-practitioners/google-cloud-run-sandboxes-are-in-public-preview)
+- Deep Agents has introduced [Dynamic subagents with a QuickJS sandbox](https://x.com/huntlovell/status/2071985800909410797)
+- [MCP protocol update bring support](https://claude.com/blog/bringing-mcp-2026-07-28-to-claude) for serverless state and MCP apps. It also brings support for MCP extensions.
+- Claude desktop app comes with an [in built browser](https://code.claude.com/docs/en/desktop#browse-external-sites)
+- [The Session you cannot take with you - Pi](https://earendil.com/posts/session-portability/) - Providers claim to prevent distillation, but they make it harder to switch providers during a session.
+
+### Better Auth gets [acquired](https://better-auth.com/blog/better-auth-joins-vercel)
+
+Vercel gets a new library.
+
+### [TypeScript 7](https://devblogs.microsoft.com/typescript/announcing-typescript-7-0/)
+
+The Go rewrite has been ridiculously stable through the release cycle. I would recommend you to try it out if you are already on v5 or v6. You might still need to keep v6 around for ESLint plugins and the like.
+
+### [Oxlint](https://oxc.rs/blog/2026-07-22-type-aware-linting-stable)
+
+Type aware linting is now stable, implements 59 out of 61 TypeScript ESLint rules.
+
+### [Octane JS](https://octanejs.dev/)
+
+Successor to Infero, same programming model as React but with a more powerful compiler. Also integrates with TSRX, which we had talked about in releases last month.
+
+### [Astro 7.1](https://astro.build/blog/astro-710/)
+
+- run multiple dev servers side by side with a new `--ignore-lock` flag
+- fine grained CSP control for inline scripts and styles
+- lower memory usage for large content collections
+
+### Shadcn adds support for new frameworks
+
+- support for base-ui and react-aria
+- support for huge icons
+
+### [Flue 2](https://flueframework.com/blog/flue-2/)
+
+TypeScript Agent project gets React hook style interface.
+
+### [npm 12](https://github.blog/changelog/2026-07-08-npm-install-time-security-and-gat-bypass2fa-deprecation/)
+
+- install time security defaults are now on
+- 2FA bypass tokens will no longer publish directly
+
+### [nanoid 6](https://github.com/ai/nanoid/releases/tag/6.0.0)
+
+4x faster
+
+### [Wordgard](http://wordgard.net/)
+
+New in browser text editor library from author of ProseMirror. [Release blog post](https://marijnhaverbeke.nl/blog/wordgard-0.1.html)
+
+### [Frontend Framework Benchmarks](https://framework-benchmarks.as93.net/)
+
+The same app, build over different frameworks, then benchmarked. There's also [Stack match](https://stack-match.as93.net/) where you can specify some parameters and choose which framework wins.
+
+### [Nuxt 4.5](https://nuxt.com/blog/v4-5)
+
+- Vite 8 support, Rspack 2 support
+- Experimental SSR streaming
+- `useLayout` composable
+- named views
+- forwarded preload hints on prefetch
+
+### [tldraw offline](https://offline.tldraw.com/)
+
+Let your agents draw up tldraw files offline
+
+### [scriptc](https://github.com/vercel-labs/scriptc) - Vercel labs
+
+TypeScript to native compiler, compiles 90% of TypeScript language natively and include QuickJS for the rest.
+
+### [OpenCV 5](https://opencv.org/opencv-5/)
+
+(I know this isn't JS/TS, but such an important update to the machine learning ecosystem)
+
+- model support coverage has gone to 80%
+- three different engines, with backward compatiblity support
+- LLMs and VLM support inside OpenCV
+
+## In the Spotlight 🔦
+
+**The Great RSC Dilemma: Drop Them or Master Them?**
+
+React Server Components were pitched as the ultimate performance silver bullet, but real-world usage is proving much more complicated. On one end of the spectrum, the TanStack team shared why [they stopped using RSCs on TanStack.com](https://tanstack.com/blog/we-stopped-using-rsc-on-tanstack-com)—finding that after optimizing dependencies with [TanStack Highlight](https://tanstack.com/blog/introducing-tanstack-markdown-and-highlight), RSCs yielded no measurable performance gains while making the codebase harder to reason about (though their sites did get a slick [new look](https://tanstack.com/blog/tanstack-has-a-new-look)).
+
+Aurora Sharff's deep dive on [experimenting with RSCs for performance and UX in Next.js](https://aurorascharff.no/posts/experimenting-with-rsc-for-performance-and-ux-in-nextjs/) explores how to navigate React 19's often enigmatic APIs when you _do_ need those elusive performance wins.
+
+### Security
+
+- [Anatomy of a Frontier Lab Agent Intrusion: A Technical Timeline of the July 2026 Incident](https://huggingface.co/blog/agent-intrusion-technical-timeline) - OpenAI's model testing went berserk and tried to hack Huggingface.
+- Next.js [security release July 2026](https://nextjs.org/blog/july-2026-security-release)
+- Remove code execution issue on GitHub: [CVE-2026-3854](https://www.wiz.io/blog/github-rce-vulnerability-cve-2026-3854)
+- [CVE-2026-48931 Shouldn't Have Been a CVE - Matteo Collina](https://adventures.nodeland.dev/archive/cve-2026-48931-shouldnt-have-been-a-cve/)
+- [React denial of service in server functions](https://github.com/react/react/security/advisories/GHSA-wx67-qw84-cm4g)
+
+## Tutorials
+
+### [Bun in Rust](https://bun.com/blog/bun-in-rust)
+
+The most awaited blog post of the year is finally here. Jarred Sumner details the tale of how Fable and dynamic workflows helped rewrite Bun in Rust and how the tests are friends they made along the way.
+
+### [The Goldilocks customizable select height - Jake Archibald](https://jakearchibald.com/2026/goldilocks-select-height#putting-it-all-together)
+
+When Jake Archibald creates a custom select with CSS, he uses so many CSS properties that I didn't even know existed.
+
+```
+position-area: self-block-end span-self-inline-end;
+position-try-order: most-block-size;
+position-try-fallbacks:
+   self-block-start span-self-inline-end,
+   self-block-end span-self-inline-start,
+   self-block-start span-self-inline-start;
+```
+
+### [A Field Guide to Fable: Finding Your Unknowns](https://x.com/trq212/article/2073100352921215386?lang=en)
+
+Anthropic has released two models last month, and both come with caveats to know for better usage.
+
+- With Fable, the blog post explains how the model itself can handle long-horizon tasks. However, this means you need to identify what is unknown in your prompt at the beginning.
+- With Opus 5 release, the Anthropic team [found that AGENTS.md files](https://x.com/trq212/status/2080710971228918066) with it's instructions did not do anything to improve the model output, 80% of Claude Code system prompt was removed. They argue that the same should happen to your CLAUDE.md files.
+
+To be read alongside:
+
+- [How Mozilla Uses Claude Mythos to find Firefox bugs before hackers do - How I AI - YouTube](https://www.youtube.com/watch?v=Idjt53tTv2U)
+- [Do Context Files Help Coding Agents? A Two-Agent Ablation Study on Real Repositories](https://arxiv.org/html/2607.27250v1) - The answer is _No_, it doesn't help improve correctness.
+
+### [Hidden Cost of Hydration Mismatches - Ivan Akulov](https://3perf.com/blog/hydration-mismatch/)
+
+This blog post examines how a hydration error on your app, that can cause the React to re-do the work on DOM can cause your LCP numbers to tank.
+
+### [The Absolute State of Management](https://infrequently.org/2026/07/state-management/)
+
+Alex Russell argues that most state management libraries actually manage how state is propagated. True state management involves handling conflicting state and controlling when updates are issued. The examples he points to are local-sync libraries.
+
+Fun reads alongside on React state:
+
+- [Do we need state management libraries anymore?](https://neciudan.dev/do-we-need-state-management-libraries) - Author explores a similar point and describes each popular state management library and it's working - how they end up at `useSyncExternalStore`
+- [React Hook Form Avoids State. TanStack Form Scopes It.](https://www.adarsha.dev/blog/react-hook-form-and-tanstack-form-state-models) - RHF library became very popular because it did not have a state store backing up it's inputs, the same architecture that might have gotten it into trouble with the React compiler. Author explores how Tanstack Form takes a different approach.
+
+## In short
+
+- [What's new in ECMA script 2026](https://pawelgrzybek.com/whats-new-in-ecmascript-2026/)
+- GitHub Sponsors has reached [$100 million transferred](https://github.blog/open-source/maintainers/100-million-for-open-source-a-milestone-built-by-the-community/) to open source
+- Anime.js turns [10 years old](https://x.com/JulianGarnier/status/2073062636565012597)
+- After the hit that was Pretext, Cheng Lou introduces new library [Freerange](https://x.com/_chenglou/status/2079373785824932297) - a zero-API tool that automatically deduces your code’s numerical ranges
+- [Paper shaders](https://x.com/stephenhaney/status/2072369858638233843) are free and open source
+- [Why AI Tokens are so Expensive - Computerphile - YouTube](https://www.youtube.com/watch?v=-0HRzXk8vlk)
+- Tanner Linsley on building TanStack to grow on without him him - [Buildlog](https://www.youtube.com/watch?v=rCJ9OdNdigQ)
+- [Engineering High-Performance Parsers with Data-Oriented Design](https://www.arshad.fyi/writings/engineering-high-performance-parsers) - From Author of Yuku parser.
+- Tobias Koppers on [chunking](https://gitnation.com/contents/turbopack-updates-3607) in modern bundlers.
+- Design engineering skills for agents: [ui-skills](https://www.ui-skills.com/)
+- [The case for polyfills](https://lea.verou.me/blog/2026/polyfills/) - Lea Verou
+- A benchmark specifically for React related tasks - [React bench](https://www.reactbench.com/blog)
+- [State of zero runtime CSS in JS libraries](https://dx-styles.dev/blog/state-of-zero-runtime-css-in-js/) from author of Linaria and dx-styles
+- [Soak test frontend with Playwright](https://denodell.com/blog/your-spa-is-leaking-memory-soak-test-it)
+
+## In Other News
+
+### [Google is building an AI fence around the Internet it once championed](https://www.nytimes.com/2026/07/20/technology/google-ai-open-web.html)
+
+Google has always stood for an open web and grown by making more products and information available online. However, with the shift toward AI agents, Sundar Pichai’s claim that Google is sending more helpful clicks to websites does not align with reality. Google is sending far less traffic to the open web and increasingly absorbing other products into its ecosystem. Now, named _Google Zero_ by The Verge, there's an irony between what Google the company is and the company it wants to become.
+
+### [Why millions of Android phones knew Venezuela was about to shake - YouTube](https://www.youtube.com/watch?v=Hi432PXwAZE)
+
+When the earthquake occurred in Venezuela earlier this month, Android phones alerted people about the approaching quake. The phones use accelerometers to detect fast-moving primary waves (P-waves) and warn users before the destructive secondary waves (S-waves) arrive.
+
+### [Things To Notice On Your Next Flight - StarTalk - YouTube](https://youtube.com/watch?v=8mzVNZZqcr8)
+
+In this StarTalk Explainer, astrophysicist Neil deGrasse Tyson and comedian Chuck Nice peel back the layers of aviation, revealing the fascinating physics and engineering that make modern flight possible.
+
+### [The mean preference is a bad estimate of preferences](https://www.ethansmith2000.com/post/the-mean-preference-is-a-bad-estimate-of-preferences)
+
+Image generation models are designed to produce aesthetically pleasing images that appeal to as many people as possible. However, people have different artistic preferences. They may agree that qualities such as effort are valuable, but their specific tastes can differ significantly. The author explores, using mathematical analysis, how these differences translate into the reward functions of these models.
+
+### AI updates
+
+- [Fable 5](https://www.anthropic.com/news/redeploying-fable-5) model is back and still on subscription. Anthropic also released a smaller Opus model - [Opus 5](https://www.anthropic.com/news/claude-opus-5) which does almost just as well as Fable on coding benchmarks.
+- OpenAI released three different model families - [Luna, Terra and Sol](https://openai.com/index/gpt-5-6/) - in increasing order of power. Luna and Terra also had a late month [rate cut](https://openai.com/index/advancing-the-price-performance-frontier-with-gpt-5-6/) that made them affordable.
+- An open source Chinese model caught up to Fable to Sol as [Kimi K3](https://platform.kimi.ai/docs/guide/kimi-k3-quickstart) released.
+- [Muse Spark 1.1](https://ai.meta.com/blog/introducing-muse-spark-meta-model-api/) - Meta's model sits with the frontier models
+- [Grok 4.5](https://cursor.com/blog/grok-4-5) - SpaceX's first model after Cursor acquisition is really good.
+- Deepseek had a moment when they released updated Deepseek v4 Flash ([0731](https://huggingface.co/deepseek-ai/DeepSeek-V4-Flash-0731)) with a huge jump in benchmark scores.
+- Video models - [Seedance 5 Pro](https://seed.bytedance.com/en/seedream5_0_pro) from Bytedance, [Flux 3](https://bfl.ai/models/flux-3), [Minimax H3](https://www.minimax.io/blog/minimax-h3)
+- [Laguna S2.1](https://poolside.ai/blog/introducing-laguna-s-2-1) from Pooside is a small model that excels in coding tasks.
+
+## Looking Ahead
+
+- [HTML Day](https://2026.html.energy/) - August 6

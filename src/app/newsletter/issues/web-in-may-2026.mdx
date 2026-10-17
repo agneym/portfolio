@@ -1,0 +1,228 @@
+---
+title: JEM - Web in May - JavaScript Every Month Newsletter
+date: "2026-06-09T19:19:27.916000Z"
+image: https://opengraph.githubassets.com/a6225d9aa848e7fd326429a023d2b96d60316b14166ad1750d05fff123c78539/oven-sh/bun/pull/30412
+buttondownUrl: https://buttondown.com/agney/archive/jem-web-in-may-javascript-every-month-newsletter-6878/
+---
+
+Hello June 🌧️
+
+Several security incidents have been reported, and your device is now a target. Regularly rotate all the keys stored on your device, and monitor your bills and usage. I have added a security section in Spotlight for your convenience. If you need some help, OWASP has released a free local first JS vulerability scanner - [CVE Lite CLI](https://owasp.org/cve-lite-cli/)
+
+## Releases
+
+### Browsers
+
+### [Chrome 148](https://developer.chrome.com/release-notes/148)
+
+- name only container queries (baseline)
+- lazy loading for `<video>` and `<audio>` elements with `lazy` attribute
+- Open Font Format avar2 text shaping and glyph rendering
+
+### [Firefox 151](https://developer.mozilla.org/en-US/docs/Mozilla/Firefox/Releases/151)
+
+- support for `style()` queries on `@container`
+- document PiP functionality on desktop
+- support for web serial API
+
+### [Safari 26.5](https://developer.apple.com/documentation/safari-release-notes/safari-26_5-release-notes)
+
+- support for the `:open` pseudo-class for `<details>`, `<dialog>`, `<select>`, and `<input>` elements
+- Added support for `element-scoped` keyword in CSS `random()` function
+
+### IDE
+
+- [Antigravity 2](https://antigravity.google/blog/google-io-2026-feature-deep-dive) - Google's IDE goes agent view as the main view, adds scehduled tasks, subagents as it catches up to others.
+- [Repo Prompt](https://repoprompt.com/blog/repo-prompt-next-chapter) author joins OpenAI. Community Edition of product expected soon.
+- Anthropic's partnership with SpaceX has doubled the 5-hour rate limits for Pro, Max, and Team plans. The reduction in peak hour limits has also been removed.
+- IDE [Qoder reaches stable 1.0](https://qoder.com/en/blog/qoder-1.0) release.
+- Visual Studio Code has had [multiple](https://code.visualstudio.com/updates/v1_121) [releases](https://code.visualstudio.com/updates/v1_122) through the month where they released their in built browser previews with responsiveness, remote agent support.
+
+### [Astro 6.4](https://astro.build/blog/astro-640/)
+
+- Introduces new markdown processor API, you can also use Satteri, a Rust Markdown pipeline engine
+- Advanced routing configuration with first class support for Hono, Cloudflare
+
+### [React Aria](https://react-aria.adobe.com/releases/v1-18-0)
+
+- Checkbox, Radio and Switch become customizable compound components
+- test utils on RC
+
+### [Foldkit](https://foldkit.dev/)
+
+> frontend framework for correctness
+
+Built on Effect. Architected like Elm. Written in TypeScript.
+
+### [TypeORM 1.0](https://x.com/typeormjs/status/2056731754254278767)
+
+First stable release, after sticking out for so long.
+
+### [Diffs - Linear](https://linear.app/now/code-review-should-be-fast)
+
+Software review surface area by Linear.
+
+### [Deno 2.8](https://deno.com/blog/v2.8)
+
+- `deno add` and `deno install` now treat unprefixed names as npm packages by default
+- 76.4% Node.js test suite compatibility
+- 3.66x faster cold npm installs
+- supports `import defer`
+- supports `deno why`, `deno pack`
+
+and a lot more. Huuuge minor release from Deno.
+
+### [Bun 1.3.14](https://bun.com/blog/bun-v1.3.14)
+
+- `Bun.Image` built in image processing API
+- Global virtual store option for `bun install`
+- Experimental HTTP/2, HTTP/3 client for `fetch`
+- Rewritten `fs.watch()` backend on Linux, macOS
+- `Bun.Terminal` on Windows
+
+While this is a large release similar to Deno's, there was something else that happened shaking up the entire Bun/JavaScript ecosystem. Talking about it in the spotlight.
+
+### Tanstack Start
+
+- [Deferred Hydration](https://tanstack.com/start/latest/docs/framework/react/guide/deferred-hydration) - Selectively choose when content is hydrated after SSR. This process is split into a separate JavaScript chunk and is called when specified.
+
+- [Route aware CSS inling](https://tanstack.com/start/latest/docs/framework/react/guide/css-styling#inline-route-css-in-production)
+
+Meanwhile, Tanner Linsely wrote about an experiment in which he is building a [scoped React](https://tannerlinsley.com/posts/projecting-react) that contains just enough underlying code. No more, no less.
+
+### [Node 26.0.0](https://nodejs.org/en/blog/release/v26.0.0)
+
+- Temporal API is stable
+- support for `randomUUIDv7()`
+
+### [Rolldown 1.0](https://voidzero.dev/posts/announcing-rolldown-1-0)
+
+- First stable release for the VoidZero bundler
+
+### [Staged Publishing](https://docs.npmjs.com/staged-publishing)
+
+To improve security, npm is introducing a staged step where packages can be approved before going live to the wide audience.
+
+### [Modern Web Guidance](https://developer.chrome.com/docs/modern-web-guidance) - Chrome
+
+A set of skills encourages agents to utilize the best and latest offerings of the web. While I feel a sense of satisfaction reading through it, I would prefer to wait for agents to incorporate these trends into their training data. I do not trust the agents to use caniuse or this skill when necessary.
+
+### [fate 1.0](https://fate.technology/posts/fate-1.0)
+
+The modern data client inspired by Relay and GraphQL
+
+- View Composition
+- Normalized cache
+- Data masking and strict selection
+- Live views and lists
+
+### [Rosie](https://rosie.astro.build/)
+
+Package manager for skills. Interestingly does not do the skills registry.
+
+## In the Spotlight 🔦
+
+### Bun in Rust
+
+[https://github.com/oven-sh/bun/pull/30412](https://github.com/oven-sh/bun/pull/30412)
+
+Bun was rewritten from Zig to Rust, few things to note about this:
+
+- The entire PR was done in a one week, in one single PR with _2188_ file changes. Almost entirely by AI, managing the test suite.
+
+> Lines changed: **1009257** additions & **4024** deletions
+
+- Claude team later revealed how this PR miracle was achieved in their post on [Claude dynamic workflows](https://claude.com/blog/introducing-dynamic-workflows-in-claude-code)
+- Bun was built on Zig and is one of the flagship projects developed using this language. Zig, if you are not familiar, is designed to be an improved version of C. It operates as a non-profit corporation. The Zig and Bun teams have faced challenges after Bun's acquisition by Anthropic. Zig has been vocally against contributions from large language models (LLMs) and does not permit LLM involvement. While Bun has made many [improvements to its port of Zig](https://x.com/bunjavascript/status/2048427636414923250), it cannot contribute back due to the LLM policy.
+
+### Security
+
+There are still so many security attacks happening, LLMs or not, that the separate section for it seems appropriate.
+
+- [Postmortem: TanStack npm supply-chain compromise](https://tanstack.com/blog/npm-supply-chain-compromise-postmortem)
+- [Postmortem: Nx Console v18.95.0 supply-chain compromise](https://nx.dev/blog/nx-console-v18-95-0-postmortem)
+- Do NOT install [unscoped tanstack](https://socket.dev/blog/tanstack-brandsquat-compromise) package from npm
+- npm registry [invalidated](https://x.com/npmjs/status/2056960835030016286) granular access tokens that bypass 2FA. They recommend turning on trusted publishing.
+- Matteo Collina writes on [Why “Trusted Publishing” Can’t Save Us from Social Engineering](https://adventures.nodeland.dev/archive/why-trusted-publishing-can-t-save-us/)
+- [Next.js May 2026 security release](https://vercel.com/changelog/next-js-may-2026-security-release) - 13 advisories across denial of service, middleware and proxy bypass, server-side request forgery, cache poisoning, and cross-site scripting. 1 upstream for React.
+- GitHub internal repositories [were leaked](https://x.com/github/status/2056884788179726685) and put on sale.
+- [How Storm-2949 turned a compromised identity into a cloud-wide breach - Microsoft](https://www.microsoft.com/en-us/security/blog/2026/05/18/storm-2949-turned-compromised-identity-into-cloud-wide-breach/)
+
+## Tutorials
+
+### [How React Native Builds Actually Work (APK, AAB, IPA, APP) - YouTube](https://youtube.com/watch?v=1o0pEjYGUWM)
+
+Beto Moedano explains what these confusing acronyms are and how to build a React Native project. Apple and Google compete to make their certificates so convoluted that it attracts some customers to Expo build.
+
+### [9 Times the Web Platform Was Influenced by Libraries](https://jadjoubran.io/blog/web-platform-influenced-by-libraries)
+
+A good perspective on how the web platform has evolved and adopted features from libraries. The most famous example is jQuery's `$`, which is still used as an alias for `querySelector` in the browser console. Let's get more awesome libraries and more done natively.
+
+### [The React2Shell Story and What Happened Next.js](https://sylvie.fyi/posts/react2shell/)
+
+> lol wouldn’t it be crazy if we found an RCE in React
+
+The intriguing story of how the react2shell vulnerability was discovered begins with a Discord group chat. The group aimed to uncover specific CMS systems and ultimately found the bug in the React framework itself.
+
+### [Build Your Own Database - NaN](https://www.nan.fyi/database)
+
+An interactive blog post about building your own key-value database from the ground up. I did not even want to create a database, but just scrolling through the article made me want to.
+
+## In short
+
+- [100 things announced at Google I/O](https://blog.google/innovation-and-ai/technology/ai/google-io-2026-all-our-announcements/)
+- University of Waterloo has a Geese problem, how do you avoid Geese at the University you ask? [Waddleloo](https://www.waddleloo.com/). They are called _Cobra Chickens_
+- [Mac Shortcuts Playground](https://www.macstories.net/shortcuts-playground) - Describe what you want and create a perfect Mac shortcut. Comes with a playground.
+- Vercel releases [Zero](https://zerolang.ai/), a programming language made specifically for agents to use.
+- [Remix 3 Beta](https://remix.run/blog/remix-3-beta-preview) - the new JS framework from React Router folks
+- Found a 108 hour long [YouTube video](https://youtube.com/watch?v=GiXKukOtmeE)
+- What if you had a hundred thousand pages to render? Which framework would you choose - [Time to Yield](https://dev.to/lazarv/time-to-yield-20m8)
+- A website to know if AI tokens are getting cheaper - [Token costs](https://token-costs.standardagents.ai/)
+- [Google blocked Railway's Google Cloud account](https://x.com/Railway/status/2056883076496789854) making services unavailable for a very long time.
+- The next part of improving performance of JavaScript ecosystem from Marvin Hagemeister - [Speeding up the JavaScript ecosystem - oxlint and oxfmt](https://marvinh.dev/blog/speeding-up-javascript-ecosystem-part-13/)
+
+## In Other News
+
+### [Ollee Watch](https://www.olleewatch.com/)
+
+I discovered this on the MKBHD podcast, and as someone who loves my Casios and enjoys tinkering, this looks awesome. A custom PCB replacement designed to transform Casio's classic retro digital watches into hidden smartwatches. It can currently do Bluetooth time syncing, timezones, alarms and some hacked in fitness tracking (also play Poker, if you are into that)
+
+### [Uber's COO says it's getting harder to justify the money spent on AI tokenmaxxing](https://www.businessinsider.com/uber-coo-andrew-macdonald-ai-token-spending-harder-justify-2026-5)
+
+Many companies have transformed into token-use factories. They evaluate their employees based on the number of tokens they have burned. That's when they run into [Goodhart's law](https://en.wikipedia.org/wiki/Goodhart%27s_law).
+
+> A measure becomes a target, it ceases to be a good measure
+
+To view alongside, [Dara Khosrowshahi on replacing Uber drivers — and himself — with AI | Decoder](https://www.youtube.com/watch?v=zf66dfYpMY8)
+To read alongside, [Software is becoming marketing](https://www.terezatizkova.com/writing/software-abundance)
+
+### What will happen to technical blogging?
+
+Technical blogs are typically free and written for exposure. However, if only AI is reading and copying these blogs, they become largely ineffective. The AI won't remember you, so who are you promoting to?
+
+- Josh W. Comeau shares his thoughts on the [technical blog economy](https://bsky.app/profile/joshwcomeau.com/post/3mkxyqi3e2n2t).
+- Putting your money on [Curators - Matthias Ott](https://newsletter.ownyourweb.site/archive/own-your-web-issue-18-curators/)
+
+### [The iPhone That Never Was - Wired](https://www.wired.com/story/book-excerpt-david-epstein-inside-the-box-general-magic/)
+
+Wired tells the story of General Magic, the company that brought together talented technicians, invented everything necessary for smartphones, and then collapsed spectacularly.
+
+### [Nobody understands the point of hybrid cars - Technology Connections - YouTube](https://www.youtube.com/watch?v=KnUFH5GX_fI)
+
+A comprehensive tutorial on hybrid engines, explaining what they are, how they operate, and how they can save us from slow charging hell.
+
+### AI updates
+
+- [An OpenAI model has disproved a central conjecture in discrete geometry](https://openai.com/index/model-disproves-discrete-geometry-conjecture/) - Mathematical proof created by an AI model. This was followed up an [explicit lower bound paper](https://arxiv.org/abs/2605.20579) by a _human_ mathematician
+- [Anthopic Opus 4.8](https://www.anthropic.com/news/claude-opus-4-8) - Incremental update to Anthropic's best model.
+- [Gemini 3.5 Flash](https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-5/) - announced at Google I/O
+- [Gemini Omni](https://deepmind.google/models/gemini-omni/) - A world model that Google describes as the ability to create anything. It just generates video at the moment though.
+- The next iteration of SpaceX partnership from Cursor, their model named [Composer 2.5](https://cursor.com/blog/composer-2-5)
+
+## Looking Ahead
+
+- [React Norway](https://reactnorway.com/) - June 5
+- [WWDC 2026](https://developer.apple.com/wwdc26/) - Apple - June 8-12
+- [Web Engineering Summit, Amsterdam](https://webengineeringsummit.com/) - June 11
+- [JS Nation](https://jsnation.com/) - June 11
+- [React Summit](https://reactsummit.com/) - June 12
