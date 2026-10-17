@@ -96,6 +96,7 @@ function WebmarksPage() {
     <PageShell>
       <PageHero
         title="Webmarks"
+        compact
         tagline={
           <>
             Bookmarks I keep <Lemon>coming back to</Lemon>
@@ -106,7 +107,6 @@ function WebmarksPage() {
       />
 
       <SectionBar
-        heading="All links"
         status={
           hasFilters ? (
             <>
