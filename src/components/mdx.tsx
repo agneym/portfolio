@@ -136,7 +136,7 @@ function CustomLink({
 
 // Temporary backward-compat export for old Next.js pages during migration.
 // The new routes use MDXContent directly with compiled MDX code.
-export function CustomMDX({ source }: { source: string }) {
+function CustomMDX({ source }: { source: string }) {
   return (
     <div>
       {/* MDXContent requires compiled MDX code; this wrapper is transitional */}

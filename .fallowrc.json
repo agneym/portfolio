@@ -13,6 +13,7 @@
     "unused-exports": "warn",
     "unused-types": "warn"
   },
+  "ignoreExports": [{ "file": "src/app/**/*.tsx", "exports": ["Route"] }],
   "overrides": [
     {
       "files": ["src/app/blog/posts/*.mdx"],
