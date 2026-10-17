@@ -1,0 +1,23 @@
+{
+  "$schema": "https://raw.githubusercontent.com/fallow-rs/fallow/main/schema.json",
+  "entry": ["src/app/**/*.{ts,tsx,mdx}", "src/router.tsx"],
+  "ignorePatterns": [
+    ".content-collections/**",
+    ".output/**",
+    ".tanstack/**",
+    "src/routeTree.gen.ts"
+  ],
+  "ignoreDependencies": ["fallow", "images", "components", "webmarks", "sharp"],
+  "rules": {
+    "unused-files": "error",
+    "unused-exports": "warn",
+    "unused-types": "warn"
+  },
+  "ignoreExports": [{ "file": "src/app/**/*.tsx", "exports": ["Route"] }],
+  "overrides": [
+    {
+      "files": ["src/app/blog/posts/*.mdx"],
+      "rules": { "unresolved-imports": "off" }
+    }
+  ]
+}

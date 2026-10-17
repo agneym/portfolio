@@ -20,13 +20,9 @@ export type ExternalShortcut = Extract<
   NavShortcut,
   { href: `https://${string}` }
 >;
-export type InternalShortcut = Exclude<NavShortcut, ExternalShortcut>;
 
 export const isExternal = (item: NavShortcut): item is ExternalShortcut =>
   item.href.startsWith("https://");
-
-export const shortcutFor = (href: string) =>
-  NAV_SHORTCUTS.find((item) => item.href === href)?.key;
 
 const STORAGE_KEY = "clack:shortcuts";
 
