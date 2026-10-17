@@ -102,11 +102,7 @@ function WebmarksPage() {
             {hasFilters ? "Showing " : "Bookmarks I keep coming back to: "}
             <span className="text-primary tabular font-bold">{total}</span>{" "}
             {total === 1 ? "link" : "links"}
-            {tags.length > 0 && !hasFilters
-              ? `, filed under ${tags.length} tags.`
-              : hasFilters
-                ? " that match."
-                : "."}
+            {hasFilters ? " that match." : "."}
           </p>
         </header>
 
