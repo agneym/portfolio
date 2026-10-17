@@ -1,13 +1,7 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, redirect } from "@tanstack/react-router";
 
 export const Route = createFileRoute("/jem")({
-  loader: () => {
-    throw new Response(null, {
-      status: 301,
-      headers: {
-        Location: "https://buttondown.email/agney",
-      },
-    });
+  beforeLoad: () => {
+    throw redirect({ to: "/newsletter", statusCode: 301 });
   },
-  component: () => null,
 });

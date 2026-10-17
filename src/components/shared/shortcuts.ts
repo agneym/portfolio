@@ -12,7 +12,7 @@ export const NAV_SHORTCUTS = [
     label: "Projects",
     href: "https://github.com/agneym?tab=repositories",
   },
-  { key: "j", label: "Newsletter", href: "https://buttondown.email/agney" },
+  { key: "j", label: "Newsletter", href: "/newsletter" },
 ] as const;
 
 export type NavShortcut = (typeof NAV_SHORTCUTS)[number];
