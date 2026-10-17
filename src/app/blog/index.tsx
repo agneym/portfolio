@@ -1,8 +1,10 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { SkipNavContent } from "components/uikit/SkipNav";
 import { PostList } from "components/BlogHome/PostList";
-import { Header } from "components/BlogHome/Header";
-import { SubscribeNewsletter } from "components/Newsletter/SubscribeNewsletter";
+import { getPublishedPosts } from "components/BlogHome/getPublishedPosts";
+import { Lemon } from "components/shared/Lemon";
+import { PageHero } from "components/shared/PageHero";
+import { PageShell } from "components/shared/PageShell";
+import { SectionBar } from "components/shared/SectionBar";
 
 export const Route = createFileRoute("/blog/")({
   head: () => ({
@@ -13,15 +15,19 @@ export const Route = createFileRoute("/blog/")({
 
 function BlogHome() {
   return (
-    <div className="min-h-full">
-      <SkipNavContent />
-      <header className="mx-auto grid max-w-6xl gap-x-12 gap-y-10 px-4 pt-14 pb-16 sm:px-8 sm:pt-20 lg:grid-cols-[1fr_minmax(0,36rem)] lg:items-end">
-        <Header />
-        <SubscribeNewsletter tag="blog" />
-      </header>
-      <div className="mx-auto max-w-6xl px-4 pb-24 sm:px-8">
-        <PostList />
-      </div>
-    </div>
+    <PageShell>
+      <PageHero
+        title="Blog"
+        tagline={
+          <>
+            Welcome to Agney&apos;s <Lemon>Digital Garden</Lemon>
+          </>
+        }
+        meta={`${getPublishedPosts().length} posts`}
+        subscribeTag="blog"
+      />
+      <SectionBar heading="Latest Posts" />
+      <PostList />
+    </PageShell>
   );
 }

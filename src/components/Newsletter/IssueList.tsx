@@ -13,9 +13,6 @@ export function IssueList() {
 
   return (
     <>
-      <h2 className="text-secondary-strong text-2xl font-semibold">
-        All issues
-      </h2>
       <div className="mt-8 flex flex-col gap-y-12">
         {[...years].map(([year, yearIssues]) => (
           <section
@@ -23,7 +20,7 @@ export function IssueList() {
             aria-labelledby={`year-${year}`}
             className="grid gap-x-10 md:grid-cols-[8rem_1fr]"
           >
-            <div className="md:sticky md:top-20 md:self-start">
+            <div className="md:sticky md:top-36 md:self-start">
               <h3
                 id={`year-${year}`}
                 className="keycap keycap-mod tabular px-4 py-2 text-lg font-semibold"

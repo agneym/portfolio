@@ -1,9 +1,10 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { SkipNavContent } from "components/uikit/SkipNav";
 import { IssueList } from "components/Newsletter/IssueList";
-import { NewsletterHeader } from "components/Newsletter/NewsletterHeader";
-import { SubscribeNewsletter } from "components/Newsletter/SubscribeNewsletter";
 import { getIssues } from "components/Newsletter/issues";
+import { Lemon } from "components/shared/Lemon";
+import { PageHero } from "components/shared/PageHero";
+import { PageShell } from "components/shared/PageShell";
+import { SectionBar } from "components/shared/SectionBar";
 
 const TITLE = "JEM Newsletter | Agney";
 const DESCRIPTION =
@@ -27,15 +28,21 @@ export const Route = createFileRoute("/newsletter/")({
 
 function NewsletterHome() {
   return (
-    <div className="min-h-full">
-      <SkipNavContent />
-      <header className="mx-auto grid max-w-6xl gap-x-12 gap-y-10 px-4 pt-14 pb-16 sm:px-8 sm:pt-20 lg:grid-cols-[1fr_minmax(0,36rem)] lg:items-end">
-        <NewsletterHeader issueCount={getIssues().length} />
-        <SubscribeNewsletter tag="newsletter-page" hideArchives />
-      </header>
-      <div className="mx-auto max-w-6xl px-4 pb-24 sm:px-8">
-        <IssueList />
-      </div>
-    </div>
+    <PageShell>
+      <PageHero
+        title={<span className="text-mod">JEM</span>}
+        tagline={
+          <>
+            <Lemon>JavaScript Every Month</Lemon> is a monthly digest of the
+            best web development articles, tutorials and releases, picked by
+            hand.
+          </>
+        }
+        meta={`${getIssues().length} issues and counting.`}
+        subscribeTag="newsletter-page"
+      />
+      <SectionBar heading="All issues" />
+      <IssueList />
+    </PageShell>
   );
 }

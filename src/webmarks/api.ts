@@ -169,6 +169,17 @@ const listTags = createServerFn({ method: "GET" }).handler(
     request<{ tags: TagWithCount[] }>("/api/tags"),
 );
 
+/** Unfiltered bookmark count: a one-item page, since only `total` is read. */
+const listTotal = createServerFn({ method: "GET" }).handler(
+  async (): Promise<{ total: number }> => {
+    const { total } = await request<BookmarkList>(
+      "/api/bookmarks",
+      new URLSearchParams({ limit: "1" }),
+    );
+    return { total };
+  },
+);
+
 /**
  * Cursor-paginated list. The filters are the key, so changing any of them
  * starts a fresh list from the first page; each further page is fetched with
@@ -189,6 +200,12 @@ export const tagsQuery = () =>
   queryOptions({
     queryKey: ["webmarks", "tags"] as const,
     queryFn: () => listTags(),
+  });
+
+export const totalQuery = () =>
+  queryOptions({
+    queryKey: ["webmarks", "total"] as const,
+    queryFn: () => listTotal(),
   });
 
 /** Hostname without the `www.` prefix, for display. */
