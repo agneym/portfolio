@@ -1,0 +1,269 @@
+---
+title: JEM - Web in March - JavaScript Every Month Newsletter
+date: "2026-04-06T19:17:19.187937Z"
+image: https://image-generator.buttondown.email/api/emphasize-subject?subject=JEM%20-%20Web%20in%20March%20-%20JavaScript%20Every%20Month%20Newsletter&author=JEM%20Newsletter%20-%20JavaScript%20Every%20Month&date=2026-04-06&img=
+buttondownUrl: https://buttondown.com/agney/archive/jem-web-in-march-javascript-every-month-newsletter-2031/
+---
+
+Hello April 👋
+
+Spring is here and AI updates don't stop coming!
+
+March began with the Pentagon choosing which AI models would make its decisions. Anthropic refused to strip safeguards from its models, citing ethical concerns over government actions. OpenAI stepped in and reaped the rewards after Anthropic was deemed a supply-chain risk. Anthropic appealed, and the court has temporarily stayed the order.
+
+- [Where things stand with the Department of War](https://www.anthropic.com/news/where-stand-department-war) - Anthropic Blog
+- [Statement from Dario Amodei on our discussions with the Department of War](https://www.anthropic.com/news/statement-department-of-war) - Anthropic Blog
+- [Sam Altman's statement](https://x.com/sama/status/2027578652477821175) on signing agreement with Department of War.
+- [OpenAI Vs. Anthropic: How the Pentagon Picked Its Partner - Hard Fork podcast](https://www.youtube.com/watch?v=Zj35mEtwUvY)
+- The Composio tweet on the situation
+
+[https://x.com/composio/status/2027543451588493529](https://x.com/composio/status/2027543451588493529)
+
+- [Claude didn't just plan an attack on Mexico's government. It executed one for a month — across four domains your security stack can't see - VentureBeat](https://venturebeat.com/security/claude-mexico-breach-four-blind-domains-security-stack)
+
+---
+
+Fresh on summer here 🫠 but it's been raining CSEs and supply chain attacks:
+
+- [How I Found the LiteLLM PyPI Supply Chain Attack](https://futuresearch.ai/blog/litellm-attack-transcript/)
+- [telnyx](https://x.com/IntCyberDigest/status/2037469883064078502) was compromised
+- [Axios was compromised - Socket](https://socket.dev/blog/axios-npm-package-compromised)
+- [Attackers Are Hunting High-Impact Node.js Maintainers in a Coordinated Social Engineering Campaign - Socket](https://socket.dev/blog/attackers-hunting-high-impact-nodejs-maintainers)
+
+Meanwhile, we lost an AWS region me-central-1 due to the ongoing war - [Get your data out now, says AWS on ME-CENTRAL-1 - The Stack](https://www.thestack.technology/get-your-data-out-now-says-aws-on-me-central-1/)
+
+## Releases
+
+### Browsers
+
+#### [Chrome 146](https://developer.chrome.com/release-notes/146)
+
+- scroll position triggered animations
+- meta `name="text-scale"`overriding browser font scaling
+- multiple custom element definitions for a single tag name exist within a page with scoped custom element registry
+- Sanitizer API offers a way to remove content that might execute script from arbitrary, user-supplied HTML content
+
+#### [Firefox 149](https://developer.mozilla.org/en-US/docs/Mozilla/Firefox/Releases/149)
+
+- popover global attribute now supports the `hint` value. Popovers with the hint value will not close auto popovers when they are displayed, but will close other hint popovers
+- `font-family: math` is supported and auto applied to `<math>`
+- `<container-query>` part of the @container at-rule condition is now optional. This allows matching against containers based solely on their names
+- `HTMLSelectElement.showPicker()` method is now supported for a list of options defined in a `<datalist>`
+- `HTMLMediaElement.captureStream()` is supported
+
+#### [Safari 26.4](https://developer.apple.com/documentation/safari-release-notes/safari-26_4-release-notes)
+
+- scroll driven animations support
+- Added support for an automatic initial value for `grid-auto-flow` in CSS Grid Level 3 to switch flow orientation based on `grid-template-rows` and `grid-template-columns` for grid lane layouts
+- Added support for using the `min()`, `max()`, and `clamp()` math functions in the sizes attribute of `<img>` elements
+- keyboard lock API
+- readable byte stream
+- iterator sequencing
+
+### IDE
+
+- Claude has [Computer Use capabilities](https://claude.com/blog/dispatch-and-computer-use) on the desktop app. Also launched Remote Control - ability to control claude code agents from your phone. They have also launched channels which you can [sync with apps](https://x.com/trq212/status/2034761016320696565) like Telegram. Basically CC getting the claws.
+- [Air](https://air.dev/) is the new Desktop from Jetbrains that can coordinate sessions between Claude Code, Codex, Junie etc.
+- OpenRouter will [default to _Exacto_ endpoints](https://x.com/OpenRouter/status/2032127261709676991) for tool calling requests.
+- Claude code has [`/btw`](https://x.com/trq212/status/2031506296697131352) mode where you can answer questions without interrupting progress.
+- Jetbrains makes JavaScript, TypeScript features [free for use](https://blog.jetbrains.com/idea/2026/03/js-ts-free-support/) on their IDEA
+- Cursor has a new agents interface named [Glass](https://cursor.com/new) which kinda looks like all the other interfaces.
+- Google Stitch got a [major update](https://x.com/stitchbygoogle/status/2034332847893574080) with voice support, faster prototypes, variants and AI native canvas (whatever that means). There is also a TypeScript SDK so you can use Stitch programmatically.
+- Codex releases [plugins](https://developers.openai.com/codex/plugins) - bundle skills, MCP servers and Apps.
+- Zed has a new [Zeta2](https://zed.dev/blog/zeta2) edit prediction model that they build from ground up.
+
+### [Node.js Security Releases](https://nodejs.org/en/blog/vulnerability/march-2026-security-releases)
+
+All currently supported versions of Node.js have received security updates to address various CVEs: 25.x, 24.x, 22.x, 20.x
+
+Update your `tool-versions` now.
+
+Node.js has announced that they are moving from two versions a year to just one. Every release will be LTS: [Evolving the Node.js Release Schedule](https://nodejs.org/en/blog/announcements/evolving-the-nodejs-release-schedule)
+
+### [Inertia 3](https://laravel.com/blog/inertia-v3-whats-changed-since-the-first-beta)
+
+- `@𝚒𝚗𝚎𝚛𝚝𝚒𝚊𝚓𝚜/𝚟𝚒𝚝𝚎` plugin to handle page resolution, code splitting and SSR setup automatically
+- Built in optimistic updates
+- `useHttp` hook for plain HTTP requests with reactive state.
+
+Laravel team has released a benchmark for [which model is best for working on the framework](https://laravel.com/blog/which-ai-model-is-best-for-laravel)
+
+### [Vite 8](https://vite.dev/blog/announcing-vite8)
+
+- Switch to Rolldown by default
+- Integrated Vite devtools
+- Built in support for tsconfig paths
+- 15MB larger than Vite 7 ([Why?](https://vite.dev/blog/announcing-vite8#install-size))
+
+[Void](https://void.cloud/) is the newly launched Vite hosting platform built on Cloudflare.
+
+### [Astro 6](https://astro.build/blog/astro-6/?tw)
+
+- Experimental Rust compiler
+- `astro dev` can run on runtimes like Bun, Cloudflare workers
+- Built in fonts API
+- live content collections
+
+Strong quick follow up with [Astro 6.1](https://astro.build/blog/astro-610/)
+
+### [Expo UI in SDK 55](https://expo.dev/blog/expo-ui-in-sdk-55-jetpack-compose-now-available-for-react-native-apps)
+
+- Jetpack Compose and Swift UI directly in your React Native app
+
+### [VideoJS 10 Beta](https://videojs.org/blog/videojs-v10-beta-hello-world-again)
+
+Teams of Plyr, Vidstack, and Media Chrome combine to rewrite Video.js ground up to one video package.
+
+### [Bun 1.3.11](https://bun.com/blog/release-notes/bun-v1.3.11)
+
+- 4 MB smaller on Linux x64
+- Built in cron job API
+- Bun.sliceAnsi — ANSI & grapheme-aware string slicing
+
+### [TypeScript 6.0](https://devblogs.microsoft.com/typescript/announcing-typescript-6-0/)
+
+- Alignment with 7.0, flag `stableOrdering` for matching behaviour with 7.0
+- Less Context-Sensitivity on this-less Functions
+- Subpath Imports Starting with #/
+- Types for temporal proposal
+
+### [shadcn cli v4](https://x.com/shadcn/status/2029974151427989567)
+
+- `shadcn/skills`
+- presets: pack design system into a short code
+- shadcn init has templates for Next.js, Vite, Laravel, React Router, Astro and TanStack Start
+- fonts as registry types
+
+### [Next 16.2](https://nextjs.org/blog/next-16-2)
+
+- **400%** faster `next dev` startup
+- 50% faster RSC rendering time
+- Attach the Node.js debugger to your production server with `--inspect`
+- `create-next-app` ships with an AGENTS.md file
+- browser log forwarding
+- next-browser as a wrapper on the browser skill to debug a running Next.js application
+
+### [Redwood SDK v1](https://rwsdk.com/blog/redwood-v1-getting-out-of-the-weeds)
+
+Another framework based on primitives on Cloudflare.
+
+### [GeaJS](https://geajs.com/)
+
+A new JavaScript framework has arrived, packed with features.
+
+### [npmx](https://npmx.dev/)
+
+Quick fresh npm registry browser.
+
+### [Stripe Projects](https://docs.stripe.com/projects)
+
+Initialize third party projects through Stripe CLI plugin.
+
+### [11ty → Build Awesome](https://www.11ty.dev/blog/build-awesome/)
+
+11ty, acquired by Font Awesome gets rebranded to Build Awesome. It's live on Kickstarter.
+
+### [Dynamic Worker isolates - Cloudflare](https://blog.cloudflare.com/dynamic-workers/)
+
+Instatiate a worker with specific code and sandbox from another worker. Used in Cloudflare's MCP codemod.
+
+## In the Spotlight 🔦
+
+Cheng Lou released a text measurement library that spawned a dawn of dancing text demos on the Internet.
+
+[https://github.com/chenglou/pretext](https://github.com/chenglou/pretext)
+
+Instead of relying on the DOM to measure text, pretext measures the font size (and more) and stores it in the cache, making every subsequent change to the text size instant.
+
+You should see these to believe it:
+
+[https://x.com/EsotericCofe/status/2038076140661932273](https://x.com/EsotericCofe/status/2038076140661932273)
+
+[https://x.com/birdabo/status/2038219452337074677](https://x.com/birdabo/status/2038219452337074677)
+
+## Tutorials
+
+### [Designing delightful frontends with GPT-5.4](https://developers.openai.com/blog/designing-delightful-frontends-with-gpt-5-4)
+
+OpenAI’s tips for polished, production-ready front-end layouts that rise above generic templates. Spotlight native image reasoning and computer-use verification with Playwright, plus a dedicated "Frontend Skill" that enforces premium design rules like edge-to-edge compositions and purposeful motion.
+
+To be read alongside:
+
+- [Anthropic's take on frontend design skill](https://claude.com/blog/improving-frontend-design-through-skills)
+- [Harness design for long-running application development - Anthropic](https://www.anthropic.com/engineering/harness-design-long-running-apps)
+
+### [Reducing our monorepo size to improve developer velocity - Dropbox Tech](https://dropbox.tech/infrastructure/reducing-our-monorepo-size-to-improve-developer-velocity)
+
+As code output grows, keeping CI, linting, and sandbox cloning fast and efficient is critical. Dropbox found its repo had ballooned to 87 GB 🫨, then teamed up with GitHub to shrink it. Their blog explains how they did it and the steps they took.
+
+### [How VS Code Builds with AI - VS Code](https://code.visualstudio.com/blogs/2026/03/13/how-VS-Code-Builds-with-AI)
+
+The Visual Studio Code team (Microsoft) on how the use of AI has changed how and what they ship. Their release cadence has gone from monthly to weekly updates to Twitter posts for Insiders. Mostly non-technical, but some useful tips there to maximise your meeting time.
+
+### [Small Programming Tricks - Will Keleher](https://will-keleher.com/posts/small-programming-tricks-matter/)
+
+This short and useful collection of programming snippets offers at least one idea you can adopt or adapt for your own post.
+
+### [Source Maps: Shipping Features Through Standards - Bloomberg Tech](https://bloomberg.github.io/js-blog/post/standardizing-source-maps/)
+
+We use source maps, sometimes shipping them; sometimes the ship springs a leak (IYKYK). This is the story of how bundlers and browsers implemented source maps without following a standard, relying only on procedures created by different companies. It continues with the new task group and the future of source maps.
+
+### [Post-React Compiler React Coding Guide (For AI Agents)](https://pavi2410.com/blog/post-react-compiler-coding-guide/)
+
+I wonder if this is the new trend in town: Skills written up as blog posts. This one's for optimising for React compiler, I did not know there were so many steps to use the compiler.
+
+## In short
+
+- Celerbate 20 years of AWS with [the story of S3](https://www.aboutamazon.com/news/aws/the-earliest-aws-customers-who-helped-build-the-cloud)
+- In a puzzling move, Meta has acquired [Moltbook](https://techcrunch.com/2026/03/10/meta-acquired-moltbook-the-ai-agent-social-network-that-went-viral-because-of-fake-posts/), the AI-driven social network that went viral for fake posts.
+- NVIDIA launched their version of OpenClaw - [Nemoclaw](https://www.nvidia.com/en-us/ai/nemoclaw/) and the promotional material has Jensen's likeness (?!)
+- Google allows you to [change your email address](https://support.google.com/accounts/answer/19870?visit_id=639105734524882167-3711238423) while keeping the older one for login.
+- [React Compiler Rust edition](https://x.com/en_JS/status/2031606726689173846) is coming soon. Soon to SWC and OXC toolchains.
+- Anthropic migrated Claude desktop app from [Next.js to Tanstack Router and Vite](https://x.com/felixrieseberg/status/2034688574239776778) and note that prompts show up 50% sooner.
+- Anthropic released their [own agent review](https://claude.com/blog/code-review) with an insane price tag attached to it.
+- Cloudflare - the company building bot protection launches an [endpoint to crawl a website with single link](https://x.com/CloudflareDev/status/2031488099725754821)
+- Tanstack improves their SSR [throughput by 55x](https://tanstack.com/blog/tanstack-start-5x-ssr-throughput)
+- OpenAI [acquires Astral](https://x.com/OpenAINewsroom/status/2034616934671724639). Anthropic owns Bun, OpenAI owns uv.
+- [ARC AGI 3](https://arcprize.org/blog/arc-agi-3-launch) Benchmark - Frontier model scores 0.26%
+- [Solid JS 2 Beta](https://github.com/solidjs/solid/releases/tag/v2.0.0-beta.0) - _The Suspense is Over_
+
+## In Other News
+
+### [Project Hail Mary](https://www.themoviedb.org/movie/687163-project-hail-mary)
+
+_Amaze Amaze Amaze!_
+
+A beautiful fun movie, worth the experience on an IMAX
+
+### [Thoughts on slowing the fuck down](https://mariozechner.at/posts/2026-03-25-thoughts-on-slowing-the-fuck-down/)
+
+Your work should not be measured by lines of code or the millions of AI tokens you burned. This seems obvious, yet we default to this metric because the alternatives are complex. Mario, creator of Pi reasons on why we should slow down and think about our creations.
+
+### [How is Google not done mapping the world yet?? - MorningBrew - YouTube](https://www.youtube.com/watch?v=M8G44b0mljw)
+
+This fun watch follows the Google Maps team as they cross Bosnia and Herzegovina to capture street views. The video explores the high-tech puzzle of mapping, its tools, and its ethical implications.
+
+### [MWC 2026 Recap: CNET](https://www.cnet.com/news-live/mwc-2026-news-updates-product-announcements/)
+
+Leica Leitzphone by Xiaomi camera samples look amazing, merging more camera into a phone body. Honor Robot phone, despite its clickbaity name, has a built-in gimbal. Xiaomi, being Xiaomi, launched a car at the tech event.
+
+### AI updates
+
+- [GPT 5.4, mini, nano](https://openai.com/index/introducing-gpt-5-4-mini-and-nano/) - The 5.4, it's smaller sleeker variants
+- [Gemini 3.1 Flash Lite](https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-1-flash-lite/) - Google's take on what if we had a confusing model situation lighter than Flash but better than Gemma.
+- Docs, sheets all got the Gemini update, but the one that impressed me is [Google Maps update](https://blog.google/products-and-platforms/products/maps/ask-maps-immersive-navigation/)
+- [GLM 5 Turbo](https://x.com/Zai_org/status/2033221428640674015) GLM 5 but faster and the next iteration in [GLM 5.1](https://docs.z.ai/devpack/using5.1)
+- [Minimax 2.7](https://x.com/MiniMax_AI/status/2034315320337522881)
+- [Xiaomi Mimo V2 Pro | Omni | TTS](https://x.com/XiaomiMiMo/status/2034305830724444484) - These were stealth models under _Healer_ codenames.
+- [Lyria 3](https://blog.google/innovation-and-ai/technology/ai/lyria-3-pro/) - Google's audio generation model with longer tracks
+- [Gemini 3.1 Flash live](https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-1-flash-live/) - Lower latency, more natural live model.
+- [Gemini Embedding 2](https://x.com/GoogleAIStudio/status/2031421162123870239) - Native multimodal embedding
+- [Veo 3.1 Lite](https://ai.google.dev/gemini-api/docs/models/veo-3.1-lite-generate-preview) - Cost effective video generation model.
+- Unsloth has released a web UI for local AI - [Unsloth Studio](https://unsloth.ai/docs/new/studio)
+- [Qwen 3.5 Small](https://x.com/Alibaba_Qwen/status/2028460046510965160) and [Qwen 3.5 Omni](https://x.com/Alibaba_Qwen/status/2038636335272194241)
+- [Composer 2](https://cursor.com/blog/composer-2) a fine turned model from Cursor team fine tuned on Kimi K2.5
+
+## Looking Ahead
+
+- [SmashingConf Amsterdam](https://smashingconf.com/amsterdam-2026) - April 13-16
+- [CityJS London](https://london.cityjsconf.org/) - 15-17 April

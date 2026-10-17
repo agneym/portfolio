@@ -1,0 +1,100 @@
+---
+title: Web in January - The Newsletter by Agney
+date: "2021-01-31T13:05:23.516799Z"
+image: https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExbnRsZmU0bmJndWNsZmN2c2g3aWsyMm9saWp0ZWh0bWJ6aHdpZnFvOSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/ISOckXUybVfQ4/giphy.gif
+buttondownUrl: https://buttondown.com/agney/archive/web-in-january-the-newsletter-by-agney/
+---
+
+We have survived the first month of 2021. Congrats 🥳
+
+> It's the first birthday of this Newsletter, I have written this email every month for an year now. Thanks to all of you who subscribed and supported me. 🙇‍♂️
+
+It's the jQuery birthday month 🎂.
+
+[https://twitter.com/scottjehl/status/1350184656541540352](https://twitter.com/scottjehl/status/1350184656541540352)
+
+---
+
+## In this month's **Newsletter Keynote**, we look at three companies that had a gold rush month.
+
+The year started off with a riot in US capitol building which then turned every social media company against President Donald Trump. While giants like Facebook and Twitter blocked the President everywhere, a conservative _free speech_ outlet Parler started gaining followers by second. Parler started stuttering as the loads increased and later altogether as [AWS banned them](https://www.foxbusiness.com/technology/parler-down-amazon-web-services-ban) from their servers. But here's a tech lesson from Parler debacle.
+
+[https://twitter.com/sarahmei/status/1348475215462817794](https://twitter.com/sarahmei/status/1348475215462817794)
+
+---
+
+Whatsapp was all set to [update it's terms and services](https://www.bloomberg.com/news/articles/2021-01-11/why-whatsapp-s-privacy-rules-sparked-moves-to-rivals-quicktake) starting next month and share some user information with their parent company Facebook. But there was widespread outrage regarding the policy to the point that WhatsApp had to claim a misinformation campaign later. People rushed to competing platforms like Signal and Telegram; Signal in particular gaining about 40 million users.
+
+The joy was short-lived as Signal went down for long time and most people went back to WhatsApp following full page ads _promising privacy from Facebook._ How useful is a chat app if some of your friends are not on it?
+
+[http://gph.is/Vwwqks](http://gph.is/Vwwqks)
+
+---
+
+The third company of the month is [GameStop](https://www.gamestop.com/). They are a video game retailer in US who were kinda struggling because of the pandemic, blowing off some [Steam](https://store.steampowered.com/). Some very large hedge funds were shorting the stocks for GameStop (well, including AMC theatres, Bed Bath and Beyond and others) and betting on it to fail. At some point, they went completely overboard as to have borrowed 130% of the stock.
+
+This is when a subreddit that gambles on stock market called r/wallstreetbets caught a whiff of the money going round. The subreddit in a collective effort (raid!) pushed up prices of the stock and suffice to say, it skyrocketed.
+
+[https://media.giphy.com/media/3oKHWbTqRx229WKgG4/giphy.gif](https://media.giphy.com/media/3oKHWbTqRx229WKgG4/giphy.gif)
+
+_Short_ after hedge funds starting complaining that the free market was _too_ free, Robinhood the popular stock trading app stopped trading $GME and $AMC making everyone involved angry.
+
+Tech Companies caught in this gold rush:
+
+- Reddit: The subreddit had to be taken private due to sudden influx of users.
+- Discord: The subreddit moved to it's own discord channel which had to banned as it got difficult to moderate. The channel is now back up as Discord is personally assisting their team.
+- Twitch: [That AOC stream](https://www.twitch.tv/videos/892140641)
+- Robinhood: Went up the ladder and fell as fast.
+
+# Releases
+
+- [Chrome 88](https://developer.chrome.com/blog/new-in-chrome-88/) - Brings support for a much awaited property on the Web - [`aspect-ratio`](https://web.dev/aspect-ratio/). No more `padding-bottom` tricks. (As always, check out [browser compatibility](https://caniuse.com/mdn-css_properties_aspect-ratio)). This update also defaults links with `target=_blank` to `rel=noopener` to prevent [tabnabbing](https://portswigger.net/daily-swig/upcoming-google-chrome-update-will-eradicate-reverse-tabnabbing-attacks). It might be too quick to switch the error off on eslint, but it's safer now.
+- [Houdini Worklets](https://houdini.how/) - CSS Houdini allows you to create worklets - Tiny functions to extend CSS (Here's an [explainer](https://youtu.be/5eBar5TI71M) if you haven't heard it before). This page contains examples that you can use on modern browsers right now.
+- [Firefox for Apple Silicon](https://hacks.mozilla.org/2021/01/porting-firefox-to-apple-silicon/) - Apple might have mentioned it's a day task to port software to new Silicon. Firefox has published their case study of porting a browser.
+- [Snowpack 3](https://www.snowpack.dev/posts/2021-01-13-snowpack-3-0) - Snowpack is a super fast web development environment and in v3 it ships with in build bundling, preloading, minification and more (in production mode of course). They have been on the rise in last few months - other alternatives are [vite](https://github.com/vitejs/vite), [wmr](https://github.com/preactjs/wmr).
+- [WCAG 3](https://www.w3.org/TR/wcag-3.0/#about-wcag-3-0) - First Public Draft. It's supposed to be easier to read, let me know if you did that.
+
+# Tutorials
+
+- [Performance Checklist 2021 - Smashing Magazine](https://www.smashingmagazine.com/2021/01/front-end-performance-2021-free-pdf-checklist/) - Always amazing checklist for web performance from SmashingMag. Check out the Low hanging fruits section for some easy wins. They have also put out a long detailed case study of [improving performance their own site](https://www.smashingmagazine.com/2021/01/smashingmag-performance-case-study/)
+- [Apollo Odyssey - Learning Platform](https://odyssey.apollographql.com/) - If you want to learn GraphQL with Apollo™️, hop onto their new learning platform complete with space puns. Netlify released [JamStack Explorers](https://explorers.netlify.com) last month, so it seems like Space is the theme so far.
+- [styled-components best practices](https://www.joshwcomeau.com/css/styled-components/) - As I reiterate every chance I get, `styled-components` happens to be my favourite styling library. This best practices blog from Josh is an absolute treasure chest.
+- [TailwindCSS isn't for me](https://dev.to/jaredcwhite/why-tailwind-isn-t-for-me-5c90) - Tailwind is the new cool, but it might not be everyone. The article and comments contain some interesting distinctions and discussions. I hold that the popularity of Tailwind is not about CSS at all, it's about how it made developers feel like they didn't need designers (that was how bootstrap worked too). But in case you are a fan, here is a Tailwind romance novel.
+
+[https://twitter.com/heydonworks/status/1351816091190898688](https://twitter.com/heydonworks/status/1351816091190898688)
+
+# In the Spotlight 🔦
+
+Let's look at state management in React.
+
+I have maintained my apprehension against using [Redux](https://redux.js.org/) because of my experiences of using it so far. One of my favourite instances are from starting out as a contractor on a project my first ticket was that all dropdowns on the page were being triggered simultaneously. A developer had put the state for dropdown in Redux not anticipating that there could ever be two dropdowns on the same page!
+
+I can currently live with no third party libraries, just [React Context](https://reactjs.org/docs/context.html), but then that's not state management, it's just global state. As Mark Erickson eloquently puts it:
+
+> Context is a form of Dependency Injection. It is a transport mechanism - it doesn't "manage" anything. Any "state management" is done by you and your own code, typically via useState/useReducer.
+
+[Link to his blog post](https://blog.isquaredsoftware.com/2021/01/context-redux-differences/) explaining differences in detail.
+
+There are a large number of solutions for state management that are currently available for React. Here is how they stack up:
+
+[https://twitter.com/DavidKPiano/status/1353712136372039682](https://twitter.com/DavidKPiano/status/1353712136372039682)
+
+Redux or comparable solutions pass only the store object to the components meaning that all components in the tree do not have to rerender if one value in the store changes. But this is not the case with Context. But this is changing, once this _experiment_ goes through, `useSelectedContext` will enable to users to select when they want components to rerender.
+
+[https://github.com/facebook/react/pull/20646](https://github.com/facebook/react/pull/20646)
+
+# In Other News
+
+- [CES 2021](https://www.theverge.com/2021/1/16/22234287/the-tech-trends-we-saw-kick-off-at-ces-2021) - CES 2021 was live this month and here's a rundown of all the awesome stuff we saw at the virtual show and might never see again.
+- [State of JS - 2020](https://2020.stateofjs.com/en-US/) - JavaScript's largest survey results are here, the industry is still 90% male, React and Vue are leading, Svelte is catching up.
+- [JavaScript Rising Stars](https://risingstars.js.org/2020) - Deno has dethroned the 5 year consecutive star🌟 VueJS.
+- [Leaking a zoom meeting](https://theintercept.com/2021/01/18/leak-zoom-meeting/) - I'm assuming none of you have planned something like this, but just in case you are. (Lesser I know, the better 😜)
+- [New campaign targeting security researchers
+  ](https://blog.google/threat-analysis-group/new-campaign-targeting-security-researchers/) - A phishing campaign against security researchers from North Korea.
+- [Australia & Google](https://www.bbc.com/news/world-australia-55760673) - Australian Government has asked Google to start paying publishers as they use the scrapped content across their platforms and Google has threatened to leave the Down Under.
+
+---
+
+# Looking Forward
+
+- [Gatsby Conf](https://gatsbyconf.com/) - March 2,3

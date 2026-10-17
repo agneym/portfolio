@@ -1,0 +1,114 @@
+---
+title: JEM - Web in July - JavaScript Every Month Newsletter
+date: "2023-08-12T16:09:54.656000Z"
+buttondownUrl: https://buttondown.com/agney/archive/jem-web-in-july-javascript-every-month-newsletter/
+---
+
+Hey August!
+
+_August in the month when sun's embrace is warm,_
+_Golden fields sway, a tranquil charm,_
+_Cicadas hum in the hazy air,_
+_As memories bloom, beyond compare_
+
+I will be honest, I did not write this, ChatGPT did. About that, OpenAI released a [bunch of updates to ChatGPT UI](https://help.openai.com/en/articles/6825453-chatgpt-release-notes) last month that those are the highlights for the month.
+
+### [Baidu Ernie 3.5](http://research.baidu.com/Blog/index-view?id=185)
+
+Baidu has released version 3.5 of their LLM which is claimed to have performance on par with or above OpenAI's GPT-4.
+
+### [Llama 2](https://ai.meta.com/blog/llama-2/)
+
+Meta AI has released Llama 2, the next generation of its open source large language model.Llama 2 is trained on 2 trillion tokens, which is twice as many as Llama 1.It has double the context length of Llama 1, which means it can better understand and respond to complex queries. More importantly, Llama 2 is available for free for research and commercial use.
+
+## Releases
+
+### Browsers
+
+#### [Firefox 115](https://developer.mozilla.org/en-US/docs/Mozilla/Firefox/Releases/115)
+
+- The modulepreload keyword for the rel attribute of the \<link> allows early (and asynchronous) fetching of module scripts and their dependencies in parallel, which are then stored in the document's module map
+- The CSS animation-composition property is now supported by default. You can use this property to specify the composite operation to use when multiple animations affect the same property simultaneously.
+- `Array.fromAsync` is introduced which is the async version of `Array.from`.
+
+#### [Chrome 115](https://developer.chrome.com/blog/new-in-chrome-115/)
+
+- As a part of bringing more animation as native to the web, Chrome has added [Scroll driven animations](https://developer.chrome.com/articles/scroll-driven-animations/).
+- The Privacy Sandbox is an initiative that aims to create technologies that both protect people's privacy online and give developers tools to build thriving digital businesses.
+- `display` property now supports multiple values like `flex block`. Single values will remain legacy though.
+
+### [Prettier 3.0](https://prettier.io/blog/2023/07/05/3.0.0.html)
+
+Prettier has undergone a significant update that involves transitioning to using ESM modules.
+
+- Noteworthy modifications have been made to the plugin interface. For those engaged in plugin development, it's advisable to refer to the migration guide.
+- The default value for trailing commas has been changed to all.
+
+### [Prisma 5.0](https://www.prisma.io/blog/prisma-5-f66prwkjx72s)
+
+Prisma has shipped bunch of performance updates in this major release. I haven't checked the accuracy myself, but judging by graphs presented on Release notes, the performance improvements are major.
+
+### [Remotion 4](https://youtu.be/S3C9wlPNhkQ)
+
+The programmatic video editor using React is now 4.0.
+
+- Adopting Rust into the code for performance improvements.
+- Introduces support for Zod for typesafe editing.
+- A render button to render directly from UI
+
+## In the Spotlight 🔦
+
+Douglas Crockford, the individual who standardized JSON, developed JSLint, and authored "JavaScript: The Good Parts," recently published an [opinion piece on his blog](https://www.crockford.com/domjs.html). In this piece, he states that JavaScript currently provides sufficient capabilities for the majority of websites.
+
+[Lea Verou took to Twitter](https://twitter.com/LeaVerou/status/1679273406624038918) for defence of the frameworks.
+
+[https://twitter.com/LeaVerou/status/1679273406624038918](https://twitter.com/LeaVerou/status/1679273406624038918)
+
+### Dan Abramov leaving Meta
+
+Dan Abramov choosing to leave Meta but remain an Independent contributor for the team is pretty major on React community.
+
+[https://twitter.com/dan_abramov/status/1682029195843739649](https://twitter.com/dan_abramov/status/1682029195843739649)
+
+## Tutorials
+
+### [Svelte Website Redesign](https://svelte.dev/)
+
+Svelte has launched a redo of their site on heels of Svelte 4.0. The new site looks slick and comes with support for multiple pages for major sub libraries.
+
+### [How React 18 Improves Application Performance - Vercel blog](https://vercel.com/blog/how-react-18-improves-application-performance)
+
+This blog post elucidates the utilization of the latest features in React 18, such as Transitions, Suspense, and React Server Components, aimed at enhancing your application's performance. The article delves into a detailed comparison of the rendering process as it existed previously and how it is poised to evolve. Furthermore, the post sheds light on how this transformation is anticipated to impact various user metric scores.
+
+### [TypeChat - TypeScript Microsoft](https://microsoft.github.io/TypeChat/blog/introducing-typechat/)
+
+If you wanted to process the output of an LLM, you would already know the pain behind natural language processing. Now you could ask the LLM to respond in JSON. But because of hallucination, sometimes the LLM messes up the fields or returns unexpected values in some fields. TypeChat can help with validating the output from an LLM to improve the procedure.
+
+### [5 TS Compiler Flags You Should Include In Your Project's Config](https://egorkonovalov.github.io/flycatcher/posts/3/)
+
+You could simply start a project with TypeScript and use the default configuration.egorkonovalov explains the flags he found useful to be changed for a better project configuration. The list includes `noImplicitOverride`, `noUncheckedIndexedAccess`, `noPropertyAccessFromIndexSignature`, `allowUnreachableCode` and `noFallthroughCasesInSwitch`.
+
+### [Breaking Up with SVG-in-JS in 2023](https://kurtextrem.de/posts/svg-in-js)
+
+As the quantity of SVGs within your bundle grows, the performance of your JavaScript could potentially be compromised. This blog post delves into alternative strategies for integrating SVGs into your project. It even includes a flowchart designed to aid you in making informed decisions about which approach aligns best with your requirements.
+
+## In Other News
+
+### [Google's DRM for the Web](https://arstechnica.com/gadgets/2023/07/googles-web-integrity-api-sounds-like-drm-for-the-web/)
+
+Google has proposed a new web standard called the Web Environment Integrity API (WEI), which critics say could be used to create a DRM gatekeeper for the web. The API would allow websites to check whether a user's browser is "trustworthy" by verifying that it hasn't been modified or tampered with. This could be used to prevent users from using ad blockers, rooting their devices, or installing unauthorized software. Critics argue that WEI would give websites too much control over how users interact with the web, and could be used to stifle innovation and competition.
+
+Mozilla has taken a [position opposing this feature](https://github.com/mozilla/standards-positions/issues/852#issuecomment-1648820747)
+
+### [The First Room-Temperature Ambient-Pressure Superconductor](https://arxiv.org/abs/2307.12008)
+
+The emergence of research on a supercomputer operating at room temperature and ambient pressure has captured global attention. Should this groundbreaking development prove to be accurate and undergo verification by other experts, it holds the potential to revolutionize the entire technological landscape.
+
+### [Open sourcing AudioCraft: Generative AI for audio made simple and available to all - Meta](https://ai.meta.com/blog/audiocraft-musicgen-audiogen-encodec-generative-ai-audio/)
+
+Meta AI has released AudioCraft, an open source audio generation toolkit that can be used to create music, sound effects, and other audio content from text prompts. It has three models: MusicGen, AudioGen, and EnCodec.
+
+## Looking Ahead
+
+- [Swift Conf](https://swiftconf.com/#/) - Aug 16-17
+- [React Rally](https://www.reactrally.com/) - August 17-18

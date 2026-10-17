@@ -1,0 +1,168 @@
+---
+title: JEM - Web in May - JavaScript Every Month Newsletter
+date: "2024-06-02T10:26:57.074675Z"
+buttondownUrl: https://buttondown.com/agney/archive/jem-web-in-may-javascript-every-month-newsletter/
+---
+
+Hey June 👋
+
+May was a fine month for top tech companies. Top tech companies that had an event this month: Apple, Google, Microsoft and OpenAI (Meta, if you consider React conf). Out of these, Google, Microsoft and OpenAI were a repetition of the same themes, in different settings by different people. Apple announced an iPad but is going to say a lot more about AI in the upcoming WWDC in June. We are also waiting on Computex keynotes from AMD and NVIDIA the start of June.
+
+ 
+
+## Releases
+
+### Browsers
+
+#### [Firefox 126](https://developer.mozilla.org/en-US/docs/Mozilla/Firefox/Releases/126)
+
+- support for `zoom` property
+- The Screen Wake Lock API is now supported, allowing a web application to request that the screen not be dimmed or locked while it is active.
+- The URL.parse() static method is now supported for creating URL objects.
+
+#### [Safari 17.5](https://developer.apple.com/documentation/safari-release-notes/safari-17_5-release-notes)
+
+- `light-dark()` color function
+- support for `text-wrap-style: auto/balance/stable`. You should probably set this as default for headings.
+- support for `@starting-style`
+
+#### [Chrome 125](https://developer.chrome.com/release-notes/125)
+
+- Declarative shadow DOM serialization
+- Anchor positioning in native CSS
+- stepped value functions `round()`, `mod()` and `rem()`
+- New syntax for CSS custom `:state()`
+- The Compute Pressure API offers high-level states that represent the CPU load on the system. It allows the implementation to use the right underlying hardware metrics to ensure that users can take advantage of all the processing power available to them as long as the system is not under unmanageable stress.
+
+### [Headless UI 2.0](https://tailwindcss.com/blog/headless-ui-v2)
+
+An major update to Headless UI after a long time, this comes as a precursor to Catalyst UI project.
+
+- Build in anchor positioning with Floating UI
+- Checkbox component to complement RadioGroup component.
+- New form components: `Fieldset`, `Legend`, `Field`, `Label`, `Description`, `Input`, `Select`, and `Textarea`
+- Adapts React Aria hooks to introduce new states for `data-hover`, `data-focus` and `data-active`.
+
+### [Angular 18.0](https://blog.angular.dev/angular-v18-is-now-available-e79d5ac0affe)
+
+- Experimental support for zoneless change detection. This is huge, there were edge cases because of the patching of Zone.js on many libraries. It's neat that this gets solved with Angular leaning into Signals.
+- `angular.dev` is the new docs site. (This is nice, because react is at `react.dev`)
+- Material 3, deferrable views, built-in control flow are now stable and incorporate a series of improvements
+- Server-side rendering improvements such as i18n hydration support, better debugging, hydration support in Angular Material, and event replay powered by the same library as Google Search.
+
+### [Solid Start 1.0](https://www.solidjs.com/blog/solid-start-the-shape-frameworks-to-come)
+
+- A meta framework on SolidJS that produces Hello World examples of \~5kb JavaScript Minified and GZipped
+- It is the pioneer of "use server" directive that React has launched.
+
+### [Merging Remix and React router](https://remix.run/blog/merging-remix-and-react-router)
+
+With the latest React release, the Remix team believes that much of their framework's goals are being integrated into React itself. Now that the Vite plugin has reached stability, the Remix team is merging the project into React Router. With the release of React Router v7, Remix will be available as an optional Vite plugin that users can install.
+
+Also read the follow up to this from Ryan Florence: [Incremental Path to React 19: React Conf Follow-Up - Remix blog](https://remix.run/blog/incremental-path-to-react-19)
+
+### [Microsoft Fabric UX system](https://blog.fabric.microsoft.com/en-us/blog/introducing-the-fabric-ux-system-our-primary-resource-for-extending-fabric-experiences)
+
+> Developed by the Fabric UX Team, this system is a collection of design guidance, common patterns, and reusable components created to empower designers and developers to build consistent, accessible, and engaging workload experiences across Fabric surfaces.
+
+The components for this are using Web components and hence can be used with any framework. There are links to the storybook in the blog post, not posting them here since I'm not sure they would change over time.
+
+### [Pigment CSS 1.0](https://mui.com/blog/introducing-pigment-css/)
+
+React server components and it's use cases have broke many CSS-in-JS projects because of `useContext` and it's dependency of being in the browser. In order to migrate it's usage from Emotion, MUI has pivoted their own zero run time CSS in JS library.
+
+> This means it doesn't have access to the end user's browser runtime, which would be necessary to generate and insert authored CSS at run-time. Instead, it does all its processing at build-time to pre-generate the CSS which then becomes part of the output bundle.
+
+### [Million lint 1.0rc](https://million.dev/blog/lint-rc)
+
+Million lint is an in IDE performance linter and optimisation tool. Instead of complex profiling steps in the browser, Million intends to lint code in the IDE and provide steps to improve performance.
+
+## In the Spotlight 🔦
+
+The major release for this month was React compiler. React has released an auto memoizing compiler - as far I can see, most of it's use case comes through automating calls for `React.memo`. The compiler recognises that the children have not changed and does not rerender these with the component.
+
+The compiler is still experimental and React team recommends starting out with `eslint-plugin-react-compiler` that can be used alongside.
+
+> The eslint plugin will display any violations of the rules of React in your editor. When it does this, it means that the compiler has skipped over optimizing that component or hook. This is perfectly okay, and the compiler can recover and continue optimizing other components in your codebase.
+
+[https://x.com/dan_abramov2/status/1792917457478242687](https://x.com/dan_abramov2/status/1792917457478242687)
+
+Also read:
+
+- [React Conf 2024 Recap](https://react.dev/blog/2024/05/22/react-conf-2024-recap)
+- [Universal server components in Expo](https://www.youtube.com/watch?v=T8TZQ6k4SLE&t=20765s)
+- [React native New architecture](https://reactnative.dev/docs/next/the-new-architecture/landing-page)
+- [Compiler playground](https://playground.react.dev/)
+- [Server components in RedwoodJS](https://redwoodjs.com/blog/rsc-now-in-redwoodjs)
+- [Vercel ship recap](https://vercel.com/blog/vercel-ship-2024)
+
+## Tutorials
+
+### [Live types in a TypeScript monorepo - Colin McDonnell](https://colinhacks.com/essays/live-types-typescript-monorepo)
+
+When working inside a TypeScript monorepo, you might make changes to multiple packages. After modifying one package, then another, and yet another, you'll want to preview these changes. However, if you haven't been running the build command on all the different packages you updated, things just won't work. This can lead to hours of confusion as you sit there scratching your head, trying to figure out what's wrong.
+
+Complex problem? yes. But Colin has an easy solution for this one and it goes with `publishConfig` and `exports`.
+
+### [Why, after 6 years, I’m over GraphQL](https://bessey.dev/blog/2024/05/24/why-im-over-graphql/)
+
+GraphQL had its moment in the spotlight but never fully established itself as the web's go-to data fetching framework. As a user with experience using GraphQL, this post highlights the various issues that have plagued GraphQL during its tenure.
+
+### [How to set up VSCode like a PRO! - Syntax podcast - Youtube](https://youtu.be/VIdM5VSlJVw?si=IY-6n71MON6VrZRk)
+
+The Syntax podcast hosts discuss their favourite VSCode Tips and Tricks. Also, checkout the comments sections for even more tips and recommended extensions.
+
+### [What's new in the web - web.dev](https://web.dev/blog/new-in-the-web-io2024)
+
+This is a long list of features that has stabilised and entered Baseline that you can use right now. Container queries, `::has` and subgrid are absolute winners. CSS has had such a great year. Check out [Rachel Andrew's talk at Google I/O](https://youtu.be/W8bokbLn1G8?si=7u-c7wCxy6o0ScPg) if you prefer the video format.
+
+Also check out:
+
+- [What's new in JavaScript frameworks](https://developer.chrome.com/blog/frameworks-may-2024)
+- [The latest in Web UI](https://youtu.be/_-6LgEjEyzE?si=e5MsFiuP9bgiLPEC)
+   
+
+## In Other News
+
+### [Google CEO Sundar Pichai says AI search will actually help the web](https://youtu.be/lqikP9X9-ws?si=GPn8KRAm9S5MgVbS)
+
+Google I/O centered around AI, as anticipated. While the event was extensive, a key highlight was the announcement that Google Search AI results are now available to everyone. AI models are trained on web content, but if AI surfaces this content in ways that don't support the original creators, it raises concerns about the web's sustainability. The Verge posed these questions to Sundar Pichai multiple times, but concrete answers were not forthcoming.
+
+Google was also plagued with it's AI result results asking people to do absolutely ridiculous things.
+
+- [Twitter thread](https://x.com/JeremiahDJohns/status/1794543007129387208) with some favourites.
+- [We have to stop ignoring AI’s hallucination problem - The Verge](https://www.theverge.com/2024/5/15/24154808/ai-chatgpt-google-gemini-microsoft-copilot-hallucination-wrong)
+
+### [A conversation with NVIDIA’s Jensen Huang - Stripe Sessions - YouTube](https://www.youtube.com/watch?v=8Pfa8kPjUio)
+
+A wonderful conversation between Stripe CEO Patrick Collison and NVIDIA CEO Jensen Huang highlights Huang's remarkable tenure of 31 years as the founder and CEO of the publicly listed NVIDIA. Here are some interesting tidbits from the discussion:
+
+- **Multi-shot Models**: Huang suggests that models will eventually become multi-shot, mirroring human behavior where we research and consult others rather than answering all questions immediately.
+- **General Reasoning Models**: This implies the future development of general reasoning models that interact with fine-tuned, single-purpose LLMs behind the scenes.
+- **Defining AGI**: Huang points out that achieving Artificial General Intelligence (AGI) is contingent on a clear definition. Since everyone has a different understanding of what AGI is, it will remain an evolving concept.
+
+### [Microsoft Build 2024: Everything Revealed in 9 Minutes - CNET - YouTube](https://youtu.be/w1EepB0mCbE?si=-feuBDOPHlWFWHYc)
+
+- AI agents that can be used to do specific tasks.
+- Brings OpenAI GPT4o to Copilot, with features like screen sharing.
+- Microsoft Edge is testing live translation for videos
+- Azure AI studio is generally available.
+
+In last month's newsletter, I expressed my excitement about ARM chips coming to Windows laptops - so here's [highlights from the Microsoft Surface event](https://youtu.be/iHQgf3DNAr8?si=vdPzLekjL0bjw4cn) as well.
+
+### [Google Cloud accidentally deletes UniSuper’s online account due to ‘unprecedented misconfiguration’](https://www.theguardian.com/australia-news/article/2024/may/09/unisuper-google-cloud-issue-account-access)
+
+An unprecedented error within Google Cloud’s infrastructure led to a service outage that left over half a million members of Unisuper fund in limbo, unable to access their accounts. Super fund boss and Google Cloud global CEO issue joint statement apologising for ‘extremely frustrating and disappointing’ outage.
+
+Also, in the CDN world - [Cloudflare took down our website after trying to force us to pay 120k$ within 24h](https://robindev.substack.com/p/cloudflare-took-down-our-website). I'm not sure the keyword _online casino_ has something to do with this.
+
+## Looking Ahead
+
+- [Computex](https://www.computextaipei.com.tw/en/index.html) - June 3-7
+- [Frontend Nation](https://frontendnation.com/) - June 4-7
+- [CSS Day](https://cssday.nl/2024) - June 6-7
+- [WWDC Apple](https://developer.apple.com/wwdc24/) - June 10
+- [JSNation](https://jsnation.com/) - June 13
+- [RenderATL](https://www.renderatl.com/) - June 12-14
+- [React Summit](https://reactsummit.com/) - June 16-18
+- [dotJS](https://www.dotjs.io/) - June 27

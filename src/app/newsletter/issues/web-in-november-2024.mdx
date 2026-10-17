@@ -1,0 +1,156 @@
+---
+title: JEM - Web in November - JavaScript Every Month Newsletter
+date: "2024-12-10T21:39:22.510976Z"
+image: https://repository-images.githubusercontent.com/860094786/bc7773fc-f6c3-49d7-b10e-230b82994e01
+buttondownUrl: https://buttondown.com/agney/archive/jem-web-in-november-javascript-every-month-7177/
+---
+
+Hey December 👋
+
+Between getting married and moving to a new place, November was an eventful month. But the web hasn't stopped moving and so won't we. Send any recommendations for Tokyo my way though, that's where I'm on my trip to.
+
+## Releases
+
+### Browsers
+
+#### [Firefox 133](https://developer.mozilla.org/en-US/docs/Mozilla/Firefox/Releases/133)
+
+- `WorkerNavigator.permissions` property is now supported, allowing the Permissions API to be used in workers as well as the main window thread
+- The `ImageDecoder`, `ImageTrackList`, and `ImageTrack` interfaces of the WebCodecs API are now supported, enabling the decoding images from the main and worker threads.
+
+#### [Chrome 131](https://developer.chrome.com/release-notes/131)
+
+- The `anchor-scope` property allows limiting the visibility of anchor names to a given subtree.
+- Support for `string` syntax component name for registered custom properties.
+- This makes the HTML parser allow tags in `select` in addition to `option`, `optgroup`, and `hr`. This change is in support of customizable select.
+
+### [Angular 19](https://blog.angular.dev/meet-angular-v19-7b29dfd05b84)
+
+[Release video](https://youtu.be/JvkX2_46gUY?si=XAVlko6ImnpI7QYL) from the Google campus.
+
+- Developer preview of incremental hydration supporting the most performance demanding use cases
+- Control which routes render on the client, server, or during a build and resolve route parameters during prerendering
+- Schematics to keep you up to date with the latest best practices — inputs, outputs, queries, inject-based dependency injection, and new build system
+- Stabilization of core reactivity primitives and introduction of new ones: `linkedSignal` and `resource`
+- Angular Material updates to Material 3 and new theming system with `mat.theme`
+
+### [React 19](https://react.dev/blog/2024/12/05/react-19)
+
+Exciting moment that both of our major frameworks now have a major version of v19.
+
+React 19 has been in development for quite some time and is already used in production by meta-frameworks like Next.js. With issues like data-fetching waterfalls resolved, React has now been marked as stable.
+
+- Actions: Simplified handling of pending states, errors, forms, and optimistic updates with new hooks like `useTransition` and `useOptimistic`.
+  New APIs: Introduced use for reading resources in render and `useActionState` for managing common cases for Actions.
+- React DOM Static APIs: Added `prerender` and `prerenderToNodeStream` for static site generation.
+- Server Components: Stable support for rendering components ahead of time in a separate environment.
+- Server Actions: Allow Client Components to call async functions executed on the server.
+- Improvements: Enhanced error reporting, support for `ref` as a prop, and better handling of hydration errors.
+
+### [Expo SDK 52](https://expo.dev/changelog/2024/11-12-sdk-52)
+
+- New React native architecture by default.
+- Stable release of `expo-video` library.
+- beta release for `expo-audio` and `expo-file-system/next`.
+- `expo-image` v2 introduces new API for preloading
+- Expo CLI includes experimental support for universal tree shaking and React compiler.
+
+### [TypeScript 5.7](https://devblogs.microsoft.com/typescript/announcing-typescript-5-7/)
+
+- Checks for Never-Initialized Variables: TypeScript now reports errors for variables that have never been initialized.
+- Path Rewriting for Relative Paths: A new compiler option, --rewriteRelativeImportExtensions, rewrites TypeScript file paths to corresponding JavaScript extensions.
+- Support for `--target es2024` and `--lib es2024`: This includes features for `SharedArrayBuffer`, `ArrayBuffer`, `Object.groupBy`, `Map.groupBy`, and `Promise.withResolvers`.
+
+### [React Navigation 7.0](https://reactnavigation.org/blog/2024/11/06/react-navigation-7.0/)
+
+- New static API simplifies configuration of navigators and makes it easy to work with TypeScript and deep linking.
+- Navigators can now preload screens, this can improve performance by preloading screens that user is likely to navigate to next.
+- All navigators with header now support a searchbar in the header.
+
+### [React router 7](https://remix.run/blog/react-router-v7)
+
+This completes the integration between React Router and Remix. If you're building a new app today, you can make a choice between just the router or bring in the big guns with Remix vite plugin.
+
+### [Vite 6.0](https://vite.dev/blog/announcing-vite6.html)
+
+- Experimental environments API - this enables server side frameworks to run on Vite, this is the specific feature that enabled React router 7 version.
+
+### [Storybook 8.4](https://storybook.js.org/blog/storybook-8-4/)
+
+- 1-click Component Testing in browser
+- 50% smaller bundle size & 75% smaller lockfile
+- tagging and filtering stories
+
+## In the Spotlight 🔦
+
+2024 Web Almanac by HTTP Archive is out!
+
+[https://almanac.httparchive.org/en/2024/](https://almanac.httparchive.org/en/2024/)
+
+CSS has an official logo (It's `rebeccapurple`!)
+
+[https://github.com/CSS-Next/logo.css](https://github.com/CSS-Next/logo.css)
+
+## Tutorials
+
+### [How to Set Up Next.js 15 for Production in 2024](https://www.reactsquad.io/blog/how-to-set-up-next-js-15-for-production)
+
+This article is a guide to setting up a new Next.js project, making assumptions about the stack you'll choose. It uses the most popular tools, so you're likely in safe hands. However, the fact that setting up a meta-framework requires so much effort highlights the current state of frontend development.
+
+### [Existential React questions and a perfect Modal Dialog](https://www.developerway.com/posts/hard-react-questions-and-modal-dialog)
+
+Nadia Makarevich takes a base idea of implementing a Modal in a React project and breaks it down into steps of implementation.
+
+> The hardest part of React is everything non-React around it. The answer to the question "How do those things listed above work?" is straightforward: it's just a matter of following the algorithm and taking notes. The result will be definitive and always the same (if you trace it down correctly). It's just science and facts.
+
+### [A Friendly Introduction to Container Queries](https://www.joshwcomeau.com/css/container-queries-introduction)
+
+Container queries were the feature everyone awaited with bated breath. They required seemingly impossible changes in CSS to make them work, and then they finally arrived. However, the initial enthusiasm seems to have fizzled out, and it's unclear if widespread adoption is happening yet—I know I haven’t jumped on board, not yet anyway.
+
+Josh explains the origins of container queries, the challenges in building the feature, and how the Containment API provided the solution.
+
+### [JavaScript Import Attributes (ES2025)](https://www.trevorlasn.com/blog/import-attributes-in-javascript)
+
+Import attributes are now supported in most browsers, except Firefox. For a long time, I couldn't understand why import attributes were needed. After all, tools like Webpack and Vite already let us import various file types without requiring additional attributes.
+
+> The core problem is security. On the web, file extensions don’t reliably indicate content. A URL ending in `.json` might actually serve JavaScript:
+
+This line made sense.
+
+## In Other News
+
+### [Will we care about frameworks in the future?](https://paul.kinlan.me/will-we-care-about-frameworks-in-the-future/)
+
+In a world where AI is building software and making edits to it, will we care which language it wrote the software in? Will we care if the code is duplicated as long it's performant? Pertinent questions in software that Paul Kinlan ponders on in this blog.
+
+### AI Updates
+
+- Amazon launched their generative AI assistant - [Amazon Q](https://aws.amazon.com/q/). It's backed by a new class of generative AI models named Nova.
+- Mistral [added features](https://techcrunch.com/2024/11/18/mistral-unveils-new-ai-models-and-chat-features/) from its competitors - Canvas and file processing with Agents. Their class of image AIs Pixtral is also integrated into the system.
+- Supermaven [merged](https://supermaven.com/blog/cursor-announcement) into Cursor.
+- Google launched a private preview of text to video generation model [Veo](https://deepmind.google/technologies/veo/). Chrome team had a Client side AI focused conference which discussed [State of client side machine learning](https://youtu.be/tF70o1Q8VkM?si=GvFcsaQ3n1DKd1uJ)
+
+### [Weird Lexical Syntax](https://justine.lol/lex/)
+
+Justine Tunney learned 42 programming languages this month while researching for the Mozilla Llama File project. The article highlights one weird syntax highlighting quirk about each language—including JavaScript, of course!
+
+### [Grab built its own map in Southeast Asia, and is now going after Google](https://restofworld.org/2024/grab-google-maps-southeast-asia/)
+
+Grab, a super-app in Southeast Asia, has developed its own hyperlocal mapping system called GrabMaps to address the inadequacies of Google Maps and Here for its drivers. The company uses it's drivers and even specifically designed camera gear to map out streets and alleys that cannot be traversed with the Google car.
+
+### [A revolution in how robots learn](https://www.newyorker.com/magazine/2024/12/02/a-revolution-in-how-robots-learn)
+
+This New Yorker article explores how robots are moving beyond pre-programmed tasks to learn through AI, mimicking human learning processes like dexterity and imitation. This shift is paving the way for versatile, general-purpose robots that can adapt and perform complex tasks with remarkable skill and efficiency.
+
+### [Most interesting tech of 2024: Verge staff picks - Youtube](https://youtu.be/yYjBf94WY2M?si=aqvQCMJKGjGcfSNA)
+
+The Verge staff gives you a list of tech that they loved in 2024. Mine is surely ChatGPT, Claude and Cursor. Love all of them. What's yours?
+
+## Looking Ahead
+
+- [Svelte Hack](https://hack.sveltesociety.dev/2024) - Oct 19 - Jan 10
+- [React Berlin](https://reactday.berlin/) - Dec 13, 16
+- [CSS Advent Calendar](https://cssadventcalendar.dev/)
+- [Advent of Prompt](https://adventofprompt.com/)
+- [24 Pull Requests](https://24pullrequests.com/)
+- [Advent of Code](https://adventofcode.com/)

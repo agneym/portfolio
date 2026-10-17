@@ -1,0 +1,135 @@
+---
+title: JEM - Web in March - JavaScript Every Month Newsletter
+date: "2024-04-07T05:56:01.311834Z"
+buttondownUrl: https://buttondown.com/agney/archive/jem-web-in-march-javascript-every-month-newsletter-6825/
+---
+
+Hey April 👋
+
+It's a record hot and humid summer happening for me, but the tech does not stop and neither do we. Special reminder for everyone to stay hydrated.
+
+## Releases
+
+### Browsers
+
+#### [Firefox 124](https://developer.mozilla.org/en-US/docs/Mozilla/Firefox/Releases/124)
+
+- The `content-visibility` CSS property value `auto` is now enabled by default.
+- The `::first-letter` and `::first-line` CSS pseudo-elements can now be applied to the `<text>` SVG element. This allows you to change the fill, stroke or font of the first letter/line of a \<text> element using CSS.
+
+#### [Chrome 123](https://developer.chrome.com/blog/new-in-chrome-123)
+
+- The `light-dark()` function in CSS lets you can adapt a color-scheme to a user's preference for light or dark mode.
+- The [Long Animation Frames API](https://w3c.github.io/long-animation-frames/) is available to help you find the causes for main-thread congestion which is often the cause for bad INP (Interaction to Next Paint)—a Core Web Vital that measures a website's responsiveness.
+- Chrome now has support for [Zstandard](https://facebook.github.io/zstd/zstd_manual.html). This Content-Encoding helps load pages faster and use less bandwidth, and spend less time, CPU, and power on compression on servers, resulting in reduced server costs.
+
+#### [Safari 17.4](https://developer.apple.com/documentation/safari-release-notes/safari-17_4-release-notes)
+
+- Adds support for CSS content alternative text. [Read tutorial by Stefan Judis](https://www.stefanjudis.com/today-i-learned/css-content-accepts-alternative-text/).
+
+### [Angular & Wiz](https://blog.angular.io/angular-and-wiz-are-better-together-91e633d8cd5a)
+
+At last month's ng-conf, the Angular team made a significant announcement regarding their plans to merge with Wiz. Wiz, another framework developed by Google, has been internally utilized for applications such as Search, Photos, and Payments. Over time, both teams recognized the convergence of their use cases, leading to the decision to merge frameworks as well.
+
+### [React Native Skia](https://shopify.github.io/react-native-skia/)
+
+The first major release for React Native Skia. Skia is a 2D graphics library which provides common APIs that work across a variety of hardware and software platforms. It serves as the graphics engine for Google Chrome, ChromeOS, Android, Flutter, and many other products. Now it is also available to tweak around in React Native, the library is supported by Shopify.
+
+### [Storybook 8](https://storybook.js.org/blog/storybook-8/)
+
+- Build in visual testnig
+- React server component support
+- Upgraded Vue and React control auto generation.
+- Removed React dependency for non React projects.
+
+> [Launch Video](https://youtu.be/eUcVttkFAsM?si=gmqQlnaEJ889lRPL)
+
+### [Bun 1.1](https://bun.sh/blog/bun-v1.1)
+
+- Windows support is finally here. Node.js APIs are optimised to be 58% faster on Windows than native.
+- New APIs: Bun.Glob, Bun.Semver
+
+### [Shiki v1](https://nuxt.com/blog/shiki-v1)
+
+Shiki is a Textmate grammar and themes based syntax highlighter. Even if you don't use the highlighter, the release story behind it's fork Shikiji and it's journey back to v1 is interesting.
+
+ 
+
+## In the Spotlight 🔦
+
+As a community, we get one trend word and then tend to use it anywhere. For a long time, when Signals were the trend, people were clamouring to let them use signals on React. This went on until the React team had to step in and make it clear that they did not think implementation of Signals did not play well with how React works currently.
+
+With the introduction of Signals support in Angular, there's now a choice alongside the long-standing support for RxJS-based Observables. This addition has raised questions about when to use Signals versus Observables. Ben Lesh seems to have an answer:
+
+[https://twitter.com/BenLesh/status/1775207971410039230](https://twitter.com/BenLesh/status/1775207971410039230)
+
+## Tutorials
+
+### [How Figma’s databases team lived to tell the scale](https://www.figma.com/blog/how-figmas-databases-team-lived-to-tell-the-scale/)
+
+Figma undertook a nine-month project to horizontally shard their Postgres database stack, with the goal of achieving (nearly) infinite scalability. Having encountered limitations with vertical scaling, they made the transition to a horizontal scaling architecture. The blog delves into their objectives for the project and shares insights gained from its implementation.
+
+### [Optimizing Javascript for fun and for profit](https://romgrk.com/posts/optimizing-javascript)
+
+The current strategy for optimising JavaScript is to move off JavaScript and use something else. This blog lists 12 practical tips that can be used to make your JavaScript code faster. Some of them are as simple as comparing integers in place of strings.
+
+### [Type Predicate Inference: The TS 5.5 Feature No One Expected](https://www.totaltypescript.com/type-predicate-inference)
+
+This feature is yet to be released in the TypeScript library but it's interesting problem that you might have run into with TypeScript.
+
+```
+function isString(value: unknown): value is string {
+  return typeof value === "string";
+}
+
+if (isString(value)) {
+  // TypeScript does not recognise that value is of type string.
+  console.log(value)
+}
+```
+
+The long-standing solution to this was to add a type annotation `value is string` - but this is just assertion worded differently. The new TS feature, if it will make it will make narrowing from functions work by default - my favourite kind of features.
+
+### [JavaScript Visualized: Promise Execution](https://www.lydiahallie.com/blog/promise-execution)
+
+In this edition of JavaScript Visualised, Lydia delves into Promise execution, offering visualizations and explanations that demystify Promises as simply objects with special parameters. The exploration also provides insights into the microtask queue and its role in complementing Promise execution.
+
+### _Sometimes the issue isn't your code_
+
+[https://twitter.com/dmwlff/status/1762885255030259854](https://twitter.com/dmwlff/status/1762885255030259854)
+
+ 
+
+## In Other News
+
+### [The XZ Backdoor: Everything You Need to Know - Wired](https://www.wired.com/story/xz-backdoor-everything-you-need-to-know/)
+
+A Microsoft developer discovered a backdoor intentionally planted in XZ Utils, a widely used data compression tool on Linux systems. The backdoor was nearly merged into major Linux distributions before being spotted. The backdoor’s creation was a multi-year effort, involving social engineering and contributions to open source projects under the guise of user JiaT75, [this graphic on Mastodon explains the steps](https://infosec.exchange/@fr0gger/112189232773640259) taken to get to this point.
+
+### [How Not to Be Bored When You Have to Wait](https://www.theatlantic.com/ideas/archive/2024/03/waiting-boredom-frustration-strategies/677767/)
+
+Before you click that link, I would like to warn you that there are no revolutionary solutions on that page. However, I like how the author takes apart "waiting" and introduces different scientific studies regarding the same. The solution, TLDR; is to "Observe".
+
+### [Google AI Health Event](https://youtu.be/eb0EsuORfzY?si=T0Dqnc7lLyOzgPui)
+
+- Fitbit Labs comes with AI suggestions personalised with each person. A beta that only premium users could get doesn't sit well with many people though.
+- A personal health Large Language Model would provide recommendations like a health coach.
+- Examples of MedLM helping hospitals and doctors for diagnostics. MedLM will also start on nurse-to-nurse handoff, making the process seamless.
+
+### [Node.js: The Documentary | An origin story](https://youtu.be/LB8KwiiUGy0?si=shCqvVWQGmammhPR)
+
+The Honeypot documentary features interviews with the individuals behind the creation and management of the Node.js foundation, shedding light on its evolution into what it is today. Like other documentaries by Honeypot on tech, it offers valuable insights and compelling content.
+
+### [The Deadliest Infectious Disease of All Time | Crash Course Lecture](https://youtu.be/7D-gxaie6UI?si=ICpmrhu39ZJCXBQY)
+
+This video essay delves into Tuberculosis, widely regarded as the deadliest disease in human history, through the lens of human psychology. It explores how the disease has influenced aspects of human life, ranging from hygiene to fashion, and delves into its revolutionary impact driven by human greed.
+
+ 
+
+## Looking Ahead
+
+- [Google Cloud Next](https://cloud.withgoogle.com/next) - April 9-11
+- [Azure Cosmos DB Conf](https://azurecosmosdb.github.io/azurecosmosdbconf/) - April 16
+- [React Miami](https://www.reactmiami.com/) - April 19-20
+- [Vue.Js Live](https://vuejslive.com/) - April 25-26
+- [POST/CON](https://www.postman.com/postcon/) - April 30 - May 1

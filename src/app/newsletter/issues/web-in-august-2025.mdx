@@ -1,0 +1,158 @@
+---
+title: JEM - Web in August - JavaScript Every Month Newsletter
+date: "2025-09-09T19:13:40.977340Z"
+buttondownUrl: https://buttondown.com/agney/archive/jem/
+---
+
+Hello September 👋
+
+Lots of people found that they have a new repository prefixed by `s1ngularity-repository` in their GitHub account. This was created by a malicious post install command executed by the install of `nx` build kit. The malware steals wallets and API keys and pushes them into that repository in a `results.b64` file.
+
+Check the official advistory from `nx` to check if you were affected and next steps:
+
+[https://github.com/nrwl/nx/security/advisories/GHSA-cxm3-wv7p-598c](https://github.com/nrwl/nx/security/advisories/GHSA-cxm3-wv7p-598c)
+
+## Releases
+
+### Browsers
+
+#### [Chrome 139](https://developer.chrome.com/blog/new-in-chrome-139)
+
+- on device speech recognition with Web speech API
+- style corners by specifying shape or curvature of the corner
+- CSS custom functions similar to custom properties
+
+#### [Firefox 142](https://developer.mozilla.org/en-US/docs/Mozilla/Firefox/Releases/142)
+
+- URLPattern API which makes it easy to parse and match URLs
+- File and Directory Entries API now fully supports the `HTMLInputElement.webkitdirectory` (and corresponding HTML webkitdirectory attribute) and `File.webkitRelativePath` properties on Firefox Android
+- `Animation.overallProgress` is supported, allowing developers to track and display progress through an animation.
+- Prioritized Task Scheduling API is supported, providing a standardized mechanism to assign and manage task priorities for an application
+- `Selection.getComposedRanges()` method is allows developers to accurately get selected text ranges across shadow DOM boundaries
+
+### [TypeScript 4.9](https://www.typescriptlang.org/docs/handbook/release-notes/typescript-5-9.html)
+
+- Updated `tsc --init` setup, `strict: true` is part of init now.
+- support for `import defer`
+- Preview for expanded hovers. Sometimes, the hovers are not very useful as they only refer to an interface name. You need to click on it to learn more, but this preview provides additional information.
+
+### [ESLint 9.34](https://eslint.org/blog/2025/08/multithread-linting/)
+
+- Enabling concurrency with parallel threads
+
+### [Expo Launch](https://expo.dev/blog/introducing-expo-launch)
+
+Submit you iOS app directly to the App Store without configuration, directly from web.
+
+### [Rspack 1.5](https://rspack.rs/blog/announcing-1-5)
+
+- Barrel file optimization
+- Faster file system watcher with native Rust file watcher
+- Improved browser support with wasm package
+- Announcement for [Rslint](https://rslint.rs/), the Rs stack's typeaware linter based on tsgo.
+
+### [Type aware Oxlint](https://voidzero.dev/posts/announcing-oxlint-type-aware-linting)
+
+Following up on Rstack announcement, Oxlint also has typeaware linting, based on tsgo.
+
+Voidzero currently has a [monthly recap blog](https://voidzero.dev/posts/whats-new-aug-2025).
+
+### [Tanstack DB](https://tanstack.com/blog/tanstack-db-0.1-the-embedded-client-database-for-tanstack-query)
+
+New release from Tanstack which simplifies usage and brings a live query to the frontend.
+
+### IDEs
+
+Out of the many products from OpenAI that are named Codex, the CLI gained users last month, as we saw many people praise the usage with GPT-5 high. Anthopic's failed experiment with inference on Claude models that led to degraded performance did not help Claude Code.
+
+- [IDE extension for Codex](https://developers.openai.com/codex/ide), this is not simple launch terminal inside the IDE kind of extension, it's more well defined than that.
+- Claude Code is now [available on team and enterprise plans](https://x.com/claudeai/status/1958230849171952118)
+- [Cursor 1.5](https://cursor.com/changelog/1-5) brings native OS notifications and support for MCP eliciations.
+- [Zed editor with Gemini CLI support](https://zed.dev/blog/bring-your-own-agent-to-zed) - Zed adopts an extensible approach by launching their ACP protocol, enabling any third-party agent to interface with the IDE.
+- [Claude Code for Github actions](https://docs.anthropic.com/en/docs/claude-code) is generally available.
+
+## In the Spotlight 🔦
+
+The tiff between Cloudflare and Perplexity this month highlights how we do not have a handle on how to treat LLM bots on the web.
+
+[Cloudflare accused Perplexity](https://blog.cloudflare.com/perplexity-is-using-stealth-undeclared-crawlers-to-evade-website-no-crawl-directives/) of using "stealth crawlers" to access and scrape content from websites, intentionally disregarding the established "no-crawl" directives in robots.txt files. According to Cloudflare, when Perplexity's officially declared crawlers are blocked, the company resorts to using undeclared crawlers with generic browser user agents to circumvent these restrictions, a practice that violates the norms of the open web.
+
+[In response, Perplexity has firmly denied](https://www.perplexity.ai/hub/blog/agents-or-bots-making-sense-of-ai-on-the-open-web) these allegations, positioning its service not as an automated bot but as a "user-driven agent" that fetches information in real-time to answer specific user queries. Perplexity claims that Cloudflare has fundamentally misunderstood the nature of its service and has misattributed a large volume of traffic from a third-party service to them.
+
+After an AI week at Cloudflare, they have launched a [Verified bots policy](https://developers.cloudflare.com/bots/concepts/bot/verified-bots/policy/) and a report titled [crawl to click gap](https://blog.cloudflare.com/crawlers-click-ai-bots-training/)
+
+> Training crawling grows: Training now drives nearly 80% of AI bot activity, up from 72% a year ago.
+
+> Publisher referrals drop: Google referrals to news sites fell, with March 2025 down \~9% compared to January.
+
+> AI & search crawling increase: Crawling rose 32% year-over-year in April 2025, before slowing to 4% year-over-year growth in July.
+
+### In short
+
+- [Apollo 11](https://github.com/chrislgarry/Apollo-11) source code is open sourced on GitHub. The source code has Bun JavaScript engine, which has lead to many jokes.
+- [Ripple](https://www.ripplejs.com/) is a new TypeScript UI framework created by Dominic Gannaway, who is also the author of LexicalJS and InfernoJS, and a member of the ReactJS and SvelteJS teams.
+- [Stackoverflow Developer survey results](https://survey.stackoverflow.co/2025) - surprising that majority of developers don't use AI agents. JavaScript is still the most popular language.
+- [jQuery 4](https://blog.jquery.com/2025/08/11/jquery-4-0-0-release-candidate-1/) has the first release candidate.
+- [There's a screen in the Bun](https://youtube.com/watch?v=VGjJWXFYyQo) office where the number of tests passing against Node.js is displayed - Jarred Sumner, creator of Bun.
+
+Linking to two tutorials on CSS colors here:
+
+- [CSS Relative Colors - Ishadeed](https://ishadeed.com/article/css-relative-colors/)
+- [OKCLH Colors](https://jakub.kr/components/oklch-colors)
+
+## Tutorials
+
+### [Speeding up the JavaScript ecosystem - Semver](https://marvinh.dev/blog/speeding-up-javascript-ecosystem-part-12)
+
+Another fantastic addition to Marvin Hagemeister's series on making JavaScript libraries and tooling faster. Marvin examines the semver library and applies the _Parse, don't validate_ rule, achieving a 33x speedup.
+
+### [How to Build Micro Frontends in React with Vite and Module Federation](https://www.freecodecamp.org/news/how-to-build-micro-frontends-in-react-with-vite-and-module-federation/#heading-project-structure)
+
+Microfrontends are currently very popular, with even small applications adopting them. If you decide to use microfrontends, Module Federation is the best option available. This is a detailed guide on how to set it up and use it with Vite. Remember, if you don't see a need for it, you probably don't need it.
+
+### [Reflections on React, Next.js & Community](https://leerob.com/reflections)
+
+Lee Rob worked as a community manager for Next.js and has now transitioned to Cursor IDE. This post reflects on his time at Next.js, the developments in the React and Next.js communities during his tenure, what he could have done better, and the chaos surrounding the RSC release.
+
+### [A Clock That Doesn't Snap - Ethan Niser](https://ethanniser.dev/blog/a-clock-that-doesnt-snap/)
+
+Building something that references the current date and time on a server rendered page is one of the worst experiences you have have with SSR (managing the cache is on the list). To do this without a hydration warning? Almost impossible. Ethan Niser writes up about a close enough solution that has to do with inline script tags. There's a neat IIFE trick in there too!
+
+### [How JavaScript Really Evolves: Inside TC39 with Daniel Ehrenberg - YouTube](https://youtube.com/watch?v=v9Al9-0jkoQ)
+
+A detailed interview with TC39 member on the process, risks with backward compatibility as it is in the browser. It's pretty amazing how JavaScript development has stabilised enough that developers don't worry about the process at all.
+
+## In Other News
+
+### [Sam Altman Shows Me GPT 5... And What's Next - YouTube - Cleo, Youtube](https://www.youtube.com/watch?v=hmtuvNfytjM)
+
+Sam Altman participated in an interview with Cleo following the release of GPT-5. While many of his responses are template-based answers we've heard from him before, Cleo poses some insightful questions. It's worth listening to, especially to hear how Sam knows they are positively impacting humanity.
+
+### [Interpretability: Understanding how AI models think - Anthropic, Youtube](https://youtube.com/watch?v=fGKNUvivvnc)
+
+What happens inside the LLM's _mind_ as it answers your question - that's what Interpretability team at Anthropic looks towards answering. They argue that while models are trained to predict the next word, they develop complex internal abstractions and intermediate goals that resemble biological and cognitive processes.
+
+### [The Strange Math That Predicts (Almost) Anything - Veritasium, YouTube](https://youtube.com/watch?v=KZeIEiBrT_w)
+
+Story of how a bitter feud between two Russian mathematicians—Pavel Nekrasov and Andrey Markov—sparked the creation of Markov chains, a mathematical concept that transformed how we predict outcomes in complex systems. From modeling poetic text patterns to simulating nuclear reactions, ranking web pages, and powering modern AI, Markov’s insight into dependent events and memoryless systems laid the foundation for technologies that shape our world today.
+
+### [Do the simplest thing that could possibly work](https://www.seangoedecke.com/the-simplest-thing-that-could-possibly-work/)
+
+If you need a slogan for development work, this should be it.
+
+### AI Updates
+
+- Google's model [Nano Banana](https://developers.googleblog.com/en/introducing-gemini-2-5-flash-image/) is talk of the town as it can use world knowledge to edit, in paint, analyze images.
+- Qwen released a similar model named [Qwen image edit](https://huggingface.co/Qwen/Qwen-Image-Edit)
+- Anthropic's feature lets [Claude control your Chrome](https://claude.ai/chrome). There's a waitlist for it right now, but I can't imagine the security implications for this.
+- [GPT-5](https://openai.com/index/introducing-gpt-5/) has a built in router which decides when and how much to think based on the query.
+- [Grok Code Fast](https://openrouter.ai/x-ai/grok-code-fast-1) is quick and been free for some time.
+- Microsoft launched [VibeVoice](https://huggingface.co/microsoft/VibeVoice-1.5B) which allows for long form audio TTS generation with multiple speakers.
+- [MCP UI](https://shopify.engineering/mcp-ui-breaking-the-text-wall) for ecommerce applications with Shopify
+- World model from Google with [Genie 3](https://deepmind.google/discover/blog/genie-3-a-new-frontier-for-world-models/)
+
+## Looking Ahead
+
+- Apple Event - Sept 10
+- [UtahJS](https://utahjs.com/conference/) - Sept 12
+- [CascadiaJS](https://cascadiajs.com/2025) - Sept 18-19

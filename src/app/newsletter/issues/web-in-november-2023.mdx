@@ -1,0 +1,188 @@
+---
+title: JEM - Web in November - JavaScript Every Month Newsletter
+date: "2023-12-09T14:35:57.800151Z"
+buttondownUrl: https://buttondown.com/agney/archive/jem-web-in-november-javascript-every-month/
+---
+
+Hey December 👋
+
+The holiday season is officially here and the tech slowdown is almost here. Does your company have a production code freeze or a holiday party?
+
+We can't let December pass without extending our heartfelt birthday wishes to our favourite dynamically typed language – Happy Birthday, JavaScript! 🥳 JavaScript made its debut on December 4, 1995, and this year marks its 28th birthday. Here's to many more years of innovation and development with JavaScript! **Always Bet on JavaScript.**
+
+## Releases
+
+### Browsers
+
+Project Baseline, a collaborative effort among major browser vendors, is set to introduce distinct badges to indicate feature support. These badges include:
+
+- Limited Availability: Denoting that the feature is not accessible on at least one of the stable tracked browsers.
+
+- Newly Available: Signifying that the feature is now accessible on stable versions of all tracked browsers.
+
+- Widely Available: Indicating that it has been 2.5 years since the feature attained the _Newly Available_ status.
+
+Research from Project Baseline suggests that for a feature to receive the Widely Available badge, at least 95% of users should have access to it by that time. This system aims to provide transparent information about the availability and adoption of features across different browsers.
+
+#### [Firefox 120](https://developer.mozilla.org/en-US/docs/Mozilla/Firefox/Releases/120)
+
+- Support for `media` attribute in `source` element.
+- `light-dark` color function. This allows the setting of colors for both light and dark mode without the need for `prefers-color-scheme` feature (only available on Firefox as of now)
+- The lh and rlh line height units are now supported. These allow setting properties relative to the line height of an element, for example, precisely aligning background decoration with multiline text.
+
+#### [Chrome 120](https://developer.chrome.com/blog/new-in-chrome-120)
+
+- CloseWatcher API allows you to listen to `Esc` key and browser back button on Android devices so as to close your dialog, popover components.
+- Adding a `name` on `details` enables accordion pattern.
+- Supports relaxed CSS nesting pattern.
+
+### [Vite 5](https://vitejs.dev/blog/announcing-vite5)
+
+- Vite is now powered by Rollup 4
+- Introduces a [performance guide](https://vitejs.dev/guide/performance) for Vite apps.
+- Only versions of Node 18+ is supported.
+
+Evan You has a [State of Vue and Vite talk](https://youtu.be/Hz_zCR28oKE?si=2SKsV0xPbGNysHCr) at VueConf Toronto.
+
+### [Astro 4](https://astro.build/blog/astro-4/)
+
+- There is a new dev toolbar on Astro release that is only visible on development. The toolbar has applications that can help inspect and audit the website. It also integrates with third party apps like Sentry, Storyblok etc.
+- Internationalization (i18n) Routing
+- New View Transition APIs
+- Experimental Incremental Content Caching
+
+### [TypeScript 5.3](https://devblogs.microsoft.com/typescript/announcing-typescript-5-3/)
+
+- Support for Import Attributes - adds an inline syntax for module import statements to pass on more information alongside the module specifier
+- Type narrowing based on `switch (true)`
+- Interactive Inlay Hints for Types
+
+### [Electron 28](https://www.electronjs.org/blog/electron-28-0)
+
+- Support for ECMAScript modules or ESM
+- Electron Forge also supports using ESM to package, build and develop Electron applications.
+- Added several properties to the display object including detected, `maximumCursorSize`, and `nativeOrigin`.
+
+### [SolidStart](https://www.solidjs.com/blog/introducing-solidstart)
+
+SolidStart is SolidJS step into meta frameworks like NextJS. The first version comes with the basics like filesystem routing, server functions, route actions etc.
+
+ 
+
+## In the Spotlight 🔦
+
+In this year ending spotlight feature, I would like to take 3 APIs that debuted to popular browsers this year.
+
+### [Container Queries](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_container_queries)
+
+This API allows you to apply styles to an element based on the size of its container, rather than the viewport. This enables responsive design at the component level. For example, you can create a card component that changes its layout depending on the available space in its parent element. To use this API, you need to declare a containment context on the container element using the container-type property, and then use the @container at-rule to define the queries.
+
+### [View Transitions API](https://developer.chrome.com/docs/web-platform/view-transitions)
+
+This API provides a mechanism for creating animated transitions between different DOM states while also updating the DOM contents in a single step. This can improve the user experience and reduce the cognitive load when moving between views or states of an application. It's available only on Chromium browsers at the moment and it isn't clear if other browsers would implement it any time soon, but you can check for support and progressively enhance the experience on your page.
+
+### [Passkeys](https://fidoalliance.org/passkeys/)
+
+Passkeys and the WebAuthn APIs have been in existence for some time, but this year marked a significant milestone with major corporations like Google implementing them. As someone aptly put it, the safest approach to a password is setting it to a random string and promptly forgetting it. With passkeys, the concept allows users to utilize their existing consumer hardware to log in to websites seamlessly, eliminating the need to remember complex passwords. It's a transformative shift towards a more secure and user-friendly authentication process.
+
+## Tutorials
+
+### [SVG Viewbox Interactive Tutorial](https://svg.bradwoods.io/lessons/viewbox)
+
+I appreciate tutorials that break away from the conventional article format to showcase concepts. Even if you're well-versed in the understanding of an SVG viewbox, this resource goes above and beyond, offering several clever touches that elevate it to a must-read status.
+
+### [Simplifying Server Components - React Advanced talk](https://portal.gitnation.org/contents/simplifying-server-components)
+
+Understanding and reasoning about React Server Components (RSC) can be challenging, especially given the presence of technologies like Server Side Rendering that use similar terms in a somewhat confusing manner. In an effort to demystify React Server Components, Mark Dalgleish delivers a concise talk where he builds out an RSC server, aiming to clarify their usage and implementation.
+
+### [Why you want React Query](https://tkdodo.eu/blog/why-you-want-react-query)
+
+TkDoko takes the fundamental code for fetching data from the backend without leveraging React Query or a similar async query library. In a comprehensive analysis, TkDoko identifies five bugs within the code and addresses how React Query solves them.
+
+Here's the code (with bugs):
+
+```javascript
+function Bookmarks({ category }) {
+  const [data, setData] = useState([]);
+  const [error, setError] = useState();
+
+  useEffect(() => {
+    fetch(`${endpoint}/${category}`)
+      .then((res) => res.json())
+      .then((d) => setData(d))
+      .catch((e) => setError(e));
+  }, [category]);
+
+  // Return JSX based on data and error state
+}
+```
+
+### [Server-Sent Events in Remix (feat. Moishi Netzer)](https://www.youtube.com/watch?v=_7yJEC124jM)
+
+Traditionally, a web page has to send a request to the server to receive new data; that is, the page requests data from the server. With server-sent events, it's possible for a server to send new data to a web page at any time, by pushing messages to the web page.
+
+This is a YouTube tutorial where the hosts build two real time applications with server sent events. It is built with Remix here, but you should be able to use it with any platform once you understand the basics.
+
+### [SVG Tutorial](https://svg-tutorial.com/)
+
+This is a very pretty but functional advent site that includes 25 SVG tutorial articles. Each article guides you through the process of creating unique drawings using SVG.
+
+[https://twitter.com/tannerlinsley/status/1732474127712481371](https://twitter.com/tannerlinsley/status/1732474127712481371)
+
+## In the AI World 🤖
+
+### [Seamless Communication by Meta](https://ai.meta.com/research/seamless-communication/)
+
+Meta has released 4 open-source models which transforms and translates languages in real time without losing expression.
+
+Meta has also launched a free AI generation platform - [Imagine](https://imagine.meta.com/).
+
+Meta's [blog](https://about.fb.com/news/2023/12/meta-ai-updates/) on AI features they are bringing to their products.
+
+### [Gemini AI](https://deepmind.google/technologies/gemini/)
+
+Google finally launched their Generative AI service Gemini. It has three versions:
+
+- Nano - available on device on phones. Launched in Pixel phones right now.
+- Pro - Running on Bard. Comparable to GPT 3.5
+- Ultra - This is the version Google showcased on their [promo videos](https://youtu.be/UIZAiXYceBI?si=zTTOHwZe8rJnOaz7) and benchmarks. The benchmarks are said to beat GPT-4 but it's available only next year. The fact that the demo video was [fabricated has also angered](https://arstechnica.com/information-technology/2023/12/google-admits-it-fudged-a-gemini-ai-demo-video-which-critics-say-misled-viewers/) a lot of people on the Internet.
+
+Google has also launched a feature with YouTube which can help [creators build audio tracks with AI](https://deepmind.google/discover/blog/transforming-the-future-of-music-creation/).
+
+### [AWS Reinvent 2023](https://ai.meta.com/research/seamless-communication/)
+
+There was a lot of AI at ReInvent 2023 (as you can guess). Amazon launched their own generative AI model known as Q and it's tagged _specifically for work_. There was also the launch of two chips: AWS Graviton4 and AWS Trainium2 for running Generative AI more efficiently.
+
+### [Grok by X](https://x.ai/)
+
+Elon Musk's generative AI has commenced its rollout to X Premium+ subscribers. Initial reviews suggest that, contrary to expectations, it may not be as humorous as anticipated.
+
+## In Other News
+
+### [Github Monaspace](https://monaspace.githubnext.com/)
+
+GitHub's Monaspace is a versatile family of five monospace fonts crafted for seamless blending and matching. GitHub envisions applications for Monaspace, particularly in Copilot text (often referred to as Ghost text). The way the site presents these features, resembling a tutorial in itself, can be appreciated as an artful and instructive approach.
+
+### [A Decade of Have I Been Pwned](https://www.troyhunt.com/a-decade-of-have-i-been-pwned/)
+
+Have I Been Pwned is one of the landmark websites on the Internet. The website is legal, despite its dataset being comprised of stolen information. A single developer named Troy Hunt maintains the website and FBI feeds data onto it.
+
+If you haven't heard about the website, you should totally go on to the site right now and enter your email.
+
+### [What I’m Reading on the Rise of Artificial Intelligence - Barack Obama](https://barackobama.medium.com/what-im-reading-on-the-rise-of-artificial-intelligence-72e088918de2)
+
+Governments all across the world are looking to bring regulations to AI. But it has to be noted that the world of AI itself works so fast that the Governments have to play catch up.
+
+This article gives us an insight to the reading list/podcast list of the former President of United States and suffice to say they are pretty good recommendations for anyone.
+
+### [Whatever Happened to Carpal Tunnel Syndrome?](https://archive.ph/8uAEa)
+
+There was a time when Carpal Tunnel Syndrome dominated conversations, especially among those working at desks. The fear was pervasive that it seemed inevitable for anyone spending extended hours at a desk. However, over time, the buzz around the syndrome waned. In an exploration by The Atlantic, the article delves into the evolution of the discourse around Carpal Tunnel Syndrome and investigates whether a cure was indeed discovered.
+
+## Looking Ahead
+
+- [State of JavaScript](https://survey.devographics.com/en-US/survey/state-of-js/2023) Survey is now open.
+- [Advent of Svelte](https://advent.sveltesociety.dev/) - Svelte challenge for each day until Christmas Eve.
+- [Advent of Code 2023](https://adventofcode.com/)
+- [NeurIPS](https://nips.cc/) - Dec 10 - 17
+- [PostgreSQL Conf EU](https://2023.pgconf.eu/) - Dec 12-15

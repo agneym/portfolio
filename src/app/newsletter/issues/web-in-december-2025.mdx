@@ -1,0 +1,163 @@
+---
+title: JEM - Web in December - JavaScript Every Month Newsletter
+date: "2026-01-04T18:13:26.505092Z"
+image: https://assets.buttondown.email/images/4c0d0a84-8205-4f06-845a-e16d72e4f540.png?w=960&fit=max
+buttondownUrl: https://buttondown.com/agney/archive/jem-web-in-december-javascript-every-month-5304/
+---
+
+Hey 2026 👋
+
+December began with a bang for the JavaScript community when the core AI lab [Anthropic acquired Bun](https://bun.com/blog/bun-joins-anthropic). Bun aims to be the all-in-one JavaScript runtime and powers Anthropic's crown jewel, Claude Code.
+
+I wrote about a security vulnerability last month: a critical bug in React and related RSC platforms like Next.js. One issue triggered others and we now have a couple to handle. If you don't use RSCs, you're safe; otherwise, update to the latest versions.
+
+- [Critical Security Vulnerability in React Server Components - React blog](https://react.dev/blog/2025/12/03/critical-security-vulnerability-in-react-server-components)
+- [Denial of Service and Source Code Exposure in React Server Components](https://react.dev/blog/2025/12/11/denial-of-service-and-source-code-exposure-in-react-server-components)
+- [Next.js security update: Dec 11, 2025](https://nextjs.org/blog/security-update-2025-12-11)
+- Wes Bos explains what the vulnerability is (and isn't) on his [YouTube stream](https://youtube.com/watch?v=kmlMNtjFgoY)
+- Dan Abramov built a [RSC explorer](https://overreacted.io/introducing-rsc-explorer/) where the server components are rendered from a web worker.
+- [Cloudflare outage on December 5, 2025](https://blog.cloudflare.com/5-december-2025-outage/) - Cloudflare went down when trying to mitigate the vulnerability.
+
+## Releases
+
+### Browsers
+
+#### [Chrome 143](https://developer.chrome.com/release-notes/143)
+
+- Introduces `@container anchored(fallback)` to style descendants of anchor positioned elements based on which of `position-try-fallbacks` is applied.
+- Introduces support for `font-language-override` CSS property
+- Relaxes the validation of the JavaScript DOM APIs to match the HTML parser.
+
+#### [Firefox 146](https://developer.mozilla.org/en-US/docs/Mozilla/Firefox/Releases/146)
+
+- `contrast-color()` function is supported
+- The `text-decoration-inset property` is now supported, which enables adjusting the start and end points of an element's text-decoration so it can be shortened, lengthened, or have its position shifted with respect to the rendered text. (Firefox is the first browser to ship this, that's fresh)
+- The `@scope at-rule` is now supported by default
+
+#### [Safari 26.2](https://developer.apple.com/documentation/safari-release-notes/safari-26_2-release-notes)
+
+- The Largest Contentful Paint (LCP) and Interaction to Next Paint (INP) metrics are now Baseline Newly available, with support in Safari 26.2 for the Contentful Paint API and Event Timing API needed to measure these metrics.
+- Added support for `Animation.prototype.overallProgress`.
+
+### IDEs
+
+- AI labs gave away some compute for holidays ([here's my Tweet on holiday offers](https://x.com/agneymenon/status/2004207554793263357)). Few are still ongoing
+  - [z.ai coding plan](https://z.ai/subscribe?ic=WBPDTSDHIG) is at 50% off (insanely good if you are looking for a personal option)
+  - [Minimax coding plan](https://platform.minimax.io/subscribe/coding-plan) starts $2.
+
+- Chrome Devtools MCP can [directly connect to your active tab session](https://developer.chrome.com/blog/chrome-devtools-mcp-debug-your-browser-session) (if you use Chrome Beta for now)
+
+- Microsoft released [JS/TS Modernizer Copilot plugin](https://developer.microsoft.com/blog/jsts-modernizer-preview)
+
+### [Progress on TypeScript 7 – December 2025](https://devblogs.microsoft.com/typescript/progress-on-typescript-7-december-2025/)
+
+TypeScript 6 will be the final JS based release for TS. It will switch over to Go from TS 7.
+The VS code plugin and tsgo package is ready for everyone to try.
+
+### [Bun 1.3.4](https://bun.sh/blog/bun-v1.3.4)
+
+- URLPattern API
+- Fake timers via bun::test
+- Standalone Executables No Longer Load Config Files at Runtime
+
+and lot more, keeping with Bun history of releases.
+
+### [npx shadcn create](https://ui.shadcn.com/docs/changelog)
+
+You can now choose whether Shadcn uses Radix or BaseUI when creating a new project. You can also switch between different spacing and color schemes.
+
+### [Tanstack Vue Start](https://github.com/TanStack/router/pull/6055)
+
+Tanstack Starts adds support for Vue.
+
+### [Fate - React data client](https://fate.technology/)
+
+Christoph Nakazawa released a data client for React inspired by Relay and GraphQL. It has normalized caching, full type safety and built for async React.
+
+### [BaseUI 1](https://base-ui.com/)
+
+BaseUI has reached 1.0 status and now includes a Button component.
+
+### [Waku 1.0 Alpha](https://waku.gg/blog/waku-v1-alpha)
+
+Waku, a framework built from the ground up for React RSCs, is reaching version 1.
+
+### [jax-js](https://github.com/ekzhang/jax-js)
+
+Machine learning library built on Web Assembly and WebGPU for (you guessed it) The Web.
+
+## In the Spotlight 🔦
+
+Our favourite language turns 30 this year and continues to be the most popular programming language on the planet.
+
+[https://x.com/openjsf/status/1997035401198891240](https://x.com/openjsf/status/1997035401198891240)
+
+---
+
+Everyone uses—or is recommended to use—a dictation app these days. Tip: it’s built into macOS if you’re on Tahoe, so you don’t need a separate app. If you want extra customization, profiles, and a personal dictionary, I found this guide on Product Hunt.
+
+[2025 Orbit Awards for AI Dictation Apps](https://www.producthunt.com/p/producthunt/meet-the-winners-of-the-2025-orbit-awards-for-ai-dictation-apps)
+
+## Tutorials
+
+### [How we pwned X (Twitter), Vercel, Cursor, Discord, and hundreds of companies through a supply-chain attack](https://gist.github.com/hackermondev/5e2cdc32849405fff6b46957747a2d28)
+
+A fascinating tale of a 16-year-old who hacked the AI documentation platform Mintlify, then disclosed the vulnerability securely so the team could fix it in time.
+
+### [Logging Sucks - Boris Tane](https://loggingsucks.com/)
+
+This highly interactive blog explores why finding information in technical blogs can be a struggle. While single-line logs and random JSON sufficed for single-service requests, they fail when dozens of services are involved. Rather than focusing on protocols, this post explores practical steps every developer can take to simplify debugging.
+
+### [Code Orange: Fail Small — our resilience plan following recent incidents - Cloudflare](https://blog.cloudflare.com/fail-small-resilience-plan/)
+
+Cloudflare has explained the two recent major outages that briefly took down half the Internet. While every software deployment is tested and released region-by-region and plan-by-plan, the same rigor was not applied to configuration changes; the company now intends to close that gap.
+
+### [Chrome Wrapper 2025](https://chrome.dev/css-wrapped-2025/)
+
+The Chrome team released a CSS wrap-up covering this year's features, and it's not just CSS. Next year, we'll use many of these without installing NPM packages.
+
+## In short
+
+- Someone backed up [300TB of Spotify's songs and metadata](https://annas-archive.li/blog/backing-up-spotify.html) and distributed it online.
+- If the Web is going to be all ChatGPT, what happens to all the articles [How to disappear completely ‐ The Verge](https://www.theverge.com/24321569/internet-decay-link-rot-web-archive-deleted-culture)
+- A small [Twitter appreciation post for React Fibre](https://x.com/infinterenders/status/1997359890021634509) and how it works.
+- [One Piece of News From Every Country in the World - Wendover Productions](https://www.youtube.com/watch?v=fiG1MZATT3M)
+- Lee Robinson breaks down [Image compression](https://leerob.com/compression)
+- htmhell [Advent calendar 2025](https://www.htmhell.dev/adventcalendar/)
+- JavaScript weekly's [Month by Month breakdown](https://javascriptweekly.com/issues/766#:~:text=%F0%9F%97%93%EF%B8%8F%C2%A0%20JavaScript%20in%202025%3A%20Month%20by%20Month) of what happened this year in JS world is good recap.
+
+## In Other News
+
+### [Publishing your work increases your luck - GitHub Blog](https://github.com/readme/guides/publishing-your-work)
+
+This blog is a likely reminder to me:
+
+> The amount of serendipity that will occur in your life, your Luck Surface Area, is directly proportional to the degree to which you **do something** you’re passionate about combined with the total number of people to whom this is **effectively communicated**.
+
+Do something and then effectively communicate that something.
+
+### [Software engineering: efficiency vs. effectiveness - Google](https://youtube.com/watch?v=lqcKquUl3Wk)
+
+Addy Osmani excels at translating elusive, hard-to-explain concepts into clear language, and this Google series on becoming a senior contributor or manager is a prime example of his skill. Watch everything - if not for the content, for the speaking skill in the videos.
+
+### [You've (Likely) Been Playing The Game of Life Wrong - Veritasium](https://youtube.com/watch?v=HBluLfX2F_k)
+
+We think we’re playing the “average” game, steadily collecting rewards each time we play. Yet some games follow the power law: a single freak event outweighs a thousand normal ones, shaping everything from wealth to earthquakes.
+
+### [All Of Human History In One Hour - Kurzgesagt](https://youtube.com/watch?v=KNwMiydCYA4)
+
+Kurzgesagt knocks it out of the park with this stunning animated journey through the stages of human history.
+
+### AI Updates
+
+- [Devstral 2 and Vibe CLI](https://mistral.ai/news/devstral-2-vibe-cli)
+- [GPT 5.2 Codex](https://openai.com/index/introducing-gpt-5-2-codex/) - Next iteration of GPT model.
+- [Nemotron 3](https://nvidianews.nvidia.com/news/nvidia-debuts-nemotron-3-family-of-open-models) - Really good local models from NVIDIA
+- [Gemini 3 Flash](https://blog.google/products/gemini/gemini-3-flash/) - Gemini 3 level intelligence at speed (and halluncinations)
+- [GLM 4.6V](https://z.ai/blog/glm-4.6v) - Already good model, now with vision
+- [GLM 4.7](https://z.ai/blog/glm-4.7) - Iterative improvement on z.ai open source model now touching Sonnet 4.5 levels.
+- [Minmax 2.1](https://www.minimax.io/news/minimax-m21) - Quick, told to be very good at software development. I'm glad more companies are taking software seriously.
+- [Mimo v2 Flash](https://mimo.xiaomi.com/blog/mimo-v2-flash) - A fast free model from Xiaomi
+- [AutoGLM - zAI](https://xiao9905.github.io/AutoGLM/) - zAI's model specialised in using GUIs
+
+## Looking Ahead

@@ -1,0 +1,167 @@
+---
+title: JEM - Web in July - JavaScript Every Month Newsletter
+date: "2024-08-05T09:40:08.880909Z"
+buttondownUrl: https://buttondown.com/agney/archive/jem-web-in-june-javascript-every-month-newsletter-2272/
+---
+
+Hey August 👋
+
+When I took up software engineering, we used to joke in the college dorms: "Nobody died because of software engineering." It seemed like one of the least risky jobs out there, and I believed that for a long time.
+
+This might not have been true even then, but in the post-corona era, it's definitely far from the truth. Many people learned this lesson the hard way this month when a Crowdstrike update brought down scores of services. It didn't matter whether you'd heard of Crowdstrike before, whether you had a Windows device, or whether you had updates turned on. Airports, hospitals, television programs, government services, and even digital signages were affected, disrupting all forms of activity. Note that the update impacted just under 1% of all Windows-based devices.
+
+More about the Crowdstrike update issue:
+
+- [Preliminary Post Incident Review (PIR) - Crowdstrike](https://www.crowdstrike.com/blog/falcon-content-update-preliminary-post-incident-report/)
+- [How One Bad CrowdStrike Update Crashed the World’s Computers - Wired](https://www.wired.com/story/crowdstrike-outage-update-windows/)
+- [Crowdstruck (Windows Outage) - Computerphile](https://youtu.be/rlaNMJeA1EA?si=Bc-PNLtTLbqvi2ot)
+   
+
+## Releases
+
+### Browsers
+
+#### [Firefox 128](https://developer.mozilla.org/en-US/docs/Mozilla/Firefox/Releases/128)
+
+- The target attribute of the `<base>` element now disallows ASCII newlines, tabs, or the `<` character, changing the value to `_blank` if any are present. This prevents dangling markup injection attacks that use an unclosed target attribute.
+- \[Baseline] Relative color syntax, which allows a CSS `<color>` value to be defined relative to another color is enabled by default.
+- \[Baseline] The `content` property supports alternative text for content that includes an image.
+- \[Baseline] Support for the @property rule and related JavaScript APIs
+
+#### [Chrome 127](https://developer.chrome.com/release-notes/127)
+
+- \[Baseline] The `font-size-adjust` CSS property provides a way to modify the size of lowercase letters relative to the size of uppercase letters, which defines the overall font-size. This property is useful for situations where font fallback can occur.
+- \[Baseline] The `content` property now supports alternative text for content that includes an image. (same time in Chrome and Firefox)
+- Support for the View Transition API in iframes
+
+#### [Safari 12.6](https://developer.apple.com/documentation/safari-release-notes/safari-17_6-release-notes)
+
+- \[Baseline] Added support for the `safe` keyword in Flexbox properties.
+
+### [MeteorJS 3.0](https://www.meteor.com/the-renaissance-of-meteorjs)
+
+With some Node.js upgrades, the core of Meteor had to be rewritten, a process that took several years. The update has finally arrived with the release of MeteorJS 3.0 as a major version. The team hosted multiple events titled The _Renaissance of Meteor.js_ to celebrate this milestone.
+
+### [Astro 4.3](https://astro.build/blog/astro-4130/)
+
+- Server islands- experimental
+- Request rewriting is now stable
+- Automatic generation of JSON schemas for data content collections
+
+Fred talked about [Future of Astro](https://www.youtube.com/live/AaCMvEXM-HQ) at _Astro Together_ conference last month.
+
+### [Uppy 4.0](https://uppy.io/blog/uppy-4.0/)
+
+- TypeScript rewrite
+- Google Photos support
+- Two new React hooks: `useUppyState` and `useUppyEvent`
+
+### [ESLint 9.8](https://eslint.org/blog/2024/07/eslint-v9.8.0-released/)
+
+- Ignoring the directory where ESLint runs is no longer possible. Previously, a global `ignores` pattern like "/" would ignore the entire base directory.
+
+In a [blog post](https://eslint.org/blog/2024/07/whats-coming-next-for-eslint/), ESLint team explains how they are going through a rewrite to support languages other than JavaScript.
+
+### [Wasp Beta](https://wasp-lang.dev/)
+
+- Rails-like framework for React, Node.js and Prisma.
+
+### [StackOverflow 2024 Developer Survey results](https://survey.stackoverflow.co/2024/)
+
+- 90% of developers use documentation to learn.
+- JS is still the most popular language. But among developers who are learning right now, Python is most popular.
+- NodeJS and ReactJS remain the most popular JS ecosystem frameworks.
+
+### [React flow 12](https://www.xyflow.com/blog/react-flow-12-release)
+
+- Server side rendering support
+- Hooks and helpers for computing flows
+- Dark mode
+- Better DX via TSDoc
+
+## In the Spotlight 🔦
+
+### Conference Talk updates
+
+- [ReactConf talks](https://www.youtube.com/@ReactConfOfficial/videos) are split up and available on YouTube
+- [dotJS talks](https://www.youtube.com/playlist?list=PLMW8Xq7bXrG7fOUOLJQw9I7ygJCbue9zO) are on the website.
+- [CSS Day 2024](https://www.youtube.com/watch?v=VS3ERmCsM_o) talks are available on YouTube.
+
+### NodeJS 🔥
+
+NodeJS set the stage this month with two PRs raising the heat:
+
+- [node:sqlite](https://github.com/nodejs/node/pull/53752)
+- [--experimental-strip-types](https://github.com/nodejs/node/pull/53725)
+
+The TypeScript stripping is done by one of the first major usages of Rust in NodeJS with [Amaro](https://github.com/nodejs/amaro), a wrapper around @swc/wasm-typescript.
+
+## Tutorials
+
+### [CSS Grid Areas - ishadeed](https://ishadeed.com/article/css-grid-area/)
+
+This blog provides interactive examples demonstrating the usefulness of named grid areas and columns. Grid numbers can be confusing without devtools enabled, so having the option to name grid areas is incredibly helpful. The blog also includes scenarios where naming grid areas and columns is the best approach.
+
+### [Isolated Declarations - Speeding up JavaScript ecosystem](https://marvinh.dev/blog/speeding-up-javascript-ecosystem-part-10/)
+
+When you click on TypeScript function from a library in your editor, you would have noticed that it takes you to `.d.ts` file instead of the actual source. This is because the editor gets types of the function from this file instead of the source. This is changing with `isolatedDeclaration` declaration feature shipped in TypeScript 5.5.
+
+### [React Owner Components](https://reacttraining.com/blog/react-owner-components)
+
+Brad Westfall brings back the term "owner" in React context to make a difference to the "parent".
+
+```javascript
+function UserProfile() {  <----- owner of Avatar and ProfileLayout
+  const [user, setUser] = useState({})
+  return (
+    <ProfileLayout> <--- parent of Avatar
+      <Avatar />
+    </ProfileLayout>
+  )
+}
+```
+
+He goes on to explain how this terminology will make it easier to understand the boundaries of React server components.
+
+### [How not to use Box shadows](https://dgerrells.com/blog/how-not-to-use-box-shadows)
+
+This is a creative blog that pushes the boundary of box shadows and their usage on a single div.
+
+### [Introducing let in angular](https://blog.angular.dev/introducing-let-in-angular-686f9f383f0f)
+
+Angular introduces the @let syntax to define and reuse variables within component templates.
+
+```
+@let name = 'Frodo';
+<h1>Dashboard for {{name}}</h1>
+Hello, {{name}}
+```
+
+## In Other News
+
+### [What is AI - MIT Technological Review](https://www.technologyreview.com/2024/07/10/1094475/what-is-artificial-intelligence-ai-definitive-guide/)
+
+When asked if AGI would be achieved, Jensen Huang, CEO and Founder of NVIDIA, responded, "That depends on if you can define AGI." This made me realize that if AGI cannot be defined, it cannot be achieved. This article, however, poses an even more fundamental question: what is AI? Has it now become synonymous with ChatGPT?
+
+> It’s math—a hell of a lot of math. Nobody disputes that. But is it just that, or does this complex math encode algorithms capable of something akin to human reasoning or the formation of concepts?
+
+### AI Updates for the month
+
+- [Llama 3.1](https://ai.meta.com/blog/meta-llama-3-1/) - Meta open sourced three models - 8B, 70B and the largest 405B. The license structure was also changed so that other models can be trained on Llama outputs.
+- [Mistral Large 2](https://mistral.ai/news/mistral-large-2407/) - An update to their flagship model that supports dozen languages and 128k context window.
+- [Midjourney 6.1](https://www.midjourney.com/updates/version-6-1) - More coherent images and better image quality.
+- [Github Models](https://github.blog/news-insights/product-news/introducing-github-models/) - You can now experiment with open source AI models for free with GitHub codespaces.
+- [SearchGPT](https://openai.com/index/searchgpt-prototype/) - OpenAI's new competitors mirroring Google AI overview and Preplexity, currently with a waitlist.
+- [GPT 4o Mini](https://openai.com/index/gpt-4o-mini-advancing-cost-efficient-intelligence/) - OpenAI's new cost-efficient model that performs sufficiently well on most benchmarks.
+
+### [Switzerland mandates software source code disclosure for public sector: A legal milestone](https://joinup.ec.europa.eu/collection/open-source-observatory-osor/news/new-open-source-law-switzerland)
+
+Switzerland has enacted the "Federal Law on the Use of Electronic Means for the Fulfilment of Governmental Tasks" (EMBAG), establishing a mandatory requirement for open source software within public sector bodies. I hope more countries adopt this approach of open source for public.
+
+### [Intel is laying off over 15,000 employees and will stop ‘non-essential work’](https://www.theverge.com/2024/8/1/24210656/intel-is-laying-off-over-10000-employees-and-will-cut-10-billion-in-costs)
+
+First, Apple transitioned to their M1 chips. Now, Windows is following suit with Qualcomm ARM chips. AMD is outperforming Intel in almost all use cases with their new Zen 5 chips. While we knew Intel was struggling, the situation escalated quickly, leading to a stock freefall and marking its worst day in the market.
+
+## Looking Ahead
+
+- [React Rally](https://reactrally.com/) - August 12-14

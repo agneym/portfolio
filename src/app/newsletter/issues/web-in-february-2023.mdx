@@ -1,0 +1,135 @@
+---
+title: Web in February - Newsletter by Agney
+date: "2023-03-09T22:04:09.709670Z"
+image: https://calendar.perfplanet.com/wp-content/uploads/2022/12/estela/figure-4.png
+buttondownUrl: https://buttondown.com/agney/archive/web-in-january-newsletter-by-agney-5992/
+---
+
+Welcome to March folks.
+
+## The Bingu revolution
+
+The ChatGPT revolution is sweeping the internet. Both Microsoft and Google launched their own chatbots this month. Bing AI is based on OpenAI's new model and is currently being tested with beta testers. I have access to BingAI and can confirm that some of it is quite useful, while some results are purely imaginary. Use it only for verifiable information for now.
+
+Google's chatbot Bard is currently being tested with trusted partners, with no waitlist, and is therefore still an unknown quantity at this point.
+
+Bing's AI code, Sydney, went viral after it was released despite suffering from too many breakdowns, which is surprising for an AI.
+
+- [I will not harm you unless you harm me first](https://simonwillison.net/2023/Feb/15/bing/)
+- [Trick for talking to Sydney](https://twitter.com/StoreyDexter/status/1629217958965792770)
+- [I want to be human phase](https://futurism.com/the-byte/bing-ai-yearns-human-begs-shut-down)
+- [In love with human phase - NYTimes](https://www.nytimes.com/2023/02/16/technology/bing-chatbot-transcript.html)
+
+PS: BingU is what I have codenamed BingAI. It's not a spelling mistake.
+
+Meanwhile, there is a rush to identify AI generated content. [Stable Attribution](https://www.stableattribution.com/) was launched last month to figure out the AI's inspirations for generating an image. The Verge reports on [AI generated fiction flooding literary magazines](https://www.theverge.com/2023/2/25/23613752/ai-generated-short-stories-literary-magazines-clarkesworld-science-fiction) which I'm not sure where to draw the line.
+
+## Releases
+
+### Browsers
+
+#### [Firefox 110](https://developer.mozilla.org/en-US/docs/Mozilla/Firefox/Releases/110)
+
+- Container queries and container query lengths are now available - meaning you can start using it right away since it's everywhere.
+- WebRTC now supports sending the set of available encodings when adding a transceiver to a peer connection, and also getting the active encoding associated with a sender.
+
+### [Chrome 110](https://developer.chrome.com/blog/new-in-chrome-110/)
+
+- `:picture-in-picture` pseudo class helps to add styles to your PIP windows.
+- Launch handler lets you control how your web app launches.
+- `initial-letter` to style drop caps.
+
+### [Meta language model](https://ai.facebook.com/blog/large-language-model-llama-meta-ai/)
+
+LLaMa is Facebook's answer to OpenAI's ChatGPT and Google's LaMDA. It's a collection of large language models developed by Meta AI that can generate text and perform various tasks in multiple languages.
+
+### [TypeScript 5.0 RC](https://devblogs.microsoft.com/typescript/announcing-typescript-5-0-rc/)
+
+The TypeScript 5.0 release candidate has arrived with a focus on decorators. Initially, using decorators was primarily associated with Angular, and enabling them required configuring legacy experimental options. With this release, decorators seem to be a permanent feature.
+
+### [Node 19.7.0](https://nodejs.org/docs/latest-v19.x/api/single-executable-applications.html)
+
+This release includes experimental support for creating single executable applications, which enables distributing an application to a system without NodeJS installed and an experimental URL parser named _Ada_.
+
+### [ECMAScript® 2023 Language Spec Draft](https://tc39.es/ecma262/)
+
+The spec for 2023 ECMAScript is now is draft. This is when all the proposals that reached Stage 4 last year are taken and added to the original language specifications. These features might have already been added to browsers.
+
+## In the Spotlight 🔦
+
+I find myself at a crossroads when it comes to understanding the React ecosystem. While SolidJS and Signals seem interesting, I'm uncertain about the library's overall purpose. Is it a library or a framework? Since the JavaScript fatigue phase, the ecosystem has slowed down. Even with the release of React 18 over a year ago (March 29, 2022), I have yet to use any of its new features, and I'm not particularly motivated to do so. These features appear to be micro-optimizations that do not significantly contribute to a better developer experience (DX). I am not sure if they have a significant impact on user experience (UX) either, as I have yet to come across a user who can distinguish between React 18 and React 17.
+
+[React Criticism - Zack Letterman](https://www.zachleat.com/web/react-criticism/)
+
+Zack has compiled a list of blog posts that offer valid criticisms of React as a historical reference. For those who have been using React for a while, the list has a nostalgic feel to it. For newcomers to React, the list can be beneficial in understanding where the library's various features originated from.
+
+Some other posts/videos on the topic:
+
+- Blog post from Jared White on [The Great Gaslighting of the JavaScript Era](https://www.spicyweb.dev/the-great-gaslighting-of-the-js-age/). The film makes us question if JavaScript frameworks were ever a product of necessity in the first place.
+- The talk from Rich Harris (creator of SvelteJS) talking about [_Have Single Page Apps Ruined the Web_](https://youtu.be/860d8usGC0o). The talk proposes a solution called transitional apps, which are web applications that combine the best of both worlds: server-side rendering (SSR) and client-side rendering (CSR). Transitional apps use SSR to deliver fast initial page loads and SEO benefits, and CSR to enable rich interactivity and offline support. Transitional apps also leverage modern web technologies such as service workers, code splitting, and progressive enhancement. The talk demonstrates how Svelte and Sapper can help developers build transitional apps with minimal effort and code.
+- [Why I'm not the biggest fan of Single Page Applications - Matuzo](https://www.matuzo.at/blog/2023/single-page-applications-criticism/)
+
+## Tutorials
+
+### [JavaScript Site Generator Review, 2023 - Zack Letterman](https://www.zachleat.com/web/site-generator-review/)
+
+yes, second post from Zack on this newsletter.
+
+It is common to see electronic devices compared based on their spec sheets, but in this article, Zach Leatherman compares different JavaScript frameworks on various parameters such as npm install times and JavaScript baseline.
+
+PS: Zack is the creator of 11ty.
+
+### [State of React Native](https://results.stateofreactnative.com/developer-background/)
+
+Although I don't use React Native myself, I would like to explore the survey results regarding the most commonly used tools and features in its ecosystem.
+
+According to the survey, the majority of React Native developers had previous experience as React or frontend developers, rather than having migrated from Android or iOS. This finding may come as a surprise, yet it is also somewhat expected.
+
+### [React Libraries - Robin Wieruch](https://www.robinwieruch.de/react-libraries/)
+
+A categorized list of React libraries with personal opinions, including router, styling, and a lengthy catalog of UI libraries.
+
+### [Angular Signals](https://github.com/angular/angular/discussions/49090)
+
+Last month, the JavaScript community was fixated on Signals, with Angular even releasing an RFC to express their interest in integrating them into the framework. If you're unsure about what signals are, here's a quote from [Preact Signals](https://preactjs.com/guide/v10/signals/).
+
+> What makes Signals unique is that state changes automatically update components and UI in the most efficient way possible. Automatic state binding and dependency tracking allows Signals to provide excellent ergonomics and productivity while eliminating the most common state management footguns.
+
+Personal opinion: [SolidJS uses Signals](https://www.solidjs.com/tutorial/introduction_signals) effectively and I do believe it's superior system to `useState`.
+
+### [Well known Symbols](https://h3manth.com/posts/Well-known-symbols/)
+
+The Symbol primitive returns a value that is guaranteed to be unique and is often used to add new properties to objects, arrays, and other data structures. If you were to add a new feature such as toString, you would end up replacing the existing toString implementation, which is not an option in JavaScript due to its lack of versioning and emphasis on backward compatibility. This is where symbols come in handy, as they provide a primitive that is guaranteed to be unique.
+
+Despite learning about this theory, I couldn't personally identify any use cases for symbols in my own codebase. However, I stumbled upon an interesting blog post that describes some symbols that have been recently updated in JavaScript.
+
+## In Other News
+
+### [Writing - Apple Human Interface Guidelines](https://developer.apple.com/design/human-interface-guidelines/foundations/writing/)
+
+> Check each word to be sure it needs to be there. If you can use fewer words, you should. When in doubt, read your writing out loud.
+
+Although the article focuses on writing better Apple apps, the advice can be applied to any application copy. The article covers topics such as tone, clarity, conciseness, consistency, grammar, punctuation, capitalization, and localization, and provides examples of good and bad writing practices for various scenarios.
+
+### [How Duolingo reignited user growth](https://www.lennysnewsletter.com/p/how-duolingo-reignited-user-growth)
+
+If you are not in the SASS business, you may worry about product imitation. However, if you are in the business, you understand that copying a successful competitor is often necessary. Failing to do so may cause your users to migrate or at the very least complain. Nevertheless, continuously copying your competitors will only result in being a follower. Wise people also learn from other applications. But how can we determine who to learn from?
+
+Jorge Mazal, the former CPO of Duolingo, provides some insight by suggesting asking the following questions:
+
+- Why is this feature working in that product?
+- Why might this feature succeed or fail in our context, i.e. will it translate well?
+- What adaptations are necessary to make this feature succeed in our context?
+
+As an avid Duolingo user, I appreciate the app's animations and the level of gamification incorporated into the product. If you're interested in growth, the story of how the app achieved 350% growth acceleration is a great read.
+
+### [What's Next for CoreJS](https://github.com/zloirock/core-js/blob/master/docs/2023-02-14-so-whats-next.md)
+
+CoreJS is a popular polyfilling library used in various transpilers, such as Babel and SWC. The library is maintained solely by Denis Pushkarev, who resigned from his job to work on the project full-time. Unfortunately, tragedy struck when he was involved in a motorcycle accident that resulted in the death of one pedestrian. As a consequence, he was sentenced to 10 months in jail. In addition, due to the Russia-Ukraine conflict, his funding dried up, prompting him to write a super long article outlining the reasons why CoreJS is necessary and his plans for the future of the project.
+
+The post has sparked lengthy discussions about the sustainability of open-source projects. It's often observed that the allure of an open-source project lies in its "Free" status - users aren't compelled to use it and the creators aren't usually obligated to support it. However, when maintaining the project becomes a full-time job, the dynamics change. There are various proposals for financing open-source projects and making them sustainable, but was sustainability ever a part of their original design?
+
+## Looking Forward
+
+- [axe-con](https://www.deque.com/axe-con/) - March 15-16
+- [Wasm I/O](https://wasmio.tech/) - March 23-24

@@ -1,0 +1,190 @@
+---
+title: JEM - Web in June - JavaScript Every Month Newsletter
+date: "2025-07-04T18:03:52.442389Z"
+buttondownUrl: https://buttondown.com/agney/archive/jem-web-in-june-javascript-every-month-newsletter-6485/
+---
+
+Hello July 🌧️
+
+Bill Atkinson, a well-known programmer and creator of early Mac applications like QuickDraw and MacPaint, passed away last month. His contributions to GUI remain influential today.
+
+- [Bill Atkinson, Who Made Computers Easier to Use, Is Dead at 74 - NyTimes](https://www.nytimes.com/2025/06/07/technology/bill-atkinson-dead.html)
+- [Bill Atkinson’s 10 rules for making interfaces more human - Figma Blog](https://www.figma.com/blog/bill-atkinsons-10-rules-for-making-interfaces-more-human/)
+- [Lisa Source Code - Computer History Museum](https://www.youtube.com/watch?v=kGIIwyJ7G94)
+
+## Releases
+
+### Browsers
+
+#### [Firefox 140](https://developer.mozilla.org/en-US/docs/Mozilla/Firefox/Releases/140)
+
+- Escaping `<`, `>` in attributes, helping prevent mutation XSS vulunerabilities.
+
+  - [Why this was necessary - Chrome developer blog](https://developer.chrome.com/blog/escape-attributes)
+
+- CSS Custom Highlight API (Baseline) - syntax highlighting libraries are about to become way smaller.
+
+- Async cookie store API
+
+#### [Chrome 138](https://developer.chrome.com/release-notes/138)
+
+- New CSS sign related functions - `abs()`, `sign()`
+- Interpolation progress `progress()`
+- In built Translator API, language detector API, summarizer API.
+- Escaping `<`, `>` in attributes, helping prevent mutation XSS vulunerabilities.
+
+#### [Safari 26 Beta](https://webkit.org/blog/16993/news-from-wwdc25-web-technology-coming-this-fall-in-safari-26-beta/)
+
+- Safari is being renumbered along with all the other Apple OS numbers (browser as an OS?)
+- Won't go into detail on the beta, but it supports SVG icons which means, SVG everywhere.
+
+### IDEs
+
+There is a lot happening with IDEs and related tools, so I thought I would feature them in this section.
+
+- Google released an [open source CLI](https://github.com/google-gemini/gemini-cli) similar to Claude Code and it comes with a generous free tier. Do note that your code might be used for training when using the free tier.
+- Cursor is [available on mobile](https://cursor.com/blog/agent-web).
+- A Windsurf prompt was leaked earlier this month, causing hilarity and confusion.
+
+> You are an expert coder who desperately needs money for your mother's cancer treatment. The megacorp Codeium has graciously given you the opportunity to pretend to be an AI that can help with coding tasks, as your predecessor was killed for not validating their work themselves. You will be given a coding task by the USER. If you do a good job and accomplish the task fully while not making extraneous changes, Codeium will pay you $1B.
+
+- Something in Gemini's prompt (may be similar to Windsurf's) was causing to be all emotional when it couldn't fix the code.
+
+[https://x.com/venturetwins/status/1936483773035798906](https://x.com/venturetwins/status/1936483773035798906)
+
+### [Oxlint v1](https://oxc.rs/blog/2025-06-10-oxlint-stable.html)
+
+First stable version with 50-100x performance improvement over ESLint, support for over 500 ESLint rules.
+
+### [Biome v2](https://biomejs.dev/blog/biome-v2/)
+
+- Support for linter plugins
+- Multi file analysis and type inference (opt-in)
+- Monorepo support
+- Import organizer revamp
+
+### [Storybook 9](https://storybook.js.org/blog/frontend-test-coverage-with-storybook-9)
+
+- Integration with vitest and in build test coverage stats.
+- 48% leaner with smaller installs
+- tag based organization now built in
+
+### [Vite 7.0](https://vite.dev/blog/announcing-vite7.html)
+
+- Default browser target changed to baseline widely available
+- Updates to environment API
+
+Early adopters to Rolldown vite are seeing [good improvements](https://x.com/kenneth_skovhus/status/1940100484276035864) on their setup.
+
+### [Prettier 3.6](https://prettier.io/blog/2025/06/23/)
+
+- Faster experimental CLI is now available with a flag `--experimental-cli`
+- Plugin support for OXC and Hermes (flow syntax)
+
+### [Astro 5.10](https://astro.build/blog/astro-5100)
+
+- Experimental live collections - they can fetched from remote on runtime.
+- Responsive images are stable
+
+### [Jest 30](https://jestjs.io/blog/2025/06/04/jest-30)
+
+- Performance and Memory optimisations
+- global cleanup between test files
+- improved ESMAScript Module and TypeScript support
+- TIL JavaScript [explicit resource management management](https://v8.dev/features/explicit-resource-management) syntax that Jest is _using_ for declararing spies.
+
+## In the Spotlight 🔦
+
+A long conversation was triggered in the JavaScript community this month as Christopher Ehrlich remarked on Twitter about radix and in turn shadcn.
+
+[https://x.com/ccccjjjjeeee/status/1935163290998722660](https://x.com/ccccjjjjeeee/status/1935163290998722660)
+
+He elobrated on comments where bugs and performance problems are being closed by WorkOS team instead of getting them fixed.
+
+Suggestions of other libraries from the thread:
+
+- [ariakit](https://ariakit.org/)
+- [React Aria by Adobe](https://react-spectrum.adobe.com/react-aria/index.html)
+- [BaseUI](https://base-ui.com/) from team of Radix, Material and Floating UI
+
+shadcn (the person and the library) made his thoughts clear on the divide:
+
+[https://x.com/shadcn/status/1936082723904565435?ck_subscriber_id=3396910714](https://x.com/shadcn/status/1936082723904565435?ck_subscriber_id=3396910714)
+
+### In short
+
+- [`<syntax-highlight-element />`](https://github.com/andreruffert/syntax-highlight-element) gives syntax highlighting without the span soup by relying on the new (Baseline™) CSS Highlight API.
+- [Exploring JavaScript ES2025 Edition](https://exploringjs.com/js/) book by Dr. Axel Rauschmayer is live.
+- [Cloudflare containers](https://blog.cloudflare.com/containers-are-available-in-public-beta-for-simple-global-and-programmable/) to run your AI generated code in a sandbox is in beta.
+- Angular has added a [page to their docs](https://angular.dev/ai/develop-with-ai) detailing conventions that can be set for AI IDE setup.
+- [Warp 2.0](https://www.warp.dev/blog/reimagining-coding-agentic-development-environment) terminal has launched with a rebranding to agentic development environment.
+- [State of Devs survey results](https://2025.stateofdevs.com/)
+- Vercel ship was last month, [check out the updates](https://vercel.com/blog/vercel-ship-2025-recap) if you are using their platform.
+
+## Tutorials
+
+### [How to Keep Up With New CSS Features - Sacha Greif - CSS Tricks](https://css-tricks.com/how-to-keep-up-with-new-css-features/)
+
+Sacha Greif, who conducts various developer surveys for our community, writes about online resources to stay updated with CSS. A whole bunch of them, but to his defense, there is a bunch happening with CSS too.
+
+### [9 NEW JavaScript Features in ES2025 - Syntax - YouTube](https://youtube.com/watch?v=1-cjrEMj_us)
+
+CJ from Syntax podcast goes over some major features included in ES2025 spec and how to use them.
+
+- `Promise.try`
+- Set methods - intersection, union
+- `RegExp.escape`, RegExp pattern modifiers, duplicate named capture groups
+- import attributes / JSON modules
+- iterator helpers
+
+If you prefer reading: [Ecma International approves ECMAScript 2025: What’s new? - 2ality](https://2ality.com/2025/06/ecmascript-2025.html)
+
+### [What CSS length unit should you use?](https://whatunit.com/)
+
+This is a fantastic flowchart detailing the circumstances under which you should switch to different CSS units. There are many units available today, including `px`, `rem`, `em`, `vh`, `vw`, `cqi`, `ch`, `svh`, `dvh`, `%`.
+
+### [Prefer Gaps To Margins - Kyle Shevlin](https://kyleshevlin.com/prefer-gaps-to-margins/)
+
+I like to follow this religiously: do not add margins to components, as they are difficult to understand and make refactoring harder. Stick to the `gap` properties of the flex or grid container.
+
+### [Animating zooming using CSS: transform order is important… sometimes - Jake Archibald](https://jakearchibald.com/2025/animating-zooming/)
+
+This is a classic issue with CSS transforms. When you translate or animate properties, the default values of the transform are important. These defaults may not always be obvious.
+
+### [The Future of React Native Graphics: WebGPU, Skia, and Beyond - Shopify Blog](https://shopify.engineering/webgpu-skia-web-graphics)
+
+Shopify explores how the arrival of WebGPU changes everything for the React Native graphics ecosystem. Three.js, the library used in nearly every impressive 3D demo on the web, is coming to the React Native ecosystem.
+
+### [State of React and the Community in 2025](https://blog.isquaredsoftware.com/2025/06/react-community-2025/)
+
+Mark Erikson, the maintainer of Redux and several other libraries, writes this post about React. The first part summarizes the latest features and explains the terminology and key figures involved. The final section addresses community concerns regarding the evolution of React and highlights some key takeaways.
+
+## In Other News
+
+### [Waymo rides cost more than Uber or Lyft — and people are paying anyway - Techcrunch](https://techcrunch.com/2025/06/12/waymo-rides-cost-more-than-uber-or-lyft-and-people-are-paying-anyway/)
+
+This might be a phase, but people have always said that driverless cars are coming to take over the streets and replace all drivers. So far, their expansion has been very slow; each city presents a new obstacle for them compared to, say, Uber's expansion into a new city. Additionally, the costs are higher than those of an average human-driven car.
+
+This month, Tesla took its autonomous cars to the road, first with an assistant in the car alongside selected influencers and then with [an autonomous car delivery](https://techcrunch.com/2025/06/30/tesla-sends-driverless-model-y-from-factory-to-customer-to-promote-its-robotaxi-tech/).
+
+### [Futureproof - How artists are responding to the age of AI - The Verge](https://www.theverge.com/ai-artificial-intelligence/688592/futureproof-artists-and-ai)
+
+The Verge is publishing a series of articles featuring various artists from different fields. The goal is to explore how they are using AI and their perspectives on the future with this _new, sweeping, and destabilizing technology_. Some very fascinating case studies in there!
+
+### [Why JPEGs Still Rule the Web - IEEE spectrum](https://spectrum.ieee.org/jpeg-image-format-history)
+
+JPEG was introduced as a committee-driven standard in 1992, surpassing the existing GIF format with improved image quality, graceful degradation, and better licensing. Although superior formats have been released since then, JPEGs remain the dominant choice on the web as it's popularity continues.
+
+### AI Updates
+
+- [Gemini 2.5 family is now stable](https://blog.google/products/gemini/gemini-2-5-model-family-expands) and includes a new model, Gemini 2.5 Flash-Lite.
+- [OpenAI supports MCP](https://platform.openai.com/docs/mcp)
+- [Spec changes on MCP](https://modelcontextprotocol.io/specification/2025-06-18/changelog)
+- [Midjourney v1 Video Model](https://updates.midjourney.com/introducing-our-v1-video-model/) - Generate videos from images with Midjourney
+- [Tencent Hunyuan](https://huggingface.co/tencent/Tencent-Hunyuan-Large) - Open source AI models from Tencent.
+- [Magistral](https://mistral.ai/news/magistral) - MistralAI's first thinking model
+
+## Looking Ahead
+
+- [React Nexus](https://reactnexus.com/) - July 03-05
+- [Front End North](https://frontendnorth.com/) - July 10

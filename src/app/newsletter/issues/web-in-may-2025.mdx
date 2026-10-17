@@ -1,0 +1,161 @@
+---
+title: JEM - Web in May - JavaScript Every Month Newsletter
+date: "2025-06-12T17:31:10.314529Z"
+buttondownUrl: https://buttondown.com/agney/archive/jem-web-in-may-javascript-every-month-newsletter-4299/
+---
+
+Hello June 🌧️
+
+It was raining AI coding agents in June as all major AI providers announced their version of coding agent.
+
+- [Google Jules](https://jules.google/)
+- [Claude Code](https://www.anthropic.com/claude-code)
+- [OpenAI Codex](https://openai.com/index/introducing-codex/)
+
+Nothing magical that you can't do in Cursor right now, especially with background agents feature. But it's certainly nice to watch it roll around PRs from the cloud ☁️.
+
+## Releases
+
+### Browsers
+
+#### [Firefox 139](https://developer.mozilla.org/en-US/docs/Mozilla/Firefox/Releases/139)
+
+- First browser to ship the new Temporal API
+- `requestClose` method of dialog element is now supported.
+- `hidden=until-found` HTML attribute.
+
+#### [Chrome 137](https://developer.chrome.com/release-notes/137)
+
+- CSS `if` function
+- selection API direction and `Selection.getComposedRanges`
+- `offset-path=shape` to allow using responsive shapes to set animation path.
+- `transform` attribute on SVGSVGElement
+- JavaScript promise integration for web assembly
+
+#### [Arc browser](https://browsercompany.substack.com/p/letter-to-arc-members-2025)
+
+Arc has many fans in the development community, but it was retired some time ago as the Browser Company shifted its focus to building Dia, their AI browser. In this newsletter, they explain why they did not integrate Dia into Arc and if they will open source the browser (No!)
+
+### [Angular v20](https://blog.angular.dev/announcing-angular-v20-b5c9c06cf301)
+
+- stabilising APIs such as effect, linkedSignal, toSignal, incremental hydration, route level render mode config and promoting zoneless developer preview.
+- partnering with Chrome for custom Angular reporting directly in Chrome devtools.
+- template hot module replacement by default
+- There's an RFC out for official mascot of Angular.
+
+[YouTube video at Google I/O](https://www.youtube.com/watch?v=eIeJmYdYMQo)
+
+### [What's new in Svelte May 2025](https://svelte.dev/blog/whats-new-in-svelte-may-2025)
+
+A short take on improvements in Svelte, learning resources and activities in the community.
+
+[Videos from last month's Svelte Summit](https://www.youtube.com/playlist?list=PL8bMgX1kyZThKy_B41FQHk_xsHMQouV1Z) are out on YouTube.
+
+### [Wake up Remix](https://remix.run/blog/wake-up-remix)
+
+Remix announced a break during the last React Conf and merged into the React Router project. React Router has now reached version 7 and includes a preview for React Server Components. The founders are returning to Remix and rebuilding it from the ground up.
+
+> Remix v3 is a reimagining of what a web framework can be — a fresh foundation shaped by decades of experience building for the web. Our focus is on simplicity, clarity, and performance, without giving up the power developers need.
+
+### Browsers
+
+## In the Spotlight 🔦
+
+Google I/O took place last month, featuring discussions from the Chrome team about the state of the web ecosystem, as always.
+
+- [Developer Keynote - Addy Osmani](https://www.youtube.com/watch?v=GjvgtwSOCao)
+- [What's new in web UI - Una Kravets](https://youtube.com/watch?v=VTCIStB6y8s)
+- [What's new in web - Rachel Andrew](https://youtube.com/watch?v=beYbnNT_02U)
+- [Web Animations today and tomorrow - Bramus Van Damme](https://youtube.com/watch?v=UcXWY057YuQ)
+
+**Releases**:
+
+- [Visual studio code now supports baseline](https://web.dev/blog/baseline-vscode)
+- More data on usage stats with [webstatus.dev](https://webstatus.dev)
+
+---
+
+Some unfolding drama on Deno:
+
+- [Deno's decline](https://dbushell.com/2025/04/28/denos-decline/) - All signs indicate that Deno is losing. Is it time to jump ship?
+- [Update on Deno's Fresh 2](https://deno.com/blog/an-update-on-fresh)
+- [Reports of Deno's Demise Have Been Greatly Exaggerated - Ryan Dahl](https://deno.com/blog/greatly-exaggerated)
+
+Just for the kicks, [JavaScript history timeline on the Deno blog](https://deno.com/blog/history-of-javascript)
+
+---
+
+### In short
+
+- It's now possible to run [PHP inside Node.js](https://x.com/matteocollina/status/1927395639698096313)
+- [GSAP and it's plugins are now free](https://gsap.com/blog/3-13/)
+- [Running Python and JavaScript in the same file](https://github.com/EvanZhouDev/polycompiler)
+- [State of Frameworks and Metaframeworks](https://www.youtube.com/watch?v=DAci3O2j31o) by SolidJS founder on YouTube.
+- [ESLint 9.0 - A retrospective](https://eslint.org/blog/2025/05/eslint-v9.0.0-retrospective/) - What went right, wrong and what's the plan.
+- [Stackoverflow Developer survey](https://stackoverflow.blog/2025/05/29/not-just-a-vibe-the-stack-overflow-developer-survey-is-really-here/)
+- [Introducing magnetic and zoning features in Motion+ Cursor](https://motion.dev/blog/introducing-magnetic-cursors-in-motion-cursor) - I'm not sure where I'm going to use this, but this is certainly cool.
+- [Gumroad is now open source](https://github.com/antiwork/gumroad)
+
+## Tutorials
+
+### [Working on Complex Systems - What I learned working at Google](https://www.thecoder.cafe/p/complex-systems)
+
+This blog discusses how to distinguish between code patterns in complex and complicated systems, defining both terms. It outlines the characteristics of complex systems and offers patterns for navigating them.
+
+### [Giving V8 a Heads-Up: Faster JavaScript Startup with Explicit Compile Hints](https://v8.dev/blog/explicit-compile-hints)
+
+Chrome 136 ships with the ability for developer to provide explicit hints to the browser to allow early compilation of a file. This is particularly useful if you have a "core file" which you can select for eager compilation, or if you're able to move code between source files to create such a core file.
+
+You can trigger eager compilation for the whole file by inserting the magic comment
+
+```javascript
+//# allFunctionsCalledOnLoad
+```
+
+### [The Beauty of TanStack Router](https://tkdodo.eu/blog/the-beauty-of-tan-stack-router)
+
+Dominik, the maintainer of Tanstack Query and author of several insightful blogs and an official course on the topic, writes this post about the Tanstack Router. He discusses its clear type safety features and then delves deeper into its design decisions.
+
+### [No, react context is not causing too many renders](https://blacksheepcode.com/posts/no_react_context_is_not_causing_too_many_renders)
+
+React context causing excessive renders is a common topic in every state management library, instilling fear in its users. This blog debunks the myth surrounding renders and identifies the specific components affected by re-renders.
+
+### [Static as a Server](https://overreacted.io/static-as-a-server/)
+
+Dan Ambramov is back to writing long posts and this month he explores the idea of using React Server Components (RSC) while serving the site statically via a Cloudflare CDN, effectively making the hosting cost-free. What is this magic that combines both server and client into a "static" server?
+
+### [Operator Lookup](https://www.joshwcomeau.com/operator-lookup/)
+
+A small app by Josh allows you to look up each JavaScript operator and read a brief summary, complete with cute sound effects.
+
+## In Other News
+
+### [Era of Experimence - Google Deepmind](https://storage.googleapis.com/deepmind-media/Era-of-Experience%20/The%20Era%20of%20Experience%20Paper.pdf)
+
+Google DeepMind has released a paper discussing the generation of new data for AI systems to train on. It emphasizes the need for AI to learn like humans, rather than relying solely on text data from the Internet. DeepMind CEO Demis Hassabis has been vocal about the limitations of the current format of large language models (LLMs) and has given multiple interviews on this topic. He believes AGI will arrive in 5 short years though, so prepare!
+
+- [Demis Hassabis on Future of Work in the Age of AI - Wired](https://youtu.be/CRraHg4Ks_g)
+- [What's next for AI at Deemind - 60 minutes](https://www.youtube.com/watch?v=1XF-NG_35NE)
+
+### [ALICE detects the conversion of lead into gold at the LHC](https://www.home.cern/news/news/physics/alice-detects-conversion-lead-gold-lhc)
+
+Scientists at the CERN Large Hadron Collider discovered a method to generate gold from lead, albeit for a tiny fraction of a second. This was achieved through high-speed collisions between high-energy lead nuclei, which knock out protons and transform lead into fleeting quantities of gold nuclei.
+
+### [Highlights from the Claude 4 system prompt - Simon Willison](https://simonwillison.net/2025/May/25/claude-4-system-prompt/)
+
+We don't know how long prompt engineering will remain a specialized skill or if a small language model will eventually rewrite prompts to produce the desired output. Until then, it's beneficial to read through system prompts, as the creators understand them best. This blog examines the Anthropic Claude system prompt and breaks down the interesting techniques used.
+
+### AI Updates
+
+- [Claude 4](https://www.anthropic.com/news/claude-4) - It has topped OpenRouter charts again.
+- [Gemini 2.5 I/O edition](https://blog.google/technology/google-deepmind/google-gemini-updates-io-2025/)
+- Mistral released [Devstral](https://mistral.ai/news/devstral) - a model build for agent based coding paradigm.
+
+* [Meta 3D AssetGen 2](https://developers.meta.com/horizon/blog/AssetGen2)
+
+## Looking Ahead
+
+- [RenderATL](https://www.renderatl.com/) - June 11-13
+- [JSNation Amsterdam](https://jsnation.com/) - June 12
+- [React summit](https://reactsummit.com/) - June 13 & 17
+- [React Norway](https://reactnorway.com/) - June 13

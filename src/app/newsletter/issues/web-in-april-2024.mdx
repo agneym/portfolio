@@ -1,0 +1,149 @@
+---
+title: JEM - Web in April - JavaScript Every Month Newsletter
+date: "2024-05-07T23:25:22.955307Z"
+buttondownUrl: https://buttondown.com/agney/archive/jem-web-in-april-javascript-every-month-newsletter/
+---
+
+Hey May 👋
+
+An even hotter month here. Hopefully, the rain gets to me by the time I write the next instalment. This is a month where Llama 3 released and blew everyone away, Apple launched M4 chips with iPads and had Google launch Pixel 8A at the same time. A huge month in terms of conferences and updates is ahead of us (check out the Looking ahead section)
+
+## Releases
+
+### Browsers
+
+#### [Firefox 125](https://developer.mozilla.org/en-US/docs/Mozilla/Firefox/Releases/125)
+
+- Popover API is supported and has landed in baseline.
+- `Intl.Segmenter` is supported and has landed in baseline.
+- `align-content` has been updated to work with `display: block` layouts.
+- `ariaBrailleLabel` and `ariaBrailleRoleDescription` is not supported.
+- AV1 codec support for Encrypted Media Extensions.
+
+#### [Chrome 124](https://developer.chrome.com/release-notes/124)
+
+- Make any website installable, irrespective of whether it follows PWA installability criteria
+- Feature gates Web MIDI API behind a permissions prompt.
+- `writingsuggestions` attribute gives control over whether the browser can provide writing suggestions in an input.
+- Adds the priority request header for all HTTP requests with the priority information for the request at the time that it was sent.
+- `pageswap` event is fired on a document's window object when a navigation will replace this document with a new document.
+
+### [Figma Code Connect](https://www.figma.com/blog/introducing-code-connect/)
+
+Figma has launched a beta version of JavaScript and Swift libraries, enabling customized code snippets to be displayed in Dev mode. The Dev mode pricing per developer is still outrageous though.
+
+### [React 19 Beta](https://react.dev/blog/2024/04/25/react-19)
+
+React 19 Beta has been released, offering a comprehensive overview of the upcoming major release's new features. Among these are a plethora of new hooks such as `useActionState` and the `use` hook, primarily focused on streamlining the usage of server components and actions. While a few breaking changes have been outlined, many APIs have been deprecated for several years, making their removal less impactful.
+
+Also worth watching [this breakdown of features from Kent C Dodds](https://www.epicweb.dev/tips/whats-coming-in-react-19-beta). With React conf, scheduled to happen later this month, I'm sure we will see a lot more of these.
+
+### [ESLint 9.0](https://eslint.org/blog/2024/04/eslint-v9.0.0-released/)
+
+- Flat config is now the default configuration format for ESLint and eslintrc is officially deprecated.
+- [ESLint Config Inspector](https://eslint.org/blog/2024/04/eslint-config-inspector/) to enable inspect and debug your ESLint configuration.
+
+### [Quill 2.0](https://slab.com/blog/announcing-quill-2-0/)
+
+- TypeScript migration. No longer `@types/quill`
+- supports multiple editors on a page.
+- auto scrolling container detection
+
+### [Biome 1.7](https://biomejs.dev/blog/biome-v1-7/)
+
+- Provides an automated migration step for ESLint configuration. Supports both flat and nested configuration.
+- support for lots of new rules, `useSortedClasses` for tailwind like libraries has entered the "nursery"
+
+### [How we built JSR - Deno](https://deno.com/blog/how-we-built-jsr)
+
+Deno team has built an NPM alternative registry named JSR. It will be ES modules first but be compatible with using other NPM modules. In the words of Ryan Dahl:
+
+> JSR fundamentally improves the code distribution process by streamlining complexities that have long plagued developers. By being ESM-only and TypeScript-first, JSR eradicates the frustrating juggling of package.json configurations and the labyrinthine tsconfig compiler options. Through a package scoring system, JSR motivates best practices in code distribution—higher scores are awarded to packages that include comprehensive JSDoc documentation on each exported symbol, akin to what the Dart community has in pub.dev. As seen in other modern programming ecosystems like Go and Rust, JSR provides automatic documentation generation right out of the box.
+
+### [Next 14.2](https://nextjs.org/blog/next-14-2)
+
+NextJS has reached a milestone of 1M monthly active users. It also had a release this month, but it's more about the underlying Turbopack than Next itself. Check out these stats:
+
+> - Up to 76.7% faster local server startup.
+
+- Up to 96.3% faster code updates with Fast Refresh.
+- Up to 45.8% faster initial route compile without caching (Turbopack does not have disk caching yet)
+   
+
+## In the Spotlight 🔦
+
+Let's talk about a feature that just landed baseline this month: Popovers.
+
+There are two APIs for displaying content over another in the web now: The Dialog API and Popover API. The dialog API is used for modal content where the content of rest of the page is not interactable. The popover API is used for non modal content where the rest of the page is still shown. Note that the `dialog` is an element while `popover` is an attribute.
+
+```html
+<dialog></dialog>
+<div popover />
+```
+
+A basic popover can be written with:
+
+```html
+<button popovertarget="mypopover" popovertargetaction="show">
+  Show popover
+</button>
+<button popovertarget="mypopover" popovertargetaction="hide">
+  Hide popover
+</button>
+<div id="mypopover" popover="">Popover content</div>
+```
+
+- [MDN Docs](https://developer.mozilla.org/en-US/docs/Web/API/Popover_API)
+- [web.dev announcement](https://web.dev/blog/popover-api)
+
+## Tutorials
+
+### [How To Monitor and Optimize Google Core Web Vitals - Smashing Magazine](https://www.smashingmagazine.com/2024/04/monitor-optimize-google-core-web-vitals/)
+
+Google's Web Vitals undergo continuous evolution, including occasional changes in terminology. However, these metrics significantly influence the visibility of your website in Google search results and, depending on your business, can have a substantial impact on its success. Matt Zeunert meticulously breaks down each core vital, providing valuable insights, with some plugs to DebugBear.
+
+### [Help us invent CSS Grid Level 3, aka “Masonry” layout - Webkit blog](https://webkit.org/blog/15269/help-us-invent-masonry-layouts-for-css-grid-level-3/)
+
+Jen Simmons offers an insightful explanation of how Grid Level 3, specifically the masonry layout, functions within the current specification. She encourages users to explore the functionality and various use cases by testing it out on Safari Technology Preview or Firefox Nightly. Despite browsers grappling with this issue for some time, a consensus on the best path forward has yet to be reached.
+
+### [Sliding 3D Image Frames In CSS](https://www.smashingmagazine.com/2024/04/sliding-3d-image-frames-css/)
+
+Temani Afif has crafted a 3D box illustration of an image using CSS, providing a detailed walkthrough from starting small and gradually progressing with small steps. The utilization of the `border-box` technique is cherry on the top.
+
+### [Recapping ng conf - Ionic blog](https://ionic.io/blog/recapping-ngconf-2024)
+
+Last month, I talked about ng-conf explored the discussions surrounding Wiz integration. However, ng-conf is a substantial conference that goes beyond just the keynote address. The Ionic blog provides a summary of the significant updates to Angular announced during the conference, along with suggestions for talks worth exploring.
+
+### [The art of design system recipes](https://bradfrost.com/blog/post/the-art-of-design-system-recipes/)
+
+Brad Frost explores a design system "recipe," which serves as a layer enabling design systems to accommodate product-specific requirements. The concept involves a recipe layer positioned between product teams and the design system team, where each requirement undergoes evaluation to determine whether it's essential for a specific product or the component itself. This approach facilitates faster movement for teams outside the design systems realm.
+
+## In Other News
+
+### [A popular open-source content delivery network went down for hours - The Verge](https://www.theverge.com/2024/4/12/24128276/open-source-unpkg-cdn-down)
+
+The Unpkg CDN went down for few hours this month and the outage broke, or created weird issues on several websites using it. The CDN is known to power 4 billion requests per day. If you have to use a CDN, use something that's more production focused - like [JSDelivr](https://www.jsdelivr.com/) or just self host your files. It's probably as fast.
+
+### [Introducing Meta Llama 3: The most capable openly available LLM to date](https://ai.meta.com/blog/meta-llama-3/)
+
+Meta launched Llama 3 this month and it keeps its crown as the open source king of LLMs. The results are now comparable to LLMs like GPT-4 and even the local 8b versions (Ollama, LLM Studio) are better. Mark Zuckerberg also [gave](https://www.youtube.com/watch?v=bc6uFV9CJGg) couple of [interviews](https://www.youtube.com/watch?v=8HrzoEvLWH0) on State of his mind right now.
+
+[Rumour mill is rife](https://www.techradar.com/computing/search-engines/a-battle-might-be-brewing-as-talks-swirl-of-openai-working-on-a-search-engine-to-challenge-googles-dominance) that OpenAI is launching search very soon.
+
+### [The PC Reborn – Introducing Snapdragon X Plus](https://youtu.be/5poVsIeq3TM?si=Msq3OmFLR6dmTRsu)
+
+In 2020, Apple introduced the M1 chips for Macs, revolutionizing the industry with its "system on a chip" (SoC) architecture that consolidated CPU, GPU, unified memory, and other components onto a single chip. This move positioned Apple ahead of PCs in terms of performance and benchmarks for the past four years. However, Qualcomm has now unveiled two chips - the X Plus and X Elite - poised to challenge Apple's dominance, at least in terms of benchmarks thus far. Expect to see laptops powered by these chips from major manufacturers hitting the market very soon.
+
+In response, Apple has taken the world by surprise with the unexpected launch of the [M4 chip](https://www.apple.com/newsroom/2024/05/apple-introduces-m4-chip/) during the iPad event.
+
+## Looking Ahead
+
+- [11ty International Symposium on Making websites real good](https://conf.11ty.dev/) - May 9
+- [Google I/O](https://io.google/2024/) - May 14
+- [React Conf](https://conf.react.dev/) - May 15-16
+- [Microsoft Build](https://build.microsoft.com/en-US/home) - May 21-23
+- [App.js Conference](https://appjs.co/) - May 22-24
+- [Vercel Ship](https://vercel.com/ship) - May 23 (The website is 🔥)
+- [JSHeroes](https://jsheroes.io/) - May 23-24
+- [Kotlin Conf](https://kotlinconf.com/) - May 23-24
+- [Frontend Nation](https://frontendnation.com/) - June 4-7

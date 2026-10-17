@@ -1,0 +1,130 @@
+---
+title: JEM - Web in August - JavaScript Every Month Newsletter
+date: "2023-09-07T20:15:05.772868Z"
+buttondownUrl: https://buttondown.com/agney/archive/jem-web-in-august-javascript-every-month/
+---
+
+Play _Wake me up when September ends_ by Green day.
+
+## Releases
+
+### Browsers
+
+#### [Firefox 117](https://developer.mozilla.org/en-US/docs/Mozilla/Firefox/Releases/117)
+
+- The CSS Nesting module is now supported in Firefox, along with the the `&` nesting selector.
+- Inline SVGs now support `<script>` elements with type="module", defer, and async attributes. This allows SVGs to use modern JavaScript features, including ES modules, and to load scripts asynchronously.
+
+#### [Chrome 116](https://developer.chrome.com/blog/new-in-chrome-116/)
+
+- Any arbitrary HTML can now be used in a Picture-in-Picture API.
+- [Motion path](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_motion_path) allows authors to position any graphical object and animate it along a path specified by the developer.
+
+### [Astro 3.0](https://astro.build/blog/astro-3/)
+
+- Native support for View Transitions API
+- Image optimization is stable (`Image` component)
+- Fast Refresh with JSX
+- Partnership with Vercel for SSR
+
+### [Node 20.6](https://nodejs.org/en/blog/release/v20.6.0)
+
+- Build in support for `.env` files.
+- In ES modules, import.meta.resolve(specifier) can be used to get an absolute URL string to which specifier resolves, similar to require.resolve in CommonJS. This aligns Node.js with browsers and other server-side runtimes.
+
+### [Bun 1.0](https://www.youtube.com/watch?v=BsnCpESUEqM)
+
+Bun's 1.0 version is out and the release video is pretty awesome.
+
+## In the Spotlight 🔦
+
+In this month's spotlight, I would like to highlight CSS Nesting. Firefox 117 just added native support for CSS Nesting and this means it's available natively in all major web browsers. If you want support for older browsers, PostCSS has you covered with [PostCSS Nesting plugin](https://github.com/csstools/postcss-plugins/tree/main/plugins/postcss-nesting).
+
+There is a gotcha in support though:
+
+> Note: Early versions of the specification did not allow nesting of type selectors without the [& nesting selector](https://developer.mozilla.org/en-US/docs/Web/CSS/Nesting_selector). This has been updated so the & nesting selector is no longer needed. At the time of writing (Aug. 2023) Firefox supports the new version of the specification while Chrome and Safari support the old version of the specification and must use the & nesting selector for type selector nesting.
+
+If you are not using PostCSS, you can get around this by using the nesting operator `&` everywhere. If you have used preprocessors like SASS for nesting, the syntax should be self-explanatory.
+
+```css
+label {
+  /* styles for label */
+  & input {
+    /* styles for input nested inside label
+  }
+}
+
+label {
+  & + input {
+    /* styles for input adjacent to the label
+  }
+}
+
+label {
+  &.error {
+    /* styles for label with an error class
+  }
+}
+```
+
+References:
+
+- [Can I Use - CSS Nesting](https://caniuse.com/css-nesting)
+- [MDN - CSS Nesting](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_nesting/)
+- [Chrome Developer Blog](https://developer.chrome.com/articles/css-nesting/)
+
+> Check out [winning games for React Jam](https://reactjam.com/summer-2023-winners)
+
+## Tutorials
+
+### [Antiquated React - Josh Collinsworth](https://joshcollinsworth.com/blog/antiquated-react)
+
+React has been a prominent player in the frontend framework arena for quite some time now, establishing itself as the de facto choice. Many appreciate React's stability and its ability to maintain compatibility even for developers who learned it years ago. However, this stability has also meant that other frameworks have surged ahead in terms of available features. Josh takes a deep dive into these new features, shedding light on what React enthusiasts may have missed out on.
+
+### [Bezier Curves - Richard Ekwonye](https://blog.richardekwonye.com/bezier-curves)
+
+In CSS animations, we rely on Bezier curves to define the rate of change of a property. While CSS offers built-in easing functions such as ease, ease-in, ease-out, and ease-in-out, it also allows us to create custom easing functions using Bezier curves. This blog post delves into the fascinating world of Bezier curves, exploring how they are crafted and how their behaviour evolves as their values are adjusted.
+
+### [State of CSS Survey Results 2023](https://2023.stateofcss.com/)
+
+The results of the State of CSS survey have been released, and the graphs are truly impressive! 😲 In the survey findings, you'll come across various blogs, tricks, and valuable resources derived from the results. Notably, CSS Variables emerge as the CSS feature that has gained the most adoption in recent times. Furthermore, it's evident that Tailwind CSS continues its reign as the dominant CSS framework, with no signs of slowing down. 📊✨
+
+### [14 Linting Rules To Help You Write Asynchronous Code in JavaScript](https://maximorlov.com/linting-rules-for-asynchronous-code-in-javascript/)
+
+Over the past decade, there have been several syntax improvements in writing asynchronous JavaScript code. However, it remains a complex aspect of the language, not always the most intuitive. This blog post explores ESLint rules that can effectively prevent common bugs and delve into the reasons behind these issues.
+
+### [Common Beginner Mistakes with React - Josh W Comeau](https://www.joshwcomeau.com/react/common-beginner-mistakes/)
+
+Josh walks us through common React mistakes like mutating state, choosing the wrong keys and async effect function. He explains why these are errors with examples and explores multiple solutions.
+
+### [Turbo 8 is dropping TypeScript - DHH](https://world.hey.com/dhh/turbo-8-is-dropping-typescript-70165c01)
+
+DHH woke up and chose violence when he posted a blog on removing TypeScript from their repository Turbo. He feels that TypeScript does more harm than good and it was time to remove it from the repository. The [PR](https://github.com/hotwired/turbo/pull/971) was then merged shortly after causing all sorts of posts about the same. It got so bad that DHH had to write a [second blog post](https://world.hey.com/dhh/open-source-hooliganism-and-the-typescript-meltdown-a474bfda) about the hooliganism.
+
+## In Other News
+
+### [Introducing Code Llama, an AI Tool for Coding - Meta](https://about.fb.com/news/2023/08/code-llama-ai-for-coding/)
+
+- Code Llama is an AI model built on top of Llama 2, fine-tuned for generating and discussing code.
+- It’s free for research and commercial use.
+
+### [Falcon 180B](https://falconllm.tii.ae/falcon-180b.html)
+
+Technology Innovation Institute has released a 180B parameter LLM open source model. I hear it's got monster system requirements. From the release notes:
+
+> Falcon 180B is a super-powerful language model with 180 billion parameters, trained on 3.5 trillion tokens. It's currently at the top of the Hugging Face Leaderboard for pre-trained Open Large Language Models and is available for both research and commercial use. This model performs exceptionally well in various tasks like reasoning, coding, proficiency, and knowledge tests, even beating competitors like Meta's LLaMA 2.
+
+### [Chandrayan 3 Soft Landing on Moon - ISRO](https://www.isro.gov.in/LIVE_telecast_of_Soft_landing.html)
+
+Chandrayaan-3, India's third lunar mission, successfully soft-landed on south pole the Moon on August 23, 2023. The south pole is important because it is believed to have significant amounts of water and other minerals.
+
+### [ChatGPT Enterprise](https://openai.com/blog/introducing-chatgpt-enterprise)
+
+ChatGPT launched an Enterprise plan promising more security and privacy with unlimited access to GPT-4.
+
+## Looking Ahead
+
+- [DebConf 23](https://debconf23.debconf.org/) - Sept 10-17
+- [Apple Event](https://www.apple.com/in/apple-events/) - Sept 12
+- [Temporal Replay](https://temporal.io/replay) - Sept 12-14
+- [GraphQL Conf](https://graphql.org/conf/) - Sept 19-21

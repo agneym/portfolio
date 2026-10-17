@@ -1,0 +1,200 @@
+---
+title: JEM - Web in September - JavaScript Every Month Newsletter
+date: "2025-10-05T21:47:51.879988Z"
+image: https://opengraph.githubassets.com/49d24b453b1914efebb008e4374982932f4794d64b28de4d30e72ca276786a00/nrwl/nx/security/advisories/GHSA-cxm3-wv7p-598c
+buttondownUrl: https://buttondown.com/agney/archive/jem-web-in-september-javascript-every-month-4812/
+---
+
+Hello October 🎃
+
+Supply chain attack took centre stage this month as well, orchestrated by the same threat actors behind the August 2025 Nx incident. This time, they’ve unleashed a self-replicating worm named **Shai Hulud** 🐛, which automates secret theft, GitHub repo manipulation, and package propagation.
+
+### What the Worm Does
+
+- **Harvests Secrets**:
+  - Scans CI environments and host machines for secrets using TruffleHog and cloud metadata endpoints (AWS/GCP).
+- **Exfiltrates Data**:
+  - Creates a GitHub repo named _Shai-Hulud_ under the compromised account, dumping system info and secrets.
+  - Injects GitHub Actions workflows that POST secrets to attacker-controlled webhooks and logs them in double-base64 format.
+- **Propagates Automatically**:
+  - Infects all npm packages a compromised maintainer controls by modifying and republishing them with a malicious `postinstall` hook.
+- **Amplifies Damage**:
+  - Makes private GitHub repos public and injects workflows to trigger further leaks.
+
+### Scope of Impact
+
+- Over **187 npm packages** compromised, including those from **CrowdStrike**, **ctrl**, **nstudio**, and **nativescript-community**.
+- A separate incident also saw the compromise of developer _qix_’s account, affecting high-traffic packages like `chalk`, `strip-ansi`, and `color-convert`—collectively exceeding **1 billion weekly downloads**.
+- The malware in that case was a **crypto-clipper**, hijacking wallet addresses using Levenshtein distance to mimic legitimate ones and intercept transactions.
+
+### GitHub’s Response
+
+- Removed over **500 compromised packages** from the npm registry.
+- Blocked uploads containing known Indicators of Compromise (IoCs).
+- Announced a security roadmap including:
+  - Mandatory **2FA for local publishing**.
+  - **Granular tokens** with 7-day lifespans.
+  - **Trusted publishing** to eliminate token management in CI/CD pipelines.
+
+### Remediation Advice
+
+- Audit your dependencies and lockfiles immediately.
+- Use the `overrides` feature in `package.json` to pin safe versions.
+- Clean your npm cache and reinstall all packages.
+- `pnpm` and `bun` has built remediation steps into the managers including minimum time until release for installation and not executing post install scripts automatically.
+
+---
+
+## Releases
+
+### Browsers
+
+#### [Safari 26](https://webkit.org/blog/17333/webkit-features-in-safari-26-0)
+
+Major version of Safari with lots of 🎁
+
+- Anchor positioning (waiting for Firefox now ⏳)
+- scroll driven animations
+- pretty text wrap
+- contrast color
+- CSS progress function
+- WebAuthn Signal API, which allows websites to report credential updates (like username changes or revocations) to credential providers, ensuring a more accurate and consistent user experience with passkeys
+- support for pattern modifiers for JavaScript regular expressions
+- WebGPU support
+
+#### [Firefox 143](https://developer.mozilla.org/en-US/docs/Mozilla/Firefox/Releases/143)
+
+- support for CSS pseudo element `::details-content`
+- `::marker` pseudo-element can now be used to style a list item that has been created using the `::before` or the `::after` pseudo-element
+- multipass grid track sizing
+
+#### [Chrome 141](https://developer.chrome.com/blog/new-in-chrome-141)
+
+[Google Chrome at 17](https://addyosmani.com/blog/chrome-17th/) 🎂
+
+- IndexedDB `getAllRecords()` method for `IDBObjectStore` and `IDBIndex`.
+- WebRTC Encoded Transform V2
+- `width` and `height` attributes are supported on nested SVG.
+- Use `counter()` and `counters()` in the alt text of the content property.
+- support for Digital Credentials API
+- `caret-animation` with `auto` and `manual` values
+- `ariaNotify` provides a JavaScript API that lets content authors tell a screen reader what to read
+
+### IDEs
+
+- Many people complained about Claude Code and its issues over the past month. Anthropic acknowledged these problems and [published a post-mortem](https://www.anthropic.com/engineering/a-postmortem-of-three-recent-issues).
+- Lots of Qwen releases as usual - [Qwen Max](https://qwen.ai/blog?id=241398b9cd6353de490b0f82806c7848c5d2777d&from=research.latest-advancements-list) was the one I found most interesting. [Qwen 3 Next](https://qwen.ai/blog?id=4074cca80393150c248e508aa62983f9cb7d27cd&from=research.latest-advancements-list) comes with smaller sparse parameter model that punches above it's weight.
+- Chrome has released a [DevTools MCP](https://developer.chrome.com/blog/chrome-devtools-mcp) that enables agents to access the current state in the browser. Many makeshift solutions have been attempted in the past, but none are as effective as the browser itself. Cursor has integrated the MCP into their IDE.
+- [Slash commands](https://cursor.com/changelog/1-6) support on Cursor.
+
+### [Astro 5.14](https://astro.build/blog/astro-5140/)
+
+- collision warnings on prerendered routes
+- `routePattern` property available to generate `getStaticPaths`
+- async rendering feature support for svelte
+
+### [MediaBunny](https://mediabunny.dev/)
+
+Not the month it was released, but the month it went viral.
+
+A zero dependency TypeScript library for reading, writing and converting audio and video files in the browser.
+
+### [Wasm 3.0](https://webassembly.org/news/2025-09-17-wasm-3.0/)
+
+New live standard for Wasm. The address space expands to allow wasm apps to use more memory.
+
+### [Beyond the Horizon: How Angular is Embracing AI for Next-Gen Apps](https://blog.angular.dev/beyond-the-horizon-how-angular-is-embracing-ai-for-next-gen-apps-7a7ed706e1a3)
+
+Angular team announced a new Web Codegen Scorer that they are using to score and improve system prompts and tools with the new Angular MCP server.
+
+## In the Spotlight 🔦
+
+A popular blog post was published this month about React winning by default.
+
+[https://www.lorenstew.art/blog/react-won-by-default/](https://www.lorenstew.art/blog/react-won-by-default/)
+
+The claim of this post is that React's dominance has stifled innovation in the ecosystem, as everyone tends to prefer React regardless.
+
+Rick Hanlon presented a forward-looking perspective on [React's innovations in scheduling](https://bsky.app/profile/ricky.fm/post/3lyxjkguwic2q). Although the changes to the DOM and Virtual DOM have remained static for some time, the React team has continued to enhance scheduling, making it easier and more effective for developers. However, not everyone is convinced that this is the solution.
+
+The [Activity](https://react.dev/reference/react/Activity) component that released recently is surely one of these innovations. The React community has not been particularly excited about these updates for various reasons. However, with React Conf approaching, this may change with some engaging talks on stage.
+
+### In short
+
+- React router releases support for [RSC in framework mode](https://remix.run/blog/rsc-framework-mode-preview).
+- VueJS has added a curated list of libraries and utilities under the [VueJS plugin collection](https://www.vue-plugins.org/) monicker.
+- A huge [list of things new in CSS](https://nerdy.dev/cascading-secret-sauce)
+- Chrome will ship with [Gemini by default](https://blog.google/products/chrome/new-ai-features-for-chrome/).
+- [Notion 3.0 with Agents](https://www.notion.com/releases/2025-09-18) has been a breeze to use and some neat UX with agents design.
+- [Can I use RSC today?](https://rsc.krasimirtsonev.com/)
+- Lydia Halley wrote about [what makes `bun install` fast](https://bun.com/blog/behind-the-scenes-of-bun-install)
+
+## Tutorials
+
+### [Tanstack DB Interactive Tutorials](https://frontendatscale.com/blog/tanstack-db/)
+
+If you've been a regular reader of this newsletter, you know how much I love interactive tutorials and blog posts. I believe they represent the future, especially considering the AI content we encounter daily. If you want to learn about Tanstack DB or simply read a well-written tutorial, this is the one to check out.
+
+### [A deep dive into Cloudflare’s September 12, 2025 dashboard and API outage](https://blog.cloudflare.com/deep-dive-into-cloudflares-sept-12-dashboard-and-api-outage/)
+
+Cloudflare outage was caused by a poorly written `useEffect` that went on an infinite loop. Adding a reminder for these if you are writing React:
+
+- [You might not need an effect - React docs](https://react.dev/learn/you-might-not-need-an-effect)
+- An [unofficial ESLint plugin](https://github.com/NickvanDyke/eslint-plugin-react-you-might-not-need-an-effect) to check if you are just syncing props and state in the effect.
+
+### [How modern browsers work](https://addyo.substack.com/p/how-modern-browsers-work)
+
+Addy Osmani writes a comprehensive, developer-friendly guide to the inner workings of modern web browsers, with a particular focus on Chromium's architecture. Very long, but very interesting if you want to figure out how browsers work under the hood.
+
+### [Figma rendering: Powered by WebGPU](https://www.figma.com/blog/figma-rendering-powered-by-webgpu/)
+
+Figma has transitioned its rendering engine from WebGL to WebGPU, unlocking significant performance improvements and modernizing its graphics infrastructure. This blog has what they gained and challenges they faced along the way.
+
+### [Redux in 2025: A reliable choice for complex React projects](https://stefvanwijchen.com/react-and-redux-in-2025/)
+
+While everyone has embraced the chaos of Signals, this article examines and contrasts the approach used with Redux and its principles. The use case driving Redux adoption is that shorter isn't always better.
+
+### [Cut styled-components into pieces: This is our last resort - Sanity](https://www.sanity.io/blog/cut-styled-components-into-pieces-this-is-our-last-resort)
+
+Styled components, along with many other CSS-in-JS libraries, have been deprecated for some time, leading to inconsistencies about their future within the React ecosystem. In this open-source success story, Sanity assisted Linear in achieving a 40% boost by forking styled-components and implementing `useInsertionEffect`.
+
+## In Other News
+
+### [My mom and Dr. DeepSeek - Rest of the World](https://restofworld.org/2025/ai-chatbot-china-sick/)
+
+The author narrates a story about inequality in access to healthcare in China, which drives people to seek advice from chatbots that provide instant assistance. While describing a deeply personal story, it goes into how medicine is changing with the advent of AI on both sides of the consulting table.
+
+The specific aspect that concerns me is AI's inability to ask questions. A doctor would pose clarifying questions to reach a diagnosis. However, AI, eager to assist, simply accepts the symptoms you provide, even when it appears correct; you cannot be certain about the hallucinations.
+
+### [Meta Wayfarer 2](https://www.meta.com/in/ai-glasses/ray-ban-meta-wayfarer-matte-black-clear-gen-2/)
+
+Meta has launched a new generation of glasses with Rayban and this comes with a discrete display you can use to view your notifications and AI updates.
+
+### [Hosting a WebSite on a Disposable Vape](https://bogdanthegeek.github.io/blog/projects/vapeserver/)
+
+There is active debate on social platforms whether it's worth using Netlify, Vercel etc. which build on top of other hosting platforms and give you convenience. While that is raging, this author goes on to host a blog a disposable vape 🤯 Let the debate on what is disposable continue! If you can host a site on one of these, are these then disposable?
+
+I cannot seem to access the site from vape anymore, but interesting read nevertheless.
+
+### [An experimental new way to design software - Anthropic - YouTube](https://www.youtube.com/watch?v=dGiqrsv530Y)
+
+Anthropic released a benchmaxxed Sonnet 4.5 last month. This demo, which has begun rolling out to some customers, is remarkable as it indicates a shift in user interfaces. The entire user interface is generated by the AI while you use it. Is it very usable? Probably not. Is it interesting? Yes.
+
+### AI Updates
+
+- [Gemini Robotics 1.5](https://x.com/sundarpichai/status/1971244716046872577) - Robot reasoning with tools.
+- [Meta Code World Models](https://ai.meta.com/research/publications/cwm-an-open-weights-llm-for-research-on-code-generation-with-world-models/) - Meta has released new research models that generate world models from your code, rather than relying on LLMs that focus solely on syntax.
+- Deepseek releases [v3.1 Terminus](https://api-docs.deepseek.com/news/news250922) - small increment to their existing model.
+- [GLM 4.6](https://z.ai/blog/glm-4.6) released with longer context window and more polished frontend generation.
+- OpenAI released a study on how [people are actually using ChatGPT](https://openai.com/index/how-people-are-using-chatgpt/)
+
+> 49% messages are “Asking”. 40% is Doing. 11% is expressing.
+
+## Looking Ahead
+
+- [Smashing conf NY](https://smashingconf.com/ny-2025)- Oct 6-9
+- [React conf](https://conf.react.dev/) - Oct 7-8
+- [Vite Conf Amsterdam](https://viteconf.amsterdam/) - Oct 9-10
+- [Remix JAM](https://remix.run/jam/2025) - Oct 10
+- [React India](https://www.reactindia.io/) - Oct 15
+- [Vercel Ship AI](https://vercel.com/ship/ai) - October 23

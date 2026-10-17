@@ -56,6 +56,36 @@ const posts = defineCollection({
   },
 });
 
+const newsletterSchema = type({
+  title: "string",
+  date: "string",
+  "description?": "string",
+  "image?": "string",
+  buttondownUrl: "string",
+  content: "string",
+});
+
+const newsletters = defineCollection({
+  name: "newsletters",
+  directory: "src/app/newsletter/issues",
+  include: "*.mdx",
+  schema: newsletterSchema,
+  transform: async (issue, context) => {
+    const mdx = await compileMDX(context, issue, {
+      cwd: process.cwd(),
+      remarkPlugins: remarkPlugins({
+        math: { singleDollarTextMath: false },
+      }),
+    });
+
+    return {
+      ...issue,
+      slug: issue._meta.path,
+      mdx,
+    };
+  },
+});
+
 export default defineConfig({
-  content: [posts],
+  content: [posts, newsletters],
 });

@@ -1,0 +1,135 @@
+---
+title: Web in June - Newsletter by Agney
+date: "2022-07-02T21:01:59.145797Z"
+buttondownUrl: https://buttondown.com/agney/archive/web-in-june-newsletter-by-agney/
+---
+
+Hey July 👋
+
+Mostly a lazy month that I'm looking to turn productive. Ideas Welcome.
+
+I would like to start with softwares that are going away this time and then move on to happier release notes. (Even though, one of these might be the happy news to at least some of you)
+
+#### [Internet Explorer](https://blogs.windows.com/windowsexperience/2022/06/15/internet-explorer-11-has-retired-and-is-officially-out-of-support-what-you-need-to-know/)
+
+I would like to extend Thanks and Goodbye to the Internet Explorer. Memes galore!
+
+Beyond the memes, I'm impressed by Microsoft's commitment to keep backward compatibility and support their enterprise customers. This is in a day and age where entire product lineups are dead in a month or so. IE will live on as IE Mode inside Edge for whoever needs it (let's move on if there is any possibility, shall we?)
+
+#### [Sunsetting Atom](https://github.blog/2022-06-08-sunsetting-atom/)
+
+This was expected when VS Code bought under the Github umbrella, they did not need two editors and the less popular one - Atom is going away. If you loved Atom, there is a new editor in town - [Zed](https://zed.dev/). Written in Rust and build for collaboration.
+
+---
+
+Another major event of the month was the Cloudflare outage that happened on June 21. It affected their most popular 19 locations and as for the popularity of Cloudflare, bought a whole lots of sites with it. Cloudflare posted [the postmortem for outage](https://blog.cloudflare.com/cloudflare-outage-on-june-21-2022/) on the same day within hours, I wish I was able to write blogs with that speed. May be I just have to break something of Cloudflare scale first 🤞.
+
+---
+
+## Releases
+
+### [CoPilot](https://github.com/features/copilot) and [CodeWhisperer](https://aws.amazon.com/codewhisperer/)
+
+Everyone's favourite AI tool from Github (and hence Microsoft) is going to be a paid service from August. I have been using this tool since the technical preview launch for almost an year and the improvement it has shown over time gives me so much confidence in recommending it. It's a stackoverflow build inside the editor of sorts, you name it and CoPilot fills the rest. It's also crazy good at repetitive tasks like filling out a JSON structure.
+
+In other news and good timing, AWS has launched it's own service for coding companion named CodeWhisperer. It is also supposed to automatically recommend unit test code, I'm excited to see how that pans out.
+
+### [WWDC and releases](https://youtu.be/_pZVU49Qv4M)
+
+Apple's WWDC was last month and there is a lot of aplomb with iOS updates (not really!) - But you can customise your lock screen and that's something. The Macbook Air with M2 is the device everyone is looking out for, but the device that is out is the Macbook Pro 13" that nobody wants. Figure that out as you go.
+
+However, we have some [updates from Safari and Webkit](https://webkit.org/blog/12824/news-from-wwdc-webkit-features-in-safari-16-beta) that are interesting - Container queries, Subgrid are major CSS features making an appearance. Adding to that, apps on Safari can finally use Web Push. While we note when Safari is the laggard to something, they are the first to implement Container Queries (behind a Technical Preview now, but still).
+
+### [Deepmind's Gato - Generalist AI](https://www.deepmind.com/publications/a-generalist-agent)
+
+> Gato, works as a multi-modal, multi-task, multi-embodiment generalist policy. The same network with the same weights can play Atari, caption images, chat, stack blocks with a real robot arm and much more, deciding based on its context whether to output text, joint torques, button presses, or other tokens.
+
+Google has come out with a white paper for an AI named Gato which can perform around 600 tasks. This has split the tech community into two: Ones who believe this is the Second Coming and all we need to improve on it and another faction that believes it's just doing things that it's trained to do before. It doesn't _learn_ content on it's own on interaction with the environment. Whichever is the case, that robot would be a nice to have.
+
+- [DeepMind Gato and the Long, Uncertain Road To Artificial General Intelligence](https://science.thewire.in/the-sciences/deepmind-gato-artificial-general-intelligence/)
+- [DeepMind Takes A Step Towards General AI - Two Minute Papers](https://youtu.be/8hXsUNr3TXs)
+
+### [Hertzbleed](https://www.hertzbleed.com/)
+
+The vulnerability that took technical communities by storm this month. When you have a badass name like `Hertzbleed` and a website for a white paper looking like that - I see why it's popular. The last time I saw something like that, it was either crypto or an NFT. The core idea is that the voltage fluctuations inside a CPU is a tell for the calculations it performs and hence compromises any cryptographic algorithms inside the system. Cloudflare has a [nice explainer](https://blog.cloudflare.com/hertzbleed-explained/) if you want to dive deeper.
+
+There was also vulnerability reveal, this time on Apple's M1 chips detailed as the PacMan hack (What's with the appealing names?). Find out more with the [IEEE explainer](https://spectrum.ieee.org/pacman-hack-can-break-apple-m1s-last-line-of-defense#toggle-gdpr).
+
+### [Next 12.2](https://nextjs.org/blog/next-12-2)
+
+Middlewares are now stable. Based on the incoming request, you can modify the response by rewriting, redirecting, adding headers, or setting cookies.
+
+### [Fresh 1.0 - Deno](https://deno.com/blog/fresh-is-stable)
+
+Fresh follows the architecture Jason Miller conceptualised in his popular blog post - [Islands Architecture](https://jasonformat.com/islands-architecture/). It sends no JavaScript by default to the client server and builds on the server JIT. It allows you small _islands_ that you specify which have reactivity and will send JS for specifically those islands.
+
+## Tutorials
+
+### [Svelte Origins: A JavaScript Documentary](https://youtu.be/kMlkCYL9qo0)
+
+The first fascinating part about this documentary is it's existence. I would have believed in some parody videos or a talk where founders of a framework come together, but a well produced documentary featuring the core team was unheard of when I started out. It's truly a mark of how far YouTube and hunt for content has come.
+
+It feels like superhero origin story of sorts and it's interesting to hear from Rich Harris on what the motivations of certain features are. Rich ends on a note of "_We would rather have a thing that a small number of people love than a thing a large number of people tolerate_" which is definitely a great philosophy for any framework.
+
+I'm glad to feature this the same month [I tried out Svelte Kit](https://github.com/agneym/url-cleaner), I'm surprised how I could build it out in such a small time.
+
+### [The Power of JS Generators by Anjana Vakil](https://youtu.be/gu3FfmgkwUc)
+
+[Anjana's Functional JavaScript talk](https://youtu.be/e-5obm1G_FY) is one of the most popular talks in JavaScript. It's to no surprise though, Anjana's talks comes with an infectious energy that inspires you to try whatever she is speaking about. She is back and this time with Generators at JS Budapest. Even though I have checked out Generators before, I haven't had the luck to use it anywhere in code just yet. But I can't wait after this talk.
+
+### [Color.js](https://colorjs.io/)
+
+The library which has spend two years in making - The library that is serious about science. I'm not into color science, so I cannot verify any of the claims the library makes but the authors of the library are Lea Verou and Chris Lilley who are co-editors of many editions of CSS Color spec. They do seem like the people best to trust on this.
+
+Also checkout Lea's talk on [CSS Variable Secrets](https://www.youtube.com/watch?v=ZuZizqDF4q8) at CSS Day.
+
+### [Date and Time Pickers for All - React Spectrum](https://react-spectrum.adobe.com/blog/date-and-time-pickers-for-all.html)
+
+Even if you don't use Adobe Spectrum or related React libraries, the components they put out are to be studied just for the work they have put into the UI and accessibility of these components. In case of date fields, the input where users can input dates is all love.
+
+### [Fun CSS-only scrolling effects for Matterday](https://www.netlify.com/blog/fun-parallax-scrolling-css-for-matterday/)
+
+The [Matterday](https://matterday.netlify.com/) site is just delightful and warms your mind as web developer that these unique experiences are being build. The developer behind the site, Lynn Fisher writes on the Netlify blog the CSS tricks that she used to accomplish the magical effects on the site.
+
+### [Magical SVG Techniques](https://www.smashingmagazine.com/2022/05/magical-svg-techniques/)
+
+Let's face it. SVG is Magic. When I started going this article, it felt like one of those list people made on _Amazing Web Development tricks_ that everyone should know pointing to the same 10 sites that people post everyday. But turns out this one comes with some good research on what SVG can do practically and effects that can be achieved. But you are warned, there are no tips in this article, it's a list that goes off to a dozen other places.
+
+## In the Spotlight 🔦
+
+Most speed up production tweets refer to very generic fixes that you can perform. What I love about this one is that it's specific to what has been done and why.
+
+[https://twitter.com/shuding\_/status/1539249000997695489](https://twitter.com/shuding_/status/1539249000997695489)
+
+Vite's being the default for all the new projects coming out.
+
+[https://twitter.com/taylorotwell/status/1541795873838989314](https://twitter.com/taylorotwell/status/1541795873838989314)
+
+Tabs vs Spaces debate has a winner:
+
+[https://twitter.com/Rich_Harris/status/1541761871585464323](https://twitter.com/Rich_Harris/status/1541761871585464323)
+
+## In Other News
+
+### [OpenSea Data Breach](https://techcrunch.com/2022/06/30/nft-opensea-data-breach/)
+
+OpeaSea is an NFT Marketplace that hit $13 billion valuation this year. The significant data breach, explained in their own words:
+
+[https://twitter.com/opensea/status/1542338816551243776](https://twitter.com/opensea/status/1542338816551243776)
+
+### [Firefox and Chrome are squaring off over ad-blocker extensions](https://www.theverge.com/2022/6/10/23131029/mozilla-ad-blocking-firefox-google-chrome-privacy-manifest-v3-web-request)
+
+We have talked about this before in earlier editions of The Web newsletter but for the uninitiated, the Chrome is mounting a _security_ feature that will restrict the power of privacy and adblocker restrictions on filtering requests by URL patterns. Firefox has picked a side and decided that they will not adhere to the Manifest v3 restrictions that Chrome has proposed. Would this be enough to swing some technical audience to Firefox? Let's find out.
+
+### [Monorepos in JavaScript & TypeScript](https://www.robinwieruch.de/javascript-monorepos/)
+
+Even though this blog post is named Monorepos in JS and TS, it goes into depth about why monorepositories in the first place and various tools that you can use for the same.
+
+### [Am I on the Indie Web yet](https://www.miriamsuzanne.com/2022/06/04/indiweb/)
+
+Miriam Suzzanne makes a poignant piece about how difficult it is to setup Web Mentions. If you have heard of Web Mentions, well done. If you have tried to integrate it, my sympathies. I have it integrated on my site and have had it for years now. But I have no idea how it works or the third party sites that I have signed up for it.
+
+## Looking Forward
+
+- [SciPy](https://www.scipy2022.scipy.org/) - July 11 -17
+- [Stackconf](https://stackconf.eu/) - July 19, 20

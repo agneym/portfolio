@@ -1,0 +1,128 @@
+---
+title: Web in May - Newsletter by Agney
+date: "2022-05-30T20:01:42.917159Z"
+buttondownUrl: https://buttondown.com/agney/archive/web-in-may-newsletter-by-agney/
+---
+
+Hey June 🚀
+
+Every time I start to make a reference to the season, I remember that it's not the same season for everyone. It's monsoon at my place, but it might be summer at yours. It's impossible to generalise. I think it's important that we remember this when building web applications as well. There are all kinds of people all around the world and experiences you build might be critical to some of them. Let's be humble and keep the different seasons for users in our mind.
+
+As we did for the last couple of issues, I will begin with some updates from the war field (I wish I didn't have to)
+
+- [How Starlink Scrambled to Keep Ukraine Online - Wired](https://www.wired.com/story/starlink-ukraine-internet)
+- [A Timeline of Russian Cyberattacks on Ukraine - Wired](https://www.wired.com/video/watch/wired-news-and-science-a-timeline-of-russian-cyber-attacks-on-ukraine)
+- [The Russian invasion shows how digital technologies have become involved in all aspects of war - The Conversation](https://theconversation.com/the-russian-invasion-shows-how-digital-technologies-have-become-involved-in-all-aspects-of-war-179918)
+
+---
+
+## Releases
+
+### Cloudflare Platform Week
+
+Cloudflare was celebrating Platform Week this month and there are a slew of announcements from them. Here's some that got me excited.
+
+- [The next chapter for Cloudflare Workers: open source
+  ](https://blog.cloudflare.com/workers-open-source-announcement/)
+- [D1: our first SQL database](https://blog.cloudflare.com/introducing-d1/)
+- [Spring Developer Challenge](https://blog.cloudflare.com/announcing-our-spring-developer-challenge/)
+
+### [Flutter 3](https://medium.com/flutter/introducing-flutter-3-5eb69151622f)
+
+The next major version of Flutter was announced at Google I/O and it brings in support for six major platforms - iOS, Android, Web, Windows, Linux and MacOS apps. [Material Design](https://m3.material.io/) is also entering it's v3 with this release. It's cool to know that Google finds 500,000 apps that are now build with Flutter.
+
+### [Microsoft Power Pages](https://powerpages.microsoft.com/en-us/blog/announcing-microsoft-power-pages-build-secure-low-code-websites/)
+
+Satya Nadella accentuated their commitment to low code/no code [on keynote](https://www.youtube.com/watch?v=zoea9zBMUZk) while launching their new static page builder - Power Pages. It comes with a design view where users can change designs to a templates hub for most common applications.
+
+### [TypeScript 4.7](https://devblogs.microsoft.com/typescript/announcing-typescript-4-7/)
+
+This minor release focuses on the upgrade to NodeJS 16 and support for ECMA module system natively. This brings forth it's own challenges and features (for eg. the wild system that forces you to say .js for every file you import). There are also other useful changes like:
+
+- [Instantiation Expressions](https://devblogs.microsoft.com/typescript/announcing-typescript-4-7/#instantiation-expressions) - Generic on function expressions
+- [Go to source definition](https://devblogs.microsoft.com/typescript/announcing-typescript-4-7/#go-to-source-definition) - If you have used TypeScript, you will know that the editors have a way of going to the type file instead of the actual library when you click on an invocation. This helps in some cases, but mostly you just wanted to see the library source. This feature gives an option to change the behaviour.
+- [Group-Aware Organize Imports](https://devblogs.microsoft.com/typescript/announcing-typescript-4-7/#group-aware-organize-imports) - TypeScript has long had a command for organizing imports. But what it usually did (annoyingly) was to remove the separation between internal and external imports and misplace comments. This brings a change to this annoying _organization_
+
+### [Storybook 6.5](https://storybook.js.org/blog/storybook-6-5/)
+
+The announcement reads that this is the _biggest release yet for expanding what you can do with stories_. The rewrite of storybook and support for runners other than Webpack (Vite for now) is really cool. Even if you continue to use Webpack, it now supports lazy compilation of stories (which makes a lot of sense here) things should be much quicker.
+
+## Tutorials
+
+### [SmolCSS](https://smolcss.dev/)
+
+Stephanie Eckles creates a site for minimal snippets with modern CSS for problems that has existed since forever. Even if you are familiar with the solutions mentioned, you will find that the code has _smol_ tidbits that help you avoid potential problems.
+
+### [Migrating Stripe to Typescript](https://stripe.com/blog/migrating-to-typescript)
+
+Last month's newsletter had featured a tweet with some migration wisdom on Stripe's transition to using TypeScript - That's been converted into a detailed blog post now. There are interesting catches now how they decided to convert their codebase and migration path.
+
+### [Remixing React Router](https://remix.run/blog/remixing-react-router)
+
+React Router is combining with the powers of router from Remix (from the same authors). This means that a lot of data fetching, loading states and error boundaries get tied into the route configuration but also faster smarter states for all these. It's still under release plan, the code is really cool but I'm wondering how data fetching libraries like react-query take this approach.
+
+### [Layouts RFC](https://nextjs.org/blog/layouts-rfc)
+
+The new RFC from NextJS has a killer feature (that apparently has existed in NuxtJS since forever in JavaScript times) - Nested Routes. It is super difficult to build nested layouts in NextJS right now. ([Here's how](https://adamwathan.me/2019/10/17/persistent-layout-patterns-in-nextjs/)). The layouts will make this process much simpler and it seems like NextJS is going the Rails - Convention over Configuration route this time as well.
+
+### [TypeScript tips and Tricks with Matt](https://youtu.be/hBk4nV7q6-w)
+
+Matt Pocock is wildly recognised as a TypeScript Guru. He was on Visual Studio Code Youtube channel explaining some tips and concepts with TypeScript with live code examples and use cases. It's a great watch if you want to level up and test TypeScript depths.
+
+[https://twitter.com/KilledByAPixel/status/1517294627996545024](https://twitter.com/KilledByAPixel/status/1517294627996545024)
+
+### [Building data-centric apps with a reactive relational database](https://riffle.systems/essays/prelude/)
+
+Riffle has a blog on building data centric applications with an SQLite database on the client interacting with reactive queries. They reason that this can hold all state for the UI persistently in a single place and retrieve them super fast. The sync with remote servers would be centered around the CRDT sync that was made famous by Actual Budget (which went [open source](https://actualbudget.com/open-source) around last month)
+
+## In the Spotlight 🔦
+
+Google's developer conference was this month and among all the updates (Pixel 6A, Pixel Watch and mythical translation lens) are the State of the Union keynotes for Web (Chrome) and other Google products like Android. It's a big opportunity to catch up with what's new with all these technologies and platforms.
+
+- [Google I/O Keynote under 12 minutes - YouTube](https://www.youtube.com/watch?v=CWTm0ccfZe4)
+- [Google I/O Developer Keynote - YouTube](https://www.youtube.com/watch?v=qBkyU1TJKDg)
+- [Top 10 web things to know from Google I/O - YouTube](https://www.youtube.com/watch?v=m8R9vvsbU4I)
+- [State of CSS - YouTube](https://www.youtube.com/watch?v=Xy9ZXRRgpLk)
+- [State of Angular - YouTube](https://www.youtube.com/watch?v=ukGoWyla2lI)
+- [DevTools: State of the Union 2022](https://www.youtube.com/watch?v=YqWEqYa-evk)
+
+Google was not the only company with the developer event happening in May. Here's Microsoft:
+
+- [Satya Nadella 2022 Build Keynote Recap - YouTube](https://www.youtube.com/watch?v=By3p7KLssvU)
+- [Microsoft Edge | Build 2022: Enriching desktop experiences with the power and reach of the web](https://www.youtube.com/watch?v=eGrKPwJ-Zz0)
+
+[https://twitter.com/sebmarkbage/status/1516907614566854659](https://twitter.com/sebmarkbage/status/1516907614566854659)
+
+## In Other News
+
+### [Open-Source GPU Kernel Modules - NVIDIA](https://developer.nvidia.com/blog/nvidia-releases-open-source-gpu-kernel-modules/)
+
+> NVIDIA is now publishing Linux GPU kernel modules as open source with dual GPL/MIT license, starting with the R515 driver release. You can find the source code for these kernel modules in the [NVIDIA/open-gpu-kernel-modules](https://github.com/NVIDIA/open-gpu-kernel-modules) GitHub page
+
+NVIDIA likes empowering everyone to find and fix the issues with their Linux graphics drivers.
+
+### [Attack campaign using stolen OAuth tokens](https://github.blog/2022-05-26-npm-security-update-oauth-tokens/)
+
+There was hack on Github based on oAuth tokens issued to Heroku and Travis CI. Just when you think it's individuals who lost their tokens, Github's own company - NPM was also revealed to be affected. Github reveals that the attacker may have cloned private repositories that were linked to the user (of interest). Github has send notified users who were affected by the hack.
+
+### [Framework Laptop](https://community.frame.work/t/introducing-the-new-and-upgraded-framework-laptop/18646)
+
+Framework laptop is renowned for bring the dream of upgradable and repairable laptops into reality. There is a new and improved processor support with 12th Gen Intel® Core™ processors and Ethernet expansion cards.
+
+### Fall of Terra and Luna
+
+Terra was the famous "Bluechip" coin for investors which proudly proclaimed "powering the innovation of money". It's an algorithmic stablecoin - meaning that it was pegged to US dollar by an algorithm. The algorithm did this with the help of it's sister coin Luna. The rise of Terra was powered by the Anchor protocol which had users deposit their share of Terra and get upto 20% interest on it, the protocol in turn lent the deposited cryptocurrency to other users. Both the coins fell sharply this month, wiping $60 billion in value.
+
+- [How the Anchor protocol helped sink Terra - The Verge](https://www.theverge.com/2022/5/20/23131647/terra-luna-do-kwon-stablecoin-anchor)
+- [TerraUSD Crash Led to Vanished Savings, Shattered Dreams - WSJ](https://www.wsj.com/articles/terrausd-crash-led-to-vanished-savings-shattered-dreams-11653649201)
+- [Terra’s epic collapse, explained - CNBC](https://www.cnbc.com/video/2022/05/27/terras-epic-collapse-explained-and-why-crypto-may-see-wild-swings-this-weekend-cnbc-crypto-world.html)
+- [Terra 2.0 has got crypto world divided - IndianExpress](https://indianexpress.com/article/technology/crypto/as-terra-2-0-goes-live-tech-entrepreneurs-and-crypto-exchanges-divided-on-supporting-new-coin-7939118/)
+
+## Looking Forward
+
+- [JSConf Budapest](https://jsconfbp.com/) - June 2-3
+- [Apple WWDC](https://developer.apple.com/wwdc22/) - June 6-10
+- [JSHeroes](https://jsheroes.io/) - June 9
+- [CSS Day](https://cssday.nl/2022) - June 9, 10
+- [Prisma Day](https://www.prisma.io/day/) - June 15, 16
+- [HasuraCon](https://hasura.io/events/hasura-con-2022/) - June 28-29

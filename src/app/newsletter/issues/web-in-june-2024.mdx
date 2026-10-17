@@ -1,0 +1,161 @@
+---
+title: JEM - Web in June - JavaScript Every Month Newsletter
+date: "2024-07-11T21:11:55.549817Z"
+buttondownUrl: https://buttondown.com/agney/archive/jem-web-in-june-javascript-every-month-newsletter/
+---
+
+Hey July 👋
+
+It's been a super rainy month and a lazy one at that.
+
+If you are checking out one resource from my newsletter - pick [Noto's animated emoji collection](https://googlefonts.github.io/noto-emoji-animation). Such a happy resource.
+
+ 
+
+## Releases
+
+### Browsers
+
+#### [Firefox 127](https://developer.mozilla.org/en-US/docs/Mozilla/Firefox/Releases/127)
+
+- Using a `<color-interpolation-method>` is now supported in gradients created with `conic-gradient()`, `linear-gradient()`, and `radial-gradient()` functions and the `repeating-conic-gradient()`, `repeating-linear-gradient()`, and `repeating-radial-gradient()` functions for repeating gradients.
+- New `Set` methods are supported and these are in baseline. We will talk about these more in the Spotlight section.
+- The async clipboard API is fully supported.
+
+#### [Chrome 126](https://developer.chrome.com/release-notes/126)
+
+- Cross-document view transitions for same-origin navigations
+- toJSON() method for GeolocationCoordinates and GeolocationPosition which will improve `JSON.stringify`
+- MP4 container support for MediaRecorder
+
+In other news, Chrome has shipped an LLM in Chrome Canary which can be accessed with `window.ai`. [Proposal](https://github.com/explainers-by-googlers/prompt-api)
+
+### [Turborepo 2.0](https://turbo.build/blog/turbo-2-0)
+
+- New terminal UI: Interactive tasks and clearer logs
+- Watch Mode: Dependency-aware task watcher for any tooling in your repository
+- All-new documentation: Core monorepo concepts, refreshed API reference, and ecosystem tooling guides.
+
+### [htmx 2.0](https://htmx.org/posts/2024-06-17-htmx-2-0-0-is-released/)
+
+- The selectAndSwap() internal API method was replaced with the public (and much better) swap() method
+- Web component support has been improved dramatically.
+
+Found this interesting from the release notes:
+
+> Note that we are not marking 2.0 as latest in NPM because we do not want to force-upgrade users who are relying on non-versioned CDN URLs for htmx. Instead, 1.x will remain latest and the 2.0 line will remain next until Jan 1, 2025. The website, however, will reference 2.0.
+
+### [shadcn UI charts](https://ui.shadcn.com/docs/components/chart)
+
+Styled chart components from shadcn build on top of Recharts.
+
+### [TypeScript 5.5](https://devblogs.microsoft.com/typescript/announcing-typescript-5-5/)
+
+- Inferred type predicates make it more easy to handle array flow.
+- Narrow expressions of the form obj\[key] when both obj and key are effectively constant.
+- Importing types to JavaScript files is made easier with namespace import.
+- Basic syntax checking on regular expressions.
+
+## In the Spotlight 🔦
+
+The ECMA General Assembly approved ECMAScript 2024 and we have a new standard for browsers to work toward.
+
+Some of my favourite features coming listed in no particular order.
+
+### Promise.withResolvers
+
+The normal way of creating a promise is with Promise constructor.
+
+```javascript
+new Promise(
+  (resolve, reject) => { ··· }
+);
+```
+
+But this limits the usage of `resolve` and `reject` functions to the callback function, adding a level of nesting. Instead `withResolvers` gives you resolvers right off the gate.
+
+```javascript
+const { promise, resolve, reject } = Promise.withResolvers();
+```
+
+### /v flag for regular expression matching
+
+The new `/v` flag is used for unicode regular expression matching and promises and upgrade over the currently used `/u` flag.
+
+Exploring JS notes:
+
+> **Use flag /v whenever you can**
+> This flag improves many aspects of JavaScript’s regular expressions and should be used by default. If you can’t use it yet because it’s still too new, you can use /u, instead.
+
+- [ECMA Standard Definition](https://ecma-international.org/publications-and-standards/standards/ecma-262/)
+- [Ecma International approves ECMAScript 2024: What’s new?](https://2ality.com/2024/06/ecmascript-2024.html)
+
+---
+
+Something else I'm excited about is the Set methods coming to baseline this month. You can now use `union`, `intersection` etc. across browsers.
+
+```javascript
+const odds = new Set([1, 3, 5, 7, 9]);
+const squares = new Set([1, 4, 9]);
+console.log(odds.intersection(squares)); // Set(2) { 1, 9 }
+```
+
+- [Set MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set)
+- [Set methods are part of baseline](https://web.dev/blog/set-methods)
+
+## Tutorials
+
+### [State of JS 2023 Results](https://2023.stateofjs.com/)
+
+It's a bit late, but it's here. Here are my highlights as usual:
+
+- Nullish coallesing is the feature most people have used (Me too!)
+- In response to the question _What are your main pain points regarding browser APIs?_, the second greatest number of users cited **Safari**.
+- Even though the official React docs recommend, Next.JS and Remix for getting started with React, Vite is enjoying uncomparable popularity.
+- VueJS beating Angular on the usage charts for the first time and Angular's overall negative sentiment probably says something.
+
+### [An interactive study of queueing strategies](https://encore.dev/blog/queueing)
+
+As I've mentioned in my newsletter, my favourite type of blogs are interactive ones. This particular blog stands out as it explains queuing, its necessity, and the different types of queues, all with interactive, playable samples.
+
+### [Try out your website in the spatial web](https://webkit.org/blog/15421/try-out-your-website-in-the-spatial-web/)
+
+Apple has announced a VisionOS simulator on MacOS, so that you can test out your websites on Safari in the virtual world.
+
+### [The Gap - ishadeed](https://ishadeed.com/article/the-gap/)
+
+The `gap` property is one I use frequently, but reading this blog made me realize I hadn't fully appreciated its potential. If you're still using `margin`, give gap a try—you'll be glad you did.
+
+### [How Stripe’s document databases supported 99.999% uptime with zero-downtime data migrations](https://stripe.com/blog/how-stripes-document-databases-supported-99.999-uptime-with-zero-downtime-data-migrations)
+
+In 2023, Stripe processed $1 trillion with a 99.999% uptime, using a custom database infrastructure based on MongoDB Community, called DocDB. The blog explains how this system was build to handle load and maintain uptime.
+
+## In Other News
+
+### [The true story -- as best I can remember -- of the origin of Mosaic and Netscape - Marc Andreessen](https://pmarca.substack.com/p/the-true-story-as-best-i-can-remember)
+
+Marc Andreesen is the co-author of Mosaic and co-founder of Netscape. He is currently partner at the Andreessen Horowitz. This is an episode from their podcast on how Mosaic and Netspace happened. There gems about the advent of Internet and how it turned out in theere which is just fascinating.
+
+> A company was trying out streaming with an analog switcher. They had a VCD player, the output of which was streamed. When a user selected a movie, a person put on rollerscates, collected the right casette and played it.
+
+### [PySkyWiFi: completely free, unbelievably stupid wi-fi on long-haul flights](https://robertheaton.com/pyskywifi/)
+
+The story of a developer building out free WiFi using name change feature on an Airline miles account. Fascinating read with source code and diagrams to illustrate.
+
+### [How To Make A Strong Case For Accessibility](https://www.smashingmagazine.com/2024/06/how-make-strong-case-accessibility/)
+
+Vitaly Friedman breaks down each argument (that you would have heard) against accessibility and gives you a counter.
+
+### [Malte Handbook](https://www.industrialempathy.com/posts/malte-handbook/)
+
+Malte Ubi, when he joined Vercel wrote out a small handbook on what he is like, his beliefs about code and how to interact with him. This became really popular when Guillermo Rauch [posted an excerpt](https://x.com/rauchg/status/1802430386330353746) from it on Twitter. Malte has released the entire version of it and it's an interesting approach.
+
+### [Anthropic’s Claude adds a prompt playground to quickly improve your AI apps](https://techcrunch.com/2024/07/09/anthropics-claude-adds-a-prompt-playground-to-quickly-improve-your-ai-apps/)
+
+Anthropic released Claude Sonnet 3.5, their mid sized model this month, but what I was most impressed by is their UI update. They have added a playground on the side where the LLM displays larger outputs like code or charts. Pretty fun to see an update to the LLM UI outside just chat.
+
+## Looking Ahead
+
+- [Turing Conf](https://turingfest.com/) - July 9-10
+- [We are Developers](https://www.wearedevelopers.com/world-congress) - July 17-19
+- [CityJS Singapore](https://singapore.cityjsconf.org/) - July 24-26

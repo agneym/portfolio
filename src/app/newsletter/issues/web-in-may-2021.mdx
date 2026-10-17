@@ -1,0 +1,92 @@
+---
+title: Web in May - The Newsletter by Agney
+date: "2021-05-31T17:02:17.662275Z"
+buttondownUrl: https://buttondown.com/agney/archive/web-in-may-the-newsletter-by-agney/
+---
+
+## and that was May..
+
+Last week I was pair programming with a friend when he said JavaScript as language needs to evolve a lot more. Well, what are some of the features you want to see, I asked him amused. That's when he talked about how the last version of JavaScript was ES6 and that was so long ago. _I can even recite all of them, because I have learned it for the interviews_ he continued.
+
+Since you are reading this newsletter, you probably know this. But ES6 was absolutely not the last version of JavaScript. It was a major shift in the feature release cycle and largest bunch of features to be released in recent times. But the rest of releases have just been spread over time and much smoother.
+
+| Edition | Official name | Date published                                           |
+| ------- | ------------- | -------------------------------------------------------- |
+| ES12    | ES 2021       | [Release Candidate Stage](https://tc39.es/ecma262/2021/) |
+| ES11    | ES2020        | June 2020                                                |
+| ES10    | ES2019        | June 2019                                                |
+| ES9     | ES2018        | June 2018                                                |
+| ES8     | ES2017        | June 2017                                                |
+| ES7     | ES2016        | June 2016                                                |
+| ES6     | ES2015        | June 2015                                                |
+| ES5.1   | ES5.1         | June 2011                                                |
+| ES5     | ES5           | December 2009                                            |
+| ES4     | ES4           | Abandoned                                                |
+| ES3     | ES3           | December 1999                                            |
+| ES2     | ES2           | June 1998                                                |
+| ES1     | ES1           | June 1997                                                |
+
+Each of these releases contain proposals that reach the fourth stage and approved by the TC39 committee - [See entire process](https://tc39.es/process-document/)
+
+- [The Complete ECMAScript 2015-2019 Guide
+  ](https://flaviocopes.com/ecmascript/)
+- [Modern Javascript: Everything you missed over the last 10 years](https://turriate.com/articles/modern-javascript-everything-you-missed-over-10-years)
+
+Next time, when interviewers start bothering you about ES6, talk to them about upcoming features in ES2021 and how it is going to turn your workflow around.
+
+---
+
+# Releases
+
+- [Web Containers](https://blog.stackblitz.com/posts/introducing-webcontainers/) - Google in their IO last week introduced Web Container for Chrome by which we can run NodeJS in the browser. The speed at which Stackblitz can install and run NodeJS dependencies is just 🤯.
+- [Bootstrap 5](https://blog.getbootstrap.com/2021/05/05/bootstrap-5/) - After lots of time spent on Alphas and Betas, Bootstrap v5 is here with redesigned elements like Accordion, Form etc. One of the major changes is how Bootstrap is embracing logical properties in CSS.
+- [Github Elements](https://github.blog/2021-05-04-how-we-use-web-components-at-github/) - Github discusses their process of using and open sourcing web components. They have also released an [open source collection](https://github.com/github/github-elements) of these elements.
+- [Internet Explorer. 16 August 1995 - 15 June 2022](https://blogs.windows.com/windowsexperience/2021/05/19/the-future-of-internet-explorer-on-windows-10-is-in-microsoft-edge/) - I know this is the releases section, but this is as important. Edge now comes with a IE compatibility support, so you can use that for legacy applications and Edge for everything else.
+- [MDN Plus](https://developer.mozilla.org/en-US/plus) - A new premium service with monthly technical deep dives written by industry experts and powerful new features to personalize your MDN experience.
+
+# Tutorials
+
+- [The new responsive](https://web.dev/new-responsive/) - Una Kravets shows us how we tend to narrow down the definition to 'responsive' web by just focusing on window sizes.
+- [Under Engineered Select Forms](https://adrianroselli.com/2021/03/under-engineered-select-menus.html) - As a developer who has been doing this for time, whenever I see a select in the design, I instinctively reach for `react-select`. Even if the library got the accessibility and usage right, browsers won't come around to auto filling them. This tutorial focuses on styling your selects to look good so you don't have to feel like swapping it out (it might sound easy)
+- [Modern CSS Pseudo Selectors](https://www.smashingmagazine.com/2021/04/guide-supported-modern-css-pseudo-class-selectors/) - There are several new CSS pseudo selectors that are now available in browsers. My favourites being `any-link` and `focus-within`.
+- [Justify Content & Align Items](https://courses.joshwcomeau.com/office-hours/004) - It's a very common joke within the community that nobody knows the values of `justify-content` and `align-items`, you just try some, get some. Josh tries to demystify both properties and how they work. Also checkout the new Flex explorer in Chromium based devtools.
+- [Learn CSS - web.dev](https://web.dev/learn/css/) - web.dev now has a complete tutorial on CSS.
+
+[https://twitter.com/rauchg/status/1388231666771001346](https://twitter.com/rauchg/status/1388231666771001346)
+
+# In the Spotlight 🔦
+
+## Container Queries
+
+CSS has an upcoming feature named Container Queries that is [currently available](https://caniuse.com/css-container-queries) under a flag in Chrome Canary (very exclusive! Ik). Why are we talking about such a feature then?
+
+We already have media queries that lets us adopt CSS queries to a range of viewport size. Container Queries allows us to adapt our CSS queries with the container it is nested in. So the screen doesn't have to be large or small, you can immediately use container queries to adapt your component to the space it is displayed in.
+
+![Visualisation](https://ishadeed.com/assets/cq/intro.jpg)
+
+The above visualisation is from an amazing explained from Ahmad Shadeed - [Original Post](https://ishadeed.com/article/say-hello-to-css-container-queries/)
+
+[https://ishadeed.com/article/say-hello-to-css-container-queries/](https://ishadeed.com/article/say-hello-to-css-container-queries/)
+
+- [MDN for Container Queries](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Container_Queries)
+- [This Demo 🪟🔥](https://codepen.io/jh3y/pen/qBrEMEe)
+
+## Product Discoveries
+
+- [DOM Events](https://domevents.dev/) - Learn about the DOM Event system through exploration
+
+[https://twitter.com/0xca0a/status/1397662654383144965](https://twitter.com/0xca0a/status/1397662654383144965)
+
+# In Other News
+
+- [URL Lengthener](https://aaa.aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.com/) - You are used to URL shorteners, this one's the opposite. How it does it entirely on the client is also a fascinating read.
+- [Coinbase transition to React Native](https://blog.coinbase.com/announcing-coinbases-successful-transition-to-react-native-af4c591df971) - Coinbase details their journey to port apps to React Native, what they have learned and gained from the experience.
+- [Curl Critics](https://daniel.haxx.se/blog/2021/05/20/i-could-rewrite-curl/) - Daniel Stelberg, tongue in cheek lists various opinions from people undermining his effort as a CURL maintainer (Thanks for all the work you do! 🎉)
+- [How TikTok Is Changing Starbucks](https://www.buzzfeednews.com/article/katienotopoulos/appuccino-tiktok-starbucks) - Did you know there were a category of influencers called Starbucks Influencers who recommended custom drinks? yeah! me neither.
+- [Reimagining video infrastructure to empower YouTube
+  ](https://blog.youtube/inside-youtube/new-era-video-infrastructure) - Youtube blog on their infrastructure to serve millions of videos every second.
+
+# Looking Ahead
+
+- [JSNation](https://live.jsnation.com/) - June 9-11 - Do checkout the speakers list on this one.
+- [NextJS Conf](https://nextjs.org/conf) - June 15 - Check this site out, you're surely watching the conference anyway.

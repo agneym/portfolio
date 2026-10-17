@@ -1,0 +1,138 @@
+---
+title: JEM - Web in November- JavaScript Every Month Newsletter
+date: "2025-12-11T08:46:47.837564Z"
+image: https://assets.buttondown.email/images/4c0d0a84-8205-4f06-845a-e16d72e4f540.png?w=960&fit=max
+buttondownUrl: https://buttondown.com/agney/archive/jem-web-in-november-javascript-every-month-5419/
+---
+
+Hey December 👋
+
+I generally don't talk about things that happened in the this month in the newsletter, because it's supposed to be all about the previous month. But making an exception this time, since we have a security vulnerability on our hands.
+
+- [React critical vulnerability](https://react.dev/blog/2025/12/03/critical-security-vulnerability-in-react-server-components)
+- [Next.js update](https://nextjs.org/blog/CVE-2025-66478)
+
+This affects you if you are one of the React 19 versions and using server components in your project. Upgrade as soon as possible.
+
+---
+
+## Releases
+
+### Browsers
+
+#### [Firefox 145](https://developer.mozilla.org/en-US/docs/Mozilla/Firefox/Releases/145)
+
+- `Atomics.waitAsync()` allows synchronization of threads based upon the value in a shared memory location
+- `Integrity-Policy` and `Integrity-Policy-Report-Only` HTTP headers are supported in Firefox for script resources.
+
+### IDEs
+
+- Google launched a VS code fork named [Antigravity](https://antigravity.google/) with some free Gemini 3 Pro usage.
+- [Cursor 2.1](https://cursor.com/changelog?cio_id=co_bqmvhvjn4qyw3) - Improved plan mode, AI code reviews and instant grep in preview.
+  Google has launched a free tool called [Code Wiki](https://developers.googleblog.com/en/introducing-code-wiki-accelerating-your-code-understanding/) that helps you learn from the code repositories it has indexed. I have tried it on a couple of repos, including React and React-DOM, and my experience has been very positive.
+- [JSX Tool](https://www.ycombinator.com/launches/OnI-jsx-tool-in-browser-react-ide) is a new in browser IDE that helps provide rendered element - React component context to an LLM.
+
+### [Angular 21](https://angular.dev/events/v21)
+
+There is a game on the launch blog, really cool to see.
+
+- Signal forms - exactly what that sounds like
+- Headless components under Angular Aria
+- Vitest as default test runner
+- Angular official MCP server
+
+### [Tanstack Pacer Beta](https://tanstack.com/pacer/latest)
+
+A new library from the _brand_ Tanstack brings tools for controlling function executing timing like debounce, throttle, queue.
+
+Tanner Linsley has spent 2 years doing full time OSS and [wrote about the experience](https://tanstack.com/blog/tanstack-2-years)
+
+### [React Email 5](https://resend.com/blog/react-email-5)
+
+- Dark mode switcher
+- Tailwind 4 support
+
+### [Valdi](https://github.com/Snapchat/Valdi)
+
+Valdi is a new declarative cross platform UI framework, open sourced by Snapchat.
+
+### [MCP Apps proposal](https://blog.modelcontextprotocol.io/posts/2025-11-21-mcp-apps/)
+
+MCP Apps proposal is live - officially allows for MCPs to render UIs for the chatbot.
+
+### [The fetch()ening](https://htmx.org/essays/the-fetchening)
+
+htmx had promised there would be no version 3. Turns out, next release is v4, now in alpha, and it replaces XMLHttpRequest with fetch.
+
+## In the Spotlight 🔦
+
+Anthropic has released a Claude skill called [Frontend design](https://www.claude.com/blog/improving-frontend-design-through-skills). If you’ve vibe-coded web pages, you’ve probably noticed the default purple gradients and the tendency to pick Inter or Roboto. Anthropic says this is simply the LLM playing it safe.
+
+The good news: you can prompt the model to leave those safe harbours and pick better options. The results no longer scream “AI slop.” Still, I’m not convinced the answer is “Never use Inter, Roboto, or Open Sans.” That feels like hiding to look cool. But if you want a site that doesn’t look like AI slop - even though it is - this trick works.
+
+## Tutorials
+
+### [How we accidentally made route matching more performant by aiming for correctness - Tanstack Router](https://tanstack.com/blog/tanstack-router-route-matching-tree-rewrite)
+
+Tanstack Router’s path-matching engine was rewritten for correctness, unlocking a performance boost through a tree structure, an LRU cache, and the fancy stuff you learn in college.
+
+![image.png](https://assets.buttondown.email/images/4c0d0a84-8205-4f06-845a-e16d72e4f540.png?w=960&fit=max)
+
+### [The Browser Has Everything You Need - Jovi De Croock](https://jovidecroock.com/blog/platform/)
+
+What if we used `link rel=preload` to preload our API queries? How important are URLs and the params you have in there.
+
+The reality is more nuanced. If you've used it, you know the gymnastics required to align prefetch queries with the originals.
+
+### [Tooltip Components Should Not Exist - TkDoko](https://tkdodo.eu/blog/tooltip-components-should-not-exist)
+
+TkDoko argues that adding a `<Tooltip />` component in design systems lead to inconsistent user experience. There should be components with tooltips, but everyone shouldn't be able to add tooltips to anything. Escape hatches.
+
+In other news, GitHub is getting [rid of all toasts](https://primer.style/accessibility/toasts/) for accessibilty.
+
+### [The Inner Workings of JavaScript Source Maps](https://www.polarsignals.com/blog/posts/2025/11/04/javascript-source-maps-internals)
+
+We toggle source maps on and off while debugging, and we’ve noticed the extra files they add to the JS build. This post explains how source maps work, what they contain, and how they integrate the build.
+
+## In short
+
+- Raycast has been amazing to me on Mac. They have launched a [Windows version](https://www.raycast.com/windows)
+- Chrome has a new [auto complete Chrome Devtools Protocol editor](https://developer.chrome.com/blog/cdp-command-editor)
+- [React Grab](https://github.com/aidenybai/react-grab) is an open source extension to provide HTML elements/Component to an LLM.
+- [State of React](https://survey.devographics.com/en-US/survey/state-of-react/2025) survey is open.
+- Zig [moved from GitHub](https://ziglang.org/news/migrating-from-github-to-codeberg/) citing their reasons. Bun is build with Zig. Related reading: [Why is Zig so cool?](https://nilostolte.github.io/tech/articles/ZigCool.html)
+- [JavaScript engine Zoo](https://zoo.js.org/) has every JS engine rated on different parameters that you can sort through.
+
+## In Other News
+
+### [Everything about Transformers](https://www.krupadave.com/articles/everything-about-transformers?x=v3)
+
+An illustrated, length guide to Transformers architecture and models that led up to it. _Attention is all you need_.
+
+### [Sir Tim Berners-Lee doesn’t think AI will destroy the web | Decoder](https://youtu.be/78w61I62N_0?si=9fB5ICruAXLhD1hD)
+
+A conversation on The Verge podcast with Sir Tim Berners-Lee, the inventor of the World Wide Web. They discuss the rise of monopolies, the surge of AI slop on the web, and the need for the web to shift toward local-first systems.
+
+### [Coding a Physics Engine from scratch - Zanzlanz](https://youtu.be/nXrEX6j-Mws?si=Zj8fVysXNlpagG5D)
+
+Follow along this YouTube video as the developer builds a physics engine from simple bouncing ball to a homage to their favourite game, _Skate or Don't_
+
+### [Inside the race to train AI robots how to act human in the real world - LA Times](https://www.latimes.com/business/story/2025-11-02/inside-californias-rush-to-gather-human-data-for-building-humanoid-robots)
+
+Workers in low income countries perform everyday tasks (like folding towels) while wearing cameras or smart glasses. These recordings capture detailed human movements to train AI robots in physical skills. The ChatGPT moment for robotics is coming soon?
+
+### [Cloudflare outage on November 18, 2025](https://blog.cloudflare.com/18-november-2025-outage/)
+
+Cloudflare reminded us in November that they are one of the biggest monopolies on the web by taking half of Internet down. This time, luckily it wasn't a `useEffect` going berzerk.
+
+A database change accidentally created duplicate entries in a configuration file used by its Bot Management system. The file became too large, exceeding the software’s limits, which caused the core proxy handling internet traffic to crash. This led to widespread 5xx errors until engineers rolled back to a safe version of the file.
+
+### AI Updates
+
+- [Gemini 3](https://blog.google/products/gemini/gemini-3/) is the best Google model and it's topping every chart out there.
+- [Claude Opus 4.5](https://www.anthropic.com/news/claude-opus-4-5) is the best Claude model to date. It's cheaper than the earlier Opus and has better limits.
+- [GPT 5.1 Codex Max](https://openai.com/index/gpt-5-1-codex-max/) - Another reminder that OpenAI's naming scheme is ridiculous.
+
+## Looking Ahead
+
+- [Advent of code](https://adventofcode.com/2025/about) is ongoing.

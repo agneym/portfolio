@@ -1,0 +1,163 @@
+---
+title: JEM - Web in January - JavaScript Every Month Newsletter
+date: "2026-02-10T15:31:28.107281Z"
+buttondownUrl: https://buttondown.com/agney/archive/jem-web-in-january-javascript-every-month-2769/
+---
+
+Hello February 👋
+
+February is the shortest month, yet it promises excitement. January belonged to OpenClaw (if that name sticks—it has already changed four or five times). The app lives on your computer, sees everything you grant it, and pledges to run your life (or so it claims). I have not discovered a real use for it, and I am uneasy about handing an agent the keys to my work and world.
+
+---
+
+## 6 years of JEM
+
+Celebrating six years of the JavaScript Every Month newsletter. I have written an issue every month without missing one. It began as a hobby to keep me reading about the React ecosystem, and it has done exactly that. Many subscribers have emailed, tweeted, or stopped me in person with kind words, and I’m grateful for every one of them.
+
+With AI everywhere, I should address its role in this newsletter. AI helps write it, and denying that would feel dishonest. Still, I read, enjoy, and learn from every piece before it reaches you. I rely on AI to summarize insights, polish my drafts, and turn spoken thoughts into clear text. Amid today’s content flood (and AI slop), this lets me sift faster and deliver material that’s truly worth your time.
+
+I believe we need a few changes to keep the newsletter valuable for both of us. For now, thank you to everyone who has supported it.
+
+## Releases
+
+### Browsers
+
+#### [Chrome 144](https://developer.chrome.com/release-notes/144)
+
+- `::searchtext` pseudo element for search highlight styling
+- `geolocation` element - declarative user activated control for accessing users's location
+- Temporal API (🥂)
+
+#### [Firefox 147](https://developer.mozilla.org/en-US/docs/Mozilla/Firefox/Releases/147)
+
+- CSS Anchor positioning is enabled by default (baseline)
+- Navigation API is baseline newly available
+- When SVG is used as image source, SVG URL supports media fragments
+- View transition types are supported
+
+### IDEs
+
+- [Gastown](https://github.com/steveyegge/gastown) is a AI multi agent workspace manager from creator of Beads.
+- Cursor has shipped [dynamic context discovery](https://cursor.com/blog/dynamic-context-discovery) including familar features like agent skills, turning long tool responses to files and getting around lossy compaction by providing files as backup.
+- VS Code [supports MCP apps](https://x.com/code/status/2015853688594612715) which allows agents to render interactive UIs via MCP.
+- Claude Code has [re-enabled flicker-reduction](https://x.com/trq212/status/2014051499798831291) for all users. The feature was withdrawn last Christmas after reports of issues and some note about a game engine in the terminal?
+- [AntiGravity ships](https://x.com/antigravity/status/2011248170299498637) agent skills and terminal sandboxing.
+
+### [Universal Commerce Protocol](https://x.com/sundarpichai/status/2010382050570932299)
+
+Google counters OpenAI’s protocol with its own commerce protocol for agents, partnering with major players such as Shopify, Etsy, Wayfair, Target, and Walmart.
+
+### [The Astro Technology Company joins Cloudflare](https://astro.build/blog/joining-cloudflare/)
+
+Astro gets a godfather company.
+
+### [jQuery 4.0.0](https://blog.jquery.com/2026/01/17/jquery-4-0-0/)
+
+Celebrating 20 years of jQuery
+
+[https://x.com/jeresig/status/2011454956990353491](https://x.com/jeresig/status/2011454956990353491)
+
+### [Bun v1.3.6](https://bun.com/blog/bun-v1.3.6)
+
+- `Bun.Archive` API creates & extracts tarballs
+- `Bun.JSONC` API for parsing JSON with comments
+- metafile in Bun.build
+- `Response.json(object)` is 3.5x faster
+- 15% fasfter async/await
+
+### [Electron 40](https://www.electronjs.org/blog/electron-40-0)
+
+Electron slaps.
+
+### [LibPDF](https://documenso.com/blog/introducing-libpdf-the-pdf-library-typescript-deserves)
+
+You may know the world where the only credible PDF library for JavaScript was PDF.js. A new library called LibPDF is now emerging from Documenso.
+
+## In the Spotlight 🔦
+
+The React CVEs don't seem to stop, this time from React Router.
+
+[https://x.com/ReactRouter/status/2009364827056271562](https://x.com/ReactRouter/status/2009364827056271562)
+
+[https://vercel.com/changelog/summary-of-cve-2026-23864](https://vercel.com/changelog/summary-of-cve-2026-23864)
+
+CVE from Node.js affecting server components related frameworks: [Denial-of-Service Vulnerability from Unrecoverable Stack Space Exhaustion for React, Next.js, and APM Users](https://nodejs.org/en/blog/vulnerability/january-2026-dos-mitigation-async-hooks)
+
+Because just React.js wasn't enough, there were CVEs affecting Svelte ecosystem.
+
+[https://svelte.dev/blog/cves-affecting-the-svelte-ecosystem](https://svelte.dev/blog/cves-affecting-the-svelte-ecosystem)
+
+Boris Cherny, the creator of Claude Code, shared tips for using it. They may have changed by the time you read this, but here they are.
+
+[https://x.com/bcherny/status/2017742741636321619](https://x.com/bcherny/status/2017742741636321619)
+
+## Tutorials
+
+### [Why We Built Our Own Background Agent - Ramp](https://builders.ramp.com/post/why-we-built-our-background-agent)
+
+Ramp’s story of building their background agent should be one of this month’s most-read blogs - and likely the most-read by an agent, too. The company created a cloud-based agent with access to the project codebase, databases, cloud tools, and its own browser, ready for anyone at Ramp to use. It spins up fast, lightweight sandboxes via Modal.
+
+### [JavaScript Frameworks - Heading into 2026](https://dev.to/this-is-learning/javascript-frameworks-heading-into-2026-2hel)
+
+The series from Ryan Carniato, creator of SolidJS - where he analyses where the JavaScript seem to be headed every year. The topics he touches on being:
+
+1. AI first framework
+2. Isomorphic first framework
+3. Async first framework
+
+### [Async React - ReactConf](https://www.youtube.com/watch?v=B_2E96URooA)
+
+Rick Hanlin discusses “async” React. In recent versions, the React team has re-imagined the library as a scheduler, not merely a rerendering framework. Because JavaScript is single-threaded, frameworks historically could not prioritize updates or time them precisely. React now offers built-in scheduling primitives—Suspense, Transitions, and Deferred Values—to solve this.
+
+### [What Happened To WebAssembly](https://emnudge.dev/blog/what-happened-to-webassembly/)
+
+We have been hearing about WebAssembly for a long time. Many claimed it would eventually replace JavaScript because it is faster—why write in a slower language? Yet that future has not arrived quickly enough for Wasm. This blog explores what WebAssembly is, how its progress has unfolded, and who has been driving its development.
+
+To read alongside, VS code shipped an in browser search using web assembly compilation named [docfind](https://code.visualstudio.com/blogs/2026/01/15/docfind)
+
+### \[Ship working code while you sleep with the Ralph Wiggum technique - YouTube]\(Ralph Wiggum)
+
+Last month people went crazy on the Ralph Winggum method: write tickets or PRDs and let the agent tackle them. A bash script runs in an infinite loop, spawning agents until every task is done. Matt Pocock covers the details.
+
+### [Scaling LLMs to larger codebases – Kieran Gill](https://blog.kierangill.xyz/oversight-and-guidance)
+
+We know LLMs excel at greenfield tasks. But what happens at scale, when dozens of team members share one codebase? The blog lists tips to help the LLM perform better in that established context.
+
+## In short
+
+- Minimax open-sources a [new benchmark](https://x.com/MiniMax_AI/status/2011462563331240001) that measures whether an agent actually followed instructions to reach an outcome.
+- [HTTPArchive Web Almanac 2025](https://almanac.httparchive.org/en/2025/table-of-contents)
+- [State of HTML results](https://2025.stateofhtml.com/) are in.
+- [Remotion skills](https://x.com/Remotion/status/2013626968386765291) - Vibe code videos in React
+- Hugging Face celebrated one year of DeepSeek with a [series of blog posts](https://huggingface.co/blog/huggingface/one-year-since-the-deepseek-moment) showing what has changed since then and how many open-source models have since crossed the frontier.
+- Vercel shared a skill with [best practices for React and Next.js](https://x.com/rauchg/status/2011179888976544134)
+- [Code is cheap. Show me talk](https://nadh.in/blog/code-is-cheap/) - Kailash Nath explores a world where code is cheap and models can test countless permutations. Is reviewing code still the point?
+- The [package management landspace across lanaguages](https://nesbitt.io/2026/01/03/the-package-management-landscape.htmlhttps://github.com/circleco/circle/pull/37192)
+- [How to Measure and Optimize React Performance - Debugbear](https://www.debugbear.com/blog/measuring-react-app-performance)
+
+## In Other News
+
+### [Lego unveils tech-filled Smart Bricks - to play experts' unease](https://www.bbc.com/news/articles/crmlnmnwzk2o)
+
+Lego’s smart bricks were the standout release from CES for most attendees. Yet some are questioning the move: Lego has always been a “real world” toy, so adding apps risks blurring that boundary.
+
+### [Why Claude Cowork is a math problem Indian IT can’t solve - Rest of World](https://restofworld.org/2026/indian-it-ai-stock-crash-claude-cowork/)
+
+I found it hilarious that on the day Claude Cowork launched, Indian IT stocks crashed - as if Cowork would replace all their work.
+
+To read alongside: [Why We've Tried to Replace Developers Every Decade Since 1969](https://www.caimito.net/en/blog/2025/12/07/the-recurring-dream-of-replacing-developers.html)
+
+### [Nightshift - Kurzgesagt After Dark](https://www.youtube.com/@nightshift_kurzgesagt)
+
+Kurzgesagt has one of the most recognizable animation styles on YouTube. Their new channel, Nightshift, explores stories with a darker aesthetic. Kurzgesagt has already covered the effects of drugs and alcohol, so I'm not sure what qualifies as "dark." The first episode about pirates is 🔥 though.
+
+### AI Updates
+
+- [Kimi K 2.5](https://www.kimi.com/blog/kimi-k2-5.html) - Everyone's favourite (mine too) open source writing agent LLM gets an update.
+- [GLM 4.7 Flash](https://x.com/Zai_org/status/2013261304060866758) - small model that runs on local devices for coding.
+- [Qwen3-Max-Thinking](https://qwen.ai/blog?id=qwen3-max-thinking)
+
+## Looking Ahead
+
+- [AgentCon Bangkok](https://globalai.community/chapters/bangkok/events/agentcon-bangkok/) - Feb 21
+- [Axecon](https://www.deque.com/axe-con/) - Feb 24-25

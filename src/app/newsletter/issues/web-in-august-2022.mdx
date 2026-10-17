@@ -1,0 +1,135 @@
+---
+title: Web in August - Newsletter by Agney
+date: "2022-09-04T20:02:12.682298Z"
+buttondownUrl: https://buttondown.com/agney/archive/web-in-august-newsletter-by-agney-3385/
+---
+
+Hey September!
+
+The text-to-image AI are ruling the world and captcha suffers. This month, most people have received access to some version of a text to image AI. If you don't know what these does, they translate the text you provide a visual representation. Most of these AI can imitate artists or convert between different art styles.
+
+- [Dall E 2 by OpenAI](https://openai.com/dall-e-2/)
+- [Stable Diffusion](https://huggingface.co/spaces/stabilityai/stable-diffusion)
+- [How to run stable diffusion on M1 Mac](https://replicate.com/blog/run-stable-diffusion-on-m1-mac)
+- [How to draw with Stable Diffusion](https://andys.page/posts/how-to-draw/)
+- [Stable Diffusion Animation](https://replicate.com/andreasjansson/stable-diffusion-animation)
+- [MidJourney](https://www.midjourney.com/)
+- [Smiling Dogs? Horses Made of Clouds? Captcha Has Gone Too Far](https://www.wired.co.uk/article/smiling-dogs-horses-made-of-clouds-captcha-has-gone-too-far)
+
+If you are a user of Internet, you already know this - captchas are getting more and more complicated. It's got a global community of people training Google's AI. But since the advent of DALL-E, Stable Diffusion and others, we know that this isn't sustainable.
+
+Captchas have since then resorted to more and more complex problems - asking to identifying smiling cats or dogs with eyes closed. Not to mention the criticism that somehow captchas are used globally but [most of the terminology is American](https://gigazine.net/gsc_news/en/20201201-captcha-prove-american/).
+
+---
+
+## Releases
+
+### [Astro 1](https://astro.build/blog/astro-1/)
+
+Astro is the popular framework that arrived on the scene promoting islands approach. This promotes shipping as less JavaScript as possible for a page (the parts that require are islands) and building the rest on a server or build time. Astro has started adoption on corporate sites like Firebase, Trivago using it over their (separate from original) marketing sites. Read the launch post as Astro gets to the stable v1.
+
+### Browser Releases
+
+- [Firefox 103](https://developer.mozilla.org/en-US/docs/Mozilla/Firefox/Releases/103) brings awaited CSS features like `backdrop-filter`, and scroll snapping. Expect more navigation bars to have blurred backgrounds.
+- [Chrome 105](https://developer.chrome.com/blog/new-in-chrome-105) has support for the very discussed `:has` selector and [HTML Santizer API](https://developer.mozilla.org/en-US/docs/Web/API/HTML_Sanitizer_API). You would probably have to wait before Santizer API is supported everywhere before usage. If you would like to learn about the `:has` selector, Jen Simmons has a [comprehensive blog on the topic on Webkit blog](https://webkit.org/blog/13096/css-has-pseudo-class/).
+
+### [Docusaurus 2.0](https://docusaurus.io/blog/2022/08/01/announcing-docusaurus-2.0)
+
+The loved documentation builder library now brings plugins, theming support and single page application support with React on the client side as well.
+
+### [Chrome Framework Fund](https://developer.chrome.com/blog/framework-fund-2022/)
+
+The frameworks supported are NuxtJS, VueJS, Vite, Astro, Svelte, Preact, ESLint, Rollup and Sharp. All great choices.
+
+### [Introducing the New WebPageTest Recorder Chrome Extension](https://blog.webpagetest.org/posts/introducing-the-new-webpagetest-recorder-chrome-extension/)
+
+There is a build in extension for Chrome from the Webpage test team that can help recording tests.
+
+### [Browserlist](https://browsersl.ist/)
+
+The new browserlist website is amazing.
+
+### [Crawlee](https://crawlee.dev/docs/quick-start)
+
+I have been envious of Python for it's developed frameworks like Scrapy for web scraping. With Crawlee, NodeJS gets a start and a good one at that.
+
+## Tutorials
+
+### [NPM Dependency Selector Syntax](https://github.blog/changelog/2022-08-03-introducing-the-new-npm-dependency-selector-syntax/)
+
+NPM has introduced CSS like syntax for selecting dependencies in your project, this will enable you to filter down on the dependencies based on various different parameters used in the project.
+
+For eg.
+
+> If I wanted to find all react versions not-defined as a peer dependency I can run:
+
+```
+npm query "#react:not(.peer)"
+```
+
+### [Tip - Use fetchpriority=high to load your LCP hero image sooner](https://addyosmani.com/blog/fetch-priority)
+
+Addy Osmani hints that Priority Hints for your hero image can make the sites load much faster and increase perceived performance for the site.
+
+### [Mac VoiceOver Testing the Simple Way](https://cloudfour.com/thinks/mac-voiceover-testing-the-simple-way)
+
+If you want to learn accessibility testing and use a Mac for development/testing, this is a great tutorial to start with.
+
+### [ESLint Flat Configuration](https://eslint.org/blog/2022/08/new-config-system-part-2/)
+
+ESLint's new release starts testing out their flat configuration which evens out much of the complexity in writing a configuration file. The different structures and syntaxes are condensed out into one flat hierarchy one after the other. This is good read for API design as well.
+
+## In the Spotlight 🔦
+
+Media queries have forever confused me, I will be the first to admit that I can't tell the difference between `min-width` and `max-width` queries without looking them up on MDN first.
+
+But CSS Media Queries Level 4 is set to change all that by introducing Range Queries. The good news is that there is already native support from Chrome and Firefox, so it's just Safari slacking.
+
+```css
+/* Earlier - Between sm and md (Tailwind breakpoints) */
+@media (min-width: 640px) and (max-width: 768px) {
+}
+
+/* Applying range query */
+@media (640px <= width <= 768px) {
+}
+```
+
+You can also apply `min-width` and `max-width` (height is also a possibility) as earlier and they will be evaluated with equivalent syntax for range queries.
+
+There is also a special syntax for specifying negation which I think is pretty cool, for the times you need to say `not mobile`.
+
+```css
+@media not (width <= 640px) {
+}
+```
+
+There is also a PostCSS plugin if your toolchain already involves post processing - you can start using it today.
+
+- [PostCSS Plugin for Range Query](https://github.com/postcss/postcss-media-minmax)
+- [Browser Support - Media Range Syntax](https://caniuse.com/css-media-range-syntax)
+- [Spec - Level 4](https://www.w3.org/TR/mediaqueries-4/#mq-ranges)
+
+[https://twitter.com/adamwathan/status/1559250403547652097](https://twitter.com/adamwathan/status/1559250403547652097)
+
+## In Other News
+
+- [Design the Next iPhone](https://neal.fun/design-the-next-iphone/) - Sometimes websites that push the barrier are just good fun, this one pushes every button there is.
+- [Inside the software that will become the next battle front in US-China chip war](https://www.technologyreview.com/2022/08/18/1058116/eda-software-us-china-chip-war/) - We always talk about oil, minerals or lately semiconductors when it comes to stakes during a war. But what about software? Can it trigger or hold war?
+- [Twilio hackers breached over 130 organizations during months-long hacking spree](https://techcrunch.com/2022/08/25/twilio-hackers-group-ib/) - Hackers impersonated mail and contact as coming from Twilio support to compromise at least 130 organizations.
+- [How Discord Supercharges Network Disks For Extreme Low Latency](https://discord.com/blog/how-discord-supercharges-network-disks-for-extreme-low-latency) - Discord _talks_ about owning their infrastructure and creating a super disk.
+- [Engineering manager or individual contributor: Which path is right for you?](https://leaddev.com/career-paths-progression-promotion/engineering-manager-or-individual-contributor-which-path-right) - Should all engineers end their careers as managers? Is that the only ladder available? Jason Lengstorf evaluates.
+- [Man who built ISP instead of paying Comcast $50K expands to hundreds of homes](https://arstechnica.com/tech-policy/2022/08/man-who-built-isp-instead-of-paying-comcast-50k-expands-to-hundreds-of-homes/) - A network engineer build an ISP because the other providers weren't up to his hopes. The government is now paying him to expand his network to other homes around.
+- [Apple becomes first tech giant to explicitly ban caste discrimination, trains managers on Indian caste system](https://www.indiatoday.in/technology/news/story/apple-becomes-first-tech-giant-to-explicitly-ban-caste-discrimination-trains-managers-on-indian-caste-system-1988183-2022-08-15)
+
+[https://twitter.com/Android/status/1479875457667448837](https://twitter.com/Android/status/1479875457667448837)
+
+## Looking Forward
+
+- [Svelte Summit](https://www.sveltesummit.com/) - Sept 8-9
+- [JSConf Korea](https://2022.jsconf.kr) - Sept 16-17
+- [Grace Hopper Celebration](https://ghc.anitab.org/) - Sept 20 - 23
+- [Inclusive Design 24](https://inclusivedesign24.org/2022/) - Sept 22
+- [React India](https://www.reactindia.io/) - Sept 23-24 (I'm attending, come say Hi! if you are around)
+
+[_Wake me up when September Ends_ ](https://www.youtube.com/watch?v=NU9JoFKlaZ0)

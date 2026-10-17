@@ -1,0 +1,156 @@
+---
+title: JEM - Web in December - JavaScript Every Month Newsletter
+date: "2024-01-08T09:57:17.517789Z"
+buttondownUrl: https://buttondown.com/agney/archive/jem-web-in-december-javascript-every-month/
+---
+
+Hey 2024 👋
+
+This edition commemorates the fourth anniversary of crafting this newsletter. Over the past four years, I've dedicated myself to producing 48 issues—one for each month, marking this continuous journey of sharing insights and updates. Thanks to everyone who suggested changes, told me you read it when you ran into me somewhere or even promoted it on different platforms. Your support is truly appreciated, and the joy of producing this newsletter is shared both for myself and all of you.
+
+## Releases
+
+### Browsers
+
+#### [Firefox 121](https://developer.mozilla.org/en-US/docs/Mozilla/Firefox/Releases/121)
+
+- Lazy loading of `iframe` elements is now supported with `loading=lazy`.
+- `:has()` is supported. It is now available across browsers.
+- `text-wrap` balance and stable properties are supported. I suggest you start leaving in the property for your headings.
+
+#### [Safari 17.2](https://developer.apple.com/documentation/safari-release-notes/safari-17_2-release-notes)
+
+- Adds support for [CSS Custom Highlight API](https://developer.mozilla.org/en-US/docs/Web/API/CSS_Custom_Highlight_API)
+- Added support for `mask-border` properties
+- Added new relaxed parsing behavior for CSS Nesting. This is now available across browsers.
+- Added support for the name attribute in the `<details>` element
+- Added support for `one-time-code` as an allowed autocomplete field name.
+
+### [SvelteKit 2](https://svelte.dev/blog/sveltekit-2)
+
+The major feature from this version of SvelteKit is shallow routing. It allows for state to be associated with a history entry without causing navigation. This can be used for creating modals that you can dismiss by swiping back, or popup views that you don't want to do a full navigation to. (Think Instagram UI for posts on web)
+
+It's also a predecessor to [Svelte 5, coming soon](https://svelte-5-preview.vercel.app/status).
+
+### [Vue 2 - Swan Song](https://github.com/vuejs/vue/releases/tag/v2.7.16)
+
+The final release of Vue 2 is here and it's named Swan Song. Vue team has an [accompanying blog post](https://blog.vuejs.org/posts/vue-2-eol) on the depreciation as well.
+
+> All major and minor versions of Vue 2 core
+> vue-router versions exclusively supporting Vue 2 (3.x and below)
+> vuex versions exclusively supporting Vue 2 (3.x and below)
+> After December 31, 2023, Vue 2 will no longer receive new features, updates, or fixes, though it will still be available on all existing distribution channels (CDNs, package managers, Github, etc).
+
+An incremental update with [Vue 3.4](https://blog.vuejs.org/posts/vue-3-4) also released last month.
+
+### [Tanstack Router v1](https://tanstack.com/router/v1)
+
+There is a new React routing library in town from Tanstack (Think Tanstack Query, Tanstack table)
+
+- All the routes are typesafe.
+- Provides functionality for data fetching from routes.
+- Search param APIs that are also typesafe.
+
+### [v0 by Vercel](https://v0.dev/)
+
+v0 represents the AI React code generator developed by the Vercel team. Intrigued by the considerable buzz surrounding it, I eagerly anticipated the opportunity to test it. However, I found myself stuck on the waitlist for a while. Fortunately, it became accessible for everyone last month, prompting me to explore its capabilities. The experience was undeniably impressive and mind-blowing. Despite this, I must admit that, as of now, I haven't discovered any practical applications for it. 😅
+
+### [React Aria](https://react-spectrum.adobe.com/releases/2023-12-20.html)
+
+React Aria from Adobe team has been one the rising stars on the accessibility front with React. It has been so good that libraries like HeadlessUI (Tailwind associated project) now suggest migrating to React Aria for better support.
+
+The library has now reached General Availability with 1.0 release.
+
+## In the Spotlight 🔦 - Looking ahead by peeking into the past
+
+This is an endeavour to reflect on the observations made throughout the year and make predictions or manifest expectations for what lies ahead.
+
+### Coming of age of AI
+
+When ChatGPT initially made its debut, one of its early applications beyond being a chatbot was in the realm of coding. GitHub introduced Copilot, a tool trained on vast amounts of open-source code. Now, it seamlessly assists users without requiring explicit instructions on what to do.
+
+Before we say, "obviously!", such applications are quite rare. Presently, many design-oriented applications rely on user-provided text to generate entire designs, which often proves impractical. We have evolved beyond scenarios where designers can articulate their needs in a single sentence. While coders benefit from working with text, and Language Models excel in this regard, there's a need for AI applications that assist users in their existing workflows, rather than requiring exhaustive input for complete output generation. Exciting initiatives like [Visual Electric](https://visualelectric.com/) stand out as they adopt a distinctive approach to image generation, departing from the conventional textbox reliance. We require AIs that augment human productivity rather than attempting to replace humans entirely.
+
+### Microfrontends
+
+They have been around for a long time now, but in corners of the internet. I haven't yet heard a comprehensive take on the advantages/disadvantages of this architecture and common world use cases for it. From being stuck on the Webpack bandwagon, I see more tools for managing microfrontends emerge in the year to come.
+
+### Non JavaScript tool stacks continue to dominate
+
+Nearly every tool within the JavaScript ecosystem is undergoing a transition towards more performant alternatives implemented in lower-level languages.
+
+- [Babel](https://babeljs.io/) 🔜 [SWC](https://swc.rs/) written in Rust.
+- [Webpack](https://webpack.js.org/) 🔜 [esbuild](https://esbuild.github.io/) written in Go / [Turbopack](https://vercel.com/blog/turbopack) written in Rust / [Rspack](https://www.rspack.dev/) written in Rust.
+- [ESLint](https://eslint.org/) 🔜 [Oxlint](https://oxc-project.github.io/docs/guide/usage/linter.html) written in Rust.
+- [Prettier](https://prettier.io/) 🔜 [Biome](https://biomejs.dev/) written in Rust.
+- Node.js 🔜 [Bun](https://bun.sh/) written in Zig.
+
+I don't see any signs that this is slowing down. Who doesn't love faster tooling.
+
+### WebAssembly Component Model
+
+As developers who typically operate on robust systems, the preference for faster tooling in lower-level languages prompts a consideration: should we extend this optimization to benefit users on less powerful devices, such as mobile phones, watches, or smart fridges, as they access the web?
+
+The [WebAssembly component model](https://component-model.bytecodealliance.org/design/why-component-model.html) will make it easier for languages to talk to each other using an agreed interface.
+
+> For Wasm modules to interoperate, therefore, there needs to be an agreed-upon way for defining those richer types, and an agreed-upon way of expressing them at module boundaries.
+
+> The agreement of an interface adds a new dimension to Wasm portability. Not only are components portable across architectures and operating systems, but they are now portable across languages. A Go component can communicate directly and safely with a C or Rust component. It need not even know which language another component was written in - it needs only the component interface, expressed in WIT. Additionally, components can be linked into larger graphs, with one component satisfying another's dependencies, and deployed as units.
+
+If this can create a world where JavaScript can talk to lower level languages faster and easier, we can start to see our frameworks written in lower level languages like Rust or Go and we would be able to communicate to them with JavaScript.
+
+## Tutorials
+
+### [React server components from scratch! by Ben Holmes - Youtube](https://youtu.be/MaebEqhZR84?si=zmc9wD7zitTEJwUZ)
+
+Understanding React Server Components (RSC) and their implementation in Next.js can indeed feel like navigating through a realm of magic, with discussions about separate bundlers and enigmatic functions. To demystify this process, Ben takes a practical approach by creating a NodeJS server and implementing an RSC-enabled server from the ground up. This resource proves incredibly useful for those still grappling with the intricacies of RSC implementations, offering clarity through hands-on examples and insights.
+
+PS: Dan Abramov wrote a similar blog post named [A chain reaction on his blog](https://overreacted.io/a-chain-reaction/) but it's a recreation of the JSX resolver function (much lower level)
+
+### [The Two Reacts - Dan Abramov](https://overreacted.io/the-two-reacts/)
+
+Dan Abramov presents a compelling argument regarding the choice of the underlying computer that executes your component. This decision, in turn, establishes the foundation for React server components and shapes the cognitive framework for determining the appropriate role of a component—whether it should function as a client component or a server component.
+
+ 
+
+### [CSS Wrapped 2023](https://developer.chrome.com/blog/css-wrapped-2023)
+
+The year 2023 marked a significant milestone for CSS updates, with a plethora of new features shipped. The impact of these updates is expected to resonate significantly in the years ahead. Keeping track of what has already been shipped and is universally available across browsers can be challenging. The CSS Wrapped series from Chrome developers serves as an great resource, offering a comprehensive update on the latest developments in CSS, ensuring developers are well-informed about the evolving landscape.
+
+### [HTMHell Advent Calendar 2023](https://www.htmhell.dev/adventcalendar/)
+
+The HTMHell is a compilation of 24 posts delving into HTML and the Web. Covering a spectrum from the history of the web to the intricacies of the `form` attribute and web components.
+
+### [Future of Storybook in 2024](https://storybook.js.org/blog/future-of-storybook-2024/)
+
+The 7.0 release of Storybook supported Vite and it became much faster to setup and run with MDX2 support. The team is now set for a 8.0 release which will support React server components. The blog post details what has been through the year, new features and how they plan to move forward.
+
+### [Rising Stars JS 2023](https://risingstars.js.org/2023/en)
+
+This post tracks Github stars through a year for JavaScript library and frameworks to find how much time they spend in the vogue. The star for last year is 👑 `shadcn/ui`. There are a lot more categories on the page worth exploring.
+
+### [2024 Predictions by JavaScript Frontend Framework Maintainers](https://thenewstack.io/2024-predictions-by-javascript-frontend-framework-maintainers/)
+
+While the title may suggest an ability to predict the future, the maintainers of the framework just outline their plans for 2024. From incorporating zone.js and Signals with Angular to integrating RSC bundlers with Next.JS and introducing the Forget compiler with React, there is much anticipation for the exciting developments ahead.
+
+## In Other News
+
+### [The apps, movies, games, and everything else we loved in 2023 - The Verge](https://www.theverge.com/2023/12/31/24019265/best-apps-games-movies-shows-2023)
+
+I've enjoyed using TheVerge's Installer series as a go-to recommendation series for apps, movies, TV shows, and more. While platforms like Twitter have diminished in utility for this purpose, Installer has proven to be a reliable alternative. In the year-ending edition, the recommendation list is more extensive, making it a delightful and entertaining read.
+
+### [The Year AI ate the Internet](https://www.newyorker.com/culture/2023-in-review/the-year-ai-ate-the-internet)
+
+Believe it or not, ChatGPT made its debut on November 30, 2022. It marks just one year since the advent of this all-encompassing chatbot, which has brought the power of AI to everyone. However, the AI revolution is accelerating faster than anticipated, spurred by the expansive reach of the internet. Governments are hastily working on regulations, leading to ongoing court cases involving copyright violations across various chatbot companies. Many aspects of this burgeoning landscape remain uncertain. Yet, one thing is clear—ChatGPT and similar technologies have proven their utility, receiving a resounding yes from users.
+
+### [Figma and Adobe are abandoning our proposed merger](https://www.figma.com/blog/figma-adobe-abandon-proposed-merger/)
+
+Adobe is abandoning their much-celebrated acquisition of Figma due to EU's regulatory review process.
+
+### [Epic v. Google: everything we’re learning live in Fortnite court](https://www.theverge.com/23945184/epic-v-google-fortnite-play-store-antitrust-trial-updates)
+
+> On December 11th, the jury ruled in Epic’s favor, finding that Google has turned its Google Play app store and Google Play Billing service into an illegal monopoly, answering yes to every question in front of them about Google’s monopoly power, anticompetitive behavior, and the illegal ties between the different parts of its business.
+
+## Looking Ahead
+
+- [CES 2024](https://www.ces.tech/) - Jan 9-12, Las Vegas

@@ -1,0 +1,110 @@
+---
+title: Web in August - The Newsletter by Agney
+date: "2021-08-30T06:17:42.942864Z"
+image: https://buttondown-attachments.s3.amazonaws.com/images/817c3456-4b2c-4acf-9605-6f4e9d5b7979.png
+buttondownUrl: https://buttondown.com/agney/archive/web-in-august-the-newsletter-by-agney/
+---
+
+August was a breeze, I'm not sure I have registered it in my 2021.
+
+Everyone talks about how Safari is the new IE. Safari's release cycles keep everyone on the web waiting for features and when they come they have some peculiarities that will need to be fixed or ironed out. This coming from a default browser on an OS that people actually use is disheartening. HTTP Toolkit delivered a comprehensive piece on the criticisms so far on their blog post - [Safari isn't protecting the web, it's killing it](https://httptoolkit.tech/blog/safari-is-killing-the-web/).
+
+Meanwhile the Chrome team put out an RFC to remove `alert`, `prompt` and `confirm` from the web and people delivered with criticism on point. Rich Harris (author Svelte) makes some great points on [his blog post titled Stay Alert](https://dev.to/richharris/stay-alert-d)
+
+# Releases
+
+- [Shared Element Transition API](https://developer.chrome.com/blog/shared-element-transitions-for-spas/) - This API allows you to animate transitions on webpages or single page applications bringing more of native app beauties to the browser. The feature is now on original trial in Chrome.
+
+- [Firefox 91 - Enhanced Cookie Clearing](https://blog.mozilla.org/security/2021/08/10/firefox-91-introduces-enhanced-cookie-clearing/) - One of the major features of Firefox 91 is Enhanced Cookie Clearing which is build upon the Total Cookie Protection build in the last release.
+
+  > With Enhanced Cookie Clearing, if you clear site data for comfypants.com, the entire cookie jar is emptied, including any data facebook.com set while embedded in comfypants.com.
+
+- [Safari 15 Beta](https://developer.apple.com/documentation/safari-release-notes/safari-15-beta-release-notes) - There is the new redesigned tab groups and address bar. Safari now comes with ESM module support in Workers and Service Workers. Top Level `await` is another feature that has been on the waiting list for a while.
+
+- [SWR 1.0](https://swr.vercel.app/blog/swr-v1) - The library that got everyone talking about `stale-while-revalidate` is finally 1.0 with a host of new features and performance updates.
+
+# Tutorials
+
+- [Marianne Writes a Programming Language](https://pca.st/5biheaoz) - Marianne Bellotti wants to understand how the people who design programming languages do what they do, so she's jumping right in and giving it a shot by writing her own language.
+
+- [Efficient Infinite Utility Helpers Using Inline CSS Custom Properties and calc()](https://css-tricks.com/efficient-infinite-utility-helpers-using-inline-css-custom-properties-and-calc/) - Sometimes when you change projects from the Tailwind world of things, you miss having the little helpers for `padding`, `margin` and so on. You could surely write these on your own, iterate over with JS or SCSS or some nifty PostCSS patterns, but this article shows you how using custom variables to build them in a couple of lines.
+
+- [Practical Uses of CSS Math Functions: calc, clamp, min, max](https://moderncss.dev/practical-uses-of-css-math-functions-calc-clamp-min-max/) - For the times you are wondering, _I can calculate all this in my head, why use this math function, that too in CSS_
+
+- [Modern JavaScript in Rails 7 without webpack](https://www.youtube.com/watch?v=PtxZvFnL2i0) - Rails is embracing ESM modules (now [available](https://caniuse.com/es6-module) in all major browsers) to ship modern JavaScript without Webpack. Rails also skips over the NPM modules part by relying on ESM module CDNs like [Skypack](https://www.skypack.dev/) and Unpkg, while this is the only path demoed, it would seem like Rails will have to support bundling node modules locally like vite or snowpack. The abstinence to webpack has also extended to Babel and writing JSX without transpiling which might be a bit too much for batteries included. Also check out Matthew Ballontoni's article on filtering down Rails job posts to reach the conclusion [React is now effectively part of the Rails stack
+  ](https://matthewbellantoni.com/2021/08/17/react-is-now-effectively-part-of-the-rails-stack/)
+
+# In the Spotlight 🔦
+
+There are some interesting specs coming up in CSS.
+
+## Cascading Layers
+
+The new feature of cascading layers allows authors to specify the order in which CSS stylesheets or styles themselves are cascaded. This means in place of cleverly adding hacks for arranging our stylesheets in particular orders, the `@layer` keyword allows you to specify the order beforehand. You just have to remember to add the layer to the stylesheet as well.
+
+```css
+@layer bootstrap, bootstrap.theme, user.theme, override, utilities;
+```
+
+This specifies the order in which the styles will be considered/cascaded whichever order they are included in. [More details in the spec here](https://drafts.csswg.org/css-cascade-5/#layering)
+
+Current browser status:
+
+- Chrome has [announced](https://chromestatus.com/feature/5663362835808256) they are building the feature and should be available behind a flag soon.
+
+- Webkit tracking issue has been assigned to a developer
+
+- Firefox has [started work](https://bugzilla.mozilla.org/show_bug.cgi?id=1699214) on it as well.
+
+## Nesting
+
+You have probably used CSS nesting on one of the preprocessors or CSS-in-JS solutions before. But the feature is finally making it natively into CSS (currently in Draft). This is what that will look like:
+
+```css
+table.colortable {
+  & td {
+    text-align: center;
+    &.c {
+      text-transform: uppercase;
+    }
+    &:first-child,
+    &:first-child + td {
+      border: 1px solid black;
+    }
+  }
+  & th {
+    text-align: center;
+    background: black;
+    color: white;
+  }
+}
+```
+
+Where the `&` character denotes the parent selector. The native support will also come into help for supporting `@layer` tags that we discussed above.
+
+[More details in spec](https://drafts.csswg.org/css-nesting/)
+
+You can use most of nesting today by transforming CSS with a tool like [postcss-cssnext](https://cssnext.github.io/).
+
+#### Do these changes replace preprocessors like SCSS?
+
+![0](https://buttondown-attachments.s3.amazonaws.com/images/817c3456-4b2c-4acf-9605-6f4e9d5b7979.png)
+
+PS: SCSS has a [new JS API RFC](https://sass-lang.herokuapp.com/blog/request-for-comments-new-js-api)
+
+# In Other News
+
+- [Repo Visualisation](https://next.github.com/projects/repo-visualization) - Github is trying out new ways of repo visualisations.
+
+- [Tesla Bot](https://www.youtube.com/watch?v=HUP6Z5voiS8) - Elon Musk showed off their company's plan to build a new humanoid robot at their [AI Day](https://www.youtube.com/watch?v=j0z4FweCy4M) (?). You can watch the short Tesla Bot presentation [here](https://www.youtube.com/watch?v=HUP6Z5voiS8) and a Marques Brownlee [explainer](https://www.youtube.com/watch?v=Wk1oClYJE58) in case you are confused.
+
+- [How I experience web today](https://how-i-experience-web-today.com/) - This site is a clever collection of patterns that we see on the web today - cookie notices, newsletter popups and so on and so forth.
+
+- [Official React survey](https://surveys.savanta.com/survey/selfserve/21e3/210643?list=3) - There is an officlal React team survey in town and it has terrible UI and UX.
+
+- [Horizon Workrooms: All you need to know about the VR meeting platform
+  ](https://www.techadvisor.com/news/game/facebook-horizon-workrooms-3807561/) - Facebook launched a new Metaverse, in plans with their VR bet. We have seen Microsoft attempt the same with their Hololens headsets, but this seems to be the most refined approach put on stage.
+
+# Looking Ahead
+
+- [Wake me up when September ends](https://www.youtube.com/watch?v=NU9JoFKlaZ0)
