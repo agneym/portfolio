@@ -5,8 +5,6 @@ import { displayDomain, type Bookmark } from "webmarks/api";
 
 interface BookmarkCardProps {
   bookmark: Bookmark;
-  /** 1-based position across the whole list, shown like a catalogue number. */
-  ordinal: number;
   index: number;
   /** Play the staggered entrance — first paint of the grid only. */
   animate: boolean;
@@ -16,7 +14,6 @@ interface BookmarkCardProps {
 
 export function BookmarkCard({
   bookmark,
-  ordinal,
   index,
   animate,
   activeTag,
@@ -56,9 +53,6 @@ export function BookmarkCard({
               fetching
             </span>
           ) : null}
-          <span className="text-secondary-muted ml-auto shrink-0 font-mono text-[0.6875rem] tabular-nums">
-            {String(ordinal).padStart(3, "0")}
-          </span>
         </div>
 
         <h2 className="text-primary font-sans text-lg leading-snug font-bold text-pretty">
