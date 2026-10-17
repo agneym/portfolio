@@ -5,7 +5,7 @@ import {
   queryOptions,
 } from "@tanstack/react-query";
 
-export const PAGE_SIZE = 24;
+const PAGE_SIZE = 24;
 
 export type FetchStatus = "pending" | "success" | "failed";
 
@@ -23,7 +23,7 @@ export interface Bookmark {
 }
 
 /** One page of the cursor-paginated `GET /api/bookmarks` response. */
-export interface BookmarkList {
+interface BookmarkList {
   bookmarks: Bookmark[];
   /** Every bookmark matching the filters, not just this page. */
   total: number;
@@ -46,7 +46,7 @@ export interface ListParams {
 }
 
 /** Input of the list server function: the filters plus the page cursor. */
-export interface ListPageParams extends ListParams {
+interface ListPageParams extends ListParams {
   cursor: string | null;
 }
 
@@ -144,7 +144,7 @@ async function request<T>(path: string, params?: URLSearchParams): Promise<T> {
  * Server functions are public endpoints, so their input is coerced by the same
  * normaliser the route uses rather than trusted from the caller.
  */
-export const listBookmarks = createServerFn({ method: "GET" })
+const listBookmarks = createServerFn({ method: "GET" })
   .validator(normalizeListPageParams)
   .handler(async ({ data }): Promise<BookmarkList> => {
     const params = new URLSearchParams({
@@ -164,7 +164,7 @@ export const listBookmarks = createServerFn({ method: "GET" })
     return request<BookmarkList>("/api/bookmarks", params);
   });
 
-export const listTags = createServerFn({ method: "GET" }).handler(
+const listTags = createServerFn({ method: "GET" }).handler(
   (): Promise<{ tags: TagWithCount[] }> =>
     request<{ tags: TagWithCount[] }>("/api/tags"),
 );

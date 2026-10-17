@@ -23,7 +23,7 @@ type HapticsModule = typeof import("./haptics");
 const SOUND_KEY = "clack:sound";
 const HAPTICS_KEY = "clack:haptics";
 /** Fired on window whenever a feedback setting changes. */
-export const FEEDBACK_CHANGE_EVENT = "clack:feedback-change";
+const FEEDBACK_CHANGE_EVENT = "clack:feedback-change";
 
 function read(key: string) {
   try {
@@ -106,7 +106,7 @@ function loadHaptics() {
  * visitor is reaching for the board) the audio chunk loads even while
  * muted, so the sound switch can answer inside the same gesture.
  */
-export function warmFeedback({ intent = false } = {}) {
+function warmFeedback({ intent = false } = {}) {
   if (intent || soundEnabled()) void loadAudio();
   if (hapticsEnabled()) void loadHaptics();
 }
@@ -115,7 +115,7 @@ export function warmFeedback({ intent = false } = {}) {
  * Inside a user gesture: lets Safari and Chrome start the AudioContext.
  * Cheap to call on every gesture; does nothing while muted.
  */
-export function unlockFeedback() {
+function unlockFeedback() {
   if (soundEnabled()) audio?.unlock();
 }
 
