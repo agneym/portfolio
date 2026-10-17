@@ -13,11 +13,14 @@ import { Route as IndexRouteImport } from './app/index'
 import { Route as BlogRouteImport } from './app/blog'
 import { Route as DesignRouteImport } from './app/design'
 import { Route as JemRouteImport } from './app/jem'
+import { Route as NewsletterRouteImport } from './app/newsletter'
 import { Route as OgRouteImport } from './app/og'
 import { Route as WebmarksRouteImport } from './app/webmarks'
 import { Route as BlogIndexRouteImport } from './app/blog/index'
 import { Route as BlogSlugRouteImport } from './app/blog/$slug'
 import { Route as LabSoundRouteImport } from './app/lab/sound'
+import { Route as NewsletterIndexRouteImport } from './app/newsletter/index'
+import { Route as NewsletterSlugRouteImport } from './app/newsletter/$slug'
 import { Route as WebmarksIndexRouteImport } from './app/webmarks/index'
 import { Route as BlogTagTagRouteImport } from './app/blog/tag/$tag'
 
@@ -39,6 +42,11 @@ const DesignRoute = DesignRouteImport.update({
 const JemRoute = JemRouteImport.update({
   id: '/jem',
   path: '/jem',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const NewsletterRoute = NewsletterRouteImport.update({
+  id: '/newsletter',
+  path: '/newsletter',
   getParentRoute: () => rootRouteImport,
 } as any)
 const OgRoute = OgRouteImport.update({
@@ -66,6 +74,16 @@ const LabSoundRoute = LabSoundRouteImport.update({
   path: '/lab/sound',
   getParentRoute: () => rootRouteImport,
 } as any)
+const NewsletterIndexRoute = NewsletterIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => NewsletterRoute,
+} as any)
+const NewsletterSlugRoute = NewsletterSlugRouteImport.update({
+  id: '/$slug',
+  path: '/$slug',
+  getParentRoute: () => NewsletterRoute,
+} as any)
 const WebmarksIndexRoute = WebmarksIndexRouteImport.update({
   id: '/',
   path: '/',
@@ -82,11 +100,14 @@ export interface FileRoutesByFullPath {
   '/blog': typeof BlogRouteWithChildren
   '/design': typeof DesignRoute
   '/jem': typeof JemRoute
+  '/newsletter': typeof NewsletterRouteWithChildren
   '/og': typeof OgRoute
   '/webmarks': typeof WebmarksRouteWithChildren
   '/blog/$slug': typeof BlogSlugRoute
   '/lab/sound': typeof LabSoundRoute
+  '/newsletter/$slug': typeof NewsletterSlugRoute
   '/blog/': typeof BlogIndexRoute
+  '/newsletter/': typeof NewsletterIndexRoute
   '/webmarks/': typeof WebmarksIndexRoute
   '/blog/tag/$tag': typeof BlogTagTagRoute
 }
@@ -97,7 +118,9 @@ export interface FileRoutesByTo {
   '/og': typeof OgRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/lab/sound': typeof LabSoundRoute
+  '/newsletter/$slug': typeof NewsletterSlugRoute
   '/blog': typeof BlogIndexRoute
+  '/newsletter': typeof NewsletterIndexRoute
   '/webmarks': typeof WebmarksIndexRoute
   '/blog/tag/$tag': typeof BlogTagTagRoute
 }
@@ -107,11 +130,14 @@ export interface FileRoutesById {
   '/blog': typeof BlogRouteWithChildren
   '/design': typeof DesignRoute
   '/jem': typeof JemRoute
+  '/newsletter': typeof NewsletterRouteWithChildren
   '/og': typeof OgRoute
   '/webmarks': typeof WebmarksRouteWithChildren
   '/blog/$slug': typeof BlogSlugRoute
   '/lab/sound': typeof LabSoundRoute
+  '/newsletter/$slug': typeof NewsletterSlugRoute
   '/blog/': typeof BlogIndexRoute
+  '/newsletter/': typeof NewsletterIndexRoute
   '/webmarks/': typeof WebmarksIndexRoute
   '/blog/tag/$tag': typeof BlogTagTagRoute
 }
@@ -122,11 +148,14 @@ export interface FileRouteTypes {
     | '/blog'
     | '/design'
     | '/jem'
+    | '/newsletter'
     | '/og'
     | '/webmarks'
     | '/blog/$slug'
     | '/lab/sound'
+    | '/newsletter/$slug'
     | '/blog/'
+    | '/newsletter/'
     | '/webmarks/'
     | '/blog/tag/$tag'
   fileRoutesByTo: FileRoutesByTo
@@ -137,7 +166,9 @@ export interface FileRouteTypes {
     | '/og'
     | '/blog/$slug'
     | '/lab/sound'
+    | '/newsletter/$slug'
     | '/blog'
+    | '/newsletter'
     | '/webmarks'
     | '/blog/tag/$tag'
   id:
@@ -146,11 +177,14 @@ export interface FileRouteTypes {
     | '/blog'
     | '/design'
     | '/jem'
+    | '/newsletter'
     | '/og'
     | '/webmarks'
     | '/blog/$slug'
     | '/lab/sound'
+    | '/newsletter/$slug'
     | '/blog/'
+    | '/newsletter/'
     | '/webmarks/'
     | '/blog/tag/$tag'
   fileRoutesById: FileRoutesById
@@ -160,6 +194,7 @@ export interface RootRouteChildren {
   BlogRoute: typeof BlogRouteWithChildren
   DesignRoute: typeof DesignRoute
   JemRoute: typeof JemRoute
+  NewsletterRoute: typeof NewsletterRouteWithChildren
   OgRoute: typeof OgRoute
   WebmarksRoute: typeof WebmarksRouteWithChildren
   LabSoundRoute: typeof LabSoundRoute
@@ -193,6 +228,13 @@ declare module '@tanstack/react-router' {
       path: '/jem'
       fullPath: '/jem'
       preLoaderRoute: typeof JemRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/newsletter': {
+      id: '/newsletter'
+      path: '/newsletter'
+      fullPath: '/newsletter'
+      preLoaderRoute: typeof NewsletterRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/og': {
@@ -230,6 +272,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LabSoundRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/newsletter/': {
+      id: '/newsletter/'
+      path: '/'
+      fullPath: '/newsletter/'
+      preLoaderRoute: typeof NewsletterIndexRouteImport
+      parentRoute: typeof NewsletterRoute
+    }
+    '/newsletter/$slug': {
+      id: '/newsletter/$slug'
+      path: '/$slug'
+      fullPath: '/newsletter/$slug'
+      preLoaderRoute: typeof NewsletterSlugRouteImport
+      parentRoute: typeof NewsletterRoute
+    }
     '/webmarks/': {
       id: '/webmarks/'
       path: '/'
@@ -261,6 +317,20 @@ const BlogRouteChildren: BlogRouteChildren = {
 
 const BlogRouteWithChildren = BlogRoute._addFileChildren(BlogRouteChildren)
 
+interface NewsletterRouteChildren {
+  NewsletterSlugRoute: typeof NewsletterSlugRoute
+  NewsletterIndexRoute: typeof NewsletterIndexRoute
+}
+
+const NewsletterRouteChildren: NewsletterRouteChildren = {
+  NewsletterSlugRoute: NewsletterSlugRoute,
+  NewsletterIndexRoute: NewsletterIndexRoute,
+}
+
+const NewsletterRouteWithChildren = NewsletterRoute._addFileChildren(
+  NewsletterRouteChildren,
+)
+
 interface WebmarksRouteChildren {
   WebmarksIndexRoute: typeof WebmarksIndexRoute
 }
@@ -278,6 +348,7 @@ const rootRouteChildren: RootRouteChildren = {
   BlogRoute: BlogRouteWithChildren,
   DesignRoute: DesignRoute,
   JemRoute: JemRoute,
+  NewsletterRoute: NewsletterRouteWithChildren,
   OgRoute: OgRoute,
   WebmarksRoute: WebmarksRouteWithChildren,
   LabSoundRoute: LabSoundRoute,

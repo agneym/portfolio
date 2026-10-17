@@ -20,5 +20,20 @@ declare module "content-collections" {
     mdx: string;
   }
 
+  export interface Newsletter {
+    title: string;
+    date: string;
+    description?: string;
+    image?: string;
+    buttondownUrl: string;
+    content: string;
+    _meta: Post["_meta"];
+    slug: string;
+    shortTitle: string;
+    excerpt: string;
+    mdx: string;
+  }
+
   export const allPosts: Post[];
+  export const allNewsletters: Newsletter[];
 }
