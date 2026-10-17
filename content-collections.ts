@@ -3,16 +3,43 @@ import { compileMDX } from "@content-collections/mdx";
 import { remarkPlugins } from "@prose-ui/core";
 import { type } from "arktype";
 
+function getParagraphs(content: string) {
+  return content
+    .replace(/^import\s.+$/gm, "")
+    .replace(/```[\s\S]*?```/g, "")
+    .replace(/<[^>]+>/g, "")
+    .split(/\n{2,}/)
+    .map((paragraph) => paragraph.replace(/^#+\s*/, "").trim())
+    .filter(Boolean);
+}
+
 function createExcerpt(content: string) {
+  return getParagraphs(content)[0] ?? "";
+}
+
+/** Issues open with a greeting ("Hello October!"), so skip short paragraphs. */
+function createIssueExcerpt(content: string) {
+  const paragraphs = getParagraphs(content)
+    .filter((paragraph) => !/^(!\[|[-*>] )/.test(paragraph))
+    .map((paragraph) =>
+      paragraph
+        .replace(/!?\[([^\]]*)\]\([^)]*\)/g, "$1")
+        .replace(/(\*\*|__|[*_`])(.+?)\1/g, "$2"),
+    )
+    .filter((paragraph) => !/^https?:\/\/\S+$/.test(paragraph));
   return (
-    content
-      .replace(/^import\s.+$/gm, "")
-      .replace(/```[\s\S]*?```/g, "")
-      .replace(/<[^>]+>/g, "")
-      .split(/\n{2,}/)
-      .map((paragraph) => paragraph.replace(/^#+\s*/, "").trim())
-      .find(Boolean) ?? ""
+    paragraphs.find((paragraph) => paragraph.length >= 60) ??
+    paragraphs[0] ??
+    ""
   );
+}
+
+/** "web-in-april-2026" becomes "Web in April 2026"; other slugs keep the title. */
+function createShortTitle(slug: string, title: string) {
+  const match = /^web-in-([a-z]+)-(\d{4})$/.exec(slug);
+  if (!match) return title;
+  const [, month = "", year = ""] = match;
+  return `Web in ${month.charAt(0).toUpperCase()}${month.slice(1)} ${year}`;
 }
 
 const postSchema = type({
@@ -78,9 +105,13 @@ const newsletters = defineCollection({
       }),
     });
 
+    const slug = issue._meta.path;
+
     return {
       ...issue,
-      slug: issue._meta.path,
+      slug,
+      shortTitle: createShortTitle(slug, issue.title),
+      excerpt: createIssueExcerpt(issue.content),
       mdx,
     };
   },
