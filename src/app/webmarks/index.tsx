@@ -7,7 +7,6 @@ import {
   BookmarkGrid,
   LoadMore,
   SearchField,
-  SortSelect,
   TagFilterRow,
 } from "components/Webmarks";
 import {
@@ -23,7 +22,7 @@ import {
 /**
  * Keep only params that differ from the defaults. TanStack Start rebuilds the
  * URL from this on the server and redirects when the two disagree, and a clean
- * `/webmarks` beats `/webmarks?q=&tag=&sort=newest`. Unknown keys never reach
+ * `/webmarks` beats `/webmarks?q=&tag=`. Unknown keys never reach
  * the loader, so an old page-number link (`?page=2`) just shows the first page.
  */
 const parseSearch = (search: Record<string, unknown>): WebmarksSearch =>
@@ -114,32 +113,23 @@ function WebmarksPage() {
         {total === 0 && !hasFilters ? null : (
           <section
             aria-label="Filters"
-            className="bg-surface sticky top-16 z-20 -mx-4 flex flex-col gap-y-3 px-4 pt-3 pb-2 backdrop-blur-md backdrop-saturate-150 sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8"
+            className="bg-surface sticky top-16 z-20 -mx-4 flex items-center gap-x-3 px-4 pt-3 pb-2 backdrop-blur-md backdrop-saturate-150 sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8"
           >
-            <div className="flex flex-wrap items-center gap-3">
-              <SearchField
-                value={params.q}
-                onChange={(q) => setParams({ q })}
-              />
-              <SortSelect
-                value={params.sort}
-                onChange={(sort) => setParams({ sort })}
-              />
-              {hasFilters ? (
-                <button
-                  type="button"
-                  onClick={() => setParams({ q: "", tag: "" })}
-                  className="text-primary decoration-mod rounded text-sm font-bold underline decoration-2 underline-offset-4 hover:decoration-[var(--color-accent)]"
-                >
-                  Reset
-                </button>
-              ) : null}
-            </div>
             <TagFilterRow
               tags={tags}
               activeTag={params.tag}
               onSelect={(tag) => setParams({ tag })}
             />
+            {hasFilters ? (
+              <button
+                type="button"
+                onClick={() => setParams({ q: "", tag: "" })}
+                className="text-primary decoration-mod shrink-0 rounded text-sm font-bold underline decoration-2 underline-offset-4 hover:decoration-[var(--color-accent)]"
+              >
+                Reset
+              </button>
+            ) : null}
+            <SearchField value={params.q} onChange={(q) => setParams({ q })} />
           </section>
         )}
 
