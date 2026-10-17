@@ -70,7 +70,6 @@ export function BookmarkGrid({
         <li key={bookmark.id} className="flex">
           <BookmarkCard
             bookmark={bookmark}
-            ordinal={index + 1}
             index={index}
             animate={animate}
             activeTag={activeTag}
