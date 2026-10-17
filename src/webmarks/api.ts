@@ -7,24 +7,6 @@ import {
 
 export const PAGE_SIZE = 24;
 
-export const SORT_ORDERS = [
-  "newest",
-  "oldest",
-  "title",
-  "title_desc",
-  "updated",
-] as const;
-
-export type SortOrder = (typeof SORT_ORDERS)[number];
-
-export const SORT_LABELS: Record<SortOrder, string> = {
-  newest: "Newest first",
-  oldest: "Oldest first",
-  title: "Title A–Z",
-  title_desc: "Title Z–A",
-  updated: "Recently updated",
-};
-
 export type FetchStatus = "pending" | "success" | "failed";
 
 export interface Bookmark {
@@ -61,7 +43,6 @@ export interface TagWithCount {
 export interface ListParams {
   q: string;
   tag: string;
-  sort: SortOrder;
 }
 
 /** Input of the list server function: the filters plus the page cursor. */
@@ -78,13 +59,11 @@ export interface ListPageParams extends ListParams {
 export interface WebmarksSearch {
   q?: string;
   tag?: string;
-  sort?: SortOrder;
 }
 
 export const DEFAULT_LIST_PARAMS: ListParams = {
   q: "",
   tag: "",
-  sort: "newest",
 };
 
 /** Matches the backend's own cap; anything longer is not a cursor it issued. */
@@ -100,9 +79,6 @@ export function normalizeListParams(input: unknown): ListParams {
   return {
     q: typeof raw.q === "string" ? raw.q.slice(0, 128) : "",
     tag: typeof raw.tag === "string" ? raw.tag.slice(0, 64) : "",
-    sort: SORT_ORDERS.includes(raw.sort as SortOrder)
-      ? (raw.sort as SortOrder)
-      : "newest",
   };
 }
 
@@ -133,9 +109,6 @@ export function toSearchParams(params: ListParams): WebmarksSearch {
   }
   if (params.tag) {
     search.tag = params.tag;
-  }
-  if (params.sort !== DEFAULT_LIST_PARAMS.sort) {
-    search.sort = params.sort;
   }
 
   return search;
@@ -176,10 +149,8 @@ export const listBookmarks = createServerFn({ method: "GET" })
   .handler(async ({ data }): Promise<BookmarkList> => {
     const params = new URLSearchParams({
       limit: String(PAGE_SIZE),
-      sort: data.sort,
+      sort: "newest",
     });
-    // A cursor is bound to the sort it was issued under; the query key below
-    // includes the sort, so a cursor only ever travels with its own sort.
     if (data.cursor) {
       params.set("cursor", data.cursor);
     }
