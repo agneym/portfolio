@@ -35,13 +35,16 @@ export function BookmarkCard({
       }
       className={clsx(
         "group bg-key relative flex flex-1 flex-col overflow-hidden rounded-2xl shadow-[inset_0_1px_0_var(--key-highlight),0_5px_0_var(--color-skirt),0_14px_24px_-14px_var(--key-cast)] transition-[transform,box-shadow] duration-200 ease-[var(--ease-clack)] focus-within:ring-3 focus-within:ring-[var(--color-accent)] hover:-translate-y-0.5 has-[a:active]:translate-y-1 has-[a:active]:shadow-[inset_0_1px_0_var(--key-highlight),0_1px_0_var(--color-skirt),0_4px_8px_-4px_var(--key-cast)]",
+        // From sm up the card has no key surface of its own, so rows of uneven
+        // heights read as a clean list rather than ragged tiles.
+        "sm:overflow-visible sm:rounded-none sm:bg-transparent sm:shadow-none sm:hover:translate-y-0 sm:has-[a:active]:translate-y-0 sm:has-[a:active]:shadow-none",
         animate && "animate-rise-in",
         "motion-reduce:animate-none",
       )}
     >
       {bookmark.image ? <Thumbnail src={bookmark.image} /> : null}
 
-      <div className="flex flex-1 flex-col gap-y-3 p-5">
+      <div className="flex flex-1 flex-col gap-y-3 p-5 sm:px-0 sm:pt-4 sm:pb-2">
         <div className="flex items-center gap-x-2">
           <Favicon favicon={bookmark.favicon} domain={domain} />
           <span className="text-secondary truncate text-sm">{domain}</span>
@@ -114,7 +117,7 @@ function Thumbnail({ src }: { src: string }) {
   }
 
   return (
-    <div className="bg-plate-deep relative m-2 mb-0 aspect-video overflow-hidden rounded-xl">
+    <div className="bg-plate-deep relative m-2 mb-0 aspect-video overflow-hidden rounded-xl sm:m-0">
       <img
         src={src}
         alt=""
