@@ -1,0 +1,164 @@
+---
+title: JEM - Web in March - JavaScript Every Month Newsletter
+date: "2025-04-06T20:34:20.530092Z"
+buttondownUrl: https://buttondown.com/agney/archive/jem-web-in-march-javascript-every-month-newsletter/
+---
+
+Hello April 👋
+
+That was an MCP month—Model Context Protocol servers—if you are not dialed in. Many people are discussing MCPs, and every organization is creating one. I'm unsure about the level of adoption here. I have tried different MCPs at various points over the last couple of months, but I haven't stuck with any of them. The issue is that I forget to use them once I install them.
+
+Listing some of my favourite MCPs here:
+
+- [Browser tools MCP](https://github.com/AgentDeskAI/browser-tools-mcp) - Run performance/accessibility audits in your browser and feed results into an MCP.
+- [Magic MCP](https://21st.dev/magic)
+- [supabase MCP](https://github.com/alexander-zuev/supabase-mcp-server)
+- [PostgreSQL MCP](https://github.com/modelcontextprotocol/servers/tree/main/src/postgres)
+
+What's yours? Spill the secrets.
+
+## Releases
+
+### Browsers
+
+#### [Firefox 136](https://developer.mozilla.org/en-US/docs/Mozilla/Firefox/Releases/136)
+
+- `:has-slotted` pseudo-class is used to style elements in `<template>` that have content added to a `<slot>` element when rendering a web component
+- `:open` pseudo class allows you to select any element that is currently in an open state, `<details>`, `<dialog>`, `<input>` elements with picker, `<select>`
+- `<gradient>` CSS functions allow a single color stop and 0-1 positions.
+- `Intl.DurationFormat` is now supported, enabling locale-sensitive formatting of durations (Baseline)
+- The maximum size of Data URLs has been increased from 32MB to 512MB, matching the limit for Chromium browsers
+
+#### [Chrome 134](https://developer.chrome.com/release-notes/134)
+
+- customizable `select` element is in DOM, you can add `appearance: base-select` to make it customizable.
+- light dismiss behaviour comes to `<dialog>` element
+- Integrates the Web Locks API into Shared Storage. This prevents scenarios such as where cross-site reach measurement can result in duplicate reporting, due to the potential race conditions within the `get()` and `set()` logic.
+
+#### [Safari 18.4](https://developer.apple.com/documentation/safari-release-notes/safari-18_4-release-notes)
+
+- CanvasRenderingContext2D support for unprefixed `letterSpacing` and `wordSpacing`.
+- `attr` fallback, ::details-content pseudo-element, CSS `shape()` function
+- Iterator Helpers proposal by implementing `map()`, `filter()`, `take()`, `drop()`, and `flatMap()` methods
+- `<gradient>` CSS functions allow a single color stop and 0-1 positions.
+
+### [React 19.1](https://github.com/facebook/react/releases/tag/v19.1.0)
+
+- Owner Stack is a string representing the components that are directly responsible for rendering a particular component. You can log Owner Stacks when debugging or use Owner Stacks to enhance error overlays or other development tools. Owner Stacks are only available in development builds. Component Stacks in production are unchanged
+- Enhanced support for Suspense boundaries to be used anywhere, including the client, server, and during hydration
+- Updated useId to use valid CSS selectors, changing format from `:r123:` to `«r123»`
+
+### [Angular 19.2](https://blog.angular.dev/angular-19-2-is-now-available-673ec70aea12)
+
+- **Asynchronous Reactivity**: Introduces httpResource and rxResource APIs for easier integration of asynchronous actions like data fetching in Angular.
+
+  - `httpResource` supports reactive HTTP data fetching.
+  * `rxResource` enables streaming multiple responses reactively
+
+- **Template Ergonomics**: Improves Angular templates with untagged template literal expressions, simplifying dynamic value interpolation.
+
+### [Material UI v7](https://mui.com/blog/material-ui-v7-is-here/)
+
+- Improved ESM support
+- `slot` pattern implementation ([Extended read about the pattern](https://mui.com/material-ui/customization/overriding-component-structure/))
+- opt in support for CSS layers
+
+### [Lynx - Cross platform native apps](https://lynxjs.org/blog/lynx-unlock-native-for-more)
+
+Bytedance, the parent company of TikTok, has released this cross-platform framework to create native apps inspired by React Native.
+
+It creates statically-enforced division of user scripting into two distinct runtimes: a **main-thread runtime**, powered by PrimJS, a custom JavaScript engine specifically optimized for Lynx, dedicated to privileged, synchronous UI tasks like initial launch and high-priority event handling, and a **background runtime** as the default for user code, ensuring the main thread remains low workload and non-blocking.
+
+### [Babylon 8](https://blogs.windows.com/windowsdeveloper/2025/03/27/announcing-babylon-js-8-0/)
+
+- IBL Shadows: Enhancements to image-based lighting (IBL), now including shadow support.
+- Area Lights: Introduction of 2D shape-based lights for scenes.
+- Node Render Graph (Alpha): Customizable rendering pipeline now exposed to users.
+
+### [RsDoctor](https://rsdoctor.dev/blog/release/release-note-1_0)
+
+A build analyzer designed specifically for the Rspack ecosystem, it is also fully compatible with the webpack ecosystem. This native tool features an excellent UI for identifying build issues and operates effectively, even when the speed measure plugin encounters memory problems.
+
+## In the Spotlight 🔦
+
+Next.js was in the spotlight this month for all the wrong reasons. A vulnerability was discovered in the Next.js middleware, where adding a header could cause the framework to skip middleware execution entirely. This issue only affected applications deployed using `next start` and `output: standalone`. Applications hosted on popular platforms like Vercel and Netlify are not impacted.
+
+While the vulnerability is concerning, Vercel's response drew significant criticism. The team claimed to have verified that Netlify-hosted apps were secure, but they did not share this information, leading to confusion within the ecosystem. Additionally, earlier versions were released under an LTS policy and were not included in security patches when the vulnerability was made public.
+
+- Vulnerability report from researchers - [Next.js and the corrupt middleware: the authorizing artifact](https://zhero-web-sec.github.io/research-and-things/nextjs-and-the-corrupt-middleware)
+- [Postmortem on Next.js Middleware bypass](https://vercel.com/blog/postmortem-on-next-js-middleware-bypass)
+- Stackauth investigation - [Authorization Bypass in Next.js Middleware](https://stack-auth.com/blog/nextjs-middleware-auth-bypass)
+- Principal Engineer at Netlify about Vercel-Next.js relationship and it's implications - [You should know this before choosing Next.js](https://eduardoboucas.com/posts/2025-03-25-you-should-know-this-before-choosing-nextjs)
+
+### In short
+
+- `styled-components` was one of my favorite libraries for CSS when styling became a specialized aspect of the React ecosystem. CSS-in-JS was captivating, and it was exciting to have the styling in the same file as your logic. With the rise of RSC and its future direction, [styled-components have conceded and are now entering maintenance mode](https://opencollective.com/styled-components/updates/thank-you).
+- Fauna, once Twitter's favorite database service, has [announced that it will end its service and open-source its code](https://fauna.com/blog/the-future-of-fauna).
+- TypeScript team has annonced an effort to [rewrite the framework to Go](https://devblogs.microsoft.com/typescript/typescript-native-port/) - this is planned to be 10x faster.
+- [State of Vue report](https://www.monterail.com/stateofvue)
+- Last month, I wrote in the newsletter about supersonic jets and those who are at the forefront. This month, [China has announced a quiet supersonic jet with a range 50% longer than the Concorde](https://www.scmp.com/news/china/science/article/3304082/comac-c949-china-unveils-quiet-supersonic-jet-50-longer-range-concorde).
+
+## Tutorials
+
+### [CSS Relative colors - Ahmad Shadeed](https://ishadeed.com/article/css-relative-colors/)
+
+Very common appearance on our newsletter. This is an interactive take on CSS relative colors and what problems they solve. It introduces the `color-mix` function which is available in Baseilne browsers and use cases.
+
+### [Is the button focuzable? - Manuel Matuzović](https://matuzo.at/blog/2025/is-the-button-focusable)
+
+This is an incredibly simple premise: When is a button focusable? We use various techniques in HTML and CSS to hide elements. Some of these methods leave buttons focusable, which can irritate users because they don't see it, but lose the focus control.
+
+Hint: you are best using `display: none;`, `visibility: hidden` or `content-visibility: hidden;` if you don't want the buttons getting focus.
+
+### [The European Accessibility Act for websites and apps](https://martijnhols.nl/blog/the-european-accessibility-act-for-websites-and-apps)
+
+The European Accessibility Act will come into force in June 2025. Existing apps must meet the requirements by June 2030, while new developments must comply by June 28 of this year. The premise of the act is straightforward: we do not need to study new laws; instead, we must ensure compatibility with WCAG 2.1 AA, which is the closest standard.
+
+### [The Great ESLint v9 Migration Adventure: A Developer's Survival Guide 🧗‍♂️](https://www.neoxs.me/blog/migration-to-eslint-v9)
+
+ESLint has upgraded to version 9, and each time I considered updating, I felt too tired to dive into it. I have previously mentioned in earlier editions of the newsletter that ESLint aims to support more languages, and this is a step in the right direction; I just haven't gotten around to it. This blog provides a checklist of things to try to get this tool working effectively.
+
+## In Other News
+
+### [Celebrate 50 years of Microsoft with the company's original source code](https://www.gatesnotes.com/home/home-page-topic/reader/microsoft-original-source-code)
+
+Microsoft celebrates 50 years this year and has several events planned for the occasion. Satya Nadella announced updates to Copilot AI, which brings the most popular AI features to the Windows bundled Copilot software.
+
+The linked blog here comes from Bill Gates publishing original source code Altair BASIC - the first product of Micro-Soft. The page itself looks very cool, retro even if you don't go into the source code.
+
+### [The End of The International Space Station - B1M](https://youtu.be/cohVHaVMBl8?si=YWLFkAyO38DMYoJM)
+
+The International Space Station is the largest collaboration among space programs that the world has ever seen. As space becomes increasingly privatized, this may also be the largest collaboration in history. This video from B1M explores how the ISS was established and the mission to decommission it by 2030, involving a controlled crash into the most remote place on Earth, Point Nemo.
+
+### [Let’s knock down social media’s walled gardens - FT](https://www.ft.com/content/79d2d19a-08df-48fc-9a6f-a9dbef58f642)
+
+This article by Tim Berners-Lee reflects on 35 years of the World Wide Web and its transformative impact on life. At times, it shifts to a call for the initiatives he is currently pursuing, but his arguments remain compelling.
+
+He believes we must address the polarization of opinions among large groups of people on social media. We can achieve this by implementing interoperable protocols to ensure that your data is safe and accessible across platforms.
+
+### [Angelina Jolie Was Right About Computers - Wired](https://www.wired.com/story/angelina-jolie-was-right-about-risc-architecture/)
+
+This Wired article, with its clickbait title, discusses the benefits of an open instruction set for computers using RISC-V. It begins by recounting how the RISC instruction set triumphed over its more complex competitors. The article also highlights how its founder and team have renewed their efforts against the established winners by advocating for an open standard.
+
+> Established tech companies figured that as hardware design improved and programming languages got more sophisticated, computers shouldn’t remain simple; they should be taught larger vocabularies, with longer words. The more types of operations they were capable of, the logic went, the more efficient their calculations would be. _But a bigger dictionary did not lead to clearer sentences._
+
+### [AI's effects on programming jobs](https://seldo.com/posts/ai-effect-on-programming-jobs)
+
+AI's effects on the field of programming are often discussed in binary terms—either as a doom or a utopia. It's noteworthy that programming is perceived as an area facing decline, yet every developer seeks to utilize AI rather than protesting for regulations against it. Laurie Voss reminds us that this is not the first time logic has moved up and became accessible to more people. We are JavaScript developers. That is the purpose of creation of JavaScript itself - get more people coding.
+
+> The net result of all of this for the programming market is: more software, better software, more programmers, better programmers
+
+### AI Updates
+
+- A new AI agent that can control the browser is astonishing everyone - [Manus](https://manus.im/)
+- [OpenAI image generation](https://openai.com/index/introducing-4o-image-generation/) blew over their servers with Ghibli images.
+- OpenAI [tools for building agents](https://openai.com/index/new-tools-for-building-agents/) and new [transcribe models](https://openai.com/index/introducing-our-next-generation-audio-models/).
+- [Mistral OCR](https://mistral.ai/news/mistral-ocr)
+- Small models - [Mistral small 3](https://mistral.ai/news/mistral-small-3-1) and [Gemma 3](https://blog.google/technology/developers/gemma-3/)
+
+## Looking Ahead
+
+- [DotJS](https://www.dotjs.io/) - April 3
+- [Node Congress](https://nodecongress.com/) - April 17
+- [React Miami](https://www.reactmiami.com/) - April 17-18
+- [CityJS London](https://london.cityjsconf.org/) - April 23-25

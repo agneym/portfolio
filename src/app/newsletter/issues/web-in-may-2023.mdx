@@ -1,0 +1,119 @@
+---
+title: Web in May - Newsletter by Agney
+date: "2023-06-11T19:38:48.202001Z"
+buttondownUrl: https://buttondown.com/agney/archive/web-in-april-newsletter-by-agney/
+---
+
+Hey June 👋
+
+Thanks for waiting up for May edition of my Newsletter. Some work held me up and I couldn't get to compiling all the videos and articles. I was at the first in person edition of JSConf India at Bangalore in May and loved the experience. There were lots of talks that were just glorified ads but that's how many conferences go I guess. 🤷‍♂️
+
+Apple has just announced the Vision Pro which could revolutionise how we use our devices. It's not getting released till next year, but are you getting one when it's priced at $3500?
+
+Two very important birthdays for us last month - NodeJS turned 14 and ReactJS turned 10 🎉 We will be talking about ReactJS in this week's Spotlight.
+
+## Releases
+
+### Browsers
+
+### [Chrome 114](https://developer.chrome.com/blog/new-in-chrome-114/)
+
+- `text-wrap: balance` is released. I have been writing it into my titles even though it was not widely supported. With its release, all those instances that showed Not supported will now start working as expected.
+- A declarative API for writing popovers on the web has been released.
+- Chrome 113 includes WebGPU, the successor to the WebGL and WebGL 2 graphics APIs for the web.
+
+```html
+<button popovertarget="my-popover">Open Popover</button>
+
+<div id="my-popover" popover>
+  <p>I am a popover with more information.</p>
+  <p></p>
+</div>
+```
+
+#### [Firefox 113](https://developer.mozilla.org/en-US/docs/Mozilla/Firefox/Releases/113)
+
+- `oklch()` is now supported everywhere - [Check out Evil Martians blog to see how it's useful](https://evilmartians.com/chronicles/oklch-in-css-why-quit-rgb-hsl)
+- A bunch of new WebRTC APIs are now live.
+
+#### [Safari 16.5](https://developer.apple.com/documentation/safari-release-notes/safari-16_5-release-notes)
+
+- Support for CSS Nesting - Firefox is still a laggard on implementation.
+- Support for :user-valid and :user-invalid.
+
+### [Electron 25](https://www.electronjs.org/blog/electron-25-0)
+
+- Implemented net.fetch within Electron's net module, using Chromium's networking stack. This differs from Node's fetch(), which uses Node.js' HTTP stack
+
+### [Next 13.4](https://nextjs.org/blog/next-13-4)
+
+App Router is now stable in NextJS, meaning so is server components. I tried it out on the new release and even moved my portfolio ([agney.dev](https://agney.dev)) to the new format. I'm not yet used to the paradigm of writing "use client" and reloading when something doesn't work but hopefully that's something that we get used to.
+
+Server Actions are now in Alpha, meaning React can now be termed as a full stack framework. When I started working in React, the first interview question that was asked was "Is React a library or a framework?".
+
+Lydia Hallie's tips on building server components:
+
+[https://twitter.com/lydiahallie/status/1655945218594844682](https://twitter.com/lydiahallie/status/1655945218594844682)
+
+## In the Spotlight 🔦
+
+Happy 10th Birthday React 🎉
+
+The JS framework that my career grew up with is now a decade old. I will try and cover some React related news and conference talks from this week and get you up to speed.
+
+- [Dan Abramov replied to a thread](https://www.reddit.com/r/reactjs/comments/13n9zny/comment/jl5vcix/?context=3) on direction of React on Reddit and it's must a read for understanding some recent decisions in React roadmap.
+- For Remix Conf, [Dan Abramov's talk](https://youtu.be/zMf_xeGPn6s) is on writing a React server components framework and run it on Internet Explorer.
+- Vercel brought [Andrew Clark and Sebastian Markbåge from the React core team together for roundtable](https://youtu.be/g5BGoLyGjY0) on get some insight on some upcoming features like Server components and Forget Compiler.
+- Remix Conf bought together [Joe Savona, Ricky Hanlon, Dan Abramov, & Michael Jackson on a roundtable](https://youtu.be/WiEtFPYGgbM). They talk about server components (which seems to be on everyone's mind), the potential integration of signals in React, and the latest updates on the partnership between Vercel and ReactJS.
+
+## Tutorials
+
+### [Scaling up the Prime Video audio/video monitoring service and reducing costs by 90%](https://www.primevideotech.com/video-streaming/scaling-up-the-prime-video-audio-video-monitoring-service-and-reducing-costs-by-90)
+
+This month, Amazon surprised us with a blog post about Prime Video. The Video Quality Analysis (VQA) team at Amazon initially employed a distributed system with various components for media conversion, defect detection, and orchestration management. However, they discovered that this approach was not scalable or maintainable. To address this, the team re-architected the infrastructure by consolidating all components into a single process, eliminating the need for intermediate storage of video frames. This architectural change resulted in a significant reduction in infrastructure costs (over 90%) and enhanced the team's ability to scale the service effectively.
+
+While all of Amazon's services still operate on AWS, it's interesting to note that their web services team are generally know to advocate for a microservice architecture that tightly couples different services. This blog post introduces a surprise element as it deviates from their typical approach.
+
+### [Building a Frontend Framework; Reactivity and Composability With Zero Dependencies](https://18alan.space/posts/how-hard-is-it-to-build-a-frontend-framework.html)
+
+It's quite uncommon to come across a super short blog post that focuses on creating a framework. What makes it particularly special is that the post doesn't serve as an advertisement highlighting a framework's features. Instead, it delves into the essential components of a framework and provides an explanation of how these elements can be achieved using JavaScript.
+
+### [The growing pains of database architecture](https://www.figma.com/blog/how-figma-scaled-to-multiple-databases/)
+
+Figma team writes on this blog about their pains with growing database usage and paths they explored to for better maintenance. They decided on vertically splitting their database and letting clients fetch from multiple databases based on which table they were querying. The team also explores how they did this with zero downtime.
+
+> We considered carefully coordinating a snapshot restore and starting replication at the correct point, but a restore eliminated the possibility of having a smaller storage footprint. Instead we decided to investigate why logical replication’s performance is so sluggish. We discovered that the slow copy is a result of how Postgres maintains indexes in the destination database. While logical replication copies rows in bulk, it inefficiently updates indexes one row at a time. By removing indexes in the destination database and rebuilding the indexes after the initial copying of data, we reduced the copy time to a matter of hours.
+
+### [Prompt Engineering for Developers - Open AI](https://www.deeplearning.ai/short-courses/chatgpt-prompt-engineering-for-developers/)
+
+I took a [free course with OpenAI and DeepLearning.ai](https://www.deeplearning.ai/short-courses/chatgpt-prompt-engineering-for-developers/) on Prompt Engineering this month. Here's snippets from what I learned:
+
+- To prevent prompt highjacking, provide the user prompt you receive within delimiters like \`\`\` or """ and specify the delimiter in your master prompt.
+- Ask for structured HTML, JSON, XML like formats if you want to process the result.
+- Attempt [Few shot prompting](https://www.promptingguide.ai/techniques/fewshot) if you want to get voice of AI right.
+
+OpenAI has also [published a page with best practices](https://platform.openai.com/docs/guides/gpt-best-practices/six-strategies-for-getting-better-results) for getting best results out of their AI.
+
+### [How to draw any regular shape with just one JavaScript function](https://developer.mozilla.org/en-US/blog/javascript-shape-drawing-function/)
+
+In this concise blog post, the author provides instructions on how to draw a shape with any number of sides using a single JavaScript function. While the immediate practical use of this technique may be limited, the lesson on radians and its application in this context could prove valuable in the future, presenting an opportunity to leverage this knowledge when the right moment arises.
+
+## In Other News
+
+### [Using a private 5G network to support coverage of the King's Coronation](https://www.bbc.co.uk/rd/blog/2023-05-5g-non-public-network-coronation)
+
+In a situation familiar to many, we often encounter the frustration of experiencing a lack of data and network connectivity in densely crowded areas, where the network provider struggles to provide sufficient bandwidth to meet the demand. BBC found themselves in a similar predicament when they needed to report on the live King's Coronation event to their offices and media offices globally. To tackle this challenge, they devised a unique solution by setting up a private 5G network, which happened to be the largest attempt of its kind to date. This allowed them to ensure reliable and uninterrupted coverage for their crucial broadcasting needs.
+
+### [Story: JSON vs XML - Corecursive](https://pca.st/episode/5cbfd0bf-5eda-4a80-b415-107de78c4153)
+
+Absolutely loved this podcast with Douglas Crockford as guest. He shares how it was building applications and betting on JavaScript when no one else did; How JSON was founded as a small special communication language in place of the complicated XML. He also gives us a tip on what to build to get ahead.
+
+### [Redditor creates working anime QR codes using Stable Diffusion](https://arstechnica.com/information-technology/2023/06/redditor-creates-working-anime-qr-codes-using-stable-diffusion/)
+
+A Redditor named ["nhciao"](https://www.reddit.com/user/nhciao/) has created a series of artistic QR codes using the Stable Diffusion AI image-synthesis model. The codes can still be read as functional QR codes by smartphone camera apps and feature artistic styles in anime and Asian art. The codes work because of the innate error correction feature built into QR codes that allows for a certain percentage of the code's data to be restored if it's damaged or obscured. Stable Diffusion is not only controlling dot positions, but also blending picture details to match the QR code.
+
+## Looking Forward
+
+- [React Summit](https://reactsummit.com/) - June 2-6
+- [CSS Day](https://cssday.nl/2023) - June 8-9
+- [Figma Config](https://config.figma.com/) - June 21-22

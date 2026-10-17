@@ -1,0 +1,167 @@
+---
+title: JEM - Web in February - JavaScript Every Month Newsletter
+date: "2025-03-12T19:33:38.591729Z"
+description: Embrace the AI agent revolution to supercharge your programming
+  skills with practical tools!
+image: https://image-generator.buttondown.email/api/emphasize-subject?subject=JEM%20-%20Web%20in%20February%20-%20JavaScript%20Every%20Month%20Newsletter&author=JEM%20Newsletter%20-%20JavaScript%20Every%20Month&date=2025-03-11&img=
+buttondownUrl: https://buttondown.com/agney/archive/jem-web-in-february-javascript-every-month-1422/
+---
+
+It's an AI revolution, specifically an AI agent revolution. Do you use AI in your everyday programming? You should. It can be challenging to train and prompt, but once you get the hang of it, it works wonders. Treat it like Google; you need to understand how to ask the right questions to get the best answers. The same applies to LLMs; you must practice to discover their full potential.
+
+Even if your company isn't sponsoring it, it's not hard to start today.
+
+- [Github Copilot provides free limited access](https://docs.github.com/en/copilot/managing-copilot/managing-copilot-as-an-individual-subscriber/about-github-copilot-free)
+- [Gemini code assist](https://codeassist.google/products/business) has free credits
+- [Mistral Codestral](https://mistral.ai/news/codestral) is free.
+- [Windsurf](https://codeium.com) provides you credits to get started.
+
+## Releases
+
+### Browsers
+
+#### [Firefox 135](https://developer.mozilla.org/en-US/docs/Mozilla/Firefox/Releases/135)
+
+- Support for JSON parse with source proposal
+- `PublicKeyCredential.getClientCapabilities()` static method is supported, allowing a web app to check if a browser enables particular WebAuthn capabilities and extensions without having to resort to user agent sniffing
+- `Temporal API` in the nightly release.
+
+The major news from Firefox release has been changes to their privacy policy.
+
+- [Github diff](https://github.com/mozilla/bedrock/commit/d459addab846d8144b61939b7f4310eb80c5470e?diff=unified) on the change.
+- [The Firefox I loved is gone - how to protect your privacy on it now - ZDNet](https://www.zdnet.com/article/the-firefox-i-loved-is-gone-how-to-protect-your-privacy-on-it-now/)
+- [Mozilla explanation on the Terms of Use update](https://blog.mozilla.org/en/products/firefox/update-on-terms-of-use/)
+- [Mozilla rewrites Firefox’s Terms of Use after user backlash - TechCrunch](https://techcrunch.com/2025/03/03/mozilla-rewrites-firefoxs-terms-of-use-after-user-backlash/)
+
+#### [Chrome 133](https://developer.chrome.com/release-notes/133)
+
+- support for `PublicKeyCredential.getClientCapabilities()` - same as firefox
+- support for `popover=hint` which have tooltip capabilities.
+- `attr()` function support to Level 5 which allows types besides `<string>` and use in all CSS properties
+- `:open` pseudo-class matches `<dialog>` and `<details>` when they are in their open state, and matches `<select>` and `<input>` when they are in modes which have a picker and the picker is showing.
+- `Animation.overallProgress` provides how far along an animation has advanced across its iterations and regardless of nature of its timeline.
+- `moveBefore` to move content while preserving state in the DOM.
+
+### [Daisy UI 5](https://daisyui.com/docs/v5/)
+
+The popular Tailwind associated UI library is now v5.
+
+- supports Tailwind v4
+- zero dependencies
+- 61% smaller in size
+- micro css files available for No-Build projects
+
+Adding memes with release updates is a nice touch 😂
+
+### [Astro 5.3 & Astro 5.4](https://astro.build/blog/astro-530/)
+
+- Remove image optimisation
+- Faster page rendering
+- Automatic session storage setup
+- More control over Netlify bundling
+- Improved handling of HEAD requests
+
+### [Next.js 15.2](https://nextjs.org/blog/next-15-2)
+
+- Redesigned error UI and improved stack traces
+- Experimental support for React View Transitions
+
+### [9ui](https://www.9ui.dev/)
+
+On our earlier Newsletter edition, we had noted an unstyled UI component library named BaseUI from creators of Radix, Floating UI and Material UI. 9ui is build on top of BaseUI - ie. it actually adds the style with Tailwind CSS. It looks 🪄.
+
+### [ESLint officially supports linting of CSS](https://eslint.org/blog/2025/02/eslint-css-support/)
+
+- CSS Linting under new package `@eslint/css`
+
+### [React native 0.78](https://reactnative.dev/blog/2025/02/19/react-native-0.78)
+
+- React 19 official support
+- Added support for Android XML drawables
+
+### [require(esm) Backported to Node.js 20](https://socket.dev/blog/require-esm-backported-to-node-js-20)
+
+NodeJS 22 introduced ⁠`require(esm)`, allowing for the development of ESM-only modules. However, many developers continued to use Node 20, slowing progress more than expected. [A new PR has been added to Node 20](https://joyeecheung.github.io/blog/2024/03/18/require-esm-in-node-js/), backporting the ⁠`require(esm)` behavior to this version. As support for Node 18 ends soon, this change will facilitate the creation of newer ESM-only modules.
+
+- [Move to ESM only - Anthony Fu](https://antfu.me/posts/move-on-to-esm-only)
+
+## In the Spotlight 🔦
+
+This month, I pay tribute to the scaffolding tool that marked the beginning of my serious coding journey: Create React App. While I had developed JavaScript apps before, React was a revelation for me. CRA included a command for ejecting from its build setup when you outgrew it. By ejecting, I learned how webpack configuration works and experimented with it.
+
+React team has [deprecated Create React App](https://react.dev/blog/2025/02/14/sunsetting-create-react-app) and now recommends using a framework or build tool like Vite, Parcel, or Rsbuild. Although both options are available, the team clearly favors a framework. CRA has struggled to keep pace with React 19, particularly since the key feature of server components is not available in the official scaffolding tool.
+
+I appreciate the choice of adopting a framework, and as I have mentioned before, I like the direction Tanstack Start is taking. Thank you for the memories, CRA! 👋
+
+- [CRA to Parcel](https://github.com/parcel-bundler/cra-to-parcel) - script to migrate non-ejected CRA app to Parcel.
+- [Create TanStack router app](https://github.com/TanStack/create-tsrouter-app)
+
+## In Short
+
+- [React native core contributor summit 2024 recap](https://reactnative.dev/blog/2025/02/03/react-native-core-contributor-summit-2024)
+- [Angular documentary from Honeypot](https://www.youtube.com/watch?v=cRC9DlH45lA)
+- [State of React native results](https://results.stateofreactnative.com/)
+- [SVG Filter Sticker Effects](https://codepen.io/jh3y/pen/OPJyVGb) from Jhey Thomson - Codepen
+
+## Tutorials
+
+### [How Preply improved INP on a Next.js application (without React Server Components and App Router)](https://medium.com/preply-engineering/how-preply-improved-inp-on-a-next-js-application-without-react-server-components-and-app-router-491713149875)
+
+Preply explains how they collaborated to enhance their INP (Interaction to Next Paint) web vital. This comprehensive guide outlines the steps they considered, provides a breakdown of their process, and details the benefits they gained from improving INP. Additionally, it discusses the decisions they made to avoid certain actions that did not align with their timeline.
+
+### [TypeScript types can run DOOM - Michigan TypeScript](https://youtu.be/0mCsluv5FXA?si=o2s6AQxCjXkJnZDd)
+
+I'm not entirely sure if I should categorize this as a tutorial. However, someone has demonstrated that they can build and run DOOM using only TypeScript types. The video provides a walkthrough of their process. There are also other videos on the channel where they introduce their creation to the TypeScript creator.
+
+### [React.js Performance Guide - Sentry](https://blog.sentry.io/react-js-performance-guide/)
+
+Sentry's blog presents a list of common React performance issues and their solutions. It clearly outlines the problems and the necessary steps to address them. Additionally, it includes tools to assist in the process.
+
+### [Designing backgrounds with LLMs and React](https://www.vigilant.run/blog/designing-backgrounds-with-llms-and-react)
+
+Most tutorials today are about developing entire apps with LLMs. But this one's about creating a background component with LLM prompting and making it creative.
+
+> Artistic components are perfect for AI: they're isolated, they can't cause serious damage, and you can verify the logic by looking at the result.
+
+### [Faux Containers in CSS Grids](https://cloudfour.com/thinks/faux-containers-in-css-grids/)
+
+This is a short tutorial on breaking elements out of grid using, you guessed it _CSS grid_. Even though it seems simple, I hadn't thought about putting a pseduo element on the grid before!
+
+## In Other News
+
+### [Best devices at Mobile World Congress](https://youtu.be/zNVbgEJfgz8?si=jzdop4tdPKEoh6rY)
+
+Companies don't launch devices at MWC (or any trade fairs for that matter) to avoid getting lost in the noise. However, it remains a platform for showcasing concept devices and demonstrating innovation.
+
+- World's skinniest phone
+- Foldable display handheld
+- Lens that attechs itself to the back of the phone with magnetic pins
+- Phone which doubles up as a speaker and more.
+
+### [I tried to prove I'm not AI - Howtown](https://youtu.be/qO0WvudbO04?si=e_wHnJSXfUgaLoVj)
+
+Adam Cole and Joss Fong recently launched a YouTube channel, but viewers began to complain that it resembles an AI channel. In a world where AI can generate text, images, audio, and video—essentially everything online—how can you prove that you aren't AI? Howtown seeks to uncover the answer.
+
+### [Boom unveils ‘Boomless Cruise’ for quiet supersonic travel](https://www.aero-mag.com/boom-unveils-boomless-cruise-for-quiet-supersonic-travel)
+
+Supersonic flight is a regrettable example of technology that once thrived but has since vanished. We had the Concorde operating commercial flights until an accident and the issue of sonic booms led to its retirement. The economics of such flights ultimately proved unviable.
+
+However, that is in the past. Today, multiple companies are pursuing the promise of boomless supersonic flights. The most notable among them is NASA, in collaboration with Lockheed Martin. Another key player is a private company named Boom, which ironically aims to eliminate the very boom they are named after; they have recently unveiled their first prototype.
+
+- [This plane could cross the Atlantic in 3.5 hours. Why did it fail? - Vox](https://youtu.be/a_wuykzfFzE?si=qFHY99LV1pq6_-1E)
+- [Supersonic Planes are Coming Back (And This Time, They Might Work) - Wendover Productions](https://youtu.be/4p0fRlCHYyg?si=vwsgL_K-0CyWJ2ir)
+- [NASA Is Bringing Supersonic Planes BACK - Cleo Abram](https://youtu.be/2jAH-51feAA?si=NYu5qmcXJ-NRe-Kq)
+- [XB1 - First Supersonic Flight Boom](https://youtu.be/927Kotgj0RA?si=dq0IPNwJkaMFCc3-)
+
+### AI Updates
+
+- [Claude 3.7 Sonnet and Claude Code](https://www.anthropic.com/news/claude-3-7-sonnet)
+- [Wanx AI](https://huggingface.co/blog/LLMhacker/wanx-ai-video) - Alibaba's video generation model.
+- [Alexa Plus](https://www.aboutamazon.com/news/devices/new-alexa-generative-artificial-intelligence) - The first AI home assistant has been announced but we don't know when it will come out (remember Apple Intelligence?)
+- [Lex Fridman's podcast on AI touching on AI techniques, Deepseek, Megaclusters and open source AI](https://youtu.be/_1f-o0nqpEI?si=A2mfC7GVUs_MTnpn) is a 5 hour long gem.
+- [First diffusion based text LLM Mercury](https://x.com/InceptionAILabs/status/1894847919624462794) ⚡
+
+## Looking Ahead
+
+- [FOSS Asia](https://eventyay.com/e/4c0e0c27) - March 13-15
+- [React Paris](https://react.paris/) - March 20-21

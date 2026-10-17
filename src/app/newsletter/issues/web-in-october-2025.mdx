@@ -1,0 +1,193 @@
+---
+title: JEM - Web in October - JavaScript Every Month Newsletter
+date: "2025-11-04T18:58:53.023701Z"
+buttondownUrl: https://buttondown.com/agney/archive/jem-web-in-october-javascript-every-month-7826/
+---
+
+Hello November 👋
+
+October was the month when Tanstack took centre stage as the framework everyone wants to migrate to. Adding to the confusion, Vercel introduced more directives under the name "use workflows", putting many developers on edge. This revived the debate that began with "use client" about whether directives are the best way to instruct the compiler. We now have a lot more directives to be afraid of, and someone bought up the "use no memo" directive that's been live for years at this point.
+
+- [Built in durability - Introducing Workflow Development Kit](https://vercel.com/blog/introducing-workflow) - Vercel
+- [Directive and Platform boundary](https://tanstack.com/blog/directives-and-the-platform-boundary) - Tanstack
+- [use no memo](https://react.dev/reference/react-compiler/directives/use-no-memo) - React Docs
+
+---
+
+In other news, TypeScript is now the #1 language on GitHub.
+
+- [Octoverse: A new developer joins GitHub every second as AI leads TypeScript to #1](https://github.blog/news-insights/octoverse/octoverse-a-new-developer-joins-github-every-second-as-ai-leads-typescript-to-1/)
+
+## Releases
+
+### Browsers
+
+#### [Chrome 142](https://developer.chrome.com/blog/new-in-chrome-142)
+
+- [Match scroll markers](https://developer.chrome.com/blog/new-in-chrome-142#target-before-after) with the `:target-before` and `:target-after` pseudo-classes
+- Use range syntax in style container queries and the `if()` CSS function.
+- `interestfor` attribute to `<button>` and `<a>` elements
+
+#### [Firefox 144](https://developer.mozilla.org/en-US/docs/Mozilla/Firefox/Releases/144)
+
+- View transition support. Same document is now baseline available.
+- command and `commandfor` attributes for button is supported
+- lock and unlock for screen orientation is supported.
+
+### IDEs
+
+- Cursor released a [2.0 version](https://x.com/cursor_ai/status/1983567619946147967) as they put Agents chat above the file system. It supports voice chat and their own fine tuned model named Composer 1.
+- Windsurf launched their own agent model (again, fine tuned Chinese model) running on Cerebras named [SWE-1.5](https://cognition.ai/blog/swe-1-5)
+- Visual Studio Code [Sept edition](https://code.visualstudio.com/updates/v1_105#_vs-code-at-github-universe) has built in plan agent and integration with OpenAI codex.
+- Claude code can be driven remotely from the web and mobile apps. Claude also launched a new package for MCPs, tools and prompts in the form of [skills](https://x.com/claudeai/status/1978855432123723909). In another packaging, Claude Code also allows for [plugins](https://x.com/claudeai/status/1976332881409737124).
+- Jules can be [programmatically accessed](https://jules.google/docs/changelog/) through an API, to integrate directly into CI/CD systems.
+- Zed has a [Windows installer](https://zed.dev/blog/zed-for-windows-is-here)
+- Gemini CLI has a new feature to [run interactive commands](https://developers.googleblog.com/en/say-hello-to-a-new-level-of-interactivity-in-gemini-cli) like `vim`, `top`, `git rebase` directly in the CLI.
+
+### Vite Conf highlights
+
+- Announced Vite+: the paid product from VoidZero
+- Oxlint support for JavaScript plugins
+- Vite Devtools plugin
+- Full-stack Vite apps with Nitro v3
+
+[Vite - The Documentary - YouTube](https://youtube.com/watch?v=bmWQqAKLgT4)
+
+### [React 19.2](https://react.dev/blog/2025/10/16/react-conf-2025-recap)
+
+- `<Activity />` component for managing visibility
+- `useEffectEvent` to fire events from effects
+- Performance tracks - new profiling tool in Devtools
+
+### [Next.js 16](https://nextjs.org/blog/next-16)
+
+- Cache components - suppoer for partial pre-rendering with cache.
+- Next.js Devtools MCP for debugging
+- Turbopack is declared stable and is now default bundler
+- React compiler support
+- Enhanced routing - optimised navigations and prefetching with layout deduplication and incremental prefetching
+
+### [Rari](https://github.com/rari-build/rari)
+
+Runtime Accelerated Rendering Infrastructure - A new React Server Components framework powered by a Rust runtime and boasting impressive benchmarks.
+
+### [React Router Middlware](https://remix.run/blog/middleware)
+
+- Behind a feature flag.
+- Enables data access, authentication from child loaders
+
+### [Storybook 10](https://github.com/storybookjs/storybook/releases/tag/v10.0.0)
+
+- ESM only
+- Support for Next 16, Vitest 4, Svelte async components
+- UI editing and sharing optimizations
+
+### [React Native 0.82](https://reactnative.dev/blog/2025/10/08/react-native-0.82)
+
+- [The new architecture](https://reactnative.dev/blog/2024/10/23/the-new-architecture-is-here) is now the only architecture
+- Experimental Hermes v1
+- React 19.1.1
+
+### [Bun 1.3](https://bun.com/blog/bun-v1.3)
+
+**This update is glorious - a fine piece of engineering disguised as a minor update.**
+
+- full stack dev server built into `Bun.serve`
+- Builtin MySQL client (alongside PostgreSQL and SQLite clients)
+- Built in Redis
+- Run HTML fiels directly with Bun
+- Hot reloading supported with Bun dev server
+
+### [Vitest 4](https://vitest.dev/blog/vitest-4)
+
+- Browser mode is stable
+- support for Visual regression testing in browser mode
+
+### [Node.js 25](https://nodejs.org/en/blog/release/v25.0.0)
+
+- `JSON.stringify` performance imporvements
+- built in `Uint8Array` base64/hex conversion and ongoing WebAssembly and JIT pipeline optimizations.
+
+### [Biome 2.3](https://biomejs.dev/blog/biome-v2-3/)
+
+- Full support for Vue, Svelte, Astro
+- Tailwind v4 support
+
+## In the Spotlight 🔦
+
+October was the month when Remix v3 and Next.js 16 launched, each with its own conference, yet a third framework—TanStack Start—stole all the hype.
+
+The history of Remix is fascinating. Michael Jackson and Ryan Florence, the creators of React Router - one of the most widely used libraries in the React ecosystem - launched the Remix framework. Its patterns became so universally accepted that several were adopted into React itself. This happened while the React team was heavily accused of being too close to Next.js.
+
+Seeing their patterns go universal, Remix retired and merged all its features into React Router. The library can now be considered a mix of different things - different modes in which it can run: data mode, framework mode. Which features are available in which modes and how to switch between them is unclear to most people.
+
+Remix is waking up and has dropped React from its implementation. Perhaps the team feels React has overstayed its welcome and senses a gap. They are pioneering a new event-based system that promises to use more of the platform.
+
+- [Introducing Remix 3](https://www.youtube.com/watch?v=iZl0IKj0HHc) - YouTube
+- [React and Remix choose different futures -](https://laconicwit.com/react-and-remix-choose-different-futures/) Brendan McLoughlin
+- [ Thoughts on Remix 3 ](https://frantic.im/remix-3/) - Alex Kotliarskyi
+
+Amid all the framework hype, Loren Stewart’s experiment is a wake-up call: [**I Built the Same App 10 Times: Evaluating Frameworks for Mobile Performance**](https://www.lorenstew.art/blog/10-kanban-boards)
+
+Spoiler: [Marko](https://markojs.com/) is the outlier.
+
+## Tutorials
+
+### [Modern CSS Section Layout - ishadeed](https://ishadeed.com/article/modern-css-section-layout/)
+
+Another tutorial hitting it out of the park from one of my favourites: this is a practical take on building a simple-looking section layout with CSS. Even though it looks simple, ishadeed shows us modern CSS features that deliver a superior user experience.
+
+System design interview question but in CSS.
+
+### [One Year with Next.js App Router — Why We're Moving On](https://paperclover.net/blog/webdev/one-year-next-app-router)
+
+Next.js moved on from the Pages router (many claim that it was working wonderfully) and stumbled into the App router for enabling RSC. But all has not been well with the implementation of RSC.
+
+Most of the points here still stand, but splitting a component worries me. My goal is to keep each component single-purpose and reusable, yet the new client-and-server model forces us to split on a different metric. Often we only discover the need for a separate component when an error appears. That means more naming, and we already know naming is a devil.
+
+### [Beyond Signals, by Ryan Carniato - YouTube](https://youtube.com/watch?v=DZPSAOBnBAM)
+
+Ryan Carniato, creator of SolidJS, explains how signals are reshaping the JavaScript ecosystem. SolidJS pioneered this approach, and now Angular and VueJS are following suit. In his demo, Ryan shows how signals can match the performance of async components through projections.
+
+### [React Server Components: Do They Really Improve Performance?](https://www.developerway.com/posts/react-server-components-performance)
+
+This step-by-step walkthrough moves from client-side rendering to server-side rendering to React Server Components. It explains how each approach works and measures initial-load performance at every stage.
+
+Spoiler: none of them is a silver bullet.
+
+## In Other News
+
+### [ChatGPT's Atlas: The Browser That's Anti-Web](https://www.anildash.com/2025/10/22/atlas-anti-web-browser/)
+
+OpenAI released its new AI browser this month. This piece reviews the broader AI-browser trend. Atlas, however, pushes ChatGPT on users instead of letting them reach the search engine directly. Perhaps OpenAI envisions a different future for the web or even doubts its continued existence.
+
+### [A Brief History of Domains](https://www.dotcom.press/history-of-domains)
+
+This year marks four decades since the first domain name was registered - `symbolics.com`. The six original top level domains `.com`, `.org`, .net`, `.edu`, `.gov` and .`mil\` were defined five years before Tim Berners Lee would propose the World Wide Web, so _domains_ preceded the Web!
+
+More facts and interesting history on this blog post.
+
+### [Common misconceptions about screen readers](https://tetralogical.com/blog/2025/10/14/common-misconceptions-about-screen-readers/)
+
+Screen readers are not just for the blind!
+
+### [An artist's take on AI art - Oatmeal comics](https://theoatmeal.com/comics/ai_art?ueid=c2541cf1ff842391922bcfa9c7728ed4)
+
+I love most of Oatmeal's comics, but this piece is an essay and article on AI art and whether it holds any meaning.
+
+It's not how I feel about it, but it makes sense.
+
+### AI Updates
+
+- ChatGPT trying to be the everything app with [Apps inside it](https://openai.com/index/introducing-apps-in-chatgpt/).
+- Claude rolls out Memory to Pro and Max users
+- Open Router launches [Exacto endpoints](https://openrouter.ai/docs/features/exacto-variant) for precision tool calling. Any provider worked, but routing sometimes picked ones that struggled with tool calls. Open Router tackles this with new APIs for exact tool calling; I’m unsure if it also resolves quantization concerns.
+- [GPT-OSS Safeguard](https://openai.com/index/introducing-gpt-oss-safeguard/) - OpenAI’s open weight reasoning models for safety classification tasks. open-weight reasoning models for safety classification tasks
+- Google unveiled [Computer Use with Gemini 2.5 Pro](https://x.com/GoogleAIStudio/status/1975648565222691279)
+- Anthropic released \[Haiku 4.5], their flash model variant.
+
+## Looking Ahead
+
+- [dotAI](https://www.dotai.io/) - Nov 6
+- [Mozilla Festival](https://www.mozillafestival.org/en/) - Nov 9
+- [JS Nation US](https://jsnation.us/) - Nov 17

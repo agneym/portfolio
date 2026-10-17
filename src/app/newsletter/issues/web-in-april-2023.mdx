@@ -1,0 +1,136 @@
+---
+title: Web in April - Newsletter by Agney
+date: "2023-05-02T05:19:25.075500Z"
+buttondownUrl: https://buttondown.com/agney/archive/web-in-march-newsletter-by-agney-8131/
+---
+
+_May_ this be the Month 👋
+
+This past month has been all about BlueSky, the app that Jack Dorsey and his team are building as an alternative to Twitter. BlueSky is based on a new protocol called the [AT Protocol](https://atproto.com/), which they have designed themselves. Although the app is currently invite-only, it's starting to attract major names.
+
+## Releases
+
+### Browsers
+
+#### [Firefox 112](https://developer.mozilla.org/en-US/docs/Mozilla/Firefox/Releases/112)
+
+- Support for global HTML attribute `inert`. The inert attribute can be added to sections of content that should not be interactive.
+- Exponential functions for CSS - `pow()`, `sqrt()`, `hypot()`, `log()` and `exp()`
+- `linear()` easing function is now supported.
+- `getAutoplayPolicy()` method of Autoplay Policy Detection API provides information about whether autoplay of media elements and audio contexts is allowed, disallowed, or only allowed if audio is muted.
+
+#### [Chrome 112](https://developer.chrome.com/blog/new-in-chrome-112/)
+
+- CSS Nesting is supported. This introduces an operator `>` which can be used for nesting rules.
+- [Animation composition property](https://developer.chrome.com/articles/css-animation-composition/) allows control of what should happen when multiple animations affect the same property simultaneously.
+- Chrome 113 Canary DevTools allows network request overrides includes Cross-Origin Resource Sharing headers.
+
+### [WebContainers on Safari, iOS and iPadOS](https://blog.stackblitz.com/posts/webcontainers-are-now-supported-on-safari/)
+
+I will be honest, I haven't learned much about WebContainers apart from the fact that it's the API that StackBlitz uses to run NodeJS in the browser. I have tried but failed. Anyways, Web Containers are now supported on iPad, so if you wanted a live development environment, try out Stackblitz.
+
+### [NodeJS 20](https://nodejs.org/api/test.html)
+
+- The test runner is now stable. You can run tests from NodeJS without any package using `node:test`
+- Single executable apps allows distribution of Node.js apps without Node.js being installed.
+
+ThisDot Media did a [panel discussion live](https://www.youtube.com/live/Yl5mVte-wdw?feature=share) on Youtube about State of NodeJS if you want to catch up.
+
+### [Deno KV](https://deno.com/kv)
+
+Deno ships so fast that it gets hard to keep track. This is a global database with ACID transactions build into Deno CLI.
+
+### [Vercel Storage](https://vercel.com/blog/vercel-storage)
+
+- Vercel KV: A serverless Redis solution that's easy and durable, powered by Upstash
+- Vercel Postgres: A serverless SQL database built for the frontend, powered by Neon
+- Vercel Blob: A solution to upload and serve files at the edge, powered by Cloudflare R2
+
+## In the Spotlight 🔦
+
+- [Reddit](https://www.theregister.com/2023/04/18/reddit_charging_ai_api/) and [Stackoverflow](https://archive.ph/MHgpS) have declared that they will start charging LLMs for training with their data. This has sparked debate about how much of the data was in the open? Is the data owned by these companies or by the people who posted them?
+- [With Bedrock, Amazon enters the generative AI race](https://techcrunch.com/2023/04/13/with-bedrock-amazon-enters-the-generative-ai-race/)
+- [Building LLMs in Production](https://huyenchip.com/2023/04/11/llm-engineering.html)
+
+### Open Source LLMs
+
+Open Source LLMs have started catching up to OpenAI and Cohere models and a few of them are around now. On my usage, the best that's worked for me is Vicuna - it's based on Meta's LLaMa model with extra training on ShareGPT data. So it's basically impersonating GPT-3.
+
+- [Vicuna](https://github.com/lm-sys/FastChat)
+- [StableLM](https://github.com/Stability-AI/StableLM) - From the company that bought us Stable Difussion
+- [Hugging Face Open Assistant](https://huggingface.co/chat)
+
+### Auto GPT
+
+There are two major AI experiments that sprang up last month.
+
+- [Baby AGI](https://github.com/yoheinakajima/babyagi) is a small program that runs OpenAI API in a loop to reason out solutions for larger problems.
+- [AutoGPT](https://github.com/Significant-Gravitas/Auto-GPT) is a project that works with ReAct prompting running in an infinite loop with given access to tools like file system, google search API etc. An entire swiss army knife this one.
+
+Meanwhile, Greg Brockman demonstrated the power of ChatGPT plugins in his [TED talk](https://youtu.be/C_78DM8fG6E). Here the interface is shown to self fact check using search - this could be an interesting solution to hallucinations.
+
+## Tutorials
+
+### [Interactive Guide to Rendering in React](https://ui.dev/why-react-renders)
+
+Tyler McGinnis is a highly recommended instructor on React's official documentation, and he has recently launched a course called React.gg. The course is taglined as an interactive way to master modern React. As part of its promotional series, Tyler has written a blog post that explains React rendering with various examples.
+
+### [Display a view counter on your blog with React Server Components](https://scastiel.dev/view-counter-react-server-components)
+
+Recently, I've been experimenting with React Server Components (RSC) using Next.JS. Although I don't find the DX to be exceptional, I believe that there are many advantages to using RSC that unlock various possibilities. In this tutorial, you'll see how easy it is to use Suspense and Streaming with RSC.
+
+### [CSS Tip](https://css-tip.com/)
+
+Out of Temani Afif's extensive list of CSS websites, this is a small site that showcases various CSS tricks, providing their breakdowns and demos.
+
+### [What's new in ECMAScript 2023](https://pawelgrzybek.com/whats-new-in-ecmascript-2023/)
+
+The ES2023 specification has been frozen, and it includes numerous new features. Although the specification itself may not be the most exciting read, this blog is a goldmine of information. One noteworthy feature is findFromLast, which does precisely what its name suggests.
+
+### [7 Tips for Getting Started with Vue.js](https://youtu.be/RUdKQKRBkhk)
+
+Vue Mastery interviews 7 people for a minute long tip on starting out with VueJS at VueJS Amsterdam. It boils down to:
+
+- Reading the docs
+- Build something
+- Watch conference talks
+- Learn the new APIs and make sense of the transition.
+
+### [Contribute to a project you have no idea about](https://grifel.dev/how-to-contribute-without-knowledge)
+
+What sets this tutorial apart is that it's not just theoretical steps. The author actually provides a detailed account of the process he followed to contribute to the Bun repository and successfully land a PR.
+
+### [Why You Don't Need Signals in React](https://blog.axlight.com/posts/why-you-dont-need-signals-in-react/)
+
+Signals are the hot topic in Frontend ecosystem for the last two months. Daishi Kato explains why the React ecosystem does not need signals and how it could even be an anti pattern.
+
+Dan Abramov chipped in on a [bug report](https://github.com/facebook/react/issues/26704#issuecomment-1522044060) saying _If React was a piece of hardware, this is exactly the kind of thing that voids the warranty. We can't help with debugging issues here, and we don't consider them bugs because so much has been meddled with._
+
+[https://twitter.com/antfu7/status/1652490775664508929](https://twitter.com/antfu7/status/1652490775664508929)
+
+## In Other News
+
+### [Passkeys: What the Heck and Why?](https://css-tricks.com/passkeys-what-the-heck-and-why/)
+
+Although the Web Authentication API has been available for some time now, its adoption has been slow. In this CSS Tricks article, the author explains how pass keys can be used, as well as the current deficiencies in the API and the factors that are preventing its mass adoption.
+
+### [The A to Z of Artificial Intelligence](https://time.com/6271657/a-to-z-of-artificial-intelligence/)
+
+Artificial Intelligence is evolving at a lightning pace. I'm pretty sure I would miss something if I blink. There is obviously a lot of the development we have already missed out on. Time Magazine has put together a glossary for common terminology used with AI.
+
+### [How generative AI is changing the way developers work](https://github.blog/2023-04-14-how-generative-ai-is-changing-the-way-developers-work/)
+
+This is well thought out blog discussing how generative AI is and will change programming in the near future. It looks at the programming tasks from the lens of CoPilot related tools that Github has launched and how they affect tasks performed by developers.
+
+### Why East Asian Internet is weirdly designed
+
+This fascinating discussion started with a [video from the Answer in Progress channel](https://youtu.be/z6ep308goxQ), which explored why Japanese webpages are often filled with more information than Western webpages. They attributed this to the fact that most Japanese Internet users still use computers, while Western users have mostly switched to mobile devices
+
+[Cynthia Zhou responded with a video](https://youtu.be/Opy-SjDU0UY) arguing that this difference is not just due to the iPhone, but rather a result of cultural differences. She cites research indicating that Westerners tend to be analytical thinkers, while Easterners tend to be holistic thinkers. This cultural difference influences web design not just in Japan, but in other East Asian countries as well. Overall, this highlights how culture can shape web design in different parts of the world.
+
+## Looking Forward
+
+- [Reactathon](https://www.reactathon.com/) - May 2-3
+- [Remix Conf](https://ti.to/remix-conf/2023) - May 9-11
+- [Google I/O](https://io.google/2023/) - May 10
+- [SmashingConf](https://smashingconf.com/sf-2023) - May 23-26

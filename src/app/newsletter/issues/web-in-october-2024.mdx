@@ -1,0 +1,159 @@
+---
+title: JEM - Web in October - JavaScript Every Month Newsletter
+date: "2024-11-09T09:42:02.056886Z"
+image: https://media.graphassets.com/Kon0P8gbRnGtbuoL1T34
+buttondownUrl: https://buttondown.com/agney/archive/jem-web-in-october-javascript-every-month-1692/
+---
+
+Hey November 👋
+
+The American elections kicked off November as the major event, though, as a non-American, I won’t dive into the politics. I really enjoyed the New York Times' coverage—[especially their maps and visualisations](https://www.nytimes.com/interactive/2024/11/05/us/elections/results-president.html). From detailed maps to "needles" indicating likely wins, it was all incredibly well done. 🤌
+
+## Releases
+
+### Browsers
+
+#### [Chrome 130](https://developer.chrome.com/release-notes/130)
+
+- CSS nested declarations solve [a very specific problem with nesting syntax](https://web.dev/blog/css-nesting-cssnesteddeclarations)
+- Supports [`box-decoration-break`](https://developer.mozilla.org/en-US/docs/Web/CSS/box-decoration-break) unprefixed, and with clone value.
+- Keyboard focusable scroll containers makes scrollers without focusable children keyboard-focusable by default
+- Adds a boolean `SerialPort.connected` attribute. The attribute returns true if the serial port is logically connected.
+
+#### [Firefox 131, 132](https://developer.mozilla.org/en-US/docs/Mozilla/Firefox/Releases/131)
+
+- support for a bunch of synchronous iterator helpers
+- A `Set-Cookie` HTTP header with the attribute value of `SameSite=None` must now also include the Secure attribute. This ensures that cookies set with `SameSite=None` are only ever sent over HTTPS channels.
+- Cookies Having Independent Partitioned State (CHIPS), or "partitioned cookies", are now supported. This feature allows developers to opt a cookie into partitioned storage using the partitioned directive of the Set-Cookie HTTP header.
+- Supports nested declaration rule which solves the specific bug with nesting syntax (same as Chrome release)
+- HTTP/2 Server Push is deactivated by default with the preference network.http.http2.allow-push now set to false. This feature is no longer supported by any other major browser, and the implementation may be completely removed in a future release
+- All third party cookies are automatically blocked in Strict enhanced tracking protection
+- `requestVideoFrameCallback()` and `cancelVideoFrameCallback()` methods of the `HTMLVideoElement` interface are now supported.
+
+#### [Safari 18.1](https://developer.apple.com/documentation/safari-release-notes/safari-18_1-release-notes)
+
+- Apple Intelligence writing tools are integrated to text views.
+
+### [Storybook test sneak peek](https://storybook.js.org/blog/storybook-test-sneak-peek/)
+
+Storybook is building component tests (vitest), visual tests (Chromatic) and accessibility (Axe) tests into the browser platform. It's now open for early access program.
+
+### [Next.js 15](https://nextjs.org/blog/next-15)
+
+Next.js conf was also held this week - [Recap](https://vercel.com/blog/recap-next-js-conf-2024)
+
+- Async Request APIs (Breaking): Transitioning APIs that rely on request-specific data to be asynchronous, simplifying rendering and caching models.
+- React 19 Support: Full support for React 19, including backwards compatibility for React 18 with the Pages Router.
+- Turbopack Dev (Stable): Significant performance and stability improvements for faster development experiences.
+- Enhanced Forms (next/form): New \<Form> component for enhanced HTML forms with client-side navigation.
+- Server Actions Security: Improved security with unguessable endpoints and removal of unused actions
+
+### [React native 0.76](https://reactnative.dev/blog/2024/10/23/the-new-architecture-is-here)
+
+- This release enables the new architecture for React native, it adds modern React features including Suspense, Transitions, automatic batching and `useLayoutEffect`.
+- The New Architecture also includes new Native Module and Native Component systems that let you write type-safe code with direct access to native interfaces without a bridge.
+
+### [NodeJS 23](https://nodejs.org/en/blog/release/v23.0.0)
+
+- Enabling require(esm) by default for Node.js applications
+- Removing support for Windows 32-bit systems
+- Stabilizing the `node --run` command
+- Enhancements to the test runner, including glob pattern support for coverage files
+
+### [Deno 2](https://deno.com/blog/v2.0)
+
+- Backwards compatibility with Node.js and npm, allowing you to run existing Node applications seamlessly
+- Native support for package.json and node_modules
+- Package management with new deno install, deno add, and deno remove commands
+- A stabilized standard library
+- Support for private npm registries
+- Workspaces and monorepo support
+
+### [sv - Svelte CLI](https://svelte.dev/blog/sv-the-svelte-cli)
+
+The new CLI streamlines creating new projects and integrates many tools like Tailwind, prettier, eslint, vitest, playwright etc.
+
+Rich Harris also gave a talk about [Svelte 5 and what's coming at Vite Conf](https://www.youtube.com/watch?v=KC6IolBu92Y).
+
+### [Flock - Flutter fork](https://getflocked.dev/blog/posts/we-are-forking-flutter-this-is-why/)
+
+Frustrated at Google's unresponsiveness in maintaining Flutter, a community is creating a fork - Flock. It's aimed at addressing labor shortages and accelerating development by incorporating community-driven bug fixes and features.
+
+### [Lucia auth](https://github.com/lucia-auth/lucia/discussions/1714)
+
+This is not a release (the opposite actually). Lucia, the popular auth library has announced that they are shutting down the library by March 2025.
+
+## In the Spotlight 🔦
+
+I have always held that React and Next.js team's implementation of "use client" and "use server" caused a paradigm and thought pattern shift that it was difficult to understand. I'm not sure if it even makes sense if you already have a backend and want to run your frontend as an SPA. But we did not have options other than Next.js, so we sort of went with it.
+
+[https://x.com/agneymenon/status/1649784672354967557](https://x.com/agneymenon/status/1649784672354967557)
+
+Tan Stack founder, Tanner Linsley went on several podcasts and conferences this week to talk about the framework he is building named TanStack Start. It is currently in Alpha stage and Tanner is working on building the framework with the assumption that "use server" is not the default. He is clear the server first approach may work for applications at Facebook, but not for everyday SPAs.
+
+I watched him on the [Syntax podcast episode](https://www.youtube.com/watch?v=4PymccvinIo) but there are also conference talks available from him on the same.
+
+[https://x.com/mustafa01ali/status/1853619638141071573](https://x.com/mustafa01ali/status/1853619638141071573)
+
+### State Results
+
+- [State of React survey 2024](https://survey.devographics.com/en-US/survey/state-of-react/2024?source=jem_newsletter_agney) is now open.
+- [State of CSS survey](https://2024.stateofcss.com/) results are here, I love Sacha Greif's prediction on the homepage.
+
+> Let me make a prediction: we'll look back at 2024 as the turning point between “CSS Classic” and “New CSS”.
+
+- [State of Frontend 2024 survey](https://tsh.io/state-of-frontend/) results are now out.
+- [Octoverse 2024](https://github.blog/news-insights/octoverse/octoverse-2024/) was last month, they have released results for [state of open source](https://github.blog/news-insights/octoverse/octoverse-2024/#the-state-of-open-source), [state of security and automation](https://github.blog/news-insights/octoverse/octoverse-2024/#the-state-of-security-and-automation-in-2024) and [state of generative AI](https://github.blog/news-insights/octoverse/octoverse-2024/#the-state-of-generative-ai-in-2024). But the news from Octoverse is **Python ending JavaScript's 10 year reign as the [most popular language](https://github.blog/news-insights/octoverse/octoverse-2024/#the-most-popular-programming-languages).**
+
+## Tutorials
+
+### [Simplifying Island Architecture - PreactJS](https://preactjs.com/blog/simplifying-islands-arch/)
+
+The Preact blog initially provided theoretical guidelines on island architecture. Now, there’s a detailed guide on building a Preact site with islands architecture using Webpack and Express.
+
+### [Why "Stale Closure" Misleads React Devs - UI Engineering - YouTube video](https://youtu.be/7yw_D3h4xSo?si=ej_0sUY2-P1QgXRV)
+
+In the React world, there's a long-standing tale about stale closures. Many assume state doesn't instantly update because the closure has somehow become "stale." This often leads to discussions on using ref to store values in a way that avoids staleness. This video breaks down the concept in both React and plain JavaScript contexts.
+
+### [Dominik Dorfmeister - React Query API Design – Lessons Learned, React Advanced 2024](https://youtu.be/QB-S6UU5YEU?si=Ok8Lu1Cor8LPqfh6)
+
+React Query maintainer Dominik Dorfmeister, who writes as TkDoko, publishes some excellent blogs on the subject. In his talk at React Advanced, he discusses how APIs are designed for large libraries and how user expectations shape them. For example, major versions, by semantic versioning standards, are meant for breaking changes, while minor versions add features. Yet, as seen from the releases at the top of this newsletter, major versions—and the features they introduce—often get far more attention.
+
+### [React Native, and the Native feel](https://mozzius.dev/post/3l777nhz4h32w)
+
+Samuel shares insights on building the BlueSky app and making it feel more "native." The article includes small but impactful tips that are worth a read.
+
+> Coming from a web background, you might instinctively set the `borderWidth` to 1px when you want a border. Surprisingly, that's wrong—you’re likely looking for `StyleSheet.hairlineWidth`! It may seem like a small change, but when your app has lots of borders—between posts, around quote-posts, around link cards—they add up.
+
+## In Other News
+
+### [SpaceX ‘catching’ Starship booster with robotic arms ](https://x.com/SpaceX/status/1845152255944819015)
+
+SpaceX succeeded in "catching" a Starship booster coming back from space, this brings the Elon Musk company one step closer to building reusable rockets. This is a milestone and an incredible moment to watch.
+
+### [Google must crack open Android for third-party stores, rules Epic judge](https://www.theverge.com/policy/2024/10/7/24243316/epic-google-permanent-injunction-ruling-third-party-stores)
+
+A judge has ruled that Google must allow third-party app stores access to the full catalog of Google Play apps and distribute these stores within Google Play, aiming to break Google's monopoly on the Android app marketplace.
+
+### [Apple introduces M4 Pro and M4 Max](https://www.apple.com/in/newsroom/2024/10/apple-introduces-m4-pro-and-m4-max/)
+
+Apple skipped the live event and launched its new laptop and desktop devices over three days. Now, we have a new iMac, Mac Mini, and M4 MacBook Pro. The smaller, cuter Mac Mini is pretty compelling, though I'm unsure if a desktop is the best fit for me.
+
+### [Federal Trade Commission Announces Final “Click-to-Cancel” Rule Making It Easier for Consumers to End Recurring Subscriptions and Memberships](https://www.ftc.gov/news-events/news/press-releases/2024/10/federal-trade-commission-announces-final-click-cancel-rule-making-it-easier-consumers-end-recurring)
+
+The American Trade Commision, FTC has introduced a new "click-to-cancel" rule, making it easier for consumers to cancel recurring subscriptions and memberships. This rule requires sellers to provide a simple cancellation process, disclose all material terms before obtaining billing information, and obtain explicit consent from consumers before charging them.
+
+### AI Updates
+
+- Visual Studio code copilot now enables [developer choice in which large language model](https://github.blog/news-insights/product-news/bringing-developer-choice-to-copilot/) to use. In beta is also a feature to make changes to the codebase on the large. This is VS Code's answer to Cursor.
+- [Computer use](https://www.anthropic.com/news/3-5-models-and-computer-use) debuted as an experimental feature for Claude, allowing it to perform actions on your computer from screenshots. While impressive, this feature is heavily restricted in its functionality..
+- Anthropic Claude can now [write and read JavaScript](https://www.anthropic.com/news/analysis-tool), currently in feature preview.
+- [Canvas](https://openai.com/index/introducing-canvas/) is a new interface for ChatGPT that enhances collaboration on writing and coding projects by allowing users to work side by side with the AI
+- [ChatGPT search](https://openai.com/index/introducing-chatgpt-search/) now offers fast, timely answers with links to relevant web sources, enhancing the user experience by integrating search capabilities directly into the chat interface.
+- OpenAI [acquired chat.com](https://techcrunch.com/2024/11/06/openai-acquired-chat-com) to redirect to ChatGPT (for $15.5 million!!?).
+
+## Looking Ahead
+
+- [React native London](https://www.reactnativelondon.co.uk/) - Nov 14-15
+- [JS Nation](https://jsnation.us/) - Nov 18, 21
+- [VueConf Toronto](https://vuetoronto.com/) - Nov 18-20

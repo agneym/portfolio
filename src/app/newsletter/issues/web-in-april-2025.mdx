@@ -1,0 +1,166 @@
+---
+title: JEM - Web in April - JavaScript Every Month Newsletter
+date: "2025-05-10T11:36:59.034254Z"
+buttondownUrl: https://buttondown.com/agney/archive/jem-web-in-april-javascript-every-month-newsletter-1510/
+---
+
+Hello May 👋
+
+At the end of March, React announced the release of version 19.1, which includes new features and enhancements. In April, React released the RC version of the React compiler. However, I haven't seen much excitement for these changes. Who is actually upgrading to access these features, aside from those starting fresh? I came across a Next.js post highlighting every new feature, such as server components and disabled API routes. Do developers really want these? Currently, it appears that while some of these updates make users' lives easier with faster loading times and smaller bundle sizes, they also create challenges for developers due to the steep learning curve. If the users don't demand these, why should the developers care?
+
+A bright spot later in the month was the release of a labs update by React, which has sparked interest in their upcoming projects.
+
+## Releases
+
+### Browsers
+
+#### [Firefox 137](https://developer.mozilla.org/en-US/docs/Mozilla/Firefox/Releases/137)
+
+- `hyphenate-limit-chars` CSS property provides you with fine-grained control over hyphenation in text
+- `Math.sumPrecise()` static method is now supported. This takes an iterable of numbers and returns their sum. It is more precise than summing the numbers in a loop because it avoids floating point precision loss in intermediate results.
+- `getPathData()`, `setPathData()`, and `getPathSegmentAtLength()` methods of the `SVGPathElement` interface are now supported. These methods provide a convenient way to work with SVG path data instead of parsing raw string data.
+
+#### [Firefox 138](https://developer.mozilla.org/en-US/docs/Mozilla/Firefox/Releases/138)
+
+- The `Error.captureStackTrace()` static method is now supported. This installs stack trace information on a provided object as the `Error.stack` property. Its main use case is to install a stack trace on a custom error object that does not derive from the Error interface.
+- The Login Status API is now supported when using the Federated Credential Management (FedCM) API. It can be used to set and check whether a browser user is logged in to an identity provider.
+
+#### [Chrome 135](https://developer.chrome.com/release-notes/135)
+
+- `command` and `commandfor` attributes on `<button>` elements let you assign behaviour to buttons in a more accessible and declarative way.
+- `shape()` function allows responsive free-form shapes in clip-path.
+- Carousels land with `::column`, `::scroll-button`, `::scroll-marker` and `::scroll-marker-group`
+- `interactivity` property specifies whether an element and its flat tree descendants (including text runs) are inert or not.
+
+#### [Chrome 136](https://developer.chrome.com/release-notes/136)
+
+- `dynamic-range-limit` to limit maximum brightness of HDR content.
+- `print-color-adjust` property lets you adjust colors in printed web pages
+- `RegExp.escape` can be used to escape a string used in regular expression
+- Adds an "interrupted" state to `AudioContextState`. This new state lets the User Agent pause playback during exclusive audio access (VoIP) or when a laptop lid is closed.
+
+### [React Labs: View Transitions, Activity, and more](https://react.dev/blog/2025/04/23/react-labs-view-transitions-activity-and-more)
+
+- [React compiler is hitting RC](https://react.dev/blog/2025/04/21/react-compiler-rc)
+
+Two new experimental features:
+
+- View transitions: A component that allows you to activate an animation for a transition.
+- Activity: A component that enables you to hide and show parts of the UI to improve performance.
+
+### [AnimeJS](https://animejs.com/)
+
+- Complete rewrite with modular, ESM first API
+- The [homepage](https://animejs.com/) is just mind blowing.
+
+### [React Email 4.0](https://resend.com/blog/react-email-4)
+
+- Linter to analyze links to see if it's valid or not.
+- spam score powered by spam assassin
+- compatibility checker for email
+- responsive preview
+
+### [Redwood SDK](https://redwoodjs.com/)
+
+The Redwood team is separating the framework into Redwood GraphQL and RedwoodSDK. The SDK is marketed as a React framework for Cloudflare, which creates a significant vendor lock-in.
+
+### [p5.js 2.0](https://github.com/processing/p5.js/releases/tag/v2.0.0)
+
+- New authoring experience with `async` `await`
+- New typeography functions, color functions, WEBGL loading.
+- [p5.js 2.0: You Are Here - blog](https://medium.com/processing-foundation/p5-js-2-0-you-are-here-f827f40519a7)
+
+## In the Spotlight 🔦
+
+Dan Abramov is back on track with his writing, contributing some spectacular pieces about React and the mental model required for the new React features. As always, these articles are lengthy but wonderful to read.
+
+- [JSX over the wire](https://overreacted.io/jsx-over-the-wire/) - If APIs just return props, could they just return components with props instead?
+- [Impossible components](https://overreacted.io/impossible-components/) - Extends the two computers analogy for server components. I had written about the case for impossible components from Mux team few months back.
+- [What Does "use client" Do?](https://overreacted.io/what-does-use-client-do/)
+
+---
+
+Moving on to another framework evangelist, Ryan Carniato has published a biographical piece on his journey with SolidJS for a decade. He had started on it in 2015 and published the library officially in April 24, 2018.
+
+> I ran into some friction and I wasn't so versed in social media to understand what HTMX came to know. Memes win the day regardless of whether you have anything of substance to say.
+
+It makes an interesting observation about every framework evolving to be like SolidJS or at least adapting from it. It may not be the most widely used framework, but it is certainly the most inspiring.
+
+### In short
+
+- [Vercel adapters for Next.js](https://github.com/vercel/next.js/discussions/77740) - Last month we talked about the lack of adapters of Next.js that vendor locked you into Vercel. Vercel plans to address this criticism head on.
+- [TC39 drops records and tuples proposals](https://github.com/tc39/proposal-record-tuple/issues/394)
+- [State of Devs survey](https://survey.devographics.com/en-US/survey/state-of-devs/2025)- Launch of first edition of survey with Sacha Greif who also runs State of JS
+
+## Tutorials
+
+### [React Router and the Remix’ed path](https://zhero-web-sec.github.io/research-and-things/react-router-and-the-remixed-path)
+
+After Next.js faced security vulnerabilities last month, this week it's React Router's turn. The same security research team has identified these issues. The vulnerability found in React Router, particularly in the Express adapter used in Remix, allows URL manipulation through the Host/X-Forwarded-Host header. This affects users of Remix 2 and React Router 7, making them vulnerable to various exploits.
+
+### [Mission jQuery Zero: How FreeAgent removed jQuery from our application](https://engineering.freeagent.com/2025/03/24/mission-jquery-zero-how-freeagent-removed-jquery-from-our-application/)
+
+It's never easy to remove or alter legacy code, especially when it involves jQuery. This blog outlines how the engineering team tackled the challenge of migrating from jQuery to HotWire. The advantage of this blog is that it contains no code; instead, it focuses on the processes implemented to reach the target, making it adaptable to any legacy code you wish to refactor.
+
+### [Tauri vs. Electron: performance, bundle size, and the real trade-offs](https://gethopp.app/blog/tauri-vs-electron)
+
+This article compares Tauri and Electron, two popular cross-platform desktop app frameworks, across various parameters: bundle size, memory usage, startup time, and technologies used. Tauri excels in nearly every benchmark, except that bundling Chromium gives Electron a distinct advantage, as you only need to code for a single browser.
+
+### [Node.js will use all the memory available, and that's OK! - Matteo Collina - dotJS 2025](https://youtu.be/_OnTUIYxGRs?si=2S01Nsv7MWnmB6g1)
+
+One of the key complaints about Node.js applications and browser apps, in general, is their high memory usage. Matteo explains that this isn't a bug; rather, it involves utilizing all available memory to optimize performance. You can also adjust the amount of memory allocated to each partition.
+
+### [Node.js Test CI Security Incident](https://nodejs.org/en/blog/vulnerability/march-2025-ci-incident)
+
+I found this vulnerability disclosure interesting because the bug isn't in the codebase, nor is Node.js compromised. It is the GitHub processes that the Node.js repository was using that were compromised, and the hackers gained access to their Jenkins CI systems.
+
+### [How Rolldown Works: Module Loading, Dependency Graphs, and Optimization Explained](https://www.atriiy.dev/blog/rolldown-module-loader-and-dependency-graph)
+
+Rolldown is Vite's homegrown bundler that is set to replace both Rollup and Esbuild in the current Vite ecosystem.
+
+## In Other News
+
+### [Two decades of YouTube - Blog](https://blog.youtube/news-and-events/happy-birthday-youtube-20/)
+
+YouTube is celebrating two decades, and it's amazing how integral it has become to daily life. Its impressive uptime and revenue model also set it apart. It is racing to take over your TV screens, and if you are reading this, it may have already done so for you.
+
+> we found that on average, there are over **20 million videos** uploaded daily to YouTube.
+
+> YouTube users averaged over **100 million comments** on videos on a daily basis
+
+> YouTube videos received over **3.5 billion likes** from users per day
+
+### [Yes, He Let Elon Musk Put a Chip in His Brain - Men's Health](https://www.menshealth.com/health/a64354373/noland-arbaugh-neuralink-interview/)
+
+After a life-altering accident, Noland Arbaugh became the first patient to receive Elon Musk's Neuralink brain implant. The chip allows him to control a computer using only his thoughts, improving his ability to communicate and navigate digital spaces.
+
+### [AI code is legacy code from day one](https://text-incubation.com/AI+code+is+legacy+code+from+day+one)
+
+If your entire app is vibe-coded, how can you fix something in a week, a month, or a year? You wouldn't want to risk reading the code since you didn't write it, nor did anyone else. Instead, you would ask the AI that created it to make the necessary fixes. How should our software and software development processes change to account for this nuance?
+
+### [The Return of the Dire Wolf](https://time.com/7274542/colossal-dire-wolf/)
+
+Scientists from Colossal Biosciences extracted ancient DNA from dire wolf remains and edited the genome of the common gray wolf to match it. This process resulted in the birth of three dire wolves—Romulus, Remus, and Khaleesi—through surrogate dogs.
+
+While I see people celebrating the return of the dire wolf on Instagram stories, there is also the counterpoint that it is not the dire wolf that has returned; they have simply created a brand new species.
+
+- [Science behind return of the Dire Wolf](https://time.com/7275439/science-behind-dire-wolf-return/) - Time Magazine
+- [The Making of the Colossal Dire Wolves - World's First De-Extinction](https://youtu.be/F5uCuOwK_VE?si=FwU_OFisezC060iU) - Video by the company themselves
+- [Scientists did NOT bring dire wolves back from extinction - Siliconversations YouTube](https://youtu.be/6r-OEnTpfSw?si=Y4sZg_XawwJN-9cf)
+- [They Didn't Make Dire Wolves, They Made Something…Else - Hank Green](https://www.youtube.com/watch?v=Ar0zgedLyTw) followed up by [Fixing my Direwolf Mistake - Hank Green](https://youtu.be/8jGFT2rnL8Y?si=1sx8sUvl6n5mEq29)
+
+### AI Updates
+
+- [Google 2.5 Flash](https://developers.googleblog.com/en/start-building-with-gemini-25-flash/) - Google's hybrid reasoning model.
+- [OpenAI o3 and o4-mini](https://openai.com/index/introducing-o3-and-o4-mini/) - yeah! still terrible naming.
+- [Claude research and Google workspace integration](https://www.anthropic.com/news/research)
+- [Llama 4 Herd](https://ai.meta.com/blog/llama-4-multimodal-intelligence/) - Released with much hype, but people accuse Meta of gaming the benchmarks.
+
+## Looking Ahead
+
+- [Figma Config](https://config.figma.com/) - May 8-14
+- [UXDX USA 2025](https://uxdx.com/usa/2025/) - 12-14 May
+- [Strapi Conf](https://conf.strapi.io/) - May 13
+- [Google I/O](https://io.google/2025/) - May 20-21
+- [CityJS Athens](https://athens.cityjsconf.org/) - May 28-31
+- [JSHeroes](https://jsheroes.io/) - May 29-30

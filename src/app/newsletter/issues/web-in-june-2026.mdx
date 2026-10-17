@@ -1,0 +1,230 @@
+---
+title: JEM - Web in June - JavaScript Every Month Newsletter
+date: "2026-07-07T07:17:09.013000Z"
+buttondownUrl: https://buttondown.com/agney/archive/jem-web-in-june-javascript-every-month-newsletter-5355/
+---
+
+Hello July 🌧️
+
+## Releases
+
+### Browsers
+
+### [Chrome 150](https://developer.chrome.com/release-notes/150)
+
+Chrome had two releases in June - 149 and 150. Putting 150 in the headline, because well.. it's 150.
+
+- `rect` and `xywh` functions in `shape-outside` property land in Chrome and baseline newly available
+- automatic text scaling with `text-fit`
+- CSS gap decorations in flex and grid layouts
+- `background-clip: border-area`
+- scroll to functions return a promise so you can run follow up tasks after completing the scroll
+- declarative keyboard navigation with `focusgroup`
+- animatable zoom property
+
+### [Firefox 152](https://developer.mozilla.org/en-US/docs/Mozilla/Firefox/Releases/152)
+
+- `field-sizing` property is on Firefox and baseline newly available
+- `AnimationEvent.animation` and `TransitionEvent.animation` properties are now supported
+- Notification actions are supported
+
+### IDE
+
+- OpenAI has released a basic Lovable competitor named [Sites](https://developers.openai.com/codex/sites)
+- Windsurf is [becoming Devin Desktop](https://x.com/jeffwsurf/status/2061891987138380039)
+- Cursor got [acquired by SpaceX](https://x.com/SpaceX/status/2066873915717136548). They launched their [iOS app](https://cursor.com/blog/ios-mobile-app)
+- Claude code launches [Dynamic workflows](https://claude.com/blog/a-harness-for-every-task-dynamic-workflows-in-claude-code) - the agent writes a workflow executed by subagents in code.
+- VS code tells how a single task could be widely different token outputs on models: [What 50,000 Runs of a 5-Line Eval Taught Us](https://code.visualstudio.com/blogs/2026/06/19/what-50000-runs-taught-us)
+- NX team with a _meta_ harness that connects repos together into a virual monorepo for agents - [Polygraph](https://trypolygraph.com/)
+
+### [Angular 22](https://blog.angular.dev/announcing-angular-v22-c52bb83a4664)
+
+- new API based on signals
+- collection of components named Angular Aria
+- `resource` and `httpResource` are stable
+- async dependency injection
+
+### [Next 16.3](https://nextjs.org/blog/next-16-3-instant-navigations)
+
+- Instant navigations - there is a UI that let's you choose?
+- First party skills
+- Agent browser with React introspection
+
+### [Rspack 2.1](https://rspack.rs/blog/announcing-2-1)
+
+- Rust version of React compiler
+- Support for TypeScript 7
+- support for `import.meta.glob`
+- Rspack magic comments
+- Tanstack Start has added [Rsbuild support](https://tanstack.com/blog/start-adds-rsbuild-support)
+
+### [Astro 7](https://astro.build/blog/astro-7/)
+
+- Vite 8
+- Fastest Astro ever, claimed performance of being 2x faster
+- Rust compiler for Astro files
+- Markdown and MDX pipeline with new Rust compiler: [Sätteri](https://satteri.bruits.org/)
+- Queued rendering
+
+### [Homebrew 6](https://brew.sh/2026/06/11/homebrew-6.0.0/)
+
+- Tap trust: explicitly trust third party taps to be trusted
+- Internal JSON API is now default
+
+### [Vercel Eve](https://vercel.com/eve)
+
+Framework for building agents from Vercel, inspired by Next.js filesystem.
+
+### [React Router v8](https://remix.run/blog/react-router-v8)
+
+- minimum supported versions have changed, making the breaking change
+  But in meantime:
+- unstable RSC support
+- middleware better context support
+- split route modules
+- `useRoute`/`useRouterState` (unstable)
+- Typesafe `href`
+- Vite environment API support
+
+### [Flow’s OCaml to Rust Port](https://medium.com/flow-type/flows-ocaml-to-rust-port-78b95bcf49e9)
+
+- 2x faster than OCaml library
+
+### [Nub 1](https://x.com/colinhacks/status/2067295292945567756)
+
+JavaScript toolkit that augments Node.js instead of replacing it.
+
+### [AI SDK 7](https://vercel.com/blog/ai-sdk-7)
+
+- Run agents with tool approvals, timeouts and sandbox support
+- Integrate with agent harnesses
+- Observe agents with telemetry
+- Real time voice support and video generation
+
+### [Maizzle 6](https://x.com/cossssmin/status/2064351831782838539)
+
+- TailwindCSS 4
+- Vue templating
+- Vite plugin
+
+### [Lightpanda agent and Pandascript](https://lightpanda.io/blog/posts/introducing-lightpanda-agent-and-pandascript)
+
+Talk to your Lightpanda browser in natural language, have it generate the automation script.
+
+### [Figma Config 2026](https://www.figma.com/blog/config-2026-recap/)
+
+Figma launched tools that would eat up their competitors.
+
+- Code on canvas - similar to Pencil
+- Figma Motion - similar to Jitter
+- Shader fills and effects - similar to Paper
+- Figma Weave - acquired by Figma
+
+### [Prop for that](https://prop-for-that.netlify.app/)
+
+A library that syncs JS values with CSS variables. Time for some JS-in-CSS.
+
+## In the Spotlight 🔦
+
+### Rise of StyleX
+
+June was the month for StyleX, seemingly for no apparent reason. I noticed prominent individuals and companies discussing their migration to StyleX from Tailwind due to its superior type safety experience. It's worth noting that StyleX has been around for quite some time.
+
+- Polar has a [blog post](https://polar.sh/blog/orbit-llm-safe-design-system) about building a design system with StyleX and their assumptions for it being agent-ready.
+- We also heard Linear is migrating from Styled components to StyleX for their design system.
+- StyleX is keeping a list of companies already migrated/launched with it
+
+[https://x.com/stylexjs/status/2068834315870638158](https://x.com/stylexjs/status/2068834315870638158)
+
+- Meta released an open source design system components named [astryx](https://astryx.atmeta.com/) built on StyleX
+
+### Loops 🔁
+
+June was undoubtedly the month of loop engineering. Both OpenAI and Anthropic pledged their allegence to loop engineering and stated that we should avoid modifying codebases while building a software factory. It's not a viewpoint that I would wish upon anyone who doesn't have unlimited tokens available to them.
+
+- [Loop Engineering](https://addyosmani.com/blog/loop-engineering/) - Addy Osmani
+- [The Art of Loop Engineering](https://www.langchain.com/blog/the-art-of-loop-engineering) - Langchain
+
+While you can choose your stance on loops, I believe that adding one or more verification steps will help the agent perform better on the tasks you assign to it.
+
+- [Verification loops](https://x.com/ClaudeDevs/status/2061900434722496604) - Claude Devs
+
+### Race to a new Git
+
+Everyone agrees that something about Git workflows is broken for a future where infinite software is created by agents. Companies are on a race to re-create and own the paradigm that replaces Git.
+
+- [Cursor, GitLab and Zed agree GitHub is breaking. They disagree on how to rebuild it](https://thenewstack.io/cursor-origin-github-disruption/) - The New Stack
+- [DeltaDB](https://zed.dev/blog/introducing-deltadb) - Zed
+- [Cursor Origin](https://cursor.com/origin) - Private preview
+- [GitLab Orbit](https://about.gitlab.com/gitlab-orbit/) - Private preview
+- [Artifacts](https://blog.cloudflare.com/artifacts-git-for-agents-beta/)
+- Epic Games decided to chip in and released a source control system for games - [Lore](https://lore.org/)
+
+### Security
+
+Our special spotlight on security continues as more and more exploits are discovered.
+
+- [Node.js security releases](https://nodejs.org/en/blog/vulnerability/june-2026-security-releases) - Update to 26.x, 24.x, 22.x Node release lines
+- [Remix and React Router advisories](https://github.com/remix-run/react-router/security/advisories/GHSA-84g9-w2xq-vcv6)
+- [Remote DoS vulnerability (dubbed HTTP/2 Bomb) affecting major web servers like nginx, Apache httpd, IIS, and Envoy](https://blog.calif.io/p/codex-discovered-a-hidden-http2-bomb)
+- Over [800 Arch Linux packages compromised](https://lists.archlinux.org/archives/list/aur-general@lists.archlinux.org/message/5FDTMKA54RMWNRHJFUAKXEBAFV5WPDUL/) with infostealer malware
+- [Critical vulnerability in](https://arcticwolf.com/resources/blog/critical-remote-code-execution-vulnerability-in-libssh2-client-library-require-urgent-mitigation/) widely used library `libssh2`
+
+## Tutorials
+
+### [The Conductor Rewrite: What They Changed to Make It Fast](https://performance.dev/the-conductor-rewrite)
+
+Conductor, the development agents' UI announced that they had rewritten the app to achieve twice the performance of the previous version. This article details the steps they took to reach this goal, including some useful insights for anyone interested in building a desktop app.
+
+### [Iterating faster with TypeScript 7](https://code.visualstudio.com/blogs/2026/06/26/iterating-faster-with-ts-7)
+
+The Visual Studio Code team discusses their collaboration with the TypeScript team on the incremental TS7 rewrite within the large codebase. If you haven't explored TS7 for your codebase yet, I highly recommend it; it has proven to be very stable, even in development releases.
+
+### [The words designers use when they know what they’re looking at](https://index.how/to/articulate)
+
+What if the future of tutorials involves learning the right vocabulary to communicate effectively with the agent and achieve your goals? Consider English courses, followed by specialized courses focused on the subject you wish to master. This post explores what that looks like in design.
+
+## In short
+
+- WebMCP is on [origin trial](https://developer.chrome.com/blog/ai-webmcp-origin-trial)
+- New [Surface and Surface Pro](https://blogs.windows.com/devices/2026/06/16/introducing-the-next-surface-pro-and-surface-laptop-built-for-performance-and-flexibility/) laptops from Microsoft
+- Shopify's internal platform for sharing HTML plans, visualisations and small apps - [Quick](https://shopify.engineering/quick)
+- [New Lovable apps](https://lovable.dev/blog/building-apps-using-tanstack-start) are powered by Tanstack Start
+- Aiden launched a new tool - [cnfast](https://x.com/aidenybai/status/2068359133561336302) 3x faster `cn` tool (for tailwind users)
+- Frontend Masters has [renamed to Master.dev](https://x.com/MasterDotDev/status/2067278135046160550).
+- Football worldcup special - [How I turned World Cup data into posters](https://zehfernandes.com/posts/how-i-turned-world-cup-data-into-posters)
+- Major companies are joining hands for a new stablecoin standard - [OpenUSD](https://joinopenstandard.com/blog/introducing-open-usd)
+- VoidZero [joins Cloudflare](https://blog.cloudflare.com/voidzero-joins-cloudflare/)
+- TSRX [rethinks compatiblity](https://tsrx.dev/blog/rethinking-tsrx) to template just JSX
+
+## In Other News
+
+### [Midjourney goes from generating cat images to full-body ultrasound scans - TheVerge](https://www.theverge.com/ai-artificial-intelligence/952011/midjourney-medical-ai-ultrasound-scan)
+
+Midjourney, the AI image generator tool, asked people to guess what they were developing and informed us that it was hardware. Many, including myself, speculated that they were creating a tool similar to the Rabbit R1 or possibly Meta glasses with image generation and editing capabilities. However, it turns out they were actually building full-body scanners.
+
+### [How 100 hospitals switched to pen and paper to defeat a national cyber-attack - BBC](https://www.bbc.com/news/articles/c4gyk756mzlo)
+
+In February 2024, a massive cyber-attack struck Romania’s healthcare system. Criminals deployed a ransomware strain called BackMyData, which targeted a widely used medical software system named Hippocrates. The ransomware scrambled crucial patient data, administrative records, and logistics files, with the attackers demanding a ransom of in bitcoin.To halt the spread of infection, hospitals were asked to disconnect from the network.
+
+### [Legibility of Effort](https://eieio.games/blog/legibility-of-effort/)
+
+A significant part of our lives involves determining effort and duration. When we assemble something from Ikea, the effort we invest adds emotional value to the furniture. A gift received from someone, knowing they spent their nights working on it, tends to be valued more than a similar item purchased from a ready-made store, even if the ready-made store offers better functionality. This blog talks about how AI agents have transformed the legibility of effort in codebases.
+
+### AI updates
+
+- Anthropic released Fable 5 and Mythos 5 (the 5 in naming is confusing). But then US government stepped in and bought in [export control directives](https://www.anthropic.com/news/fable-mythos-access) on them. This was the first model to be Goverment blocked, but wouldn't be the last.
+- OpenAI released [5.6 Sol](https://openai.com/index/previewing-gpt-5-6-sol/), their next generation of models competing with Anthropic Fable and are also held back by the US government.
+- Google announced [computer use in Gemini 3.5 Flash](https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-computer-use-gemini-3-5-flash/). Their trend of bringing inference costs down continues with Nano Banana 2 Lite and [Omni Flash](https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-omni-flash-nano-banana-2-lite/)
+- Qwen released their first world model: [Qwen AgentWorld](https://qwen.ai/blog?id=qwen-agentworld)
+- OpenAI has created [a chip purpose built for AI](https://openai.com/index/openai-broadcom-jalapeno-inference-chip/)
+- Kimi with next iteration step: [Kimi K2.7 Code](https://x.com/Kimi_Moonshot/status/2065377579130142937), first model with Code in it's name.
+- Minimax made a major version jump with cost effective model - [Minimax M3](https://x.com/MiniMax_AI/status/2061266317815296322). There is a coding agent alongside [agent.minimax.io](https://agent.minimax.io/)
+- Microsoft [announced open source models](https://x.com/MicrosoftAI/status/2061887500541366489) across verticals at the Build conference
+- New model router in town - [Sakana Fugu](https://sakana.ai/fugu/) claims better numbers than using the top models themselves.
+- OpenRouter has released a router named [Fusion](https://openrouter.ai/blog/announcements/fusion-beats-frontier/) with API access
+- Z.ai has a magnificent return to frontier with [GLM 5.2](https://z.ai/blog/glm-5.2)
+
+## Looking Ahead
+
+- [Vercel Ship London](https://vercel.com/ship/london) - June 26

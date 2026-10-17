@@ -1,0 +1,195 @@
+---
+title: Web in March - Newsletter by Agney
+date: "2023-04-09T21:57:37.849683Z"
+buttondownUrl: https://buttondown.com/agney/archive/web-in-february-newsletter-by-agney-1607/
+---
+
+Hey April 👋
+
+In this month's update on OpenAI's LLMs and their counterparts, we're looking at Google's new LLM, Bard, which recently entered beta testing in the United States. It's been compared to BingAI, and early reviews suggest that Bard may be the better search engine, providing concise and timely information. Meanwhile, BingAI (or GPT-4) appears to excel at creative writing and coding tasks.
+
+This month, the Future of Life Institute, a non-profit organization backed by Elon Musk, released an [Open Letter urging AI](https://futureoflife.org/open-letter/pause-giant-ai-experiments/) companies to halt any enhancements beyond GPT-4. Prominent figures like Elon Musk and Steve Wozniak have signed the letter. However, I believe that stopping progress on GPT-4 is unlikely. If OpenAI ceases development, another organization will undoubtedly step in, given the financial incentives at stake.
+
+People seem to be divided into two basic camps regarding this issue:
+
+1. ChatGPT is not AGI and hence not useful - For this group, it's worth recalling that [people initially had to be convinced of the usefulness of electricity](https://www.smithsonianmag.com/smart-news/people-had-to-be-convinced-of-the-usefulness-of-electricity-21221094/).
+2. ChatGPT will take away our jobs - This fear has been prevalent since the dawn of automation. Here's a 2013 article titled [How Technology is ruining jobs](https://www.technologyreview.com/2013/06/12/178008/how-technology-is-destroying-jobs/). However, computers have ultimately created more jobs than they "destroyed" ([ref](https://www.weforum.org/agenda/2020/09/short-history-jobs-automation/)).
+
+Instead of advocating for the ban of LLMs, we should focus on enhancing our processes with their help. Concerns about students cheating with ChatGPT should prompt us to reevaluate our testing methods. We are on the verge of a time when each student could receive individual attention from a teacher, even if it's through an AI tool. Should we discard this potential due to the fear of cheating?
+
+There is still a lot of AI that I want to talk about, more of that coming up In the Spotlight section.
+
+## Releases
+
+### Browsers
+
+- [Import Maps are now supported cross browser](https://web.dev/import-maps-in-all-modern-browsers/)
+- [Push notifications are now supported cross-browser](https://web.dev/push-notifications-in-all-modern-browsers/)
+
+#### [Chrome 111](https://developer.chrome.com/blog/new-in-chrome-111/)
+
+- Major update is the [View Transitions API](https://developer.mozilla.org/en-US/docs/Web/API/View_Transitions_API). It's currently supported only in Chrome and only for SPAs. Looking at the APIs, I'm not entirely sure if this is that useful. May be more libraries would come along making it easier.
+- With CSS color level 4, CSS now supports high definition displays, specifying colors from HD gamuts while also offering color spaces with specializations.
+- Document PiP in now on origin trial.
+
+#### [Safari 16.4](https://webkit.org/blog/13966/webkit-features-in-safari-16-4/)
+
+- Improved support for web components with Shadow DOM
+- Safari has taken the lead in introducing several CSS improvements. Of particular interest to me is the exciting update to media query syntax. I still find myself googling how to type out a media query and I'm pleased to see that Media Query Syntax 4 has simplified the process significantly.
+
+```css
+/* From */
+@media (min-width: 400px) and (max-width: 900px) { ... }
+
+/* To */
+@media (400px <= width < 900px) { ... }
+```
+
+#### [Firefox 111](https://developer.mozilla.org/en-US/docs/Mozilla/Firefox/Releases/111)
+
+From my perspective, Firefox's latest release isn't particularly exciting. However, if you were hoping for specific features, feel free to let me know.
+
+- Support for global HTML attributes - autocapitalize and translate. Global means that they can be applied on any HTML element.
+- CSS color functions for CSS Color Level 4 are exposed behind a flag.
+- Support for OPFS - Origin Private File System. OFPS enables a website to store a file privately, this can for example run an SQLite database.
+
+### [The WebAIM Million](https://webaim.org/projects/million/)
+
+The annual accessibility report from WebAIM has just been released. The project aims to test one million web pages and assess the level of accessibility errors found on those pages. Here's a teaser:
+
+> Across the one million home pages, 49,991,225 distinct accessibility errors were detected—an average of 50.0 errors per page.
+
+### [Safe NPM - Socket](https://socket.dev/blog/introducing-safe-npm)
+
+The NPM registry is rife with scams and typosquat packages, which can make it challenging to ensure the safety and integrity of your codebase. Socket, the company behind dependency scanners on GitHub, has released a new package that can be run on the terminal to scan NPM package scripts and warn you about potential scams and security threats.
+
+Socket has also [successfully implemented GPT-4](https://www.theregister.com/2023/03/30/socket_chatgpt_malware/) to help scan NPM packages for security threats. Instead of manually reviewing every package, they are using AI-generated code snippets to identify potential vulnerabilities more efficiently.
+
+### [react.dev](https://react.dev/blog/2023/03/16/introducing-react-dev)
+
+The new documentation site for ReactJS has finally gone live after a long wait. Even during its beta phase, the site was impressive, and the addition of live examples to many pages makes it even more useful.
+
+However, it's worth noting that the ReactJS documentation no longer recommends using Create React App. Instead, they suggest using meta-frameworks like NextJS, GatsbyJS, Remix, and others. It remains to be seen how this shift will impact the React ecosystem, but according to a [recent analysis by Netlify](https://www.netlify.com/blog/framework-popularity-on-netlify/), frameworks built on Create React App still make up 40% of the platform's usage.
+
+### [MidJourney v5](https://www.midjourney.com/)
+
+MidJourney upgraded to their newest model on March 15, 2023. From the release docs:
+
+> This model has very high Coherency, excels at interpreting natural language prompts, is higher resolution, and supports advanced features like repeating patterns with --tile
+
+I checked out the model close to when it was released and the experience is surreal. I feel like I wouldn't need the camera if I could just describe the scene in detail. After some deepfake images came out to be viral ([involving the Pope](https://indianexpress.com/article/technology/artificial-intelligence/how-to-use-midjourney-v5-to-generate-photorealistic-images-8526638/)), Midjourney has cancelled their free plan and now requires a subscription.
+
+### [Ionic 7](https://ionic.io/blog/ionic-7-is-here)
+
+Introduces several new features and improvements such as inline overlays, consistent events emissions, and simplified form control syntax. Something that caught my eye with the release is the 70% performance improvement with Ionic Tabs - that is massive. If you have an idea on what the fix was, please do let me know.
+
+### [Playwright 1.32.0](https://github.com/microsoft/playwright/releases/tag/v1.32.0)
+
+PlayWright now includes a UI that lets you explore, run and debug tests similar to Cypress.
+
+### [Github Copilot X](https://github.blog/2023-03-22-github-copilot-x-the-ai-powered-developer-experience/)
+
+Github is introducing enhancements made through GPT-4 with Copilot X. The experience consists of different features:
+
+- AI powered chat in the IDE
+- Better pull requests with GPT-4
+- AI generated answers on documentation.
+
+## In the Spotlight 🔦
+
+In this month's Spotlight, I take a look at evolving stories from the world of Large Language Models and how it affects us.
+
+### [AI race made text boxes cool again - The Verge](https://www.theverge.com/2023/3/26/23655456/chatgpt-bard-bing-ai-race-text-boxes)
+
+This has been something I think about a lot. In the age of UIs that are getting more and more complicated, ChatGPT has brought the UI down to a basic chat interface. There aren’t buttons for you to click around (yet), and everyone can use an interface simpler than WhatsApp. I have read how interface with a lot of buttons is going to win the game, but I keep coming back to the ChatGPT interface because it can do everything and I don’t have to remember the shortcuts.
+
+### [Sam Altman Interview with Lex Fridman](https://youtu.be/L_Guz73e6fw)
+
+Here's some highlights from the podcast:
+
+- Avoid attributing human characteristics to an LLM.
+- Generating coherent output in GPT-4 involves processing a vast amount of data and making informed decisions. However, the secret sauce behind GPT-4's success is reinforcement learning with human feedback (RLHF).
+- As every individual has different requirements from an LLM, OpenAI plans to introduce personalized controls for certain parameters.
+- The development of an AGI and its content requires a democratic process that needs to evolve over time.
+- To paraphrase Sam Altman, people once believed that there was no point in playing chess if a computer could play it. However, today, chess is more popular than ever.
+
+### [It's important to remember that LLMs will lie to you](https://arstechnica.com/information-technology/2023/04/why-ai-chatbots-are-the-ultimate-bs-machines-and-how-people-hope-to-fix-them/)
+
+LLMs hallucinate, it's something we have accepted as normal but often forget. From personal experience, I tried making a prototype customer service agent using GPT-4 last month and even displayed the result as GPT-4 came up with answers for all of my questions. Then someone pointed out that the answers were all nonsense, pure hallucinations. So, the basic rule for Internet also applies to LLMs - **check. then double check.**
+
+The article argues that the term hallucination is just not enough. Confabulation is the one that fits the card.
+
+### [The Llama Effect - How an Accidental Leak sparked a series of impressive open source alternatives to ChatGPT](https://thesequence.substack.com/p/the-llama-effect-how-an-accidental)
+
+LLMs are a world dominated by paid APIs like GPT-4 and Claude. We are still waiting for the Stable Diffusion moment for text APIs. But the leak of LLaMa (Meta's research only model) has lead to rise of intermediate models [from](https://github.com/nebuly-ai/nebullvm/tree/main/apps/accelerate/chatllama) [many](https://bair.berkeley.edu/blog/2023/04/03/koala/) [Universities](https://vicuna.lmsys.org/).
+
+It's surprising how image generating AIs can run on lesser memory than the ones generating text. Check out [running LLaMa with M1 Mac](https://dev.l1x.be/posts/2023/03/12/using-llama-with-m1-mac/)
+
+## Tutorials
+
+### [Types in JavaScript With Zod and JSDoc](https://blog.jim-nielsen.com/2023/types-in-jsdoc-with-zod/)
+
+Keeping up with TypeScript on a small project can be quite challenging. However, Jim Nielsen has offered a helpful solution by demonstrating how to use JSDoc types across multiple files. Additionally, there's a Zod tutorial that explains how to use types at runtime. Although it may not be the most enjoyable experience, I've personally found it to be a worthwhile practice for many of my projects.
+
+### [16 little UI design rules that make a big impact - Adham Dannaway](https://www.adhamdannaway.com/blog/ui-design/16-ui-design-rules)
+
+Design is hard! I have tried and failed multiple times. Adam Dannaway has published a helpful tutorial that can improve your designs by providing a simple checklist of rules to follow.
+
+If you find this approach helpful, you might want to check out [Refactoring UI](https://www.refactoringui.com/), a book written by the founders of Tailwind CSS. It offers a wealth of insights and techniques for improving your design skills.
+
+### [You can add biometric authentication to your webpage. Here’s how.](https://stackoverflow.blog/2022/11/16/biometric-authentication-for-web-devs/)
+
+The Web Authentication API is something that I have wanted to check out for long. It's our (pass)key to a password less future and who doesn't want that. There is still a lot of theory behind it and it's not easy to use as importing `passport`. But the tech is solid and browser support is ramping up.
+
+### [Angular Signals RFC Discussion with the Angular Team](https://www.youtube.com/watch?v=oTFauGIs7s0)
+
+In our previous newsletter, we discussed signals, and now Angular is taking the initiative to implement them by conducting a livestream RFC discussion on YouTube.
+
+### [Transformers in your browser](https://xenova.github.io/transformers.js/)
+
+It is exhilarating to witness the deployment of these models in the browser. Although they cannot be used in production at present due to the time taken by these models to generate information. Furthermore, as ChatGPT has become so pervasive, people would anticipate similar output from these smaller models. However, this does not diminish my excitement in any way.
+
+### [Twitter Recommendation Algorithm](https://blog.twitter.com/engineering/en_us/topics/open-source/2023/twitter-recommendation-algorithm)
+
+Twitter has open-sourced their algorithm to uphold their commitment to transparency. However, apart from the officially released code, there have been [leaks of other parts of the source code](https://www.nytimes.com/2023/03/26/technology/twitter-source-code-leak.html), which are speculated to be the work of disgruntled laid-off developers.
+
+In a related development, Twitter has reportedly restricted retweets and likes on tweets containing SubStack links. This move appears to be a retaliation from Twitter after SubStack launched a competing product called [Notes](https://on.substack.com/p/introducing-notes).
+
+## In Other News
+
+### [The End of Frontend Development (not really) - Josh W Comeau](https://www.joshwcomeau.com/blog/the-end-of-frontend-development/)
+
+There's been a lot of concern lately about the potential loss of jobs in frontend development. It's possible that this anxiety stems from the fact that frontend development is often used to demonstrate an LLM's ability to write code. For instance, an LLM might be asked to create a game or toy app and then showcase it on CodePen. It's not always as straightforward to demonstrate the functionality of a backend API in the same way.
+
+However, Josh W Comeau argues that these kinds of applications were already obsolete. After all, we live in a world where Wix and Squarespace exist. Ideally, we should be building much more complex applications than anything those platforms can offer. That being said, it's wonderful that LLMs can help us augment our skills and improve our ability to develop sophisticated frontend applications.
+
+### [You, me and UI](https://www.theverge.com/23632230/designers-week-series-ui-accessibility-vr-interface)
+
+This month's series on User Interfaces by The Verge is a fascinating read. It explores the importance of UI and UX across various platforms, with each article focusing on a single facet. Some of these facets may go unnoticed, such as the shuffle button, while others, like website popups, can be quite intrusive.
+
+> There’s a funny conflict to the idea of user interfaces: a good one tends to go unnoticed, the thoughtful design decisions too subtle to notice; a bad UX or UI is one that makes you want to scream.
+
+### [One In Two New Npm Packages Is SEO Spam Right Now](https://blog.sandworm.dev/one-in-two-new-npm-packages-is-seo-spam-right-now)
+
+We were initially concerned about ChatGPT's impact on SEO, but it turns out that the real challenge came from NPM packages.
+
+### [Ken Thompson Jukebox for the Ages](https://www.youtube.com/watch?v=kaandEt_pKw)
+
+Ken Thompson was one of the developers of MULTICS, the ancestor and inspiration for Unix. He is one of the pioneers of the industry that we work on today. He came on as a keynote speaker for Scale and revealed a project he has been working on for 75 years. Spoiler: It's music not Unix.
+
+### [10 years of Electron](https://www.electronjs.org/blog/10-years-of-electron)
+
+Electron has emerged as one of the most widely used frameworks for developing desktop applications today. Personally, I use several Electron-based apps such as Slack, VS Code, and many more that I may not have peeked under the hood yet.
+
+Also this month, the [news of Teams moving off Electron to Edge WebView2](https://techcommunity.microsoft.com/t5/microsoft-teams/teams-2-0-moves-away-from-electron-to-embrace-edge-webview2/m-p/2484565)
+
+### [Samsung Space Zoom Shots are fake](https://old.reddit.com/r/Android/comments/11nzrb0/samsung_space_zoom_moon_shots_are_fake_and_here/)
+
+Samsung's Ultra series advertisements showcased moon shots as a prominent feature, highlighting their 100x zoom capability. A user tested this by capturing a blurred printed moon picture, and the camera returned an image with better details than the original. Samsung addressed these allegations by [explaining that](https://www.samsungmobilepress.com/feature-stories/how-samsung-galaxy-cameras-combine-super-resolution-technologies-with-ai-technology-to-produce-high-quality-images-of-the-moon/) an AI process called Scene Optimiser works behind the scenes and can be disabled in the settings.
+
+However, this incident raises questions about the nature of photographs. While we claim that smartphone cameras have improved significantly over the years, it is primarily the photo processing that has made leaps and bounds. In contrast, camera hardware advancements have been comparatively slower. Interestingly, we desire photos that not only look normal but also resemble what we perceive, which, ironically, involves neural processing as well.
+
+## Looking Forward
+
+- [Kotlin Conf](https://kotlinconf.com/) - April 13,14
+- [VS Code Day 2023](https://learn.microsoft.com/en-in/events/learn-events/vs-code-day-2023/) - April 26

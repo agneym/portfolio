@@ -1,0 +1,65 @@
+---
+title: Web in October - Newsletter by Agney
+date: "2021-10-31T19:54:25.747593Z"
+image: https://engineering.fb.com/wp-content/uploads/2021/10/datahall.jpg
+buttondownUrl: https://buttondown.com/agney/archive/web-in-october-newsletter-by-agney/
+---
+
+Hey November 🪔
+
+Facebook and it's companies, Instagram and Whatsapp went down for hours straight this month. It got trending everywhere and even drove the installs up for competing products. In countries where Whatsapp is the main app for communication, people resorted to text messaging.
+
+From the facebook explanation post:
+
+> This was the source of yesterday’s outage. During one of these routine maintenance jobs, a command was issued with the intention to assess the availability of global backbone capacity, which unintentionally took down all the connections in our backbone network, effectively disconnecting Facebook data centers globally. Our systems are designed to audit commands like these to prevent mistakes like this, but a bug in that audit tool prevented it from properly stopping the command.
+
+[https://engineering.fb.com/2021/10/05/networking-traffic/outage-details/](https://engineering.fb.com/2021/10/05/networking-traffic/outage-details/)
+
+[Cloudflare explains with diagrams](https://blog.cloudflare.com/october-2021-facebook-outage/)
+[Computerphile video explanation on outage](https://www.youtube.com/watch?v=Bie32IZlMtY)
+
+and By the way, [Facebook is now Meta](https://www.theverge.com/2021/10/28/22745234/facebook-new-name-meta-metaverse-zuckerberg-rebrand). The name change is meant to signify the mission of the company to focus on building a Metaverse. A VR universe where people can spend time, buy goods, perform activities and meet people. Mark Zuckerberg bets that Metaverse is the future for all humanity.
+
+## Releases
+
+- [NextJS 12](https://nextjs.org/blog/next-12) - The new version of NextJS is here and it introduces a much faster Rust based compiler and React 18 compatibility. This means 𝛼 support for [React Server Components](https://reactjs.org/blog/2020/12/21/data-fetching-with-react-server-components.html).
+- [Framer Motion 5](https://twitter.com/mattgperry/status/1453376759915765779) - Framer Motion is one of the best React libraries for animation and with NextJS 12, you can have components loaded from URLs, this mean you can copy paste animations from Framer app to your React app.
+- [ReactJS Docs Beta](https://beta.reactjs.org/learn) - There is a new beta version of ReactJS documentation and it looks swell with real time examples.
+- [Parcel v2](https://parceljs.org/blog/v2/) - The favourite zero configuration bundler is now v2 with a fully extensible plugin system and lots of Rust inside. In other news, Rome has announced a rewrite [to Rust](https://rome.tools/blog/2021/09/21/rome-will-be-rewritten-in-rust).
+- [GraphQL Oct 2021](https://medium.com/@leeb/graphql-2021-868e07545b83) - A new GraphQL spec is out and it's the first one ratified by the new GraphQL foundation. The introduction of custom scalars is exciting.
+
+## In the Spotlight 🔦
+
+Most of the larger companies have resumes coming in at a very huge rate and getting all of them manually reviewed is an impossible task (or may be just one that the company does not want to invest in) Instead there would be machine learning systems that read off the tags on PDF and look for certain keywords (machine learning is a keyword in here, many a time these systems are just search and find)
+
+[https://twitter.com/GergelyOrosz/status/1454377926946918404](https://twitter.com/GergelyOrosz/status/1454377926946918404)
+
+This means, mostly all your resume needs are keywords, any creativity you try to pitch in there is useless.
+
+## CORS
+
+CORS is arguably the most common security error that a frontend developer can run across. But even then it's mysterious as to why and how it works, mostly the developer would change a header or install an extension and it would just work™️. But how does CORS help the web and why is it there?
+
+[https://twitter.com/b0rk/status/1445039796804542473](https://twitter.com/b0rk/status/1445039796804542473)
+
+[https://jakearchibald.com/2021/cors/](https://jakearchibald.com/2021/cors/)
+
+## Tutorials
+
+- [Interactive Learning Tools For Front-End Developers](https://www.smashingmagazine.com/2021/09/interactive-learning-tools-front-end-developers/) - One of the best ways to learn coding is to learn it by doing, the second best - interactive games. Smashing Magazine gives you a huge list of interactive games to learn frontend.
+- [We Analyzed 425,909 Favicons](https://iconmap.io/blog) - We use lots of libraries, but a favicon is common to all websites, IconMap looks at websites and analyses how they use favicons. You would have something to learn from it.
+- [How I built a modern website in 2021](https://kentcdodds.com/blog/how-i-built-a-modern-website-in-2021) - Kent C Dodds examines the tools he uses to build his website and course platform.
+- [Herding elephants: Lessons learned from sharding Postgres at Notion](https://www.notion.so/blog/sharding-postgres-at-notion) - Notion is an application that would really excite you about the database structure, it's not the boring CRUD app (you know why if you used it). Their tech blog explains how they processed sharding for Postgres.
+
+## In Other News
+
+[How India defeated the evil of recurring payments](https://the-ken.com/the-nutgraf/how-india-defeated-the-evil-of-recurring-payments/) - Last month, India's central bank announced a regulation on recurring payments that made subscriptions a way harder process. The government explains that it is to protect the customer but several startups that handle subscription related payments have suddenly stopped in their tracks because it requires each customer to reauthenticate. The Ken has a long listing on how it affects startups.
+
+- [Cloudflare is playing Go](https://www.swyx.io/cloudflare-go/) - AWS has had the headstart on cloud development for a really long time making it impossible for competing companies to scale. Last month was Cloudflare's anniversary and SWYX breaks down their strategy so far.
+- [These emoji mean different things in different countries](https://restofworld.org/2021/list-emoji-different-meanings/) - As a web developer, we are always told to be vary of meanings that we are conveying. I had a conversation with a designer who said we could just use `x`, Who decided x says close, does everyone all around the world know this, how about people who are new to the internet? Emojis are something that drives this point home and this post is splendid on it.
+
+## Looking Ahead
+
+- [React Conf 2021](https://conf.reactjs.org/) - The registration for annual React con is now live.
+- [State of CSS 2021](https://stateofcss.com/) is now open
+- Remix OS - The framework by created by Michael Jackson and Ryan Florence (creators of popular React library React Router) is [going open source](https://twitter.com/remix_run/status/1447649474038222851)

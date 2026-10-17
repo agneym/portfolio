@@ -1,0 +1,129 @@
+---
+title: Web in December - Newsletter by Agney
+date: "2023-01-07T20:15:47.357386Z"
+buttondownUrl: https://buttondown.com/agney/archive/web-in-december-newsletter-by-agney-5033/
+---
+
+Welcome to 2023 Fellows 👋
+
+**Three** years of writing this Newsletter. It's something that I took up like a journal to ensure that I read my articles. Thanks for reading the Newsletter, cheering for every issue and providing feedback.
+
+I hope all of you are having a good start to the year. The web is alive and well. I don't know if it's an [availability heuristic](https://en.wikipedia.org/wiki/Availability_heuristic) but the final part of the year has changed how I find my web topics. It was mostly Twitter and famous blogs that I knew how to find. The decline to Twitter and falling off for many developers have made that much more difficult. But it's an opportunity more than anything else. We have the opportunity to create something out of that void and surely 2023 can't disappoint.
+
+---
+
+## Releases
+
+### Browsers
+
+Interop made it's proper debut this year and Chrome team's look back at what it has achieved through the year is exciting for any developer: [Interop 2022 Wrap up](https://web.dev/interop-2022-wrapup/)
+
+#### [Firefox 108](https://developer.mozilla.org/en-US/docs/Mozilla/Firefox/Releases/108)
+
+- Import Maps are supported, just Safari is go.
+- Trigonometric functions are live for CSS
+
+#### [Safari 16.2](https://developer.apple.com/documentation/safari-release-notes/safari-16_2-release-notes)
+
+- Support for `last baseline` alignment for Flexbox and Grid - meaning it's supported on all major browsers
+
+### [GitHub Accelerator](https://accelerator.github.com/)
+
+GitHub has announced their accelerator program for open source projects. You can apply as an individual or team as the maintainer of an open source project hosted on GitHub, provided that you live in an area with the Sponsors program.
+
+### [CES 2023](https://www.ces.tech/)
+
+The CES is floor after long three years and every company bought out it's tech vision for the future. There were some hands on demos which are always exciting so you know it's not just theoretical. Here's some highlights that I loved from the show this year:
+
+- The car which is screen all over from BMW - it changes colors, has an entire digital screen on the front which shows emotions for some reason. The windshield has different modes - starting from helpful AR navigation systems to crazy VR.
+- Cars like the ones from Mercedes, Volvo and Lucid who are starting to support Dolby Atmos. There are enough content creators out there who use cars to record YouTube reaction videos - but this one's a game changer for anyone listening to music. Would you hop inside your car for the home theatre experience?
+- Lenovo’s Yoga Book 9i - which a lot of vloggers have tested at this point. It has two screens and not even as a gimmick. Lenovo seems to have done enough that the second screen is usable as a navigation device when you are not using it.
+- WPC Qi2 charging standard looks very promising - it brings the wireless Magnetic charging (that Apple currently proprietarily support with Magsafe) to other devices.
+- Lots more Matter compatible smart devices - this will supposedly make the world more smart.
+
+### [NextJS 13.1](https://nextjs.org/blog/next-13-1#turbopack-improvements)
+
+The Edge runtime for NodeJS is now stable and there are middleware improvements. The Turbopack now supports PostCSS and even TailwindCSS by extension.
+
+### [Vite 4](https://vitejs.dev/blog/announcing-vite4.html)
+
+Vite comes preloaded with several frameworks and demos that it's one of the important techs to know for the JavaScript ecosystem. In fact, if someone is starting off on bundlers today, I would rather introduce them to Vite first. The new version comes with Rollup 3 and suggests SWC instead of Babel which makes it faaaster 🚀.
+
+I'm following up with two meta frameworks that use Vite under the hood.
+
+### [SolidStart](https://www.solidjs.com/blog/introducing-solidstart)
+
+SolidJS has released their meta framework - SolidStart. The closest comparison would be NextJS for ReactJS. It has almost everything you would expect, to quote the announcement blog:
+
+> This wouldn't be a Solid project if we weren't building on what we've learned across the whole frontend ecosystem.
+
+### [SvelteKit 1.0](https://svelte.dev/blog/announcing-sveltekit-1.0)
+
+Speaking of meta frameworks, SvelteKit has arrived with it's first major version 1.0. SvelteKit for those unfamiliar is SvelteJS's meta framework. Special shoutout to the amazing tutorial with team from StackBlitz - [Learn Svelte](https://learn.svelte.dev/tutorial/welcome-to-svelte)
+
+#### Honourable Mention 🪄: [Hono](https://honojs.dev/)
+
+A web framework for Cloudflare Workers, Deno, Bun, and Node.js.
+
+## In the Spotlight 🔦
+
+ChatGPT tricks galore! People are realising that ChatGPT could be a good substitute for a bunch of tasks all at once.
+
+- Generate SVGs using ChatGPT? [yes please](https://twitter.com/brdskggs/status/1599533975357095936)
+- [No Linux? No problem. Just get AI to hallucinate it for you](https://arstechnica.com/information-technology/2022/12/openais-new-chatbot-can-hallucinate-a-linux-shell-or-calling-a-bbs/)
+- [A website build on chat and Replit](https://twitter.com/Replit/status/1599803817515548674)
+
+Meanwhile, [ChatGPT answers are banned on StackOverflow](https://meta.stackoverflow.com/questions/421831/temporary-policy-chatgpt-is-banned).
+
+There is a lot of chatter about loss of jobs when ChatGPT comes about but trust me, we will move on. If you don't believe me, [Bematists](https://en.wikipedia.org/wiki/Bematist) were people who measured distances by pacing.
+
+## Tutorials
+
+### [Migrating a large, open-source React application to Next.js and Vercel](https://vercel.com/blog/migrating-a-large-open-source-react-application-to-next-js-and-vercel)
+
+My first takeaway from this was _What?! BBC Web Application is open source?!_
+
+It's a detailed take on steps to transition an application from normal ReactJS codebase to a NextJS codebase and reads like a fairytale. The performance is mostly comparable to the earlier results but the bottomline:
+
+> We have managed to remove 20,000+ lines of code and 30+ dependencies!
+
+### [Draw SVG rope using JavaScript](https://muffinman.io/blog/draw-svg-rope-using-javascript/)
+
+Drawing the rope is amazing. But what caught my eye is the process of visualising the rope and blog format to support it. Absolute go through material even if you don't want to draw a rope using JavaScript.
+
+### [12 days of Web](https://12daysofweb.dev/)
+
+The series takes 12 articles based on new features released for the Web this year (just consider newer, I haven't verified this for a fact) and explains them in each. Viewport units, Cascade layers, `:has` and more.
+
+### [HTMHell](https://www.htmhell.dev/)
+
+Advent calendar from HTMHell is work looking at for improving HTML usage and accessibility. It's much easier to fix the low hanging fruits.
+
+### [Setting up a screen reader testing environment on your computer](https://www.sarasoueidan.com/blog/testing-environment-setup)
+
+Most people want to test for accessibility but don't have the proper testing setup on their computers. If you don't have the proper setup, you are never going to get there. That's why Sara's setup tutorial is such a blessing. Check out [Sara's new course on Practical Accessibility](https://practical-accessibility.today/) as well.
+
+## In Other News
+
+### [Adobe at 40](https://www.fastcompany.com/90817765/adobe-at-40-the-past-present-and-future-of-creativity-softwares-enduring-giant)
+
+It's 40 years since John Warnock and Chuck Geschke created Adobe. A company that sold software when software wasn't even a thing. The article discusses Adobe's evolution of creator software, migration to a SASS based platform to Figma acquisition.
+
+### [A brief history of diffusion, the tech at the heart of modern image-generating AI](https://techcrunch.com/2022/12/22/a-brief-history-of-diffusion-the-tech-at-the-heart-of-modern-image-generating-ai/)
+
+The history of how generative AI like Dall-E, Stable Diffusion and MidJourney came about. Where did Diffusion as a concept originate and what else can it do?
+
+Also worth looking at: [Illustrating Reinforcement Learning from Human Feedback (RLHF) - Hugging Face](https://huggingface.co/blog/rlhf)
+
+### [State of HTTP in 2022](https://blog.cloudflare.com/the-state-of-http-in-2022/)
+
+Cloudflare discusses HTTP protocol with HTTP2 and moving forward in 2023 - the extensions to improve privacy within the protocol looks exciting.
+
+### [Meta, Microsoft, AWS and TomTom launch the Overture Maps Foundation to develop interoperable open map data](https://techcrunch.com/2022/12/15/meta-microsoft-aws-and-tomtom-launch-the-overture-maps-foundation-to-develop-interoperable-open-map-data/)
+
+A lot of Maps is build on user data. This makes it impossible to beat Google's first mover advantage with Google Maps. How to break even when this happens? The rivals are all banding up to create an interoperable Map data platform.
+
+## Looking Forward
+
+- [Flutter Forward](https://flutter.dev/events/flutter-forward) - Jan 25
+- [Refresh Conference](https://refresh.rocks/) - Jan 26-27

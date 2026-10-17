@@ -1,0 +1,110 @@
+---
+title: Web in October - Newsletter by Agney
+date: "2022-11-04T20:33:20.578636Z"
+buttondownUrl: https://buttondown.com/agney/archive/web-in-october-newsletter-by-agney-5754/
+---
+
+Hello November!
+
+Almost the end of the year. What's on your year-end bucket list? Have you got through all your 2022 checklist yet? Now's the time to tidy up.
+
+It's the season of layoffs for startups and tech companies in general as US is bracing an upcoming (or ongoing, depending on who you ask) recession. Remember, when the U.S. sneezes, the world catches a cold. Some major companies to layoff a chunk of their workforce include [Stripe](https://stripe.com/in/newsroom/news/ceo-patrick-collisons-email-to-stripe-employees), [Seagate](https://www.cnbc.com/2022/10/26/seagate-will-cut-3000-employees-in-latest-sign-of-major-pc-and-cloud-slowdown.html), [Lyft](https://www.lyft.com/blog/posts/an-update-on-our-team), [Shopify](https://www.wsj.com/articles/shopify-to-lay-off-10-of-workers-in-broad-shake-up-11658839047), Pleo and Chime. Twitter is waiting for Elon Musk to drop the ball on how many of the employees are going out. Major companies like Amazon, Apple, Alphabet and Facebook have announced slowing down of spending and hiring.
+
+---
+
+## Releases
+
+### Browsers
+
+#### [Chrome 107](https://developer.chrome.com/blog/new-in-chrome-107/)
+
+With the addition of Edge and Chrome, grid track animation is now everywhere. Chrome also adds some new properties to screen capture API - out of which `selfBrowserSurface` grabs my attention. This property prevents you from sharing the current tab leading to a mirror inception before.
+
+#### [Firefox 106](https://developer.mozilla.org/en-US/docs/Mozilla/Firefox/Releases/106)
+
+Firefox adds `@support` for `font-tech()` and `font-format()` which can be used, for example to check colorv1 fonts that we discussed last month. [`HTMLMetaElement.media
+`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMetaElement/media) is now supported, meaning you can set different theme colours for different devices.
+
+```javascript
+const meta = document.createElement("meta");
+meta.name = "theme-color";
+meta.content = "#3c790a";
+meta.media = "(prefers-color-scheme: dark)";
+document.head.appendChild(meta);
+```
+
+#### [Safari 16.1](https://developer.apple.com/documentation/safari-release-notes/safari-16_1-release-notes)
+
+- Support for AVIF images are here with a catch - you have to use MacOS Ventura to get it. Edge has not caught up to AVIF yet, so unless you are using a cloud provider with automatic format selection, you can't serve it to everyone everywhere.
+- Web Push is now supported on Safari and everywhere with a catch - (you guessed it) you have to use MacOS Ventura to get it. [Webkit's release article for Web Push](https://webkit.org/blog/12945/meet-web-push/) says that web push is coming to iPadOS and iOS in 2023.
+
+### [Node.js 19](https://nodejs.org/en/blog/announcements/v19-release-announce/)
+
+Node.js 19 brings experimental support for `--watch` flag for reloading when files are changed. Some thing the community always installed `nodemon` for. Also, HTTP(S)/1.1 KeepAlive is `true` by default which means better throughput as connections are being reused in a 5 second timespan.
+
+Also releasing alongside is [npm v9](https://github.blog/changelog/2022-10-24-npm-v9-0-0-released/) with a bunch of breaking changes. So upgrade with care ⚠️. With this release, npm will no longer attempt to modify ownership of files it creates which should make it easier for docker users.
+
+### [Next.js 13](https://nextjs.org/blog/next-13)
+
+- Next.js 13 brings widely _Suspenseful_ features like streaming and server components that React announced to the framework.
+- Comes with [Turbopack](https://vercel.com/blog/turbopack) - a Rust based successor to Webpack ⚡️ and SWC enabled by default.
+- There is an upgrade to the file based router with `app` directory and layouts components.
+
+[https://twitter.com/leeerob/status/1585349567410626560](https://twitter.com/leeerob/status/1585349567410626560)
+
+Netlify has also [launched Background and Scheduled API for Next.JS](https://www.netlify.com/blog/new-background-scheduled-api-routes-nextjs/) so you can start off tasks in the background with Next.JS.
+
+On the subject of React based Frameworks, [Gatsby 5 Alpha](https://github.com/gatsbyjs/gatsby/discussions/36609) is out now. The Gatsby team has also announced a new product named [Valhalla Content Hub](https://www.gatsbyjs.com/products/valhalla-content-hub) which is a GraphQL federation CMS (or whatever you want to call a services that unifies data from different CMS and provides a unified GraphQL API).
+
+### [Postgres 15](https://www.postgresql.org/about/news/postgresql-15-released-2526/)
+
+World's most advanced open source database continues to incrementally be better.
+
+### [Remixing Shopify](https://remix.run/blog/remixing-shopify)
+
+Shopify acquires the Remix library. The major complaint that Remix took is that it did not have corporate support and this kinda fixes that.
+
+### [Ghostwriter - Replit](https://replit.com/site/ghostwriter)
+
+Ghostwriter is a Github CoPilot competitor from the Replit team and is available on their platform. I like their Creative Consultant pitch, I don't think it works well, but well the pitch works.
+
+## Tutorials
+
+- [SVG Sprites: Old-School, Modern, Unknown and Forgotten](https://pepelsbey.dev/articles/svg-sprites)
+
+This article goes deep into sprites, their old-school use cases and explains the usage with shiny SVG. I love that it discusses different approaches considered and their advantages and shortcomings.
+
+- [Preact & Signals on CodePen](https://codepen.io/team/codepen/pen/JjZoNmK/92217911b028a801e1d9ffab29560119)
+
+Sometimes you are setting up a CodePen and you need something better at organization than vanilla JavaScript.
+
+### [Better error messages - Medium](https://wix-ux.com/when-life-gives-you-lemons-write-better-error-messages-46c5223e1a2f)
+
+This article has examples of good and bad copy writing in error messages. With first instinct, we got with _Whoops! Something went wrong_ and sometimes even stop there. User has not context to get to where they want to go or report their issue. This article can inspire us to do better.
+
+### [Component Patterns - web.dev](https://web.dev/patterns/components/)
+
+There is a new collection from web.dev concerning component patterns that we share across frameworks.
+
+### [HTTP Crash Course](https://fasterthanli.me/articles/the-http-crash-course-nobody-asked-for)
+
+HTTP is not something people really care about. Nobody really learns HTTP before getting into tech. But there is apparently lots of interesting intakes into HTTP and this crash course brings you some.
+
+## In Other News
+
+### [Stanford Computer Scientist Answers Coding Questions From Twitter | Tech Support | WIRED - Youtube](https://youtu.be/1yyRvyNQ5rQ)
+
+It is often said that Computer Science is hard to explain to people who are not in the field. I find it hard to explain what I do. But this video had me rethink, may be it's not too hard for a good presenter. It's just a matter of improving my skills are presenting. Everyone uses computers these days.
+
+### [Brave blocks cookie popups](https://www.techradar.com/news/brave-is-about-to-solve-one-of-the-most-frustrating-problems-with-browsing-the-web)
+
+Everyone agrees on cookie popups being annoying and not serving their purpose. So much so that Brave has decided to block them by default.
+
+### [How fateful](https://chan.co.za/how-fateful)
+
+You never see it until you see it. Then you keep seeing it. Channon Perry makes a program out of her and boyfriend's geo coordinates from Google to find how many times they may be crisscrossed within their campus.
+
+## Looking Forward
+
+- [Jamstack Conf](https://jamstack.org/conf/) - Nov 7-8
+- [Github Universe](https://githubuniverse.com/) - Nov 9 -10

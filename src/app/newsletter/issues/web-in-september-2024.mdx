@@ -1,0 +1,155 @@
+---
+title: JEM - Web in September - JavaScript Every Month Newsletter
+date: "2024-10-09T09:31:24.029836Z"
+buttondownUrl: https://buttondown.com/agney/archive/jem-web-in-september-javascript-every-month-7676/
+---
+
+Hey October 👋
+
+> In 1995, Netscape partnered with Sun Microsystems to create interactive websites. Brendan Eich famously spent only 10 days creating the first version of JavaScript, a dynamic programming language with a rough syntactic lineage from Sun’s Java language. As a result of this partnership, Sun held the JavaScript trademark. In 2009, Oracle acquired Sun Microsystems and the JavaScript trademark as a result.
+
+Oracle has renewed the Java trademark year after year and still holds it today. This has caused confusion within the JavaScript community regarding the association between Oracle and Java. Now, there's an online petition aimed at explaining the issue and pushing Oracle to relinquish the trademark. You can sign it at [javascript.tm](https://javascript.tm/).
+
+## Releases
+
+### Browsers
+
+#### [Firefox 130](https://developer.mozilla.org/en-US/docs/Mozilla/Firefox/Releases/130)
+
+- `name` attribute is supported on accordions, this can create exclusive accordions. _Available in baseline._
+- The hyphens CSS property is now properly supported for Czech and Slovak languages.
+- The Web Codecs API is supported on desktop releases, giving web developers low-level access to the individual frames of a video stream and chunks of audio. _Available in Baseline._
+
+#### [Chrome 129](https://developer.chrome.com/release-notes/129)
+
+- Animate to `auto` is supported with `min-content` and `fit-content`
+- `Intl.DurationFormat` to format durations
+- `scheduler.yield()` causes the current task to yield, continuing in a new browser task
+
+#### [Safari 18](https://developer.apple.com/documentation/safari-release-notes/safari-18-release-notes)
+
+- Added support for `<input type="datetime">`, `<input type="datetime-local">`, and `<time>` elements
+- Added support for using passkeys across related origins
+- Support for `content-visibility`, View transitions, unprefixed `backdrop-filter`.
+
+### [Vue 3.5](https://blog.vuejs.org/posts/vue-3-5)
+
+- Reactivity System: Major refactor for better performance and memory usage.
+- Reactive Props Destructure - now enabled by default, you can destructure variables from `defineProps` which are reactive.
+- `useId` API to generate unique IDs that are stable across server and client side renders.
+
+### [TypeScript 5.6](https://devblogs.microsoft.com/typescript/announcing-typescript-5-6/)
+
+- Disallowed nullish and truthy checks
+- support for arbitrary module identifiers
+- Enhanced support for ECMAScript modules and new compiler options like `--noCheck`
+
+### [Biome 1.9](https://biomejs.dev/blog/biome-v1-9/)
+
+Anniversary release for Biome. It's been a year since the super fast formatter has started work, in this year it's already [won the Prettier challenge](https://console.algora.io/challenges/prettier).
+
+### [ESLint 9.10.0](https://eslint.org/blog/2024/09/eslint-v9.10.0-released/)
+
+- types are included in the package instead of `@types/eslint`
+
+### [Vite Conf](https://youtu.be/EKvvptbTx6k?si=LiTXHHUXJoXjS0pt)
+
+- Vite’s growth to 15 million weekly downloads and Vitest replacing Jest as a test runner
+- updates on upcoming Rolldown release that the team is working on
+- Stackblitz released [bolt.new](https://bolt.new/) where the AI agents can access full stack Node.js packages in the browser.
+- React router v7 prerelease is now available. This will be first glimpse of the new Vite plugin that enables Remix.
+
+### [Express 5.0](https://github.com/expressjs/express/releases/tag/v5.0.0)
+
+We did not have Express being updated in a long while and people commented that it had stopped development. We have a major version now that proves that's not the case.
+
+### [Date fns 4.0](https://blog.date-fns.org/v40-with-time-zone-support/)
+
+- Introduces a new library named `@date-fns/tz` which has support for all date-fns functions.
+
+## In the Spotlight 🔦
+
+This month, we will look at AI tools that are helping with coding.
+
+> Remember: You won't be replaced by AI; you'll be outpaced by someone who harnesses its power.
+
+My first and constant companion on coding on VSCode is [GitHub Copilot](https://github.com/features/copilot). While it's certainly not perfect, I have likely figured out things that this pair programmer of mine is good at, so I wait for the tab only on those things.
+
+I'm okay using Copilot because my company pays for it, but you might be forced for alternatives. [Tabby](https://tabby.tabbyml.com/) is an open source local copilot that integrates with VSCode. [FauxPilot](https://github.com/fauxpilot/fauxpilot) is another popular alternative based off on SalesForce Codegen that you can self host. A code editor alternative that everyone seems to be in love with is [Cursor](https://www.cursor.com/), it's a fork of VSCode with AI build into the editor itself. If you are tight on pricing and easy on privacy, the free [Supermaven](https://supermaven.com/pricing) tier is also worth looking into.
+
+Now for some left field suggestions:
+
+- [Continue.dev](https://www.continue.dev/) - Open source AI editor (think cursor, but open source)
+- [Unblocked](https://getunblocked.com/) - Augment code with context from Slack, confluence, Jira.
+- [Qodo](https://www.qodo.ai/) - Generate tests from code.
+- [Graphite reviewer](https://graphite.dev/features/reviewer) - Reviews code with you.
+- [Copilot on Github](https://github.blog/news-insights/product-news/github-copilot-now-available-in-github-com-for-copilot-individual-and-copilot-business-plans/) - Allows for Copilot to be directly integrated into Github UI, where it can generate PR summaries, answer questions about code with Chat etc.
+
+## Tutorials
+
+### [React 19 cheatsheet - Epic React](https://www.epicreact.dev/react-19-cheatsheet)
+
+Kent C. Dodds, as part of his Epic React course, has released a single-page React 19 cheat sheet. I found it easy to go through, and it could serve as a great interview revision resource.
+
+### [Types of React components - Robin Wieruch](https://www.robinwieruch.de/react-component-types)
+
+This is a great throwback and a fascinating look ahead, where Robin explores the evolution of React component types—from the early days of createClass to the newly supported async server components. It's been quite a journey!
+
+### [Angular Routing Essentials: All You Need to Know in One Post](https://monsterlessons-academy.com/posts/angular-routing-essentials-all-you-need-to-know-in-one-post)
+
+At first, I wondered if there was much to write about the router, but then I remembered React Router has an entire website of documentation. This piece offers a clear and straightforward take on Angular routing and its various mechanisms.
+
+### [Server functions - React docs](https://19.react.dev/reference/rsc/server-functions)
+
+React has officially renamed "server actions" to "server functions".
+
+> If a Server Function is passed to an action prop or called from inside an action then it is a Server Action, but not all Server Functions are Server Actions. The naming in this documentation has been updated to reflect that Server Functions can be used for multiple purposes.
+
+### [Look out, kids: PHP is the new JavaScript](https://www.mux.com/blog/php-is-the-new-javascript)
+
+The Mux blog argues that Laravel has reignited excitement around PHP updates, and I tend to agree. The language has gone from being meme-worthy to something people look forward to—though perhaps it's more about the frameworks than PHP itself.
+
+[https://x.com/shadcn/status/1842329158879420864](https://x.com/shadcn/status/1842329158879420864)
+
+## In Other News
+
+### [The WordPress vs. WP Engine drama, explained](https://techcrunch.com/2024/10/04/wordpress-vs-wp-engine-drama-explained)
+
+The major drama this month was the WordPress meltdown—a clash between WordPress founder and Automattic CEO, Matt Mullenweg, and WP Engine, a WordPress hosting platform. At WordCamp, the WordPress conference, Matt accused WP Engine of [being a _cancer_](https://wordpress.org/news/2024/09/wp-engine/) that profits from open-source software without contributing back. WP Engine, in turn, accused Matt of extortion and demanding money. In response, WordPress made [some trademark changes](https://www.diffchecker.com/tJ29tGIn/) in their license and blocked WP Engine's servers. WPEngine has, since then [rolled out their own service](https://x.com/wpengine/status/1840910240801316924) for updating themes and plugins.
+
+### [Meta Connect 2024: Everything Revealed in 12 Minutes - CNET](https://youtu.be/l_QruJ0Kv9U?si=H_XFZ_ymekpAyDpj)
+
+- [Orion](https://www.theverge.com/24253908/meta-orion-ar-glasses-demo-mark-zuckerberg-interview) AR glasses that are not for sale
+- New cheaper virtual reality headset [Meta Quest 3S](https://www.meta.com/quest/quest-3s/)
+- Instagram has been [rewritten with React native](https://engineering.fb.com/2024/10/02/android/react-at-meta-connect-2024/) for Mixed reality.
+- Mark Zuckerberg has given out interviews with many Youtubers in association with this release, I think the [interview with Cleo Abram](https://youtu.be/oX7OduG1YmI?si=rAtF6vt1_e-13GkL) is a pretty interesting watch.
+
+### AI Updates
+
+- [OpenAI O1](https://openai.com/index/introducing-openai-o1-preview/) - OpenAI's new model thinks by default and takes time answering queries - but it can solve problems that cannot be solved by default models (like how many 'r's are in strawberry)
+- [Meta Llama 3.2](https://www.llama.com/) - Meta's open source models can now take both text and image inputs and comes in 1B, 3B (text only), 11B, 90B (multi modal) sizes.
+- [Meta MovieGen](https://ai.meta.com/research/movie-gen/) - Meta's text to video generation platform competing with the likes of Sora. The page comes with some impressive demos but it's still in research phase.
+- [Contextual retrieval with Anthropic Claude](https://www.anthropic.com/news/contextual-retrieval) - Along with the newly released prompt caching, Claude has also introduced adding context to every retrieved chunk. According to their research, this reduces the number of failed retrievals by 49%.
+- Flux, the open source AI generator has released a new version of their model, [Flux 1.1](https://flux1.ai/flux1-1) which in blind tests overtake the likes Midjourney and Stable diffusion. Flux 1.1 Pro is also available in association with Freepik.
+
+#### [Open AI Dev day](https://openai.com/devday/)
+
+- [Text to speech realtime API](https://openai.com/index/introducing-the-realtime-api/)
+- Ability to [fine tune GPT with images](https://openai.com/index/introducing-vision-to-the-fine-tuning-api/) than just text.
+- [Prompt caching](https://openai.com/index/api-prompt-caching/) allows you to cache the base prompt that you are running, thereby reducing tokens and cost.
+- [Model distillation](https://openai.com/index/api-model-distillation/) involves fine-tuning smaller, cost-efficient models using outputs from more capable models, allowing them to match the performance of advanced models on specific tasks at a much lower cost. This is now possible on the OpenAI platform.
+
+### [JSConf is Back and Joining the OpenJS Foundation](https://openjsf.org/blog/jsconf-brand-and-js-logo-and-wordmark-contributed)
+
+JSConf is contributing the trademark including the JS logo and watermark, to OpenJS. They are planning a standalone event next year.
+
+## Looking Ahead
+
+- [React Brussels](https://www.react.brussels/) - Oct 18
+- [React India](https://www.reactindia.io/) - Oct 18, 19
+- [Svelte Summit](https://www.sveltesummit.com/) - Oct 19
+- [NextJS Conf](https://nextjs.org/conf) - Oct 24
+- [JetBrains JavaScript Day](https://lp.jetbrains.com/javascript-day-2024) - Oct 24
+- [ReactJS Day](https://2024.reactjsday.it/) - Oct 25
+- [React Advanced](https://reactadvanced.com/) - Oct 25 & 28
+- [CityJS Medellin](https://medellin.cityjsconf.org/) - Oct 25-26

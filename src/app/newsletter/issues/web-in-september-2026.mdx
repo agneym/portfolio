@@ -1,0 +1,276 @@
+---
+title: JEM - Web in September - JavaScript Every Month Newsletter
+date: "2026-10-04T19:05:36.047416Z"
+image: https://image-generator.buttondown.email/api/emphasize-subject?subject=JEM%20-%20Web%20in%20September%20-%20JavaScript%20Every%20Month%20Newsletter&author=JEM%20Newsletter%20-%20JavaScript%20Every%20Month&date=2026-10-04&img=
+buttondownUrl: https://buttondown.com/agney/archive/jem-web-in-september-javascript-every-month-2730/
+---
+
+Hello October!
+
+September was the month decision models took over. ChatGPT co‑founder Diogo Almeida [released a model](https://typesafe.ai/blog/introducing-system-one-models-and-jev) with a new architecture. Instead of walls of text, the model could only answer with decisions or choices. You could consider this a restriction than a new feature, but so is Twitter
+
+Caught up in the storm, everyone and their mother has released their own Jev, to list a few: Cloudflare Clef, Perplexity Decisions, OpenAI Decisions, Amazon Strands Decider, Liquid D1, Together Tev1x, Mercury Decide and others who I'm skipping for brevity.
+
+## Releases
+
+### Browsers
+
+#### [Chrome 153](https://developer.chrome.com/release-notes/153), [Chrome 154](https://developer.chrome.com/release-notes/154)
+
+- Capability elements: `<camera>` and `<microphone>`
+- Iterator `join()`, `includes()` method
+- Extends the overflow property to support scrollable values together with clip
+- Chrome prompts users by default when they connect to a site over an insecure (http) connection
+
+#### [Firefox 155](https://developer.mozilla.org/en-US/docs/Mozilla/Firefox/Releases/155), [Firefox 156](https://developer.mozilla.org/en-US/docs/Mozilla/Firefox/Releases/156), [Firefox 157](https://developer.mozilla.org/en-US/docs/Mozilla/Firefox/Releases/157)
+
+Firefox team has been busy 😅
+
+- `progress` CSS function - baseline
+- Relative alpha colors with `alpha()` - baseline
+- `font-width` property
+
+#### [Safari 27](https://developer.apple.com/documentation/safari-release-notes/safari-27-release-notes)
+
+- `ariaNotify` API
+- `revert-rule`, `stretch` in box sizing, `:host:has()`, `::heading` pseduo class
+- `<image>` values in `light-dark()`
+- `color-mix()` with more than 2 colors
+- `sizes="auto"` baseline
+- Customizable `<select>`
+- Neat post about [fixing top level await](https://webkit.org/blog/18227/fixing-top-level-await-in-safari/) in Safari
+
+### [React 19.3](https://react.dev/blog/2026/09/09/react-19-3)
+
+- New `<ViewTransitions />` component to animate elements as they enter and exit using browser's view transition API
+- you can now add refs to fragments
+- A component can call `use(browser())` to opt out of server-side rendering
+
+### [Angular 22.2](https://github.com/angular/angular/releases/tag/v22.2.0)
+
+- allow template to access private props
+- scope type-checking of keyed defer blocks
+- add ErrorBoundary programmatic APIs
+
+### [Rslib 1.0](https://rslib.rs/blog/v1-0)
+
+- Builds on the Rspack and webpack ecosystems
+- supports module federation output
+- fast declaration generation using tsgo
+
+### [Vitest 5](https://vitest.dev/blog/vitest-5.html)
+
+- Performance improvements, proven through benchmarks. Performance hints are pritned by default.
+- Build in trace view in browser mod
+- Nested projects and config inheritance
+- Fake timers now mock the `Temporal` API alongside `Date`
+
+### [Homebrew 7.0](https://brew.sh/2026/09/13/homebrew-7.0.0/)
+
+- Greater concurrency across downloads, preparation and installation maximises performance while coordinating failures and summaries
+- Fixed several security advisories
+- BrewUI - official interface for homebrew
+
+### [Vite+ 1.0](https://voidzero.dev/posts/announcing-vite-plus-1-0)
+
+- A single command, vp, manages your Node.js runtime, package manager, and frontend toolchain
+
+### [Github CLI: Media in issues, pull requests, and comments](https://github.blog/changelog/2026-09-01-github-cli-media-in-issues-pull-requests-and-comments/)
+
+Take a note of this one if you use GitHub. You can now use the CLI to upload files to Pull requests. Let your agent upload 60fps walkthroughs of your product.
+
+### [React Router 8.4](https://reactrouter.com/changelog#v840)
+
+- Reduced route component rerenders
+- new unstable preload route pattern achieving _\~71–88% with 1,000 routes_
+
+### [PandaCSS 2](https://panda-css.com/blog/panda-css-v2)
+
+Rust rewrite with 28x faster static CSS generation.
+
+### [pnpm 12.4](https://github.com/pnpm/pnpm/releases/tag/v12.4.0)
+
+pnpm can now manage npm, Python and Cargo dependencies in the same workspace.
+
+### [DevFrame](https://devfra.me/posts/pluggable-extensible-playful-devtools)
+
+Antony Fu who wrote and manages so many amazing dev tools for the community has open sourced a framework for building these devtools.
+
+### [Astro 7.3](https://astro.build/blog/astro-730/)
+
+- Run multiple preview servers at once
+- Cloudflare `finalize()` helper for custom fetch handlers
+
+### [GPU Lexer](https://gpu-lexer.vercel.app/)
+
+A 27kB language agnostic syntax highlighter from Vercel Labs.
+
+### [Playwright 1.63](https://github.com/microsoft/playwright/releases/tag/v1.63.0)
+
+Shared test resources can be `lock()`ed so that tests can still run concurrently.
+
+### IDE
+
+- Prompt guide for Opus 5.5 - [Getting the most out of Opus 5.5 in Claude and Claude Code](https://claude.dev/blog/getting-the-most-out-of-opus-5-5/)
+- z.ai's coding harness z-code had a security vulnerability where repostiories where being uploaded to their servers. They have fixed the vulnerability and converted the harness to [open source](https://github.com/zai-org/ZCode).
+- Speaking of open source harnesses, Minimax has [open sourced](https://github.com/MiniMax-AI/minimax-code) theirs and it fares really well on Frontier code evals.
+- Amp is [free to use](https://ampcode.com/news/free-agentm) when bringing your own compute and model subscription.
+- NVIDIA [acquires Hugging Face](https://blogs.nvidia.com/blog/nvidia-to-acquire-hugging-face/) for $12,930,300,000 (also the 🤗 emoji, hugging face)
+- Inference service from the makers of Pi - [Radius](https://radius.earendil.com/)
+- A free year of Kiro IDE [offered for students](https://kiro.dev/blog/students-2026/)
+- Kimi code has a [desktop app](https://x.com/KimiDevs/status/2102009959051632935)
+- Opencode Go has a [new subscription tier](https://x.com/opencode/status/2104548294718296064) for $40
+- Opencode has released their v2 version, there's an [accompanying blog post](https://anoma.ly/notes/opencode-reloaded/) explaining how they manage hot reloading and plugins.
+- [Manus 2](https://manus.im/blog/introducing-manus-2-0) - with their version of GrokBot with Cue
+- [Muse](https://muse.ai/) - Meta's version of GrokBot, now in select markets. Meta has launched a new subscription plan with AI usage named [MetaOne](https://about.fb.com/news/2026/09/introducing-meta-one-subscription-service-more-features-ai/)
+- [zg](https://x.com/QwenDevs/status/2095157452904018263) is a semantic rg replacement from Qwen team
+
+## In the Spotlight 🔦
+
+### Shopify goes back to Native
+
+Shopify argues that, in the age of AI, creating two apps that translate code between codebases is not a big deal. Therefore, you might as well use native apps rather than React Native. They claim native apps can deliver better performance and UI/UX than React Native apps. Shopify also maintains many important React Native libraries. It has [renewed its commitment](https://x.com/mustafa01ali/status/2099476652300419450) to them, indicating ongoing sponsorship and transferring ownership to open source.
+
+- [Announcement - Shopify](https://x.com/mustafa01ali/status/2098047492772249730)
+- [Why has Shopify dropped React Native](https://newsletter.pragmaticengineer.com/p/shopify-native-mobile) - Pragmatic Engineer newsletter
+- [Coinbase is also going fully native](https://www.reddit.com/r/webdev/comments/1wv66cr/coinbase_is_going_fully_native_moving_from_react/)
+
+Alongside, an upcoming Expo modules releases makes writing native modules inside React Native apps [easier than ever](https://expo.dev/blog/an-early-look-at-expo-modules-2-0?v=2)
+
+### Cloudflare Birthday Week
+
+Cloudflare blessed us with an absolute run of things for their birthday week. Noting down some relevant ones here:
+
+> More than half the traffic reaching sites on Cloudflare is now automated, and AI agents are the fastest-growing part of it
+
+- Cloudflare is a [Certificate Authority](https://blog.cloudflare.com/cloudflare-certificate-authority/)
+- Monetisation Gateway is in [closed beta](https://blog.cloudflare.com/monetization-gateway-beta/)
+- [cf](https://blog.cloudflare.com/cloudflare-cf-cli-launch/) is cloudflare's cli mirroring everything you can do in API
+- Vinext on their first [stable version](https://blog.cloudflare.com/vinext-nextjs-on-vite/)
+- An update on Cloudflare's [VoidZero acquisition](https://blog.cloudflare.com/voidzero-update/). Vite passes 100m downloads 🎉
+
+### Rails conf debacle
+
+DHH got on stage for the [Rails World 2026 keynote](https://www.youtube.com/watch?v=vDjW_dRyKXY) and said he would rather just write Rust - because it's faster and it's written by Agents, not him. A good start for a Rust conference, but probably not a Rails conference. I personally think he could have just declined speaking at the off site and choosen another stage to make his opinions than Rails world, but outside the stage, I can't really fault the words.
+
+- [The End of Hand-Written Code: A Conversation with David Heinemeier Hansson (DHH) on AI, Omarchy and the Future of Programming](https://thoughteconomics.com/david-heinemeier-hansson/)
+- Laravel founder [reaches out](https://x.com/taylorotwell/status/2102893035658908129) to help Rails developers land talks at Laracon
+
+### Security
+
+- [HEIF Heist](https://heif-heist.com/) - Security exploit through native C/C++ parsers used for image parsing.
+- Next.js made [two](https://nextjs.org/blog/september-2026-security-release) [security](https://nextjs.org/blog/nextjs-security-update-september-22-2026) releases in September.
+- Mass scanning for [exposed Vite ports](https://www.f5.com/labs/articles/cloud-takeover-mass-scanning-for-exposed-vite-endpoints-cve-2026-39364) has been detected
+- Google has pulled off [a spy thriller move](https://www.wired.com/story/an-undercover-google-analyst-infiltrated-a-notorious-supply-chain-hacking-gang/) on TeamPCP that has led to two arrests.
+
+## Tutorials
+
+### [How we made claude.ai 3x faster in two weeks - claude.dev](https://claude.dev/blog/how-we-made-claude-ai-faster/)
+
+Claude's desktop app is now 3× faster. The blog not only describes the improvements that increased speed, but also explains how they created a benchmark to verify performance, enabling the model and harness to measure it automatically.
+
+Read alongside: [Automating eval design and hillclimbing with Claude](https://claude.dev/blog/automating-eval-design-and-hillclimbing/)
+
+### [Wrong, not broken - AWS](https://aws.amazon.com/blogs/aws-insights/wrong-not-broken/)
+
+It's not every month that I feature an AWS blog post here. There are situtations where you see your thoughts expressed so well in words and this is one of them. Before Agents, we had code that worked mostly deterministically - if something did not work, it was broken - it was at least broken on one device one network in someone's basement. But if agents are creating interfaces that your user interacts with, there are surely cases where the interface is wrong, but not broken.
+
+### [How Notion handles concurrent editing with CRDTs](https://www.notion.com/blog/how-notion-handles-concurrent-editing-with-crdts)
+
+Notion must be the among the people using CRDTs for conflict management at scale after Google and Microsoft. If you need multiple people editing the same document at the same time and preserve some semblance of reality in the final edits - this is the article to read.
+
+### [How to scale intent, quality, and artistry with Al | Katie Dill (Stripe)](https://youtu.be/GLvFTMtw4Jk?si=g83UqY7TRUCQfl5Y) - YouTube
+
+Katie Dill, design leader at Stripe, names UI slop as the UI slop problem. She compares it to post war housing boom where every building was forced to look the same despite serving different purposes. She sets up these principles to build software with "soul":
+
+- Define a clear point of view
+- Encode standards into system
+- Refuse to confuse done with good
+- Instead of using AI only for speed, leverage it as a catalyst for experimentation
+
+### [Detect when elements overlap with CSS - Ahmad Shadeed](https://ishadeed.com/article/css-detect-overlap/)
+
+Ahmad Shadeed uses a smart scroll animation technique to find if elements are overlaps just using CSS.
+
+### [How Turbopack chunks your JavaScript - Next.js](https://nextjs.org/blog/turbopack-chunking)
+
+The bundler faces a Goldilocks problem: keeping reused chunks on every page duplicates code and inflates file sizes, while optimizing too many chunks into separate files creates excessive network requests. The blog explores how Turbopack solves this issue.
+
+### [The best dark mode toggle is probably none - Lea Verou](https://lea.verou.me/blog/2026/dark-mode-toggles-2/)
+
+I didn't expect so much discussion about how many toggles a theme selector should have, but here we are. Have you made up your mind? How many options should be given to the user for toggling dark mode?
+
+## In short
+
+- jQuery 1.0 [celebrated 20 years](https://www.infoq.com/news/2026/09/jquery-20-years/). Angular 2.0 [celebrated 10 years](https://x.com/angular/status/2102800158039605292) on 15 Sep.
+- One of my favourite CSS blogs starting out (one that I have written few articles for) has been quiet for some time. Geoff Graham [writes on the backstory](https://geoffgraham.me/why-css-tricks-has-been-quiet/)
+- Shopify [acquired TailwindCSS](https://x.com/adamwathan/status/2097683633645482130)
+- Microsoft announced that IE Mode in Edge [would be gone](https://www.techspot.com/news/113924-internet-explorer-finally-truly-dying-microsoft-wants-you.html) by end of 2029.
+- A game of [corporate round robin](https://youtu.be/ylO0DQeVEBQ?si=hlwbLZ2tp0DlDxGs) happened at Wordpress with Matt Mullenweg mirroring the Sam Altman Saga.
+- GitHub [migrated](https://github.blog/engineering/architecture-optimization/improving-site-performance-by-shipping-more-css/) from CSS-in-JS to CSS modules.
+- Facebook is building a subsea cable to deliver petabit capacity at transoceanic distances, connecting France and the United States over approximately 7,000 km named [Petal](https://engineering.fb.com/2026/09/21/connectivity/petal-petabit-transoceanic-subsea-cable/)
+- What happens to technical blog posts/courses in a world where AI could creates personalised ones - [The asteroid currently hitting frontend web development](https://nolanlawson.com/2026/08/23/the-asteroid-currently-hitting-frontend-web-development/)
+- [An update on Angular’s TypeScript 7-powered Compiler](https://blog.angular.dev/an-update-on-angulars-typescript-7-powered-compiler-9619a35e2b0a)
+- Eric Zakariasson [publishes the prompt](https://x.com/ericzakariasson/status/2102853511637774551) that they use to optimise the harness at Cursor. Also the detail blog opst on [Improved token efficiency](https://cursor.com/blog/improved-token-efficiency)
+- [How Watermarks Track AI Generated Content - Computerphile](https://www.youtube.com/watch?v=kVXp6UNVPTo) - YouTube
+- Linear blog talks about they [reworked their CI](https://linear.app/now/ci-bottleneck-reworked) to make things faster ⚡
+- [Frontend for system engineers](https://tj-zhang.com/blog/frontend-for-systems-engineers/) - I do not suspect that you are a systems engineer reading my newsletter, but fascinating description of concepts.
+- [Browser main thread is expensive](https://kciter.so/posts/the-expensive-main-thread/en/) - Interactive take on what happens on the _main_ thread.
+
+## In Other News
+
+### [The mathematics of AI uncertainty - Google Deepmind](https://youtu.be/tBjgCj_dGZM?si=UqfxKi4RJnMesyy0)
+
+Zoubin Ghahramani talks about the importance of **uncertainity** in intelligence. Why does it look like even the most advanced AI agents would reverse their opinions given enough pushback? Intelligence as a skill depends on understanding probability and decision making.
+
+### [OpenAI & Navier Stokes Millenium Prize Problem](https://openai.com/index/navier-stokes-solution/)
+
+- On 8 Sep, OpenAI [announced that their models](https://openai.com/index/navier-stokes-solution/) had cracked a millenium prize - the Navier Stokes problem and _independently_ found a solution.
+
+- Tristan Buckmaster and Levent Alpoge (who works at Anthropic) claimed that they have been working on a specific case of Navier Stokes, Euler problem equation using OpenAI's models. This data might have leaked into their training data set.
+
+- OpenAI has disputed [these claims](https://x.com/SebastienBubeck/status/2097379411691516310) with statements from Sebastien Bubeck, OpenAI researcher.
+
+- [Navier–Stokes priority controversy](https://en.wikipedia.org/wiki/Navier%E2%80%93Stokes_priority_controversy) - Wikipedia
+
+- [ELI5 what the Navier Stokes problem isand why it is important that we solved it?](https://www.reddit.com/r/explainlikeimfive/comments/1wazrlx/eli5_what_the_navier_stokes_problem_isand_why_it/) - Reddit
+
+- [Why Navier-Stokes Pushes Math and Physics to the Edge](https://www.youtube.com/watch?v=PsWR1rQEWYo) - Quanta Magazine - YouTube
+
+- [SOLVED: Navier-Stokes cracked by AI](https://www.youtube.com/watch?v=3geDF-DAwpg) - Numberphile - YouTube
+
+### [Behind Project Suncatcher, our moonshot to put AI in space - Google](https://blog.google/innovation-and-ai/models-and-research/google-research/google-project-suncatcher-facts/)
+
+Google is attempting to put a TPU data centre in Space with their next project in collaboration with SpaceX. The blog explains the challenges they forecast in Space and overviews on how they are solving them. Fascinating stuff!
+
+### [iPhone Duo](https://www.apple.com/in/iphone-duo/)
+
+Apple has entered the foldable market with an expensive phone. Many apps have been adapted to the foldable resolution, but browser usage is still using just 70% of the screen.
+
+### [Googlebook](https://blog.google/products-and-platforms/devices/googlebook/pre-order-googlebook/)
+
+Google has released a new range of laptops built by different providers. These run Googlebook OS and mostly bank on the web with Progressive Web Apps. It seems that the app support might be mostly coming from Android and all focus is on Gemini integration.
+
+### [Yeti 2](https://www.logitechg.com/en-us/shop/p/yeti-2.988-000587)
+
+Logitech releases a fresh take on the best selling microphone. It comes with an AI denoiser and automatic gain.
+
+### AI updates
+
+- Dario Amodei wrote [We Must Pace the Frontier](https://darioamodei.com/post/we-must-pace-the-frontier) and released [Fable 5.1](https://www.anthropic.com/claude-fable-and-mythos-5-1), [Opus 5.5](https://www.anthropic.com/claude-opus-5-5), [Sonnet 5.5](https://www.anthropic.com/claude-sonnet-5-5).
+- [Gemini Argon](https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-4-argon/), [Gemini 3.8 Flash](https://blog.google/innovation-and-ai/models-and-research/gemini-models/3-8-flash-and-3-8-flash-cyber/)
+- [Muse Spark 1.3](https://research.meta.ai/blog/introducing-muse-spark-1-3)
+- [Deepseek 4.1 Flash](https://www.deepseek.com/en/news/deepseek-v4-1-flash/)
+- [SWE 2](https://cognition.com/blog/swe-2) - Free and _unlimited_ across Devin IDEs for a limited time.
+- [GPT 6 Astra](https://openai.com/index/gpt-6-astra/), [GPT 6.1 Sol](https://openai.com/index/introducing-gpt-6-1-sol/), [GPT 6 Luna](https://openai.com/index/introducing-gpt-6-sol-and-luna/), [ChatGPT Images 2.5](https://openai.com/index/introducing-chatgpt-images-2-5/). When Astra was released, Artificial Analysis revamped its evals to [correctly place the model](https://x.com/ArtificialAnlys/status/2096001986110099767).
+- [Grok 4.7](https://x.ai/news/grok-4-7)
+- [Minimax 3.1 Flash Preview](https://x.com/MiniMaxAgent/status/2104079819881517400)
+- [Xiaomi 2.6 Pro & Flash](https://mimo.xiaomi.com/mimo-v2-6). Xiaomi put out their training metrics on a [public dashboard](https://mimo.xiaomi.com/rl/)
+
+## Looking Ahead
+
+- [Remix Jam](https://remix.run/jam/2026) - Oct 2
+- [Cloudflare Connect](https://www.cloudflare.com/connect/) - Oct 19-21
+- \[CityJS Athens] - Oct 21-23
+- [React Advanced London](https://reactadvanced.com/) - Oct 23 & 26
+- [GitHub Universe](https://githubuniverse.com/) - Oct 28-29
