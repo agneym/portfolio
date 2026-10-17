@@ -1,5 +1,4 @@
 import { useState, type ComponentProps } from "react";
-import { Link } from "@tanstack/react-router";
 import { Input } from "components/uikit/Input";
 import { Mail } from "lucide-react";
 
@@ -11,14 +10,9 @@ type Status = "idle" | "submitting" | "success" | "error";
 interface SubscribeNewsletterProps {
   /** Buttondown tag recording where the subscriber signed up. */
   tag: string;
-  /** Hide the archive link, e.g. on the archive page itself. */
-  hideArchives?: boolean;
 }
 
-export function SubscribeNewsletter({
-  tag,
-  hideArchives = false,
-}: SubscribeNewsletterProps) {
+export function SubscribeNewsletter({ tag }: SubscribeNewsletterProps) {
   const [status, setStatus] = useState<Status>("idle");
 
   const onSubmit: ComponentProps<"form">["onSubmit"] = async (event) => {
@@ -55,17 +49,6 @@ export function SubscribeNewsletter({
           I will deliver a curated selection of articles, tutorials, and
           resources straight to your inbox once a month.
         </p>
-        {hideArchives ? null : (
-          <p className="text-secondary">
-            Read the{" "}
-            <Link
-              to="/newsletter"
-              className="text-primary decoration-mod font-bold underline decoration-2 underline-offset-4 hover:decoration-[var(--color-accent)]"
-            >
-              Archives
-            </Link>
-          </p>
-        )}
       </div>
       {status === "success" ? (
         <output className="flex flex-col justify-center gap-y-2 md:basis-1/2">

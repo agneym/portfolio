@@ -1,8 +1,10 @@
 import { useMemo } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import { useInfiniteQuery, useQuery } from "@tanstack/react-query";
-import { Footer } from "components/HomePage";
-import { SkipNavContent } from "components/uikit/SkipNav";
+import { Lemon } from "components/shared/Lemon";
+import { PageHero } from "components/shared/PageHero";
+import { PageShell } from "components/shared/PageShell";
+import { SectionBar } from "components/shared/SectionBar";
 import {
   BookmarkGrid,
   LoadMore,
@@ -15,6 +17,7 @@ import {
   normalizeListParams,
   tagsQuery,
   toSearchParams,
+  totalQuery,
   type ListParams,
   type WebmarksSearch,
 } from "webmarks/api";
@@ -37,6 +40,7 @@ export const Route = createFileRoute("/webmarks/")({
     await Promise.all([
       context.queryClient.ensureInfiniteQueryData(bookmarksQuery(deps)),
       context.queryClient.ensureQueryData(tagsQuery()),
+      context.queryClient.ensureQueryData(totalQuery()),
     ]);
   },
   head: () => ({
@@ -70,6 +74,7 @@ function WebmarksPage() {
     fetchNextPage,
   } = useInfiniteQuery(bookmarksQuery(params));
   const { data: tagData } = useQuery(tagsQuery());
+  const { data: overall } = useQuery(totalQuery());
 
   const tags = tagData?.tags ?? [];
   // Memoised so the grid sees the same array until a page actually arrives;
@@ -88,29 +93,32 @@ function WebmarksPage() {
   };
 
   return (
-    <>
-      <SkipNavContent />
-      <div className="mx-auto w-full max-w-7xl px-4 pb-16 sm:px-6 lg:px-8">
-        <header className="pt-14 pb-10 sm:pt-20">
-          <h1 className="text-primary text-[clamp(3.25rem,9vw,6rem)] leading-[0.95] font-bold tracking-[-0.03em]">
-            Webmarks
-          </h1>
-          <p
-            aria-live="polite"
-            className="text-secondary-strong mt-5 text-xl text-pretty"
-          >
-            {hasFilters ? "Showing " : "Bookmarks I keep coming back to: "}
-            <span className="text-primary tabular font-bold">{total}</span>{" "}
-            {total === 1 ? "link" : "links"}
-            {hasFilters ? " that match." : "."}
-          </p>
-        </header>
+    <PageShell>
+      <PageHero
+        title="Webmarks"
+        compact
+        tagline={
+          <>
+            Bookmarks I keep <Lemon>coming back to</Lemon>
+          </>
+        }
+        meta={`${overall?.total ?? 0} links`}
+        subscribeTag="webmarks"
+      />
 
+      <SectionBar
+        status={
+          hasFilters ? (
+            <>
+              Showing{" "}
+              <span className="text-primary tabular font-bold">{total}</span>{" "}
+              that match
+            </>
+          ) : null
+        }
+      >
         {total === 0 && !hasFilters ? null : (
-          <section
-            aria-label="Filters"
-            className="bg-surface sticky top-16 z-20 -mx-4 flex items-center gap-x-3 px-4 pt-3 pb-2 backdrop-blur-md backdrop-saturate-150 sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8"
-          >
+          <>
             <TagFilterRow
               tags={tags}
               activeTag={params.tag}
@@ -126,32 +134,29 @@ function WebmarksPage() {
               </button>
             ) : null}
             <SearchField value={params.q} onChange={(q) => setParams({ q })} />
-          </section>
+          </>
         )}
+      </SectionBar>
 
-        <BookmarkGrid
-          bookmarks={bookmarks}
-          activeTag={params.tag}
-          onTagClick={(tag) => setParams({ tag })}
-          onClearFilters={() => setParams({ q: "", tag: "" })}
-          hasFilters={hasFilters}
-          // Dim only for a filter change; appending a page leaves the
-          // existing cards alone.
-          isFetching={isFetching && !isFetchingNextPage}
-        />
+      <BookmarkGrid
+        bookmarks={bookmarks}
+        activeTag={params.tag}
+        onTagClick={(tag) => setParams({ tag })}
+        onClearFilters={() => setParams({ q: "", tag: "" })}
+        hasFilters={hasFilters}
+        // Dim only for a filter change; appending a page leaves the
+        // existing cards alone.
+        isFetching={isFetching && !isFetchingNextPage}
+      />
 
-        <LoadMore
-          shown={bookmarks.length}
-          total={total}
-          hasMore={hasNextPage}
-          isLoading={isFetchingNextPage}
-          isError={isFetchNextPageError}
-          onLoadMore={() => void fetchNextPage()}
-        />
-      </div>
-      <div className="pb-16">
-        <Footer />
-      </div>
-    </>
+      <LoadMore
+        shown={bookmarks.length}
+        total={total}
+        hasMore={hasNextPage}
+        isLoading={isFetchingNextPage}
+        isError={isFetchNextPageError}
+        onLoadMore={() => void fetchNextPage()}
+      />
+    </PageShell>
   );
 }
