@@ -31,6 +31,7 @@ Personal portfolio and blog for Agney Menon.
 - `bun run dev`: dev server on port 3000
 - `bun run build`: production build (output in `.output/`)
 - `bun run preview`: preview the production build
+- `bun run dev:rsbuild` / `bun run build:rsbuild` / `bun run preview:rsbuild`: experimental Rsbuild equivalents (`rsbuild.config.ts`, output in `dist/`, served by srvx)
 - `bun run lint`: oxlint with type checking
 - `bun run format` / `bun run format:check`: format with oxfmt / check formatting
 
