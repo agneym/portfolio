@@ -4,6 +4,7 @@ import { pluginSvgr } from "@rsbuild/plugin-svgr";
 import { tanstackStart } from "@tanstack/react-start/plugin/rsbuild";
 import { createBuilder } from "@content-collections/core";
 import { configureLogging } from "@content-collections/integrations";
+import { RsdoctorRspackPlugin } from "@rsdoctor/core";
 import path from "path";
 
 /** Content Collections ships no Rsbuild plugin, so drive its builder directly. */
@@ -51,6 +52,16 @@ export default defineConfig({
   },
   tools: {
     rspack: {
+      plugins: [
+        // Only registered on demand (`RSDOCTOR=true bun run build`) since it slows the build.
+        process.env.RSDOCTOR === "true" &&
+          new RsdoctorRspackPlugin({
+            disableClientServer: true,
+            // The loader probe breaks TanStack Start's loaders (proxies loaderContext).
+            features: ["bundle", "plugins", "resolver"],
+            output: { mode: "brief", options: { type: ["json"] } },
+          }),
+      ],
       // Rsbuild's built-in `?raw` only covers known asset types, not Markdown.
       module: {
         rules: [{ test: /\.md$/, resourceQuery: /raw/, type: "asset/source" }],

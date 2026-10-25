@@ -63,6 +63,8 @@
     "@rsbuild/core": "^2.2.12",
     "@rsbuild/plugin-react": "^2.1.1",
     "@rsbuild/plugin-svgr": "^2.0.5",
+    "@rsdoctor/agent-cli": "^0.1.1",
+    "@rsdoctor/core": "^2.0.0",
     "@tailwindcss/postcss": "^4.3.3",
     "@types/react": "^19.3.0",
     "@types/react-dom": "^19.3.0",

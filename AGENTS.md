@@ -33,6 +33,7 @@ Personal portfolio and blog for Agney Menon.
 - `bun run preview`: preview the production build (`rsbuild preview`, runs the SSR server entry)
 - `bun run lint`: oxlint with type checking
 - `bun run format` / `bun run format:check`: format with oxfmt / check formatting
+- `RSDOCTOR=true bun run build`: build with Rsdoctor and emit `rsdoctor-data.json`; analyze it with `rsdoctor-agent` (see the `rsdoctor-analysis` skill) — docs: https://rsdoctor.rs/llms.txt
 
 There are no tests.
 
