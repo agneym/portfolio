@@ -1,0 +1,108 @@
+---
+title: "What I learned porting this site from Vite to Rsbuild"
+date: "2026-10-25T12:00:00.000Z"
+tags:
+  - rsbuild
+  - vite
+  - tooling
+published: true
+---
+
+I ported this site from Vite to Rsbuild. There was no problem to fix: Vite was working fine. I'm using more of the Rspack universe lately (Rsbuild, Rsdoctor, Oxc) and wanted to know how it feels from the inside. So I moved the site, then measured both versions to see what changed.
+
+The site is TanStack Start with MDX posts from Content Collections. The Vite setup was Vite 8 plus Nitro; the Rsbuild one is Rsbuild 2.2. Everything below comes from one 4-core machine, so read the numbers as directional.
+
+## The port itself was small
+
+The whole migration touched about ten files. TanStack Start ships an Rsbuild plugin, so the framework side was one import. The rest was swapping plugins one for one:
+
+- `@vitejs/plugin-react` became `@rsbuild/plugin-react`
+- `vite-plugin-svgr` became `@rsbuild/plugin-svgr`
+- `@tailwindcss/vite` became `@tailwindcss/postcss`, with a new `postcss.config.mjs`
+- Nitro went away, and `rsbuild preview` now runs the SSR server entry
+
+Two things had no drop-in replacement.
+
+**Content Collections has no Rsbuild plugin.** I wrote a small one that drives its builder directly: build before the first compile, watch in dev, unsubscribe on close. It's about 30 lines, and I own it now.
+
+**Raw `.md` imports.** Rsbuild's `?raw` only covers known asset types, so Markdown needs one Rspack rule: `type: "asset/source"` when the query matches `raw`.
+
+The surprise was how much of Vite's surface Rsbuild covers. Aliases, env handling, SVGR with `?react`, and the dev server all behaved the way I expected.
+
+## Builds got a bit faster
+
+Five runs each with `hyperfine`. Cold means every cache was deleted first; warm kept the Content Collections cache.
+
+<GroupedBarChart
+  title="Production build time"
+  unit="s"
+  series={[
+    { label: "Vite 8 + Nitro", color: "#3b82f6" },
+    { label: "Rsbuild 2", color: "#f97316" },
+  ]}
+  groups={[
+    { label: "Cold", values: [31, 26.8] },
+    { label: "Warm", values: [16.6, 15.9] },
+  ]}
+  footnote="Mean of 5 runs, 4 cores. Peak memory: 2.0 GB vs 1.5 GB cold"
+/>
+
+A 13% gain on cold builds and a tie on warm ones is nothing to write home about. The more interesting part is why.
+
+Vite ran three sequential builds: client, SSR, then Nitro. Content Collections started inside each of them. Rsbuild compiles client and SSR in parallel and starts Content Collections once. That's where the cold-build gain comes from, and it explains the slightly higher warm CPU time too.
+
+It also showed me what neither bundler was doing. About 12 seconds of every cold build is Content Collections compiling MDX and running Shiki. The bundler is a small part of my build, and I'd have guessed otherwise.
+
+## Dev page loads are very different
+
+Vite serves unbundled modules. Opening a code-heavy blog post meant roughly 170 requests (every Shiki grammar, every MDX component). Rsbuild serves bundles, so the same page is 21 requests and loads in about 1.9s instead of 3.4s.
+
+Startup went the other way: the first page took about 27s on Rsbuild against 22s on Vite, because Rsbuild bundles before it serves.
+
+## Hot reload was the surprise
+
+Editing a component showed the change in about 0.3s on Vite and about 2.4s on Rsbuild. Both do real HMR with no page reload, so I went looking for the missing two seconds.
+
+My assumption was that Rspack was the slow part. It wasn't. In a 1.4s rebuild, only about 200ms was Rspack's own native work. The rest was time spent waiting on JavaScript plugins and loaders. Rspack was fast, and the plugins around it were not.
+
+Two plugins accounted for most of it:
+
+- **TanStack Start's import protection**, the check that keeps server-only code out of the client bundle. In the Rsbuild adapter it runs in `processAssets` and walks the whole module graph after every compile: about 3,000 modules and 18,000 imports, around 200ms per environment, for both client and SSR. 96% of those modules are in `node_modules` and can never trigger a violation.
+- **Tailwind through PostCSS**, which rebuilds `global.css` on every component edit. `@tailwindcss/vite` scans incrementally and skips that work when no new class names appear.
+
+<GroupedBarChart
+  title="Component hot reload, median per edit"
+  unit="s"
+  series={[{ label: "Save to DOM update", color: "#f97316" }]}
+  groups={[
+    { label: "Vite", values: [0.3] },
+    { label: "Rsbuild", values: [2.4] },
+    { label: "Skip node_modules", values: [1.3] },
+    { label: "Protection off", values: [1.05] },
+  ]}
+  footnote="Isolated edits to one component. Skip node_modules is a local patch to the scan"
+/>
+
+Turning import protection off cuts the latency to about 1.05s. I tried a local patch that skips `node_modules` importers before reading their connections. The scan dropped from about 190ms to about 35ms and HMR landed around 1.3s with protection still on. A deliberate server-only leak was still caught, with the same rule and location.
+
+This is a scaling problem rather than a bug: the check is correct, it just does work that never pays off in this repo. There's already an [open PR](https://github.com/TanStack/router/pull/8801) that makes the dev scan incremental, and I shared these numbers on it. Until it lands, the practical fix is to keep import protection for `rsbuild build` and turn it off in dev.
+
+Other experiments barely moved anything. Rsbuild 2 already has lazy compilation on, and turning it off saved about 0.3s. A local patch that sends the update when the client compile finishes, instead of waiting for SSR as well, helped only while the compiles were slow.
+
+## Smaller things I picked up
+
+- **Profile outside your project.** `RSPACK_PROFILE` writes its output into the project root by default. The dev watcher saw those writes and rebuilt in a loop until memory hit 1.8 GB. Set `RSPACK_TRACE_OUTPUT` to a path outside the repo.
+- **Rsdoctor breaks TanStack Start's loaders.** Its loader probing proxies the loader context, which Start doesn't like. I enabled only the `bundle`, `plugins` and `resolver` features and made it opt-in with `RSDOCTOR=true`. It writes JSON that an agent can analyze, which is the part I wanted.
+- **Cleaner logs.** Vite printed dozens of `"use client"` directive warnings from framer-motion and a large-chunk warning on every build. Rsbuild prints none.
+- **Bundle output is a wash.** Per page, Rsbuild ships the same JavaScript (+0.4%) in about half as many files, because Rspack merges chunks more aggressively. The more telling number is that every page carries about 1.3 MB of gzipped JS on both bundlers, since the entry chunk contains the compiled posts. That is on me, and a bundler swap won't fix it.
+- **Nitro's deploy presets are gone.** Vite with Nitro could target several hosts. Rsbuild produces `dist/server`, so the host has to run that entry. If you deploy somewhere exotic, check this before you start.
+
+## Was it worth it?
+
+For the stated goal, yes. I now know where Rsbuild's time goes and I have Rsdoctor wired in.
+
+As a performance move it's mixed. Builds are slightly better and dev page loads are far better, but hot reload is slower until the import protection issue is dealt with, and I took on a hand-written Content Collections plugin.
+
+My main takeaway is that a bundler swap shows you what the bundler isn't doing. The slow parts of my toolchain were MDX compilation and a framework plugin, and neither changed when the bundler did. If you port for the fun of it, as I did, measure before and after. The surprises are where you learn something.
+
+🥂
