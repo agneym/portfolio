@@ -19,9 +19,9 @@ export default defineConfig({
     port: 3000,
   },
   // Opt-in: DevTools keeps a server alive after `vite build`, so the build never exits.
-  // Client-only (bundle size lives there) and localhost-only, so skip the one-time code prompt.
+  // Client-only: bundle size lives there, and other environments would start extra servers.
   devtools: process.env.DEVTOOLS
-    ? { apply: "build", environments: ["client"], clientAuth: false }
+    ? { apply: "build", environments: ["client"] }
     : false,
   plugins: [
     tailwindcss(),
