@@ -3,7 +3,7 @@
   "entry": ["src/app/**/*.{ts,tsx,mdx}", "src/router.tsx"],
   "ignorePatterns": [
     ".content-collections/**",
-    ".output/**",
+    "dist/**",
     ".tanstack/**",
     "src/routeTree.gen.ts"
   ],
