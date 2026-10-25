@@ -6,7 +6,7 @@ Personal portfolio site for Agney Menon.
 
 - **Framework**: [TanStack Start](https://tanstack.com/start)
 - **Router**: [TanStack Router](https://tanstack.com/router)
-- **Build**: [Rsbuild](https://rsbuild.rs/) + [srvx](https://srvx.h3.dev/)
+- **Build**: [Rsbuild](https://rsbuild.rs/)
 - **Styling**: [Tailwind CSS](https://tailwindcss.com/)
 - **Content**: [Content Collections](https://content-collections.dev/)
 - **MDX**: [@content-collections/mdx](https://www.content-collections.dev/docs/mdx)

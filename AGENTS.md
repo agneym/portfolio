@@ -19,7 +19,7 @@ Personal portfolio and blog for Agney Menon.
 
 ## Stack
 
-- **Framework**: TanStack Start (React 19, TanStack Router, TanStack Query) on Rsbuild 2 (Rspack); production server via srvx.
+- **Framework**: TanStack Start (React 19, TanStack Router, TanStack Query) on Rsbuild 2 (Rspack).
 - **Styling**: Tailwind CSS v4 (via `@tailwindcss/postcss`).
 - **Content**: MDX blog posts via Content Collections (`content-collections.ts`, driven by an inline plugin in `rsbuild.config.ts`), code highlighting with Shiki.
 - **Tooling**: oxlint (type-aware) and oxfmt; `mise` manages runtimes (`mise.toml`, Node 24); bun is the package manager.
@@ -30,7 +30,7 @@ Personal portfolio and blog for Agney Menon.
 - `bun install`: install dependencies
 - `bun run dev`: dev server on port 3000 (`rsbuild.config.ts`)
 - `bun run build`: production build (output in `dist/`)
-- `bun run preview`: serve the production build with srvx
+- `bun run preview`: preview the production build (`rsbuild preview`, runs the SSR server entry)
 - `bun run lint`: oxlint with type checking
 - `bun run format` / `bun run format:check`: format with oxfmt / check formatting
 

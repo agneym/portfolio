@@ -19,7 +19,7 @@
   "scripts": {
     "dev": "rsbuild dev",
     "build": "rsbuild build",
-    "preview": "srvx --prod -s ../client dist/server/index.js",
+    "preview": "rsbuild preview",
     "lint": "oxlint",
     "format": "oxfmt",
     "format:check": "oxfmt --check",
@@ -53,7 +53,6 @@
     "roughjs": "^4.6.6",
     "sharp": "^0.35.5",
     "shiki": "^4.5.0",
-    "srvx": "^1.0.7",
     "tailwindcss": "^4.3.3",
     "tailwindcss-touch": "^1.0.1",
     "takumi-js": "^2.14.0",
