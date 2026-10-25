@@ -120,7 +120,7 @@ web_modules/
 .cache
 .parcel-cache
 
-# Nitro / TanStack Start build output
+# Old Nitro build output
 .output
 out
 
