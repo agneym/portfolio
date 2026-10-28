@@ -1,3 +1,4 @@
 [tools]
 bun = "latest"
+cloudflare-cf = "latest"
 node = "lts"

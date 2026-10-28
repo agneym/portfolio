@@ -4,6 +4,7 @@ import { pluginSvgr } from "@rsbuild/plugin-svgr";
 import { tanstackStart } from "@tanstack/react-start/plugin/rsbuild";
 import { pluginContentCollections } from "@agney/rsbuild-content-collections";
 import { RsdoctorRspackPlugin } from "@rsdoctor/core";
+import { cloudflare } from "rsbuild-plugin-cloudflare";
 import path from "path";
 
 export default defineConfig({
@@ -38,6 +39,8 @@ export default defineConfig({
   plugins: [
     pluginContentCollections(),
     pluginReact(),
+    // Must come before tanstackStart(); builds its `ssr` environment for workerd.
+    cloudflare({ rsbuildEnvironment: { name: "ssr" } }),
     pluginSvgr(),
     tanstackStart({
       srcDirectory: "src",
