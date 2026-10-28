@@ -210,3 +210,6 @@ dist
 # Rsdoctor
 .rsdoctor
 rsdoctor-data.json
+
+# Cloudflare local state and build output
+.cloudflare
