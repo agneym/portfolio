@@ -1,23 +1,32 @@
 {
   "$schema": "https://raw.githubusercontent.com/fallow-rs/fallow/main/schema.json",
-  "entry": ["src/app/**/*.{ts,tsx,mdx}", "src/router.tsx"],
-  "ignorePatterns": [
-    ".content-collections/**",
-    "dist/**",
-    ".tanstack/**",
-    "src/routeTree.gen.ts"
+  "entry": [
+    "src/app/{__root,client,server,providers}.{ts,tsx}",
+    "src/router.tsx",
+    "rsbuild.config.ts",
+    "content-collections.ts",
+    "cloudflare.config.ts"
   ],
-  "ignoreDependencies": ["fallow", "images", "components", "webmarks", "sharp"],
+  "dynamicallyLoaded": [
+    "src/app/blog/posts/*.mdx",
+    "src/app/newsletter/issues/*.mdx"
+  ],
+  "ignorePatterns": [".content-collections/**", "dist/**"],
+  "ignoreDependencies": ["fallow", "images", "@rsdoctor/agent-cli"],
+  "ignoreUnresolvedImports": ["./src/components/**"],
   "rules": {
     "unused-files": "error",
-    "unused-exports": "warn",
-    "unused-types": "warn"
+    "unused-exports": "error",
+    "unused-types": "error"
   },
-  "ignoreExports": [{ "file": "src/app/**/*.tsx", "exports": ["Route"] }],
-  "overrides": [
+  "ignoreExports": [
     {
-      "files": ["src/app/blog/posts/*.mdx"],
-      "rules": { "unresolved-imports": "off" }
+      "file": "src/app/**/*.{ts,tsx}",
+      "exports": ["Route"]
+    },
+    {
+      "file": "src/components/uikit/Input/Input.tsx",
+      "exports": ["Input"]
     }
   ]
 }

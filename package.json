@@ -52,7 +52,6 @@
     "react": "^19.3.0",
     "react-dom": "^19.3.0",
     "roughjs": "^4.6.6",
-    "sharp": "^0.35.5",
     "shiki": "^4.5.0",
     "tailwindcss": "^4.3.3",
     "tailwindcss-touch": "^1.0.1",
