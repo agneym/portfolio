@@ -213,3 +213,6 @@ rsdoctor-data.json
 
 # Cloudflare local state and build output
 .cloudflare
+
+# TanStack generated temp files
+.tanstack
