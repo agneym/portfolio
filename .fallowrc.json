@@ -15,9 +15,7 @@
   "ignoreDependencies": ["fallow", "images", "@rsdoctor/agent-cli"],
   "ignoreUnresolvedImports": ["./src/components/**"],
   "rules": {
-    "unused-files": "error",
-    "unused-exports": "error",
-    "unused-types": "error"
+    "complexity-crap": "off"
   },
   "ignoreExports": [
     {

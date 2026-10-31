@@ -7,3 +7,6 @@ pre-commit:
       glob: "*.{js,jsx,ts,tsx}"
       run: bunx oxlint --fix {staged_files}
       stage_fixed: true
+    fallow-health:
+      glob: "*.{js,jsx,ts,tsx}"
+      run: bunx fallow health --changed-since HEAD --quiet

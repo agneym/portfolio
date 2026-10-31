@@ -200,6 +200,134 @@ function CodeBlock({ code }: { code: string }) {
   );
 }
 
+function nextLabel(isCorrect: boolean, isLast: boolean) {
+  if (!isCorrect) return "Try Next Question →";
+  return isLast ? "🎉 Finish & Restart" : "Next Question →";
+}
+
+function stackPosition(i: number, count: number) {
+  if (i === 0) return "rounded-t-lg";
+  if (i === count - 1) return "rounded-b-lg";
+  return "border-t border-b border-slate-200 dark:border-slate-700";
+}
+
+function StylesheetStack({ question: q }: { question: QuizQuestion }) {
+  const keys = q.displayOrder ?? originLabels.map((l) => l.key);
+  return (
+    <div className="mb-6 flex flex-col">
+      {keys.map((key, i, arr) => {
+        const meta = originLabels.find((l) => l.key === key)!;
+        const c = colorMap[meta.color]!;
+        return (
+          <div
+            key={key}
+            className={`border-l-4 ${c.border} ${c.bg} px-3 py-2 ${stackPosition(i, arr.length)}`}
+          >
+            <span
+              className={`mb-1 inline-block rounded px-1.5 py-0.5 text-[10px] font-semibold tracking-wide ${c.badge}`}
+            >
+              {meta.label}
+            </span>
+            <CodeBlock code={q[key]} />
+          </div>
+        );
+      })}
+    </div>
+  );
+}
+
+function optionStyle(
+  showResult: boolean,
+  isCorrectOpt: boolean,
+  isSelected: boolean,
+) {
+  const base =
+    "rounded-xl border-2 p-4 text-left text-sm font-semibold transition-all";
+  if (!showResult) {
+    return `${base} border-slate-200 bg-white hover:border-blue-400 hover:bg-blue-50 cursor-pointer dark:border-slate-700 dark:bg-slate-800 dark:hover:border-blue-500 dark:hover:bg-slate-700/50`;
+  }
+  if (isCorrectOpt) {
+    return `${base} border-emerald-400 bg-emerald-50 dark:border-emerald-600 dark:bg-emerald-950/40`;
+  }
+  if (isSelected) {
+    return `${base} border-red-400 bg-red-50 dark:border-red-600 dark:bg-red-950/40`;
+  }
+  return `${base} border-slate-200 bg-white opacity-50 dark:border-slate-700 dark:bg-slate-800`;
+}
+
+function OptionButton({
+  option,
+  question: q,
+  selected,
+  showResult,
+  onSelect,
+}: {
+  option: "A" | "B";
+  question: QuizQuestion;
+  selected: "A" | "B" | null;
+  showResult: boolean;
+  onSelect: (option: "A" | "B") => void;
+}) {
+  const label = option === "A" ? q.optionA : q.optionB;
+  const isSelected = selected === option;
+  const isCorrectOpt = option === q.correct;
+
+  return (
+    <button
+      type="button"
+      onClick={() => onSelect(option)}
+      disabled={showResult}
+      className={optionStyle(showResult, isCorrectOpt, isSelected)}
+    >
+      <div className="flex items-center gap-2">
+        <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-slate-100 text-xs font-bold text-slate-600 dark:bg-slate-700 dark:text-slate-300">
+          {option}
+        </span>
+        <span className="text-slate-800 dark:text-slate-200">{label}</span>
+        {showResult && isCorrectOpt && (
+          <span className="ml-auto text-emerald-600 dark:text-emerald-400">
+            ✓
+          </span>
+        )}
+        {showResult && isSelected && !isCorrectOpt && (
+          <span className="ml-auto text-red-500">✗</span>
+        )}
+      </div>
+    </button>
+  );
+}
+
+function Explanation({
+  isCorrect,
+  text,
+}: {
+  isCorrect: boolean;
+  text: string;
+}) {
+  return (
+    <div
+      className={`my-5 rounded-xl border p-4 ${
+        isCorrect
+          ? "border-emerald-200 bg-emerald-50 dark:border-emerald-800 dark:bg-emerald-950/30"
+          : "border-amber-200 bg-amber-50 dark:border-amber-800 dark:bg-amber-950/30"
+      }`}
+    >
+      <p
+        className={`mb-1 text-sm font-semibold ${
+          isCorrect
+            ? "text-emerald-800 dark:text-emerald-300"
+            : "text-amber-800 dark:text-amber-300"
+        }`}
+      >
+        {isCorrect ? "✅ Correct!" : "❌ Not quite."}
+      </p>
+      <p className="text-sm leading-relaxed text-slate-600 dark:text-slate-400">
+        {text}
+      </p>
+    </div>
+  );
+}
+
 export function CascadeOriginsQuiz() {
   const [current, setCurrent] = useState(0);
   const [selected, setSelected] = useState<"A" | "B" | null>(null);
@@ -302,36 +430,7 @@ export function CascadeOriginsQuiz() {
           <p className="mb-2 text-xs font-semibold tracking-widest text-slate-400 uppercase dark:text-slate-500">
             Stylesheets
           </p>
-          <div className="mb-6 flex flex-col">
-            {(q.displayOrder ?? originLabels.map((l) => l.key)).map(
-              (key, i, arr) => {
-                const meta = originLabels.find((l) => l.key === key)!;
-                const c = colorMap[meta.color]!;
-                const css = q[key];
-                const isFirst = i === 0;
-                const isLast = i === arr.length - 1;
-                return (
-                  <div
-                    key={key}
-                    className={`border-l-4 ${c.border} ${c.bg} px-3 py-2 ${
-                      isFirst
-                        ? "rounded-t-lg"
-                        : isLast
-                          ? "rounded-b-lg"
-                          : "border-t border-b border-slate-200 dark:border-slate-700"
-                    }`}
-                  >
-                    <span
-                      className={`mb-1 inline-block rounded px-1.5 py-0.5 text-[10px] font-semibold tracking-wide ${c.badge}`}
-                    >
-                      {meta.label}
-                    </span>
-                    <CodeBlock code={css} />
-                  </div>
-                );
-              },
-            )}
-          </div>
+          <StylesheetStack question={q} />
 
           {/* Question */}
           <div className="mb-5 rounded-xl border border-blue-200 bg-blue-50 p-4 dark:border-blue-800 dark:bg-blue-950/40">
@@ -342,78 +441,21 @@ export function CascadeOriginsQuiz() {
 
           {/* Options */}
           <div className="grid grid-cols-2 gap-3">
-            {(["A", "B"] as const).map((opt) => {
-              const label = opt === "A" ? q.optionA : q.optionB;
-              const isSelected = selected === opt;
-              const isCorrectOpt = opt === q.correct;
-
-              let buttonStyle =
-                "rounded-xl border-2 p-4 text-left text-sm font-semibold transition-all";
-              if (!showResult) {
-                buttonStyle +=
-                  " border-slate-200 bg-white hover:border-blue-400 hover:bg-blue-50 cursor-pointer dark:border-slate-700 dark:bg-slate-800 dark:hover:border-blue-500 dark:hover:bg-slate-700/50";
-              } else if (isCorrectOpt) {
-                buttonStyle +=
-                  " border-emerald-400 bg-emerald-50 dark:border-emerald-600 dark:bg-emerald-950/40";
-              } else if (isSelected && !isCorrectOpt) {
-                buttonStyle +=
-                  " border-red-400 bg-red-50 dark:border-red-600 dark:bg-red-950/40";
-              } else {
-                buttonStyle +=
-                  " border-slate-200 bg-white opacity-50 dark:border-slate-700 dark:bg-slate-800";
-              }
-
-              return (
-                <button
-                  key={opt}
-                  type="button"
-                  onClick={() => handleSelect(opt)}
-                  disabled={showResult}
-                  className={buttonStyle}
-                >
-                  <div className="flex items-center gap-2">
-                    <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-slate-100 text-xs font-bold text-slate-600 dark:bg-slate-700 dark:text-slate-300">
-                      {opt}
-                    </span>
-                    <span className="text-slate-800 dark:text-slate-200">
-                      {label}
-                    </span>
-                    {showResult && isCorrectOpt && (
-                      <span className="ml-auto text-emerald-600 dark:text-emerald-400">
-                        ✓
-                      </span>
-                    )}
-                    {showResult && isSelected && !isCorrectOpt && (
-                      <span className="ml-auto text-red-500">✗</span>
-                    )}
-                  </div>
-                </button>
-              );
-            })}
+            {(["A", "B"] as const).map((opt) => (
+              <OptionButton
+                key={opt}
+                option={opt}
+                question={q}
+                selected={selected}
+                showResult={showResult}
+                onSelect={handleSelect}
+              />
+            ))}
           </div>
 
           {/* Explanation */}
           {showResult && (
-            <div
-              className={`my-5 rounded-xl border p-4 ${
-                isCorrect
-                  ? "border-emerald-200 bg-emerald-50 dark:border-emerald-800 dark:bg-emerald-950/30"
-                  : "border-amber-200 bg-amber-50 dark:border-amber-800 dark:bg-amber-950/30"
-              }`}
-            >
-              <p
-                className={`mb-1 text-sm font-semibold ${
-                  isCorrect
-                    ? "text-emerald-800 dark:text-emerald-300"
-                    : "text-amber-800 dark:text-amber-300"
-                }`}
-              >
-                {isCorrect ? "✅ Correct!" : "❌ Not quite."}
-              </p>
-              <p className="text-sm leading-relaxed text-slate-600 dark:text-slate-400">
-                {q.explanation}
-              </p>
-            </div>
+            <Explanation isCorrect={isCorrect} text={q.explanation} />
           )}
 
           {/* Next / Restart button */}
@@ -423,11 +465,7 @@ export function CascadeOriginsQuiz() {
               onClick={isLast ? handleRestart : handleNext}
               className="w-full rounded-lg bg-blue-600 px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600"
             >
-              {isCorrect
-                ? isLast
-                  ? "🎉 Finish & Restart"
-                  : "Next Question →"
-                : "Try Next Question →"}
+              {nextLabel(isCorrect, isLast)}
             </button>
           )}
         </>
