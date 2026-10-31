@@ -11,7 +11,7 @@ import type { FeedbackKind } from "./index";
 
 /**
  * Every parameter of one key sound. The shipped voices below are the
- * defaults; the sound lab (/lab/sound) passes its own to `playKey`.
+ * defaults.
  * Times are in seconds, frequencies in Hz, levels are linear gain.
  */
 export type KeySound = {
