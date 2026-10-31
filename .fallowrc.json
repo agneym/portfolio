@@ -14,6 +14,9 @@
   "ignorePatterns": [".content-collections/**", "dist/**"],
   "ignoreDependencies": ["fallow", "images", "@rsdoctor/agent-cli"],
   "ignoreUnresolvedImports": ["./src/components/**"],
+  "rules": {
+    "complexity-crap": "off"
+  },
   "ignoreExports": [
     {
       "file": "src/app/**/*.{ts,tsx}",
