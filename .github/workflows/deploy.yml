@@ -26,6 +26,7 @@ jobs:
       - run: bun install --frozen-lockfile
       - run: bun run lint
       - run: bunx fallow health --quiet
+      - run: bunx fallow dead-code --quiet
       - name: Build and deploy to production
         run: bun run deploy
         env:
@@ -51,6 +52,7 @@ jobs:
       - run: bun install --frozen-lockfile
       - run: bun run lint
       - run: bunx fallow health --quiet
+      - run: bunx fallow dead-code --quiet
       - name: Build for preview
         run: bun run build
         env:
@@ -90,6 +92,7 @@ jobs:
       - run: bun install --frozen-lockfile
       - run: bun run lint
       - run: bunx fallow health --quiet
+      - run: bunx fallow dead-code --quiet
       - run: bun run build
 
   cleanup:
