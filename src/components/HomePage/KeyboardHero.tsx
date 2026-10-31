@@ -5,7 +5,7 @@ import GithubIcon from "images/social-media/github.svg?react";
 import TwitterIcon from "images/social-media/twitter.svg?react";
 import { Hand, Volume2, VolumeX } from "lucide-react";
 import { useCallback, useEffect, useRef, useState } from "react";
-import type { CSSProperties, ReactNode } from "react";
+import type { CSSProperties, ReactNode, RefObject } from "react";
 import {
   NAV_SHORTCUTS,
   OPEN_SHEET_EVENT,
@@ -72,13 +72,110 @@ function useBoardKeys() {
   return { pressed, press, release };
 }
 
-export function KeyboardHero() {
-  const { pressed, press, release } = useBoardKeys();
+type BoardActions = {
+  press: (id: string, duration?: number) => void;
+  release: (id: string) => void;
+  sayHi: (text?: string) => void;
+  type: (letter: string, touch?: boolean) => void;
+};
+
+const NAME_LETTERS = new Set("agneymo");
+
+/** Sound and haptics for a physical key press that isn't a plain letter. */
+function feedbackForKey(
+  event: KeyboardEvent,
+  key: string,
+  { press, sayHi }: Pick<BoardActions, "press" | "sayHi">,
+) {
+  if (key === " ") {
+    press("space");
+    if (!event.repeat) feedback("space");
+  } else if (key === "enter" && event.target === document.body) {
+    press("enter");
+    if (!event.repeat) feedback("enter");
+    sayHi();
+  }
+}
+
+/** The physical keyboard presses the keys on screen. */
+function usePhysicalKeyboard(actions: BoardActions) {
+  const { press, release, sayHi, type } = actions;
+  useEffect(() => {
+    const modKeys = new Set(["t", "s", ...NAV_SHORTCUTS.map((nav) => nav.key)]);
+    const isModKey = (key: string) =>
+      key === "?" || (modKeys.has(key) && shortcutsEnabled());
+
+    const onDown = (event: KeyboardEvent) => {
+      if (isTypingTarget(event)) return;
+      const key = event.key.toLowerCase();
+      if (NAME_LETTERS.has(key)) {
+        press(`letter-${key}`);
+        if (event.repeat) return;
+        feedback("alpha");
+        type(key);
+      } else if (
+        key === " " ||
+        (key === "enter" && event.target === document.body)
+      ) {
+        feedbackForKey(event, key, { press, sayHi });
+      } else if (!event.repeat && isModKey(key)) {
+        feedback("mod");
+      }
+    };
+    const onUp = (event: KeyboardEvent) => {
+      const key = event.key.toLowerCase();
+      if (key === " ") release("space");
+      else if (key === "enter") release("enter");
+      else release(`letter-${key}`);
+    };
+    window.addEventListener("keydown", onDown);
+    window.addEventListener("keyup", onUp);
+    return () => {
+      window.removeEventListener("keydown", onDown);
+      window.removeEventListener("keyup", onUp);
+    };
+  }, [press, release, sayHi, type]);
+}
+
+/** Taps and clicks on the decorative keys, handled by delegation. */
+function useBoardPointer(
+  boardRef: RefObject<HTMLDivElement | null>,
+  { press, type }: Pick<BoardActions, "press" | "type">,
+) {
+  useEffect(() => {
+    const board = boardRef.current;
+    if (!board) return;
+    const onPointerDown = (event: PointerEvent) => {
+      if (event.button !== 0) return;
+      const touch = event.pointerType !== "mouse";
+      const key = (event.target as HTMLElement).closest<HTMLElement>(
+        ".clack-key",
+      );
+      if (!key) return;
+      feedback((key.dataset.sound ?? "alpha") as FeedbackKind, { touch });
+      const target = key.closest<HTMLElement>("[data-toy-key]");
+      if (!target) return;
+      press(target.dataset.toyKey!, 160);
+      const letter = target.dataset.letter;
+      if (letter) type(letter, touch);
+    };
+    board.addEventListener("pointerdown", onPointerDown);
+    return () => board.removeEventListener("pointerdown", onPointerDown);
+  }, [boardRef, press, type]);
+}
+
+/** Alternates the wave animation so repeated greetings restart it. */
+function waveAttr(wave: number) {
+  if (wave === 0) return undefined;
+  return wave % 2 === 0 ? "a" : "b";
+}
+
+/** Speech bubble state plus the name-spelling easter egg. */
+function useGreeter() {
   const [wave, setWave] = useState(0);
   const [message, setMessage] = useState("");
   const greetingIndex = useRef(0);
   const typed = useRef("");
-  const boardRef = useRef<HTMLDivElement>(null);
 
   const sayHi = useCallback((text?: string) => {
     setWave((count) => count + 1);
@@ -106,6 +203,14 @@ export function KeyboardHero() {
     return () => window.clearTimeout(timeout);
   }, [message, wave]);
 
+  return { wave, message, sayHi, type };
+}
+
+export function KeyboardHero() {
+  const { pressed, press, release } = useBoardKeys();
+  const { wave, message, sayHi, type } = useGreeter();
+  const boardRef = useRef<HTMLDivElement>(null);
+
   // Sound and haptics load in the background, off the critical path.
   useEffect(() => {
     const board = boardRef.current;
@@ -113,69 +218,8 @@ export function KeyboardHero() {
     return startFeedback(board);
   }, []);
 
-  // The physical keyboard presses the keys on screen.
-  useEffect(() => {
-    const letters = new Set("agneymo");
-    const modKeys = new Set(["t", "s", ...NAV_SHORTCUTS.map((nav) => nav.key)]);
-    const onDown = (event: KeyboardEvent) => {
-      if (isTypingTarget(event)) return;
-      const key = event.key.toLowerCase();
-      if (letters.has(key)) {
-        press(`letter-${key}`);
-        if (!event.repeat) {
-          feedback("alpha");
-          type(key);
-        }
-      } else if (key === " ") {
-        press("space");
-        if (!event.repeat) feedback("space");
-      } else if (key === "enter" && event.target === document.body) {
-        press("enter");
-        if (!event.repeat) feedback("enter");
-        sayHi();
-      } else if (
-        !event.repeat &&
-        (key === "?" || (modKeys.has(key) && shortcutsEnabled()))
-      ) {
-        feedback("mod");
-      }
-    };
-    const onUp = (event: KeyboardEvent) => {
-      const key = event.key.toLowerCase();
-      if (key === " ") release("space");
-      else if (key === "enter") release("enter");
-      else release(`letter-${key}`);
-    };
-    window.addEventListener("keydown", onDown);
-    window.addEventListener("keyup", onUp);
-    return () => {
-      window.removeEventListener("keydown", onDown);
-      window.removeEventListener("keyup", onUp);
-    };
-  }, [press, release, sayHi, type]);
-
-  // Taps and clicks on the decorative keys, handled by delegation.
-  useEffect(() => {
-    const board = boardRef.current;
-    if (!board) return;
-    const onPointerDown = (event: PointerEvent) => {
-      if (event.button !== 0) return;
-      const touch = event.pointerType !== "mouse";
-      const key = (event.target as HTMLElement).closest<HTMLElement>(
-        ".clack-key",
-      );
-      if (!key) return;
-      feedback((key.dataset.sound ?? "alpha") as FeedbackKind, { touch });
-      const target = key.closest<HTMLElement>("[data-toy-key]");
-      if (!target) return;
-      const id = target.dataset.toyKey!;
-      press(id, 160);
-      const letter = target.dataset.letter;
-      if (letter) type(letter, touch);
-    };
-    board.addEventListener("pointerdown", onPointerDown);
-    return () => board.removeEventListener("pointerdown", onPointerDown);
-  }, [press, type]);
+  usePhysicalKeyboard({ press, release, sayHi, type });
+  useBoardPointer(boardRef, { press, type });
 
   const isPressed = (id: string) => pressed.has(id);
 
@@ -194,7 +238,7 @@ export function KeyboardHero() {
 
       <div
         ref={boardRef}
-        data-wave={wave === 0 ? undefined : wave % 2 === 0 ? "a" : "b"}
+        data-wave={waveAttr(wave)}
         className="clack-board bg-plate-deep relative rounded-[var(--radius-plate)] shadow-[inset_0_2px_0_var(--key-highlight),inset_0_-3px_0_var(--color-skirt),0_24px_48px_-20px_var(--key-cast)] lg:-rotate-2"
       >
         {/* Row 1: artisan Esc, A G N E Y, ? */}
@@ -266,49 +310,7 @@ export function KeyboardHero() {
         </button>
 
         {/* Row 3: the site, as modifier keys */}
-        {NAV_SHORTCUTS.filter((item) => item.key !== "h").map((item, n) => {
-          const className =
-            "keycap keycap-mod clack-key clack-nav flex-col items-start justify-between px-[calc(var(--u)*0.14)] py-[calc(var(--u)*0.12)] text-left";
-          const style = { "--i": 14 + n } as KeyStyle;
-          const body = (
-            <>
-              <span
-                aria-hidden
-                className="font-mono text-[calc(var(--u)*0.15)] leading-none uppercase opacity-80"
-              >
-                {item.key}
-              </span>
-              <span className="font-display text-[clamp(0.6875rem,calc(var(--u)*0.2),1rem)] leading-none font-semibold">
-                {item.label}
-              </span>
-            </>
-          );
-          return isExternal(item) ? (
-            <a
-              key={item.key}
-              href={item.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              className={className}
-              style={style}
-              data-sound="mod"
-              aria-keyshortcuts={item.key}
-            >
-              {body}
-            </a>
-          ) : (
-            <Link
-              key={item.key}
-              to={item.href}
-              className={className}
-              style={style}
-              data-sound="mod"
-              aria-keyshortcuts={item.key}
-            >
-              {body}
-            </Link>
-          );
-        })}
+        <NavKeys />
 
         {/* Row 4: socials around the spacebar */}
         <SocialKey
@@ -360,6 +362,53 @@ export function KeyboardHero() {
         </span>
       </p>
     </section>
+  );
+}
+
+function NavKeys() {
+  return NAV_SHORTCUTS.filter((item) => item.key !== "h").map((item, n) => (
+    <NavKey key={item.key} item={item} index={14 + n} />
+  ));
+}
+
+function NavKey({
+  item,
+  index,
+}: {
+  item: (typeof NAV_SHORTCUTS)[number];
+  index: number;
+}) {
+  const shared = {
+    className:
+      "keycap keycap-mod clack-key clack-nav flex-col items-start justify-between px-[calc(var(--u)*0.14)] py-[calc(var(--u)*0.12)] text-left",
+    style: { "--i": index } as KeyStyle,
+    "data-sound": "mod",
+    "aria-keyshortcuts": item.key,
+  };
+  const body = (
+    <>
+      <span
+        aria-hidden
+        className="font-mono text-[calc(var(--u)*0.15)] leading-none uppercase opacity-80"
+      >
+        {item.key}
+      </span>
+      <span className="font-display text-[clamp(0.6875rem,calc(var(--u)*0.2),1rem)] leading-none font-semibold">
+        {item.label}
+      </span>
+    </>
+  );
+  if (isExternal(item)) {
+    return (
+      <a href={item.href} target="_blank" rel="noopener noreferrer" {...shared}>
+        {body}
+      </a>
+    );
+  }
+  return (
+    <Link to={item.href} {...shared}>
+      {body}
+    </Link>
   );
 }
 

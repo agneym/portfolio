@@ -12,6 +12,48 @@ interface BookmarkGridProps {
   isFetching: boolean;
 }
 
+/**
+ * The staggered entrance is a page-load flourish: play it once for the first
+ * set of cards, then keep later card swaps (filters, loading more) instant.
+ * Remember the first non-empty batch; only that batch gets the animation.
+ */
+function useFirstBatchAnimation(bookmarks: Bookmark[]) {
+  const [firstBatch, setFirstBatch] = useState<Bookmark[] | null>(
+    bookmarks.length > 0 ? bookmarks : null,
+  );
+  if (firstBatch === null && bookmarks.length > 0) {
+    setFirstBatch(bookmarks);
+  }
+  return bookmarks.length > 0 && bookmarks === (firstBatch ?? bookmarks);
+}
+
+function EmptyShelf({
+  hasFilters,
+  onClearFilters,
+}: Pick<BookmarkGridProps, "hasFilters" | "onClearFilters">) {
+  return (
+    <div className="bg-plate-deep animate-rise-in mt-8 rounded-[var(--radius-plate)] px-6 py-24 text-center shadow-[inset_0_3px_0_var(--color-skirt)] motion-reduce:animate-none">
+      <p className="text-primary font-display text-xl font-semibold">
+        {hasFilters ? "Nothing matches that" : "The shelf is empty"}
+      </p>
+      <p className="text-secondary mx-auto mt-3 max-w-sm text-base text-balance">
+        {hasFilters
+          ? "Try a different search term, or clear the filters to see every link."
+          : "Public bookmarks appear here as soon as there is something to show."}
+      </p>
+      {hasFilters ? (
+        <button
+          type="button"
+          onClick={onClearFilters}
+          className="keycap keycap-mod mt-6 px-4 py-2.5 text-sm font-bold"
+        >
+          Clear filters
+        </button>
+      ) : null}
+    </div>
+  );
+}
+
 export function BookmarkGrid({
   bookmarks,
   activeTag,
@@ -20,39 +62,11 @@ export function BookmarkGrid({
   hasFilters,
   isFetching,
 }: BookmarkGridProps) {
-  // The staggered entrance is a page-load flourish: play it once for the first
-  // set of cards, then keep later card swaps (filters, loading more) instant.
-  // Remember the first non-empty batch; only that batch gets the animation.
-  const [firstBatch, setFirstBatch] = useState<Bookmark[] | null>(
-    bookmarks.length > 0 ? bookmarks : null,
-  );
-  if (firstBatch === null && bookmarks.length > 0) {
-    setFirstBatch(bookmarks);
-  }
-  const animate =
-    bookmarks.length > 0 && bookmarks === (firstBatch ?? bookmarks);
+  const animate = useFirstBatchAnimation(bookmarks);
 
   if (bookmarks.length === 0) {
     return (
-      <div className="bg-plate-deep animate-rise-in mt-8 rounded-[var(--radius-plate)] px-6 py-24 text-center shadow-[inset_0_3px_0_var(--color-skirt)] motion-reduce:animate-none">
-        <p className="text-primary font-display text-xl font-semibold">
-          {hasFilters ? "Nothing matches that" : "The shelf is empty"}
-        </p>
-        <p className="text-secondary mx-auto mt-3 max-w-sm text-base text-balance">
-          {hasFilters
-            ? "Try a different search term, or clear the filters to see every link."
-            : "Public bookmarks appear here as soon as there is something to show."}
-        </p>
-        {hasFilters ? (
-          <button
-            type="button"
-            onClick={onClearFilters}
-            className="keycap keycap-mod mt-6 px-4 py-2.5 text-sm font-bold"
-          >
-            Clear filters
-          </button>
-        ) : null}
-      </div>
+      <EmptyShelf hasFilters={hasFilters} onClearFilters={onClearFilters} />
     );
   }
 
