@@ -25,6 +25,7 @@ jobs:
           node-version: 24
       - run: bun install --frozen-lockfile
       - run: bun run lint
+      - run: bunx fallow health --quiet
       - name: Build and deploy to production
         run: bun run deploy
         env:
@@ -49,6 +50,7 @@ jobs:
           node-version: 24
       - run: bun install --frozen-lockfile
       - run: bun run lint
+      - run: bunx fallow health --quiet
       - name: Build for preview
         run: bun run build
         env:
@@ -87,6 +89,7 @@ jobs:
           node-version: 24
       - run: bun install --frozen-lockfile
       - run: bun run lint
+      - run: bunx fallow health --quiet
       - run: bun run build
 
   cleanup:
