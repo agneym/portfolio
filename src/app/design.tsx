@@ -35,6 +35,79 @@ interface DesignTokens {
   components: Record<string, ComponentToken>;
 }
 
+const isEmptyValue = (value: string) => value === "" || value === "{}";
+
+/** Top-level scalars: numbers become numbers, everything else is unquoted. */
+function parseTopLevelValue(value: string): unknown {
+  if (isEmptyValue(value)) return "";
+  if (/^-?\d/.test(value)) return parseFloat(value);
+  return unquote(value);
+}
+
+/** Nested values: dimensions stay strings, bare numbers become numbers. */
+function parseNestedValue(value: string): unknown {
+  if (isEmptyValue(value)) return "";
+  const unquoted = unquote(value);
+  const looksNumeric =
+    /^-?\d/.test(unquoted) &&
+    !unquoted.includes(" ") &&
+    !unquoted.includes("{");
+  if (looksNumeric && /^-?\d+(\.\d+)?$/.test(unquoted)) {
+    return parseFloat(unquoted);
+  }
+  return unquoted;
+}
+
+/** A line opens a section when the next line is a deeper-indented key. */
+function opensSection(lines: string[], index: number, indent: number): boolean {
+  const nextLine = lines[index + 1];
+  if (!nextLine) return false;
+  return nextLine.search(/\S/) > indent && /^[\w-]+:/.test(nextLine.trim());
+}
+
+/** Indented key-values go under the current section. */
+function parentPathFor(currentPath: string[], indent: number): string[] {
+  return indent >= 2 ? currentPath : currentPath.slice(0, indent / 2);
+}
+
+function parseYaml(yaml: string): Record<string, unknown> {
+  // Parse flat and nested YAML (handles the DESIGN.md structure)
+  const tokens: Record<string, unknown> = {};
+  const lines = yaml.split("\n");
+  let currentPath: string[] = [];
+
+  for (let i = 0; i < lines.length; i++) {
+    const line = lines[i]!;
+    const trimmed = line.trim();
+    if (!trimmed || trimmed.startsWith("#")) continue;
+
+    const kvMatch = trimmed.match(/^([\w-]+):\s*(.*)$/);
+    if (!kvMatch) continue;
+
+    const indent = line.search(/\S/);
+    const key = kvMatch[1]!;
+    const value = kvMatch[2]!.trim();
+
+    if (opensSection(lines, i, indent)) {
+      // Section header (colors:, typography:, etc.)
+      currentPath =
+        indent === 0 ? [key] : [...currentPath.slice(0, indent / 2), key];
+      setNested(tokens, currentPath, {});
+    } else if (indent === 0) {
+      currentPath = [key];
+      setNested(tokens, currentPath, parseTopLevelValue(value));
+    } else {
+      setNested(
+        tokens,
+        [...parentPathFor(currentPath, indent), key],
+        parseNestedValue(value),
+      );
+    }
+  }
+
+  return tokens;
+}
+
 function parseFrontMatter(raw: string): {
   tokens: DesignTokens;
   body: string;
@@ -42,94 +115,9 @@ function parseFrontMatter(raw: string): {
   const match = raw.match(/^---\n([\s\S]*?)\n---\n([\s\S]*)$/);
   if (!match) throw new Error("No YAML front matter found in DESIGN.md");
 
-  const yaml = match[1]!;
-  const body = match[2]!;
-
-  // Parse flat and nested YAML (handles the DESIGN.md structure)
-  const tokens: Record<string, unknown> = {};
-  const lines = yaml.split("\n");
-  let currentPath: string[] = [];
-  let currentObj: Record<string, unknown> | null = null;
-
-  for (let i = 0; i < lines.length; i++) {
-    const line = lines[i]!;
-    if (!line.trim()) continue;
-
-    const indent = line.search(/\S/);
-    const trimmed = line.trim();
-
-    // Comment
-    if (trimmed.startsWith("#")) continue;
-
-    const kvMatch = trimmed.match(/^([\w-]+):\s*(.*)$/);
-    if (!kvMatch) continue;
-
-    const key = kvMatch[1]!;
-    const rawValue = kvMatch[2]!;
-    let value: unknown = rawValue.trim();
-
-    // Detect nested objects (next line is indented)
-    const nextLine = i + 1 < lines.length ? lines[i + 1] : "";
-    const nextIndent = nextLine ? nextLine.search(/\S/) : -1;
-
-    if (nextIndent > indent && nextLine && nextLine.trim().match(/^[\w-]+:/)) {
-      // This is a section header (colors:, typography:, etc.)
-      currentPath =
-        indent === 0 ? [key] : [...currentPath.slice(0, indent / 2), key];
-      currentObj = {};
-      setNested(tokens, currentPath, currentObj);
-      continue;
-    }
-
-    if (indent === 0) {
-      // Top-level scalar
-      if (value === "" || value === "{}") value = "";
-      else if (
-        /^-?\d/.test(value as string) &&
-        !(value as string).startsWith('"')
-      )
-        value = parseFloat(value as string);
-      else value = unquote(value as string);
-      currentPath = [key];
-      setNested(tokens, currentPath, value);
-      continue;
-    }
-
-    // Indented key-value — goes into currentObj
-    const parentPath =
-      indent >= 2 ? currentPath : currentPath.slice(0, Math.max(0, indent / 2));
-    const fullPath = [...parentPath, key];
-
-    // Handle quoted strings, numbers, references
-    let parsed: unknown = value;
-    if (value === "" || value === "{}") {
-      parsed = "";
-    } else if (typeof value === "string") {
-      const unquoted = unquote(value as string);
-      if (
-        /^-?\d/.test(unquoted) &&
-        !unquoted.includes(" ") &&
-        !unquoted.includes("{")
-      ) {
-        // Could be a number or a dimension — keep as string for dimensions
-        if (unquoted.match(/^-?\d+(\.\d+)?(px|em|rem|%)$/)) {
-          parsed = unquoted;
-        } else if (unquoted.match(/^-?\d+(\.\d+)?$/)) {
-          parsed = parseFloat(unquoted);
-        } else {
-          parsed = unquoted;
-        }
-      } else {
-        parsed = unquoted;
-      }
-    }
-
-    setNested(tokens, fullPath, parsed);
-  }
-
   return {
-    tokens: tokens as unknown as DesignTokens,
-    body,
+    tokens: parseYaml(match[1]!) as unknown as DesignTokens,
+    body: match[2]!,
   };
 }
 

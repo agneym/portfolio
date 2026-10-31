@@ -1,7 +1,13 @@
 import { useNavigate } from "@tanstack/react-router";
 import { Keyboard, X } from "lucide-react";
 import { useTheme } from "next-themes";
-import { useEffect, useRef, useState, useSyncExternalStore } from "react";
+import {
+  useEffect,
+  useRef,
+  useState,
+  useSyncExternalStore,
+  type RefObject,
+} from "react";
 import {
   KONAMI,
   NAV_SHORTCUTS,
@@ -37,6 +43,78 @@ function useShortcutsEnabled() {
   return useSyncExternalStore(subscribe, shortcutsEnabled, () => true);
 }
 
+type ThemeControls = {
+  resolvedTheme: string | undefined;
+  setTheme: (theme: string) => void;
+};
+
+/** Advances the Konami sequence. Returns true when the key was consumed. */
+function handleKonami(
+  event: KeyboardEvent,
+  key: string,
+  konamiIndex: RefObject<number>,
+  setRgb: (on: boolean) => void,
+): boolean {
+  if (key !== KONAMI[konamiIndex.current]) {
+    konamiIndex.current = key === KONAMI[0] ? 1 : 0;
+    return false;
+  }
+
+  konamiIndex.current += 1;
+  if (konamiIndex.current === KONAMI.length) {
+    konamiIndex.current = 0;
+    const next = document.documentElement.dataset.rgb !== "on";
+    document.documentElement.dataset.rgb = next ? "on" : "off";
+    setRgb(next);
+    feedback(next ? "konami-on" : "konami-off");
+    window.dispatchEvent(new CustomEvent(RGB_EVENT, { detail: { on: next } }));
+    event.preventDefault();
+    return true;
+  }
+  // Mid-sequence b belongs to the code, not to navigation.
+  return konamiIndex.current > 8;
+}
+
+function handleShortcut(
+  event: KeyboardEvent,
+  key: string,
+  navigate: ReturnType<typeof useNavigate>,
+  { resolvedTheme, setTheme }: ThemeControls,
+) {
+  const nav = NAV_SHORTCUTS.find((item) => item.key === key);
+  if (nav) {
+    event.preventDefault();
+    if (isExternal(nav)) {
+      window.open(nav.href, "_blank", "noopener");
+    } else {
+      void navigate({ to: nav.href });
+    }
+    return;
+  }
+
+  if (key === "t") {
+    event.preventDefault();
+    setTheme(resolvedTheme === "dark" ? "light" : "dark");
+    return;
+  }
+
+  if (key === "s") {
+    event.preventDefault();
+    setSoundEnabled(!soundEnabled());
+    return;
+  }
+
+  if (key === "/") {
+    const search = document.querySelector<HTMLInputElement>(
+      "[data-shortcut-search]",
+    );
+    if (search) {
+      event.preventDefault();
+      search.focus();
+    }
+  }
+}
+
 /**
  * Global single-key shortcuts plus the shortcut sheet. Single-character
  * shortcuts can be switched off from the sheet (WCAG 2.1.4).
@@ -67,32 +145,11 @@ export function KeyboardShortcuts() {
   useEffect(() => {
     const onKeyDown = (event: KeyboardEvent) => {
       if (event.defaultPrevented || event.repeat) return;
+      if (isTypingTarget(event)) return;
       const key = event.key.toLowerCase();
 
       // Konami code works even with shortcuts off: arrows and b/a only.
-      if (!isTypingTarget(event)) {
-        if (key === KONAMI[konamiIndex.current]) {
-          konamiIndex.current += 1;
-          if (konamiIndex.current === KONAMI.length) {
-            konamiIndex.current = 0;
-            const next = document.documentElement.dataset.rgb !== "on";
-            document.documentElement.dataset.rgb = next ? "on" : "off";
-            setRgb(next);
-            feedback(next ? "konami-on" : "konami-off");
-            window.dispatchEvent(
-              new CustomEvent(RGB_EVENT, { detail: { on: next } }),
-            );
-            event.preventDefault();
-            return;
-          }
-          // Mid-sequence b belongs to the code, not to navigation.
-          if (konamiIndex.current > 8) return;
-        } else {
-          konamiIndex.current = key === KONAMI[0] ? 1 : 0;
-        }
-      }
-
-      if (isTypingTarget(event)) return;
+      if (handleKonami(event, key, konamiIndex, setRgb)) return;
 
       if (event.key === "?") {
         event.preventDefault();
@@ -101,40 +158,7 @@ export function KeyboardShortcuts() {
       }
 
       if (!shortcutsEnabled()) return;
-
-      const nav = NAV_SHORTCUTS.find((item) => item.key === key);
-      if (nav) {
-        event.preventDefault();
-        if (isExternal(nav)) {
-          window.open(nav.href, "_blank", "noopener");
-        } else {
-          void navigate({ to: nav.href });
-        }
-        return;
-      }
-
-      if (key === "t") {
-        event.preventDefault();
-        const { resolvedTheme: current, setTheme: set } = themeRef.current;
-        set(current === "dark" ? "light" : "dark");
-        return;
-      }
-
-      if (key === "s") {
-        event.preventDefault();
-        setSoundEnabled(!soundEnabled());
-        return;
-      }
-
-      if (key === "/") {
-        const search = document.querySelector<HTMLInputElement>(
-          "[data-shortcut-search]",
-        );
-        if (search) {
-          event.preventDefault();
-          search.focus();
-        }
-      }
+      handleShortcut(event, key, navigate, themeRef.current);
     };
 
     window.addEventListener("keydown", onKeyDown);
