@@ -27,15 +27,10 @@ Personal portfolio and blog for Agney Menon.
 
 ## Commands
 
-- `bun install`: install dependencies
-- `bun run dev`: dev server on port 3000 (`rsbuild.config.ts`)
-- `bun run build`: production build (output in `dist/`)
-- `bun run preview`: preview the production build (`rsbuild preview`, runs the SSR server entry)
-- `bun run lint`: oxlint with type checking
-- `bun run format` / `bun run format:check`: format with oxfmt / check formatting
-- `RSDOCTOR=true bun run build`: build with Rsdoctor and emit `rsdoctor-data.json`; analyze it with `rsdoctor-agent` (see the `rsdoctor-analysis` skill) — docs: https://rsdoctor.rs/llms.txt
+Scripts are defined in `package.json`.
 
-There are no tests.
+- Bundle analysis: `RSDOCTOR=true bun run build` emits `rsdoctor-data.json` (see the `rsdoctor-analysis` skill).
+- There are no tests.
 
 ## Project Structure
 
@@ -53,7 +48,6 @@ Path aliases: `components`, `images`, `webmarks` resolve to `src/*` (Rsbuild + t
 ## Code Style & Conventions
 
 - TypeScript throughout.
-- ALWAYS run `bun run lint` before finishing.
 - Functional components + hooks.
 - Style with Tailwind CSS utility classes.
 - When extending native HTML elements, use `ComponentProps<"element">` (e.g. `ComponentProps<"input">`) instead of `React.InputHTMLAttributes<HTMLInputElement>`.
