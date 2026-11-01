@@ -4,6 +4,7 @@ Personal portfolio and blog for Agney Menon.
 
 - Use context7 for library/API documentation, code generation, and setup or configuration steps without being asked.
 - Follow [DESIGN.md](./DESIGN.md) for visual design and UI decisions.
+- You run under `hc` (herdr-core): use it to spawn agents, read their output, and steer them. Run `hc --skill` for usage.
 
 ## Context7 Library IDs
 
