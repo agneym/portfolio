@@ -1,0 +1,321 @@
+---
+title: JEM - Web in October - JavaScript Every Month Newsletter
+date: "2026-11-08T06:15:23.177273Z"
+image: https://assets.buttondown.email/images/ad498bef-efe1-4a50-853c-821c26059a3c.png?w=960&fit=max
+buttondownUrl: https://buttondown.com/agney/archive/jem-web-in-october-javascript-every-month-6256/
+---
+
+Hello November!
+
+It's the month of TypeScript forks 🍴
+
+- [`tsc-rs`](https://github.com/pingdotgg/ts-rust) - Theo, experimental
+- `bun check` built into bun
+- [`tsc-ts`](https://tsc-ts.dev/) TypeScript compiler in TypeScript, distributed as native executable
+- [`tsrs`](https://blog.cloudflare.com/typescript-rust-port) - Cloudflare & Oxc
+
+## Releases
+
+### Browsers
+
+### Chrome [155](https://chromestatus.com/release-notes/155) [156](https://chromestatus.com/release-notes/156)
+
+- 155 fixes 27 vulnerabilties, 7 of them rated critical.
+- JPEG XL image support
+- `random()` CSS function
+- `margin-trim`, `symbols`, `text-decoration-skip-spaces` CSS property
+
+### Firefox [158](https://developer.mozilla.org/en-US/docs/Mozilla/Firefox/Releases/158) [159](https://developer.mozilla.org/en-US/docs/Mozilla/Firefox/Releases/159)
+
+Firefox has [new marketing vibes](https://youtube.com/watch?v=l7tQ1v4TCeY)
+
+- Scroll driven animations are baseline newly available.
+- scoped custom element registries are baseline newly available.
+- JPEG XL image support, to be read alongside, Jake Archibald writes on [JPEG XL vs AVIF for web use-cases](https://jakearchibald.com/2026/jpeg-xl-vs-avif/)
+- CSS typed arithmetic is baseline newly available
+- `PerformanceResourceTiming.deliveryType` property
+- `navigate` option from a notification
+
+### Safari [27.1](https://developer.apple.com/documentation/safari-release-notes/safari-27_1-release-notes) [27.2](https://developer.apple.com/documentation/safari-release-notes/safari-27_2-release-notes)
+
+- Device posture API behind a feature flag, so websites can respond whena. device is folded (think iPhone Duo)
+
+#### [Lightpanda 1.0](https://lightpanda.io/blog/posts/lightpanda-1-0)
+
+That's right. We are featuring a new browser release. Fresh out of beta.
+
+#### [Arc](https://arc.net/)
+
+Arc is done bro! Time to find other browsers.
+
+### IDE
+
+- [OpenCode 2.0](https://anoma.ly/notes/opencode-2-0/) is a rewrite with new plugins API and codemod.
+- Amp has launched [self hosted orbs](https://ampcode.com/news/self-hosted-orbs), bring your own sandbox service.
+- Replit has [cloud agents](https://replit.com/blog/anyone-can-bring-ideas-to-company-codebase)
+- [Jules](https://x.com/julesagent/status/2115883717705261283) is shutting down and merging with Antigravity
+- Artificial analysis has updated its [ranking scheme to reach v5](https://x.com/ArtificialAnlys/status/2115265133467635877)
+- Claude has [renamed their plans](https://x.com/claudeai/status/2116220869479428500) to remove the `x`, which is kinda file because you did not know what `x` is in the first place. The claude app has [idleCompaction](https://x.com/ClaudeDevs/status/2117670658113155075), meaning sessions are compacted just before the prompt cache expires. New permission mode `CLAUDE_CODE_EVEN_MORE_DANGEROUSLY_SKIP_PERMISSIONS`
+- Slack Code allows you to [bring your own agents](https://x.com/SlackHQ/status/2115461166986035293) to the workspace (See how I'm redefining what an IDE is?)
+- OpenAI introduces (copies Anthropic) [credits that can be claimed](https://x.com/OpenAIDevs/status/2115583698074755078) on Pro and business plans for API.
+- Pi ships their [1.0](https://earendil.com/posts/pi-1-0/) with codemod and cache warming for Anthropic models. There is also an experimental stateful agent harness named [Pi Durable](https://earendil.com/posts/pi-durable/).
+- Vercel replied to Pi in kind by making fx durable and then for the thrills made [every harness durable](https://vercel.com/blog/making-every-harness-durable)
+- The subscriptions for X, Cursor, Grok and Grok bot are merging into [X subscription](https://x.ai/news/x-subscription).
+- Vercel has a new [token pass](https://vercel.com/changelog/introducing-token-pass) - Kimi K3, GLM 5.3 and Deepseek v4.1 Flash
+
+#### [Github Universe](https://github.blog/news-insights/company-news/github-universe-2026-evolving-every-layer-of-the-stack/)
+
+Github had their Universe conference and shipped bunch of exciting stuff.
+
+- GitHub has upgraded their infrastructure to add 4 million CPU cores just this year 🤯
+- Copilot projects (think Claude Projects)
+- Redesigned Copilot App
+- Copilot Fusion Model router claiming Pareto frontier.
+
+### [SvelteKit 3](https://svelte.dev/blog/sveltekit-3-is-here)
+
+- one less configuration file, config file moves to `vite.config.ts`
+- environment variables are more powerful and easier to use
+
+### [Tamagui 3](https://tamagui.dev/blog/version-three)
+
+- C++ native runtime
+- expanded native compilation
+- flat style props and composable modifiers
+- Author semantic HTML elements via `html.*` from `@tamagui/tailwind` that compile to DOM on web and native views on iOS/Android, sharing the same tokens and themes.
+
+### [TypeScript 7.1 Beta](https://devblogs.microsoft.com/typescript/announcing-typescript-7-1-beta/)
+
+Even though this is a beta release, this comes with content mappers for non-JS file types.
+
+Zod creator uses the feature to debut [Reylo](https://reylo.dev/) - import `.sql` files into TypeScript with full type inference.
+
+### [Effect 4.0](https://effect.website/blog/releases/effect/40)
+
+- core effect has no runtime dependencies. 5x smaller bundle.
+- every major version of Effect has long-term support policy . This version gets bug fixes September 2029, or one year after 5.0 ships. With the way things are going, I will bet on the latter.
+
+### [Preact 11](https://preactjs.com/blog/preact-11/)
+
+- Hydration 2.0 allows suspending boundaries to return 0-2 DOM nodes instead of just one.
+- Automatic ref forwarding
+- `Object.is` for equality checks in hook arguments
+- Improved React compatability
+
+### [Next.js 16.4](https://nextjs.org/blog/next-16-4)
+
+- Cache components is stable. Default in 17
+- There is a command to allow agents to send issues back to Next.js team
+- lazy server HMR
+- smaller disk cache size
+- smaller production bundles, new [bundle analyzer tools for the agent](https://nextjs.org/blog/ship-less-javascript-with-ai)
+
+### [MSW 3.0](https://mswjs.io/blog/introducing-msw-3.0)
+
+- smaller library, fewer dependencies
+- granular entrypoints
+- New API for network interception
+
+### [Rspack 2.3](https://rspack.rs/blog/announcing-2-3)
+
+- SWC Next is a new compiler inspired by Yuku, built by Rspack and SWC teams. It is known to 10x as fast.
+- reduces memory usage so that multiple agents can run apps at once
+- split chunks optimisations for large projects
+
+### [Astro 7.4](https://astro.build/blog/astro-740/)
+
+- Build has a `--timings` to measure what took most time.
+- separate build and runtime image services
+- `notFound()` handler for custom entrypoints
+
+### [React Native 0.88](https://lp.jetbrains.com/ai-js-day-2026/)
+
+- React Native now dispatches events through the W3C `EventTarget` API by default, replacing the plugin-based system the renderer has used since its early days
+- Variable fonts with fontVariationSettings
+- [Expo58](https://expo.dev/changelog/sdk-58) is also out, with iPhone Duo support.
+
+### [Git 2.56](https://github.blog/open-source/git/highlights-from-git-2-56/)
+
+- stage resolved conflicts without staging everything else with `git add --resolved`
+- `git replay` command drop merge commits matching topology produced by `git rebase --no-rebase-merges`
+
+### [Bun 1.4.3](https://bun.com/blog/bun-v1.4.3)
+
+- `bun check` is the type checker built directly into bun
+- 67%-89% less CPU while your server sleeps
+- Run many instances of one app in a single process with `Bun.ModuleGraph`
+
+### Tanstack Family
+
+There are so many version updates from them that I thought I will group them together.
+
+- [Tanstack Start 1](https://tanstack.com/start)
+- [Tanstack AI 1](https://tanstack.com/ai/)
+- [Tanstack Redact](https://tanstack.com/redact/) - This was used on the Tanstack docs for a some time. You can use it too.
+- [Tanstack Charts 1](https://tanstack.com/charts/)
+
+### [Highlights - Pierre](https://diffs.com/highlights)
+
+Highlights is the syntax highlighting library from Pierre Computer, WASM and quick.
+
+### [Remix Jam](https://remix.run/jam/2026)
+
+Remix 3 is out, it's a fullstack framework with optional React. The surprise was that Ryan Florence is no longer with the team.
+
+### [AWS Lambda Web Functions](https://aws.amazon.com/blogs/aws/announcing-aws-lambda-web-functions-for-fast-consistent-web-app-performance-anywhere/)
+
+- standard HTTP web applications on Lambda without rewriting your code into an event handler
+- You can port Express, Hono, Fastify etc. without changing any port listening mechanics onto Lambda
+- AWS has also undergone a [UI refresh](https://x.com/awsdevelopers/status/2105356002363167088)
+
+### [React Router 8.5](https://reactrouter.com/changelog?ck_subscriber_id=3396910714#v850)
+
+- View Transition APIs deprecated for the `<ViewTransition />` component.
+- Host static HTML on a CDN while routing server loaders, actions, and route discovery to an external runtime server.
+
+## In the Spotlight 🔦
+
+Deno team is officially [joining Cloudflare](https://deno.com/blog/cloudflare) and this might be the end of road for Node.js killer. It's not void, I thought we can talk about the legacy of Deno and what it enabled.
+
+- Deno was created by Ryan Dahl, the same developer who built Node, and its name contains the same letters as Node.
+- The inspiration from comes from this talk that Ryan Dahl gave in 2018: [10 Things I Regret About Node.js - Ryan Dahl - JSConf EU](https://youtube.com/watch?v=M3BM9TB-8yA)
+- Overtime, many of the features have made their way into Node.js, first implemented by Deno
+
+  - built-in fetch and web APIs, a test runner, a permission model
+  - TypeScript type stripping on by default, single-executable apps, `--watch` and `--env-file`
+  - Deno meanwhile spent 2022–2024 adding npm and Node compatibility. In Dahl’s words, it was “sucked into the gravity well of node compatibility.”
+  - **Ecosystem and products:** Beyond Node, Deno’s main legacies are:
+  - web-standard server APIs, now formalized as Ecma TC55/WinterTC, which a Deno engineer chairs
+  - the “one binary does everything” toolchain that Bun copied and extended
+  - JSR, and Rust/V8 infrastructure (rusty_v8, deno_core, dprint-based formatting)
+  - **Dahl himself gave up on the runtime thesis.** On Hacker News he called the decision “a joint decision and I agree with it.” His reasoning: “There are some good ideas in Deno and it’s well engineered - but it ultimately is not solving big problems. It has been sucked into the gravity well of node compatibility, which forces it to behave exactly as Node does. Why reimplement Node? It works. Marginal performance or UX or security benefits are not enough.”
+  - Deno team tried many products before they arrived at the one that got them hired at Cloudflare: [celld](https://celld.dev/) - self hostable durable objects.
+
+---
+
+![image.png](https://assets.buttondown.email/images/ad498bef-efe1-4a50-853c-821c26059a3c.png?w=960&fit=max)
+
+From [Octoverse Report](https://github.blog/news-insights/octoverse/octoverse-commits-pushes-reach-new-highs-in-2026-as-developers-build-with-agents/)
+
+We complain that AI hasn't increased global GDP, but GitHub stats show more work getting done. Hopefully, more software will boost GDP. TypeScript is still the most used language on GitHub.
+
+### Security
+
+oh boy! oh boy!
+
+![image.png](https://assets.buttondown.email/images/8087c511-4fbd-4393-8312-cc14040156e6.png?w=960&fit=max)
+
+October was Cyber Security awareness month and Hackotberfest, we took both really super seriously, and spent the entire month patching stuff up. I would like to list all that happened here, but this newsletter space might not be enough, so here's just the highlights.
+
+- Private keys associated with 8 eMudhra certificates were leaked, one of the key segments being the infamous `4`. [Cloudflare report](https://blog.cloudflare.com/emudhra-certificate-compromise/)
+- Fixes for the month:
+
+  - [Node.js security release](https://nodejs.org/en/blog/vulnerability/october-2026-security-releases) - Oct 21
+  - [Next.js security release](https://nextjs.org/blog/nextjs-security-update-october-14-2026)
+  - [Vite dev server](https://x.com/vite_js/status/2109573811465023661)
+  - [React](https://github.com/react/react/security/advisories/GHSA-xqc2-xf4c-x3h3)
+  - [Ruby](https://www.ruby-lang.org/en/news/2026/10/23/regexp-fixes-for-gitlab-cves/)
+  - [PHP2Shell](https://www.wiz.io/blog/php2shell-php-rce)
+  - Environment variables [leaked from](https://blog.railway.com/p/security-disclosure-wednesday-october-21st) Railway, sign up was paused for a long time.
+  - [GitLab flaw](https://thehackernews.com/2026/10/critical-gitlab-flaw-cvss-100-could.html) with top priority
+  - HTTP3 servers [memory overload](https://foxio.io/blog/header-accordions-qpack-amplification-attacks-against-http-3-servers)
+  - Entire [TiDB databases leaked](https://fulcrumsec.vg/pingcap/)
+  - OpenCode console had an [attack](https://x.com/opencode/status/2111519637049319818) where third party API keys stored on platform were leaked.
+  - [Trojanised Claude Code](https://opensourcemalware.com/blog/trojanized-claude-code-extension-plants-persistent-ssh-backdoor) was published to the Open OCX registry.
+  - [Patch the Planet](https://hydrogen.shopify.dev/update/hydrogen-2026-10-now-available) is OpenAI’s initiative for cyber security
+
+## Tutorials
+
+### [How Thorsten Ball Uses Amp, October 2026 - Amp - YouTube](https://youtu.be/Z7l1EHfCMU8?si=y3tGqQSs0ouBXNxC)
+
+Thorsten Ball kicked up a row as he revealed that nobody on his team uses pull requests any more. He then doubled down and said there were no branches either. There are a bunch of podcasts and talks that the Thorsten (and his team) have shared on their process - but this is the one I found most interesting as it goes beyond to share the full work process including some of prompts they have had success with.
+
+### [Why modern software engineering needs Durable Objects (Cloudflare Connect 2026) - YouTube](https://youtu.be/75jxhU6z3ho?si=jZDsChuyiHqxugi_)
+
+Cloudflare held its developer conference last month, featuring many engaging talks on almost every Cloudflare product. This talk is a primer on Durable Objects, a technology that took too long to become popular but may endure, especially with agents running a amok.
+
+### [LIVE: Poteto (creator of pstack) on shipping 1,000's of PR's a month at SpaceX - Matt Pocock](https://www.youtube.com/live/MN9dGgmLyso?si=TPjal3VljoHzIy0b)
+
+Two of the world's most popular skill creators join a podcast, where Matt Pocock interviews Lauren Tan about what inspired her to build the pstack skills at Cursor and Grokbot. The discussion highlights a shift toward unlimited token availability, enabling the creation of seemingly endless PRs.
+
+### [Making React Context Cheap with React Compiler](https://jjenzz.com/making-react-context-cheap/)
+
+Standard React Context triggers a re-render in every consumer whenever any value in the context changes. React lacks a built in `useContextSelector` hook, the post explores why this is the case and a benchmark on solving this issue using `useSyncExternalStore` vs the React compiler.
+
+### [The AI cost of JavaScript frameworks - Nolan Lawson](https://nolanlawson.com/2026/10/28/the-ai-cost-of-javascript-frameworks/)
+
+Doing the God's work, this post builds the same Pokemon app using different frameworks and AI, then calculates what the cost, time taken and tokens is. This by itself would have been nice, but then it goes into assessing quality of the frontend produced through lighthouse.
+
+To be read alongside, [Design Systems Should Be Fast by Default](https://denodell.com/blog/design-systems-should-be-fast-by-default)
+
+## In short
+
+- [CSS Tricks](https://css-tricks.com/css-tricks-has-a-new-owner/) is back and owned by Geoff Graham. Racking my brain for a guest post.
+- Astryx has created a [rich text editor component](https://expo.dev/changelog/sdk-58) based on Lexical
+- Shopify’s Hydrogen now [works with other JS frameworks](https://hydrogen.shopify.dev/update/hydrogen-2026-10-now-available).
+- Shu Ding compiles a UI component [into a math function](https://x.com/shuding/status/2115082810738479363?a=22n4HOC4nX2kSBksb4s&s=20)
+- Turso is [joining](https://turso.tech/blog/turso-is-joining-supabase) Supabase
+- 66% of devs who took the State of Devs survey said they are experiencing _Having reduced motivation_. But majority of devs harbor positive feelings towards AI.
+- [klipp](https://pmndrs.github.io/klipp/) is a camera renderer for the web
+- Expo is picking up [maintanance and development of](https://github.com/necolas/react-native-web/discussions/2872) react-native-web.
+- Smoothing out your exit animations in React [using Suspense](https://barvian.me/react-exit-animations)
+- The browser might be the best sandbox available for agents
+
+  - [the browser is the sandbox](https://aifoc.us/the-browser-is-the-sandbox/) - Paul Kinlan
+  - [Running Untrusted Code: Why WebContainers Use the Browser as a Sandbox](https://x.com/elmd_/status/2113762332614525274) - Dominic Elm
+
+- Jules Blom has created a [graph to visualise](https://julesblom.com/writing/react-visual-notation) your React trees, tell the parent trees and owner trees apart.
+- Reminder to [use Astro](https://building.owner.com/project-speed) for your static sites.
+- A [collection of websites](https://webdev.teknium.io/) that specialise in the uncommon, from the founder of Hermes.
+- Fingerprinting scripts are being named after [bioweapons](https://nullpt.rs/fingerprinting-bioweapons) to get the LLMs to turn on you
+
+## In Other News
+
+### [How AI agents shape experts’ judgment calls - Anthropic](https://www.anthropic.com/research/agents-judgment-calls)
+
+Anthropic conducted an experiment in which it gathered several experts in a room and provided them with an AI to shape their opinions on a topic. The AI received an initial bias on the topic, determined by a coin toss performed by Anthropic. When the experts were asked for their opinions, most aligned with the AI's stance, some repeating its reasoning verbatim.
+
+Anthropic decided the AI's opinion through a coin toss for this experiment, but how much of it is decided beforehand through the training data?
+
+### [Surface Laptop Ultra](https://www.microsoft.com/en-us/surface/devices/surface-laptop-ultra)
+
+Microsoft aims to prove that ARM laptops can run Windows, and the result is the new Surface behemoth. Powered by the NVIDIA RTX Spark SuperChip, it can handle any workload you throw at it. It is available in the US for $2,600.
+
+### [How to be more ambitious: A tutorial for humans with models](https://felixrieseberg.com/how-to-be-more-ambitious-a-tutorial-for-humans-with-models/)
+
+Today, many people ask to be more ambitious, but I was not less ambitious by principle before. Felix Rieseberg, who works at Anthropic writes about his shortcuts to make your life more ambitious, get the AI models to do more of the work.
+
+> **Accomplish hard things by believing them to be possible**: In 1939, George Dantzig showed up late to a statistics class at Berkeley, copied two problems off the blackboard, and handed in his solutions thinking they were homework. They were two unsolved problems in statistics.
+
+To be read alongside:
+
+- Felix writes about his [advice for junior engineers](https://felixrieseberg.com/hunger-beats-tenure-advice-for-junior-engineers/)
+- Hank Green [takes on the productivity influencers](https://www.youtube.com/watch?v=Fj-INVmmILo). Most people give tips on being productive, but having the opportunity to be productive matters more.
+
+### [How many cookies did you eat today?](https://sheets.works/data-viz/how-many-cookies)
+
+This article from sheets.works investigates how web tracking works today by reading a single article across 46 popular websites without clicking anything. A typical page deposits roughly 260 cookies - contrasting the thoughts of original creator of the cookie, Lou Montulli, quoted in the article.
+
+### [Computer Chips Are the Most Magnificent Things Humanity Has Ever Made](https://www.newyorker.com/magazine/2026/10/26/computer-chips-are-the-most-magnificent-things-weve-ever-made) - New Yorker
+
+> Intel, was “roughly the same size as PepsiCo’s Frito-Lay Inc. subsidiary, the largest potato chip maker.
+
+The fascinating tale of 8th wonder of the world - the semiconductor chip.
+
+### AI updates
+
+- [Haiku 5.5](https://www.anthropic.com/claude-haiku-5-5) - Long neglected small model from Anthropic gets a real nice update
+- [GPT 6.1 Terra](https://openai.com/index/introducing-gpt-6-1-terra/) - OpenAI's mid model returns with computer use and writing focus.
+- [Deepseek v4.1-Flash-1017](https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash-1017) - The beloved Deepseek model gets a date added to it's name. Version codes and dates, how fun!
+- [Muse Wonder & Muse Wonder Full](https://about.fb.com/news/2026/10/introducing-muse-wonder-models/) - Flagship model debut from Meta. I don't like having _Full_ in the name, even though I see what they were going for. Meta also released [Muse Spark Open](https://research.meta.ai/blog/muse-spark-open), their open source version.
+- [Kimi 3.1 Pro](https://www.kimi.ai/blog/kimi-k3-1-pro) - Kimi returns after a long holiday with their flagship
+- [MAI Code 1.1 Flash](https://microsoft.ai/models/mai-code-1-flash/) - Microsoft puts their flash local coding model on GitHub copilot
+- Google follows up their Argon model with [Carbon](https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-carbon/), onwards to the frontier. [EmbeddingGemma 2](https://x.com/googlegemma/status/2107502533992464482) is 740M model that runs anywhere.
+- LiquidAI has a [small model update](https://x.com/liquidai/status/2115128329003303107) worth it's weight - LFM 3
+
+## Looking Ahead
+
+- [React Foundation Cotributors Summit - London](https://www.react.foundation/summit) - 10-12 Nov
+- [Ai.js Day](https://lp.jetbrains.com/ai-js-day-2026/) - Jetbrains - 13 Nov
+- [JS Nation](https://jsnation.us/) - Nov 16
+- [React Summit](https://reactsummit.us/) - Nov 17 & 20
