@@ -13,7 +13,7 @@
   ],
   "ignorePatterns": [".content-collections/**", "dist/**"],
   "ignoreDependencies": ["fallow", "images", "@rsdoctor/agent-cli"],
-  "ignoreUnresolvedImports": ["./src/components/**"],
+  "ignoreUnresolvedImports": ["./src/components/**", "content-collections"],
   "rules": {
     "complexity-crap": "off"
   },
