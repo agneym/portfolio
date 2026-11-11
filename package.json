@@ -70,9 +70,9 @@
     "cf": "^1.0.0-beta.30",
     "fallow": "^3.33.1",
     "lefthook": "^2.2.1",
-    "oxfmt": "^0.72.0",
-    "oxlint": "^1.87.0",
-    "oxlint-tsgolint": "^7.0.2003",
+    "oxfmt": "^0.78.0",
+    "oxlint": "^1.93.0",
+    "oxlint-tsgolint": "^7.0.2006",
     "rsbuild-plugin-cloudflare": "^0.0.5"
   },
   "engines": {
