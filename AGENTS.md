@@ -23,7 +23,7 @@ Personal portfolio and blog for Agney Menon.
 - **Framework**: TanStack Start (React 19, TanStack Router, TanStack Query) on Rsbuild 2 (Rspack).
 - **Styling**: Tailwind CSS v4 (via `@tailwindcss/postcss`).
 - **Content**: MDX blog posts via Content Collections (`content-collections.ts`, driven by an inline plugin in `rsbuild.config.ts`), code highlighting with Shiki.
-- **Tooling**: oxlint (type-aware) and oxfmt; `mise` manages runtimes (`mise.toml`, Node 26.13.1); bun is the package manager.
+- **Tooling**: oxlint (type-aware) and oxfmt; `mise` manages runtimes (`mise.toml`, Node 26); bun is the package manager.
 - **Git hooks**: lefthook pre-commit runs `oxfmt` and `oxlint --fix` on staged files.
 
 ## Commands
