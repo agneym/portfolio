@@ -427,6 +427,11 @@ html.dark:root {
     position: relative;
   }
 
+  /* Keep anchored headings clear of the fixed site header. */
+  & :is(h2, h3, h4)[id] {
+    scroll-margin-top: 6.5rem;
+  }
+
   & a:hover {
     text-decoration-color: var(--color-accent);
     background-color: color-mix(in oklab, var(--color-lemon) 55%, transparent);
