@@ -1,5 +1,6 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useId, useRef } from "react";
 import { TocLink } from "./TocLink";
+import { RAIL_WIDTH, useTocRail } from "./useTocRail";
 import type { TocEntry } from "./tocTypes";
 
 /** Height of the pinned section heading the active item must stay clear of. */
@@ -46,6 +47,9 @@ export function SidebarToc({
   active: string | undefined;
 }) {
   const listRef = useKeepActiveVisible(active);
+  const rail = useTocRail(listRef, entries);
+  const span = active ? rail?.spans[active] : undefined;
+  const clipId = `toc-clip-${useId().replace(/:/g, "")}`;
 
   return (
     <nav
@@ -54,18 +58,65 @@ export function SidebarToc({
     >
       <ul
         ref={listRef}
-        className="relative flex max-h-[calc(100vh-7rem)] flex-col gap-y-3 overflow-y-auto border-l-2 border-current/10 pr-2 text-sm"
+        className="relative flex max-h-[calc(100vh-7rem)] flex-col gap-y-3 overflow-y-auto pr-2 text-sm"
       >
+        {rail ? (
+          <svg
+            aria-hidden
+            width={RAIL_WIDTH}
+            height={rail.height}
+            className="pointer-events-none absolute top-0 left-0 z-20"
+          >
+            <defs>
+              <clipPath id={clipId}>
+                {/* A unit-height rect, moved and stretched over the active row. */}
+                <rect
+                  x={0}
+                  y={0}
+                  width={RAIL_WIDTH}
+                  height={1}
+                  className="transition-transform duration-300 ease-out motion-reduce:transition-none"
+                  style={{
+                    transform: span
+                      ? `translateY(${span.top}px) scaleY(${span.bottom - span.top})`
+                      : "scaleY(0)",
+                  }}
+                />
+              </clipPath>
+            </defs>
+            <path
+              d={rail.path}
+              fill="none"
+              strokeWidth={2}
+              strokeLinejoin="round"
+              className="stroke-current/10"
+            />
+            {/* The accent copy of the rail only shows through the sliding clip. */}
+            <path
+              d={rail.path}
+              fill="none"
+              strokeWidth={3}
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              stroke="var(--color-accent)"
+              clipPath={`url(#${clipId})`}
+            />
+          </svg>
+        ) : null}
         {groupEntries(entries).map((group, i) => (
           <li key={group.head?.id ?? i}>
             {group.head ? (
-              <div className="bg-surface sticky top-0 z-10 py-1 pl-3">
+              <div
+                data-toc-row={group.head.id}
+                data-toc-head
+                className="bg-surface sticky top-0 z-10 py-1 pl-3"
+              >
                 <TocLink entry={group.head} active={group.head.id === active} />
               </div>
             ) : null}
             <ul className="flex flex-col gap-y-1.5 pt-1">
               {group.items.map((entry) => (
-                <li key={entry.id} className="relative pl-7">
+                <li key={entry.id} data-toc-row={entry.id} className="pl-7">
                   <TocLink entry={entry} active={entry.id === active} />
                 </li>
               ))}

@@ -9,9 +9,9 @@ export function TocLink({
   active: boolean;
 }) {
   // The sidebar lives inside `.prose-ui`, whose `a:hover` adds a lemon
-  // background and underline, so the inline style resets those. The active row
-  // gets an accent tint and a bar on the rail (inside the list's clip area).
-  // Font weight stays constant so items don't reflow.
+  // background and underline, so the inline style resets those. The moving
+  // highlight is the rail in SidebarToc; here only the text colour changes
+  // (font weight stays constant so items don't reflow).
   return (
     <a
       href={`#${entry.id}`}
@@ -20,16 +20,9 @@ export function TocLink({
         scrollToHeading(entry.id);
       }}
       aria-current={active ? "location" : undefined}
-      style={{
-        textDecoration: "none",
-        backgroundColor: active
-          ? "color-mix(in oklab, var(--color-accent) 16%, transparent)"
-          : "transparent",
-      }}
-      className={`-ml-2 block rounded-md py-0.5 pl-2 transition-colors before:absolute before:inset-y-0 before:left-0 before:w-[3px] before:rounded-full ${
-        active
-          ? "text-primary before:bg-[var(--color-accent)]"
-          : "text-secondary hover:text-primary"
+      style={{ textDecoration: "none", backgroundColor: "transparent" }}
+      className={`block py-0.5 transition-colors duration-300 ${
+        active ? "text-primary" : "text-secondary hover:text-primary"
       }`}
     >
       {entry.title}
