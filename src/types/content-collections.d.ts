@@ -31,6 +31,7 @@ declare module "content-collections" {
     slug: string;
     shortTitle: string;
     excerpt: string;
+    toc: { depth: number; title: string; id: string }[];
     mdx: string;
   }
 

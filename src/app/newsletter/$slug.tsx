@@ -3,6 +3,7 @@ import { createFileRoute, notFound } from "@tanstack/react-router";
 import { MDXContent } from "@content-collections/mdx/react";
 import { BlogArticleContainer } from "components/BlogHome/BlogArticleContainer";
 import { IssueHeader } from "components/Newsletter/IssueHeader";
+import { IssueToc } from "components/Newsletter/IssueToc";
 import { IssueNav } from "components/Newsletter/IssueNav";
 import { getIssues } from "components/Newsletter/issues";
 import { CustomMDXComponents } from "components/mdx";
@@ -61,6 +62,7 @@ function NewsletterIssuePage() {
         date={issue.date}
         buttondownUrl={issue.buttondownUrl}
       />
+      <IssueToc toc={issue.toc} />
       <Suspense fallback={null}>
         <MDXContent code={issue.mdx} components={CustomMDXComponents} />
       </Suspense>
