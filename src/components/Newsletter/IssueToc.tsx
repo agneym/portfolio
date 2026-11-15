@@ -1,11 +1,13 @@
+import { useMemo } from "react";
 import { MobileToc } from "./MobileToc";
 import { SidebarToc } from "./SidebarToc";
 import type { TocEntry } from "./tocTypes";
 import { useActiveHeading } from "./useActiveHeading";
 
 export function IssueToc({ toc }: { toc: readonly TocEntry[] }) {
-  const entries = toc.filter((entry) => entry.depth <= 3);
-  const active = useActiveHeading(entries.map((entry) => entry.id));
+  const entries = useMemo(() => toc.filter((entry) => entry.depth <= 3), [toc]);
+  const ids = useMemo(() => entries.map((entry) => entry.id), [entries]);
+  const active = useActiveHeading(ids);
 
   if (entries.length < 3) return null;
 

@@ -15,6 +15,14 @@ function getScroller(el: HTMLElement) {
 
 let cancelScroll: (() => void) | undefined;
 
+/** Fired around a programmatic scroll so scroll-spy can sit it out. */
+export const TOC_SCROLL_START = "toc:scroll-start";
+export const TOC_SCROLL_END = "toc:scroll-end";
+
+function announce(type: string, id?: string) {
+  window.dispatchEvent(new CustomEvent(type, { detail: id }));
+}
+
 /** Eased scroll; duration grows with distance. Cancelled by user input. */
 export function scrollToHeading(id: string) {
   const target = document.getElementById(id);
@@ -33,6 +41,7 @@ export function scrollToHeading(id: string) {
       SCROLL_OFFSET,
   );
   history.replaceState(null, "", `#${id}`);
+  announce(TOC_SCROLL_START, id);
 
   const distance = to - from;
   if (
@@ -40,6 +49,7 @@ export function scrollToHeading(id: string) {
     window.matchMedia("(prefers-reduced-motion: reduce)").matches
   ) {
     scroller.scrollTop = to;
+    announce(TOC_SCROLL_END);
     return;
   }
 
@@ -52,6 +62,7 @@ export function scrollToHeading(id: string) {
     scroller.removeEventListener("touchstart", stop);
     scroller.removeEventListener("keydown", stop);
     cancelScroll = undefined;
+    announce(TOC_SCROLL_END);
   };
   const step = (now: number) => {
     const t = Math.min(1, (now - start) / duration);

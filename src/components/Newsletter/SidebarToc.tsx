@@ -18,6 +18,30 @@ function groupEntries(entries: readonly TocEntry[]) {
   return groups;
 }
 
+/** Ease-out scroll of the list. Native smooth scrolling gets cancelled when the
+ * page is scrolling at the same moment, so this runs its own frame loop. */
+function animateScrollTop(list: HTMLElement, to: number) {
+  const from = list.scrollTop;
+  const target = Math.min(
+    Math.max(0, to),
+    list.scrollHeight - list.clientHeight,
+  );
+  if (Math.abs(target - from) < 1) return () => {};
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    list.scrollTop = target;
+    return () => {};
+  }
+  const start = performance.now();
+  let frame = 0;
+  const step = (now: number) => {
+    const t = Math.min(1, (now - start) / 350);
+    list.scrollTop = from + (target - from) * (1 - (1 - t) ** 3);
+    if (t < 1) frame = requestAnimationFrame(step);
+  };
+  frame = requestAnimationFrame(step);
+  return () => cancelAnimationFrame(frame);
+}
+
 /** Keeps the active item visible inside the scrollable sidebar. */
 function useKeepActiveVisible(active: string | undefined) {
   const listRef = useRef<HTMLUListElement>(null);
@@ -29,10 +53,10 @@ function useKeepActiveVisible(active: string | undefined) {
     const offset =
       link.getBoundingClientRect().top - list.getBoundingClientRect().top;
     if (offset < PINNED || offset + link.offsetHeight > list.clientHeight) {
-      list.scrollBy({
-        top: offset - list.clientHeight / 3,
-        behavior: "smooth",
-      });
+      return animateScrollTop(
+        list,
+        list.scrollTop + offset - list.clientHeight / 3,
+      );
     }
   }, [active]);
 
